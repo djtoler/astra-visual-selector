@@ -4800,3 +4800,85 @@ VERIFIED    The real builder produced 26 briefs, 227 distinct approved assets, 4
             16-16 Wiz Khalifa asset 4330073a1f5a1f1d26471b0f and 20-20 Kendrick
             Lamar asset 07e917c62e761375c0ada185. All 345 tests pass (two skipped).
 STATUS      done
+
+================================================================================
+
+[0102] 2026-09-25  Lettered beat sides and chosen templates are invisible at the media decision.
+PROBLEM     The ui5 media consumer isolates 02-02a from 02-02b. The first asks for
+            the 2009 XXL cover; the second asks for a slideshow/match-cut of
+            mixtape covers, Jet Life and features. The current header shows only
+            template IDs and renders all 26 briefs at once, so removing album art
+            from side A appears to remove it from the whole 02-02 segment.
+WHY REAL    The objective is the right media on the right beat. Without sibling
+            intent and the already-selected template preview at the decision,
+            a correct side-scoped rejection is indistinguishable from a mistake.
+CHANGE      build_media_review.py now derives a stable numbered segment family,
+            carries each sibling side's quote and saved media direction, and
+            reuses the existing .thumbcache preview bytes. The ui5 consumer
+            pages two complete numbered families at a time. Each beat is a
+            compact two-column row: narration/intent at left, a smaller template
+            strip above a smaller media grid at right. No template or media
+            decision changed. UTF-8 is declared so the served UI is readable.
+TEST        MediaReviewCarriesDecisionContext x3. All failed on the baseline:
+            no segmentFamily/pairedSides, no templatePreviews, and no two-family
+            paging/layout contract. The encoding assertion also failed before
+            the charset declaration. All now pass.
+VERIFIED    The real builder produced the same 26 briefs, 227 distinct selectable
+            assets, 470 card slots, 227 media posters and 54 playable media clips.
+            It additionally exposes 47 saved template candidates: 41 cached
+            posters and 30 cached clips. All six candidates attached to 02-02a/b
+            have both poster and clip. The served consumer renders Page 1 of 11,
+            keeps 02-02a and 02-02b together, and visibly distinguishes the XXL
+            cover side from the mixtape/Jet Life/features slideshow side. The
+            complete suite passes 348 tests with two skipped.
+STATUS      done
+
+================================================================================
+
+[0103] 2026-09-25  Recover the local-only media review before changing the page.
+PROBLEM     The localhost ui5-media page had no artifact database, so its live state
+            said "Judgments cannot be saved in this view." The completed review held
+            173 W corrections and 29 written notes only in browser memory.
+WHY REAL    Reloading or closing the page would force the user to repeat the entire
+            review and would discard the evidence needed to fix selection.
+CHANGE      Captured the final visible frontier on every one of the 11 review pages
+            plus all 29 notes. Reconstructed W decisions from the ordered candidate
+            queues and the ten-card backfill rule, replayed them against every tier,
+            and saved the raw and reconstructed receipts under grammar/. Merged the
+            173 recovered corrections with the 28 earlier corrections; the canonical
+            file now has 201 unique entity-scoped corrections. The pre-merge file is
+            preserved as media-corrections.pre-live-recovery-2026-09-25.json.
+TEST        recover_astra_media_review.py refuses a reported-count mismatch or any
+            tier whose replay differs from the captured live DOM.
+VERIFIED    Reconstructed 173 corrections; replay matched every tier; 29 notes were
+            retained verbatim; union is 201 with zero overlap between the old 28 and
+            newly recovered 173.
+STATUS      done
+
+================================================================================
+
+[0104] 2026-09-25  Identity evidence must gate caption/project fallback.
+PROBLEM     resolve() ranked tags above captions and project labels but admitted all
+            of them into one pool. spread() then rotated by media type/framing and
+            could promote weak description/title/project matches beside real identity
+            tags. Production Ready identities were in the haystack but `_why()` did
+            not recognize them, so 28 cards displayed `?` evidence.
+WHY REAL    The user reviewed large numbers of unrelated assets even though tagged,
+            face-linked or Production Ready identity matches existed. Ranking is not
+            a fallback boundary when the next step deliberately diversifies the list.
+CHANGE      resolve() now builds a primary identity pool from Production Ready
+            identities, named faces and non-project content tags. Captions and ingest
+            project labels are admitted only when that entity has no primary match.
+            A weak group is likewise withheld when strong individual matches cover
+            every entity. `_why()` now labels Production Ready identity evidence.
+TEST        MediaEvidenceUsesARealFallbackBoundary: tag blocks project fallback;
+            tag blocks caption fallback; caption remains available when primary
+            identity evidence is absent; delivered identity is primary; weak groups
+            do not join a strong group slate. These tests failed before the change.
+VERIFIED    All eight evidence-boundary tests pass. The full suite passes 351 tests
+            with two skipped. A non-published rebuild measured 470 -> 337 card slots,
+            227 -> 172 distinct assets, and removed all 21 caption, 66 project and 28
+            unknown-evidence slots from this review; 118 slots now explicitly report
+            Production Ready identity evidence. Remaining gaps are Ab-Soul,
+            Ty Dolla $ign and XXXTentacion.
+STATUS      done

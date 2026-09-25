@@ -23,7 +23,7 @@ place, so the grid stays full. SHOW is what is on screen; QUEUE is what backfill
     python3 pipeline/build_media_review.py            build from grammar/media-briefs.json
     python3 pipeline/build_media_review.py --show=8 --queue=8
 """
-import base64, json, pathlib, shutil, subprocess, sys
+import base64, json, pathlib, re, shutil, subprocess, sys
 
 P = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(P))
@@ -34,10 +34,80 @@ BRIEFS = P.parent / "grammar" / "media-briefs.json"
 # rotation does — a selection is a decision (LOG 0090).
 PICKS = P.parent / "grammar" / "media-picks.json"
 FLAGS = P.parent / "grammar" / "beat-flags.json"
+BINDINGS = P.parent / "grammar" / "bindings.json"
+TEMPLATE_CACHE = P / ".thumbcache"
 UI = P / next((a.split("=")[1] for a in sys.argv if a.startswith("--out=")), "ui5-media")
 SHOW = int(next((a.split("=")[1] for a in sys.argv if a.startswith("--show=")), 16))
 QUEUE = int(next((a.split("=")[1] for a in sys.argv if a.startswith("--queue=")), 12))
 WIDE, SECS = 560, 6
+SEGMENT_FAMILIES_PER_PAGE = 2
+
+
+def segment_family(brief):
+    """Keep lettered sides of one numbered segment in one review unit."""
+    m = re.match(r"^(\d+-\d+)", str(brief or ""))
+    return m.group(1) if m else str(brief or "")
+
+
+def binding_names():
+    """Read labels from the existing selector bindings; do not invent UI names."""
+    if not BINDINGS.exists():
+        return {}
+    out = {}
+    def walk(x):
+        if isinstance(x, dict):
+            if x.get("id") and x.get("name"):
+                out.setdefault(x["id"], x["name"])
+            for v in x.values():
+                walk(v)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+    walk(json.load(open(BINDINGS)))
+    return out
+
+
+def media_direction(brief, flag):
+    """Expose saved direction at the decision; never infer a new treatment."""
+    parts = []
+    kinds = flag.get("wantsMediaKind") or []
+    if kinds:
+        parts.append("Media kind: " + ", ".join(kinds))
+    if flag.get("rawBroll"):
+        parts.append("B-roll / sequence direction")
+    why = flag.get("wantsMediaKindWhy") or flag.get("why")
+    if why:
+        parts.append(why)
+    if not parts and brief.get("selectedTemplates"):
+        parts.append("Use the selected template candidates shown with this side.")
+    return " — ".join(parts)
+
+
+def template_previews(raw_briefs):
+    """Reuse the already-built preview cache. Missing means missing, not fabricated."""
+    ids = sorted({t["id"] for b in raw_briefs
+                  for t in (b.get("selectedTemplates") or [])})
+    names = binding_names()
+    media_dir = UI / "template-media"
+    media_dir.mkdir(parents=True, exist_ok=True)
+    for f in media_dir.iterdir():
+        if f.is_file():
+            f.unlink()
+    out = {}
+    for tid in ids:
+        safe = re.sub(r"[^A-Za-z0-9_.-]", "_", tid)
+        jpg = TEMPLATE_CACHE / f"{tid}.jpg"
+        mp4 = TEMPLATE_CACHE / f"{tid}.mp4"
+        item = {"label": names.get(tid, tid), "poster": None, "clip": None}
+        if jpg.exists():
+            item["poster"] = ("data:image/jpeg;base64," +
+                              base64.b64encode(jpg.read_bytes()).decode())
+        if mp4.exists():
+            dst = media_dir / f"{safe}.mp4"
+            shutil.copy2(mp4, dst)
+            item["clip"] = f"template-media/{safe}.mp4"
+        out[tid] = item
+    return out
 
 
 def thumb(src, dst_jpg):
@@ -55,6 +125,7 @@ def thumb(src, dst_jpg):
 
 def main():
     d = json.load(open(BRIEFS))
+    raw_briefs = d["briefs"]
     pool = M.load()
     wrong = M.corrections()
     briefs, need = [], set()
@@ -75,7 +146,11 @@ def main():
     # already holds per-beat declarations.
     flags = (json.load(open(FLAGS)).get("beats") or {}) if FLAGS.exists() else {}
 
-    for b in d["briefs"]:
+    raw_by_family = {}
+    for raw in raw_briefs:
+        raw_by_family.setdefault(segment_family(raw.get("brief")), []).append(raw)
+
+    for b in raw_briefs:
         # FRAMING COMES FROM THE TEMPLATE THE USER CHOSE. A spatial node wants a
         # tight crop and a hero billboard wants half-body or wider; the same
         # entity needs different assets depending on what is rendering it.
@@ -114,9 +189,24 @@ def main():
                             "kind": rec.get("kind")})
                 need.add(rec["id"])
             return out
+        family = segment_family(b.get("brief"))
+        paired = []
+        for other in raw_by_family.get(family, []):
+            if other.get("brief") == b.get("brief"):
+                continue
+            paired.append({
+                "brief": other.get("brief"), "quote": other.get("quote"),
+                "job": other.get("job"),
+                "mediaDirection": media_direction(
+                    other, flags.get(other.get("brief")) or {}),
+                "templates": other.get("selectedTemplates") or [],
+            })
         briefs.append({
             "brief": b["brief"], "beat": b.get("beat"), "job": b.get("job"),
             "quote": b.get("quote"), "role": b.get("role"),
+            "segmentFamily": family,
+            "mediaDirection": media_direction(b, flags.get(b["brief"]) or {}),
+            "pairedSides": paired,
             # User note on 11-11b: "it would be good to know which template
             # options were selected so I can match them with assets." The data
             # was already in picks.json and the grid simply never showed it.
@@ -162,7 +252,10 @@ def main():
         elif not is_vid:
             missing.append(aid)
 
+    previews = template_previews(raw_briefs)
     json.dump({"briefs": briefs, "thumbs": thumbs, "hasClip": hasclip,
+               "templatePreviews": previews,
+               "segmentFamiliesPerPage": SEGMENT_FAMILIES_PER_PAGE,
                "displacedPicks": displaced,
                "show": SHOW, "queue": QUEUE,
                "library": {"assets": len(pool), "corrections": len(wrong)}},

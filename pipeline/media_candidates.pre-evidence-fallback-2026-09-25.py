@@ -3,9 +3,9 @@
 
 WHAT THIS IS. A slot in a chosen template needs an asset. This resolves a BRIEF —
 entities, role, and shape — into ranked candidates from the user's Media Library.
-No model call. Same contract as the template side: explicit evidence gates first,
-rank within the eligible pool, and a beat with no candidates is a FINDING rather
-than an error.
+No model call. Same contract as the template side: never rejects on missing data,
+ranks instead of excluding, and a beat with no candidates is a FINDING rather than
+an error.
 
 THE LIBRARY IS READ-ONLY. It is the user's canonical store: content-addressed,
 immutable, with its own provenance. This opens sqlite with mode=ro and never
@@ -15,9 +15,7 @@ MATCHING. User ruling 2026-09-22: "lets just use a search thats case insensitive
 and goes by contains instead of exact match. we'll get some contamination but
 thats a tradeoff for now." So matching normalises both sides — lowercase, strip
 every non-alphanumeric — and asks whether the entity is a SUBSTRING of a tag,
-person label or caption. Identity evidence is staged: Production Ready identities,
-named faces and content tags form the primary pool; captions and project labels are
-used only when that entity has no primary match.
+person label or caption.
 
 That single rule dissolves three problems at once:
   * spelling drift   "Jay-Z" / "jay z" / "jayz" all normalise to jayz
@@ -265,9 +263,10 @@ def framing_wanted(template_id, kind=None):
     return tuple(rule["wants"]) if rule else ()
 GROUP_TAGS = {"group", "group photo"}
 # `ingest` tags are PROJECT and collection labels — "Drake Year 17 - Instagram"
-# sits on 118 assets including photos of other people entirely. It remains useful
-# discovery evidence, but only as fallback when no delivered identity, named face
-# or explicit content tag matches that entity. LOG 0104.
+# sits on 118 assets including photos of other people entirely. They are matched
+# but ranked last and labelled, never dropped: 10 of the 20 assets tagged
+# "Drake and Jay-Z together collection" carry no other tag naming both, so
+# excluding the source would delete real signal to remove noise. LOG 0087.
 PROJECT_SOURCES = {"ingest"}
 
 
@@ -426,47 +425,12 @@ def display_path(rec):
     return rec["path"]
 
 
-PRIMARY_EVIDENCE = {"identity", "face", "tag"}
-
-
-def _evidence(rec, entity):
-    """Return the strongest field that names an entity, or ``None``.
-
-    Production Ready identities, named faces and explicit content tags are
-    identity evidence. Captions/descriptions and ingest/project names are
-    discovery hints only; resolve() admits them only as a fallback when the
-    stronger pool is empty for that entity.  All comparisons retain the existing
-    normalised contains rule so compound tags such as ``kendrick-drake`` work.
-    """
-    e = norm(entity)
-    if not e:
-        return None
-    for name in rec.get("delivered_identities") or []:
-        if e in norm(name):
-            return "identity", name
-    for person in rec.get("people") or []:
-        if e in norm(person):
-            return "face", person
-    for tag in rec.get("tags") or []:
-        if tag.get("source") in PROJECT_SOURCES:
-            continue
-        if e in norm(tag.get("tag")):
-            return "tag", tag.get("tag")
-    for caption in rec.get("captions") or []:
-        if e in norm(caption):
-            return "caption", caption
-    for tag in rec.get("tags") or []:
-        if tag.get("source") in PROJECT_SOURCES and e in norm(tag.get("tag")):
-            return "project", tag.get("tag")
-    return None
-
-
 def matches(rec, entity, wrong=frozenset()):
-    """Does any evidence name this entity, minus durable user corrections?"""
+    """Does this asset show this entity? Contains, normalised, minus corrections."""
     e = norm(entity)
     if not e: return False
     if (rec["id"], e) in wrong: return False
-    return _evidence(rec, entity) is not None
+    return e in rec["_hay"]
 
 
 def _why(rec, entity):
@@ -476,14 +440,19 @@ def _why(rec, entity):
     contains the entity. That is the weakest evidence in the system and the user
     needs to see it as such before deciding whether to press W.
     """
-    evidence = _evidence(rec, entity)
-    if evidence:
-        kind, value = evidence
-        if kind == "caption":
-            e = norm(entity)
-            i = norm(value).find(e)
-            return f"caption:…{value[max(0, i - 24):i + len(entity) + 24]}…"
-        return f"{kind}:{value}"
+    e = norm(entity)
+    for t in rec["tags"]:
+        if t.get("source") in PROJECT_SOURCES: continue
+        if e in norm(t["tag"]): return f"tag:{t['tag']}"
+    for p in rec["people"]:
+        if e in norm(p): return f"face:{p}"
+    for c in rec["captions"]:
+        if e in norm(c):
+            i = norm(c).find(e)
+            return f"caption:…{c[max(0, i - 24):i + len(entity) + 24]}…"
+    for t in rec["tags"]:
+        if t.get("source") in PROJECT_SOURCES and e in norm(t["tag"]):
+            return f"project:{t['tag']}"
     return "?"
 
 
@@ -558,43 +527,13 @@ def resolve(entities, pool=None, media_type=None, cutout=None, framing=None,
         if framing and r["framing"] and r["framing"] != framing: return False
         return True
 
-    eligible = [r for r in pool.values() if ok(r)]
-    all_matches = {
-        e: [r for r in eligible if matches(r, e, wrong)]
-        for e in ents
-    }
-    primary = {
-        e: [r for r in all_matches[e]
-            if (_evidence(r, e) or (None,))[0] in PRIMARY_EVIDENCE]
-        for e in ents
-    }
-    # Captions/descriptions and project names are a true fallback stage. They
-    # cannot enter a slate, and therefore cannot be promoted by spread(), while
-    # any tag/face/delivered identity candidate is available for that entity.
-    individual = {e: (primary[e] or all_matches[e]) for e in ents}
-
-    primary_group = [
-        r for r in eligible
-        if len(ents) > 1 and all(
-            matches(r, e, wrong)
-            and (_evidence(r, e) or (None,))[0] in PRIMARY_EVIDENCE
-            for e in ents
-        )
-    ]
-    fallback_group = [
-        r for r in eligible
-        if len(ents) > 1 and all(matches(r, e, wrong) for e in ents)
-    ]
-    # If every entity has a strong individual option, a weak caption/project
-    # group is unnecessary. If an entity has no strong option, the weak group is
-    # retained as the documented fallback rather than hiding a sourcing gap.
-    group = primary_group or (
-        fallback_group if any(not primary[e] for e in ents) else []
-    )
+    group = [r for r in pool.values()
+             if ok(r) and len(ents) > 1 and all(matches(r, e, wrong) for e in ents)]
+    individual = {e: [r for r in pool.values() if ok(r) and matches(r, e, wrong)]
+                  for e in ents}
     # Rank: a named face beats a tag beats a caption; a cutout beats a raw still;
     # stills before video unless video was asked for. Never excludes — orders.
-    STRENGTH = {"identity": 0, "face": 0, "tag": 1,
-                "caption": 2, "project": 4}
+    STRENGTH = {"face": 0, "tag": 1, "caption": 2, "project": 4}
     def fit(r):
         """0 right framing, 1 unknown, 2 wrong. RANKS, never excludes.
 

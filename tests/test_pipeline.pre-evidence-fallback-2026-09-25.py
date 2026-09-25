@@ -3372,14 +3372,16 @@ class MediaEvidenceUsesARealFallbackBoundary(unittest.TestCase):
         out = M.resolve(["drake", "jay"], pool={"a": proj}, wrong=set())
         self.assertEqual(len(out["group"]), 1, "a weak match must rank, not vanish")
 
-    def test_a_strong_group_prevents_a_weak_group_from_entering_the_pool(self):
+    def test_group_ranks_on_its_weakest_evidence(self):
+        # Ranking a group on the FIRST entity hides that the second matched only
+        # a project label. The group is as good as its worst leg.
         import media_candidates as M
         strong = self.rec(id="b_strong", people=["Drake", "Jay-Z"])
         weak = self.rec(id="a_weak", people=["Drake"],
                         tags=[{"tag": "Jay-Z fan collection", "source": "ingest"}])
         out = M.resolve(["drake", "jay-z"],
                         pool={"b_strong": strong, "a_weak": weak}, wrong=set())
-        self.assertEqual([r["id"] for r in out["group"]], ["b_strong"])
+        self.assertEqual([r["id"] for r in out["group"]], ["b_strong", "a_weak"])
 
     def test_a_w_correction_removes_it_for_that_entity_only(self):
         import media_candidates as M
@@ -3865,10 +3867,10 @@ class FramingComesFromTheTemplate(unittest.TestCase):
         import media_candidates as M
         recs = [{"id": "wide", "media_type": "image", "framing": "full",
                  "has_cutout": False, "_hay": "drake", "derivatives": [],
-                 "tags": [], "people": ["Drake"], "captions": []},
+                 "tags": [], "people": [], "captions": []},
                 {"id": "tight", "media_type": "image", "framing": "headshot",
                  "has_cutout": False, "_hay": "drake", "derivatives": [],
-                 "tags": [], "people": ["Drake"], "captions": []}]
+                 "tags": [], "people": [], "captions": []}]
         out = M.resolve(["drake"], pool={r["id"]: r for r in recs}, wrong=set(),
                         wants=("headshot", "quarter"))
         ids = [r["id"] for r in out["individual"]["drake"]]
@@ -3881,10 +3883,10 @@ class FramingComesFromTheTemplate(unittest.TestCase):
         import media_candidates as M
         recs = [{"id": "none", "media_type": "image", "framing": None,
                  "has_cutout": False, "_hay": "drake", "derivatives": [],
-                 "tags": [], "people": ["Drake"], "captions": []},
+                 "tags": [], "people": [], "captions": []},
                 {"id": "wrong", "media_type": "image", "framing": "full",
                  "has_cutout": False, "_hay": "drake", "derivatives": [],
-                 "tags": [], "people": ["Drake"], "captions": []}]
+                 "tags": [], "people": [], "captions": []}]
         out = M.resolve(["drake"], pool={r["id"]: r for r in recs}, wrong=set(),
                         wants=("headshot",))
         self.assertEqual([r["id"] for r in out["individual"]["drake"]][0], "none")
@@ -4018,8 +4020,7 @@ class MediaKindIsASeparateAxis(unittest.TestCase):
 
     def test_kind_RANKS_and_never_excludes(self):
         import media_candidates as M
-        recs = [self.rec(id="doc", tags=[{"tag": "Drake", "source": "subject-tag"},
-                                               {"tag": "OCR Extracted", "source": "subject-tag"}],
+        recs = [self.rec(id="doc", tags=[{"tag": "OCR Extracted", "source": "subject-tag"}],
                          _hay="drake"),
                 self.rec(id="per", people=["Drake"], _hay="drake")]
         for r in recs: r.setdefault("has_cutout", False)

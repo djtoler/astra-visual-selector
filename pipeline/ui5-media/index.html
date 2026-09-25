@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Media Slot Review</title>
 <style>
 :root{
@@ -45,11 +46,18 @@ kbd{font:600 11px/1.5 var(--mono);background:var(--line2);border:1px solid var(-
   border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
 .filt button[aria-pressed="true"]{border-color:var(--pick);color:var(--pick);
   background:var(--pickbg)}
+.pager{display:flex;align-items:center;gap:6px}
+.pager button{font:600 11px/1 var(--mono);padding:7px 10px;border-radius:6px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.pager button:disabled{opacity:.35;cursor:default}
+.pager span{font:600 11px/1 var(--mono);color:var(--ink2);min-width:74px;text-align:center}
 
 section.brief{border:1px solid var(--line);border-radius:9px;background:var(--card);
   margin-bottom:20px;overflow:hidden}
 section.brief.done{border-color:var(--pick)}
-.bh{padding:15px 17px;border-bottom:1px solid var(--line);background:var(--raised)}
+.brieflayout{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.7fr)}
+.bh{padding:15px 17px;border-right:1px solid var(--line);background:var(--raised)}
+.reviewside{min-width:0;padding:11px 13px 14px}
 .bt{display:flex;gap:11px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
 .bid{font:600 13px/1 var(--mono)}
 .bjob{font:11px/1 var(--mono);color:var(--ink3);text-transform:uppercase;letter-spacing:.07em}
@@ -60,13 +68,37 @@ section.brief.done{border-color:var(--pick)}
 .tpl span{display:inline-block;background:var(--line2);border-radius:3px;
   padding:2px 7px;margin:2px 4px 0 0}
 .quote{margin:0;color:var(--ink2);font-size:14px;font-style:italic;max-width:90ch}
+.direction{margin:10px 0 0;padding:8px 10px;border-left:3px solid var(--pick);
+  background:var(--pickbg);color:var(--ink2);font-size:12px;line-height:1.45}
+.paired{margin-top:11px;padding-top:10px;border-top:1px solid var(--line)}
+.paired h3{margin:0 0 5px;font:700 10px/1.3 var(--mono);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink3)}
+.pair{padding:8px 9px;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+.pair+.pair{margin-top:6px}
+.pair b{font:700 11px/1.4 var(--mono);color:var(--pick)}
+.pair p{margin:3px 0 0;color:var(--ink2);font-size:11.5px;line-height:1.4}
+.pair .pd{font-style:normal;color:var(--ink3)}
 
-.grp{padding:13px 17px 16px}
+.template-block{padding:0 4px 10px;border-bottom:1px solid var(--line2);margin-bottom:2px}
+.template-label{margin:0 0 6px;font:700 9.5px/1.4 var(--mono);letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink3)}
+.template-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px}
+.tc{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--raised)}
+.tpv{position:relative;aspect-ratio:16/9;background:#05070a}
+.tpv video,.tpv img{width:100%;height:100%;object-fit:cover;display:block}
+.tpv .play{width:24px;height:24px}
+.tpv .play::before{left:9px;top:6px;border-left-width:8px;border-top-width:6px;border-bottom-width:6px}
+.tn{padding:4px 6px;font:9px/1.3 var(--mono);color:var(--ink2);white-space:nowrap;
+  text-overflow:ellipsis;overflow:hidden}
+.no-preview{height:100%;display:grid;place-items:center;padding:6px;text-align:center;
+  font:8.5px/1.3 var(--mono);color:var(--ink3)}
+
+.grp{padding:10px 4px 12px}
 .grp + .grp{border-top:1px solid var(--line2)}
 .glabel{font:600 10.5px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase;
   color:var(--ink3);margin:0 0 9px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
 .glabel .cnt{color:var(--ink2);letter-spacing:0;text-transform:none}
-.grid{display:grid;gap:11px;grid-template-columns:repeat(auto-fill,minmax(186px,1fr))}
+.grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(126px,1fr))}
 
 .c{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--card);
   transition:border-color .12s,box-shadow .12s}
@@ -103,12 +135,17 @@ section.brief.done{border-color:var(--pick)}
   background:var(--raised);color:var(--ink);font:13px/1.5 var(--sans);resize:vertical;
   min-height:38px}
 .fb textarea:focus{outline:2px solid var(--pick);outline-offset:-1px;border-color:var(--pick)}
-.fb.brieflevel{padding:0 17px 16px}
+.fb.brieflevel{padding:8px 4px 0;border-top:1px solid var(--line2)}
 .fb.brieflevel textarea{min-height:54px}
 .hasnote{color:var(--pick)}
 footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
   font:12px/1.6 var(--mono);color:var(--ink3)}
-@media (max-width:520px){ .grid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))} }
+@media (max-width:760px){
+  .brieflayout{grid-template-columns:1fr}
+  .bh{border-right:0;border-bottom:1px solid var(--line)}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(116px,1fr))}
+  .template-grid{grid-template-columns:repeat(auto-fill,minmax(82px,1fr))}
+}
 </style>
 
 <div class="wrap">
@@ -135,6 +172,11 @@ footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
   <span class="pill wr" id="wrongn">0 marked wrong</span>
   <span class="pill q" id="noten">0 notes</span>
   <span class="st" id="st">Loading&hellip;</span>
+  <span class="pager">
+    <button type="button" id="prevPage" aria-label="Previous beat groups">&larr; Previous</button>
+    <span id="pageInfo">Page 1 / 1</span>
+    <button type="button" id="nextPage" aria-label="Next beat groups">Next &rarr;</button>
+  </span>
   <span class="filt">
     <span class="lbl">show</span>
     <button type="button" data-f="all"    aria-pressed="true">all</button>
@@ -150,7 +192,7 @@ footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
 
 <script>
 "use strict";
-var D=null, db=null, picks={}, wrong=[], notes={}, timer=null;
+var D=null, db=null, picks={}, wrong=[], notes={}, timer=null, currentPage=0;
 var filt="all";   // all | image | video | cutout — view only, never saved
 
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
@@ -207,6 +249,53 @@ function media(c){
                 : "<span class='badge v'>no preview</span>";
 }
 
+function templateCard(t){
+  var p = (D.templatePreviews || {})[t.id] || {};
+  var visual;
+  if (p.clip) {
+    visual = "<video src='"+esc(p.clip)+"'"+(p.poster?" poster='"+esc(p.poster)+"'":"")
+      +" muted playsinline preload='none'></video>"
+      +"<button class='play' type='button' aria-label='Play template clip'></button>";
+  } else if (p.poster) {
+    visual = "<img src='"+esc(p.poster)+"' alt=''>";
+  } else {
+    visual = "<div class='no-preview'>Preview not available</div>";
+  }
+  return "<article class='tc' title='"+esc(p.label||t.id)+"'><div class='tpv'>"
+    +visual+"</div><div class='tn'>"+esc(p.label||t.id)+"</div></article>";
+}
+
+function templateStrip(b){
+  var ts = b.templates || [];
+  return "<div class='template-block'><p class='template-label'>Template candidates for "
+    +esc(b.brief)+"</p>"
+    +(ts.length ? "<div class='template-grid'>"+ts.map(templateCard).join("")+"</div>"
+               : "<div class='empty'>No template candidate saved for this side.</div>")
+    +"</div>";
+}
+
+function pairedSides(b){
+  var rows = b.pairedSides || [];
+  if (!rows.length) return "";
+  return "<div class='paired'><h3>Other side of "+esc(b.segmentFamily)+"</h3>"
+    +rows.map(function(x){
+      return "<div class='pair'><b>"+esc(x.brief)+" · "+esc(x.job||"")+"</b>"
+        +(x.quote?"<p>&ldquo;"+esc(x.quote)+"&rdquo;</p>":"")
+        +(x.mediaDirection?"<p class='pd'>"+esc(x.mediaDirection)+"</p>":"")
+        +"</div>";
+    }).join("")+"</div>";
+}
+
+function pageState(){
+  var fams=[];
+  D.briefs.forEach(function(b){ if (fams.indexOf(b.segmentFamily)<0) fams.push(b.segmentFamily); });
+  var size = D.segmentFamiliesPerPage || 2;
+  var pages = Math.max(1, Math.ceil(fams.length/size));
+  currentPage = Math.max(0, Math.min(currentPage, pages-1));
+  var shown = fams.slice(currentPage*size, currentPage*size+size);
+  return {families:fams, shown:shown, pages:pages};
+}
+
 function card(c, briefKey, tier){
   var sel = touch(briefKey+"::"+tier).indexOf(c.id) >= 0;
   var weak = (c.why||"").indexOf("project:") === 0;
@@ -222,7 +311,18 @@ function card(c, briefKey, tier){
 
 function render(){
   if (!D) return;
-  var npick=0, done=0;
+  var npick=0, done=0, ps=pageState();
+  Object.keys(picks).forEach(function(k){ npick += touch(k).length; });
+  D.briefs.forEach(function(b){
+    var any = Object.keys(picks).some(function(k){
+      return k.indexOf(b.brief+"::")===0 && touch(k).length; });
+    var n = notes[b.brief] || {};
+    if ((n.note||"").trim()) any=true;
+    Object.keys(n.entityNotes||{}).forEach(function(k){
+      if ((n.entityNotes[k]||"").trim()) any=true; });
+    if (any) done++;
+  });
+  var pageBriefs = D.briefs.filter(function(b){ return ps.shown.indexOf(b.segmentFamily)>=0; });
   var displaced = D.displacedPicks || [];
   var warning = displaced.length
     ? "<div class='replace'><b>Replacement required for "+displaced.length+" prior pick"
@@ -230,7 +330,7 @@ function render(){
       +displaced.map(function(x){return esc(x.brief)+" · "+esc(x.tier)+" · "+esc(x.assetId);}).join("<br>")
       +"<br>These decisions are preserved, but the assets are not in Production Ready and cannot be placed.</div>"
     : "";
-  var html = warning + D.briefs.map(function(b){
+  var html = warning + pageBriefs.map(function(b){
     var any=false;
     var groups = [];
     if (b.group.length) {
@@ -244,7 +344,7 @@ function render(){
     });
     var body = groups.map(function(g){
       var sel = touch(b.brief+"::"+g.tier);
-      if (sel.length) { npick += sel.length; any = true; }
+      if (sel.length) any = true;
       var inner = g.cards.length
         ? "<div class='grid'>"+g.cards.map(function(c){return card(c,b.brief,g.tier);}).join("")+"</div>"
         : "<div class='empty'>Nothing left for this entity — everything was marked wrong, "
@@ -261,15 +361,16 @@ function render(){
         + "wrong person entirely'>"+esc(ev)+"</textarea></div></div>";
     }).join("");
     if ((notes[b.brief]||{}).note) any = true;
-    if (any) done++;
     return "<section class='brief"+(any?" done":"")+"'>"
-      + "<div class='bh'><div class='bt'><span class='bid'>"+esc(b.brief)+"</span>"
+      + "<div class='brieflayout'><div class='bh'><div class='bt'><span class='bid'>"+esc(b.brief)+"</span>"
       + "<span class='bjob'>"+esc(b.job||"")+" · needs "+b.slotsNeeded+" slot(s)</span>"
       + (b.gaps.length?"<span class='bgap'>GAP: "+esc(b.gaps.join(", "))+"</span>":"")
       + (displaced.some(function(x){return x.brief===b.brief;})
          ? "<span class='bgap'>PRIOR PICK NEEDS REPLACEMENT</span>":"")
       + "</div>"
       + (b.quote?"<p class='quote'>&ldquo;"+esc(b.quote)+"&rdquo;</p>":"")
+      + (b.mediaDirection?"<p class='direction'>"+esc(b.mediaDirection)+"</p>":"")
+      + pairedSides(b)
       + ((b.templates&&b.templates.length)
          ? "<p class='tpl'><b>template you chose:</b> "
            + b.templates.map(function(t){
@@ -285,13 +386,13 @@ function render(){
               : "")
            + "</p>"
          : "")
-      + "</div>"+body
+      + "</div><div class='reviewside'>"+templateStrip(b)+body
       + "<div class='fb brieflevel'><label>This brief &mdash; wrong entities, missing "
       + "people, or what this slot actually needs</label>"
       + "<textarea data-brief='"+esc(b.brief)+"' data-tier='__brief' rows='2' "
       + "placeholder='e.g. this beat names Jay Rock, not Jay-Z / needs all three in one "
       + "frame / should be archival, not a press photo'>"
-      + esc((notes[b.brief]||{}).note || "")+"</textarea></div></section>";
+      + esc((notes[b.brief]||{}).note || "")+"</textarea></div></div></div></section>";
   }).join("");
   document.getElementById("root").innerHTML = html;
   document.getElementById("tally").textContent = npick+" picked";
@@ -304,9 +405,13 @@ function render(){
       if ((notes[k].entityNotes[t]||"").trim()) nn++; });
   });
   document.getElementById("noten").textContent = nn+" note"+(nn===1?"":"s");
+  document.getElementById("pageInfo").textContent = "Page "+(currentPage+1)+" / "+ps.pages;
+  document.getElementById("prevPage").disabled = currentPage===0;
+  document.getElementById("nextPage").disabled = currentPage>=ps.pages-1;
   document.getElementById("foot").textContent =
     D.library.assets+" assets in the library · "+D.show+" shown per entity, "
-    + D.queue+" in reserve · W is entity-scoped and applies to every brief";
+    + D.queue+" in reserve · "+(D.segmentFamiliesPerPage||2)
+    +" numbered beat groups per page · W is entity-scoped and applies to every brief";
 }
 
 function savePicks(k){
@@ -376,6 +481,15 @@ document.querySelector(".filt").addEventListener("click", function(e){
   render();
 });
 
+document.getElementById("prevPage").addEventListener("click", function(){
+  if (currentPage<=0) return;
+  currentPage--; render(); window.scrollTo({top:0,behavior:"smooth"});
+});
+document.getElementById("nextPage").addEventListener("click", function(){
+  var ps=pageState(); if (currentPage>=ps.pages-1) return;
+  currentPage++; render(); window.scrollTo({top:0,behavior:"smooth"});
+});
+
 document.addEventListener("input", function(e){
   var t = e.target;
   if (t.tagName !== "TEXTAREA" || !t.dataset.brief) return;
@@ -398,7 +512,9 @@ document.addEventListener("ended", function(e){
 }, true);
 
 fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
-  D = d; render(); return claude.use("db");
+  D = d; render();
+  return (window.claude && typeof window.claude.use === "function")
+    ? window.claude.use("db") : null;
 }).then(function(x){
   db = x;
   if (!db) { setS("Judgments cannot be saved in this view."); return; }
