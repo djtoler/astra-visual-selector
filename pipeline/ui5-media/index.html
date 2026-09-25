@@ -93,6 +93,9 @@ section.brief.done{border-color:var(--pick)}
 .meta{font:9.5px/1.4 var(--mono);color:var(--ink3);margin-top:3px;opacity:.75}
 .empty{color:var(--gap);font:12.5px/1.5 var(--mono);background:var(--gapbg);
   border-radius:6px;padding:10px 12px}
+.replace{color:var(--w);background:var(--wbg);border:1px solid color-mix(in srgb,var(--w) 35%,transparent);
+  border-radius:7px;padding:11px 13px;margin:0 0 18px;font:12px/1.55 var(--mono)}
+.replace b{display:block;margin-bottom:3px}
 .fb{margin-top:11px}
 .fb label{display:block;font:600 9.5px/1.5 var(--mono);letter-spacing:.09em;
   text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
@@ -220,7 +223,14 @@ function card(c, briefKey, tier){
 function render(){
   if (!D) return;
   var npick=0, done=0;
-  var html = D.briefs.map(function(b){
+  var displaced = D.displacedPicks || [];
+  var warning = displaced.length
+    ? "<div class='replace'><b>Replacement required for "+displaced.length+" prior pick"
+      +(displaced.length===1?"":"s")+".</b>"
+      +displaced.map(function(x){return esc(x.brief)+" · "+esc(x.tier)+" · "+esc(x.assetId);}).join("<br>")
+      +"<br>These decisions are preserved, but the assets are not in Production Ready and cannot be placed.</div>"
+    : "";
+  var html = warning + D.briefs.map(function(b){
     var any=false;
     var groups = [];
     if (b.group.length) {
@@ -256,6 +266,8 @@ function render(){
       + "<div class='bh'><div class='bt'><span class='bid'>"+esc(b.brief)+"</span>"
       + "<span class='bjob'>"+esc(b.job||"")+" · needs "+b.slotsNeeded+" slot(s)</span>"
       + (b.gaps.length?"<span class='bgap'>GAP: "+esc(b.gaps.join(", "))+"</span>":"")
+      + (displaced.some(function(x){return x.brief===b.brief;})
+         ? "<span class='bgap'>PRIOR PICK NEEDS REPLACEMENT</span>":"")
       + "</div>"
       + (b.quote?"<p class='quote'>&ldquo;"+esc(b.quote)+"&rdquo;</p>":"")
       + ((b.templates&&b.templates.length)

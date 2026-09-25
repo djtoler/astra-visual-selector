@@ -4722,3 +4722,81 @@ TEST        BeatMediaKindIsDeclaredNotExtracted x4, including that every
             could only ever fail.
 VERIFIED    332 tests passing (was 328).
 STATUS      done
+
+================================================================================
+
+[0099] 2026-09-25  RECOVERED RECEIPT: Production Ready supplies identity and kind.
+PROBLEM     The committed code and direct handoff referenced LOG 0099, but the log
+            stopped at 0098. The historical catalog inferred kind from faces and
+            sparse tags and identity from loose text matches; the handoff measured
+            404 unknown-kind rows after the delivery overlay.
+WHY REAL    A selector cannot reliably land the right medium or person on a beat
+            when an article with a face becomes a person or a delivered identity
+            remains invisible. The lifecycle delivery is the producer that owns
+            those claims.
+CHANGE      pipeline/media_candidates.py reads the verified Production Ready
+            manifest. Its category folders deterministically supply media kind;
+            By Person folders and explicit aliases supply identity; manifest tags
+            join the searchable record. This entry records the already-committed
+            handoff state; it does not claim this turn authored that integration.
+TEST        ProductionReadyIsAuthoritative x6 in the recovery baseline.
+VERIFIED    The handoff reports 338 -> 341 passing tests and three of five identity
+            gaps closed. The current manifest has 557 passing asset IDs across the
+            eight category views plus nine blocked transitions; 566 is the evaluated
+            transition count, not the selectable asset count.
+OPEN        The handoff proposes source-path job-slug extraction for untagged rows,
+            roster additions, and artwork/document slugs. Those methods were not
+            implemented or re-measured by this receipt.
+STATUS      done
+
+================================================================================
+
+[0100] 2026-09-25  RECOVERED RECEIPT: a still preview is not a video derivative.
+PROBLEM     The direct handoff reports that 57 of 73 review clips were 0.04-second
+            single frames. display_path() had substituted a video's JPEG/PNG preview
+            for the source clip and the builder transcoded that still into MP4.
+WHY REAL    Motion is what the user is judging. A single-frame file cannot establish
+            that the right footage candidate landed on the beat.
+CHANGE      display_path() only substitutes derivatives in the same medium. A video
+            may use a video derivative; a still preview may only provide its poster.
+            This entry records the already-committed handoff fix referenced by code.
+TEST        ReviewShowsTheProcessedDerivative.test_a_VIDEO_never_gets_a_still_substituted;
+            test_a_video_may_still_take_a_video_derivative;
+            test_no_live_clip_is_a_single_frame.
+VERIFIED    The current rebuilt review contains 54 clips; the under-one-second guard
+            passed. The handoff reports zero bad clips in its earlier 73-clip build.
+STATUS      done
+
+================================================================================
+
+[0101] 2026-09-25  Production Ready is the selection boundary, not an overlay.
+PROBLEM     The consumer called the delivery authoritative but load() still admitted
+            all 1,183 historical catalog rows. Measured before the fix: 626 were not
+            in Production Ready; the existing review surfaced 37 of them, five with
+            missing display files. Forty-one passing cutouts displayed a different
+            registered derivative than the exact delivery file approved by the gate.
+WHY REAL    Trashed, blocked, missing or superseded media could land on a beat after
+            lifecycle review, and the user could judge bytes other than the bytes
+            production would place. That directly violates the objective.
+CHANGE      load() now admits exactly the 557 manifest asset IDs and fails closed when
+            the authoritative delivery is absent or names an asset missing from the
+            catalog. display_path() uses the manifest's exact delivery file; ordinary
+            cutout is the deterministic default when both cutout and glow exist.
+            Two earlier picks that no longer pass are preserved in data.json as
+            replacement-required records and visibly flagged; neither is erased nor
+            silently reintroduced. The licensed 1.2 GB Archive 3.zip remains on disk
+            and is excluded from version history.
+TEST        ProductionReadyIsAuthoritative.test_the_selectable_pool_is_exactly_the_delivered_asset_set
+            and test_every_display_is_the_exact_approved_delivery_file both failed on
+            the baseline (626 extras, 41 wrong files) and pass after the change.
+            test_an_unverified_delivery_fails_closed first failed because no manifest
+            validator existed; the consumer now rejects any false/missing category,
+            catalog, source-media, person-view, cutout/glow or SQLite verification.
+            AMediaPickSurvivesAReshuffle now requires every prior pick to be shipped
+            or explicitly displaced and ensures displaced assets never re-enter cards.
+VERIFIED    The real builder produced 26 briefs, 227 distinct approved assets, 470
+            card slots, 227 thumbnails and 54 clips within 33.8 MB. Gaps remain exactly
+            Ty Dolla $ign and XXXTentacion. Two prior picks require replacement:
+            16-16 Wiz Khalifa asset 4330073a1f5a1f1d26471b0f and 20-20 Kendrick
+            Lamar asset 07e917c62e761375c0ada185. All 345 tests pass (two skipped).
+STATUS      done

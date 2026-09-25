@@ -63,6 +63,13 @@ def main():
     # the fourth being the first again.
     seen_for = {}
     picked = M.picked()
+    displaced = []
+    for key, ids in sorted(picked.items()):
+        brief, tier = key.split("::", 1)
+        for aid in ids:
+            if aid not in pool:
+                displaced.append({"brief": brief, "tier": tier, "assetId": aid,
+                                  "reason": "not_in_production_ready"})
     # The BEAT's own declared media kind. Not extracted — measured attempts to
     # extract it failed (LOG 0098), so the user declares it in the file that
     # already holds per-beat declarations.
@@ -156,6 +163,7 @@ def main():
             missing.append(aid)
 
     json.dump({"briefs": briefs, "thumbs": thumbs, "hasClip": hasclip,
+               "displacedPicks": displaced,
                "show": SHOW, "queue": QUEUE,
                "library": {"assets": len(pool), "corrections": len(wrong)}},
               open(UI / "data.json", "w"))
@@ -165,6 +173,7 @@ def main():
                 for b in briefs)
     print(f"briefs {len(briefs)} | distinct assets {len(need)} | card slots {cards}")
     print(f"gaps: {sorted({g for b in briefs for g in b['gaps']}) or 'none'}")
+    print(f"prior picks requiring replacement: {len(displaced)}")
     print(f"thumbs {len(thumbs)} | clips {sum(hasclip.values())} | "
           f"data.json {mb:.1f} MB | media {vid:.1f} MB | total {mb + vid:.1f} MB of 64")
     if missing:

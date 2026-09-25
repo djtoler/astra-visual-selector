@@ -3485,7 +3485,7 @@ class AMediaPickSurvivesAReshuffle(unittest.TestCase):
     side has had a test for it since; the media side did not. LOG 0090.
     """
 
-    def test_every_recorded_pick_is_shipped_for_its_brief(self):
+    def test_every_recorded_pick_is_shipped_or_explicitly_displaced(self):
         f = ROOT / "pipeline" / "ui5-media" / "data.json"
         pf = ROOT / "grammar" / "media-picks.json"
         if not (f.exists() and pf.exists()): self.skipTest("not built")
@@ -3502,7 +3502,22 @@ class AMediaPickSurvivesAReshuffle(unittest.TestCase):
                      else b["individual"].get(tier[2:], []))
             have = {c["id"] for c in cards}
             lost += [f"{key}:{i[:12]}" for i in ids if i not in have]
-        self.assertEqual(lost, [], f"{len(lost)} pick(s) no longer shipped")
+        displaced = {f"{x['brief']}::{x['tier']}:{x['assetId'][:12]}"
+                     for x in D.get("displacedPicks", [])}
+        self.assertEqual(set(lost), displaced,
+                         "a prior pick was silently lost or falsely displaced")
+
+    def test_a_displaced_pick_is_preserved_but_never_reintroduced(self):
+        f = ROOT / "pipeline" / "ui5-media" / "data.json"
+        if not f.exists(): self.skipTest("not built")
+        D = json.load(open(f))
+        cards = {c["id"] for b in D["briefs"] for c in b["group"]}
+        for b in D["briefs"]:
+            for tier in b["individual"].values():
+                cards.update(c["id"] for c in tier)
+        for x in D.get("displacedPicks", []):
+            self.assertEqual(x["reason"], "not_in_production_ready")
+            self.assertNotIn(x["assetId"], cards)
 
     def test_spread_keeps_a_pinned_record_even_when_rotated_out(self):
         import media_candidates as M
@@ -4045,6 +4060,42 @@ class ProductionReadyIsAuthoritative(unittest.TestCase):
         self.assertTrue(v["cutout_glow_sets_match"])
         self.assertTrue(v["protected_catalog_counts_unchanged"],
                         "the delivery changed the protected catalog")
+
+    def test_an_unverified_delivery_fails_closed(self):
+        import copy, media_candidates as M
+        broken = copy.deepcopy(self.man())
+        first = next(iter(broken["verification"]["category_checks"].values()))
+        first["passed"] = False
+        with self.assertRaises(ValueError):
+            M.validate_delivery_manifest(broken)
+
+    def test_the_selectable_pool_is_exactly_the_delivered_asset_set(self):
+        """Lifecycle authority is a boundary, not a metadata overlay.
+
+        A blocked, trashed or otherwise undelivered catalog row must not return
+        to a beat merely because an older tag still matches its entity.
+        """
+        import media_candidates as M
+        delivered = set(M.delivery())
+        pool = set(M.load())
+        self.assertEqual(pool, delivered,
+                         f"pool has {len(pool - delivered)} undelivered and "
+                         f"misses {len(delivered - pool)} delivered assets")
+
+    def test_every_display_is_the_exact_approved_delivery_file(self):
+        """The reviewed derivative, not another registered derivative, is used."""
+        import media_candidates as M, os
+        pool = M.load()
+        wrong = []
+        for aid, delivered in M.delivery().items():
+            path = delivered.get("path")
+            if not path or aid not in pool or not os.path.exists(path):
+                wrong.append(aid)
+                continue
+            if not os.path.samefile(pool[aid]["display"], path):
+                wrong.append(aid)
+        self.assertEqual(wrong, [],
+                         f"{len(wrong)} assets do not use their approved bytes")
 
     def test_category_maps_onto_our_media_kinds(self):
         import media_candidates as M

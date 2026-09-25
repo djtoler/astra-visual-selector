@@ -107,6 +107,29 @@ KIND_TAGS = (("document", ("article or post", "ocr extracted", "screenshot")),
              ("person", ("person photo", "group photo", "group")))
 
 
+def validate_delivery_manifest(d):
+    """Return a verified delivery manifest or fail closed."""
+    v = d.get("verification") or {}
+    categories = set((d.get("categories") or {}).keys())
+    checks = v.get("category_checks") or {}
+    failures = []
+    if set(checks) != categories:
+        failures.append("category verification set differs from delivery categories")
+    for cat in sorted(categories):
+        c = checks.get(cat) or {}
+        if not c.get("passed") or not c.get("asset_ids_match"):
+            failures.append(f"{cat} failed its delivery verification")
+    for key in ("cutout_glow_sets_match", "person_view_covers_cutouts",
+                "protected_catalog_counts_unchanged", "source_media_unchanged"):
+        if v.get(key) is not True:
+            failures.append(key)
+    if v.get("sqlite_integrity") != "ok":
+        failures.append("sqlite_integrity")
+    if failures:
+        raise ValueError("unverified Production Ready delivery: " + "; ".join(failures))
+    return d
+
+
 def resolve_identity(folder):
     """A By Person folder name -> a roster name, or None.
 
@@ -137,7 +160,7 @@ def delivery():
     if _DEL is not None: return _DEL
     _DEL = {}
     if not DELIVERY.exists(): return _DEL
-    d = json.load(open(DELIVERY))
+    d = validate_delivery_manifest(json.load(open(DELIVERY)))
     for cat, items in (d.get("categories") or {}).items():
         for it in items:
             aid = it.get("asset_id")
@@ -147,7 +170,13 @@ def delivery():
             # Cutouts and Glow Cutouts are paired sets over the same asset, so a
             # category list is right and a single value would silently drop one.
             e["kind"] = CATEGORY_KIND.get(cat, e.get("kind"))
-            if it.get("delivery_path"): e.setdefault("path", it["delivery_path"])
+            if it.get("delivery_path"):
+                # Cutout and glow are two approved views of the same asset. The
+                # ordinary cutout is the placement default; glow remains an
+                # explicitly addressable delivery category, never an accidental
+                # replacement caused by JSON object order.
+                if "path" not in e or cat == "Cutouts":
+                    e["path"] = it["delivery_path"]
     for pv in (d.get("person_view") or []):
         aid = pv.get("asset_id")
         if not aid: continue
@@ -287,13 +316,22 @@ def picked():
 
 
 def load():
-    """Every asset with the text a brief can match against. One query, no joins
-    in Python. Returns id -> record."""
+    """Every lifecycle-approved delivered asset a brief can match against.
+
+    Production Ready is the consumer boundary, not enrichment over the historical
+    catalog. Rows outside its verified manifest may remain useful provenance, but
+    they are not selectable production media.
+    """
+    dl = delivery()
+    if not dl:
+        raise FileNotFoundError(f"authoritative media delivery is missing: {DELIVERY}")
     db = _db()
     rows = {}
     for aid, mt, ext, w, h, dur, path in db.execute(
             "select asset_id, media_type, extension, width, height, duration, "
             "canonical_path from assets"):
+        if aid not in dl:
+            continue
         rows[aid] = {"id": aid, "media_type": mt, "ext": ext, "width": w,
                      "height": h, "duration": dur, "path": path,
                      "tags": [], "people": [], "captions": [], "derivatives": [],
@@ -322,10 +360,10 @@ def load():
             if aid in rows and "Captions:" in et:
                 cap = et.split("Captions:", 1)[1].strip()
                 if cap: rows[aid]["captions"].append(cap)
-    dl = delivery()
     for aid, e in dl.items():
         r = rows.get(aid)
-        if not r: continue
+        if not r:
+            raise RuntimeError(f"delivered asset is absent from the catalog: {aid}")
         r["delivered_identities"] = list(e.get("identities") or [])
         r["delivered_kind"] = e.get("kind")
         r["delivered_categories"] = list(e.get("categories") or [])
@@ -339,7 +377,7 @@ def load():
         r["framing"] = next((framing_of(t["tag"]) for t in r["tags"]
                              if framing_of(t["tag"])), None)
         r["is_group"] = any(t["tag"].lower() in GROUP_TAGS for t in r["tags"])
-        r["has_cutout"] = any("cutout" in d["type"] for d in r["derivatives"])
+        r["has_cutout"] = "Cutouts" in (r.get("delivered_categories") or [])
         r["kind"] = kind_of(r, r.get("delivered_kind"))
         r["display"] = display_path(r)
     return rows
@@ -362,6 +400,12 @@ def display_path(rec):
     "you're pulling from somwehere that has the pre-processed images. these are
     even before they're been cropped."
     """
+    # The lifecycle gate has already selected and hash-verified the exact bytes.
+    # Registered derivatives are historical possibilities; they cannot outrank
+    # the file the authoritative delivery approved.
+    if rec.get("delivered_path"):
+        return rec["delivered_path"]
+
     # A SUBSTITUTION IS ONLY VALID WITHIN THE SAME MEDIUM. A video's `preview`
     # derivative is a STILL; returning it made the builder transcode one PNG into
     # a 0.04-second mp4, and 57 of 73 clips shipped unplayable. 245 of 325 videos
