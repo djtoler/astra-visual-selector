@@ -1,0 +1,312 @@
+<title>Shot Options B</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#12171d;--ink-2:#414d5a;--ink-3:#6b7885;--line:#dbe1e7;
+  --bg:#f4f6f8;--card:#fff;--raise:#eef1f4;--accent:#0f5c6b;
+  --yes:#1c6b4a;--yes-bg:#e2f2ea;--no:#9a3327;--warn:#8a5a10;--warn-bg:#f8eeda;--on-accent:#fff;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--yes-bg:#10301f;--no:#ee9084;--warn:#e0b163;
+  --warn-bg:#332715;--on-accent:#08141a;}}
+:root[data-theme="dark"]{
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--yes-bg:#10301f;--no:#ee9084;--warn:#e0b163;
+  --warn-bg:#332715;--on-accent:#08141a;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;margin:0}
+.wrap{max-width:1320px;margin:0 auto;padding:16px;padding-block:26px 70px}
+h1{font-size:clamp(1.35rem,3vw,1.8rem);font-weight:700;letter-spacing:-.02em;margin:0 0 5px}
+.sub{color:var(--ink-2);max-width:66ch;margin:0 0 3px}
+.bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:14px 0 0}
+.chip{font-family:var(--mono);font-size:.69rem;padding:4px 9px;border-radius:5px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink-2);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.vtag{font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.06em;background:var(--accent);color:var(--on-accent);padding:3px 9px;border-radius:4px;vertical-align:middle;margin-left:9px}
+.count{font-family:var(--mono);font-size:.71rem;color:var(--ink-3);margin-left:auto}
+.status{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);margin-top:8px}
+.pager{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:16px 0 0}
+.pg{font-family:var(--mono);font-size:.7rem;min-width:30px;padding:5px 8px;border-radius:5px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer}
+.pg:hover{border-color:var(--accent)}
+.pg[aria-current="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.pg.hasdone{border-color:var(--yes)}
+.pg:disabled{opacity:.35;cursor:default}
+.pgi{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);margin-left:6px}
+
+.beat{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-top:20px;overflow:hidden}
+.beat.done{border-color:var(--yes)}
+.bh{padding:15px 17px;border-bottom:1px solid var(--line)}
+.top{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.num{font-family:var(--mono);font-size:.76rem;color:var(--accent);font-weight:600}
+.job{font-family:var(--mono);font-size:.68rem;background:var(--raise);padding:2px 7px;border-radius:4px;color:var(--ink-2)}
+.time{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);margin-left:auto}
+blockquote{margin:9px 0 0;padding:9px 12px;background:var(--raise);border-left:3px solid var(--accent);
+  border-radius:0 6px 6px 0;font-size:.9rem;color:var(--ink-2)}
+.req{display:grid;gap:5px;margin-top:9px}
+@media(min-width:900px){.req{grid-template-columns:1fr 1fr}}
+.f{font-size:.8rem;color:var(--ink-2)}
+.f b{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--ink-3);display:block;font-weight:600}
+.f.lie b{color:var(--no)}
+.flood{margin:10px 0 0;padding:8px 11px;border-radius:6px;background:var(--warn-bg);
+  border:1px solid var(--warn);color:var(--warn);font-size:.78rem}
+.opts{display:grid;gap:10px;padding:14px 17px;grid-template-columns:repeat(auto-fill,minmax(178px,1fr))}
+.o{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--bg);
+  display:flex;flex-direction:column;transition:border-color .1s}
+.o.sel{border-color:var(--yes);border-width:2px}
+.o.sel .pick{display:flex}
+.o.full{opacity:.45}
+.o.rej{border-color:var(--no);opacity:.5}
+.oact{display:flex;gap:6px;padding:8px;border-top:1px solid var(--line);background:var(--card)}
+.ob2{flex:1;font-family:var(--mono);font-size:.72rem;font-weight:700;padding:9px 3px;border-radius:5px;
+  border:1px solid var(--line);background:var(--bg);color:var(--ink-2);cursor:pointer}
+.ob2:hover{border-color:var(--accent);background:var(--raise)}
+.ob2:disabled{opacity:.35;cursor:default}
+.ob2.addon{background:var(--yes);border-color:var(--yes);color:var(--on-accent)}
+.ob2.rejon{background:var(--no);border-color:var(--no);color:var(--on-accent)}
+.pick{display:none;position:absolute;top:6px;left:6px;width:20px;height:20px;border-radius:50%;
+  background:var(--yes);color:var(--on-accent);align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.62rem;font-weight:700}
+.pv{position:relative}
+.play{position:absolute;right:7px;bottom:7px;width:26px;height:26px;border-radius:50%;
+  border:none;background:rgba(12,18,24,.72);cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center}
+.play::before{content:"";border-style:solid;border-width:6px 0 6px 10px;
+  border-color:transparent transparent transparent #fff;margin-left:2px}
+.play.on::before{border-width:0;width:8px;height:9px;margin:0;
+  background:#fff;box-shadow:inset 3px 0 0 rgba(12,18,24,.72)}
+.play:hover{background:rgba(12,18,24,.92)}
+.play:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.o img,.o video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#000}
+.ob{padding:7px 9px;display:flex;flex-direction:column;gap:3px;flex:1}
+.o video{cursor:default}
+.mech{font-size:.76rem;color:var(--ink);font-weight:500;line-height:1.3}
+.oid{font-family:var(--mono);font-size:.6rem;color:var(--ink-3);word-break:break-word}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}
+.tg{font-family:var(--mono);font-size:.56rem;padding:1px 5px;border-radius:3px;background:var(--raise);color:var(--ink-3)}
+.tg.cond{background:var(--warn-bg);color:var(--warn)}
+.tg.pick{background:var(--yes);color:var(--on-accent)}
+/* The condition is a FILL INSTRUCTION, not a gate. 208 of 211 conditions in the
+   grammar describe how to use a template, not whether you may — and rendering happens
+   after selection, so they are satisfiable by construction. The reviewer used to see
+   only a badge saying "has condition" and never the sentence. */
+.cond{margin-top:5px;font-size:.68rem;line-height:1.35;color:var(--warn);
+  background:var(--warn-bg);border-left:2px solid var(--warn);
+  padding:4px 7px;border-radius:0 4px 4px 0}
+.foot{padding:0 17px 15px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.broll{font-family:var(--mono);font-size:.68rem;font-weight:600;padding:7px 12px;border-radius:6px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.broll:hover{border-color:var(--accent)}
+.broll[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.beat.broll-on{border-color:var(--accent)}
+.beat.broll-on .opts{opacity:.4}
+.note{flex:1;min-width:220px;font-family:var(--sans);font-size:.8rem;color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:6px;padding:6px 9px;resize:vertical;min-height:34px}
+.none{font-family:var(--mono);font-size:.7rem;color:var(--no)}
+.note:focus,.chip:focus-visible,.o:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+</style>
+
+<div class="wrap">
+<h1>Shot Options <span class="vtag">set B</span></h1>
+<p class="sub">Ten beats, the same ten in both sets. Each shows what it must communicate and the treatments the grammar found for it, clustered so the options differ by idea and by scale rather than by phrasing.</p>
+<p class="sub">Press the small play button to watch a clip; it stops at the end. Add up to six options per beat — added cards are numbered. Reject the ones that do not work. If the beat wants footage instead, mark it raw b-roll, which works alongside a selection or on its own.</p>
+<div class="bar" id="filters"></div>
+<div class="status" id="status">Loading&hellip;</div>
+<div class="pager" id="pagerTop"></div>
+<div id="beats"></div>
+<div class="pager" id="pagerBottom"></div>
+</div>
+
+<script>
+"use strict";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=s=>s==null?"—":`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+let db=null,state={},D=null,filter="all",page=0;
+const PAGES=10;
+const key=x=>`${x.passage}-${x.beat}`;
+
+function f(l,v,c){ if(!v||(Array.isArray(v)&&!v.length))return"";
+  return `<div class="f ${c||""}"><b>${l}</b>${esc(Array.isArray(v)?v.join(" · "):v)}</div>`;}
+
+function shown(){return D.shots.filter(x=>{
+  const st=state[key(x)]||{}, n=(st.sel||[]).length, br=st.broll;
+  if(filter==="all")return true;
+  if(filter==="todo")return !br && n===0;
+  if(filter==="done")return br || n>0;
+  if(filter==="broll")return !!br;
+  if(filter==="flood")return x.flooded;
+  return true;});}
+
+function render(){
+  const all=D.shots;
+  const done=all.filter(x=>{const st=state[key(x)]||{};
+    return st.broll || (st.sel||[]).length>0;}).length;
+  const marks=all.reduce((a,x)=>a+((state[key(x)]||{}).sel||[]).length,0);
+  const rejs=all.reduce((a,x)=>a+((state[key(x)]||{}).rej||[]).length,0);
+  const brolls=all.filter(x=>(state[key(x)]||{}).broll).length;
+  document.getElementById("filters").innerHTML=
+    [["all","All "+all.length],["todo","Unfinished"],["done","Complete"],["broll","B-roll"],["flood","Flagged"]]
+    .map(([k,l])=>`<button class="chip" data-f="${k}" aria-pressed="${filter===k}">${l}</button>`).join("")
+    +`<span class="count">${marks} added · ${rejs} rejected · ${brolls} b-roll · ${done}/${all.length} beats done</span>`;
+  const list=shown();
+  const per=Math.max(1,Math.ceil(list.length/PAGES));
+  const pages=Math.max(1,Math.ceil(list.length/per));
+  if(page>=pages) page=pages-1;
+  const slice=list.slice(page*per,(page+1)*per);
+  const pager=
+    `<button class="pg" data-p="${page-1}" ${page===0?"disabled":""}>&larr;</button>`
+    + Array.from({length:pages},(_,i)=>{
+        const pl=list.slice(i*per,(i+1)*per);
+        const anyDone=pl.some(y=>{const st=state[key(y)]||{};return st.broll||(st.sel||[]).length>0;});
+        return `<button class="pg ${anyDone?"hasdone":""}" data-p="${i}" aria-current="${i===page}">${i+1}</button>`;
+      }).join("")
+    + `<button class="pg" data-p="${page+1}" ${page>=pages-1?"disabled":""}>&rarr;</button>`
+    + `<span class="pgi">beats ${list.length?page*per+1:0}\u2013${Math.min((page+1)*per,list.length)} of ${list.length}</span>`;
+  document.getElementById("pagerTop").innerHTML=pager;
+  document.getElementById("pagerBottom").innerHTML=pager;
+  const html=slice.map(x=>{
+    const k=key(x), st=state[k]||{};
+    const sel=st.sel||[], rej=st.rej||[], atCap=sel.length>=6;
+    return `<section class="beat ${st.broll?"broll-on":""} ${sel.length||st.broll?"done":""}" data-beat="${k}">
+      <div class="bh">
+        <div class="top"><span class="num">${esc(x.passage)}.${esc(x.beat)}</span>
+          <span class="job">${esc(x.job)}</span>
+          <span class="time">${fmt(x.start)}–${fmt(x.end)} · ${x.duration??"—"}s · <b class="selcount">${sel.length}</b>/6 added · ${x.optionsTotal} bound</span></div>
+        <blockquote>${esc(x.quote)}</blockquote>
+        <div class="req">
+          ${f("Takeaway",x.takeaway)}${f("Must be true",x.mustBeTrue)}
+          ${f("Must be perceptible",x.mustBePerceptible)}${f("Would be a lie",x.wouldBeALie,"lie")}
+        </div>
+        ${x.floodNote?`<div class="flood">${esc(x.floodNote)}</div>`:""}
+      </div>
+      ${x.options.length?`<div class="opts">${x.options.map(o=>`
+        <article class="o ${sel.includes(o.id)?"sel":""} ${rej.includes(o.id)?"rej":""} ${(!sel.includes(o.id)&&atCap)?"full":""}"
+                 data-card="${k}::${esc(o.id)}">
+          <div class="pv"><span class="pick">${sel.indexOf(o.id)+1}</span>
+          ${D.hasClip[o.id]
+            ? `<video src="media/${encodeURIComponent(o.id)}.mp4" poster="${D.thumbs[o.id]||''}"
+                 muted playsinline preload="none"></video>
+               <button class="play" type="button" aria-label="Play clip"></button>`
+            : `<img src="${D.thumbs[o.id]||''}" alt="" loading="lazy">`}</div>
+          <div class="ob">
+            <div class="mech">${esc(o.mechanism||o.name||"—")}</div>
+            <div class="oid">${esc(o.id)}</div>
+            <div class="tags">
+              <span class="tg">${esc(o.band||"?")}</span>
+              ${o.verdict==="conditional"?'<span class="tg cond">conditional</span>':""}
+            </div>
+            ${o.condition?`<div class="cond">Use it this way: ${esc(o.condition)}</div>`:""}
+          </div>
+          <div class="oact">
+            <button class="ob2 ${sel.includes(o.id)?"addon":""}" data-k="${k}" data-id="${esc(o.id)}"
+              data-a="add" ${(!sel.includes(o.id)&&atCap)?"disabled":""}>Add</button>
+            <button class="ob2 ${rej.includes(o.id)?"rejon":""}" data-k="${k}" data-id="${esc(o.id)}"
+              data-a="rej">Reject</button>
+          </div>
+        </article>`).join("")}</div>`
+      : `<div class="opts"><span class="none">no options bound for ${esc(x.job)}</span></div>`}
+      <div class="foot">
+        <button class="broll" data-k="${k}" aria-pressed="${!!st.broll}">Raw b-roll instead</button>
+        <textarea class="note" data-k="${k}" placeholder="Why, or what is missing?">${esc(st.note||"")}</textarea>
+      </div>
+    </section>`;}).join("");
+  document.getElementById("beats").innerHTML=html;
+  // one clean pass: reset the button when a clip finishes or is paused
+  document.querySelectorAll("video").forEach(v=>{
+    const b=v.parentElement.querySelector(".play");
+    v.addEventListener("ended",()=>{v.currentTime=0; b&&b.classList.remove("on");});
+    v.addEventListener("pause",()=>{b&&b.classList.remove("on");});
+  });
+}
+function paint(k){
+  const st=state[k]||{}, sel=st.sel||[], rej=st.rej||[], atCap=sel.length>=6;
+  const beat=document.querySelector(`[data-beat="${CSS.escape(k)}"]`);
+  if(!beat) return;
+  beat.classList.toggle("done", !!(sel.length||st.broll));
+  beat.classList.toggle("broll-on", !!st.broll);
+  const c=beat.querySelector(".selcount"); if(c) c.textContent=sel.length;
+  const bb=beat.querySelector(".broll"); if(bb) bb.setAttribute("aria-pressed", !!st.broll);
+  beat.querySelectorAll("[data-card]").forEach(card=>{
+    const id=card.dataset.card.split("::").slice(1).join("::");
+    const isSel=sel.includes(id), isRej=rej.includes(id);
+    card.classList.toggle("sel", isSel);
+    card.classList.toggle("rej", isRej);
+    card.classList.toggle("full", !isSel && atCap);
+    const badge=card.querySelector(".pick"); if(badge) badge.textContent=sel.indexOf(id)+1;
+    const [addB,rejB]=card.querySelectorAll(".ob2");
+    if(addB){ addB.classList.toggle("addon", isSel); addB.disabled = !isSel && atCap; }
+    if(rejB){ rejB.classList.toggle("rejon", isRej); }
+  });
+  counts();
+}
+function counts(){
+  const all=D.shots;
+  const done=all.filter(x=>{const st=state[key(x)]||{};return st.broll||(st.sel||[]).length>0;}).length;
+  const marks=all.reduce((a,x)=>a+((state[key(x)]||{}).sel||[]).length,0);
+  const rejs=all.reduce((a,x)=>a+((state[key(x)]||{}).rej||[]).length,0);
+  const brolls=all.filter(x=>(state[key(x)]||{}).broll).length;
+  const el=document.querySelector(".count");
+  if(el) el.textContent=`${marks} added · ${rejs} rejected · ${brolls} b-roll · ${done}/${all.length} beats done`;
+}
+const setS=t=>document.getElementById("status").textContent=t;
+function touch(k){
+  const d=state[k]||{};
+  const r={broll:!!d.broll, note:d.note||"",
+           sel:Array.isArray(d.sel)?d.sel.slice():[],
+           rej:Array.isArray(d.rej)?d.rej.slice():[]};
+  state[k]=r; return r;
+}
+const q={};
+function save(k){ if(!db)return;
+  q[k]=(q[k]||Promise.resolve()).then(()=>db.doc("picks_abB/"+k).set({...state[k],updatedAt:new Date().toISOString()})
+    .then(()=>setS("Saved "+new Date().toLocaleTimeString()))
+    .catch(e=>setS("Not saved: "+(e?.code||"error"))));}
+let t=null;
+document.addEventListener("click",e=>{
+  const pg=e.target.closest(".pg");
+  if(pg && !pg.disabled){ page=+pg.dataset.p; render();
+    window.scrollTo({top:0,behavior:"smooth"}); return; }
+  const c=e.target.closest(".chip"); if(c){filter=c.dataset.f;page=0;render();return;}
+  const br=e.target.closest(".broll");
+  if(br){ const k=br.dataset.k; const r=touch(k);
+    r.broll=!r.broll; paint(k); save(k); return; }
+  const pb=e.target.closest(".play");
+  if(pb){
+    const v=pb.parentElement.querySelector("video");
+    if(!v) return;
+    if(v.paused){ document.querySelectorAll("video").forEach(o=>{if(o!==v){o.pause();}});
+                  v.play().catch(()=>{}); pb.classList.add("on"); }
+    else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  if(e.target.closest("video")) return;
+  const b=e.target.closest(".ob2"); if(!b||b.disabled) return;
+  const {k,id,a}=b.dataset;
+  const r=touch(k); const S=r.sel, R=r.rej;
+  const drop=(arr,v)=>{const i=arr.indexOf(v); if(i>=0) arr.splice(i,1);};
+  if(a==="add"){
+    if(S.includes(id)) drop(S,id);
+    else { drop(R,id); if(S.length<6) S.push(id); else return; }
+  } else {
+    if(R.includes(id)) drop(R,id);
+    else { drop(S,id); R.push(id); }
+  }
+  paint(k); save(k);
+});
+document.addEventListener("input",e=>{
+  if(!e.target.classList.contains("note"))return;
+  const k=e.target.dataset.k; touch(k).note=e.target.value;
+  clearTimeout(t); t=setTimeout(()=>save(k),700);
+});
+fetch("data.json").then(r=>r.json()).then(async d=>{
+  D=d; render();
+  db=await claude.use("db");
+  if(!db){setS("Picks cannot be saved in this view.");return;}
+  try{ const s=await db.collection("picks_abB").get();
+    s.docs.forEach(x=>{state[x.id]=x.data(); touch(x.id);}); render();
+    setS(s.empty?"Ready.":"Loaded saved picks.");
+  }catch(e){setS("Could not load: "+(e?.code||"error"));}
+});
+</script>

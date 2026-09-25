@@ -1,0 +1,609 @@
+{
+ "schemaVersion": 1,
+ "purpose": "Canonical job vocabulary and the routing from it into every catalog. User ruling 2026-09-16: input.job is canonical; catalogs keep their own intents and job is the routing label.",
+ "canonicalField": "input.job",
+ "canonicalValues": [
+  "quantify",
+  "compare",
+  "rank",
+  "timeline",
+  "sequence",
+  "introduce",
+  "evidence"
+ ],
+ "addValueRule": "Add an eighth value only when a real passage refuses to fit, and record the passage that forced it.",
+ "jobs": {
+  "quantify": {
+   "definition": "One exact verified number is the point of the sentence.",
+   "sceneFunction": [
+    "quantify"
+   ],
+   "infographicIntents": [
+    "magnitude",
+    "scale metaphor",
+    "key facts",
+    "key fact",
+    "record",
+    "rate",
+    "threshold",
+    "overview"
+   ],
+   "scatterIntents": [
+    "quantify",
+    "magnitude",
+    "overview"
+   ],
+   "rhetoricalFunction": [
+    "escalation",
+    "claim"
+   ],
+   "evidence": {
+    "caseIds": [
+     "01",
+     "03",
+     "13",
+     "18"
+    ],
+    "caseCount": 4,
+    "observedAllowedKinds": {
+     "after_effects": 1,
+     "cinematic_3d": 1,
+     "infographic": 3
+    },
+    "observedPresentation": {
+     "text": 1,
+     "scatter": 1,
+     "chart": 2
+    }
+   },
+   "reachableProfiles": {
+    "infographic": [
+     "05_measured_height_ruler",
+     "15_finals_record_table",
+     "16_ranked_table_and_bars",
+     "22_single_measurement",
+     "24_dense_vertical_bars",
+     "29_horizontal_media_bars",
+     "30_dense_rank_bars",
+     "32_record_height_bars",
+     "33_contract_portrait_grid",
+     "34_superteam_bar_compare",
+     "35_shooting_portrait_matrix",
+     "36_four_portrait_cards",
+     "41_five_value_headshots",
+     "47_similarity_ascending_bars",
+     "50_championship_odds_history",
+     "51_debut_leaderboard",
+     "52_rookie_record_columns"
+    ],
+    "scatter": [
+     "Exact two-point duration ratio",
+     "Fixed-scale one-dot-per-entity population field",
+     "Fixed-scale small-field outlier",
+     "Particle relief over a ranked field",
+     "Radial instrument stage with light-node magnitudes",
+     "Receding rank ladder with photographic bodies"
+    ]
+   },
+   "documentaryRoles": [
+    "reveal",
+    "represent_while_discussed",
+    "evidence"
+   ]
+  },
+  "compare": {
+   "definition": "Two or more entities set against each other on a shared measure or quality.",
+   "sceneFunction": [
+    "paired presentation"
+   ],
+   "infographicIntents": [
+    "compare",
+    "comparison",
+    "contrast",
+    "multiple metrics",
+    "matchups",
+    "scorecard",
+    "two variables",
+    "benchmark",
+    "before after",
+    "score",
+    "outcomes",
+    "overview"
+   ],
+   "scatterIntents": [
+    "compare",
+    "distance",
+    "outlier",
+    "before after"
+   ],
+   "rhetoricalFunction": [
+    "comparison",
+    "contrast",
+    "reversal"
+   ],
+   "evidence": {
+    "caseIds": [
+     "02",
+     "04",
+     "09",
+     "11",
+     "14",
+     "16",
+     "19",
+     "20",
+     "21",
+     "22",
+     "27",
+     "28",
+     "29"
+    ],
+    "caseCount": 13,
+    "observedAllowedKinds": {
+     "unconstrained": 4,
+     "cinematic_3d": 2,
+     "infographic": 9
+    },
+    "observedPresentation": {
+     "document": 2,
+     "scatter": 3,
+     "chart": 6,
+     "portrait": 2
+    }
+   },
+   "reachableProfiles": {
+    "infographic": [
+     "01_finals_head_to_head",
+     "03_dual_trend_lines",
+     "04_passing_torch_grid",
+     "05_measured_height_ruler",
+     "07_labeled_outlier_scatter",
+     "10_two_era_rankings",
+     "11_defensive_numbers",
+     "12_four_round_scorecard",
+     "13_matchup_area_chart",
+     "14_quote_score_columns",
+     "15_finals_record_table",
+     "17_awards_height_board",
+     "19_dual_colored_tables",
+     "21_superteam_timeline",
+     "26_mirrored_stat_compare",
+     "27_rank_context_panel",
+     "28_stat_profile_cards",
+     "29_horizontal_media_bars",
+     "32_record_height_bars",
+     "33_contract_portrait_grid",
+     "34_superteam_bar_compare",
+     "35_shooting_portrait_matrix",
+     "36_four_portrait_cards",
+     "37_fullbody_impact_lineup",
+     "38_matchup_win_list",
+     "40_two_era_fullbody_compare",
+     "41_five_value_headshots",
+     "44_three_metric_tables",
+     "45_two_metric_tables",
+     "46_similarity_criteria_table",
+     "47_similarity_ascending_bars",
+     "53_lineup_rotation_columns",
+     "54_trade_package_panels",
+     "55_best_vs_value",
+     "56_seven_artist_stat_lineup",
+     "57_three_playoff_run_cards",
+     "58_big_three_stat_rows"
+    ],
+    "scatter": [
+     "Exact two-point duration ratio",
+     "Fixed-scale one-dot-per-entity population field",
+     "Fixed-scale small-field outlier",
+     "Two-portrait qualitative comparison on a photographic stage"
+    ]
+   },
+   "documentaryRoles": [
+    "represent_while_discussed",
+    "context",
+    "reveal"
+   ]
+  },
+  "rank": {
+   "definition": "Entities ordered by a magnitude, with position itself carrying meaning.",
+   "sceneFunction": [
+    "paired presentation",
+    "entity explanation"
+   ],
+   "infographicIntents": [
+    "rank",
+    "leaderboard",
+    "leaders",
+    "tiers",
+    "ties",
+    "outliers",
+    "distribution"
+   ],
+   "scatterIntents": [
+    "rank",
+    "change",
+    "resilience",
+    "spotlight",
+    "population",
+    "overview"
+   ],
+   "rhetoricalFunction": [
+    "comparison",
+    "escalation"
+   ],
+   "evidence": {
+    "caseIds": [
+     "12",
+     "26"
+    ],
+    "caseCount": 2,
+    "observedAllowedKinds": {
+     "cinematic_3d": 1,
+     "infographic": 2
+    },
+    "observedPresentation": {
+     "scatter": 1,
+     "chart": 1
+    }
+   },
+   "reachableProfiles": {
+    "infographic": [
+     "02_colored_ranked_bars",
+     "07_labeled_outlier_scatter",
+     "08_yearly_leader_timeline",
+     "10_two_era_rankings",
+     "15_finals_record_table",
+     "16_ranked_table_and_bars",
+     "17_awards_height_board",
+     "19_dual_colored_tables",
+     "23_portrait_scatter",
+     "27_rank_context_panel",
+     "29_horizontal_media_bars",
+     "30_dense_rank_bars",
+     "32_record_height_bars",
+     "39_five_player_impact",
+     "42_playoff_rank_grid",
+     "43_successor_tier_grid",
+     "46_similarity_criteria_table",
+     "47_similarity_ascending_bars",
+     "49_similarity_final_results",
+     "50_championship_odds_history",
+     "51_debut_leaderboard",
+     "52_rookie_record_columns",
+     "56_seven_artist_stat_lineup"
+    ],
+    "scatter": [
+     "Before-and-after rank-loss field",
+     "Fixed-scale one-dot-per-entity population field",
+     "Radial instrument stage with light-node magnitudes",
+     "Receding rank ladder with photographic bodies"
+    ]
+   },
+   "documentaryRoles": [
+    "reveal",
+    "represent_while_discussed"
+   ]
+  },
+  "timeline": {
+   "definition": "Dated progression or change across time, where the time axis is explicit.",
+   "sceneFunction": [
+    "date event"
+   ],
+   "infographicIntents": [
+    "history",
+    "time series",
+    "trend",
+    "stages",
+    "events"
+   ],
+   "scatterIntents": [
+    "timeline",
+    "attrition",
+    "survival"
+   ],
+   "rhetoricalFunction": [
+    "chronology",
+    "causation"
+   ],
+   "evidence": {
+    "caseIds": [
+     "06",
+     "24",
+     "25"
+    ],
+    "caseCount": 3,
+    "observedAllowedKinds": {
+     "infographic": 2,
+     "cinematic_3d": 1,
+     "unconstrained": 1
+    },
+    "observedPresentation": {
+     "chart": 2,
+     "portrait": 1
+    }
+   },
+   "reachableProfiles": {
+    "infographic": [
+     "03_dual_trend_lines",
+     "06_historical_winners_table",
+     "08_yearly_leader_timeline",
+     "12_four_round_scorecard",
+     "13_matchup_area_chart",
+     "21_superteam_timeline",
+     "24_dense_vertical_bars",
+     "25_career_value_list",
+     "48_playoff_path_summary",
+     "50_championship_odds_history"
+    ],
+    "scatter": [
+     "Cohort attrition to named survivors"
+    ]
+   },
+   "documentaryRoles": [
+    "context",
+    "represent_while_discussed",
+    "reveal"
+   ]
+  },
+  "sequence": {
+   "definition": "Several items presented in turn without a time axis. Accumulation rather than chronology.",
+   "sceneFunction": [
+    "entity reveal",
+    "entity explanation"
+   ],
+   "infographicIntents": [
+    "sequence",
+    "collection",
+    "groups",
+    "membership",
+    "cohorts",
+    "packages",
+    "composition",
+    "part to whole",
+    "classification",
+    "classify",
+    "teams"
+   ],
+   "scatterIntents": [],
+   "rhetoricalFunction": [
+    "example",
+    "summary"
+   ],
+   "evidence": {
+    "caseIds": [
+     "07",
+     "08",
+     "30"
+    ],
+    "caseCount": 3,
+    "observedAllowedKinds": {
+     "unconstrained": 2,
+     "infographic": 1
+    },
+    "observedPresentation": {
+     "None": 2,
+     "chart": 1
+    }
+   },
+   "reachableProfiles": {
+    "infographic": [
+     "06_historical_winners_table",
+     "09_artist_field_grid",
+     "10_two_era_rankings",
+     "13_matchup_area_chart",
+     "19_dual_colored_tables",
+     "20_prime_portrait_cards",
+     "31_greatest_team_scatter",
+     "34_superteam_bar_compare",
+     "37_fullbody_impact_lineup",
+     "39_five_player_impact",
+     "43_successor_tier_grid",
+     "48_playoff_path_summary",
+     "53_lineup_rotation_columns",
+     "54_trade_package_panels",
+     "57_three_playoff_run_cards"
+    ],
+    "scatter": []
+   },
+   "documentaryRoles": [
+    "represent_while_discussed",
+    "context",
+    "introduce"
+   ]
+  },
+  "introduce": {
+   "definition": "Establish one entity's identity, role or status.",
+   "sceneFunction": [
+    "entity reveal",
+    "entity explanation",
+    "title"
+   ],
+   "infographicIntents": [
+    "introduce",
+    "spotlight",
+    "profiles",
+    "recognition",
+    "title card",
+    "overview"
+   ],
+   "scatterIntents": [
+    "title card",
+    "spotlight"
+   ],
+   "rhetoricalFunction": [
+    "identity",
+    "setup",
+    "hook"
+   ],
+   "evidence": {
+    "caseIds": [
+     "05",
+     "10"
+    ],
+    "caseCount": 2,
+    "observedAllowedKinds": {
+     "unconstrained": 2
+    },
+    "observedPresentation": {
+     "portrait": 1,
+     "cutout": 1
+    }
+   },
+   "reachableProfiles": {
+    "infographic": [
+     "17_awards_height_board",
+     "18_cutout_intro",
+     "20_prime_portrait_cards",
+     "22_single_measurement",
+     "25_career_value_list",
+     "27_rank_context_panel",
+     "28_stat_profile_cards",
+     "36_four_portrait_cards",
+     "37_fullbody_impact_lineup",
+     "40_two_era_fullbody_compare",
+     "51_debut_leaderboard",
+     "55_best_vs_value"
+    ],
+    "scatter": [
+     "Receding rank ladder with photographic bodies",
+     "Two-portrait qualitative comparison on a photographic stage"
+    ]
+   },
+   "documentaryRoles": [
+    "introduce",
+    "represent_while_discussed"
+   ]
+  },
+  "evidence": {
+   "definition": "Present the proof for a claim so the viewer can inspect it.",
+   "sceneFunction": [
+    "text description",
+    "entity explanation",
+    "entity reveal"
+   ],
+   "infographicIntents": [
+    "evidence",
+    "annotation",
+    "lookup",
+    "record",
+    "summary",
+    "key facts"
+   ],
+   "scatterIntents": [],
+   "rhetoricalFunction": [
+    "evidence"
+   ],
+   "evidence": {
+    "caseIds": [
+     "15",
+     "17",
+     "23"
+    ],
+    "caseCount": 3,
+    "observedAllowedKinds": {
+     "unconstrained": 2,
+     "after_effects": 1
+    },
+    "observedPresentation": {
+     "document": 1,
+     "text": 1,
+     "None": 1
+    }
+   },
+   "reachableProfiles": {
+    "infographic": [
+     "06_historical_winners_table",
+     "14_quote_score_columns",
+     "16_ranked_table_and_bars",
+     "22_single_measurement",
+     "25_career_value_list",
+     "31_greatest_team_scatter",
+     "33_contract_portrait_grid",
+     "36_four_portrait_cards",
+     "41_five_value_headshots",
+     "42_playoff_rank_grid",
+     "48_playoff_path_summary",
+     "49_similarity_final_results",
+     "51_debut_leaderboard",
+     "52_rookie_record_columns",
+     "57_three_playoff_run_cards",
+     "58_big_three_stat_rows"
+    ],
+    "scatter": []
+   },
+   "documentaryRoles": [
+    "evidence",
+    "quote",
+    "represent_while_discussed"
+   ]
+  }
+ },
+ "audit": {
+  "infographicIntentsUnreachable": [
+   "editorial",
+   "explain",
+   "relationship",
+   "status"
+  ],
+  "scatterIntentsUnreachable": [
+   "atmosphere"
+  ],
+  "sceneFunctionsUnreachable": [
+   "closing"
+  ],
+  "jobsWithNoSceneFunction": [],
+  "jobsWithNoScatterRoute": [
+   "sequence",
+   "evidence"
+  ],
+  "thinnestJob": "timeline",
+  "reachableProfileCountByJob": {
+   "quantify": 23,
+   "compare": 41,
+   "rank": 27,
+   "timeline": 11,
+   "sequence": 15,
+   "introduce": 14,
+   "evidence": 16
+  },
+  "resolvedHoles": [
+   {
+    "intent": "overview",
+    "routedFrom": [
+     "compare",
+     "quantify",
+     "introduce",
+     "rank"
+    ],
+    "date": "2026-09-16",
+    "reason": "Flagged unreachable in the first audit. Showing a whole field is the point of those jobs."
+   },
+   {
+    "intent": "sceneFunction routes for evidence, sequence and rank",
+    "date": "2026-09-16",
+    "reason": "evidence reached only 'text description' (2 of 185 scenes), so passage 23 had zero viable After Effects candidates despite being restricted to After Effects. rank and sequence had no route at all."
+   }
+  ]
+ },
+ "vocabularies": {
+  "documentaryRoles": {
+   "source": "ae-template-automation/profiles/*.json, field documentary_roles",
+   "values": [
+    "introduce",
+    "reveal",
+    "represent_while_discussed",
+    "context",
+    "evidence",
+    "transition",
+    "quote",
+    "close"
+   ],
+   "grading": [
+    "primary",
+    "secondary",
+    "weak",
+    "not_supported"
+   ],
+   "note": "A fourth job vocabulary, and the best one on the template side: it is graded per template and present on 11 of 12 profiles, against scene.function which is ungraded and null on 73 of 185 scenes. A role marked not_supported is a hard exclusion."
+  }
+ }
+}

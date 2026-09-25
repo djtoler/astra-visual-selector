@@ -1,0 +1,53 @@
+{
+ "schemaVersion": 1,
+ "purpose": "Read-only local snapshot of the project's derived global rules. Nothing here is ever written back to the project.",
+ "source": {
+  "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/narration-visual-annotations/feedback-calibration.json",
+  "sha256": "9a14349fd10866efa615449a5e01636fa8cd870f1f4b2c2cfcd63713c4cad54c",
+  "snapshotTakenAt": "2026-09-16T05:05:00-04:00",
+  "processedDate": "2026-09-12",
+  "savedFeedbackCount": 33
+ },
+ "rules": [
+  {
+   "id": "four_distinct_options",
+   "rule": "Return four candidate options from four different template IDs for every shot."
+  },
+  {
+   "id": "include_infographic",
+   "rule": "Include at least one infographic candidate whenever infographics are allowed for the shot."
+  },
+  {
+   "id": "separate_asset_retrieval",
+   "rule": "Score the presentation template independently from the identity and relevance of the replacement assets; a good template with the wrong artist assets is not a successful plan."
+  },
+  {
+   "id": "focal_hierarchy",
+   "rule": "Choose the visual focal subject from the passage\u2019s main claim, not merely the first named entity. Open on the primary subject when a supporting example is named first."
+  },
+  {
+   "id": "multi_asset_evidence",
+   "rule": "When one passage names an artifact, a catalog, projects, or proof, request every supporting visual needed to establish those clauses rather than returning one generic portrait."
+  },
+  {
+   "id": "spatial_relationship_first",
+   "rule": "For gap, distance, overlap, outlier, or falling-rank claims, retrieve spatial/3D candidates before ordinary comparison charts."
+  },
+  {
+   "id": "readability",
+   "rule": "Rules, lists, and evidence text require a calm readable hold; reject scenes whose motion or layout prevents reading."
+  },
+  {
+   "id": "shot_decomposition",
+   "rule": "Split a passage when data visualization, portrait footage, documentary evidence, or qualitative comparison require different visual treatments."
+  },
+  {
+   "id": "video_competes_with_stills",
+   "rule": "When footage directly shows the named people, event, performance, or claim, include it as a candidate instead of considering only still images."
+  },
+  {
+   "id": "continuity",
+   "rule": "A setup visual may intentionally hold into the following reveal and then populate with data rather than cutting to an unrelated template."
+  }
+ ]
+}

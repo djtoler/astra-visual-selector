@@ -1,0 +1,132 @@
+<title>The Fifth Paper Scene</title>
+<style>
+:root{
+  --ink:#1a1714; --ink2:#5f584f; --ink3:#938a7e;
+  --bg:#f6f3ee; --card:#fffdfa; --line:#e3ddd2;
+  --lock:#6b5636; --lockbg:#efe6d6; --pick:#1d6b4f; --pickbg:#e2f1ea;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0ece5; --ink2:#aaa296; --ink3:#7b7469;
+  --bg:#15130f; --card:#1f1c18; --line:#332e27;
+  --lock:#d4b98c; --lockbg:#2c2417; --pick:#78d6ac; --pickbg:#162b22;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0ece5; --ink2:#aaa296; --ink3:#7b7469;
+  --bg:#15130f; --card:#1f1c18; --line:#332e27;
+  --lock:#d4b98c; --lockbg:#2c2417; --pick:#78d6ac; --pickbg:#162b22;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;padding:0 16px 56px;
+  font:15px/1.6 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif}
+.wrap{max-width:1000px;margin:0 auto}
+header{padding:24px 0 14px;border-bottom:1px solid var(--line);margin-bottom:20px}
+h1{margin:0 0 8px;font-size:20px;letter-spacing:-.01em}
+p.sub{margin:0 0 12px;color:var(--ink2);max-width:60ch}
+.tally{display:inline-block;font:600 13px/1 var(--mono);padding:7px 11px;
+  border-radius:99px;background:var(--lockbg);color:var(--lock)}
+.tally.done{background:var(--pickbg);color:var(--pick)}
+.st{margin-left:10px;color:var(--ink3);font-size:12px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.c{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  overflow:hidden;cursor:pointer;transition:border-color .12s}
+.c:hover{border-color:var(--ink3)}
+.c.locked{cursor:default;border-color:var(--lock);opacity:.72}
+.c.on{border-color:var(--pick);box-shadow:inset 0 0 0 1px var(--pick)}
+.pv{position:relative;aspect-ratio:16/9;background:#0c0b09}
+.pv video,.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:36px;height:36px;border-radius:99px;border:0;cursor:pointer;
+  background:rgba(10,9,7,.6);backdrop-filter:blur(3px)}
+.play::before{content:"";position:absolute;left:14px;top:10px;
+  border-left:12px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent}
+.play.on{opacity:0}.pv:hover .play.on{opacity:.75}
+.badge{position:absolute;left:8px;top:8px;padding:4px 8px;border-radius:5px;
+  font:600 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.badge.l{background:var(--lock);color:#fff}
+.badge.p{background:var(--pick);color:#fff}
+.m{padding:9px 11px 11px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.id{font:11px/1.4 var(--mono);color:var(--ink2)}
+.t{font:11px/1.4 var(--mono);color:var(--ink3);white-space:nowrap}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>The Fifth Paper Scene</h1>
+  <p class="sub">Four paper scenes are already locked into the corpus. You asked for
+  five. Pick the one that is missing &mdash; the four locked ones are marked and
+  cannot be unpicked here.</p>
+  <span class="tally" id="tally">4 of 5</span><span class="st" id="st">Loading&hellip;</span>
+</header>
+<div class="grid" id="grid"></div>
+</div>
+
+<script>
+"use strict";
+var D=null, db=null, fifth=null;
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,
+  function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function setS(m){document.getElementById("st").textContent=m;}
+
+function render(){
+  if(!D) return;
+  document.getElementById("grid").innerHTML = D.candidates.map(function(c){
+    var locked=!!c.already, on=(fifth===c.id);
+    return "<article class='c"+(locked?" locked":"")+(on?" on":"")
+      + "' data-id='"+esc(c.id)+"'"+(locked?" data-locked='1'":"")+">"
+      + "<div class='pv'>"
+      + (locked?"<span class='badge l'>locked "+c.already+"</span>":"")
+      + (on?"<span class='badge p'>fifth</span>":"")
+      + "<video src='"+esc(c.clip)+"' poster='"+esc(c.poster)
+      + "' muted playsinline preload='none'></video>"
+      + "<button class='play' type='button' aria-label='Play clip'></button></div>"
+      + "<div class='m'><span class='id'>"+esc(c.id.split("--").pop())+"</span>"
+      + "<span class='t'>"+c.hold[0].toFixed(1)+"&ndash;"+c.hold[1].toFixed(1)+"s</span>"
+      + "</div></article>";
+  }).join("");
+  var t=document.getElementById("tally");
+  t.textContent=(fifth?5:4)+" of 5";
+  t.className="tally"+(fifth?" done":"");
+}
+
+function save(){
+  if(!db) return;
+  db.doc("paper_pick/fifth").set({fifth:fifth, updatedAt:new Date().toISOString()})
+    .then(function(){setS(fifth?"Saved — that is the eleventh.":"Cleared.");})
+    .catch(function(e){setS("Not saved: "+((e&&e.code)||"error"));});
+}
+
+document.addEventListener("click", function(e){
+  var pb=e.target.closest(".play");
+  if(pb){
+    var v=pb.parentElement.querySelector("video"); if(!v) return;
+    if(v.paused){
+      document.querySelectorAll("video").forEach(function(o){
+        if(o!==v){o.pause(); var b=o.parentElement.querySelector(".play");
+                  if(b) b.classList.remove("on");}});
+      v.play().catch(function(){}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  if(e.target.closest("video")) return;
+  var card=e.target.closest(".c"); if(!card||card.dataset.locked) return;
+  fifth=(fifth===card.dataset.id)?null:card.dataset.id;
+  render(); save();
+});
+document.addEventListener("ended", function(e){
+  if(e.target.tagName!=="VIDEO") return;
+  var b=e.target.parentElement.querySelector(".play"); if(b) b.classList.remove("on");
+}, true);
+
+fetch("data.json").then(function(r){return r.json();}).then(function(d){
+  D=d; render(); return claude.use("db");
+}).then(function(x){
+  db=x;
+  if(!db){ setS("Cannot save in this view."); return; }
+  return db.doc("paper_pick/fifth").get().then(function(s){
+    var saved = s && s.exists ? s.data() : null;   // frozen — copy out, never write in
+    if(saved && saved.fifth){ fifth=saved.fifth; render(); }
+    setS(fifth?"Loaded your pick.":"Ready — tap one.");
+  });
+}).catch(function(e){ setS("Could not load: "+((e&&e.code)||"error")); });
+</script>

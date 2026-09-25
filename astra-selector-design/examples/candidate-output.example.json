@@ -1,0 +1,150 @@
+{
+  "contractId": "example:ref4:VU_081",
+  "schemaVersion": 1,
+  "rulesetVersion": "0.1.0-draft",
+  "generatedAt": "2026-09-16T00:00:00Z",
+  "_note": "Worked example for the countersuit passage. The creator's actual choice was evidence_or_document with a zoomed page and an animated highlight, which is candidate 1 here.",
+  "candidates": [
+    {
+      "rank": 1,
+      "treatmentClass": "evidence_or_document",
+      "differentiator": "Shows the filing itself and moves a highlight to each clause as it is spoken.",
+      "capabilityId": "direct:document_hold_with_highlight",
+      "mediaBindings": [
+        {"roleId": "countersuit_document", "status": "candidates_for_review", "provenance": "primary_source", "meetsSourceSpecificity": true, "meetsLegibility": true, "qualityNotes": "Needs a scan at sufficient resolution to hold a 2.5s read at the damages figure.", "reviewCandidates": [{"ref": "court record scan", "why": "the filing itself"}, {"ref": "contemporaneous newspaper reproduction", "why": "fallback if the filing is unavailable, but weaker"}]}
+      ],
+      "timingPlan": {
+        "plannedDurationSeconds": 14.0,
+        "speedMultiplier": 1.0,
+        "eventAlignment": [
+          {"eventId": "E1", "triggerPhrase": "countersue the Justice Department for 100 million", "targetSeconds": 4.0, "achievableSeconds": 4.0, "driftSeconds": 0.0, "status": "aligned", "containerEventUsed": "highlight_1"},
+          {"eventId": "E2", "triggerPhrase": "dismissed this suit outright", "targetSeconds": 10.0, "achievableSeconds": 10.0, "driftSeconds": 0.0, "status": "aligned", "containerEventUsed": "highlight_2"}
+        ],
+        "minimumHoldRespected": true,
+        "internalChangeCoverage": "2 changes across 14.0s, one every 7.0s, at the 6.8s ceiling. Acceptable."
+      },
+      "adjustmentsRequired": [],
+      "gateResults": [
+        {"gate": "communicates_claim", "result": "pass", "explanation": "Both clauses are shown and read."},
+        {"gate": "no_unsupported_implication", "result": "pass", "explanation": "The dismissal is shown, so the countersuit is not left looking successful."},
+        {"gate": "evidence_specificity_honoured", "result": "unknown", "explanation": "Depends on whether the actual filing is obtainable. Blocks auto-advance."},
+        {"gate": "evidence_legible", "result": "unknown", "explanation": "Depends on scan resolution."},
+        {"gate": "decisive_events_alignable", "result": "pass", "explanation": "Highlights are freely positionable."},
+        {"gate": "era_consistent", "result": "pass", "explanation": "The document is contemporaneous by definition."},
+        {"gate": "not_forcing_a_template", "result": "pass", "explanation": "This is a direct treatment, not a template."},
+        {"gate": "density_acceptable", "result": "pass", "explanation": "One document, one highlight at a time."},
+        {"gate": "asset_quality_sufficient", "result": "unknown", "explanation": "Pending the asset."}
+      ],
+      "scores": {"factualAccuracy": 1.0, "claimCommunication": 0.95, "timingAlignment": 1.0, "structuralFit": 0.9, "styleConsistency": 0.8, "assetQuality": 0.5, "polish": 0.7, "renderCost": 0.95},
+      "styleCompatibility": "compatible_after_safe_adjustment",
+      "rationale": "The claim is a documented fact with an exact-source obligation, so the strongest answer is the document itself. Both decisive events are highlights, which can land exactly on their phrases. The only real risk is the asset: without a legible scan this candidate collapses.",
+      "rejected": false
+    },
+    {
+      "rank": 2,
+      "treatmentClass": "archival_footage",
+      "differentiator": "Contemporaneous news coverage of the countersuit, with the document as an inset.",
+      "capabilityId": "direct:archival_cut_with_inset",
+      "mediaBindings": [
+        {"roleId": "countersuit_document", "status": "candidates_for_review", "provenance": "primary_source", "meetsSourceSpecificity": true, "meetsLegibility": false, "qualityNotes": "As an inset the document text will not be readable at the required size."}
+      ],
+      "timingPlan": {
+        "plannedDurationSeconds": 14.0,
+        "eventAlignment": [
+          {"eventId": "E1", "triggerPhrase": "countersue the Justice Department for 100 million", "targetSeconds": 4.0, "achievableSeconds": 4.0, "driftSeconds": 0.0, "status": "aligned", "containerEventUsed": "inset_in"},
+          {"eventId": "E2", "triggerPhrase": "dismissed this suit outright", "targetSeconds": 10.0, "achievableSeconds": 10.0, "driftSeconds": 0.0, "status": "aligned", "containerEventUsed": "lower_third_change"}
+        ],
+        "minimumHoldRespected": true,
+        "internalChangeCoverage": "2 changes across 14.0s."
+      },
+      "adjustmentsRequired": [],
+      "gateResults": [
+        {"gate": "communicates_claim", "result": "pass", "explanation": "Coverage states the claim even if the document is not readable."},
+        {"gate": "evidence_legible", "result": "fail", "explanation": "An inset document at this size cannot be read, and the damages figure is the point of the passage."},
+        {"gate": "evidence_specificity_honoured", "result": "pass", "explanation": "Contemporaneous coverage of the exact event."},
+        {"gate": "decisive_events_alignable", "result": "pass", "explanation": ""},
+        {"gate": "no_unsupported_implication", "result": "pass", "explanation": ""}
+      ],
+      "scores": {"factualAccuracy": 1.0, "claimCommunication": 0.7, "timingAlignment": 1.0, "structuralFit": 0.8, "styleConsistency": 0.85, "assetQuality": 0.6, "polish": 0.7, "renderCost": 0.95},
+      "styleCompatibility": "compatible_as_supplied",
+      "rationale": "A valid fallback if the filing cannot be obtained legibly, but it demotes the document from proof to illustration. Ranked second because the legibility gate fails on the element the narration is actually about.",
+      "rejected": false
+    },
+    {
+      "rank": 3,
+      "treatmentClass": "counter_or_numeric",
+      "differentiator": "The $100 million figure accelerates on screen, then is struck through on the dismissal.",
+      "capabilityId": "ae:02-counters:Counter Widgets:C_Main 03",
+      "mediaBindings": [
+        {"roleId": "countersuit_document", "status": "missing", "provenance": "unknown", "meetsSourceSpecificity": false, "meetsLegibility": false, "qualityNotes": "This treatment does not present the document at all. The proof role is unsatisfied."}
+      ],
+      "timingPlan": {
+        "plannedDurationSeconds": 14.0,
+        "speedMultiplier": 1.0,
+        "eventAlignment": [
+          {"eventId": "E1", "triggerPhrase": "countersue the Justice Department for 100 million", "targetSeconds": 4.0, "achievableSeconds": 4.0, "driftSeconds": 0.0, "status": "aligned", "containerEventUsed": "count_up_end"},
+          {"eventId": "E2", "triggerPhrase": "dismissed this suit outright", "targetSeconds": 10.0, "achievableSeconds": 10.0, "driftSeconds": 0.0, "status": "aligned", "containerEventUsed": "strike_through"}
+        ],
+        "minimumHoldRespected": true,
+        "internalChangeCoverage": "2 changes across 14.0s."
+      },
+      "adjustmentsRequired": [{"adjustment": "Retime the count-up to end on the spoken figure.", "approvedCategory": "speed", "cost": "low", "riskToMeaning": "none"}],
+      "gateResults": [
+        {"gate": "evidence_specificity_honoured", "result": "fail", "explanation": "The claim carries an exact_source_required obligation and this treatment shows a rendered number instead of the source. A typeset figure is not the filing."},
+        {"gate": "communicates_claim", "result": "pass", "explanation": "The amount and the dismissal are both conveyed."},
+        {"gate": "decisive_events_alignable", "result": "pass", "explanation": ""}
+      ],
+      "scores": {"factualAccuracy": 0.8, "claimCommunication": 0.8, "timingAlignment": 1.0, "structuralFit": 0.85, "styleConsistency": 0.9, "assetQuality": 0.9, "polish": 0.85, "renderCost": 0.8},
+      "styleCompatibility": "compatible_after_safe_adjustment",
+      "rationale": "Reads well and aligns perfectly, which is exactly why it is dangerous. It fails the specificity gate: the passage is an evidentiary claim and this candidate replaces evidence with typography. Kept in the slate so the trade-off is visible, but it cannot win.",
+      "rejected": false
+    },
+    {
+      "rank": 4,
+      "treatmentClass": "interview_footage",
+      "differentiator": "Hold on the presenter delivering the line, with no visual proof.",
+      "capabilityId": "direct:presenter_hold",
+      "mediaBindings": [{"roleId": "countersuit_document", "status": "missing", "provenance": "unknown", "meetsSourceSpecificity": false, "meetsLegibility": false, "qualityNotes": "No proof shown."}],
+      "timingPlan": {
+        "plannedDurationSeconds": 14.0,
+        "eventAlignment": [
+          {"eventId": "E1", "triggerPhrase": "countersue the Justice Department for 100 million", "targetSeconds": 4.0, "achievableSeconds": 4.0, "driftSeconds": 0.0, "status": "drifted", "containerEventUsed": "none"},
+          {"eventId": "E2", "triggerPhrase": "dismissed this suit outright", "targetSeconds": 10.0, "achievableSeconds": 10.0, "driftSeconds": 0.0, "status": "drifted", "containerEventUsed": "none"}
+        ],
+        "minimumHoldRespected": true,
+        "internalChangeCoverage": "0 changes across 14.0s, above the 6.8s ceiling. Fails."
+      },
+      "adjustmentsRequired": [],
+      "gateResults": [
+        {"gate": "evidence_specificity_honoured", "result": "fail", "explanation": "No proof presented for an exact_source_required claim."},
+        {"gate": "decisive_events_alignable", "result": "fail", "explanation": "There are no visual events to align."},
+        {"gate": "density_acceptable", "result": "pass", "explanation": ""}
+      ],
+      "scores": {"factualAccuracy": 0.6, "claimCommunication": 0.4, "timingAlignment": 0.2, "structuralFit": 0.5, "styleConsistency": 0.9, "assetQuality": 0.9, "polish": 0.5, "renderCost": 1.0},
+      "styleCompatibility": "compatible_as_supplied",
+      "rationale": "Included only to show the floor. A 14-second presenter hold on a documented-fact passage supplies no proof and no events, and fails two gates.",
+      "rejected": true,
+      "rejectionReason": "Fails evidence specificity and has no alignable events."
+    }
+  ],
+  "rejectedCandidates": [
+    {"treatmentClass": "montage_gallery_or_carousel", "capabilityId": "ae:Archive2:carousel-2026-09-11", "failedGate": "communicates_claim", "explanation": "One entity and one document. A carousel needs two or more focal items to earn its structure, and this pack exposes zero text slots so it could not label the filing."},
+    {"treatmentClass": "spatial_or_cinematic_3d", "capabilityId": "generated:spatial_relationship", "failedGate": "not_forcing_a_template", "explanation": "No spatial relationship is claimed. In the reference corpus spatial scenes carry a proof role only 16% of the time; this is a proof passage."}
+  ],
+  "decision": {
+    "action": "require_user_review",
+    "winnerRank": 1,
+    "confidence": {
+      "value": 0.55,
+      "method": "uncalibrated_prior",
+      "calibrationSampleSize": 0,
+      "marginOverSecond": 0.18
+    },
+    "reasons": [
+      "The treatment choice is clear: an exact-source evidentiary claim wants the document.",
+      "The asset is not yet bound. Two gates read unknown because they depend on whether a legible scan of the filing exists.",
+      "Confidence is uncalibrated because no approved and rejected decision set was readable at design time, so auto-advance is disabled by policy rather than by this passage's difficulty."
+    ],
+    "escalationTriggers": ["assets_missing", "low_confidence"]
+  }
+}

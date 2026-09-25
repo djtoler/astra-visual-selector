@@ -1,0 +1,270 @@
+<title>Mechanism Clusters</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#12171d;--ink-2:#414d5a;--ink-3:#6b7885;--line:#dbe1e7;
+  --bg:#f4f6f8;--card:#fff;--raise:#eef1f4;--accent:#0f5c6b;
+  --yes:#1c6b4a;--no:#9a3327;--warn:#8a5a10;--warn-bg:#f8eeda;--on-accent:#fff;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--no:#ee9084;--warn:#e0b163;
+  --warn-bg:#332715;--on-accent:#08141a;}}
+:root[data-theme="dark"]{
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--no:#ee9084;--warn:#e0b163;
+  --warn-bg:#332715;--on-accent:#08141a;}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
+.wrap{max-width:1360px;margin:0 auto;padding:16px;padding-block:26px 96px}
+h1{font-size:clamp(1.35rem,3vw,1.8rem);font-weight:700;letter-spacing:-.02em;margin:0 0 5px}
+.sub{color:var(--ink-2);max-width:70ch;margin:0 0 4px}
+.sub b{color:var(--ink);font-weight:600}
+.jobs{display:flex;gap:5px;flex-wrap:wrap;margin:16px 0 0}
+.j{font-family:var(--mono);font-size:.68rem;padding:5px 9px;border-radius:5px;text-align:left;
+  border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer}
+.j:hover{border-color:var(--accent)}
+.j[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.j i{font-style:normal;opacity:.65}
+.j em{font-style:normal;color:var(--warn);font-weight:600}
+.j[aria-pressed="true"] em{color:var(--on-accent)}
+.status{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);margin-top:12px;
+  display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.status button{font-family:var(--mono);font-size:.68rem;padding:4px 9px;border-radius:5px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer}
+.status button:hover{border-color:var(--no);color:var(--no)}
+
+.cl{background:var(--card);border:1px solid var(--line);border-radius:11px;margin-top:16px;overflow:hidden}
+.cl.edited{border-color:var(--warn)}
+.ch{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:11px 14px;
+  border-bottom:1px solid var(--line);background:var(--raise)}
+.ckey{font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--accent)}
+.cn{font-size:.82rem;color:var(--ink-2)}
+.cmeta{font-family:var(--mono);font-size:.64rem;color:var(--ink-3);margin-left:auto}
+.mv{font-family:var(--mono);font-size:.66rem;font-weight:600;padding:5px 10px;border-radius:5px;
+  border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);cursor:pointer}
+.mv[hidden]{display:none!important}
+.cards{display:grid;gap:9px;padding:12px 14px;grid-template-columns:repeat(auto-fill,minmax(168px,1fr))}
+.r{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg);
+  display:flex;flex-direction:column;cursor:pointer}
+.r:hover{border-color:var(--accent)}
+.r.on{border-color:var(--accent);border-width:2px;background:var(--raise)}
+.r.moved{border-color:var(--warn)}
+.pv{position:relative}
+.r img,.r video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#000}
+.r video{cursor:pointer}
+.r .nofr{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;
+  background:var(--raise);font-family:var(--mono);font-size:.6rem;color:var(--ink-3)}
+.play{position:absolute;right:6px;bottom:6px;width:24px;height:24px;border-radius:50%;
+  border:none;background:rgba(12,18,24,.72);cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center}
+.play::before{content:"";border-style:solid;border-width:5px 0 5px 9px;
+  border-color:transparent transparent transparent #fff;margin-left:2px}
+.play.on::before{border-width:0;width:7px;height:8px;margin:0;
+  background:#fff;box-shadow:inset 3px 0 0 rgba(12,18,24,.72)}
+.play:hover{background:rgba(12,18,24,.92)}
+.play:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rb{padding:7px 9px;display:flex;flex-direction:column;gap:3px;flex:1}
+.rm{font-size:.76rem;font-weight:500;color:var(--ink);line-height:1.3}
+.rf{font-family:var(--mono);font-size:.58rem;color:var(--accent);word-break:break-word}
+.rid{font-family:var(--mono);font-size:.56rem;color:var(--ink-3);word-break:break-word}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}
+.tg{font-family:var(--mono);font-size:.55rem;padding:1px 5px;border-radius:3px;background:var(--raise);color:var(--ink-3)}
+.tg.cond{background:var(--warn-bg);color:var(--warn)}
+.tg.w{background:var(--warn);color:#1a1205;font-weight:600}
+
+.selbar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--card);
+  border-top:1px solid var(--accent);padding:10px 16px;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
+  display:flex;gap:9px;align-items:center;flex-wrap:wrap;box-shadow:0 -4px 18px rgba(0,0,0,.09)}
+.selbar[hidden]{display:none!important}
+.selbar .n{font-family:var(--mono);font-size:.73rem;color:var(--ink);font-weight:600}
+.selbar .hint{font-family:var(--mono);font-size:.66rem;color:var(--ink-3)}
+.selbar button{font-family:var(--mono);font-size:.7rem;font-weight:600;padding:7px 12px;border-radius:6px;
+  border:1px solid var(--line);background:var(--bg);color:var(--ink-2);cursor:pointer}
+.selbar button:hover{border-color:var(--accent)}
+.selbar button.go{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.selbar .sp{margin-left:auto}
+.r:focus-visible,.j:focus-visible,.mv:focus-visible,.selbar button:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+<h1>Mechanism Clusters</h1>
+<p class="sub">A cluster is a set of treatments the pipeline judged to be <b>the same idea at the same scale</b>. Clusters cap how much of one idea can reach a slate: at most <b>four</b> members of any cluster, and separately at most <b>one</b> scene per template family.</p>
+<p class="sub">The grouping is derived from the mechanism text, which is sometimes three words long — so it gets things wrong. Press the small play button to watch a treatment; it stops at the end. Select cards and move them to fix the grouping. Your edits are authoritative and override what the pipeline derived.</p>
+<div class="jobs" id="jobs"></div>
+<div class="status" id="status">Loading&hellip;</div>
+<div id="clusters"></div>
+</div>
+
+<div class="selbar" id="selbar" hidden>
+  <span class="n" id="selN"></span>
+  <span class="hint">pick a destination &rarr;</span>
+  <button id="newc">New cluster</button>
+  <button id="clear">Cancel</button>
+  <span class="sp"></span>
+  <span class="hint" id="selhint"></span>
+</div>
+
+<script>
+"use strict";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let D=null, db=null, job=null, ov={}, sel=new Set();
+
+/* Never write into a doc the db returned — those objects are frozen and the write
+   fails silently. Always build our own. */
+function overridesFor(j){ return Object.assign({}, ov[j]||{}); }
+function setOverrides(j,o){ ov[j]=o; }
+
+function groups(){
+  const J=D.jobs[job], o=ov[job]||{}, g={};
+  for(const [key,ids] of Object.entries(J.clusters))
+    for(const id of ids){ const k=o[id]||key; (g[k]=g[k]||[]).push(id); }
+  return Object.fromEntries(Object.entries(g).sort((a,b)=>a[0].localeCompare(b[0]))
+    .map(([k,v])=>[k,v.sort()]));
+}
+function editCount(j){ return Object.keys(ov[j]||{}).length; }
+
+function paintJobs(){
+  document.getElementById("jobs").innerHTML=Object.keys(D.jobs).map(j=>{
+    const J=D.jobs[j], n=Object.keys(J.records).length, e=editCount(j);
+    return `<button class="j" data-j="${j}" aria-pressed="${j===job}">${j}
+      <i>${n}r / ${Object.keys(J.clusters).length}c</i>${e?` <em>&plusmn;${e}</em>`:""}</button>`;
+  }).join("");
+}
+
+function paint(){
+  const g=groups(), J=D.jobs[job], o=ov[job]||{};
+  const fams=new Set(Object.values(J.records).map(r=>r.family));
+  document.getElementById("status").innerHTML=
+    `<span><b>${job}</b> — ${Object.keys(J.records).length} treatments, `+
+    `${Object.keys(g).length} clusters, ${fams.size} template families. `+
+    `Slate is capped at min(12, ${fams.size}) by families.</span>`+
+    (editCount(job)?`<button id="reset">Reset ${editCount(job)} edit(s) on this job</button>`:"")+
+    `<span id="save"></span>`;
+
+  document.getElementById("clusters").innerHTML=Object.entries(g).map(([key,ids])=>{
+    const edited=ids.some(id=>o[id]);
+    const bands=[...new Set(ids.map(i=>J.records[i].band))];
+    const nf=new Set(ids.map(i=>J.records[i].family)).size;
+    return `<section class="cl ${edited?"edited":""}">
+      <div class="ch">
+        <span class="ckey">${esc(key)}</span>
+        <span class="cn">${esc(J.records[ids[0]].mech||"no mechanism recorded")}</span>
+        <span class="cmeta">${ids.length} treatment${ids.length>1?"s":""} · ${nf} famil${nf>1?"ies":"y"} · ${bands.join("/")}${ids.length>4?" · over the 4 cap":""}</span>
+        <button class="mv" data-to="${esc(key)}" hidden>Move here</button>
+      </div>
+      <div class="cards">${ids.map(id=>card(id,J.records[id],!!o[id])).join("")}</div>
+    </section>`;}).join("");
+  paintSelection();
+}
+
+function paintSelection(){
+  document.querySelectorAll(".r").forEach(el=>{
+    const on=sel.has(el.dataset.id);
+    el.classList.toggle("on", on);
+    el.setAttribute("aria-pressed", on);
+  });
+  document.querySelectorAll(".mv").forEach(b=>b.hidden = sel.size===0);
+  document.getElementById("selbar").hidden = sel.size===0;
+  document.getElementById("selN").textContent = `${sel.size} selected`;
+  document.getElementById("selhint").textContent =
+    sel.size ? "or press Move here on the cluster you want" : "";
+}
+
+function card(id,r,moved){
+  const clip=D.clips[id], poster=D.posters[id];
+  const pv = clip
+    ? `<video src="${clip}" poster="${poster||""}" muted playsinline preload="none"></video>
+       <button class="play" type="button" aria-label="Play clip"></button>`
+    : poster ? `<img src="${poster}" alt="" loading="lazy">`
+             : `<span class="nofr">no render</span>`;
+  return `<div class="r ${sel.has(id)?"on":""} ${moved?"moved":""}" data-id="${esc(id)}"
+            tabindex="0" role="button" aria-pressed="${sel.has(id)}">
+    <div class="pv">${pv}</div>
+    <div class="rb">
+      <div class="rm">${esc(r.mech||r.name||id)}</div>
+      <div class="rf">${esc(r.family)}</div>
+      <div class="rid">${esc(id)}</div>
+      <div class="tags">
+        <span class="tg">${esc(r.band)}</span>
+        ${r.verdict==="conditional"?`<span class="tg cond">conditional</span>`:""}
+        ${r.stillOnly?`<span class="tg cond">never rendered</span>`:""}
+        ${moved?`<span class="tg w">moved</span>`:""}
+      </div>
+    </div></div>`;
+}
+
+const q={};
+function save(j){
+  const el=document.getElementById("save");
+  if(!db){ if(el) el.textContent="not saving in this view"; return; }
+  q[j]=(q[j]||Promise.resolve()).then(()=>
+    db.doc("clusters/"+j).set({overrides:ov[j]||{},updatedAt:new Date().toISOString()})
+      .then(()=>{const e=document.getElementById("save"); if(e) e.textContent="saved "+new Date().toLocaleTimeString();})
+      .catch(e=>{const el2=document.getElementById("save"); if(el2) el2.textContent="not saved: "+(e&&e.code||"error");}));
+}
+
+function moveTo(key){
+  const o=overridesFor(job), J=D.jobs[job];
+  const home={}; for(const [k,ids] of Object.entries(J.clusters)) for(const i of ids) home[i]=k;
+  for(const id of sel){ if(home[id]===key) delete o[id]; else o[id]=key; }
+  setOverrides(job,o); sel.clear(); paintJobs(); paint(); save(job);
+}
+
+document.addEventListener("click",e=>{
+  const j=e.target.closest(".j");
+  if(j){ job=j.dataset.j; sel.clear(); paintJobs(); paint(); window.scrollTo({top:0,behavior:"smooth"}); return; }
+  const mv=e.target.closest(".mv"); if(mv){ moveTo(mv.dataset.to); return; }
+  const pb=e.target.closest(".play");
+  if(pb){
+    const v=pb.parentElement.querySelector("video");
+    if(!v) return;
+    if(v.paused){
+      document.querySelectorAll("video").forEach(o=>{ if(o!==v){ o.pause();
+        const b=o.parentElement.querySelector(".play"); if(b) b.classList.remove("on"); }});
+      v.play().catch(()=>{}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  if(e.target.closest("video")) return;
+  if(e.target.closest("#newc")){
+    const keys=Object.keys(groups()); let n=0, k;
+    do{ k="u"+String(++n).padStart(3,"0"); }while(keys.includes(k));
+    moveTo(k); return;
+  }
+  if(e.target.closest("#clear")){ sel.clear(); paintSelection(); return; }
+  if(e.target.closest("#reset")){
+    setOverrides(job,{}); sel.clear(); paintJobs(); paint(); save(job); return;
+  }
+  const r=e.target.closest(".r");
+  if(r){ const id=r.dataset.id; sel.has(id)?sel.delete(id):sel.add(id); paintSelection(); }
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&sel.size){ sel.clear(); paintSelection(); return; }
+  const r=e.target.closest&&e.target.closest(".r");
+  if(r&&(e.key==="Enter"||e.key===" ")){
+    e.preventDefault(); const id=r.dataset.id;
+    sel.has(id)?sel.delete(id):sel.add(id); paintSelection();
+  }
+});
+// a clip plays once; reset its button when it reaches the end
+document.addEventListener("ended",e=>{
+  if(e.target.tagName!=="VIDEO") return;
+  const b=e.target.parentElement.querySelector(".play"); if(b) b.classList.remove("on");
+},true);
+
+fetch("data.json").then(r=>r.json()).then(async d=>{
+  D=d; job=Object.keys(d.jobs)[0]; paintJobs(); paint();
+  db=await claude.use("db");
+  if(db){
+    try{
+      const s=await db.collection("clusters").get();
+      s.docs.forEach(x=>{ const v=x.data(); ov[x.id]=Object.assign({}, v&&v.overrides||{}); });
+    }catch(err){}
+  }
+  paintJobs(); paint();
+});
+</script>

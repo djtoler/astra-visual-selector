@@ -1,0 +1,3268 @@
+{
+  "_note": "Authored judgement inputs for the vertical slice. Claims, entities, media roles, events and prohibitions are written by the model; every timing number is measured, not authored. Marked so the two are never confused.",
+  "12": {
+    "takeaway": "Everyone else falls. He does not move.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 5,
+    "claims": [
+      {
+        "text": "Ab-Soul falls 28 places.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "before/after rank table for the 93-rapper field"
+        ]
+      },
+      {
+        "text": "Latto falls 13 places.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "before/after rank table"
+        ]
+      },
+      {
+        "text": "Jay Rock falls 12 places.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "before/after rank table"
+        ]
+      },
+      {
+        "text": "Macklemore keeps 73% of his streams and drops 3 spots.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "retention and rank table"
+        ]
+      },
+      {
+        "text": "Drake loses 4.4 billion streams, keeps 97% of his total, and finishes where he started.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "retention and rank table"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Ab-Soul",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "high"
+      },
+      {
+        "name": "Latto",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      },
+      {
+        "name": "Jay Rock",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "high"
+      },
+      {
+        "name": "Macklemore",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      },
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "rank_deltas",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified before and after rank for all five named artists, from a shared zero start, plus retention percentages for Macklemore and Drake.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "each rank delta",
+          "minimumOnScreenSeconds": 1.5
+        }
+      },
+      {
+        "roleId": "entity_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved headshot through one-quarter-body cutout for each of the five named artists. Spatial rendering rules prohibit deeper crops in spatial marker frames.",
+        "entityNames": [
+          "Ab-Soul",
+          "Latto",
+          "Jay Rock",
+          "Macklemore",
+          "Drake"
+        ]
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Ab-Soul falls twenty-eight places",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Ab-Soul's marker drops 28 places."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Latto falls thirteen",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Latto's marker drops 13."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Jay Rock, twelve",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Jay Rock's marker drops 12."
+      },
+      {
+        "eventId": "E4",
+        "triggerPhrase": "Macklemore keeps seventy-three percent",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Macklemore drops 3 spots with a retention readout."
+      },
+      {
+        "eventId": "E5",
+        "triggerPhrase": "loses four point four billion streams",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Drake's stream total decreases while his rank does not."
+      },
+      {
+        "eventId": "E6",
+        "triggerPhrase": "finishes exactly where he started",
+        "eventType": "hold",
+        "criticality": "decisive",
+        "description": "Drake's marker is visibly unmoved while the others have fallen. The event is the ABSENCE of movement and only reads if the falls are still visible."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not move Drake's marker at any point.",
+        "reason": "The narration says he finishes exactly where he started.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not imply these five are the only artists who fell.",
+        "reason": "They are examples drawn from a 93-artist field.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not use unbound placeholder cutouts for the five named artists.",
+        "reason": "They are named, so the images carry identity.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Four markers visibly fall and one visibly does not.",
+      "Each fall lands on its artist's name.",
+      "Drake's stability is legible at the moment it is spoken."
+    ],
+    "failureConditions": [
+      "Drake's stillness is not readable because the others have already left frame.",
+      "Falls are not distinguishable from one another.",
+      "Portraits are not the named artists."
+    ]
+  },
+  "14": {
+    "takeaway": "Ten of his songs outweigh the best song of each of the next five artists combined.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 6,
+    "claims": [
+      {
+        "text": "His ten biggest songs total 21 billion streams.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "per-song stream totals for his top ten"
+        ]
+      },
+      {
+        "text": "The single biggest song from each of the next five artists totals 15 billion.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "per-song stream totals for each artist's top song"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "next five artists (unnamed in narration)",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "high"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "his_ten",
+        "editorialRole": "comparison",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Ten song titles with verified stream totals summing to 21 billion.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "song title and value",
+          "minimumOnScreenSeconds": 1.5
+        }
+      },
+      {
+        "roleId": "their_five",
+        "editorialRole": "comparison",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Five named artists, each with their single biggest song and its verified total, summing to 15 billion."
+      },
+      {
+        "roleId": "portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Six portraits large enough to identify each person at delivery size. User ruling on this passage: portrait size decides the layout."
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Take his ten biggest",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "His ten assemble on his side."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "the single biggest song from each of the next five",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "Five named artists and their top song assemble on the other side."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "twenty-one billion to fifteen",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Both totals resolve and the winner is emphasised."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not display either total before E3.",
+        "reason": "The conclusion cannot be visible while the comparison is still being built.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not name five artists the underlying data does not support.",
+        "reason": "The narration says 'the next five' without naming them; the visual supplies names the script does not.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Both sides are identifiable as sets before the totals land.",
+      "Every one of the six people is recognisable.",
+      "The 21 to 15 result lands on its phrase."
+    ],
+    "failureConditions": [
+      "Portraits too small to identify at six entities.",
+      "The result is visible early.",
+      "The five artists are unnamed, leaving the comparison unverifiable."
+    ]
+  },
+  "15": {
+    "takeaway": "XXL offered him the 2010 Freshman cover and he refused it.",
+    "entityRelationship": "single",
+    "focalEntityCount": 1,
+    "claims": [
+      {
+        "text": "In 2010 XXL offered him a spot on the Freshman cover.",
+        "claimClass": "documented_fact",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the 2010 XXL Freshman cover"
+        ]
+      },
+      {
+        "text": "He turned it down.",
+        "claimClass": "documented_fact",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "interview clip",
+          "contemporaneous reporting",
+          "quoted statement"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": false,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "XXL",
+        "entityType": "organization",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "xxl_cover_2010",
+        "editorialRole": "proof",
+        "mediaFamily": "document_or_screen",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The 2010 XXL Freshman cover itself, masthead and year legible.",
+        "eraConstraint": "2010",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the XXL masthead and the year",
+          "minimumOnScreenSeconds": 2.0
+        },
+        "shotId": "01"
+      },
+      {
+        "roleId": "refusal_proof",
+        "editorialRole": "proof",
+        "mediaFamily": "document_or_screen",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "A screenshot, quote or clip in which the refusal is stated. The decisive sentence must be readable or audible in full.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the sentence stating the refusal",
+          "minimumOnScreenSeconds": 2.5
+        },
+        "shotId": "02"
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "XXL offered him a spot",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The 2010 cover fills frame.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "He turned it down",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The refusal becomes legible.",
+        "shotId": "02"
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not use the 2009 XXL cover.",
+        "reason": "Different cohort, and passage 02 uses 2009 for a different claim.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not let an artist portrait stand in for the refusal.",
+        "reason": "A portrait evidences nothing about a decision.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer sees the actual 2010 cover.",
+      "The viewer sees or hears the refusal stated."
+    ],
+    "failureConditions": [
+      "The refusal is asserted with no proof, leaving the offer looking accepted.",
+      "Either artifact is on screen too briefly to read."
+    ]
+  },
+  "17": {
+    "takeaway": "One counting rule, applied to everyone: full credit for a lead, half for a feature.",
+    "entityRelationship": "none",
+    "focalEntityCount": 0,
+    "claims": [
+      {
+        "text": "A record you lead, or share the lead on equally, counts in full.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own stated editorial rule"
+        ]
+      },
+      {
+        "text": "A feature or a remix verse counts at half.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own stated editorial rule"
+        ]
+      }
+    ],
+    "entities": [],
+    "requiredMedia": [
+      {
+        "roleId": "rules_text",
+        "editorialRole": "subject",
+        "mediaFamily": "motion_graphic",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The two rules as text, worded exactly as the narration states them. No paraphrase; the rest of the film depends on these being remembered.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "each clause",
+          "minimumOnScreenSeconds": 2.5
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "One rule, applied to everybody",
+        "eventType": "reveal",
+        "criticality": "supporting",
+        "description": "Header appears."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "counts in full",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "First rule becomes legible."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "counts at half",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "Second rule becomes legible."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "No camera move, no kinetic typography, no card flight.",
+        "reason": "User rejection on this passage: scenes not made for reading, and animation too active to expect the viewer to read rules.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not paraphrase either rule.",
+        "reason": "The rest of the film's arithmetic depends on the exact wording.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Both rules are read and understood.",
+      "Each clause holds long enough to finish reading."
+    ],
+    "failureConditions": [
+      "Motion competes with reading.",
+      "A clause leaves before it can be finished.",
+      "The wording drifts from the narration."
+    ],
+    "readingLoad": "high"
+  },
+  "24": {
+    "takeaway": "Almost everyone present at the start is gone seventeen years later, and he is not.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 12,
+    "claims": [
+      {
+        "text": "Seventeen years have passed since So Far Gone.",
+        "claimClass": "chronological_fact",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "release date, February 2009"
+        ]
+      },
+      {
+        "text": "Chart presence is the test: new records either chart or they do not.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's stated test"
+        ]
+      },
+      {
+        "text": "The 2009 cohort thins to a small number of survivors by 2026.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "per-artist chart-entry years for the verified starting cohort"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "the 2009 starting cohort",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "high"
+      },
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "cohort_roster",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified starting cohort with a chart-entry year per artist, so each exit fires in the first year that artist fails the stated test."
+      },
+      {
+        "roleId": "cohort_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved headshot cutouts for the cohort. Spatial rules require headshot through one-quarter-body crop only."
+      },
+      {
+        "roleId": "year_anchor",
+        "editorialRole": "chronology",
+        "mediaFamily": "motion_graphic",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "A persistent readable year callout advancing one calendar year at a time."
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "New records either chart or they don't",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The test is stated and the full starting field is visible."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Seventeen years since So Far Gone",
+        "eventType": "label_change",
+        "criticality": "decisive",
+        "description": "The year anchor establishes 2009 as the start."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Pick the year the ticks stop lighting",
+        "eventType": "camera_move",
+        "criticality": "decisive",
+        "description": "The attrition runs and resolves on the survivors. The complete starting field must have been readable before the first exit."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not begin the survivor framing before the last non-survivor exit is readable.",
+        "reason": "Spatial rendering rules require the complete active field to stay in frame through the final exit.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not stagger exits by array position or animation order.",
+        "reason": "Spatial rendering rules: remove each subject in the first year it fails the stated test.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not enlarge non-focal artists.",
+        "reason": "Only explicitly narrated primary subjects may enlarge.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer sees everyone present at the start.",
+      "The viewer sees the field thin year by year.",
+      "Only verified survivors remain at the end."
+    ],
+    "failureConditions": [
+      "The starting field is never fully visible, so the attrition has no baseline.",
+      "The survivors are not identifiable.",
+      "Exit order does not follow the stated test."
+    ]
+  },
+  "01": {
+    "takeaway": "One rapper's catalog is played 700 times a second, which comes to 59 million a day.",
+    "entityRelationship": "none",
+    "focalEntityCount": 0,
+    "claims": [
+      {
+        "text": "The catalog is played roughly 700 times per second on Spotify.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified daily stream total divided to a per-second rate"
+        ]
+      },
+      {
+        "text": "That comes to 59 million plays by the end of the day.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified daily stream total"
+        ]
+      }
+    ],
+    "entities": [],
+    "requiredMedia": [
+      {
+        "roleId": "play_rate_value",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified start and end values for the count, the per-second rate and the daily total, with the unit stated.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the final figure",
+          "minimumOnScreenSeconds": 1.5
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Seven hundred times a second",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The counter reaches 700 per second."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "fifty-nine million",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The count resolves on the daily total."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not name or show the artist.",
+        "reason": "The narration says 'one rapper' and withholds the identity deliberately. Revealing it here spends the reveal early.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not imply a platform other than Spotify.",
+        "reason": "The figure is a Spotify figure.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The per-second rate lands as it is spoken.",
+      "The daily total lands as it is spoken.",
+      "The viewer does not learn who it is."
+    ],
+    "failureConditions": [
+      "The artist is identified.",
+      "The number arrives fully formed instead of accumulating.",
+      "The final figure is unreadable."
+    ]
+  },
+  "03": {
+    "takeaway": "This chart holds 93 rappers, one dot each, and height means daily plays.",
+    "entityRelationship": "group_collective",
+    "focalEntityCount": 93,
+    "claims": [
+      {
+        "text": "There are 93 rappers in the field, one dot each.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the verified 93-artist dataset with one daily-play value each"
+        ]
+      },
+      {
+        "text": "A higher dot means more plays per day.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own stated axis definition"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "the 93-rapper field",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "high"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "population_values",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "One verified daily-play value for each of the 93 rappers, on a fixed declared scale."
+      },
+      {
+        "roleId": "axis_definition",
+        "editorialRole": "context",
+        "mediaFamily": "motion_graphic",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "A readable statement of what height encodes.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the axis label",
+          "minimumOnScreenSeconds": 2.0
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Ninety-three rappers, one dot each",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The full field populates and reads as 93 separate marks."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Higher dot, more plays per day",
+        "eventType": "label_change",
+        "criticality": "decisive",
+        "description": "The vertical axis meaning becomes explicit."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Start at the bottom",
+        "eventType": "camera_move",
+        "criticality": "decisive",
+        "description": "The camera resolves on the low end of the field."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not rescale between the minimum and maximum supplied values.",
+        "reason": "The desired outcome specifies a truthful fixed scale. Per-axis min-max rescaling makes a 959x value ratio render as a 1.5x size ratio.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not treat marker size, glow, depth or camera angle as magnitude.",
+        "reason": "Spatial rendering rules: those are not evidence of magnitude.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not present unlabelled field images as identified people.",
+        "reason": "Image slots in several layouts are assigned from a general pool and are not identities.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer counts a dense field, not a handful of marks.",
+      "The viewer knows height means daily plays before the tour begins."
+    ],
+    "failureConditions": [
+      "The field reads as fewer marks than 93.",
+      "The axis meaning is never stated.",
+      "The scale is relative rather than fixed."
+    ]
+  },
+  "07": {
+    "takeaway": "Year seventeen of a rap career normally means nostalgia, not dominance.",
+    "entityRelationship": "group_collective",
+    "focalEntityCount": 5,
+    "claims": [
+      {
+        "text": "By year seventeen a rap career typically means anniversary tours, deluxe reissues and undercard festival slots.",
+        "claimClass": "characterization",
+        "evidenceObligation": "representative_media_allowed",
+        "sourceCandidates": [
+          "examples of artists verifiably in year 17 or later"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "veteran rappers in year 17 or later",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "veteran_examples",
+        "editorialRole": "subject",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Several rappers who are verifiably in year 17 or later of their careers. The passage is loose about WHICH artists and strict about whether each chosen one qualifies."
+      },
+      {
+        "roleId": "career_artifacts",
+        "editorialRole": "context",
+        "mediaFamily": "archival_still",
+        "sourceSpecificity": "representative_media_allowed",
+        "contentRequirement": "Deluxe reissue artwork, anniversary tour material or a festival lineup showing an undercard slot."
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "anniversary-tour territory",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "Veteran artists and tour material establish the expectation."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Deluxe reissues with three unreleased demos",
+        "eventType": "reveal",
+        "criticality": "supporting",
+        "description": "Reissue artifact appears."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "A festival slot at seven-forty",
+        "eventType": "reveal",
+        "criticality": "supporting",
+        "description": "A lineup showing an early undercard slot."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show an artist who is not verifiably in year 17 or later.",
+        "reason": "Each artist shown becomes a claim about that artist's career stage.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not imply any named artist has failed.",
+        "reason": "The narration describes a normal career stage, not a decline.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer forms the expectation the film will then overturn.",
+      "Every artist shown genuinely qualifies."
+    ],
+    "failureConditions": [
+      "Generic rap imagery with no artist actually in year 17.",
+      "The passage reads as an insult to the artists shown."
+    ]
+  },
+  "10": {
+    "takeaway": "A question is posed and the viewer should guess before the answer arrives.",
+    "entityRelationship": "single",
+    "focalEntityCount": 1,
+    "claims": [
+      {
+        "text": "What share of Drake's streams is his single biggest song?",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own posed question"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "subject_cutout",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "An approved Drake cutout, placed so the frame keeps open space for the question and for data to populate afterwards.",
+        "entityNames": [
+          "Drake"
+        ]
+      },
+      {
+        "roleId": "question_text",
+        "editorialRole": "subject",
+        "mediaFamily": "motion_graphic",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The question as worded, held long enough to be read and considered.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the question",
+          "minimumOnScreenSeconds": 2.5
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Call it",
+        "eventType": "hold",
+        "criticality": "decisive",
+        "description": "The question state holds with the subject and open space. Nothing populates yet."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "What share of Drake's streams",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The question becomes legible."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show the answer, the share, or any value.",
+        "reason": "The passage exists to make the viewer guess. Revealing the figure destroys it.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not fill the frame.",
+        "reason": "User ruling on this passage: the hero needs room for space while the viewer thinks, then data fills in next.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer reads the question and has a beat to answer it.",
+      "The frame leaves room for the data that follows."
+    ],
+    "failureConditions": [
+      "Any value appears.",
+      "The question is on screen too briefly to consider.",
+      "The layout has no room to populate afterwards.",
+      "Treated as a dense reading shot rather than a beat to think in."
+    ],
+    "readingLoad": "normal"
+  },
+  "30": {
+    "takeaway": "Pre-streaming careers cannot be measured, so the claim is bounded to the streaming era.",
+    "entityRelationship": "single",
+    "focalEntityCount": 1,
+    "claims": [
+      {
+        "text": "Artists whose seventeenth year predates streaming cannot be placed on this chart.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own stated measurement limitation"
+        ]
+      },
+      {
+        "text": "There is no daily streaming meter for Jay-Z's seventeenth year.",
+        "claimClass": "documented_fact",
+        "evidenceObligation": "exact_event_or_entity_required",
+        "sourceCandidates": [
+          "absence of streaming data for that period"
+        ]
+      },
+      {
+        "text": "'Unprecedented' therefore reaches back only as far as the streaming era.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own stated bound"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Jay-Z",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "named_historical_artist",
+        "editorialRole": "subject",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Jay-Z, the only historical artist the narration names.",
+        "entityNames": [
+          "Jay-Z"
+        ]
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "can't go on this chart at all",
+        "eventType": "removal",
+        "criticality": "decisive",
+        "description": "The chart is shown as unable to hold them."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "no daily meter for Jay-Z's year seventeen",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "Jay-Z appears as the named example."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "that's as far as I'm taking it",
+        "eventType": "hold",
+        "criticality": "supporting",
+        "description": "The bound is accepted and held."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not add historical artists the narration does not name.",
+        "reason": "The narration names Jay-Z and no one else. A five-slot scene would assert four careers the script never mentions.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer understands the measurement stops at the streaming era.",
+      "Only Jay-Z is presented as the named example."
+    ],
+    "failureConditions": [
+      "Four unnamed peers are invented to fill a five-slot layout.",
+      "The limitation reads as a weakness rather than a stated bound."
+    ],
+    "scriptConflict": {
+      "conflict": "The recorded desired outcome asks for a five-slot scene using named historical artists. The narration names one.",
+      "narrationSupports": 1,
+      "desiredVisualRequires": 5,
+      "resolution": "Hold for script clarification. Either the script names four more artists or the visual drops to one.",
+      "recordedFallback": "hold for script clarification"
+    }
+  },
+  "02": {
+    "takeaway": "Curren$y's entire catalog equals what this one catalog moves in 24 days.",
+    "entityRelationship": "pair_contrasted",
+    "focalEntityCount": 2,
+    "claims": [
+      {
+        "text": "Curren$y was on the 2009 XXL Freshman cover.",
+        "claimClass": "documented_fact",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the 2009 XXL Freshman cover"
+        ]
+      },
+      {
+        "text": "His complete catalog equals 24 days of the subject's catalog.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified lifetime totals for both catalogs"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Curren$y",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      },
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": false,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "xxl_cover_2009",
+        "editorialRole": "proof",
+        "mediaFamily": "document_or_screen",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The 2009 XXL Freshman cover with Curren$y visible on it.",
+        "shotId": "01",
+        "eraConstraint": "2009",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the year and masthead",
+          "minimumOnScreenSeconds": 2.0
+        }
+      },
+      {
+        "roleId": "catalog_evidence",
+        "editorialRole": "proof",
+        "mediaFamily": "document_or_screen",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "A screenshot of the Curren$y catalog on the platform, plus Jet Life release artwork, so the run described in the narration is actually shown.",
+        "shotId": "01"
+      },
+      {
+        "roleId": "duration_ratio",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified lifetime total for Curren$y and the subject's daily rate, expressed as the 17-years-against-24-days ratio.",
+        "shotId": "02"
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Curren$y was on the 2009 XXL Freshman cover",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The 2009 cover fills frame with Curren$y identified.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "the mixtapes, the Jet Life run, the features",
+        "eventType": "reveal",
+        "criticality": "supporting",
+        "description": "Catalog screenshot and Jet Life artwork establish the body of work.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "what this one catalog moves in twenty-four days",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The distance between a 17-year career and 24 days resolves.",
+        "shotId": "02"
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not represent the whole catalog with a single artist portrait.",
+        "reason": "User ruling on this passage: the chunk names a magazine cover, a catalog and the Jet Life run, and each needs its own supporting visual.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not use the 2010 cover.",
+        "reason": "Curren$y is on the 2009 cover; 2010 is a different cohort used by passage 16.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer sees the actual 2009 cover.",
+      "The viewer sees the scale of Curren$y's catalog.",
+      "The 17-years-against-24-days gap reads as a distance."
+    ],
+    "failureConditions": [
+      "One generic portrait stands in for cover, catalog and run.",
+      "The comparison reads as two numbers rather than a gap."
+    ]
+  },
+  "04": {
+    "takeaway": "One dot sits above Future and Travis Scott combined, with open air beneath it.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 3,
+    "claims": [
+      {
+        "text": "Future and Travis Scott sit near the top of the field.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified daily play values"
+        ]
+      },
+      {
+        "text": "One artist exceeds both of them added together.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified daily play values"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Future",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Travis Scott",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "outlier_values",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified daily play values for all three on a fixed declared scale, so the gap is the real ratio."
+      },
+      {
+        "roleId": "entity_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved cutouts for the three named artists.",
+        "entityNames": [
+          "Future",
+          "Travis Scott",
+          "Drake"
+        ]
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Near the top, Future",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Future's mark is identified near the top."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Travis Scott",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Travis Scott's mark is identified."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Then one dot with open air under it",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The outlier appears with visible empty space below it."
+      },
+      {
+        "eventId": "E4",
+        "triggerPhrase": "More than both of them added together",
+        "eventType": "highlight",
+        "criticality": "decisive",
+        "description": "The sum of the two is shown falling short of the one."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not rescale to the supplied minimum and maximum.",
+        "reason": "The open air under the dot is the claim. Relative rescaling destroys it.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not treat marker size, glow or depth as magnitude.",
+        "reason": "Spatial rendering rules.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The gap reads as a real distance.",
+      "All three are identified."
+    ],
+    "failureConditions": [
+      "The outlier looks marginally higher rather than far above.",
+      "The combined value of two is never shown."
+    ]
+  },
+  "05": {
+    "takeaway": "A question is posed about which career year this is, and the viewer should guess.",
+    "entityRelationship": "single",
+    "focalEntityCount": 1,
+    "claims": [
+      {
+        "text": "What year of his career is this?",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own posed question"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "subject_portrait",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "An approved cutout or portrait, held slowly, with room for the question.",
+        "entityNames": [
+          "Drake"
+        ]
+      },
+      {
+        "roleId": "question_text",
+        "editorialRole": "subject",
+        "mediaFamily": "motion_graphic",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The question as worded, held long enough to consider.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the question",
+          "minimumOnScreenSeconds": 2.0
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "sitting on top of everybody",
+        "eventType": "hold",
+        "criticality": "supporting",
+        "description": "The portrait holds while the setup lands."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "What year of his career is this",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The question becomes legible."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Pick a number",
+        "eventType": "hold",
+        "criticality": "decisive",
+        "description": "A beat with no answer on screen."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show the year, the answer, or any value.",
+        "reason": "The passage exists to make the viewer guess.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not name the artist.",
+        "reason": "The reveal is still being withheld at this point in the film.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer reads the question and has a beat to answer it."
+    ],
+    "failureConditions": [
+      "Any year or figure appears.",
+      "The shot moves too fast to think in."
+    ]
+  },
+  "06": {
+    "takeaway": "So Far Gone came out in 2009, and this chart covers the year ending on its seventeenth anniversary.",
+    "entityRelationship": "single",
+    "focalEntityCount": 1,
+    "claims": [
+      {
+        "text": "So Far Gone was released in 2009.",
+        "claimClass": "chronological_fact",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "release date, February 2009"
+        ]
+      },
+      {
+        "text": "The chart covers the year ending on its seventeenth anniversary.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own stated window"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "album_artwork",
+        "editorialRole": "proof",
+        "mediaFamily": "archival_still",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The So Far Gone cover.",
+        "eraConstraint": "2009"
+      },
+      {
+        "roleId": "subject_cutout",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "An approved cutout.",
+        "entityNames": [
+          "Drake"
+        ]
+      },
+      {
+        "roleId": "career_clock",
+        "editorialRole": "context",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "A career-time visualisation anchored on 2009 and running to the seventeenth year."
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "So Far Gone came out in 2009",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The album and the year 2009 establish the start."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "the year that ends on its seventeenth anniversary",
+        "eventType": "label_change",
+        "criticality": "decisive",
+        "description": "The seventeen-year window resolves."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not imply the chart covers all seventeen years.",
+        "reason": "It covers the single year ending on the anniversary.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer sees the start date and the window it defines."
+    ],
+    "failureConditions": [
+      "The seventeen-year span is confused with the one-year window."
+    ]
+  },
+  "08": {
+    "takeaway": "Three obvious explanations present themselves: a big catalog, half of it features, and seventeen years to accumulate.",
+    "entityRelationship": "group_collective",
+    "focalEntityCount": 1,
+    "claims": [
+      {
+        "text": "The catalog is large.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified catalog size"
+        ]
+      },
+      {
+        "text": "Roughly half of it is other people's songs.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified lead-versus-feature split"
+        ]
+      },
+      {
+        "text": "It accumulated over seventeen years.",
+        "claimClass": "chronological_fact",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "career start date"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": false,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "catalog_breakdown",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Catalog size with the lead-versus-feature split and the seventeen-year span, as a list that can be read.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "each explanation line",
+          "minimumOnScreenSeconds": 2.0
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Big back catalog",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The first explanation appears."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Half of it is other people's songs",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The feature share is highlighted."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Seventeen years to pile it up",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The seventeen-year framing lands."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not present these as the documentary's conclusion.",
+        "reason": "They are the explanations the film will then test.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "All three explanations are legible and land on their phrases."
+    ],
+    "failureConditions": [
+      "They read as established findings rather than hypotheses."
+    ]
+  },
+  "09": {
+    "takeaway": "For most rappers, one song carries half or more of everything they have ever streamed.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 4,
+    "claims": [
+      {
+        "text": "Latto's biggest song is about half of her total streams.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified per-artist concentration figures"
+        ]
+      },
+      {
+        "text": "Jay Rock's is 52 percent.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified concentration figures"
+        ]
+      },
+      {
+        "text": "Ab-Soul's is 71 percent.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified concentration figures"
+        ]
+      },
+      {
+        "text": "Biz Markie's is 79 percent.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified concentration figures"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Latto",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      },
+      {
+        "name": "Jay Rock",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "high"
+      },
+      {
+        "name": "Ab-Soul",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "high"
+      },
+      {
+        "name": "Biz Markie",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "high"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "concentration_values",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified share-of-catalog figures for each of the four named artists."
+      },
+      {
+        "roleId": "artist_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved portraits of the four named artists. User ruling on this passage: the template choices were right and the artist assets were wrong for three of four.",
+        "entityNames": [
+          "Latto",
+          "Jay Rock",
+          "Ab-Soul",
+          "Biz Markie"
+        ]
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Latto's biggest is half of everything",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Latto's share appears."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Jay Rock's is fifty-two percent",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Jay Rock's share appears."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Ab-Soul's, seventy-one",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Ab-Soul's share appears."
+      },
+      {
+        "eventId": "E4",
+        "triggerPhrase": "Biz Markie, seventy-nine",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Biz Markie's share appears."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not substitute a different artist for any of the four named.",
+        "reason": "User ruling on this passage: three of four artist assets were wrong and that was the recorded failure.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Each named artist is correctly identified beside their own figure."
+    ],
+    "failureConditions": [
+      "An artist is shown who is not the one named.",
+      "The shares are not comparable to one another."
+    ]
+  },
+  "11": {
+    "takeaway": "His catalog is far flatter than anyone at his size; the nearest comparison is Future at 24 percent.",
+    "entityRelationship": "pair_contrasted",
+    "focalEntityCount": 2,
+    "claims": [
+      {
+        "text": "His single biggest song is three percent of his streams.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified concentration figure"
+        ]
+      },
+      {
+        "text": "His ten biggest come to fifteen percent.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified top-ten share"
+        ]
+      },
+      {
+        "text": "The next-flattest catalog at comparable size is Future, at 24 percent.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified concentration figures across the field"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Future",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "distribution_values",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified catalog distribution for the subject and for Future, on a shared scale.",
+        "shotId": "01"
+      },
+      {
+        "roleId": "hero_portrait",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "An approved cutout of the subject, placed with room for the distribution to populate beside it.",
+        "entityNames": [
+          "Drake"
+        ],
+        "shotId": "01"
+      },
+      {
+        "roleId": "hero_and_peer",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved portraits for the subject and Future.",
+        "entityNames": [
+          "Drake",
+          "Future"
+        ],
+        "shotId": "02"
+      },
+      {
+        "roleId": "comparison_values",
+        "editorialRole": "comparison",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The subject's 3 percent and Future's 24 percent on one shared scale.",
+        "shotId": "02"
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Three percent",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The three percent figure lands.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "His ten biggest songs together come to fifteen percent",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The top-ten share lands.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Future, at twenty-four",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Future's comparison figure lands.",
+        "shotId": "02"
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show only the subject.",
+        "reason": "User ruling on this passage: the selections covered only half of what the visual should represent. The comparison to Future is half the claim.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Both catalogs are shown on the same scale.",
+      "The flatness reads as a shape, not just a number."
+    ],
+    "failureConditions": [
+      "Only the subject is shown.",
+      "The two percentages are not comparable."
+    ],
+    "proposedDecomposition": {
+      "reason": "The recorded case says shots: 'as needed'. The passage carries two different visual jobs: the subject's own catalog shape, then a two-entity comparison. The timing file records one shot, so these boundaries are proposed rather than measured.",
+      "shots": [
+        {
+          "shotId": "01",
+          "job": "quantify",
+          "focalEntityCount": 1
+        },
+        {
+          "shotId": "02",
+          "job": "compare",
+          "focalEntityCount": 2
+        }
+      ]
+    }
+  },
+  "13": {
+    "takeaway": "Thirty of his songs passed a billion, while most of the field has nothing close.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 93,
+    "claims": [
+      {
+        "text": "He has thirty songs past a billion streams.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified per-song totals"
+        ]
+      },
+      {
+        "text": "Thirty-five of the ninety-three rappers have zero songs past a billion.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the verified 93-artist dataset"
+        ]
+      },
+      {
+        "text": "Eighty-one of the ninety-three have under thirty billion across everything.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the verified 93-artist dataset"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "the 93-rapper field",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "high"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "field_grid",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "A grid of all 93 with the 35 and then the 81 highlightable as subsets of the same field."
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "thirty songs past a billion streams",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The thirty figure lands.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Thirty-five of the ninety-three",
+        "eventType": "highlight",
+        "criticality": "decisive",
+        "description": "35 of the 93 highlight within the full grid.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "eighty-one of the ninety-three",
+        "eventType": "highlight",
+        "criticality": "decisive",
+        "description": "81 of the 93 highlight, replacing the previous subset.",
+        "shotId": "02"
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show the two subsets on different fields.",
+        "reason": "Both counts are out of the same 93. Changing the denominator between them breaks the comparison.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer sees both subsets against the same 93.",
+      "The subsets are visibly different sizes."
+    ],
+    "failureConditions": [
+      "The field size changes between the two counts.",
+      "The grid reads as fewer than 93."
+    ]
+  },
+  "16": {
+    "takeaway": "The 2009 and 2010 Freshman classes came up on the same clock he did.",
+    "entityRelationship": "group_collective",
+    "focalEntityCount": 11,
+    "claims": [
+      {
+        "text": "The 2009 Freshman class included Kid Cudi, B.o.B, Wale and Curren$y.",
+        "claimClass": "documented_fact",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the 2009 XXL Freshman cover"
+        ]
+      },
+      {
+        "text": "The 2010 class included J. Cole, Nicki Minaj, Wiz Khalifa, Big Sean, Nipsey Hussle, Jay Rock and Freddie Gibbs.",
+        "claimClass": "documented_fact",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the 2010 XXL Freshman cover"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "2009 Freshman class",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      },
+      {
+        "name": "2010 Freshman class",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "xxl_covers",
+        "editorialRole": "proof",
+        "mediaFamily": "document_or_screen",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Both the 2009 and the 2010 XXL Freshman covers, with the named artists identifiable on each.",
+        "eraConstraint": "2009-2010",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the year on each cover",
+          "minimumOnScreenSeconds": 2.5
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "2009: Kid Cudi, B.o.B, Wale, Curren$y",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The 2009 cover and its named members."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "2010: J. Cole, Nicki Minaj, Wiz Khalifa",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The 2010 cover and its named members."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not list a name on the wrong year's cover.",
+        "reason": "User flag on this passage: the text chunk contains inaccurate information. The roster must be checked against the actual covers before this renders.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Both covers are shown with their correct rosters."
+    ],
+    "failureConditions": [
+      "An artist is placed in the wrong class year."
+    ],
+    "scriptConflict": {
+      "conflict": "User recorded inaccurate information in this passage's text.",
+      "narrationSupports": 11,
+      "desiredVisualRequires": 11,
+      "resolution": "Verify each named artist against the actual 2009 and 2010 covers before rendering.",
+      "recordedFallback": "grouped artist cutouts"
+    }
+  },
+  "18": {
+    "takeaway": "The whole 2010 class together comes to 97 billion across seven careers.",
+    "entityRelationship": "group_collective",
+    "focalEntityCount": 7,
+    "claims": [
+      {
+        "text": "Nicki Minaj is at 30 billion under the rule.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified per-artist totals under the stated credit rule"
+        ]
+      },
+      {
+        "text": "J. Cole is at 29 billion.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified per-artist totals"
+        ]
+      },
+      {
+        "text": "The seven together come to 97 billion.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified class total"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "the 2010 Freshman class",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "class_totals",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified per-artist totals for all seven plus the 97 billion sum."
+      },
+      {
+        "roleId": "class_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved portraits for the seven named members. User ruling on this passage: a seven-panel layout with metrics and ranks suits it because of the multiple artists and the numeric layout."
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Nicki at thirty billion",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Nicki's total lands."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Cole at twenty-nine",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Cole's total lands."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Ninety-seven billion",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The class total resolves."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show the 97 billion total before the individual figures build to it.",
+        "reason": "The sum is the conclusion of the stack.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Seven artists are individually identified with their figures.",
+      "The total resolves on its phrase."
+    ],
+    "failureConditions": [
+      "The total appears before the stack is built.",
+      "Fewer than seven careers are represented."
+    ]
+  },
+  "19": {
+    "takeaway": "His lead records alone nearly equal seven whole careers.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 8,
+    "claims": [
+      {
+        "text": "His lead records total 96.5 billion.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified lead-credit total"
+        ]
+      },
+      {
+        "text": "Seven rappers' complete output is close to that figure.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified class total"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "the 2010 class, seven rappers",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "hero_total",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The 96.5 billion lead-credit figure with the credit rule stated."
+      },
+      {
+        "roleId": "class_totals",
+        "editorialRole": "comparison",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The seven-career total on the same scale."
+      },
+      {
+        "roleId": "hero_and_class",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "One hero portrait against seven peers. User ruling on this passage: the winning shape shows the hero in comparison to multiple other people, not one against one."
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Ninety-six and a half billion",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The hero figure lands."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Seven rappers with everything they have ever made",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The seven-career side assembles."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "it comes down to a coin flip",
+        "eventType": "highlight",
+        "criticality": "decisive",
+        "description": "The two totals resolve as near-equal."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not frame this as one against one.",
+        "reason": "User ruling on this passage: a layout that does not compare the hero to multiple people misses the claim.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not include his features in the 96.5 billion.",
+        "reason": "The claim is explicitly lead credits only.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Seven separate careers are visible against one person.",
+      "The near-tie reads as close."
+    ],
+    "failureConditions": [
+      "The seven read as a single block with no individuals.",
+      "Features are silently included."
+    ]
+  },
+  "20": {
+    "takeaway": "His lead-credit slice alone beats four full catalogs from the top of the chart.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 5,
+    "claims": [
+      {
+        "text": "Travis Scott's full catalog is 67 billion.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified catalog totals"
+        ]
+      },
+      {
+        "text": "Kendrick Lamar is 57 billion, Post Malone 56, Future 54.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified catalog totals"
+        ]
+      },
+      {
+        "text": "His lead-credit slice exceeds every one of them.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified lead-credit total"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Travis Scott",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Kendrick Lamar",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Post Malone",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Future",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "catalog_totals",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified full-catalog totals for the four peers and the lead-credit slice for the subject, on one fixed scale."
+      },
+      {
+        "roleId": "peer_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved portraits for the four named peers.",
+        "entityNames": [
+          "Travis Scott",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Future"
+        ]
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Travis Scott, sixty-seven billion",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "First peer total lands."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Kendrick, fifty-seven",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Second peer total lands."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Post Malone, fifty-six",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Third peer total lands."
+      },
+      {
+        "eventId": "E4",
+        "triggerPhrase": "The slice clears every one of them",
+        "eventType": "highlight",
+        "criticality": "decisive",
+        "description": "The subject's slice is shown above all four."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not compare full catalog against full catalog.",
+        "reason": "The claim is a partial slice against complete catalogs. Losing that asymmetry loses the point.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not rescale to the supplied range.",
+        "reason": "User ruling on this passage: the third candidate should have been the 3D scatter, which carries the gap as distance.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The asymmetry between a slice and four full catalogs is explicit.",
+      "The gap reads as distance."
+    ],
+    "failureConditions": [
+      "The slice is presented as a full catalog.",
+      "The four peers are not individually identified."
+    ]
+  },
+  "21": {
+    "takeaway": "He has fewer feature verses than his peers and far more streams from them.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 3,
+    "claims": [
+      {
+        "text": "He has done 181 features.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified feature counts"
+        ]
+      },
+      {
+        "text": "Future has done 232 and Young Thug 302.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified feature counts"
+        ]
+      },
+      {
+        "text": "His features total 43 billion streams, about 240 million a verse.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified feature stream totals"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Future",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Young Thug",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "feature_counts",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified feature counts and stream totals for all three, with the per-verse rate."
+      },
+      {
+        "roleId": "three_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved portraits for the three named artists, at a size that keeps them identifiable.",
+        "entityNames": [
+          "Drake",
+          "Future",
+          "Young Thug"
+        ]
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "He's done a hundred and eighty-one of them",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "His feature count lands."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Future has done two hundred thirty-two",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Future's count lands."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Young Thug, three hundred and two",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Young Thug's count lands."
+      },
+      {
+        "eventId": "E4",
+        "triggerPhrase": "forty-three billion",
+        "eventType": "highlight",
+        "criticality": "decisive",
+        "description": "The stream total reverses the direction of the comparison."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not imply a high feature count is itself a criticism.",
+        "reason": "The passage uses the counts to overturn the accusation, not to support it.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The viewer sees fewer verses and more streams at once.",
+      "All three artists are identified."
+    ],
+    "failureConditions": [
+      "The reversal is not visible because counts and streams are shown separately."
+    ]
+  },
+  "22": {
+    "takeaway": "Both Freshman classes combined only just edge past him.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 12,
+    "claims": [
+      {
+        "text": "The 2009 and 2010 classes together are eleven rappers under the rule.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified class rosters"
+        ]
+      },
+      {
+        "text": "Together they exceed him by about three percent.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified totals for both sides"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "the combined 2009 and 2010 classes, eleven rappers",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      },
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "combined_totals",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Verified totals for the eleven combined and for the subject, with the three percent margin explicit."
+      },
+      {
+        "roleId": "eleven_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Portraits for the eleven. User ruling on this passage: a candidate that shows none of the artists fails to convey that many individuals barely edging out one person."
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "eleven rappers under the rule",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "Eleven individuals assemble as one side."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "they edge him by about three percent",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The narrow margin resolves."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Eleven careers to one, and it's close",
+        "eventType": "highlight",
+        "criticality": "decisive",
+        "description": "The asymmetry and the closeness are held together."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show the comparison as two bars with no people.",
+        "reason": "User ruling on this passage: the magnitude of many individuals barely beating one person must be visible.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not exaggerate the three percent margin.",
+        "reason": "The claim is that it is close.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Eleven distinct people are visible against one.",
+      "The margin reads as narrow."
+    ],
+    "failureConditions": [
+      "No artists are shown.",
+      "The margin looks decisive."
+    ]
+  },
+  "23": {
+    "takeaway": "A 2015 song still streams in 2026 without the artist doing anything, so the chart may be an archive on autoplay.",
+    "entityRelationship": "single",
+    "focalEntityCount": 1,
+    "claims": [
+      {
+        "text": "A song from 2015 streams in 2026 with no new effort from the artist.",
+        "claimClass": "documented_fact",
+        "evidenceObligation": "exact_event_or_entity_required",
+        "sourceCandidates": [
+          "a 2015 release with current streaming activity"
+        ]
+      },
+      {
+        "text": "The top of the chart could therefore be a large archive on autoplay.",
+        "claimClass": "interpretation",
+        "evidenceObligation": "representative_media_allowed",
+        "sourceCandidates": [
+          "the documentary's own hypothesis"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "song_2015_footage",
+        "editorialRole": "subject",
+        "mediaFamily": "performance",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Music video or performance footage from an actual 2015 release, since the narration names that year. User ruling on this passage: because the narration explicitly mentions a 2015 song, a 2015 asset is an intentional visual candidate.",
+        "eraConstraint": "2015"
+      },
+      {
+        "roleId": "hypothesis_text",
+        "editorialRole": "context",
+        "mediaFamily": "motion_graphic",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "The autoplay hypothesis as an overlay, worded as a possibility rather than a finding.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "the overlay text",
+          "minimumOnScreenSeconds": 2.0
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "A song from 2015 streams in 2026",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The 2015 footage begins."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "a very large archive on autoplay",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The hypothesis overlay appears."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "stopped mattering somewhere around Views",
+        "eventType": "hold",
+        "criticality": "supporting",
+        "description": "The provocation holds without being endorsed."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not use footage from a year other than 2015.",
+        "reason": "The narration names 2015 specifically and the era is the claim.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not present the autoplay hypothesis as established.",
+        "reason": "It is the argument the film is about to test.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The 2015 asset is genuinely from 2015.",
+      "The hypothesis reads as a hypothesis."
+    ],
+    "failureConditions": [
+      "Modern footage stands in for the 2015 song.",
+      "The provocation reads as the film's conclusion."
+    ]
+  },
+  "25": {
+    "takeaway": "He has eighteen straight charting years, and only J. Cole matches it.",
+    "entityRelationship": "pair_linked",
+    "focalEntityCount": 2,
+    "claims": [
+      {
+        "text": "He has eighteen consecutive years with a US chart entry.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified year-by-year chart history"
+        ]
+      },
+      {
+        "text": "J. Cole is the only other rapper in the set with that streak.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified year-by-year chart history for the set"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "J. Cole",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "streak_timeline",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Eighteen consecutive charting years shown as an unbroken run.",
+        "shotId": "01"
+      },
+      {
+        "roleId": "two_artists",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved portraits of both, or footage showing them together. User ruling on this passage: a clip of the two artists should have been an option.",
+        "entityNames": [
+          "Drake",
+          "J. Cole"
+        ],
+        "shotId": "02"
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Eighteen straight years with something on a US chart",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The unbroken run resolves.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "J. Cole, off the cover he turned down",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "J. Cole appears alongside him.",
+        "shotId": "02"
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show a broken or partial streak.",
+        "reason": "The claim is that it is unbroken.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The run reads as continuous.",
+      "Both artists are shown together at the reveal."
+    ],
+    "failureConditions": [
+      "The data and the two-artist reveal are forced into one shot.",
+      "The streak looks interrupted."
+    ],
+    "proposedDecomposition": {
+      "reason": "Recorded as two shots. The first continues the chart streak; the second is the two-artist reveal. Different jobs, so the passage-level job does not describe both.",
+      "shots": [
+        {
+          "shotId": "01",
+          "job": "timeline",
+          "focalEntityCount": 1,
+          "note": "the unbroken 18-year run"
+        },
+        {
+          "shotId": "02",
+          "job": "compare",
+          "focalEntityCount": 2,
+          "note": "Drake and J. Cole together"
+        }
+      ]
+    }
+  },
+  "26": {
+    "takeaway": "He has number ones in six separate categories, leading each.",
+    "entityRelationship": "group_collective",
+    "focalEntityCount": 1,
+    "claims": [
+      {
+        "text": "Eleven number ones as a lead single.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified chart records by category"
+        ]
+      },
+      {
+        "text": "Nine as an album, four as a guest, three as a mixtape, two as a joint album, one as a compilation.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified chart records by category"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": false,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "category_records",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Six categories with their counts, arranged so the breadth across categories is the visible point rather than any single number.",
+        "legibilityRequirement": {
+          "textMustBeReadable": true,
+          "smallestMeaningfulElement": "each category and its count",
+          "minimumOnScreenSeconds": 2.0
+        }
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Number one as a lead single. Eleven times",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "First category and count."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Number one as an album. Nine",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Second category and count."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Number one as a compilation. One",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "Final category completes the set."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not use the Colored portrait leaderboard layout.",
+        "reason": "User removed it from the approved list on 2026-09-12 as visually unacceptable.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not let one category dominate.",
+        "reason": "The claim is breadth across six categories, not the size of any one.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "All six categories are legible together at the end.",
+      "The breadth is the impression left."
+    ],
+    "failureConditions": [
+      "The categories arrive too fast to read.",
+      "The significance of holding all six does not land."
+    ]
+  },
+  "27": {
+    "takeaway": "Some artists carry their own records and others live on other people's, and the split is stark.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 6,
+    "claims": [
+      {
+        "text": "Post Malone has 49 billion on his own songs against 6 as a guest; XXXTentacion 35 and 6; Kendrick 41 and 16.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified lead and guest totals"
+        ]
+      },
+      {
+        "text": "Ty Dolla $ign has 5 billion on his own records and 22 as a guest; Young Thug 11 and 21; 21 Savage 16 and 23.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified lead and guest totals"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Post Malone",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "XXXTentacion",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Kendrick Lamar",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Ty Dolla $ign",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      },
+      {
+        "name": "Young Thug",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "21 Savage",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "paired_values",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Two values per artist, lead and guest, for six artists in two opposing groups."
+      },
+      {
+        "roleId": "six_portraits",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Approved portraits for all six. User ruling on this passage: the text calls for multiple artists with two data points each, in two opposing sets.",
+        "entityNames": [
+          "Post Malone",
+          "XXXTentacion",
+          "Kendrick Lamar",
+          "Ty Dolla $ign",
+          "Young Thug",
+          "21 Savage"
+        ]
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Post Malone, forty-nine billion on his own songs",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "First archetype's paired values land."
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "And the ones who live on other people's hooks",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The second group appears as the opposing set."
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "21 Savage, sixteen and twenty-three",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The final pair completes the second group."
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not present this as one-to-many.",
+        "reason": "User ruling on this passage: this is two sets of artists with opposing data points, not a hero against a field.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not show only one value per artist.",
+        "reason": "Each artist carries two, and the contrast between them is the claim.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Two opposing groups are visible as groups.",
+      "Each artist shows both values."
+    ],
+    "failureConditions": [
+      "A hero-and-field layout is used.",
+      "Only lead or only guest values are shown."
+    ]
+  },
+  "28": {
+    "takeaway": "Two thresholds are set in advance, and only two names clear both.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 12,
+    "claims": [
+      {
+        "text": "The thresholds are 30 billion on own records and 20 billion on others'.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own stated thresholds"
+        ]
+      },
+      {
+        "text": "Five clear the first, seven clear the second.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified totals against both thresholds"
+        ]
+      },
+      {
+        "text": "Drake and Travis Scott clear both.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified totals against both thresholds"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Travis Scott",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "the two threshold groups",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "medium"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "threshold_field",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Both thresholds declared before any name appears, with the five and the seven shown against them.",
+        "shotId": "01"
+      },
+      {
+        "roleId": "overlap_pair",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Portraits of the two who clear both, presented without numbers. User ruling on this passage: a side-by-side qualitative comparison follows the threshold overview.",
+        "entityNames": [
+          "Drake",
+          "Travis Scott"
+        ],
+        "shotId": "02"
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Two floors, fixed before the names go in",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "Both thresholds are declared with no names present.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "Five clear the left floor. Seven clear the right",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The two groups populate against their thresholds.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "Drake. And Travis Scott",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "The two who clear both are named.",
+        "shotId": "02"
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not show any name before the thresholds are declared.",
+        "reason": "The narration is explicit that the floors are fixed before the names go in. Showing names first makes the thresholds look chosen to fit.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not put numbers on the two-person reveal.",
+        "reason": "The recorded desired outcome is a nonnumeric portrait comparison at that point.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "The thresholds are visibly set before any name appears.",
+      "The overlap of exactly two is clear."
+    ],
+    "failureConditions": [
+      "Names appear before the floors.",
+      "The overlap is not visually distinct from the two groups."
+    ]
+  },
+  "29": {
+    "takeaway": "Others beat him on specific measures, and this chart cannot settle who is best.",
+    "entityRelationship": "group_comparative",
+    "focalEntityCount": 4,
+    "claims": [
+      {
+        "text": "Lil Baby certifies about 22 million units a year against his 20.5.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified certification rates"
+        ]
+      },
+      {
+        "text": "Kendrick, Post Malone and Travis Scott have each put five lead singles at number one.",
+        "claimClass": "quantity_or_statistic",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "verified chart records"
+        ]
+      },
+      {
+        "text": "This chart counts plays and cannot referee the best-rapper argument.",
+        "claimClass": "rhetorical_framing",
+        "evidenceObligation": "exact_source_required",
+        "sourceCandidates": [
+          "the documentary's own stated bound"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "name": "Lil Baby",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Drake",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Kendrick Lamar",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      },
+      {
+        "name": "Post Malone",
+        "entityType": "person",
+        "mustBeVisible": true,
+        "mustBeNamedOnScreen": true,
+        "recognitionRisk": "low"
+      }
+    ],
+    "requiredMedia": [
+      {
+        "roleId": "lil_baby_portrait",
+        "editorialRole": "identity",
+        "mediaFamily": "portrait_still",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "An approved Lil Baby portrait.",
+        "entityNames": [
+          "Lil Baby"
+        ],
+        "shotId": "01"
+      },
+      {
+        "roleId": "relationship_footage",
+        "editorialRole": "subject",
+        "mediaFamily": "archival_motion",
+        "sourceSpecificity": "exact_event_or_entity_required",
+        "contentRequirement": "Footage showing the two together, since the passage sets one against the other.",
+        "shotId": "02"
+      },
+      {
+        "roleId": "comparison_values",
+        "editorialRole": "proof",
+        "mediaFamily": "data_or_number",
+        "sourceSpecificity": "exact_source_required",
+        "contentRequirement": "Certification rates for both and the five-number-one counts for the three named peers. User ruling on this passage: a two-portrait comparison showing where each one leads is the missing candidate.",
+        "shotId": "03"
+      }
+    ],
+    "visualEvents": [
+      {
+        "eventId": "E1",
+        "triggerPhrase": "Lil Baby is certifying his own records at a faster yearly clip",
+        "eventType": "reveal",
+        "criticality": "decisive",
+        "description": "Lil Baby is introduced as the counterexample.",
+        "shotId": "01"
+      },
+      {
+        "eventId": "E2",
+        "triggerPhrase": "about twenty-two million units a year against twenty and a half",
+        "eventType": "value_change",
+        "criticality": "decisive",
+        "description": "The two rates resolve side by side.",
+        "shotId": "03"
+      },
+      {
+        "eventId": "E3",
+        "triggerPhrase": "this chart can't referee it",
+        "eventType": "hold",
+        "criticality": "decisive",
+        "description": "The bound is stated and held.",
+        "shotId": "03"
+      }
+    ],
+    "prohibitions": [
+      {
+        "prohibition": "Do not present the counterexamples as decisive.",
+        "reason": "The passage concedes specific measures while holding the overall bound.",
+        "severity": "hard"
+      },
+      {
+        "prohibition": "Do not imply the chart settles the best-rapper argument.",
+        "reason": "The narration says explicitly that it cannot.",
+        "severity": "hard"
+      }
+    ],
+    "successConditions": [
+      "Lil Baby's lead on his own measure is visible.",
+      "The limitation is stated without undercutting the film's actual claim."
+    ],
+    "failureConditions": [
+      "The concession reads as a reversal of the whole documentary.",
+      "The three peers' shared record is not distinguishable from Lil Baby's separate claim."
+    ],
+    "scriptConflict": {
+      "conflict": "User recorded 'not clear on what this is or means' against this passage's second shot.",
+      "narrationSupports": 4,
+      "desiredVisualRequires": 4,
+      "resolution": "Clarify what the second shot is meant to show before rendering.",
+      "recordedFallback": "review"
+    }
+  }
+}

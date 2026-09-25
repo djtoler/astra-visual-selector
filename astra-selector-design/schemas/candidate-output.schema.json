@@ -1,0 +1,572 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "astra/candidate-output.schema.json",
+  "title": "Ranked treatment candidates for one visual contract",
+  "description": "Four meaningfully different valid treatments where four exist, ranked, with a recommended winner and the reasons for every selection, rejection and escalation in plain language.",
+  "type": "object",
+  "required": [
+    "contractId",
+    "candidates",
+    "decision",
+    "rulesetVersion"
+  ],
+  "properties": {
+    "contractId": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "rulesetVersion": {
+      "type": "string"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "rank",
+          "treatmentClass",
+          "capabilityId",
+          "mediaBindings",
+          "timingPlan",
+          "gateResults",
+          "scores",
+          "rationale"
+        ],
+        "properties": {
+          "rank": {
+            "type": "integer"
+          },
+          "treatmentClass": {
+            "enum": [
+              "direct_broll",
+              "archival_footage",
+              "interview_footage",
+              "evidence_or_document",
+              "portrait_or_cutout",
+              "single_image_hold",
+              "montage_gallery_or_carousel",
+              "after_effects_scene",
+              "infographic",
+              "counter_or_numeric",
+              "spatial_or_cinematic_3d",
+              "custom_motion_graphic",
+              "other"
+            ]
+          },
+          "differentiator": {
+            "type": "string",
+            "description": "What makes this candidate meaningfully different from the others in the slate. Two candidates that differ only by template pack are one candidate."
+          },
+          "capabilityId": {
+            "type": "string",
+            "description": "May be a direct_media_treatment record. Not using a template is a candidate, not an absence of one."
+          },
+          "mediaBindings": {
+            "type": "array",
+            "description": "Where the required media roles are actually satisfied. Roles come from the contract; filenames are bound here and only here.",
+            "items": {
+              "type": "object",
+              "required": [
+                "roleId",
+                "status"
+              ],
+              "properties": {
+                "roleId": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "bound_local",
+                    "bound_sourced",
+                    "candidates_for_review",
+                    "missing"
+                  ]
+                },
+                "assetPath": {
+                  "type": "string"
+                },
+                "sourceUrl": {
+                  "type": "string"
+                },
+                "provenance": {
+                  "enum": [
+                    "media_library",
+                    "primary_source",
+                    "footage_collection",
+                    "youtube",
+                    "instagram",
+                    "twitter",
+                    "generated",
+                    "unknown"
+                  ]
+                },
+                "meetsSourceSpecificity": {
+                  "type": "boolean"
+                },
+                "meetsLegibility": {
+                  "type": "boolean"
+                },
+                "qualityNotes": {
+                  "type": "string"
+                },
+                "reviewCandidates": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ref": {
+                        "type": "string"
+                      },
+                      "why": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "timingPlan": {
+            "type": "object",
+            "required": [
+              "plannedDurationSeconds",
+              "eventAlignment"
+            ],
+            "properties": {
+              "plannedDurationSeconds": {
+                "type": "number"
+              },
+              "speedMultiplier": {
+                "type": "number",
+                "default": 1.0
+              },
+              "eventAlignment": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "eventId",
+                    "targetSeconds",
+                    "achievableSeconds",
+                    "status"
+                  ],
+                  "properties": {
+                    "eventId": {
+                      "type": "string"
+                    },
+                    "triggerPhrase": {
+                      "type": "string"
+                    },
+                    "targetSeconds": {
+                      "type": "number"
+                    },
+                    "achievableSeconds": {
+                      "type": "number"
+                    },
+                    "driftSeconds": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "enum": [
+                        "aligned",
+                        "within_tolerance",
+                        "drifted",
+                        "impossible"
+                      ]
+                    },
+                    "containerEventUsed": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "minimumHoldRespected": {
+                "type": "boolean"
+              },
+              "internalChangeCoverage": {
+                "type": "string",
+                "description": "Whether the container supplies a visual change at least every 6.8 seconds of planned duration."
+              }
+            }
+          },
+          "adjustmentsRequired": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "adjustment",
+                "approvedCategory"
+              ],
+              "properties": {
+                "adjustment": {
+                  "type": "string"
+                },
+                "approvedCategory": {
+                  "enum": [
+                    "speed",
+                    "text_removal",
+                    "text_modification",
+                    "colour",
+                    "UNAPPROVED_STRUCTURAL",
+                    "UNAPPROVED_STYLISTIC"
+                  ]
+                },
+                "cost": {
+                  "enum": [
+                    "none",
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                },
+                "riskToMeaning": {
+                  "enum": [
+                    "none",
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                }
+              }
+            }
+          },
+          "gateResults": {
+            "type": "array",
+            "description": "Every hard gate, evaluated. A candidate with any gate failed cannot be ranked first and normally cannot be presented as valid at all.",
+            "items": {
+              "type": "object",
+              "required": [
+                "gate",
+                "result"
+              ],
+              "properties": {
+                "gate": {
+                  "enum": [
+                    "communicates_claim",
+                    "no_unsupported_implication",
+                    "asset_quality_sufficient",
+                    "not_forcing_a_template",
+                    "decisive_events_alignable",
+                    "evidence_specificity_honoured",
+                    "evidence_legible",
+                    "era_consistent",
+                    "density_acceptable"
+                  ]
+                },
+                "result": {
+                  "enum": [
+                    "pass",
+                    "fail",
+                    "unknown"
+                  ]
+                },
+                "explanation": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "scores": {
+            "type": "object",
+            "description": "Priority is lexicographic, not a weighted sum. ORDER UPDATED BY USER RULING 2026-09-16: timing alignment now ranks above factual accuracy among candidates that clear every hard gate. Order is (1) timingAlignment, (2) claimCommunication, (3) factualAccuracy, (4) structuralFit, (5) styleConsistency, (6) assetQuality, (7) polish, (8) renderCost. The no-invented-entities gate is unchanged and still hard: answer 23 preserves \"No invented entities, data or relationships.\" What moved is asset-identity exactness, which answer 23 marks as necessary but not the current research focus. A lower priority still cannot compensate for a higher one; scores break ties within a level.",
+            "required": [
+              "factualAccuracy",
+              "claimCommunication",
+              "timingAlignment",
+              "structuralFit",
+              "styleConsistency",
+              "assetQuality",
+              "polish",
+              "renderCost"
+            ],
+            "properties": {
+              "factualAccuracy": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "claimCommunication": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "timingAlignment": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "structuralFit": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "styleConsistency": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "assetQuality": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "polish": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "renderCost": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          "styleCompatibility": {
+            "enum": [
+              "compatible_as_supplied",
+              "compatible_after_safe_adjustment",
+              "last_resort_exception",
+              "incompatible"
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Plain language. Why this candidate, what it gives up, and what would make it fail."
+          },
+          "rejected": {
+            "type": "boolean",
+            "default": false
+          },
+          "rejectionReason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rejectedCandidates": {
+      "type": "array",
+      "description": "Options considered and dropped, with the gate that dropped them. Kept so the user can see what the system refused and correct it.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "treatmentClass": {
+            "type": "string"
+          },
+          "capabilityId": {
+            "type": "string"
+          },
+          "failedGate": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "action",
+        "confidence",
+        "reasons"
+      ],
+      "properties": {
+        "action": {
+          "enum": [
+            "auto_advance",
+            "require_user_review",
+            "blocked_missing_assets",
+            "blocked_missing_capability"
+          ]
+        },
+        "winnerRank": {
+          "type": "integer"
+        },
+        "confidence": {
+          "type": "object",
+          "required": [
+            "value",
+            "method"
+          ],
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "method": {
+              "enum": [
+                "calibrated_on_user_decisions",
+                "uncalibrated_prior"
+              ],
+              "description": "Until enough user accept and reject decisions exist, this must read uncalibrated_prior and auto-advance must stay disabled."
+            },
+            "calibrationSampleSize": {
+              "type": "integer"
+            },
+            "marginOverSecond": {
+              "type": "number",
+              "description": "How much stronger the winner is than the runner-up. A narrow margin forces review regardless of absolute confidence."
+            }
+          }
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "escalationTriggers": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "candidates_close",
+              "low_confidence",
+              "assets_missing",
+              "evidence_insufficient",
+              "evidence_disputed",
+              "style_exception_required",
+              "structural_modification_required",
+              "phrase_timing_unresolved",
+              "no_clean_catalog_fit"
+            ]
+          }
+        }
+      }
+    },
+    "gapReport": {
+      "type": "object",
+      "description": "Filled when nothing in the approved library fits. The system never decides on its own to source or build; it explains the gap and hands the decision to the user.",
+      "properties": {
+        "whyExistingOptionsFail": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missingCapability": {
+          "type": "string"
+        },
+        "whyItMattersHere": {
+          "type": "string"
+        },
+        "wouldNeedToSupport": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "suggestedEnvatoSearchTerms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sourceOrBuildRecommendation": {
+          "enum": [
+            "source",
+            "build",
+            "either",
+            "defer"
+          ]
+        }
+      }
+    },
+    "productionHandoff": {
+      "type": "object",
+      "description": "Prepared only after a high-confidence winner. Preparing it does not authorize rendering. Rendering requires a separate instruction.",
+      "properties": {
+        "treatment": {
+          "type": "string"
+        },
+        "capabilityId": {
+          "type": "string"
+        },
+        "narrationText": {
+          "type": "string"
+        },
+        "audioStartSeconds": {
+          "type": "number"
+        },
+        "audioEndSeconds": {
+          "type": "number"
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "phraseAlignedEvents": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "approvedAdjustments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "renderAuthorized": {
+          "type": "boolean",
+          "const": false
+        },
+        "evidenceSources": {
+          "type": "array",
+          "description": "One entry per proof role, carrying where the evidence came from. Required by the 2026-09-16 citation ruling: source is always recorded even when no credit appears on screen.",
+          "items": {
+            "type": "object",
+            "required": [
+              "roleId",
+              "provenance"
+            ],
+            "properties": {
+              "roleId": {
+                "type": "string"
+              },
+              "provenance": {
+                "enum": [
+                  "media_library",
+                  "primary_source",
+                  "footage_collection",
+                  "youtube",
+                  "instagram",
+                  "twitter",
+                  "generated",
+                  "unknown"
+                ]
+              },
+              "sourceRef": {
+                "type": "string"
+              },
+              "onScreenCredit": {
+                "type": "boolean",
+                "default": false,
+                "description": "Editorial choice per scene. Not a gate."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

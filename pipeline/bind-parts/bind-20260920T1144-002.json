@@ -1,0 +1,416 @@
+{
+ "minimalism-slideshow--review-007": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single captioned photo moment",
+    "evidence": "Presents a single visual subject accompanied by a prominent text label."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "captioned single image claim",
+    "evidence": "Presents a single visual subject accompanied by a prominent text label.",
+    "condition": "when the title text states the assertion and the photo illustrates it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "minimalism-slideshow--review-008": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single captioned photo moment",
+    "evidence": "Presents a single visual subject accompanied by a prominent title label."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "captioned single image claim",
+    "evidence": "Presents a single visual subject accompanied by a prominent title label.",
+    "condition": "when the title text states the assertion and the photo illustrates it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "minimalism-slideshow--review-009": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single captioned photo moment",
+    "evidence": "Displays a single framed visual subject alongside a headline label."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "captioned single portrait claim",
+    "evidence": "Displays a single framed visual subject alongside a headline label.",
+    "condition": "when the headline states the assertion and the portrait illustrates it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "minimalism-slideshow--review-010": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single captioned photo moment",
+    "evidence": "Presents a single framed subject alongside a prominent text label without comparative elements."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "captioned single image claim",
+    "evidence": "Presents a single framed subject alongside a prominent text label without comparative elements.",
+    "condition": "when the text label states the assertion and the scene illustrates it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "minimalism-slideshow--review-011a": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single captioned card moment",
+    "evidence": "Displays a single media card accompanied by a prominent title header."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "captioned single card claim",
+    "evidence": "Displays a single media card accompanied by a prominent title header.",
+    "condition": "when the header states the assertion and the card illustrates it"
+   },
+   {
+    "job": "change_across_set",
+    "confidence": "conditional",
+    "mechanism": "paired before card of two",
+    "evidence": "Highlighting the opening subject of a paired discussion",
+    "condition": "when combined with its part-2 counterpart to show a before state"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "minimalism-slideshow--review-011b": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single captioned card moment",
+    "evidence": "Presents a single framed media slot alongside a primary text heading."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "captioned single card claim",
+    "evidence": "Presents a single framed media slot alongside a primary text heading.",
+    "condition": "when the heading states the assertion and the card illustrates it"
+   },
+   {
+    "job": "change_across_set",
+    "confidence": "conditional",
+    "mechanism": "paired after card of two",
+    "evidence": "Concluding a two-part category or topic exploration",
+    "condition": "when combined with its part-1 counterpart to show an after state"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-001": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential identity card reveal",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "Presents media items in a horizontal sliding sequence, cycling each card into the central focal position in turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-002": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential portrait roster reveal",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn.",
+    "condition": "when each portrait itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced portraits",
+    "evidence": "Cycles through subjects in a horizontal carousel, bringing each into central focus in turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-003": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential card roster reveal",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "Reveals consecutive media cards in a continuous vertical scroll."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-004": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "equal-weight card roster",
+    "evidence": "Presents subjects in a continuous curved horizontal carousel of media cards at equal visual weight.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "arranged as list; they arrive reveals_in_turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-005": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential card roster reveal",
+    "evidence": "Scrolls vertically through a continuous feed of media cards, presenting each item in succession.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "arranged as list; they arrive reveals_in_turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-006": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "labelled sequential card roster",
+    "evidence": "across 5 media well(s) and 1 text field(s); arranged as sequence; they arrive reveals_in_turn."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots with caption",
+    "evidence": "Cycles through items along a horizontal track, expanding each into a prominent center frame in turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-007": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential card roster reveal",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "Cycles through media cards along a horizontal track, bringing each item into central focus in turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-008": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential card roster reveal",
+    "evidence": "Presents subjects sequentially in a continuous vertical scrolling conveyor, displaying each on an identical rounded card.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-009": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential card roster reveal",
+    "evidence": "Cycles through media cards horizontally along a carousel track, bringing each item into central focus in turn.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-010": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential portrait roster reveal",
+    "evidence": "Scrolls vertically through a sequence of subjects in capsule frames, bringing each into central focus in turn.",
+    "condition": "when each capsule's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-011": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential card roster reveal",
+    "evidence": "Cycles through a horizontal row of media items, bringing one into center focus while displaying flanking cards.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-013": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "equal-weight grouped roster",
+    "evidence": "Displays three media items in a scrolling vertical column at equal visual weight without text."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "grouped sourced image trio",
+    "evidence": "Displays three media items in a scrolling vertical column at equal visual weight without text.",
+    "condition": "when the three images together illustrate the same claim"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-014": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "sequential card pair reveal",
+    "evidence": "Reveals media cards sequentially as they scroll vertically into center focus.",
+    "condition": "when recut to more than two cards, each identifying a distinct subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn.",
+    "condition": "when the two cards together illustrate the same claim"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "carousel--review-015": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "equal-weight card roster",
+    "evidence": "Cycles through full-bleed media cards in a continuous vertical flip carousel at equal visual weight.",
+    "condition": "when each card's image itself identifies a distinct named subject"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "sequence of sourced shots",
+    "evidence": "arranged as sequence; they arrive reveals_in_turn."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ }
+}

@@ -1,0 +1,2350 @@
+{
+ "ruleProvenance": {
+  "baseRuleCount": 10,
+  "activeCorrections": [
+   "COR-0001-spatial-attrition",
+   "COR-0002-citation-policy",
+   "COR-0003-era-consistency-gate",
+   "COR-0004-change-budget-is-a-hint",
+   "COR-0005-portrait-legibility",
+   "COR-0006-intent-scoring-and-overview-route",
+   "COR-0007-scene-level-distinctness",
+   "COR-0008-defects-found-by-extending",
+   "COR-0009-per-shot-selection",
+   "COR-0010-defects-found-at-thirty",
+   "COR-0011-motion-profiles-adopted",
+   "COR-0012-schedule-replacement-is-the-mechanism",
+   "COR-0013-passage-28-allowed-kinds",
+   "COR-0014-measurement-was-the-problem"
+  ],
+  "revertedCorrections": [],
+  "maximumScope": "project",
+  "writesToProject": false
+ },
+ "shots": [
+  {
+   "shotId": "01",
+   "boundary": "measured",
+   "focalEntityCount": 6,
+   "durationSeconds": 35.94,
+   "events": [
+    "E1",
+    "E2",
+    "E3"
+   ],
+   "binding": {
+    "bindings": [
+     {
+      "roleId": "paired_values",
+      "attributionPolicy": "record_only",
+      "provenance": "unknown",
+      "sourceRef": "verified dataset, not yet bound",
+      "sourceCandidates": null,
+      "editorialRole": "proof",
+      "sourceSpecificity": "exact_source_required",
+      "mediaFamily": "data_or_number",
+      "status": "data_required",
+      "perEntity": {},
+      "artifacts": {},
+      "missing": [],
+      "note": "Values must come from the verified dataset, not the Media Library."
+     },
+     {
+      "roleId": "six_portraits",
+      "attributionPolicy": "record_only",
+      "provenance": "media_library",
+      "sourceRef": "/Users/dwaynetoler/Media Library",
+      "sourceCandidates": null,
+      "editorialRole": "identity",
+      "sourceSpecificity": "exact_event_or_entity_required",
+      "mediaFamily": "portrait_still",
+      "status": "partially_bound",
+      "perEntity": {
+       "Post Malone": {
+        "count": 0,
+        "image": 0,
+        "video": 0,
+        "cutout": 0,
+        "examples": [],
+        "assertedYears": []
+       },
+       "XXXTentacion": {
+        "count": 0,
+        "image": 0,
+        "video": 0,
+        "cutout": 0,
+        "examples": [],
+        "assertedYears": []
+       },
+       "Kendrick Lamar": {
+        "count": 44,
+        "image": 17,
+        "video": 27,
+        "cutout": 16,
+        "examples": [
+         {
+          "assetId": "07e917c62e761375c0ada185",
+          "type": "image",
+          "dimensions": "640x853"
+         },
+         {
+          "assetId": "0eb5c1664d580a342ed87957",
+          "type": "video",
+          "dimensions": "720x720"
+         },
+         {
+          "assetId": "155c43729fa53ac49a4b4d3e",
+          "type": "image",
+          "dimensions": "1440x1859"
+         }
+        ],
+        "assertedYears": [
+         "2022",
+         "2025"
+        ]
+       },
+       "Ty Dolla $ign": {
+        "count": 0,
+        "image": 0,
+        "video": 0,
+        "cutout": 0,
+        "examples": [],
+        "assertedYears": []
+       },
+       "Young Thug": {
+        "count": 1,
+        "image": 1,
+        "video": 0,
+        "cutout": 1,
+        "examples": [
+         {
+          "assetId": "13a2d657e3f3d57d5257b3dc",
+          "type": "image",
+          "dimensions": "1200x1200"
+         }
+        ],
+        "assertedYears": []
+       },
+       "21 Savage": {
+        "count": 4,
+        "image": 1,
+        "video": 3,
+        "cutout": 1,
+        "examples": [
+         {
+          "assetId": "3a6945f2bfa8f44c6281b215",
+          "type": "video",
+          "dimensions": "1080x1440"
+         },
+         {
+          "assetId": "3be2e22e3d87bc26f57fec4c",
+          "type": "video",
+          "dimensions": "1080x1440"
+         },
+         {
+          "assetId": "7a1359aa882fbca6b0f73daf",
+          "type": "image",
+          "dimensions": "640x800"
+         }
+        ],
+        "assertedYears": []
+       }
+      },
+      "artifacts": {},
+      "missing": [
+       "Post Malone",
+       "Ty Dolla $ign",
+       "XXXTentacion"
+      ],
+      "note": null
+     }
+    ],
+    "evidenceSources": [
+     {
+      "roleId": "paired_values",
+      "provenance": "unknown",
+      "sourceRef": "verified dataset, not yet bound",
+      "onScreenCredit": false
+     }
+    ],
+    "missingAssets": [
+     "Post Malone",
+     "Ty Dolla $ign",
+     "XXXTentacion"
+    ],
+    "anyMissing": true,
+    "dataRolesOutstanding": [
+     "paired_values"
+    ]
+   },
+   "slate": {
+    "slate": [
+     {
+      "kind": "infographic",
+      "templateId": "33_contract_portrait_grid",
+      "name": "Six portrait value cards",
+      "intents": [
+       "compare",
+       "overview",
+       "key facts"
+      ],
+      "capacitySummary": "6 subjects in a 3 \u00d7 2 grid; 1 displayed value each",
+      "capacityFits": true,
+      "capacityRange": [
+       6,
+       6
+      ],
+      "designedForEntities": 6,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "A proportional chart",
+       "many metrics per subject"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 1.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 1
+     },
+     {
+      "kind": "infographic",
+      "templateId": "37_fullbody_impact_lineup",
+      "name": "Full-body lineup with context figure",
+      "intents": [
+       "comparison",
+       "sequence",
+       "spotlight"
+      ],
+      "capacitySummary": "6 full-body figures; first 5 have period and value labels; sixth is a context figure",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 6,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "Six equally labeled numeric entries",
+       "interpreting body sizes as sales ratios"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.95,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 2
+     },
+     {
+      "kind": "infographic",
+      "templateId": "54_trade_package_panels",
+      "name": "Seven people-and-resources packages",
+      "intents": [
+       "composition",
+       "packages",
+       "compare"
+      ],
+      "capacitySummary": "7 packages; 7 hero portraits; 24 member portraits; 39 resource lines",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 7,
+      "showsPortraits": true,
+      "capacitySlack": 1,
+      "avoidWhen": [
+       "Assuming arrows establish real completed transactions",
+       "interchangeable panel capacities"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.91,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.86,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 3
+     },
+     {
+      "kind": "infographic",
+      "templateId": "34_superteam_bar_compare",
+      "name": "Two-group bar comparison",
+      "intents": [
+       "compare",
+       "magnitude",
+       "cohorts"
+      ],
+      "capacitySummary": "2 groups of 5 bars; 4 header portraits per group",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 8,
+      "showsPortraits": true,
+      "capacitySlack": 2,
+      "avoidWhen": [
+       "Unrestricted scales",
+       "assuming ten inputs mean ten visible portraits"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.82,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.78,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 4
+     }
+    ],
+    "viableCount": 32,
+    "spatialFirstDetail": {
+     "fired": false,
+     "terms": [],
+     "triggerSource": "none",
+     "ruleVersion": "1.1.0-local"
+    },
+    "ruleProvenance": {
+     "baseRuleCount": 10,
+     "activeCorrections": [
+      "COR-0001-spatial-attrition",
+      "COR-0002-citation-policy",
+      "COR-0003-era-consistency-gate",
+      "COR-0004-change-budget-is-a-hint",
+      "COR-0005-portrait-legibility",
+      "COR-0006-intent-scoring-and-overview-route",
+      "COR-0007-scene-level-distinctness",
+      "COR-0008-defects-found-by-extending",
+      "COR-0009-per-shot-selection",
+      "COR-0010-defects-found-at-thirty",
+      "COR-0011-motion-profiles-adopted",
+      "COR-0012-schedule-replacement-is-the-mechanism",
+      "COR-0013-passage-28-allowed-kinds",
+      "COR-0014-measurement-was-the-problem"
+     ],
+     "revertedCorrections": [],
+     "maximumScope": "project",
+     "writesToProject": false
+    },
+    "rejectedCount": 28,
+    "poolSize": 60,
+    "rejectedSample": [
+     {
+      "kind": "direct",
+      "templateId": "direct:archival_cut",
+      "name": "Archival or interview cut",
+      "carriesData": false,
+      "capacityFits": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Ground truth records presentation 'chart'; this container serves it poorly."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.38,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient"
+      ]
+     },
+     {
+      "kind": "infographic",
+      "templateId": "30_dense_rank_bars",
+      "name": "Compact portrait bar leaderboard",
+      "intents": [
+       "rank",
+       "magnitude",
+       "overview"
+      ],
+      "capacitySummary": "30 entities; 1 measure each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 24,
+      "avoidWhen": [
+       "A two-subject story",
+       "extensive text labels"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 6 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 6; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "23_portrait_scatter",
+      "name": "Dense portrait scatter",
+      "intents": [
+       "relationship",
+       "distribution",
+       "outliers"
+      ],
+      "capacitySummary": "30 entities; 2 numeric variables each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 24,
+      "avoidWhen": [
+       "A small roster",
+       "rank-only data",
+       "causal claims"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 6 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 6; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "53_lineup_rotation_columns",
+      "name": "Eight portrait columns with paired counts",
+      "intents": [
+       "compare",
+       "part to whole",
+       "overview"
+      ],
+      "capacitySummary": "8 entities; 2 numeric fields and 3 shared labels each",
+      "capacityFits": false,
+      "capacityRange": [
+       8,
+       8
+      ],
+      "designedForEntities": 8,
+      "showsPortraits": true,
+      "capacitySlack": 2,
+      "avoidWhen": [
+       "Treating the fixed colored panel height as a calculated share or percentage"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [8, 8] cannot hold 6 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.82,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "29_horizontal_media_bars",
+      "name": "Endpoint portraits on horizontal bars",
+      "intents": [
+       "magnitude",
+       "rank",
+       "comparison"
+      ],
+      "capacitySummary": "8 entities; 1 measure each",
+      "capacityFits": false,
+      "capacityRange": [
+       8,
+       8
+      ],
+      "designedForEntities": 8,
+      "showsPortraits": true,
+      "capacitySlack": 2,
+      "avoidWhen": [
+       "Negative quantities",
+       "many metrics per person"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [8, 8] cannot hold 6 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.82,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "direct",
+      "templateId": "direct:evidence_hold",
+      "name": "Evidence hold with highlight",
+      "carriesData": false,
+      "capacityFits": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Ground truth records presentation 'chart'; this container serves it poorly."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "3 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.42,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient"
+      ]
+     }
+    ],
+    "spatialFirstApplied": false
+   }
+  }
+ ],
+ "contract": {
+  "contractId": "year-seventeen:P27",
+  "schemaVersion": 1,
+  "scriptRef": {
+   "scriptId": "year-seventeen",
+   "sectionId": "Opposing artist archetypes",
+   "passageIndex": 27
+  },
+  "narration": {
+   "text": "The ones who carry their own records \u2014 Post Malone, forty-nine billion on his own songs against six as a guest. XXXTentacion, thirty-five and six. Kendrick, forty-one and sixteen. And the ones who live on other people's hooks. Ty Dolla $ign, five billion on his own records and twenty-two as a guest. Young Thug, eleven and twenty-one. 21 Savage, sixteen and twenty-three.",
+   "measuredTranscript": "The ones who carry their own records. Post Malone. 49 billion on his own songs. Against six as a guest. Xxx temptation. 35 and six. Kendrick. 41 and 16. And the ones who live on other people's hooks. Ty Dala sign. 5 billion on his own records and 22 as a guest. Young thug. 11 and 21. 21 Savage. 16 and 23."
+  },
+  "timing": {
+   "timingSource": "measured_audio",
+   "audioStartSeconds": 567.21,
+   "audioEndSeconds": 603.15,
+   "audioDurationSeconds": 35.94,
+   "wordAlignmentCoverage": 0.7206,
+   "recordedShots": [
+    {
+     "shotId": "01",
+     "startSeconds": 567.21,
+     "endSeconds": 603.15,
+     "durationSeconds": 35.94,
+     "startsAt": "passage_start",
+     "endsAt": "passage_end"
+    }
+   ],
+   "acceptableDurationSeconds": {
+    "min": 35.94,
+    "target": 35.94,
+    "max": null,
+    "note": "Descriptive. Corpus median 9.0s, p75 14.0s. Never a cap: the evidence sets the length."
+   },
+   "durationPolicy": {
+    "mode": "elastic",
+    "evidenceMustComplete": true,
+    "narrationYields": false,
+    "extensionRequired": []
+   },
+   "minimumReadableHoldSeconds": 1.5,
+   "internalChangeBudget": {
+    "enforcement": "advisory_only",
+    "requiredChanges": 6,
+    "secondsPerChangeCeiling": 6.8,
+    "eventsAvailable": 3,
+    "satisfied": false,
+    "standingException": null,
+    "note": "Advisory. May suggest splitting a unit, but never rejects a candidate and never forces a split. Overridden whenever the content needs the time."
+   }
+  },
+  "takeaway": "Some artists carry their own records and others live on other people's, and the split is stark.",
+  "narrationJob": "compare",
+  "claims": [
+   {
+    "text": "Post Malone has 49 billion on his own songs against 6 as a guest; XXXTentacion 35 and 6; Kendrick 41 and 16.",
+    "claimClass": "quantity_or_statistic",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "verified lead and guest totals"
+    ]
+   },
+   {
+    "text": "Ty Dolla $ign has 5 billion on his own records and 22 as a guest; Young Thug 11 and 21; 21 Savage 16 and 23.",
+    "claimClass": "quantity_or_statistic",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "verified lead and guest totals"
+    ]
+   }
+  ],
+  "strictestEvidenceObligation": "exact_source_required",
+  "entities": [
+   {
+    "name": "Post Malone",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "low"
+   },
+   {
+    "name": "XXXTentacion",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "low"
+   },
+   {
+    "name": "Kendrick Lamar",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "low"
+   },
+   {
+    "name": "Ty Dolla $ign",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "medium"
+   },
+   {
+    "name": "Young Thug",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "low"
+   },
+   {
+    "name": "21 Savage",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "low"
+   }
+  ],
+  "focalEntityCount": 6,
+  "entityRelationship": "group_comparative",
+  "requiredMedia": [
+   {
+    "roleId": "paired_values",
+    "editorialRole": "proof",
+    "mediaFamily": "data_or_number",
+    "sourceSpecificity": "exact_source_required",
+    "contentRequirement": "Two values per artist, lead and guest, for six artists in two opposing groups."
+   },
+   {
+    "roleId": "six_portraits",
+    "editorialRole": "identity",
+    "mediaFamily": "portrait_still",
+    "sourceSpecificity": "exact_event_or_entity_required",
+    "contentRequirement": "Approved portraits for all six. User ruling on this passage: the text calls for multiple artists with two data points each, in two opposing sets.",
+    "entityNames": [
+     "Post Malone",
+     "XXXTentacion",
+     "Kendrick Lamar",
+     "Ty Dolla $ign",
+     "Young Thug",
+     "21 Savage"
+    ]
+   }
+  ],
+  "visualEvents": [
+   {
+    "eventId": "E1",
+    "triggerPhrase": "Post Malone, forty-nine billion on his own songs",
+    "eventType": "value_change",
+    "criticality": "decisive",
+    "description": "First archetype's paired values land.",
+    "triggerOffsetSeconds": 3.43,
+    "measuredStartSeconds": 570.64,
+    "matchConfidence": 1.0,
+    "matchedTranscript": "Post Malone. 49 billion on his own songs.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E2",
+    "triggerPhrase": "And the ones who live on other people's hooks",
+    "eventType": "reveal",
+    "criticality": "decisive",
+    "description": "The second group appears as the opposing set.",
+    "triggerOffsetSeconds": 18.55,
+    "measuredStartSeconds": 585.76,
+    "matchConfidence": 1.0,
+    "matchedTranscript": "And the ones who live on other people's hooks.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E3",
+    "triggerPhrase": "21 Savage, sixteen and twenty-three",
+    "eventType": "value_change",
+    "criticality": "decisive",
+    "description": "The final pair completes the second group.",
+    "triggerOffsetSeconds": 31.69,
+    "measuredStartSeconds": 598.9,
+    "matchConfidence": 1.0,
+    "matchedTranscript": "21 Savage. 16 and 23.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   }
+  ],
+  "prohibitions": [
+   {
+    "prohibition": "Do not present this as one-to-many.",
+    "reason": "User ruling on this passage: this is two sets of artists with opposing data points, not a hero against a field.",
+    "severity": "hard"
+   },
+   {
+    "prohibition": "Do not show only one value per artist.",
+    "reason": "Each artist carries two, and the contrast between them is the claim.",
+    "severity": "hard"
+   }
+  ],
+  "successConditions": [
+   "Two opposing groups are visible as groups.",
+   "Each artist shows both values."
+  ],
+  "failureConditions": [
+   "A hero-and-field layout is used.",
+   "Only lead or only guest values are shown."
+  ],
+  "readingLoad": "normal",
+  "scriptConflict": null,
+  "proposedDecomposition": null,
+  "groundTruth": {
+   "desired": "Artist table with lead-song and guest-song data beside portraits",
+   "shots": "one or more",
+   "fallback": "review",
+   "allowedKinds": [
+    "infographic"
+   ],
+   "allowedTemplateIds": null,
+   "preferredTemplateIds": null,
+   "presentation": "chart"
+  },
+  "provenance": {
+   "createdBy": "astra prototype vertical slice",
+   "rulesetVersion": "0.2.0-prototype",
+   "authoredFields": [
+    "claims",
+    "entities",
+    "requiredMedia",
+    "visualEvents",
+    "prohibitions",
+    "successConditions",
+    "failureConditions"
+   ],
+   "measuredFields": [
+    "all timing values",
+    "event offsets"
+   ],
+   "humanReviewed": false
+  }
+ },
+ "binding": {
+  "bindings": [
+   {
+    "roleId": "paired_values",
+    "attributionPolicy": "record_only",
+    "provenance": "unknown",
+    "sourceRef": "verified dataset, not yet bound",
+    "sourceCandidates": null,
+    "editorialRole": "proof",
+    "sourceSpecificity": "exact_source_required",
+    "mediaFamily": "data_or_number",
+    "status": "data_required",
+    "perEntity": {},
+    "artifacts": {},
+    "missing": [],
+    "note": "Values must come from the verified dataset, not the Media Library."
+   },
+   {
+    "roleId": "six_portraits",
+    "attributionPolicy": "record_only",
+    "provenance": "media_library",
+    "sourceRef": "/Users/dwaynetoler/Media Library",
+    "sourceCandidates": null,
+    "editorialRole": "identity",
+    "sourceSpecificity": "exact_event_or_entity_required",
+    "mediaFamily": "portrait_still",
+    "status": "partially_bound",
+    "perEntity": {
+     "Post Malone": {
+      "count": 0,
+      "image": 0,
+      "video": 0,
+      "cutout": 0,
+      "examples": [],
+      "assertedYears": []
+     },
+     "XXXTentacion": {
+      "count": 0,
+      "image": 0,
+      "video": 0,
+      "cutout": 0,
+      "examples": [],
+      "assertedYears": []
+     },
+     "Kendrick Lamar": {
+      "count": 44,
+      "image": 17,
+      "video": 27,
+      "cutout": 16,
+      "examples": [
+       {
+        "assetId": "07e917c62e761375c0ada185",
+        "type": "image",
+        "dimensions": "640x853"
+       },
+       {
+        "assetId": "0eb5c1664d580a342ed87957",
+        "type": "video",
+        "dimensions": "720x720"
+       },
+       {
+        "assetId": "155c43729fa53ac49a4b4d3e",
+        "type": "image",
+        "dimensions": "1440x1859"
+       }
+      ],
+      "assertedYears": [
+       "2022",
+       "2025"
+      ]
+     },
+     "Ty Dolla $ign": {
+      "count": 0,
+      "image": 0,
+      "video": 0,
+      "cutout": 0,
+      "examples": [],
+      "assertedYears": []
+     },
+     "Young Thug": {
+      "count": 1,
+      "image": 1,
+      "video": 0,
+      "cutout": 1,
+      "examples": [
+       {
+        "assetId": "13a2d657e3f3d57d5257b3dc",
+        "type": "image",
+        "dimensions": "1200x1200"
+       }
+      ],
+      "assertedYears": []
+     },
+     "21 Savage": {
+      "count": 4,
+      "image": 1,
+      "video": 3,
+      "cutout": 1,
+      "examples": [
+       {
+        "assetId": "3a6945f2bfa8f44c6281b215",
+        "type": "video",
+        "dimensions": "1080x1440"
+       },
+       {
+        "assetId": "3be2e22e3d87bc26f57fec4c",
+        "type": "video",
+        "dimensions": "1080x1440"
+       },
+       {
+        "assetId": "7a1359aa882fbca6b0f73daf",
+        "type": "image",
+        "dimensions": "640x800"
+       }
+      ],
+      "assertedYears": []
+     }
+    },
+    "artifacts": {},
+    "missing": [
+     "Post Malone",
+     "Ty Dolla $ign",
+     "XXXTentacion"
+    ],
+    "note": null
+   }
+  ],
+  "evidenceSources": [
+   {
+    "roleId": "paired_values",
+    "provenance": "unknown",
+    "sourceRef": "verified dataset, not yet bound",
+    "onScreenCredit": false
+   }
+  ],
+  "missingAssets": [
+   "Post Malone",
+   "Ty Dolla $ign",
+   "XXXTentacion"
+  ],
+  "anyMissing": true,
+  "dataRolesOutstanding": [
+   "paired_values"
+  ]
+ },
+ "slate": {
+  "slate": [
+   {
+    "kind": "infographic",
+    "templateId": "33_contract_portrait_grid",
+    "name": "Six portrait value cards",
+    "intents": [
+     "compare",
+     "overview",
+     "key facts"
+    ],
+    "capacitySummary": "6 subjects in a 3 \u00d7 2 grid; 1 displayed value each",
+    "capacityFits": true,
+    "capacityRange": [
+     6,
+     6
+    ],
+    "designedForEntities": 6,
+    "showsPortraits": true,
+    "capacitySlack": 0,
+    "avoidWhen": [
+     "A proportional chart",
+     "many metrics per subject"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 1.0,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 1.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 1
+   },
+   {
+    "kind": "infographic",
+    "templateId": "37_fullbody_impact_lineup",
+    "name": "Full-body lineup with context figure",
+    "intents": [
+     "comparison",
+     "sequence",
+     "spotlight"
+    ],
+    "capacitySummary": "6 full-body figures; first 5 have period and value labels; sixth is a context figure",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 6,
+    "showsPortraits": true,
+    "capacitySlack": 0,
+    "avoidWhen": [
+     "Six equally labeled numeric entries",
+     "interpreting body sizes as sales ratios"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 1.0,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.95,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 2
+   },
+   {
+    "kind": "infographic",
+    "templateId": "54_trade_package_panels",
+    "name": "Seven people-and-resources packages",
+    "intents": [
+     "composition",
+     "packages",
+     "compare"
+    ],
+    "capacitySummary": "7 packages; 7 hero portraits; 24 member portraits; 39 resource lines",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 7,
+    "showsPortraits": true,
+    "capacitySlack": 1,
+    "avoidWhen": [
+     "Assuming arrows establish real completed transactions",
+     "interchangeable panel capacities"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.91,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.86,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 3
+   },
+   {
+    "kind": "infographic",
+    "templateId": "34_superteam_bar_compare",
+    "name": "Two-group bar comparison",
+    "intents": [
+     "compare",
+     "magnitude",
+     "cohorts"
+    ],
+    "capacitySummary": "2 groups of 5 bars; 4 header portraits per group",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 8,
+    "showsPortraits": true,
+    "capacitySlack": 2,
+    "avoidWhen": [
+     "Unrestricted scales",
+     "assuming ten inputs mean ten visible portraits"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.82,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.78,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 4
+   }
+  ],
+  "viableCount": 32,
+  "spatialFirstDetail": {
+   "fired": false,
+   "terms": [],
+   "triggerSource": "none",
+   "ruleVersion": "1.1.0-local"
+  },
+  "ruleProvenance": {
+   "baseRuleCount": 10,
+   "activeCorrections": [
+    "COR-0001-spatial-attrition",
+    "COR-0002-citation-policy",
+    "COR-0003-era-consistency-gate",
+    "COR-0004-change-budget-is-a-hint",
+    "COR-0005-portrait-legibility",
+    "COR-0006-intent-scoring-and-overview-route",
+    "COR-0007-scene-level-distinctness",
+    "COR-0008-defects-found-by-extending",
+    "COR-0009-per-shot-selection",
+    "COR-0010-defects-found-at-thirty",
+    "COR-0011-motion-profiles-adopted",
+    "COR-0012-schedule-replacement-is-the-mechanism",
+    "COR-0013-passage-28-allowed-kinds",
+    "COR-0014-measurement-was-the-problem"
+   ],
+   "revertedCorrections": [],
+   "maximumScope": "project",
+   "writesToProject": false
+  },
+  "rejectedCount": 28,
+  "poolSize": 60,
+  "rejectedSample": [
+   {
+    "kind": "direct",
+    "templateId": "direct:archival_cut",
+    "name": "Archival or interview cut",
+    "carriesData": false,
+    "capacityFits": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Ground truth records presentation 'chart'; this container serves it poorly."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.38,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient"
+    ]
+   },
+   {
+    "kind": "infographic",
+    "templateId": "30_dense_rank_bars",
+    "name": "Compact portrait bar leaderboard",
+    "intents": [
+     "rank",
+     "magnitude",
+     "overview"
+    ],
+    "capacitySummary": "30 entities; 1 measure each",
+    "capacityFits": false,
+    "capacityRange": [
+     30,
+     30
+    ],
+    "designedForEntities": 30,
+    "showsPortraits": true,
+    "capacitySlack": 24,
+    "avoidWhen": [
+     "A two-subject story",
+     "extensive text labels"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [30, 30] cannot hold 6 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 30 but the passage has 6; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "23_portrait_scatter",
+    "name": "Dense portrait scatter",
+    "intents": [
+     "relationship",
+     "distribution",
+     "outliers"
+    ],
+    "capacitySummary": "30 entities; 2 numeric variables each",
+    "capacityFits": false,
+    "capacityRange": [
+     30,
+     30
+    ],
+    "designedForEntities": 30,
+    "showsPortraits": true,
+    "capacitySlack": 24,
+    "avoidWhen": [
+     "A small roster",
+     "rank-only data",
+     "causal claims"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [30, 30] cannot hold 6 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 30 but the passage has 6; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "53_lineup_rotation_columns",
+    "name": "Eight portrait columns with paired counts",
+    "intents": [
+     "compare",
+     "part to whole",
+     "overview"
+    ],
+    "capacitySummary": "8 entities; 2 numeric fields and 3 shared labels each",
+    "capacityFits": false,
+    "capacityRange": [
+     8,
+     8
+    ],
+    "designedForEntities": 8,
+    "showsPortraits": true,
+    "capacitySlack": 2,
+    "avoidWhen": [
+     "Treating the fixed colored panel height as a calculated share or percentage"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [8, 8] cannot hold 6 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.82,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "29_horizontal_media_bars",
+    "name": "Endpoint portraits on horizontal bars",
+    "intents": [
+     "magnitude",
+     "rank",
+     "comparison"
+    ],
+    "capacitySummary": "8 entities; 1 measure each",
+    "capacityFits": false,
+    "capacityRange": [
+     8,
+     8
+    ],
+    "designedForEntities": 8,
+    "showsPortraits": true,
+    "capacitySlack": 2,
+    "avoidWhen": [
+     "Negative quantities",
+     "many metrics per person"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [8, 8] cannot hold 6 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.82,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "3 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "direct",
+    "templateId": "direct:evidence_hold",
+    "name": "Evidence hold with highlight",
+    "carriesData": false,
+    "capacityFits": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Ground truth records presentation 'chart'; this container serves it poorly."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Post Malone', 'Ty Dolla $ign', 'XXXTentacion']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "3 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.42,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient"
+    ]
+   }
+  ],
+  "spatialFirstApplied": false
+ },
+ "decision": {
+  "action": "blocked_missing_assets",
+  "winnerRank": 1,
+  "confidence": {
+   "value": null,
+   "method": "uncalibrated_prior",
+   "calibrationSampleSize": 0,
+   "note": "Auto-advance disabled by policy until calibrated against approved and rejected decisions."
+  },
+  "escalationTriggers": [
+   "assets_missing",
+   "evidence_insufficient",
+   "low_confidence"
+  ],
+  "reasons": [
+   "Unbound: Post Malone, Ty Dolla $ign, XXXTentacion.",
+   "Verified values still required for: paired_values.",
+   "Winner has unresolved gates: asset_quality_sufficient, no_unsupported_implication, schedule_replacement_unproven."
+  ],
+  "shotCount": 1
+ },
+ "groundTruthCheck": {
+  "desired": "Artist table with lead-song and guest-song data beside portraits",
+  "desiredInSlate": true,
+  "desiredAtRank": 1,
+  "recordedFallback": "review"
+ }
+}

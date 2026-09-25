@@ -1,0 +1,267 @@
+{
+ "43_successor_tier_grid": [
+  {
+   "job": "category_breakdown",
+   "confidence": "clear",
+   "mechanism": "stacked ordinal tier bands",
+   "evidence": "Stacked bands show ordinal membership; neither within-tier spacing nor portrait size is a numerical score."
+  }
+ ],
+ "44_three_metric_tables": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "component score tables per subject",
+   "evidence": "Three compact tables expose component scores alongside featured subjects."
+  },
+  {
+   "job": "entity_vs_benchmark",
+   "confidence": "conditional",
+   "mechanism": "scores read against benchmark",
+   "evidence": "score; compare; benchmark",
+   "condition": "when one table's rows function as a fixed benchmark row"
+  }
+ ],
+ "45_two_metric_tables": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "two-dimension score tables",
+   "evidence": "Two unequal tables summarize two scoring dimensions."
+  }
+ ],
+ "46_similarity_criteria_table": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "clear",
+   "mechanism": "hero versus ranked candidates",
+   "evidence": "A ranking table beside a prominent reference person explains a supplied assessment."
+  },
+  {
+   "job": "locate_in_distribution",
+   "confidence": "conditional",
+   "mechanism": "ranked position display",
+   "evidence": "The six criteria are captions, not six separate numeric inputs.",
+   "condition": "when the rank column is read as the candidate's position, not the captions"
+  }
+ ],
+ "47_similarity_ascending_bars": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "ascending sorted score bars",
+   "evidence": "Ascending zero-based bars show a distribution of scores."
+  },
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "hero highlighted amid distribution",
+   "evidence": "portrait emphasis is editorial",
+   "condition": "when heroes are marked out against the full sorted set"
+  }
+ ],
+ "48_playoff_path_summary": [
+  {
+   "job": "derived_quantity",
+   "confidence": "clear",
+   "mechanism": "computed mean of stages",
+   "evidence": "An ordered path ends in the arithmetic mean of its four values."
+  },
+  {
+   "job": "members_then_total",
+   "confidence": "conditional",
+   "mechanism": "stage values then aggregate",
+   "evidence": "The displayed result is computed as the unweighted mean of all four values.",
+   "condition": "when the four stage values are shown before the averaged result"
+  }
+ ],
+ "49_similarity_final_results": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "dense ranked value directory",
+   "evidence": "A dense portrait-and-value directory supports broad comparison and lookup."
+  },
+  {
+   "job": "parallel_instances",
+   "confidence": "conditional",
+   "mechanism": "per-entity measured columns",
+   "evidence": "Keep all four measured column capacities",
+   "condition": "when each column reflects one entity's own metric value"
+  }
+ ],
+ "50_championship_odds_history": [
+  {
+   "job": "change_across_set",
+   "confidence": "clear",
+   "mechanism": "zero-baseline bars over periods",
+   "evidence": "Bars extend from zero above or below the baseline, with fixed emphasis for an outlier position."
+  },
+  {
+   "job": "locate_in_distribution",
+   "confidence": "conditional",
+   "mechanism": "highlighted outlier bar",
+   "evidence": "verify the fixed highlight matches the intended entry",
+   "condition": "when the highlighted bar truly is the extreme value"
+  }
+ ],
+ "51_debut_leaderboard": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "ranked leaderboard with hero",
+   "evidence": "A leaderboard plus hero photo and lower-third emphasizes a record or featured entry."
+  },
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "hero versus ranked peers",
+   "evidence": "seven ranked portraits plus two hero treatments",
+   "condition": "when the hero is read against the other ranked entries individually"
+  }
+ ],
+ "52_rookie_record_columns": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "scaled magnitude columns",
+   "evidence": "Zero-based columns scale by a fixed pixels-per-unit value; portraits follow bar tops."
+  },
+  {
+   "job": "locate_in_distribution",
+   "confidence": "conditional",
+   "mechanism": "ranked bar heights",
+   "evidence": "Bars use height = value \u00d7 3.375 in reference pixels.",
+   "condition": "when bars are ordered to expose rank"
+  }
+ ],
+ "53_lineup_rotation_columns": [
+  {
+   "job": "proportion_of_cohort",
+   "confidence": "conditional",
+   "mechanism": "subset over total counts",
+   "evidence": "If using subset/total, ensure 0 \u2264 value \u2264 total and total > 0.",
+   "condition": "when the two numeric fields represent a qualifying subset and its total"
+  },
+  {
+   "job": "category_breakdown",
+   "confidence": "clear",
+   "mechanism": "per-entity text counts",
+   "evidence": "Text counts are data-driven; colored column panels are fixed geometry, not a calculated percentage."
+  }
+ ],
+ "54_trade_package_panels": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "parallel package panels",
+   "evidence": "Parallel panels and directional cues show bundles and their relationships."
+  },
+  {
+   "job": "enumerate",
+   "confidence": "conditional",
+   "mechanism": "listed package members",
+   "evidence": "Member counts by panel are 6 / 3 / 5 / 3 / 2 / 3 / 2.",
+   "condition": "when panels list named members without further quantities"
+  }
+ ],
+ "55_best_vs_value": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "aligned dual metric comparison",
+   "evidence": "Two large portraits flank an aligned metric comparison."
+  }
+ ],
+ "56_seven_artist_stat_lineup": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "clear",
+   "mechanism": "lineup with explicit ranks",
+   "evidence": "A horizontal photo lineup carries multi-metric summaries and explicit ranks."
+  },
+  {
+   "job": "locate_in_distribution",
+   "confidence": "conditional",
+   "mechanism": "explicit rank labels",
+   "evidence": "Ranks are supplied and must match their metric and comparison population.",
+   "condition": "when ranks reflect position within the full comparison population"
+  }
+ ],
+ "57_three_playoff_run_cards": [
+  {
+   "job": "members_then_total",
+   "confidence": "clear",
+   "mechanism": "list then summary numbers",
+   "evidence": "Three cards combine a group image, supporting list and two summary numbers."
+  },
+  {
+   "job": "parallel_instances",
+   "confidence": "conditional",
+   "mechanism": "per-card measure totals",
+   "evidence": "Preserve each card's different list and ensemble capacities",
+   "condition": "when each card's two numbers use the same underlying measure"
+  }
+ ],
+ "58_big_three_stat_rows": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "clear",
+   "mechanism": "aligned multi-metric rows",
+   "evidence": "Three aligned portrait rows make five measures easy to scan."
+  }
+ ],
+ "catalog-gap-clean": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "rescaled vertical magnitude",
+   "evidence": "Vertical position encodes the magnitude on a linear scale rescaled between the smallest and largest supplied values."
+  },
+  {
+   "job": "locate_in_distribution",
+   "confidence": "conditional",
+   "mechanism": "ranked depth ordering",
+   "evidence": "Depth encodes evenly spaced rank order and is not magnitude.",
+   "condition": "when only ordinal position, not value, is being read"
+  },
+  {
+   "job": "entity_vs_benchmark",
+   "confidence": "conditional",
+   "mechanism": "data-placed benchmark line",
+   "evidence": "The dashed benchmark line and the vertical beam are correctly placed from data",
+   "condition": "when the printed number is ignored and only the line's position is used"
+  }
+ ],
+ "topographic-cloud": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "log-scaled marker heights",
+   "evidence": "Vertical position of the 35 micro-markers encodes log10 of the magnitude and is truthful."
+  }
+ ],
+ "hologram-stage": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "log-scaled node heights",
+   "evidence": "Node height and the length of the stem beneath it encode log10 of the magnitude and are readable."
+  },
+  {
+   "job": "category_breakdown",
+   "confidence": "conditional",
+   "mechanism": "color-coded value tiers",
+   "evidence": "Node colour encodes the entity's value tier and matches the legend.",
+   "condition": "when tiers are treated as categorical groups covering the full set"
+  }
+ ],
+ "kendrick-red-stage-clean": [
+  {
+   "job": "assert_without_data",
+   "confidence": "clear",
+   "mechanism": "unquantified concept placeholder",
+   "evidence": "Nothing in this scene encodes a quantity."
+  }
+ ]
+}

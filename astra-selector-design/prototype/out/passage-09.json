@@ -1,0 +1,2256 @@
+{
+ "ruleProvenance": {
+  "baseRuleCount": 10,
+  "activeCorrections": [
+   "COR-0001-spatial-attrition",
+   "COR-0002-citation-policy",
+   "COR-0003-era-consistency-gate",
+   "COR-0004-change-budget-is-a-hint",
+   "COR-0005-portrait-legibility",
+   "COR-0006-intent-scoring-and-overview-route",
+   "COR-0007-scene-level-distinctness",
+   "COR-0008-defects-found-by-extending",
+   "COR-0009-per-shot-selection",
+   "COR-0010-defects-found-at-thirty",
+   "COR-0011-motion-profiles-adopted",
+   "COR-0012-schedule-replacement-is-the-mechanism",
+   "COR-0013-passage-28-allowed-kinds",
+   "COR-0014-measurement-was-the-problem"
+  ],
+  "revertedCorrections": [],
+  "maximumScope": "project",
+  "writesToProject": false
+ },
+ "shots": [
+  {
+   "shotId": "01",
+   "boundary": "measured",
+   "focalEntityCount": 4,
+   "durationSeconds": 11.1,
+   "events": [
+    "E1",
+    "E2",
+    "E3",
+    "E4"
+   ],
+   "binding": {
+    "bindings": [
+     {
+      "roleId": "concentration_values",
+      "attributionPolicy": "record_only",
+      "provenance": "unknown",
+      "sourceRef": "verified dataset, not yet bound",
+      "sourceCandidates": null,
+      "editorialRole": "proof",
+      "sourceSpecificity": "exact_source_required",
+      "mediaFamily": "data_or_number",
+      "status": "data_required",
+      "perEntity": {},
+      "artifacts": {},
+      "missing": [],
+      "note": "Values must come from the verified dataset, not the Media Library."
+     },
+     {
+      "roleId": "artist_portraits",
+      "attributionPolicy": "record_only",
+      "provenance": "media_library",
+      "sourceRef": "/Users/dwaynetoler/Media Library",
+      "sourceCandidates": null,
+      "editorialRole": "identity",
+      "sourceSpecificity": "exact_event_or_entity_required",
+      "mediaFamily": "portrait_still",
+      "status": "partially_bound",
+      "perEntity": {
+       "Latto": {
+        "count": 0,
+        "image": 0,
+        "video": 0,
+        "cutout": 0,
+        "examples": [],
+        "assertedYears": []
+       },
+       "Jay Rock": {
+        "count": 0,
+        "image": 0,
+        "video": 0,
+        "cutout": 0,
+        "examples": [],
+        "assertedYears": []
+       },
+       "Ab-Soul": {
+        "count": 1,
+        "image": 1,
+        "video": 0,
+        "cutout": 1,
+        "examples": [
+         {
+          "assetId": "f2543ad46f1a9ec63b633835",
+          "type": "image",
+          "dimensions": "1350x1687"
+         }
+        ],
+        "assertedYears": []
+       },
+       "Biz Markie": {
+        "count": 0,
+        "image": 0,
+        "video": 0,
+        "cutout": 0,
+        "examples": [],
+        "assertedYears": []
+       }
+      },
+      "artifacts": {},
+      "missing": [
+       "Biz Markie",
+       "Jay Rock",
+       "Latto"
+      ],
+      "note": null
+     }
+    ],
+    "evidenceSources": [
+     {
+      "roleId": "concentration_values",
+      "provenance": "unknown",
+      "sourceRef": "verified dataset, not yet bound",
+      "onScreenCredit": false
+     }
+    ],
+    "missingAssets": [
+     "Biz Markie",
+     "Jay Rock",
+     "Latto"
+    ],
+    "anyMissing": true,
+    "dataRolesOutstanding": [
+     "concentration_values"
+    ]
+   },
+   "slate": {
+    "slate": [
+     {
+      "kind": "infographic",
+      "templateId": "27_rank_context_panel",
+      "name": "Subject ranking with peer context",
+      "intents": [
+       "spotlight",
+       "rank",
+       "benchmark"
+      ],
+      "capacitySummary": "1 hero with 8 ranking fields; 3 peer callouts",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 4,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "A uniformly weighted four-subject chart"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.95,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 1
+     },
+     {
+      "kind": "infographic",
+      "templateId": "36_four_portrait_cards",
+      "name": "Four framed portrait values",
+      "intents": [
+       "compare",
+       "spotlight",
+       "key facts"
+      ],
+      "capacitySummary": "4 entities; 1 displayed value each",
+      "capacityFits": true,
+      "capacityRange": [
+       4,
+       4
+      ],
+      "designedForEntities": 4,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "A dense ranking",
+       "metric-driven portrait scaling"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.95,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 2
+     },
+     {
+      "kind": "infographic",
+      "templateId": "37_fullbody_impact_lineup",
+      "name": "Full-body lineup with context figure",
+      "intents": [
+       "comparison",
+       "sequence",
+       "spotlight"
+      ],
+      "capacitySummary": "6 full-body figures; first 5 have period and value labels; sixth is a context figure",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 6,
+      "showsPortraits": true,
+      "capacitySlack": 2,
+      "avoidWhen": [
+       "Six equally labeled numeric entries",
+       "interpreting body sizes as sales ratios"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.82,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.78,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 3
+     },
+     {
+      "kind": "infographic",
+      "templateId": "54_trade_package_panels",
+      "name": "Seven people-and-resources packages",
+      "intents": [
+       "composition",
+       "packages",
+       "compare"
+      ],
+      "capacitySummary": "7 packages; 7 hero portraits; 24 member portraits; 39 resource lines",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 7,
+      "showsPortraits": true,
+      "capacitySlack": 3,
+      "avoidWhen": [
+       "Assuming arrows establish real completed transactions",
+       "interchangeable panel capacities"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.73,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.69,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 4
+     }
+    ],
+    "viableCount": 33,
+    "spatialFirstDetail": {
+     "fired": false,
+     "terms": [],
+     "triggerSource": "none",
+     "ruleVersion": "1.1.0-local"
+    },
+    "ruleProvenance": {
+     "baseRuleCount": 10,
+     "activeCorrections": [
+      "COR-0001-spatial-attrition",
+      "COR-0002-citation-policy",
+      "COR-0003-era-consistency-gate",
+      "COR-0004-change-budget-is-a-hint",
+      "COR-0005-portrait-legibility",
+      "COR-0006-intent-scoring-and-overview-route",
+      "COR-0007-scene-level-distinctness",
+      "COR-0008-defects-found-by-extending",
+      "COR-0009-per-shot-selection",
+      "COR-0010-defects-found-at-thirty",
+      "COR-0011-motion-profiles-adopted",
+      "COR-0012-schedule-replacement-is-the-mechanism",
+      "COR-0013-passage-28-allowed-kinds",
+      "COR-0014-measurement-was-the-problem"
+     ],
+     "revertedCorrections": [],
+     "maximumScope": "project",
+     "writesToProject": false
+    },
+    "rejectedCount": 27,
+    "poolSize": 60,
+    "rejectedSample": [
+     {
+      "kind": "direct",
+      "templateId": "direct:archival_cut",
+      "name": "Archival or interview cut",
+      "carriesData": false,
+      "capacityFits": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Ground truth records presentation 'chart'; this container serves it poorly."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.38,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient"
+      ]
+     },
+     {
+      "kind": "infographic",
+      "templateId": "30_dense_rank_bars",
+      "name": "Compact portrait bar leaderboard",
+      "intents": [
+       "rank",
+       "magnitude",
+       "overview"
+      ],
+      "capacitySummary": "30 entities; 1 measure each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 26,
+      "avoidWhen": [
+       "A two-subject story",
+       "extensive text labels"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 4 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 4; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "23_portrait_scatter",
+      "name": "Dense portrait scatter",
+      "intents": [
+       "relationship",
+       "distribution",
+       "outliers"
+      ],
+      "capacitySummary": "30 entities; 2 numeric variables each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 26,
+      "avoidWhen": [
+       "A small roster",
+       "rank-only data",
+       "causal claims"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 4 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 4; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "53_lineup_rotation_columns",
+      "name": "Eight portrait columns with paired counts",
+      "intents": [
+       "compare",
+       "part to whole",
+       "overview"
+      ],
+      "capacitySummary": "8 entities; 2 numeric fields and 3 shared labels each",
+      "capacityFits": false,
+      "capacityRange": [
+       8,
+       8
+      ],
+      "designedForEntities": 8,
+      "showsPortraits": true,
+      "capacitySlack": 4,
+      "avoidWhen": [
+       "Treating the fixed colored panel height as a calculated share or percentage"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [8, 8] cannot hold 4 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.64,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "29_horizontal_media_bars",
+      "name": "Endpoint portraits on horizontal bars",
+      "intents": [
+       "magnitude",
+       "rank",
+       "comparison"
+      ],
+      "capacitySummary": "8 entities; 1 measure each",
+      "capacityFits": false,
+      "capacityRange": [
+       8,
+       8
+      ],
+      "designedForEntities": 8,
+      "showsPortraits": true,
+      "capacitySlack": 4,
+      "avoidWhen": [
+       "Negative quantities",
+       "many metrics per person"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [8, 8] cannot hold 4 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.64,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "asset_quality_sufficient",
+       "no_unsupported_implication",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "direct",
+      "templateId": "direct:evidence_hold",
+      "name": "Evidence hold with highlight",
+      "carriesData": false,
+      "capacityFits": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Ground truth records presentation 'chart'; this container serves it poorly."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "4 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.42,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient"
+      ]
+     }
+    ],
+    "spatialFirstApplied": false
+   }
+  }
+ ],
+ "contract": {
+  "contractId": "year-seventeen:P09",
+  "schemaVersion": 1,
+  "scriptRef": {
+   "scriptId": "year-seventeen",
+   "sectionId": "Several statistical examples",
+   "passageIndex": 9
+  },
+  "narration": {
+   "text": "Latto's biggest is half of everything she's ever streamed. Jay Rock's is fifty-two percent. Ab-Soul's, seventy-one. Biz Markie, seventy-nine.",
+   "measuredTranscript": "Lotto's biggest is half of everything she's ever streamed. J. Rocks is 52%. Absoles 71. Bizz Markey 79."
+  },
+  "timing": {
+   "timingSource": "measured_audio",
+   "audioStartSeconds": 141.22,
+   "audioEndSeconds": 152.32,
+   "audioDurationSeconds": 11.1,
+   "wordAlignmentCoverage": 0.4074,
+   "recordedShots": [
+    {
+     "shotId": "01",
+     "startSeconds": 141.22,
+     "endSeconds": 152.32,
+     "durationSeconds": 11.1,
+     "startsAt": "passage_start",
+     "endsAt": "passage_end"
+    }
+   ],
+   "acceptableDurationSeconds": {
+    "min": 11.1,
+    "target": 11.1,
+    "max": null,
+    "note": "Descriptive. Corpus median 9.0s, p75 14.0s. Never a cap: the evidence sets the length."
+   },
+   "durationPolicy": {
+    "mode": "elastic",
+    "evidenceMustComplete": true,
+    "narrationYields": false,
+    "extensionRequired": []
+   },
+   "minimumReadableHoldSeconds": 1.5,
+   "internalChangeBudget": {
+    "enforcement": "advisory_only",
+    "requiredChanges": 2,
+    "secondsPerChangeCeiling": 6.8,
+    "eventsAvailable": 4,
+    "satisfied": true,
+    "standingException": null,
+    "note": "Advisory. May suggest splitting a unit, but never rejects a candidate and never forces a split. Overridden whenever the content needs the time."
+   }
+  },
+  "takeaway": "For most rappers, one song carries half or more of everything they have ever streamed.",
+  "narrationJob": "compare",
+  "claims": [
+   {
+    "text": "Latto's biggest song is about half of her total streams.",
+    "claimClass": "quantity_or_statistic",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "verified per-artist concentration figures"
+    ]
+   },
+   {
+    "text": "Jay Rock's is 52 percent.",
+    "claimClass": "quantity_or_statistic",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "verified concentration figures"
+    ]
+   },
+   {
+    "text": "Ab-Soul's is 71 percent.",
+    "claimClass": "quantity_or_statistic",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "verified concentration figures"
+    ]
+   },
+   {
+    "text": "Biz Markie's is 79 percent.",
+    "claimClass": "quantity_or_statistic",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "verified concentration figures"
+    ]
+   }
+  ],
+  "strictestEvidenceObligation": "exact_source_required",
+  "entities": [
+   {
+    "name": "Latto",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "medium"
+   },
+   {
+    "name": "Jay Rock",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "high"
+   },
+   {
+    "name": "Ab-Soul",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "high"
+   },
+   {
+    "name": "Biz Markie",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "high"
+   }
+  ],
+  "focalEntityCount": 4,
+  "entityRelationship": "group_comparative",
+  "requiredMedia": [
+   {
+    "roleId": "concentration_values",
+    "editorialRole": "proof",
+    "mediaFamily": "data_or_number",
+    "sourceSpecificity": "exact_source_required",
+    "contentRequirement": "Verified share-of-catalog figures for each of the four named artists."
+   },
+   {
+    "roleId": "artist_portraits",
+    "editorialRole": "identity",
+    "mediaFamily": "portrait_still",
+    "sourceSpecificity": "exact_event_or_entity_required",
+    "contentRequirement": "Approved portraits of the four named artists. User ruling on this passage: the template choices were right and the artist assets were wrong for three of four.",
+    "entityNames": [
+     "Latto",
+     "Jay Rock",
+     "Ab-Soul",
+     "Biz Markie"
+    ]
+   }
+  ],
+  "visualEvents": [
+   {
+    "eventId": "E1",
+    "triggerPhrase": "Latto's biggest is half of everything",
+    "eventType": "value_change",
+    "criticality": "decisive",
+    "description": "Latto's share appears.",
+    "triggerOffsetSeconds": 0.46,
+    "measuredStartSeconds": 141.68,
+    "matchConfidence": 0.972,
+    "matchedTranscript": "Lotto's biggest is half of everything",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E2",
+    "triggerPhrase": "Jay Rock's is fifty-two percent",
+    "eventType": "value_change",
+    "criticality": "decisive",
+    "description": "Jay Rock's share appears.",
+    "triggerOffsetSeconds": 3.86,
+    "measuredStartSeconds": 145.08,
+    "matchConfidence": 0.903,
+    "matchedTranscript": "J. Rocks is 52%.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E3",
+    "triggerPhrase": "Ab-Soul's, seventy-one",
+    "eventType": "value_change",
+    "criticality": "decisive",
+    "description": "Ab-Soul's share appears.",
+    "triggerOffsetSeconds": 5.96,
+    "measuredStartSeconds": 147.18,
+    "matchConfidence": 0.857,
+    "matchedTranscript": "Absoles 71.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E4",
+    "triggerPhrase": "Biz Markie, seventy-nine",
+    "eventType": "value_change",
+    "criticality": "decisive",
+    "description": "Biz Markie's share appears.",
+    "triggerOffsetSeconds": 8.16,
+    "measuredStartSeconds": 149.38,
+    "matchConfidence": 0.889,
+    "matchedTranscript": "Bizz Markey 79.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   }
+  ],
+  "prohibitions": [
+   {
+    "prohibition": "Do not substitute a different artist for any of the four named.",
+    "reason": "User ruling on this passage: three of four artist assets were wrong and that was the recorded failure.",
+    "severity": "hard"
+   }
+  ],
+  "successConditions": [
+   "Each named artist is correctly identified beside their own figure."
+  ],
+  "failureConditions": [
+   "An artist is shown who is not the one named.",
+   "The shares are not comparable to one another."
+  ],
+  "readingLoad": "normal",
+  "scriptConflict": null,
+  "proposedDecomposition": null,
+  "groundTruth": {
+   "desired": "Repeatable artist-plus-catalog-distribution infographic",
+   "shots": "multiple",
+   "fallback": "review",
+   "allowedKinds": [
+    "infographic"
+   ],
+   "allowedTemplateIds": null,
+   "preferredTemplateIds": null,
+   "presentation": "chart"
+  },
+  "provenance": {
+   "createdBy": "astra prototype vertical slice",
+   "rulesetVersion": "0.2.0-prototype",
+   "authoredFields": [
+    "claims",
+    "entities",
+    "requiredMedia",
+    "visualEvents",
+    "prohibitions",
+    "successConditions",
+    "failureConditions"
+   ],
+   "measuredFields": [
+    "all timing values",
+    "event offsets"
+   ],
+   "humanReviewed": false
+  }
+ },
+ "binding": {
+  "bindings": [
+   {
+    "roleId": "concentration_values",
+    "attributionPolicy": "record_only",
+    "provenance": "unknown",
+    "sourceRef": "verified dataset, not yet bound",
+    "sourceCandidates": null,
+    "editorialRole": "proof",
+    "sourceSpecificity": "exact_source_required",
+    "mediaFamily": "data_or_number",
+    "status": "data_required",
+    "perEntity": {},
+    "artifacts": {},
+    "missing": [],
+    "note": "Values must come from the verified dataset, not the Media Library."
+   },
+   {
+    "roleId": "artist_portraits",
+    "attributionPolicy": "record_only",
+    "provenance": "media_library",
+    "sourceRef": "/Users/dwaynetoler/Media Library",
+    "sourceCandidates": null,
+    "editorialRole": "identity",
+    "sourceSpecificity": "exact_event_or_entity_required",
+    "mediaFamily": "portrait_still",
+    "status": "partially_bound",
+    "perEntity": {
+     "Latto": {
+      "count": 0,
+      "image": 0,
+      "video": 0,
+      "cutout": 0,
+      "examples": [],
+      "assertedYears": []
+     },
+     "Jay Rock": {
+      "count": 0,
+      "image": 0,
+      "video": 0,
+      "cutout": 0,
+      "examples": [],
+      "assertedYears": []
+     },
+     "Ab-Soul": {
+      "count": 1,
+      "image": 1,
+      "video": 0,
+      "cutout": 1,
+      "examples": [
+       {
+        "assetId": "f2543ad46f1a9ec63b633835",
+        "type": "image",
+        "dimensions": "1350x1687"
+       }
+      ],
+      "assertedYears": []
+     },
+     "Biz Markie": {
+      "count": 0,
+      "image": 0,
+      "video": 0,
+      "cutout": 0,
+      "examples": [],
+      "assertedYears": []
+     }
+    },
+    "artifacts": {},
+    "missing": [
+     "Biz Markie",
+     "Jay Rock",
+     "Latto"
+    ],
+    "note": null
+   }
+  ],
+  "evidenceSources": [
+   {
+    "roleId": "concentration_values",
+    "provenance": "unknown",
+    "sourceRef": "verified dataset, not yet bound",
+    "onScreenCredit": false
+   }
+  ],
+  "missingAssets": [
+   "Biz Markie",
+   "Jay Rock",
+   "Latto"
+  ],
+  "anyMissing": true,
+  "dataRolesOutstanding": [
+   "concentration_values"
+  ]
+ },
+ "slate": {
+  "slate": [
+   {
+    "kind": "infographic",
+    "templateId": "27_rank_context_panel",
+    "name": "Subject ranking with peer context",
+    "intents": [
+     "spotlight",
+     "rank",
+     "benchmark"
+    ],
+    "capacitySummary": "1 hero with 8 ranking fields; 3 peer callouts",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 4,
+    "showsPortraits": true,
+    "capacitySlack": 0,
+    "avoidWhen": [
+     "A uniformly weighted four-subject chart"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 1.0,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.95,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 1
+   },
+   {
+    "kind": "infographic",
+    "templateId": "36_four_portrait_cards",
+    "name": "Four framed portrait values",
+    "intents": [
+     "compare",
+     "spotlight",
+     "key facts"
+    ],
+    "capacitySummary": "4 entities; 1 displayed value each",
+    "capacityFits": true,
+    "capacityRange": [
+     4,
+     4
+    ],
+    "designedForEntities": 4,
+    "showsPortraits": true,
+    "capacitySlack": 0,
+    "avoidWhen": [
+     "A dense ranking",
+     "metric-driven portrait scaling"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 1.0,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.95,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 2
+   },
+   {
+    "kind": "infographic",
+    "templateId": "37_fullbody_impact_lineup",
+    "name": "Full-body lineup with context figure",
+    "intents": [
+     "comparison",
+     "sequence",
+     "spotlight"
+    ],
+    "capacitySummary": "6 full-body figures; first 5 have period and value labels; sixth is a context figure",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 6,
+    "showsPortraits": true,
+    "capacitySlack": 2,
+    "avoidWhen": [
+     "Six equally labeled numeric entries",
+     "interpreting body sizes as sales ratios"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.82,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.78,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 3
+   },
+   {
+    "kind": "infographic",
+    "templateId": "54_trade_package_panels",
+    "name": "Seven people-and-resources packages",
+    "intents": [
+     "composition",
+     "packages",
+     "compare"
+    ],
+    "capacitySummary": "7 packages; 7 hero portraits; 24 member portraits; 39 resource lines",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 7,
+    "showsPortraits": true,
+    "capacitySlack": 3,
+    "avoidWhen": [
+     "Assuming arrows establish real completed transactions",
+     "interchangeable panel capacities"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.73,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.69,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 4
+   }
+  ],
+  "viableCount": 33,
+  "spatialFirstDetail": {
+   "fired": false,
+   "terms": [],
+   "triggerSource": "none",
+   "ruleVersion": "1.1.0-local"
+  },
+  "ruleProvenance": {
+   "baseRuleCount": 10,
+   "activeCorrections": [
+    "COR-0001-spatial-attrition",
+    "COR-0002-citation-policy",
+    "COR-0003-era-consistency-gate",
+    "COR-0004-change-budget-is-a-hint",
+    "COR-0005-portrait-legibility",
+    "COR-0006-intent-scoring-and-overview-route",
+    "COR-0007-scene-level-distinctness",
+    "COR-0008-defects-found-by-extending",
+    "COR-0009-per-shot-selection",
+    "COR-0010-defects-found-at-thirty",
+    "COR-0011-motion-profiles-adopted",
+    "COR-0012-schedule-replacement-is-the-mechanism",
+    "COR-0013-passage-28-allowed-kinds",
+    "COR-0014-measurement-was-the-problem"
+   ],
+   "revertedCorrections": [],
+   "maximumScope": "project",
+   "writesToProject": false
+  },
+  "rejectedCount": 27,
+  "poolSize": 60,
+  "rejectedSample": [
+   {
+    "kind": "direct",
+    "templateId": "direct:archival_cut",
+    "name": "Archival or interview cut",
+    "carriesData": false,
+    "capacityFits": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Ground truth records presentation 'chart'; this container serves it poorly."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.38,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient"
+    ]
+   },
+   {
+    "kind": "infographic",
+    "templateId": "30_dense_rank_bars",
+    "name": "Compact portrait bar leaderboard",
+    "intents": [
+     "rank",
+     "magnitude",
+     "overview"
+    ],
+    "capacitySummary": "30 entities; 1 measure each",
+    "capacityFits": false,
+    "capacityRange": [
+     30,
+     30
+    ],
+    "designedForEntities": 30,
+    "showsPortraits": true,
+    "capacitySlack": 26,
+    "avoidWhen": [
+     "A two-subject story",
+     "extensive text labels"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [30, 30] cannot hold 4 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 30 but the passage has 4; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "23_portrait_scatter",
+    "name": "Dense portrait scatter",
+    "intents": [
+     "relationship",
+     "distribution",
+     "outliers"
+    ],
+    "capacitySummary": "30 entities; 2 numeric variables each",
+    "capacityFits": false,
+    "capacityRange": [
+     30,
+     30
+    ],
+    "designedForEntities": 30,
+    "showsPortraits": true,
+    "capacitySlack": 26,
+    "avoidWhen": [
+     "A small roster",
+     "rank-only data",
+     "causal claims"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [30, 30] cannot hold 4 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 30 but the passage has 4; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "53_lineup_rotation_columns",
+    "name": "Eight portrait columns with paired counts",
+    "intents": [
+     "compare",
+     "part to whole",
+     "overview"
+    ],
+    "capacitySummary": "8 entities; 2 numeric fields and 3 shared labels each",
+    "capacityFits": false,
+    "capacityRange": [
+     8,
+     8
+    ],
+    "designedForEntities": 8,
+    "showsPortraits": true,
+    "capacitySlack": 4,
+    "avoidWhen": [
+     "Treating the fixed colored panel height as a calculated share or percentage"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [8, 8] cannot hold 4 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.64,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "29_horizontal_media_bars",
+    "name": "Endpoint portraits on horizontal bars",
+    "intents": [
+     "magnitude",
+     "rank",
+     "comparison"
+    ],
+    "capacitySummary": "8 entities; 1 measure each",
+    "capacityFits": false,
+    "capacityRange": [
+     8,
+     8
+    ],
+    "designedForEntities": 8,
+    "showsPortraits": true,
+    "capacitySlack": 4,
+    "avoidWhen": [
+     "Negative quantities",
+     "many metrics per person"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [8, 8] cannot hold 4 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "portraitFit": 0.64,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "asset_quality_sufficient",
+     "no_unsupported_implication",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "4 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "direct",
+    "templateId": "direct:evidence_hold",
+    "name": "Evidence hold with highlight",
+    "carriesData": false,
+    "capacityFits": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Ground truth records presentation 'chart'; this container serves it poorly."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Biz Markie', 'Jay Rock', 'Latto']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "4 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.42,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient"
+    ]
+   }
+  ],
+  "spatialFirstApplied": false
+ },
+ "decision": {
+  "action": "blocked_missing_assets",
+  "winnerRank": 1,
+  "confidence": {
+   "value": null,
+   "method": "uncalibrated_prior",
+   "calibrationSampleSize": 0,
+   "note": "Auto-advance disabled by policy until calibrated against approved and rejected decisions."
+  },
+  "escalationTriggers": [
+   "assets_missing",
+   "candidates_close",
+   "evidence_insufficient",
+   "low_confidence"
+  ],
+  "reasons": [
+   "Unbound: Biz Markie, Jay Rock, Latto.",
+   "Verified values still required for: concentration_values.",
+   "Top two candidates are tied on every priority level.",
+   "Winner has unresolved gates: asset_quality_sufficient, no_unsupported_implication, schedule_replacement_unproven."
+  ],
+  "shotCount": 1
+ },
+ "groundTruthCheck": {
+  "desired": "Repeatable artist-plus-catalog-distribution infographic",
+  "desiredInSlate": true,
+  "desiredAtRank": 2,
+  "recordedFallback": "review"
+ }
+}

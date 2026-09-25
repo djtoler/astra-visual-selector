@@ -1,0 +1,222 @@
+<title>Shot List Review</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#12171d;--ink-2:#414d5a;--ink-3:#6b7885;--line:#dbe1e7;
+  --bg:#f4f6f8;--card:#fff;--raise:#eef1f4;--accent:#0f5c6b;
+  --yes:#1c6b4a;--yes-bg:#e2f2ea;--no:#9a3327;--no-bg:#fae7e3;
+  --warn:#8a5a10;--warn-bg:#f8eeda;--on-accent:#fff;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--yes-bg:#10301f;--no:#ee9084;--no-bg:#361a17;
+  --warn:#e0b163;--warn-bg:#332715;--on-accent:#08141a;}}
+:root[data-theme="dark"]{
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--yes-bg:#10301f;--no:#ee9084;--no-bg:#361a17;
+  --warn:#e0b163;--warn-bg:#332715;--on-accent:#08141a;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;margin:0}
+.wrap{max-width:1280px;margin:0 auto;padding:16px;padding-block:26px 70px}
+h1{font-size:clamp(1.35rem,3vw,1.8rem);font-weight:700;letter-spacing:-.02em;margin:0 0 5px}
+.sub{color:var(--ink-2);max-width:62ch;margin:0}
+.bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:14px 0 4px}
+.chip{font-family:var(--mono);font-size:.7rem;padding:4px 9px;border-radius:5px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink-2);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.count{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);margin-left:auto}
+.status{font-family:var(--mono);font-size:.7rem;color:var(--ink-3);margin-top:2px}
+
+.grid{display:grid;gap:13px;margin-top:16px;grid-template-columns:1fr}
+@media(min-width:620px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+.c{background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden;
+  display:flex;flex-direction:column;transition:border-color .12s}
+.c.judged-right{border-color:var(--yes)}
+.c.judged-wrong{border-color:var(--no)}
+.c.judged-maybe{border-color:var(--accent)}
+.c.nobind{border-color:var(--no)}
+.pv{position:relative;background:#000}
+.pv img,.pv video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.pv .none{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:var(--no-bg);
+  color:var(--no);font-family:var(--mono);font-size:.72rem;text-align:center;padding:16px}
+.pv .cmp{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:var(--warn-bg);
+  color:var(--warn);font-family:var(--mono);font-size:.72rem;text-align:center;padding:16px}
+.tag{position:absolute;top:7px;font-family:var(--mono);font-size:.6rem;padding:2px 6px;border-radius:3px;
+  background:rgba(12,18,24,.82);color:#e6ebf0}
+.tag.l{left:7px} .tag.r{right:7px;background:var(--warn);color:#1a1205}
+.body{padding:10px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.top{display:flex;gap:7px;align-items:baseline}
+.id{font-family:var(--mono);font-size:.72rem;color:var(--accent);font-weight:600}
+.dur{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);margin-left:auto}
+.job{font-family:var(--mono);font-size:.64rem;background:var(--raise);padding:2px 6px;border-radius:3px;color:var(--ink-2)}
+.q{font-size:.83rem;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tn{font-family:var(--mono);font-size:.65rem;color:var(--ink-3);word-break:break-word}
+.acts{display:flex;gap:4px;padding:9px 12px;border-top:1px solid var(--line);background:var(--bg)}
+.b{flex:1;font-family:var(--mono);font-size:.68rem;font-weight:600;padding:6px 3px;border-radius:5px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer}
+.b:hover{border-color:var(--accent)}
+.b[aria-pressed="true"][data-v="right"]{background:var(--yes);border-color:var(--yes);color:var(--on-accent)}
+.b[aria-pressed="true"][data-v="wrong"]{background:var(--no);border-color:var(--no);color:var(--on-accent)}
+.b[aria-pressed="true"][data-v="maybe"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.more{flex:0 0 auto;padding:6px 10px}
+.hasnote{position:absolute;bottom:7px;right:7px;font-size:.62rem;font-family:var(--mono);
+  background:var(--accent);color:var(--on-accent);padding:1px 5px;border-radius:3px}
+
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);
+  max-width:720px;width:calc(100% - 32px);padding:0}
+dialog::backdrop{background:rgba(6,10,14,.6)}
+.dh{padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+.db{padding:14px 18px;display:flex;flex-direction:column;gap:9px;max-height:56vh;overflow:auto}
+.f{font-size:.85rem;color:var(--ink-2)}
+.f b{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--ink-3);display:block;margin-bottom:1px;font-weight:600}
+.f.lie b{color:var(--no)}
+.cond{background:var(--warn-bg);border:1px solid var(--warn);color:var(--warn);border-radius:6px;padding:9px 11px;font-size:.81rem}
+.alts span{display:inline-block;font-family:var(--mono);font-size:.66rem;background:var(--raise);
+  padding:2px 7px;border-radius:3px;margin:2px 4px 0 0;color:var(--ink-2)}
+blockquote{margin:0;padding:10px 13px;background:var(--raise);border-left:3px solid var(--accent);
+  border-radius:0 6px 6px 0;font-size:.93rem;color:var(--ink-2)}
+textarea{width:100%;font-family:var(--sans);font-size:.85rem;color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:6px;padding:8px 10px;resize:vertical;min-height:60px}
+.df{padding:12px 18px;border-top:1px solid var(--line);display:flex;gap:5px;background:var(--bg)}
+.x{margin-left:auto;flex:0 0 auto;padding:6px 14px}
+textarea:focus,.b:focus-visible,.chip:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+</style>
+
+<div class="wrap">
+<h1>Shot List Review</h1>
+<p class="sub">Forty shots from the thirty-passage sample. Judge each from the card, or open it for the full requirements and alternates.</p>
+<div class="bar" id="filters"></div>
+<div class="status" id="status">Loading&hellip;</div>
+<div class="grid" id="grid"></div>
+</div>
+
+<dialog id="dlg"><div class="dh" id="dh"></div><div class="db" id="dbody"></div>
+<div class="df" id="dfoot"></div></dialog>
+
+<script>
+const V=[["right","Right"],["maybe","Maybe"],["wrong","Wrong"]];
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=s=>s==null?"—":`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;
+let db=null,state={},D=null,filter="all",open_=null;
+const key=x=>`${x.passage}-${x.beat}`;
+
+function pv(x){
+  if(!x.treatment) return `<div class="none">no treatment<br>for ${esc(x.job)}</div>`;
+  if(x.treatment.startsWith("COMPOUND")) return `<div class="cmp">two templates<br>in sequence</div>`;
+  const m=D.meta[x.treatment]||{};
+  return m.hasClip
+    ? `<video src="media/${encodeURIComponent(x.treatment)}.mp4" poster="thumbs/${encodeURIComponent(x.treatment)}.jpg"
+         controls muted loop playsinline preload="none"></video>`
+    : `<img src="thumbs/${encodeURIComponent(x.treatment)}.jpg" alt="" loading="lazy">
+       <span class="tag l">still</span>`;
+}
+function shown(){
+  return D.shots.filter(x=>{
+    const v=(state[key(x)]||{}).v;
+    if(filter==="all") return true;
+    if(filter==="todo") return !v;
+    if(filter==="cond") return !!x.condition;
+    if(filter==="nobind") return !x.treatment;
+    return v===filter;
+  });
+}
+function render(){
+  const all=D.shots, done=all.filter(x=>(state[key(x)]||{}).v).length;
+  const F=[["all","All "+all.length],["todo","To judge"],["cond","Conditional"],
+           ["nobind","Unbound"],["right","Right"],["maybe","Maybe"],["wrong","Wrong"]];
+  document.getElementById("filters").innerHTML=
+    F.map(([k,l])=>`<button class="chip" data-f="${k}" aria-pressed="${filter===k}">${l}</button>`).join("")
+    +`<span class="count">${done}/${all.length} judged</span>`;
+  document.getElementById("grid").innerHTML=shown().map(x=>{
+    const k=key(x), st=state[k]||{};
+    return `<article class="c ${st.v?"judged-"+st.v:""} ${x.treatment?"":"nobind"}">
+      <div class="pv">${pv(x)}${x.condition?'<span class="tag r">condition</span>':""}
+        ${st.note?'<span class="hasnote">note</span>':""}</div>
+      <div class="body">
+        <div class="top"><span class="id">${esc(x.passage)}.${esc(x.beat)}</span>
+          <span class="job">${esc(x.job)}</span>
+          <span class="dur">${fmt(x.start)} · ${x.duration??"—"}s</span></div>
+        <div class="q">${esc(x.quote)}</div>
+        ${x.treatmentName?`<div class="tn">${esc(x.treatmentName)}</div>`:""}
+      </div>
+      <div class="acts">
+        ${V.map(([v,l])=>`<button class="b" data-k="${k}" data-v="${v}" aria-pressed="${st.v===v}">${l}</button>`).join("")}
+        <button class="b more" data-open="${k}">&hellip;</button>
+      </div></article>`;}).join("")
+    || `<p class="sub">Nothing matches this filter.</p>`;
+}
+function field(l,v,c){
+  if(!v||(Array.isArray(v)&&!v.length)) return "";
+  return `<div class="f ${c||""}"><b>${l}</b>${esc(Array.isArray(v)?v.join(" · "):v)}</div>`;
+}
+function openCard(k){
+  const x=D.shots.find(s=>key(s)===k); if(!x) return;
+  open_=k; const st=state[k]||{}, m=D.meta[x.treatment]||{};
+  const alts=(D.alternates[x.job]||[]).filter(a=>a.id!==x.treatment);
+  document.getElementById("dh").innerHTML=
+    `<div class="top"><span class="id">${esc(x.passage)}.${esc(x.beat)}</span>
+      <span class="job">${esc(x.job)}</span>
+      <span class="dur">${fmt(x.start)}–${fmt(x.end)} · ${x.duration??"—"}s</span></div>
+     <div class="tn" style="margin-top:5px">${esc(x.treatment||"no treatment bound")} ${x.treatmentName?"· "+esc(x.treatmentName):""}</div>`;
+  document.getElementById("dbody").innerHTML=
+    `<blockquote>${esc(x.quote)}</blockquote>`
+    + field("Takeaway",x.takeaway) + field("Must be true",x.mustBeTrue)
+    + field("Must be perceptible",x.mustBePerceptible)
+    + field("Would be a lie",x.wouldBeALie,"lie") + field("Unstated",x.unstated)
+    + (x.condition?`<div class="cond"><b>Condition</b> ${esc(x.condition)}</div>`:"")
+    + field("Template use when",m.useWhen) + field("Template avoid when",m.avoidWhen)
+    + field("Style policy",m.style)
+    + (m.nativeVerified===false?field("Native controls","not verified"):"")
+    + (alts.length?`<div class="f"><b>Alternates for this job</b><div class="alts">${
+        alts.map(a=>`<span>${esc(a.id)}</span>`).join("")}</div></div>`:"")
+    + `<div class="f"><b>Note</b><textarea id="note" placeholder="What should it be instead?">${esc(st.note||"")}</textarea></div>`;
+  document.getElementById("dfoot").innerHTML=
+    V.map(([v,l])=>`<button class="b" data-k="${k}" data-v="${v}" aria-pressed="${st.v===v}">${l}</button>`).join("")
+    +`<button class="b x" id="close">Close</button>`;
+  document.getElementById("dlg").showModal();
+}
+const setS=t=>document.getElementById("status").textContent=t;
+const q={};
+function save(k){
+  if(!db) return;
+  const body={...state[k],updatedAt:new Date().toISOString()};
+  q[k]=(q[k]||Promise.resolve()).then(()=>db.doc("shots/"+k).set(body)
+    .then(()=>setS("Saved "+new Date().toLocaleTimeString()))
+    .catch(e=>setS("Not saved: "+(e?.code||"error"))));
+}
+let t=null;
+document.addEventListener("click",e=>{
+  const f=e.target.closest(".chip");
+  if(f){ filter=f.dataset.f; render(); return; }
+  const o=e.target.closest("[data-open]");
+  if(o){ openCard(o.dataset.open); return; }
+  if(e.target.id==="close"){ document.getElementById("dlg").close(); return; }
+  const b=e.target.closest(".b[data-v]");
+  if(b){
+    const {k,v}=b.dataset; state[k]=state[k]||{};
+    state[k].v = state[k].v===v ? "" : v;
+    save(k); render();
+    if(open_===k) openCard(k);
+  }
+});
+document.addEventListener("input",e=>{
+  if(e.target.id!=="note"||!open_) return;
+  state[open_]=state[open_]||{}; state[open_].note=e.target.value;
+  const k=open_; clearTimeout(t); t=setTimeout(()=>{save(k);render();},700);
+});
+document.getElementById("dlg").addEventListener("close",()=>{open_=null;});
+
+fetch("data.json").then(r=>r.json()).then(async d=>{
+  D=d; render();
+  db=await claude.use("db");
+  if(!db){setS("Feedback cannot be saved in this view.");return;}
+  try{
+    const snap=await db.collection("shots").get();
+    snap.docs.forEach(x=>state[x.id]=x.data());
+    render(); setS(snap.empty?"Ready.":"Loaded saved review.");
+  }catch(e){setS("Could not load: "+(e?.code||"error"));}
+}).catch(()=>setS("Could not load the shot list."));
+</script>

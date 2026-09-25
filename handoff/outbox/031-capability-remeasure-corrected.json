@@ -1,0 +1,843 @@
+{
+  "purpose": "Re-measure under the changed prompt, plus everything unmeasured.",
+  "prompt": "/Users/dwaynetoler/timeline/prompts/PROMPT-describe-clip.md",
+  "promptSha256": "a975db1726970f73e779920edb04b4ab2939dfeb2c53e0a6232c52943c90b8de",
+  "previousPromptSha256": "d58028d6ad18e58aa0d6b5fcf7a8075a82e33da191af2bff71262e97c66b09b3",
+  "whatChanged": "`readable` gained `label` and `statement`. Every previous value was a DATA relation read from text, so a template whose whole purpose is putting a sentence on screen had nothing to claim and correctly returned `none`. The model was right; the vocabulary was wrong. `label` = a short name or title, the text says WHO or WHAT. `statement` = a phrase or sentence read as a claim, question, rule or definition.",
+  "model": "gemini-3.8-flash",
+  "IMPORTANT_provisional": "9 records carry source:\"claude-visual\", provisional:true. Claude read them from 4fps frame grids at the user's explicit direction because this run had not happened yet. THEY ARE NOT MEASUREMENTS and your result replaces them outright \u2014 do not treat them as a prior, do not try to agree with them. If your reading differs, yours is the one that counts.",
+  "IMPORTANT_userIntent": "Some entries carry `userIntentDoNotUse` \u2014 the user's label for the pack: OVERLAP, DERIVATION, LISTS, BAR CHART OPTION. It records what they REACHED FOR the pack to do and is NOT evidence. Four `carries` values are at or near zero across the corpus and eight beats demand them, so there is real pressure to find them. Do not find them because a label says so. A clip that does not carry `overlap` must come back without it \u2014 one pack labelled OVERLAP already turned out to carry share_of_whole instead.",
+  "removedFromScope": {
+    "why": "Ids present in capability.json but NOT in set(C.load()) | set(C.local_pending()). The user removed these records from the corpus; their capability records remain as history and must never be re-bought. Excluded at build time \u2014 your 030 preflight caught this when it was not.",
+    "count": 7,
+    "ids": [
+      "text-list-carousel--review-001",
+      "text-list-carousel--review-004",
+      "text-list-carousel--review-005",
+      "text-list-carousel--review-007",
+      "text-list-carousel--review-008",
+      "text-list-carousel--review-009",
+      "text-list-carousel--review-010"
+    ]
+  },
+  "deliverTo": "/Users/dwaynetoler/timeline/handoff/inbox/",
+  "ingest": "python3 pipeline/ingest_capability.py <file> --write",
+  "costNote": "~$1.69 at the measured round-2 rate, 145 clips.",
+  "pngOnly": {
+    "why": "No clip \u2014 a PNG preview only, which the video pass cannot see. Flagged, not dropped.",
+    "count": 4,
+    "records": [
+      {
+        "id": "catalog-gap-clean",
+        "preview": "/approved/previews/cinematic-3d/catalog-gap-clean.png",
+        "why": "new: calibrated spatial layout"
+      },
+      {
+        "id": "hologram-stage",
+        "preview": "/approved/previews/cinematic-3d/hologram-stage.png",
+        "why": "new: calibrated spatial layout"
+      },
+      {
+        "id": "kendrick-red-stage-clean",
+        "preview": "/approved/previews/cinematic-3d/kendrick-red-stage-clean.png",
+        "why": "new: calibrated spatial layout"
+      },
+      {
+        "id": "topographic-cloud",
+        "preview": "/approved/previews/cinematic-3d/topographic-cloud.png",
+        "why": "new: calibrated spatial layout"
+      }
+    ]
+  },
+  "cannotRun": {
+    "count": 46,
+    "why": "unrendered infographics",
+    "ids": [
+      "06_historical_winners_table",
+      "07_labeled_outlier_scatter",
+      "08_yearly_leader_timeline",
+      "09_artist_field_grid",
+      "10_two_era_rankings",
+      "11_defensive_numbers",
+      "14_quote_score_columns",
+      "16_ranked_table_and_bars",
+      "17_awards_height_board",
+      "18_cutout_intro",
+      "20_prime_portrait_cards",
+      "22_single_measurement",
+      "23_portrait_scatter",
+      "24_dense_vertical_bars",
+      "25_career_value_list",
+      "26_mirrored_stat_compare",
+      "27_rank_context_panel",
+      "28_stat_profile_cards",
+      "30_dense_rank_bars",
+      "31_greatest_team_scatter",
+      "32_record_height_bars",
+      "34_superteam_bar_compare",
+      "35_shooting_portrait_matrix",
+      "36_four_portrait_cards",
+      "37_fullbody_impact_lineup",
+      "38_matchup_win_list",
+      "39_five_player_impact",
+      "40_two_era_fullbody_compare",
+      "41_five_value_headshots",
+      "42_playoff_rank_grid",
+      "43_successor_tier_grid",
+      "44_three_metric_tables",
+      "45_two_metric_tables",
+      "46_similarity_criteria_table",
+      "47_similarity_ascending_bars",
+      "48_playoff_path_summary",
+      "49_similarity_final_results",
+      "50_championship_odds_history",
+      "51_debut_leaderboard",
+      "52_rookie_record_columns",
+      "53_lineup_rotation_columns",
+      "54_trade_package_panels",
+      "55_best_vs_value",
+      "56_seven_artist_stat_lineup",
+      "57_three_playoff_run_cards",
+      "58_big_three_stat_rows"
+    ]
+  },
+  "count": 145,
+  "clips": [
+    {
+      "id": "02-documentary-promo--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "02-documentary-promo--scene-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "02-documentary-promo--scene-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "02-documentary-promo--scene-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "02-documentary-promo--scene-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-008.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "03-history-documentary-10-slides--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "03-history-documentary-10-slides--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "03-history-documentary-10-slides--scene-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "03-history-documentary-10-slides--scene-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "03-history-documentary-10-slides--scene-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-007.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "03-history-documentary-10-slides--scene-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-008.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "04-history-documentary-20-slides--scene-010",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-010.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "04-history-documentary-20-slides--scene-011",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-011.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "04-history-documentary-20-slides--scene-013",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-013.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "04-history-documentary-20-slides--scene-014",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-014.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "04-history-documentary-20-slides--scene-016",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-016.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "04-history-documentary-20-slides--scene-017",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-017.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "06-the-history--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "06-the-history--scene-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "06-the-history--scene-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-009.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "07-history-slideshow--scene-018",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-018.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "08-documentary-slideshow--scene-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "08-documentary-slideshow--scene-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "08-documentary-slideshow--scene-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "08-documentary-slideshow--scene-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "08-documentary-slideshow--scene-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-007.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "3d-pie-chart-set--scene-001",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/3d-pie-chart-set--scene-001.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "OVERLAP"
+    },
+    {
+      "id": "3d-pie-chart-set--scene-002",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/3d-pie-chart-set--scene-002.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "OVERLAP"
+    },
+    {
+      "id": "3d-pie-chart-set--scene-003",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/3d-pie-chart-set--scene-003.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "OVERLAP"
+    },
+    {
+      "id": "3d-pie-chart-set--scene-004",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/3d-pie-chart-set--scene-004.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "OVERLAP"
+    },
+    {
+      "id": "3dz-charts--scene-001",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/3dz-charts--scene-001.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "BAR CHART OPTION"
+    },
+    {
+      "id": "3dz-charts--scene-002",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/3dz-charts--scene-002.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "BAR CHART OPTION"
+    },
+    {
+      "id": "3dz-charts--scene-003",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/3dz-charts--scene-003.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "BAR CHART OPTION"
+    },
+    {
+      "id": "ai-flowchart--scene-001",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/ai-flowchart--scene-001.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "DERIVATION"
+    },
+    {
+      "id": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc/clips/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-carousel-galleries-loop-animation-2--review-v2-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-galleries-loop-animation-2/clips/archive3-carousel-galleries-loop-animation-2--review-v2-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-carousel-galleries-loop-animation-2--review-v2-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-galleries-loop-animation-2/clips/archive3-carousel-galleries-loop-animation-2--review-v2-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-carousel-galleries-loop-animation-2--review-v2-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-galleries-loop-animation-2/clips/archive3-carousel-galleries-loop-animation-2--review-v2-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-carousel-galleries-loop-animation-2--review-v2-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-galleries-loop-animation-2/clips/archive3-carousel-galleries-loop-animation-2--review-v2-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc/clips/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc/clips/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc/clips/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-007.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-008.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-009.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-010",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-010.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-011",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-011.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-012",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-012.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-013",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-013.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-photo-slideshow-final--review-014",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-photo-slideshow-final/clips/archive3-photo-slideshow-final--review-014.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-001",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-001.mp4",
+      "why": "new: user-specified span"
+    },
+    {
+      "id": "archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-002",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-002.mp4",
+      "why": "new: user-specified span"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-007.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-008.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-009.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-010",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-010.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-011",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc/clips/archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-011.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "base-single-billboard",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/hero-comparison-template/renders/hero-comparison-five-heads-89-double-billboard-green-carousel.mp4",
+      "why": "never measured"
+    },
+    {
+      "id": "carousel--review-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/carousel/clips/carousel--review-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "carousel--review-017",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/carousel/clips/carousel--review-017.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "carousel-slideshow--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/carousel-slideshow/clips/carousel-slideshow--review-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "carousel-slideshow--review-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/carousel-slideshow/clips/carousel-slideshow--review-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "circle-list-infographic--scene-001",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/circle-list-infographic--scene-001.mp4",
+      "why": "re-measure: provisional, read by Claude not measured",
+      "userIntentDoNotUse": "LISTS"
+    },
+    {
+      "id": "glass-lower-thirds--scene-001",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/glass-lower-thirds--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "grunge-lower-thirds--scene-001",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/grunge-lower-thirds--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "grunge-lower-thirds--scene-002",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/grunge-lower-thirds--scene-002.mp4",
+      "why": "new: user-specified span"
+    },
+    {
+      "id": "grunge-lower-thirds--scene-003",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/grunge-lower-thirds--scene-003.mp4",
+      "why": "new: user-specified span"
+    },
+    {
+      "id": "history-slideshow-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-011",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-011.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-012",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-012.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-013",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-013.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-014",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-014.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-013",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-013.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-040",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-040.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-045",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-045.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "memories-photo-slideshow-creative-slides-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "memories-photo-slideshow-creative-slides-envato--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "memories-photo-slideshow-creative-slides-envato--scene-015",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-015.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-007.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-008.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-009.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-010",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-010.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-011a",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-011a.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-011b",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-011b.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "modern-photo-slideshow-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "modern-photo-slideshow-envato--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "modern-photo-slideshow-envato--scene-016",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-016.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "paper-lower-thirds--scene-001",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/paper-lower-thirds--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "paper-lower-thirds--scene-002",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/paper-lower-thirds--scene-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "paper-lower-thirds--scene-003",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/paper-lower-thirds--scene-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "paper-lower-thirds--scene-004",
+      "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/paper-lower-thirds--scene-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "photo-slideshow-memories-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-memories-envato/photo-slideshow-memories-envato--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "photo-slideshow-memories-envato--scene-010",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-memories-envato/photo-slideshow-memories-envato--scene-010.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-016",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-016.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "screen-mockup-rfx--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/screen-mockup-rfx/clips/screen-mockup-rfx--review-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "screen-mockup-rfx--review-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/screen-mockup-rfx/clips/screen-mockup-rfx--review-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "screen-mockup-rfx--review-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/screen-mockup-rfx/clips/screen-mockup-rfx--review-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "screen-mockup-rfx--review-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/screen-mockup-rfx/clips/screen-mockup-rfx--review-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "screen-mockup-rfx--review-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/screen-mockup-rfx/clips/screen-mockup-rfx--review-007.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "screen-mockup-rfx--review-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/screen-mockup-rfx/clips/screen-mockup-rfx--review-008.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-007.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-008.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-009.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "scrolling-screen--review-011",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scrolling-screen/clips/scrolling-screen--review-011.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-001.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-004.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-005.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-006.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-007.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-008.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "story-on-photo-slideshow-envato--scene-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-009.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "text-list-carousel--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-002.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "text-list-carousel--review-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-003.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "two-floors",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/cinematic-scatter/previews/clips/truth-two-floors-convergence.mp4",
+      "why": "new: user pack (OVERLAP)",
+      "userIntentDoNotUse": "OVERLAP",
+      "profile": "/Users/dwaynetoler/Documents/ChatGPT/Polish/cinematic-scatter/profiles/truthful-scene-profiles.json"
+    }
+  ]
+}

@@ -1,0 +1,1339 @@
+{
+ "ruleProvenance": {
+  "baseRuleCount": 10,
+  "activeCorrections": [
+   "COR-0001-spatial-attrition",
+   "COR-0002-citation-policy",
+   "COR-0003-era-consistency-gate",
+   "COR-0004-change-budget-is-a-hint",
+   "COR-0005-portrait-legibility",
+   "COR-0006-intent-scoring-and-overview-route",
+   "COR-0007-scene-level-distinctness",
+   "COR-0008-defects-found-by-extending",
+   "COR-0009-per-shot-selection",
+   "COR-0010-defects-found-at-thirty",
+   "COR-0011-motion-profiles-adopted",
+   "COR-0012-schedule-replacement-is-the-mechanism",
+   "COR-0013-passage-28-allowed-kinds",
+   "COR-0014-measurement-was-the-problem"
+  ],
+  "revertedCorrections": [],
+  "maximumScope": "project",
+  "writesToProject": false
+ },
+ "shots": [
+  {
+   "shotId": "01",
+   "boundary": "measured",
+   "focalEntityCount": 1,
+   "durationSeconds": 20.89,
+   "events": [
+    "E1",
+    "E2",
+    "E3"
+   ],
+   "binding": {
+    "bindings": [
+     {
+      "roleId": "song_2015_footage",
+      "attributionPolicy": "record_only",
+      "provenance": "media_library",
+      "sourceRef": "/Users/dwaynetoler/Media Library",
+      "sourceCandidates": null,
+      "editorialRole": "subject",
+      "sourceSpecificity": "exact_event_or_entity_required",
+      "mediaFamily": "performance",
+      "status": "bound_local",
+      "perEntity": {
+       "Drake": {
+        "count": 242,
+        "image": 182,
+        "video": 60,
+        "cutout": 66,
+        "examples": [
+         {
+          "assetId": "003b7b8f34cc7276ca587182",
+          "type": "image",
+          "dimensions": "640x853"
+         },
+         {
+          "assetId": "012059fcdedfae43731cfa00",
+          "type": "image",
+          "dimensions": "640x801"
+         },
+         {
+          "assetId": "02fcf40be8477dbac2d6ad87",
+          "type": "video",
+          "dimensions": "720x720"
+         }
+        ],
+        "assertedYears": [
+         "2014",
+         "2015",
+         "2016",
+         "2017",
+         "2018",
+         "2019",
+         "2024",
+         "2025",
+         "2026"
+        ]
+       }
+      },
+      "artifacts": {},
+      "missing": [],
+      "note": null
+     },
+     {
+      "roleId": "hypothesis_text",
+      "attributionPolicy": "record_only",
+      "provenance": "generated",
+      "sourceRef": "authored from the documentary's own stated rule",
+      "sourceCandidates": null,
+      "editorialRole": "context",
+      "sourceSpecificity": "exact_source_required",
+      "mediaFamily": "motion_graphic",
+      "status": "generated_or_authored",
+      "perEntity": {},
+      "artifacts": {},
+      "missing": [],
+      "note": null
+     }
+    ],
+    "evidenceSources": [],
+    "missingAssets": [],
+    "anyMissing": false,
+    "dataRolesOutstanding": []
+   },
+   "slate": {
+    "slate": [
+     {
+      "kind": "after_effects",
+      "templateId": "02-documentary-promo",
+      "sceneId": "02-documentary-promo--scene-002",
+      "name": "Documentary Promo \u00b7 Scene 02",
+      "function": "entity explanation",
+      "focalEntityCount": null,
+      "nativeDurationSeconds": 3.6,
+      "retimeAllowed": true,
+      "acceptedMedia": [
+       "image",
+       "video"
+      ],
+      "appropriateNarration": null,
+      "avoidWhen": [],
+      "acceptedMediaTypes": [
+       "image",
+       "video"
+      ],
+      "hasProfile": true,
+      "documentaryRoles": {
+       "primary": [
+        "introduce",
+        "evidence",
+        "transition"
+       ],
+       "secondary": [
+        "reveal",
+        "context",
+        "quote",
+        "close"
+       ],
+       "weak": [
+        "represent_while_discussed"
+       ],
+       "notSupported": []
+      },
+      "usableReadingTimeSeconds": 3.23,
+      "usableReadingTimeMin": 2.22,
+      "stylePace": "Fast. Nine scenes in 31 seconds, most 2.5-4.0s.",
+      "styleDensity": "High. Several text blocks can be on screen simultaneously alongside a subject.",
+      "narrationSuitability": "limited",
+      "capacityFits": true,
+      "carriesData": false,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Obligation is below exact-source."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Profile measures 3.23s usable reading time against a 2.0s requirement."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "Bound assets assert a year inside the constraint."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "decisive_events_alignable",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 1
+     },
+     {
+      "kind": "after_effects",
+      "templateId": "03-history-documentary-10-slides",
+      "sceneId": "03-history-documentary-10-slides--scene-001",
+      "name": "History and Documentary \u2014 10 slides \u00b7 Scene 1",
+      "function": "entity reveal",
+      "focalEntityCount": null,
+      "nativeDurationSeconds": 9.37,
+      "retimeAllowed": true,
+      "acceptedMedia": [
+       "image",
+       "video"
+      ],
+      "appropriateNarration": null,
+      "avoidWhen": [],
+      "acceptedMediaTypes": [
+       "image",
+       "video"
+      ],
+      "hasProfile": true,
+      "documentaryRoles": {
+       "primary": [
+        "represent_while_discussed",
+        "context",
+        "introduce"
+       ],
+       "secondary": [
+        "reveal",
+        "transition",
+        "close"
+       ],
+       "weak": [
+        "evidence",
+        "quote"
+       ],
+       "notSupported": []
+      },
+      "usableReadingTimeSeconds": 8.57,
+      "usableReadingTimeMin": 5.97,
+      "stylePace": "Measured. Slides run 6.6-9.8 seconds with 6-9 seconds of settled core.",
+      "styleDensity": "Moderate. One subject plate plus a three-part text lockup, or one large year.",
+      "narrationSuitability": "excellent",
+      "capacityFits": true,
+      "carriesData": false,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Obligation is below exact-source."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Profile measures 8.57s usable reading time against a 2.0s requirement."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "Bound assets assert a year inside the constraint."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "decisive_events_alignable",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 2
+     },
+     {
+      "kind": "after_effects",
+      "templateId": "04-history-documentary-20-slides",
+      "sceneId": "04-history-documentary-20-slides--scene-016",
+      "name": "History and Documentary \u2014 20 slides \u00b7 Scene 16",
+      "function": "entity reveal",
+      "focalEntityCount": null,
+      "nativeDurationSeconds": 8.2,
+      "retimeAllowed": true,
+      "acceptedMedia": [
+       "image",
+       "video"
+      ],
+      "appropriateNarration": null,
+      "avoidWhen": [],
+      "acceptedMediaTypes": [
+       "image",
+       "video"
+      ],
+      "hasProfile": true,
+      "documentaryRoles": {
+       "primary": [
+        "represent_while_discussed",
+        "context",
+        "introduce"
+       ],
+       "secondary": [
+        "reveal",
+        "transition"
+       ],
+       "weak": [
+        "evidence",
+        "quote",
+        "close"
+       ],
+       "notSupported": []
+      },
+      "usableReadingTimeSeconds": 8.2,
+      "usableReadingTimeMin": 1.53,
+      "stylePace": "Measured. Slides run 6.6-9.8 seconds with 6-9 seconds of settled core.",
+      "styleDensity": "Moderate. One subject plate plus a three-part text lockup, or one large year.",
+      "narrationSuitability": "excellent",
+      "capacityFits": true,
+      "carriesData": false,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Obligation is below exact-source."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Profile measures 8.2s usable reading time against a 2.0s requirement."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "Bound assets assert a year inside the constraint."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "decisive_events_alignable",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 3
+     },
+     {
+      "kind": "after_effects",
+      "templateId": "memories-photo-slideshow-creative-slides-envato",
+      "sceneId": "memories-photo-slideshow-creative-slides-envato--scene-002",
+      "name": "Memories Photo Slideshow \u2014 Creative Slides \u00b7 Scene 02",
+      "function": "entity reveal",
+      "focalEntityCount": null,
+      "nativeDurationSeconds": 7.88,
+      "retimeAllowed": true,
+      "acceptedMedia": [
+       "image",
+       "video"
+      ],
+      "appropriateNarration": [
+       "Single entity introduction",
+       "Opening story beat"
+      ],
+      "avoidWhen": [
+       "On-screen text requirements",
+       "Multiple focal subjects"
+      ],
+      "acceptedMediaTypes": [
+       "image",
+       "video"
+      ],
+      "hasProfile": false,
+      "documentaryRoles": {
+       "primary": [],
+       "secondary": [],
+       "weak": [],
+       "notSupported": []
+      },
+      "usableReadingTimeSeconds": null,
+      "usableReadingTimeMin": null,
+      "stylePace": null,
+      "styleDensity": null,
+      "narrationSuitability": null,
+      "capacityFits": true,
+      "carriesData": false,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Obligation is below exact-source."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "Bound assets assert a year inside the constraint."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "decisive_events_alignable",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 4
+     }
+    ],
+    "viableCount": 46,
+    "spatialFirstDetail": {
+     "fired": false,
+     "terms": [],
+     "triggerSource": "none",
+     "ruleVersion": "1.1.0-local"
+    },
+    "ruleProvenance": {
+     "baseRuleCount": 10,
+     "activeCorrections": [
+      "COR-0001-spatial-attrition",
+      "COR-0002-citation-policy",
+      "COR-0003-era-consistency-gate",
+      "COR-0004-change-budget-is-a-hint",
+      "COR-0005-portrait-legibility",
+      "COR-0006-intent-scoring-and-overview-route",
+      "COR-0007-scene-level-distinctness",
+      "COR-0008-defects-found-by-extending",
+      "COR-0009-per-shot-selection",
+      "COR-0010-defects-found-at-thirty",
+      "COR-0011-motion-profiles-adopted",
+      "COR-0012-schedule-replacement-is-the-mechanism",
+      "COR-0013-passage-28-allowed-kinds",
+      "COR-0014-measurement-was-the-problem"
+     ],
+     "revertedCorrections": [],
+     "maximumScope": "project",
+     "writesToProject": false
+    },
+    "rejectedCount": 0,
+    "poolSize": 46,
+    "rejectedSample": [],
+    "spatialFirstApplied": false
+   }
+  }
+ ],
+ "contract": {
+  "contractId": "year-seventeen:P23",
+  "schemaVersion": 1,
+  "scriptRef": {
+   "scriptId": "year-seventeen",
+   "sectionId": "Archive-on-autoplay hypothesis",
+   "passageIndex": 23
+  },
+  "narration": {
+   "text": "A song from 2015 streams in 2026 without the artist lifting a finger. Music has no body that gives out. So the top of the daily chart in year seventeen could be a very large archive on autoplay while the man himself stopped mattering somewhere around Views.",
+   "measuredTranscript": "A song from 2015 streams in 2026 without the artist lifting a finger. Music has no body that gives out. So the top of the large archive on auto play while the man himself stopped mattering somewhere around views."
+  },
+  "timing": {
+   "timingSource": "measured_audio",
+   "audioStartSeconds": 457.37,
+   "audioEndSeconds": 478.26,
+   "audioDurationSeconds": 20.89,
+   "wordAlignmentCoverage": 0.7872,
+   "recordedShots": [
+    {
+     "shotId": "01",
+     "startSeconds": 457.37,
+     "endSeconds": 478.26,
+     "durationSeconds": 20.89,
+     "startsAt": "passage_start",
+     "endsAt": "passage_end"
+    }
+   ],
+   "acceptableDurationSeconds": {
+    "min": 20.89,
+    "target": 20.89,
+    "max": null,
+    "note": "Descriptive. Corpus median 9.0s, p75 14.0s. Never a cap: the evidence sets the length."
+   },
+   "durationPolicy": {
+    "mode": "elastic",
+    "evidenceMustComplete": true,
+    "narrationYields": false,
+    "extensionRequired": []
+   },
+   "minimumReadableHoldSeconds": 2.0,
+   "internalChangeBudget": {
+    "enforcement": "advisory_only",
+    "requiredChanges": 4,
+    "secondsPerChangeCeiling": 6.8,
+    "eventsAvailable": 3,
+    "satisfied": false,
+    "standingException": {
+     "applies": true,
+     "reason": "Media family ['performance'] is continuous; the unit runs as long as the source needs.",
+     "effect": "The change budget does not apply."
+    },
+    "note": "Advisory. May suggest splitting a unit, but never rejects a candidate and never forces a split. Overridden whenever the content needs the time."
+   }
+  },
+  "takeaway": "A 2015 song still streams in 2026 without the artist doing anything, so the chart may be an archive on autoplay.",
+  "narrationJob": "evidence",
+  "claims": [
+   {
+    "text": "A song from 2015 streams in 2026 with no new effort from the artist.",
+    "claimClass": "documented_fact",
+    "evidenceObligation": "exact_event_or_entity_required",
+    "sourceCandidates": [
+     "a 2015 release with current streaming activity"
+    ]
+   },
+   {
+    "text": "The top of the chart could therefore be a large archive on autoplay.",
+    "claimClass": "interpretation",
+    "evidenceObligation": "representative_media_allowed",
+    "sourceCandidates": [
+     "the documentary's own hypothesis"
+    ]
+   }
+  ],
+  "strictestEvidenceObligation": "exact_event_or_entity_required",
+  "entities": [
+   {
+    "name": "Drake",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": false,
+    "recognitionRisk": "low"
+   }
+  ],
+  "focalEntityCount": 1,
+  "entityRelationship": "single",
+  "requiredMedia": [
+   {
+    "roleId": "song_2015_footage",
+    "editorialRole": "subject",
+    "mediaFamily": "performance",
+    "sourceSpecificity": "exact_event_or_entity_required",
+    "contentRequirement": "Music video or performance footage from an actual 2015 release, since the narration names that year. User ruling on this passage: because the narration explicitly mentions a 2015 song, a 2015 asset is an intentional visual candidate.",
+    "eraConstraint": "2015"
+   },
+   {
+    "roleId": "hypothesis_text",
+    "editorialRole": "context",
+    "mediaFamily": "motion_graphic",
+    "sourceSpecificity": "exact_source_required",
+    "contentRequirement": "The autoplay hypothesis as an overlay, worded as a possibility rather than a finding.",
+    "legibilityRequirement": {
+     "textMustBeReadable": true,
+     "smallestMeaningfulElement": "the overlay text",
+     "minimumOnScreenSeconds": 2.0
+    }
+   }
+  ],
+  "visualEvents": [
+   {
+    "eventId": "E1",
+    "triggerPhrase": "A song from 2015 streams in 2026",
+    "eventType": "reveal",
+    "criticality": "decisive",
+    "description": "The 2015 footage begins.",
+    "triggerOffsetSeconds": 0.39,
+    "measuredStartSeconds": 457.76,
+    "matchConfidence": 1.0,
+    "matchedTranscript": "A song from 2015 streams in 2026",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E2",
+    "triggerPhrase": "a very large archive on autoplay",
+    "eventType": "reveal",
+    "criticality": "decisive",
+    "description": "The hypothesis overlay appears.",
+    "triggerOffsetSeconds": 14.35,
+    "measuredStartSeconds": 471.72,
+    "matchConfidence": 0.871,
+    "matchedTranscript": "the large archive on auto play",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E3",
+    "triggerPhrase": "stopped mattering somewhere around Views",
+    "eventType": "hold",
+    "criticality": "supporting",
+    "description": "The provocation holds without being endorsed.",
+    "triggerOffsetSeconds": 18.13,
+    "measuredStartSeconds": 475.5,
+    "matchConfidence": 1.0,
+    "matchedTranscript": "stopped mattering somewhere around views.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   }
+  ],
+  "prohibitions": [
+   {
+    "prohibition": "Do not use footage from a year other than 2015.",
+    "reason": "The narration names 2015 specifically and the era is the claim.",
+    "severity": "hard"
+   },
+   {
+    "prohibition": "Do not present the autoplay hypothesis as established.",
+    "reason": "It is the argument the film is about to test.",
+    "severity": "hard"
+   }
+  ],
+  "successConditions": [
+   "The 2015 asset is genuinely from 2015.",
+   "The hypothesis reads as a hypothesis."
+  ],
+  "failureConditions": [
+   "Modern footage stands in for the 2015 song.",
+   "The provocation reads as the film's conclusion."
+  ],
+  "readingLoad": "normal",
+  "scriptConflict": null,
+  "proposedDecomposition": null,
+  "groundTruth": {
+   "desired": "Relevant 2015 music-video footage inside the animation with text overlay",
+   "shots": "one or more",
+   "fallback": "review",
+   "allowedKinds": [
+    "after_effects"
+   ],
+   "allowedTemplateIds": null,
+   "preferredTemplateIds": null,
+   "presentation": null
+  },
+  "provenance": {
+   "createdBy": "astra prototype vertical slice",
+   "rulesetVersion": "0.2.0-prototype",
+   "authoredFields": [
+    "claims",
+    "entities",
+    "requiredMedia",
+    "visualEvents",
+    "prohibitions",
+    "successConditions",
+    "failureConditions"
+   ],
+   "measuredFields": [
+    "all timing values",
+    "event offsets"
+   ],
+   "humanReviewed": false
+  }
+ },
+ "binding": {
+  "bindings": [
+   {
+    "roleId": "song_2015_footage",
+    "attributionPolicy": "record_only",
+    "provenance": "media_library",
+    "sourceRef": "/Users/dwaynetoler/Media Library",
+    "sourceCandidates": null,
+    "editorialRole": "subject",
+    "sourceSpecificity": "exact_event_or_entity_required",
+    "mediaFamily": "performance",
+    "status": "bound_local",
+    "perEntity": {
+     "Drake": {
+      "count": 242,
+      "image": 182,
+      "video": 60,
+      "cutout": 66,
+      "examples": [
+       {
+        "assetId": "003b7b8f34cc7276ca587182",
+        "type": "image",
+        "dimensions": "640x853"
+       },
+       {
+        "assetId": "012059fcdedfae43731cfa00",
+        "type": "image",
+        "dimensions": "640x801"
+       },
+       {
+        "assetId": "02fcf40be8477dbac2d6ad87",
+        "type": "video",
+        "dimensions": "720x720"
+       }
+      ],
+      "assertedYears": [
+       "2014",
+       "2015",
+       "2016",
+       "2017",
+       "2018",
+       "2019",
+       "2024",
+       "2025",
+       "2026"
+      ]
+     }
+    },
+    "artifacts": {},
+    "missing": [],
+    "note": null
+   },
+   {
+    "roleId": "hypothesis_text",
+    "attributionPolicy": "record_only",
+    "provenance": "generated",
+    "sourceRef": "authored from the documentary's own stated rule",
+    "sourceCandidates": null,
+    "editorialRole": "context",
+    "sourceSpecificity": "exact_source_required",
+    "mediaFamily": "motion_graphic",
+    "status": "generated_or_authored",
+    "perEntity": {},
+    "artifacts": {},
+    "missing": [],
+    "note": null
+   }
+  ],
+  "evidenceSources": [],
+  "missingAssets": [],
+  "anyMissing": false,
+  "dataRolesOutstanding": []
+ },
+ "slate": {
+  "slate": [
+   {
+    "kind": "after_effects",
+    "templateId": "02-documentary-promo",
+    "sceneId": "02-documentary-promo--scene-002",
+    "name": "Documentary Promo \u00b7 Scene 02",
+    "function": "entity explanation",
+    "focalEntityCount": null,
+    "nativeDurationSeconds": 3.6,
+    "retimeAllowed": true,
+    "acceptedMedia": [
+     "image",
+     "video"
+    ],
+    "appropriateNarration": null,
+    "avoidWhen": [],
+    "acceptedMediaTypes": [
+     "image",
+     "video"
+    ],
+    "hasProfile": true,
+    "documentaryRoles": {
+     "primary": [
+      "introduce",
+      "evidence",
+      "transition"
+     ],
+     "secondary": [
+      "reveal",
+      "context",
+      "quote",
+      "close"
+     ],
+     "weak": [
+      "represent_while_discussed"
+     ],
+     "notSupported": []
+    },
+    "usableReadingTimeSeconds": 3.23,
+    "usableReadingTimeMin": 2.22,
+    "stylePace": "Fast. Nine scenes in 31 seconds, most 2.5-4.0s.",
+    "styleDensity": "High. Several text blocks can be on screen simultaneously alongside a subject.",
+    "narrationSuitability": "limited",
+    "capacityFits": true,
+    "carriesData": false,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Obligation is below exact-source."
+     },
+     "no_unsupported_implication": {
+      "result": "pass",
+      "explanation": "Every named entity has an asset or an authored value."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Profile measures 3.23s usable reading time against a 2.0s requirement."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "pass",
+      "explanation": "No unbound identity roles."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "Bound assets assert a year inside the constraint."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.61,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "decisive_events_alignable",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 1
+   },
+   {
+    "kind": "after_effects",
+    "templateId": "03-history-documentary-10-slides",
+    "sceneId": "03-history-documentary-10-slides--scene-001",
+    "name": "History and Documentary \u2014 10 slides \u00b7 Scene 1",
+    "function": "entity reveal",
+    "focalEntityCount": null,
+    "nativeDurationSeconds": 9.37,
+    "retimeAllowed": true,
+    "acceptedMedia": [
+     "image",
+     "video"
+    ],
+    "appropriateNarration": null,
+    "avoidWhen": [],
+    "acceptedMediaTypes": [
+     "image",
+     "video"
+    ],
+    "hasProfile": true,
+    "documentaryRoles": {
+     "primary": [
+      "represent_while_discussed",
+      "context",
+      "introduce"
+     ],
+     "secondary": [
+      "reveal",
+      "transition",
+      "close"
+     ],
+     "weak": [
+      "evidence",
+      "quote"
+     ],
+     "notSupported": []
+    },
+    "usableReadingTimeSeconds": 8.57,
+    "usableReadingTimeMin": 5.97,
+    "stylePace": "Measured. Slides run 6.6-9.8 seconds with 6-9 seconds of settled core.",
+    "styleDensity": "Moderate. One subject plate plus a three-part text lockup, or one large year.",
+    "narrationSuitability": "excellent",
+    "capacityFits": true,
+    "carriesData": false,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Obligation is below exact-source."
+     },
+     "no_unsupported_implication": {
+      "result": "pass",
+      "explanation": "Every named entity has an asset or an authored value."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Profile measures 8.57s usable reading time against a 2.0s requirement."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "pass",
+      "explanation": "No unbound identity roles."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "Bound assets assert a year inside the constraint."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.61,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "decisive_events_alignable",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 2
+   },
+   {
+    "kind": "after_effects",
+    "templateId": "04-history-documentary-20-slides",
+    "sceneId": "04-history-documentary-20-slides--scene-016",
+    "name": "History and Documentary \u2014 20 slides \u00b7 Scene 16",
+    "function": "entity reveal",
+    "focalEntityCount": null,
+    "nativeDurationSeconds": 8.2,
+    "retimeAllowed": true,
+    "acceptedMedia": [
+     "image",
+     "video"
+    ],
+    "appropriateNarration": null,
+    "avoidWhen": [],
+    "acceptedMediaTypes": [
+     "image",
+     "video"
+    ],
+    "hasProfile": true,
+    "documentaryRoles": {
+     "primary": [
+      "represent_while_discussed",
+      "context",
+      "introduce"
+     ],
+     "secondary": [
+      "reveal",
+      "transition"
+     ],
+     "weak": [
+      "evidence",
+      "quote",
+      "close"
+     ],
+     "notSupported": []
+    },
+    "usableReadingTimeSeconds": 8.2,
+    "usableReadingTimeMin": 1.53,
+    "stylePace": "Measured. Slides run 6.6-9.8 seconds with 6-9 seconds of settled core.",
+    "styleDensity": "Moderate. One subject plate plus a three-part text lockup, or one large year.",
+    "narrationSuitability": "excellent",
+    "capacityFits": true,
+    "carriesData": false,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Obligation is below exact-source."
+     },
+     "no_unsupported_implication": {
+      "result": "pass",
+      "explanation": "Every named entity has an asset or an authored value."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Profile measures 8.2s usable reading time against a 2.0s requirement."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "pass",
+      "explanation": "No unbound identity roles."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "Bound assets assert a year inside the constraint."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.61,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "decisive_events_alignable",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 3
+   },
+   {
+    "kind": "after_effects",
+    "templateId": "memories-photo-slideshow-creative-slides-envato",
+    "sceneId": "memories-photo-slideshow-creative-slides-envato--scene-002",
+    "name": "Memories Photo Slideshow \u2014 Creative Slides \u00b7 Scene 02",
+    "function": "entity reveal",
+    "focalEntityCount": null,
+    "nativeDurationSeconds": 7.88,
+    "retimeAllowed": true,
+    "acceptedMedia": [
+     "image",
+     "video"
+    ],
+    "appropriateNarration": [
+     "Single entity introduction",
+     "Opening story beat"
+    ],
+    "avoidWhen": [
+     "On-screen text requirements",
+     "Multiple focal subjects"
+    ],
+    "acceptedMediaTypes": [
+     "image",
+     "video"
+    ],
+    "hasProfile": false,
+    "documentaryRoles": {
+     "primary": [],
+     "secondary": [],
+     "weak": [],
+     "notSupported": []
+    },
+    "usableReadingTimeSeconds": null,
+    "usableReadingTimeMin": null,
+    "stylePace": null,
+    "styleDensity": null,
+    "narrationSuitability": null,
+    "capacityFits": true,
+    "carriesData": false,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Obligation is below exact-source."
+     },
+     "no_unsupported_implication": {
+      "result": "pass",
+      "explanation": "Every named entity has an asset or an authored value."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "pass",
+      "explanation": "No unbound identity roles."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "Bound assets assert a year inside the constraint."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.61,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "decisive_events_alignable",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 4
+   }
+  ],
+  "viableCount": 46,
+  "spatialFirstDetail": {
+   "fired": false,
+   "terms": [],
+   "triggerSource": "none",
+   "ruleVersion": "1.1.0-local"
+  },
+  "ruleProvenance": {
+   "baseRuleCount": 10,
+   "activeCorrections": [
+    "COR-0001-spatial-attrition",
+    "COR-0002-citation-policy",
+    "COR-0003-era-consistency-gate",
+    "COR-0004-change-budget-is-a-hint",
+    "COR-0005-portrait-legibility",
+    "COR-0006-intent-scoring-and-overview-route",
+    "COR-0007-scene-level-distinctness",
+    "COR-0008-defects-found-by-extending",
+    "COR-0009-per-shot-selection",
+    "COR-0010-defects-found-at-thirty",
+    "COR-0011-motion-profiles-adopted",
+    "COR-0012-schedule-replacement-is-the-mechanism",
+    "COR-0013-passage-28-allowed-kinds",
+    "COR-0014-measurement-was-the-problem"
+   ],
+   "revertedCorrections": [],
+   "maximumScope": "project",
+   "writesToProject": false
+  },
+  "rejectedCount": 0,
+  "poolSize": 46,
+  "rejectedSample": [],
+  "spatialFirstApplied": false
+ },
+ "decision": {
+  "action": "require_user_review",
+  "winnerRank": 1,
+  "confidence": {
+   "value": null,
+   "method": "uncalibrated_prior",
+   "calibrationSampleSize": 0,
+   "note": "Auto-advance disabled by policy until calibrated against approved and rejected decisions."
+  },
+  "escalationTriggers": [
+   "candidates_close",
+   "low_confidence"
+  ],
+  "reasons": [
+   "Top two candidates are tied on every priority level.",
+   "Winner has unresolved gates: decisive_events_alignable, schedule_replacement_unproven."
+  ],
+  "shotCount": 1
+ },
+ "groundTruthCheck": {
+  "desired": "Relevant 2015 music-video footage inside the animation with text overlay",
+  "desiredInSlate": true,
+  "desiredAtRank": 1,
+  "recordedFallback": "review"
+ }
+}

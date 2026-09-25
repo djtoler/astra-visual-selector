@@ -1,0 +1,231 @@
+FP-001  FIRST-PRINCIPLES DERIVATION
+Written 2026-09-20. Derived from the objective alone. No findings from RCA-001 used.
+Every step is marked DERIVED (follows from the step above), MEASURED (a number from this
+repo, command reproducible), or ASSUMED (stated so it can be challenged).
+
+================================================================================
+STEP 1 - STATE THE FUNCTION
+================================================================================
+DERIVED. The objective is "land the right media candidate on the right beat." As a
+function:
+
+    f(beat) -> a visual treatment that asserts what the beat asserts
+
+A beat is a span of narration that makes an assertion. A treatment is a parameterised
+visual that, once filled with data, also makes an assertion. So this is not search,
+ranking, or recommendation. It is matching one assertion against another.
+
+================================================================================
+STEP 2 - WHAT MUST BE TRUE FOR AN ANSWER TO EXIST
+================================================================================
+DERIVED. A treatment can assert what the beat asserts only if it can physically carry
+that assertion. Decomposing what an assertion commits you to:
+
+    ARITY        how many things it is about
+    MEASURE      what kind of quantity or relation it carries
+                 (magnitude, share of a whole, rank, change over time, none)
+    READABILITY  what a viewer must be able to see to verify it
+    PROHIBITION  what it must not imply
+
+If a treatment fails any of these, no amount of preference ordering rescues it. It is
+not a worse answer; it is not an answer.
+
+CONSEQUENCE: matching is a FILTER, not a RANK. Treating it as a ranking problem invents
+a continuum where there is a binary, which is how a list gets sorted by something
+irrelevant when the relevant signal runs out.
+
+================================================================================
+STEP 3 - THE FEASIBLE SET, AND WHY ITS SIZE IS THE FIRST QUESTION
+================================================================================
+DERIVED. For a beat b, let S(b) be the set of treatments that can carry its assertion.
+|S(b)| >= 0, and the correct behaviour of the system is different in each regime:
+
+    |S| = 0        No selection is possible. The only honest outputs are: source or
+                   build something new, or change the beat. Returning a list here is
+                   a lie dressed as an answer.
+    |S| = 1 to ~4  Selection is trivial. Show all of them. Any machinery for variety,
+                   de-duplication or spread is solving a problem that does not exist.
+    |S| large      Selection matters. Variety and de-duplication earn their place.
+
+ASSUMED: the library is finite and fixed at selection time, while narration is
+unbounded. This is what makes |S| = 0 a real and recurring state rather than an edge
+case.
+
+So the first question the system must answer for every beat is not "which is best."
+It is "how many can do this at all, and do I know?"
+
+================================================================================
+STEP 4 - MEASURE |S| ON THE REAL CORPUS
+================================================================================
+MEASURED. 40 beats, 421 template records, 642 job bindings.
+Applying only hard constraints - the beat's stated arity against the template's
+declared capacity, at the standing +/-33% tolerance:
+
+    median feasible set, counting only templates that DECLARE a capacity ....  7
+    beats with 0 feasible ..................................................  6 of 40
+    beats with <= 3 feasible ............................................... 11 of 40
+    beats with > 12 feasible ............................................... 15 of 40
+
+The distribution is bimodal. Two regimes, not one. And they split cleanly by what kind
+of beat it is:
+
+    beat states a perceptibility requirement, and is numeric   23 beats   median  4
+    beat states a requirement, not numeric                      7 beats   median 13
+    beat states no requirement, numeric                         6 beats   median 19
+    beat states no requirement, not numeric                     4 beats   median 17
+
+DERIVED FROM THIS: the library is abundant precisely where the beat does not care, and
+scarce precisely where it does. The 23 demanding, numeric beats are the majority, and
+they are the substance of the documentary - they carry the claims. They have a median
+of four viable treatments and six of them have none.
+
+By narration time: scarce beats (<=3 feasible) cover 170s; rich beats (>12) cover 148s.
+Nearly half the placed narration sits in the regime where selection barely exists.
+
+================================================================================
+STEP 5 - A FOURTH REGIME WE DID NOT ANTICIPATE
+================================================================================
+MEASURED. |S| is not always computable. Across the 23 demanding numeric beats:
+
+    total bound candidates ................................. 583
+    pass arity, counting undeclared capacity as a pass ..... 436
+    pass arity on a DECLARED capacity ...................... 124
+    survive only because capacity is undeclared ............ 312   = 71%
+
+    records in the pool declaring no capacity at all ....... 221 of 421 = 52%
+
+DERIVED: there is a fourth state alongside 0 / few / many, and it is the largest one.
+
+    |S| UNKNOWN    the template records do not say what they can do, so the system
+                   cannot rule them in or out.
+
+The standing rule "unknowns never disqualify" is correct as a rule - a missing field is
+not evidence of unsuitability. But its consequence at 52% coverage is that most of the
+surviving set is not known to survive. What looks like abundance is mostly ignorance.
+
+================================================================================
+STEP 6 - THE CEILING
+================================================================================
+DERIVED. No matcher can outperform the information it is given. With 52% of the library
+silent about its own capacity, any selector faces a forced choice:
+
+    admit unknowns    -> returns treatments that cannot carry the beat
+    exclude unknowns  -> discards over half the library unseen
+
+Both are wrong, and no algorithm resolves it, because the missing thing is data, not
+logic. This bounds the achievable precision of every design we could write, before we
+write any of them.
+
+CONSEQUENCE: effort spent on the matcher is capped by this ceiling. Effort spent
+raising the ceiling is not.
+
+================================================================================
+STEP 7 - WHAT WOULD RAISE THE CEILING
+================================================================================
+DERIVED. From step 2, a beat can only require four kinds of thing: arity, measure,
+readability, prohibition. That is a small closed set, and it is the same set on both
+sides. A beat states requirements in it. A treatment declares capabilities in it.
+
+If both sides speak it, matching becomes a set operation:
+
+    S(b) = { t : t.capabilities  satisfies  b.requirements }
+
+    arity        t.capacity within tolerance of b.entity_count
+    measure      b.measure in t.measures
+    readability  b.must_be_readable subset of t.can_show
+    prohibition  b.prohibitions disjoint from t.implies
+
+Deterministic. No pairwise judgment. No ranking. No per-beat model call. Fully
+explainable: for any rejected treatment, the failing clause is nameable.
+
+================================================================================
+STEP 8 - WHERE A MODEL IS ACTUALLY REQUIRED
+================================================================================
+DERIVED. Filling that vocabulary is judgment over prose, which no rule can do. But it
+is judgment about ONE artifact at a time, not about a pair:
+
+    per template  read its description and declare its capabilities     421 calls-worth
+    per beat      read the narration and state its requirements          n calls-worth
+
+That is O(n + m), once each. Pairwise judgment is O(n x m) and must be re-run whenever
+either side changes.
+
+DERIVED, AND THIS IS THE LOAD-BEARING PART: a capability declaration is a property of
+the template alone. It does not depend on the job taxonomy, the niche, or the script.
+It is computed once and is correct forever unless the template changes. A pairwise
+binding is a property of the pair, so it must be recomputed for every new job, every
+new niche, and every change to either vocabulary.
+
+Capabilities port across niches. Pairings do not.
+
+================================================================================
+STEP 9 - WHAT THE SYSTEM DOES WHEN |S| = 0
+================================================================================
+DERIVED. From step 3, |S| = 0 is a legitimate and recurring output, not a failure. The
+correct response is a supply request: this beat needs a treatment that holds N things
+and makes a share readable, and none exists.
+
+MEASURED: 6 of 40 beats are in this state today, and they are silently receiving slates
+of up to 12 treatments that cannot carry them.
+
+DERIVED: at 20 videos/day across niches, the gap between what narration demands and what
+the library holds is the quantity that determines throughput. A system that measures
+that gap and emits it as a queue closes the loop. A system that pads it with
+near-misses hides the one number that would tell you what to build next.
+
+================================================================================
+STEP 10 - THE DESIGN THIS ARRIVES AT
+================================================================================
+DERIVED from steps 1-9.
+
+    1  CAPABILITY DECLARATION   model, once per template, ported across all niches.
+                                Fills the closed vocabulary from step 7.
+    2  REQUIREMENT EXTRACTION   model, once per beat. Already largely exists: beats
+                                carry entity_count, must_be_perceptible, would_be_a_lie.
+                                Needs stating in the same vocabulary as (1).
+    3  FEASIBILITY              deterministic set operation. Produces S(b) plus, for
+                                every excluded treatment, the clause it failed.
+    4  BRANCH ON |S|            0        -> supply request, no slate
+                                1 to ~4  -> show all, no diversification
+                                large    -> diversify, and only here
+    5  COVERAGE REPORT          the aggregate of (4) over a script: what the library
+                                cannot say. This is the queue that grows the library.
+
+WHAT THIS REMOVES: per-job binding as the primary index, ranking of any kind, and all
+diversification machinery outside the large-|S| branch.
+
+WHAT IT KEEPS: the 20 jobs, as a useful label for the beat and for rotation and style
+downstream - but not as the key that selection turns on.
+
+================================================================================
+STEP 11 - HOW TO KNOW THIS IS WRONG
+================================================================================
+Stated in advance, so it can fail rather than be defended.
+
+  T1  Vocabulary closure. Take 30 beats not used in this derivation. If their
+      requirements cannot be expressed in the four categories of step 7 without adding
+      a fifth, step 7 is wrong.
+  T2  Declarability. Take 30 templates. If a capability declaration cannot be filled
+      from the written description alone, step 8 is wrong and the ceiling in step 6
+      cannot be raised by this route.
+  T3  Ceiling. After declaring capability on a sample, the share of arity-survivors
+      that are "unknown" must fall well below 71%. If it does not, the data gap is not
+      closable and the whole derivation changes.
+  T4  Regime split. |S| computed on declared data must remain bimodal. If it turns out
+      unimodal and large once capability is declared, step 3's branching is unnecessary
+      and the simpler design wins.
+  T5  Agreement. Two independent runs of capability declaration on the same template
+      must produce the same declaration. If they do not, the vocabulary is too loose to
+      be a filter.
+
+================================================================================
+STEP 12 - WHAT THIS DERIVATION ASSUMES AND DOES NOT PROVE
+================================================================================
+  - ASSUMED that the written description is sufficient to declare capability. T2 tests
+    it. If descriptions are too thin, the real work is enriching the library records,
+    and no design above helps until that is done.
+  - NOT PROVEN that the four categories in step 2 are complete. They are derived from
+    what an assertion commits you to, which is reasoning, not measurement. T1 tests it.
+  - NOT ADDRESSED: style, colour, rotation, and staging. These are downstream of
+    feasibility and this derivation says nothing about them.
+  - NOT COSTED. Step 8 claims O(n+m) beats O(n x m); it does not put a price on either.

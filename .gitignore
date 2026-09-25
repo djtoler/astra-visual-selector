@@ -1,0 +1,57 @@
+# ── SECRETS ────────────────────────────────────────────────────────────────
+.env
+.env.*
+*.key
+*.pem
+
+# ── AE templates and vendor reels (819 MB, licensed source material) ───────
+templates/
+Infographic Bar Charts/
+*.aep
+*.aet
+
+# ── MEDIA. Never in git: licensed, large, and regenerable from the library ─
+*.mp4
+*.mov
+*.m4v
+*.webm
+*.mp3
+*.wav
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.avif
+*.gif
+
+# ── GENERATED review payloads ─────────────────────────────────────────────
+# data.json carries base64 posters (13 MB for one UI). The builder regenerates
+# it from the library in seconds; the BUILDER is the source, not its output.
+pipeline/ui*/data.json
+pipeline/ui*/media/
+pipeline/_retired/*/data.json
+pipeline/lt-pick/
+pipeline/dz-pick/
+grammar/local-clips/
+grammar/thumbs/
+astra-selector-design/timeline/
+
+# ── local caches and scratch ───────────────────────────────────────────────
+__pycache__/
+*.pyc
+.perceptible-cache.json
+grammar/.perceptible-cache.json
+grammar/.story-cache.json
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+.DS_Store
+:memory:*
+
+# ── archives (Archive 3.zip is 1.2 GB of vendor template source) ───────────
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z

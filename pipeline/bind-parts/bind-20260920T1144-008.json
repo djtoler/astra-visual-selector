@@ -1,0 +1,432 @@
+{
+ "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-002": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "sequential labelled card reveal",
+    "evidence": "Cycles through a sequence of cards from a receding stack, dropping each forward card off to reveal the next."
+   },
+   {
+    "job": "parallel_instances",
+    "confidence": "conditional",
+    "mechanism": "per-card numeric label",
+    "evidence": "READABLE AS TEXT: exact_value",
+    "condition": "each card's text field carries the same measure for its own entity"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "fanned ranked card list",
+    "evidence": "Presenting a ranked list, sequential collection, or small group of four to five entities"
+   },
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "encoded rank ordering",
+    "evidence": "ENCODES IN ITS FORM: identity, rank"
+   },
+   {
+    "job": "parallel_instances",
+    "confidence": "conditional",
+    "mechanism": "per-card numeric label",
+    "evidence": "READABLE AS TEXT: exact_value",
+    "condition": "each card's label holds the same measure per entity"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-004": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "streaming card roster",
+    "evidence": "Rapid presentation of a larger roster of community members, entries, or nominees"
+   },
+   {
+    "job": "parallel_instances",
+    "confidence": "conditional",
+    "mechanism": "per-card numeric figure",
+    "evidence": "each displaying an image, text labels, and numeric figures.",
+    "condition": "the numeric figure is the same measure repeated per entity"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-005": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "stacked-deck sequential reveal",
+    "evidence": "Sequential introduction of five to six staff members, participants, or product items"
+   },
+   {
+    "job": "parallel_instances",
+    "confidence": "conditional",
+    "mechanism": "per-card numeric label",
+    "evidence": "READABLE AS TEXT: exact_value",
+    "condition": "each card's field holds the same measure for its own entity"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "central-focus sequential highlight",
+    "evidence": "Sequential entity highlights; Portfolio showcase with title lead-in"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "sequential sourced footage",
+    "evidence": "Cycles through a sequence of media cards in a three-dimensional carousel, bringing each subject into central focus in turn.",
+    "condition": "media wells hold a run of sourced footage illustrating the claim"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "scrolling card collection",
+    "evidence": "Broad collection or portfolio review; Sequential product introduction"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "sequential sourced footage",
+    "evidence": "Presents an ordered sequence of cards scrolling horizontally through a central focal position.",
+    "condition": "cards are filled with sourced footage backing a stated claim"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "ribbon-scroll portrait list",
+    "evidence": "Portfolio showcase; Series or collection preview"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "sequential sourced footage",
+    "evidence": "Scrolls a series of uniform portrait media cards horizontally along a curved continuous ribbon.",
+    "condition": "portrait wells hold sourced footage illustrating the claim rather than data"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "zoom-highlight within grid",
+    "evidence": "Singling out a preferred option from a wider pool of candidates"
+   },
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "full grid roster display",
+    "evidence": "Displays ten media items in a numbered contact sheet grid",
+    "condition": "used to list the whole pool rather than to zoom on one item"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "full contact-sheet overview",
+    "evidence": "Summarizing an extensive photo session or project archive"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "grid of sourced photographs",
+    "evidence": "Presents multiple media items in a contact sheet grid with frame numbering and overlay review marks.",
+    "condition": "the photos serve as sourced evidence for a stated claim rather than measured data"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "conditional",
+    "mechanism": "percentage badge as rate",
+    "evidence": "Three-tier horizontal metric list with counting stats and percentage badges, dark background.",
+    "condition": "the percentage badge is presented as a rate rather than a plain share"
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "value against fixed target row",
+    "evidence": "READABLE AS TEXT: exact_value, proportion, difference",
+    "condition": "one row's value and difference field represent a value measured against a fixed bar"
+   },
+   {
+    "job": "members_then_total",
+    "confidence": "conditional",
+    "mechanism": "tiered rows building to sum",
+    "evidence": "Listing three sequential or tiered statistical achievements.",
+    "condition": "the first two rows are components and the third row is their sum"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-v2-006": {
+  "serves": [
+   {
+    "job": "parallel_instances",
+    "confidence": "clear",
+    "mechanism": "side-by-side counting cards",
+    "evidence": "Presents three labelled metrics side by side on cards, animating numerical values upward to their final counts."
+   },
+   {
+    "job": "category_breakdown",
+    "confidence": "conditional",
+    "mechanism": "independent pillar counts",
+    "evidence": "Summarizing three core growth pillars or operational numbers.",
+    "condition": "the three pillar counts sum to a stated total"
+   },
+   {
+    "job": "proportion_of_cohort",
+    "confidence": "conditional",
+    "mechanism": "card proportion badge",
+    "evidence": "READABLE AS TEXT: exact_value, proportion",
+    "condition": "one card's proportion field represents a share of a named population"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-001": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Presents one media asset with overlaid title text and blurred flanking margins without comparison.",
+    "condition": "the caption text states a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Presents one media asset with overlaid title text and blurred flanking margins without comparison.",
+    "condition": "the caption states a claim or norm and the image serves as illustrative backing"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-002": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Displays a single framed visual subject accompanied by a two-line identifying text overlay.",
+    "condition": "the two-line caption states a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Displays a single framed visual subject accompanied by a two-line identifying text overlay.",
+    "condition": "the caption states a claim and the image backs it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-003": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Presents a single media subject centered with accompanying text labels and no comparison.",
+    "condition": "the text labels state a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Presents a single media subject centered with accompanying text labels and no comparison.",
+    "condition": "the text states a claim and the image backs it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-004": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Presents a single framed subject accompanied by a two-line caption overlay.",
+    "condition": "the caption states a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Presents a single framed subject accompanied by a two-line caption overlay.",
+    "condition": "the caption states a claim and the image backs it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-005": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Presents a single subject with accompanying descriptive labels in a framed vertical layout.",
+    "condition": "the labels state a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Presents a single subject with accompanying descriptive labels in a framed vertical layout.",
+    "condition": "the labels state a claim and the image backs it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-006": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Presents one media element with a credit label and no comparison to other subjects.",
+    "condition": "the credit label states a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Presents one media element with a credit label and no comparison to other subjects.",
+    "condition": "the label states a claim and the image backs it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-007": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Presents a single subject with an overlaid two-line text label.",
+    "condition": "the two-line label states a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Presents a single subject with an overlaid two-line text label.",
+    "condition": "the label states a claim and the image backs it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-008": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Presents one subject with a two-line text identifier and no comparison to anything else.",
+    "condition": "the text identifier states a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Presents one subject with a two-line text identifier and no comparison to anything else.",
+    "condition": "the identifier states a claim and the image backs it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-009": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "single held portrait shot",
+    "evidence": "Displays one framed media subject with a two-line caption and blurred side margins.",
+    "condition": "the caption states a one-time occurrence"
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "single illustrative sourced photo",
+    "evidence": "Displays one framed media subject with a two-line caption and blurred side margins.",
+    "condition": "the caption states a claim and the image backs it"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ }
+}

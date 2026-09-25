@@ -1,0 +1,181 @@
+<title>Does This Carry Rank</title>
+<style>
+:root{
+  --ink:#171519; --ink2:#5b5763; --ink3:#8e8a98;
+  --bg:#f5f3f0; --card:#fff; --line:#e2ded8;
+  --yes:#1b6b48; --yesbg:#e5f2ea; --no:#8f3320; --nobg:#f8e9e5;
+  --hold:#7a6320; --holdbg:#f6eedb;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#efecf2; --ink2:#a9a4b2; --ink3:#78737f;
+  --bg:#121114; --card:#1c1a1f; --line:#302d35;
+  --yes:#74d6a6; --yesbg:#1a2e25; --no:#e79a86; --nobg:#33201b;
+  --hold:#ddc07a; --holdbg:#2f2818;
+}}
+:root[data-theme="dark"]{
+  --ink:#efecf2; --ink2:#a9a4b2; --ink3:#78737f;
+  --bg:#121114; --card:#1c1a1f; --line:#302d35;
+  --yes:#74d6a6; --yesbg:#1a2e25; --no:#e79a86; --nobg:#33201b;
+  --hold:#ddc07a; --holdbg:#2f2818;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);margin:0;
+  font:15px/1.6 ui-sans-serif,-apple-system,"Segoe UI",system-ui,sans-serif;
+  padding:0 16px 56px}
+.wrap{max-width:760px;margin:0 auto}
+header{padding:24px 0 16px;border-bottom:1px solid var(--line)}
+h1{margin:0 0 10px;font-size:20px;letter-spacing:-.01em}
+.test{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--ink3);
+  border-radius:0 8px 8px 0;padding:13px 15px;margin:0 0 4px}
+.test b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--ink3);margin-bottom:5px}
+.prog{margin:14px 0 0;font:600 13px/1 var(--mono);color:var(--ink2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  margin:22px 0;overflow:hidden}
+.tag{display:inline-block;font:600 10px/1 var(--mono);text-transform:uppercase;
+  letter-spacing:.08em;padding:5px 8px;border-radius:4px;margin:14px 15px 0}
+.tag.q{background:var(--holdbg);color:var(--hold)}
+.tag.c{background:var(--yesbg);color:var(--yes)}
+.rid{font:13px/1.4 var(--mono);padding:9px 15px 0;word-break:break-all}
+.pv{position:relative;margin:12px 0 0;background:#0b0b0d;aspect-ratio:16/9}
+.pv video{width:100%;height:100%;object-fit:contain;display:block}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:99px;border:0;cursor:pointer;
+  background:rgba(10,10,12,.62);backdrop-filter:blur(3px)}
+.play::before{content:"";position:absolute;left:18px;top:13px;
+  border-left:15px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.play.on{opacity:0}.pv:hover .play.on{opacity:.7}
+.body{padding:15px}
+.doubt{background:var(--holdbg);color:var(--ink);border-radius:8px;padding:12px 14px;
+  margin:0 0 14px;font-size:14px}
+.rec{font:12px/1.8 var(--mono);color:var(--ink2);border-top:1px solid var(--line);
+  padding-top:12px;margin-top:4px}
+.rec s{color:var(--ink3);font-style:normal;display:inline-block;width:82px}
+.rec em{font-style:normal;color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+button.v{flex:1 1 150px;padding:11px;border-radius:8px;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);font:600 13px inherit;cursor:pointer}
+button.v:hover{border-color:var(--ink3)}
+button.v.on[data-v="keep"]{background:var(--yesbg);border-color:var(--yes);color:var(--yes)}
+button.v.on[data-v="drop"]{background:var(--nobg);border-color:var(--no);color:var(--no)}
+button.v.on[data-v="unsure"]{background:var(--holdbg);border-color:var(--hold);color:var(--hold)}
+textarea{width:100%;margin-top:9px;padding:10px;border:1px solid var(--line);
+  border-radius:8px;background:var(--bg);color:var(--ink);font:14px/1.5 inherit;
+  resize:vertical;min-height:52px}
+.st{color:var(--ink3);font-size:12px;margin-top:8px}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Does This Carry Rank?</h1>
+  <div class="test"><b>The test</b>If two items swapped places, would the visual be
+  asserting something <strong>different</strong> about them? On a bar chart yes &mdash;
+  the taller one is ahead. On a scrolling list no &mdash; same list, different order.
+  <br><br>And: could a viewer still see it with <strong>every label stripped off</strong>?
+  If the advantage is carried by a green number beside a red one, that is
+  <code>readable</code>, not <code>carries</code>.</div>
+  <div class="prog" id="prog">0 of 3 judged</div>
+  <div class="st" id="st">Loading&hellip;</div>
+</header>
+<main id="main"></main>
+</div>
+
+<script>
+"use strict";
+var D=null, db=null, state={}, t=null;
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,
+  function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function setS(m){document.getElementById("st").textContent=m;}
+function rec(id){ if(!state[id]) state[id]={verdict:null,note:""}; return state[id]; }
+
+function render(){
+  if(!D) return;
+  var html="";
+  D.cases.forEach(function(c){
+    var q=c.status.indexOf("control")<0, r=rec(c.id);
+    html+="<article class='card'>"
+      + "<span class='tag "+(q?"q":"c")+"'>"+esc(c.status)+"</span>"
+      + "<div class='rid'>"+esc(c.id)+"</div>"
+      + "<div class='pv'><video src='"+esc(c.clip)+"' poster='"+esc(c.poster)
+      + "' muted playsinline preload='none'></video>"
+      + "<button class='play' type='button' aria-label='Play clip'></button></div>"
+      + "<div class='body'>"
+      + (q?"<div class='doubt'>"+esc(c.doubt)+"</div>":"<p>"+esc(c.doubt)+"</p>")
+      + "<div class='rec'>"
+      + "<s>asserts</s><em>"+esc(c.asserts)+"</em><br>"
+      + "<s>carries</s><em>"+esc(c.carries.join(", "))+"</em><br>"
+      + "<s>readable</s>"+esc(c.readable.join(", "))+"<br>"
+      + "<s>implies</s>"+esc(c.implies.join(", "))+"<br>"
+      + "<s>structure</s>"+esc(c.structure)+" &middot; "+esc(c.staging)
+      + "</div>";
+    if(q){
+      html+="<div class='btns'>"
+        + ["keep","drop","unsure"].map(function(v){
+            var lbl={keep:"Keep rank",drop:"Drop rank",unsure:"Not sure"}[v];
+            return "<button class='v"+(r.verdict===v?" on":"")+"' data-v='"+v
+                 + "' data-id='"+esc(c.id)+"'>"+lbl+"</button>";
+          }).join("")
+        + "</div><textarea data-id='"+esc(c.id)
+        + "' placeholder='Why — your words go in the record'>"+esc(r.note)+"</textarea>";
+    }
+    html+="</div></article>";
+  });
+  document.getElementById("main").innerHTML=html;
+  var n=D.cases.filter(function(c){return c.status.indexOf("control")<0
+    && rec(c.id).verdict;}).length;
+  document.getElementById("prog").textContent=n+" of 3 judged";
+}
+
+function save(){
+  if(!db) return;
+  db.doc("rank_review/verdicts").set({state:JSON.parse(JSON.stringify(state)),
+                                      updatedAt:new Date().toISOString()})
+    .then(function(){setS("Saved.");})
+    .catch(function(e){setS("Not saved: "+((e&&e.code)||"error"));});
+}
+
+document.addEventListener("click", function(e){
+  var pb=e.target.closest(".play");
+  if(pb){
+    var v=pb.parentElement.querySelector("video"); if(!v) return;
+    if(v.paused){
+      document.querySelectorAll("video").forEach(function(o){
+        if(o!==v){o.pause(); var b=o.parentElement.querySelector(".play");
+                  if(b) b.classList.remove("on");}});
+      v.play().catch(function(){}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  var b=e.target.closest("button.v"); if(!b) return;
+  var r=rec(b.dataset.id);
+  r.verdict = (r.verdict===b.dataset.v) ? null : b.dataset.v;
+  render(); save();
+});
+document.addEventListener("ended", function(e){
+  if(e.target.tagName!=="VIDEO") return;
+  var b=e.target.parentElement.querySelector(".play"); if(b) b.classList.remove("on");
+}, true);
+document.addEventListener("input", function(e){
+  if(e.target.tagName!=="TEXTAREA") return;
+  rec(e.target.dataset.id).note=e.target.value;
+  clearTimeout(t); t=setTimeout(save,700);
+});
+
+fetch("data.json").then(function(r){return r.json();}).then(function(d){
+  D=d; render(); return claude.use("db");
+}).then(function(x){
+  db=x;
+  if(!db){ setS("Verdicts cannot be saved in this view."); return; }
+  return db.doc("rank_review/verdicts").get().then(function(s){
+    var saved = s && s.exists ? s.data() : null;   // frozen — copy out, never write in
+    if(saved && saved.state){
+      Object.keys(saved.state).forEach(function(k){
+        state[k]={verdict:saved.state[k].verdict||null, note:saved.state[k].note||""};
+      });
+      render();
+    }
+    setS(saved?"Loaded your saved verdicts.":"Ready.");
+  });
+}).catch(function(e){ setS("Could not load: "+((e&&e.code)||"error")); });
+</script>

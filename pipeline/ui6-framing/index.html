@@ -1,0 +1,206 @@
+<title>Framing Per Template</title>
+<style>
+:root{
+  --ink:#151a20; --ink2:#4c5865; --ink3:#7d8b99; --line:#dce3ea; --line2:#eef2f6;
+  --bg:#f5f7f9; --card:#fff; --raised:#fafbfc;
+  --on:#0d6b52; --onbg:#e3f2ec; --any:#5a5f7a; --anybg:#ecedf4;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e7edf3; --ink2:#a2b0bd; --ink3:#76848f; --line:#2a333c; --line2:#212a32;
+  --bg:#0d1115; --card:#171d24; --raised:#1c232b;
+  --on:#6ed4ab; --onbg:#132c23; --any:#a9adc8; --anybg:#23243044;
+}}
+:root[data-theme="dark"]{
+  --ink:#e7edf3; --ink2:#a2b0bd; --ink3:#76848f; --line:#2a333c; --line2:#212a32;
+  --bg:#0d1115; --card:#171d24; --raised:#1c232b;
+  --on:#6ed4ab; --onbg:#132c23; --any:#a9adc8; --anybg:#23243044;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 18px 80px}
+header{padding-block:24px 14px;border-bottom:1px solid var(--line)}
+h1{margin:0 0 8px;font-size:21px;letter-spacing:-.01em}
+.lede{margin:0 0 5px;color:var(--ink2);max-width:82ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+.scale{margin:12px 0 0;font:12px/1.7 var(--mono);color:var(--ink3)}
+.scale code{background:var(--line2);padding:2px 7px;border-radius:3px;color:var(--ink2)}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:11px 0;margin-bottom:20px;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font:600 12px/1 var(--mono);padding:7px 11px;border-radius:99px;
+  background:var(--onbg);color:var(--on);white-space:nowrap}
+.pill.q{background:var(--line2);color:var(--ink2)}
+.st{font:12px/1.4 var(--mono);color:var(--ink3)}
+
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.c{border:1px solid var(--line);border-radius:9px;background:var(--card);overflow:hidden}
+.c.set{border-color:var(--on)}
+.pv{position:relative;aspect-ratio:16/9;background:#05070a}
+.pv video,.pv img{width:100%;height:100%;object-fit:contain;display:block}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;
+  border-radius:99px;border:0;cursor:pointer;background:rgba(5,7,10,.62);backdrop-filter:blur(3px)}
+.play::before{content:"";position:absolute;left:14px;top:10px;border-left:12px solid #fff;
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+.play.on{opacity:0}.pv:hover .play.on{opacity:.75}
+.badge{position:absolute;left:8px;top:8px;padding:3px 8px;border-radius:4px;
+  font:600 9.5px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.05em;
+  background:rgba(5,7,10,.72);color:#d7dee6}
+.m{padding:11px 13px 13px}
+.tid{font:600 11.5px/1.4 var(--mono);word-break:break-all;margin-bottom:3px}
+.meta{font:10.5px/1.6 var(--mono);color:var(--ink3);margin-bottom:8px}
+.meta b{color:var(--ink2)}
+.asserts{font-size:12.5px;line-height:1.5;color:var(--ink2);margin:0 0 10px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chips button{font:600 10.5px/1 var(--mono);padding:6px 9px;border-radius:5px;
+  border:1px solid var(--line);background:var(--raised);color:var(--ink2);cursor:pointer}
+.chips button[aria-pressed="true"]{border-color:var(--on);color:var(--on);background:var(--onbg)}
+.chips button.anyb[aria-pressed="true"]{border-color:var(--any);color:var(--any);background:var(--anybg)}
+.done{border-top:1px solid var(--line);background:var(--raised);padding:13px 17px;
+  font:12px/1.7 var(--mono);color:var(--ink3);margin-top:22px;border-radius:9px;
+  border:1px solid var(--line)}
+.done b{color:var(--ink2)}
+footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);
+  font:12px/1.6 var(--mono);color:var(--ink3)}
+@media (max-width:520px){ .grid{grid-template-columns:1fr} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Framing Per Template</h1>
+  <p class="lede"><b>How close does this template crop its media?</b> Play the clip and
+  tick every framing its slots can take. This cannot be measured &mdash;
+  <code>media_slots: 30</code> says how many wells there are, never how tight they are.</p>
+  <p class="lede">Only templates you have already chosen on a beat, and only those that
+  hold media. <b>Any</b> means no preference, which is different from leaving it blank:
+  blank is undecided, Any is decided.</p>
+  <p class="scale">tightest to widest &nbsp;
+    <code>headshot</code> <code>quarter</code> <code>half</code>
+    <code>three_quarter</code> <code>full</code></p>
+</header>
+
+<div class="bar">
+  <span class="pill" id="tally">0 of 0 ruled</span>
+  <span class="pill q" id="kinds"></span>
+  <span class="st" id="st">Loading&hellip;</span>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="done" id="already"></div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D=null, db=null, rules={};
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function setS(m){ document.getElementById("st").textContent=m; }
+function wants(id){ var r=rules[id]; return r&&r.wants?r.wants.slice():null; }
+
+function media(c){
+  var poster=D.thumbs[c.id], clip=D.hasClip[c.id];
+  if (clip) return "<video src='media/"+esc(c.id)+".mp4'"
+    + (poster?" poster='"+esc(poster)+"'":"")
+    + " muted playsinline preload='none'></video>"
+    + "<button class='play' type='button' aria-label='Play clip'></button>";
+  return (poster?"<img src='"+esc(poster)+"' alt=''>":"")
+       + "<span class='badge'>still only</span>";
+}
+
+function render(){
+  if (!D) return;
+  var ruled=0;
+  document.getElementById("grid").innerHTML = D.cards.map(function(c){
+    var w=wants(c.id), isAny=!!(w&&w.length===0), set=!!w;
+    if (set) ruled++;
+    var chips = D.scale.map(function(f){
+      var on = !!(w && w.indexOf(f)>=0);
+      return "<button type='button' data-id='"+esc(c.id)+"' data-f='"+esc(f)
+           + "' aria-pressed='"+(on?"true":"false")+"'>"+esc(f)+"</button>";
+    }).join("") + "<button type='button' class='anyb' data-id='"+esc(c.id)
+      + "' data-f='__any' aria-pressed='"+(isAny?"true":"false")+"'>any</button>";
+    return "<article class='c"+(set?" set":"")+"'>"
+      + "<div class='pv'>"+media(c)+"</div><div class='m'>"
+      + "<div class='tid'>"+esc(c.id)+"</div>"
+      + "<div class='meta'><b>"+esc(c.kind||"")+"</b> &middot; "
+      + c.mediaSlots+" media slot"+(c.mediaSlots===1?"":"s")
+      + (c.slotsAtOnce!=null?" &middot; "+c.slotsAtOnce+" at once":"")
+      + "<br>on beats "+esc(c.beats.join(", "))+"</div>"
+      + (c.asserts?"<p class='asserts'>"+esc(c.asserts)+"</p>":"")
+      + "<div class='chips'>"+chips+"</div></div></article>";
+  }).join("");
+  document.getElementById("tally").textContent = ruled+" of "+D.cards.length+" ruled";
+  var left = D.cards.length-ruled;
+  document.getElementById("kinds").textContent = left+" still undecided";
+  document.getElementById("already").innerHTML =
+    "<b>Already ruled, from your earlier words:</b><br>"
+    + Object.keys(D.alreadyRuled).map(function(k){
+        return "&nbsp;&nbsp;"+esc(k)+" &rarr; "+esc(D.alreadyRuled[k].wants.join(", "));
+      }).join("<br>");
+  document.getElementById("foot").textContent =
+    "Blank = undecided, and a template with no rule ranks every asset equally. "
+    + "Any = decided, no preference.";
+}
+
+function save(id){
+  if (!db) return;
+  db.doc("framing/"+id.replace(/[^A-Za-z0-9_-]/g,"_"))
+    .set({ templateId: id, wants: (rules[id]||{}).wants || [],
+           updatedAt: new Date().toISOString() })
+    .then(function(){ setS("Saved "+id+"."); })
+    .catch(function(e){ setS("Not saved: "+((e&&e.code)||"error")); });
+}
+
+document.addEventListener("click", function(e){
+  var pb=e.target.closest(".play");
+  if (pb){
+    var v=pb.parentElement.querySelector("video"); if(!v) return;
+    if (v.paused){
+      document.querySelectorAll("video").forEach(function(o){
+        if(o!==v){o.pause(); var b=o.parentElement.querySelector(".play");
+                  if(b) b.classList.remove("on");}});
+      v.play().catch(function(){}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  var b=e.target.closest(".chips button"); if(!b) return;
+  var id=b.dataset.id, f=b.dataset.f;
+  var cur=wants(id) || [];
+  var next;
+  if (f==="__any"){ next = (cur.length===0 && rules[id]) ? null : []; }
+  else {
+    next = cur.slice();
+    var i=next.indexOf(f);
+    if (i>=0) next.splice(i,1); else next.push(f);
+    // ticking a framing clears "any" implicitly — they are the same field
+    if (!next.length) next = null;
+  }
+  if (next===null) delete rules[id]; else rules[id]={wants:next};
+  render();
+  save(id);
+});
+
+document.addEventListener("ended", function(e){
+  if (e.target.tagName!=="VIDEO") return;
+  var b=e.target.parentElement.querySelector(".play"); if(b) b.classList.remove("on");
+}, true);
+
+fetch("data.json").then(function(r){return r.json();}).then(function(d){
+  D=d; render(); return claude.use("db");
+}).then(function(x){
+  db=x;
+  if (!db){ setS("Rules cannot be saved in this view."); return; }
+  return db.collection("framing").get().then(function(snap){
+    if (snap && snap.docs) snap.docs.forEach(function(doc){
+      var v=doc.data();            // frozen — copy out, never write in
+      if (v && v.templateId) rules[v.templateId] = { wants: (v.wants||[]).slice() };
+    });
+    render(); setS("Ready — saves as you go.");
+  });
+}).catch(function(e){ setS("Could not load: "+((e&&e.code)||"error")); });
+</script>

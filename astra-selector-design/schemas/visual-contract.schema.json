@@ -1,0 +1,606 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "astra/visual-contract.schema.json",
+  "title": "Timed visual contract",
+  "description": "What a narration passage obliges the picture to do. Written BEFORE any media is retrieved and before any template is considered. A contract never names a file, a template, or a scene.",
+  "type": "object",
+  "required": [
+    "contractId",
+    "scriptRef",
+    "narration",
+    "takeaway",
+    "claims",
+    "requiredMedia",
+    "visualEvents",
+    "timing",
+    "prohibitions",
+    "successConditions",
+    "failureConditions",
+    "provenance"
+  ],
+  "properties": {
+    "contractId": {
+      "type": "string",
+      "description": "Stable id, e.g. year-seventeen:S03:P017"
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "scriptRef": {
+      "type": "object",
+      "required": [
+        "scriptId",
+        "sectionId",
+        "passageIndex"
+      ],
+      "properties": {
+        "scriptId": {
+          "type": "string"
+        },
+        "sectionId": {
+          "type": "string"
+        },
+        "sectionPurpose": {
+          "type": "string",
+          "description": "What this section of the documentary is for. Supplied, not inferred per passage."
+        },
+        "passageIndex": {
+          "type": "integer"
+        }
+      }
+    },
+    "narration": {
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "Exact narration text for this unit. Verbatim, never paraphrased."
+        },
+        "precedingText": {
+          "type": "string",
+          "description": "Immediately preceding passage. Context only."
+        },
+        "followingText": {
+          "type": "string",
+          "description": "Immediately following passage. Context only."
+        },
+        "wordTimings": {
+          "type": "array",
+          "description": "Per-word or per-phrase timings from the actual audio when available. Phrase alignment is unreliable without these.",
+          "items": {
+            "type": "object",
+            "required": [
+              "text",
+              "startSeconds",
+              "endSeconds"
+            ],
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "startSeconds": {
+                "type": "number"
+              },
+              "endSeconds": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "required": [
+        "timingSource",
+        "acceptableDurationSeconds"
+      ],
+      "properties": {
+        "timingSource": {
+          "enum": [
+            "measured_audio",
+            "estimated_from_wordcount",
+            "unknown"
+          ],
+          "description": "measured_audio is the only value that licenses phrase-level automation. Anything else forces review of phrase-aligned events."
+        },
+        "audioStartSeconds": {
+          "type": "number"
+        },
+        "audioEndSeconds": {
+          "type": "number"
+        },
+        "audioDurationSeconds": {
+          "type": "number"
+        },
+        "acceptableDurationSeconds": {
+          "type": "object",
+          "required": [
+            "min",
+            "target",
+            "max"
+          ],
+          "description": "DESCRIPTIVE EXPECTATION, NOT A BUDGET. User ruling 2026-09-16: \"time can be extended for this. we dont have to fit a duration if the video evidence needs 5 extra seconds to complete him saying the proof. we arent trying to cram or stretch to fit a duration budget.\" Corpus reference points: overall p25/median/p75 is 6.0/9.0/14.0s; infographic scenes sit near 16s. These describe what reference documentaries did. They never override the time the evidence needs to complete. Answer 14_scene_boundaries_and_visual_cadence says the same: derived ranges stay subordinate to claim communication, phrase alignment, readability and the needs of the passage.",
+          "properties": {
+            "min": {
+              "type": "number"
+            },
+            "target": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            }
+          }
+        },
+        "minimumReadableHoldSeconds": {
+          "type": "number",
+          "default": 1.5,
+          "description": "Floor before any element may be replaced. Derived from 502 observed gaps between consecutive internal changes: p10 1.5s, p25 2.0s, median 3.0s, and only 0.6% of real gaps fall below 1.0s. Treat 1.0s as an absolute floor and 1.5s as the working floor. Dense evidence text needs more."
+        },
+        "internalChangeBudget": {
+          "type": "object",
+          "description": "A scene earns roughly 6 to 7 seconds per internal visual change in the reference corpus, flat across every duration bucket up to 30s. USE AS A SPLIT HINT, NOT A CAP. It does not apply while a unit is extended for evidence to complete, and it does not apply to continuous testimony or performance. Under the elastic duration policy a long scene with few changes is a signal to look, not an automatic split.",
+          "properties": {
+            "requiredChanges": {
+              "type": "integer"
+            },
+            "secondsPerChangeCeiling": {
+              "type": "number",
+              "default": 6.8
+            }
+          }
+        },
+        "durationPolicy": {
+          "type": "object",
+          "description": "How the unit's length is decided. Elastic by default.",
+          "properties": {
+            "mode": {
+              "enum": [
+                "elastic",
+                "fixed_by_container"
+              ],
+              "default": "elastic",
+              "description": "elastic means the evidence sets the length. fixed_by_container is only for a scene whose native structure genuinely cannot extend."
+            },
+            "evidenceMustComplete": {
+              "type": "boolean",
+              "default": true,
+              "description": "When true, the unit runs until the proof finishes. A quoted clip plays to the end of the decisive sentence; a document holds until the decisive line has been readable long enough. Truncating the proof to hit a target duration is a failure, not a trade."
+            },
+            "narrationYields": {
+              "type": "boolean",
+              "default": false,
+              "description": "True when the narration pauses so source audio can carry the proof. Extends the unit and pushes the rest of the film later, which is expected rather than a problem."
+            },
+            "extensionSeconds": {
+              "type": "number",
+              "description": "How far past the narration this unit runs."
+            }
+          }
+        }
+      }
+    },
+    "takeaway": {
+      "type": "string",
+      "description": "The single thing the viewer must leave with. Exactly one. If two are needed the unit must be split."
+    },
+    "narrationJob": {
+      "enum": [
+        "PROVE",
+        "COMPARE",
+        "SCALE",
+        "SEQUENCE",
+        "EXPLAIN",
+        "INTRODUCE",
+        "ASSERT",
+        "FRAME",
+        "FEEL"
+      ],
+      "description": "Normalized visual communication job. Derived from rhetoricalFunction, which is one of the two reliable controlled axes in the reference corpus."
+    },
+    "rhetoricalFunction": {
+      "enum": [
+        "evidence",
+        "claim",
+        "escalation",
+        "contrast",
+        "transition",
+        "example",
+        "setup",
+        "chronology",
+        "causation",
+        "summary",
+        "reversal",
+        "identity",
+        "comparison",
+        "emotional_beat",
+        "question",
+        "hook",
+        "answer",
+        "other"
+      ],
+      "description": "Controlled vocabulary carried over unchanged from the reference analyses so back-tests stay comparable."
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every factual assertion the picture must not contradict and, where the claim is evidentiary, must actively support.",
+      "items": {
+        "type": "object",
+        "required": [
+          "text",
+          "claimClass",
+          "evidenceObligation"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "claimClass": {
+            "enum": [
+              "documented_fact",
+              "quoted_statement",
+              "quantity_or_statistic",
+              "chronological_fact",
+              "relationship",
+              "testimony",
+              "characterization",
+              "interpretation",
+              "rhetorical_framing"
+            ],
+            "description": "Normalized replacement for the reference corpus's claimType field, which contained 442 distinct free-text values across 628 units and cannot be used as a feature as recorded."
+          },
+          "evidenceObligation": {
+            "enum": [
+              "exact_source_required",
+              "exact_event_or_entity_required",
+              "representative_media_allowed",
+              "decorative_media_allowed"
+            ],
+            "description": "The strictest obligation governs the unit. Corpus behaviour: evidence passages are exact_source_required 60% of the time and never license decorative media. Decorative media appears as the strictest obligation only on transition (10%) and setup (3%) beats."
+          },
+          "sourceCandidates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Known primary sources that would satisfy the obligation. USER RULING 2026-09-16 on the deferred answer 18: the source of every proof role is recorded here and carried into the production handoff. On-screen attribution is an editorial choice per scene, never a requirement, and attribution capability is never used to filter containers."
+          },
+          "disputed": {
+            "type": "boolean",
+            "default": false
+          },
+          "verificationStatus": {
+            "enum": [
+              "verified",
+              "unverified",
+              "contested"
+            ],
+            "default": "unverified"
+          }
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "description": "Named people, organizations, works, places or objects that must be visible or identifiable.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "mustBeVisible"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "entityType": {
+            "enum": [
+              "person",
+              "organization",
+              "work",
+              "place",
+              "object",
+              "event",
+              "quantity"
+            ]
+          },
+          "mustBeVisible": {
+            "type": "boolean"
+          },
+          "mustBeNamedOnScreen": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, the container must have a text slot. Several carousel packs on the drive have zero text slots and cannot satisfy this."
+          },
+          "recognitionRisk": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "high means the viewer will not know who this is without a label."
+          }
+        }
+      }
+    },
+    "focalEntityCount": {
+      "type": "integer",
+      "description": "Drives container capacity. Corpus: interview footage carries one entity 77% of the time; carousels carry one entity only 20% of the time and rise to 58% share at four entities; infographics are the only container reaching beyond four. Median unit duration rises 8.5s to 10.2s to 13.0s from one to three entities, then stops rising because four-plus entities are shown simultaneously rather than sequenced."
+    },
+    "entityRelationship": {
+      "enum": [
+        "single",
+        "pair_linked",
+        "pair_contrasted",
+        "group_comparative",
+        "group_collective",
+        "sequence_over_time",
+        "part_of_whole",
+        "none"
+      ],
+      "description": "Normalized replacement for the corpus's free-text entityRelationship field (580 distinct values in 628 units)."
+    },
+    "requiredMedia": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Media ROLES, never filenames. This is the output of the narration stage and the input to retrieval. Filenames are bound later, in the candidate, never here.",
+      "items": {
+        "type": "object",
+        "required": [
+          "roleId",
+          "editorialRole",
+          "contentRequirement",
+          "sourceSpecificity"
+        ],
+        "properties": {
+          "roleId": {
+            "type": "string"
+          },
+          "editorialRole": {
+            "enum": [
+              "subject",
+              "proof",
+              "context",
+              "identity",
+              "comparison",
+              "atmosphere",
+              "scale",
+              "chronology",
+              "transition_support"
+            ],
+            "description": "Controlled vocabulary carried from the reference corpus, where it was one of only four reliable axes."
+          },
+          "contentRequirement": {
+            "type": "string",
+            "description": "What must actually be depicted, in plain language. 'The 1998 filing, page showing the dismissal clause' not 'a legal document'."
+          },
+          "sourceSpecificity": {
+            "enum": [
+              "exact_source_required",
+              "exact_event_or_entity_required",
+              "representative_media_allowed",
+              "decorative_media_allowed"
+            ]
+          },
+          "mediaFamily": {
+            "enum": [
+              "archival_motion",
+              "archival_still",
+              "talking_head",
+              "document_or_screen",
+              "data_or_number",
+              "portrait_still",
+              "motion_graphic",
+              "performance",
+              "broll",
+              "unknown"
+            ],
+            "description": "Coarse family used for retrieval and for treatment scoring. Back-testing shows this field, not the narration structure, is what actually resolves treatment choice."
+          },
+          "legibilityRequirement": {
+            "type": "object",
+            "description": "Illegible evidence is the second most common failure mode in the reference corpus.",
+            "properties": {
+              "textMustBeReadable": {
+                "type": "boolean",
+                "default": false
+              },
+              "smallestMeaningfulElement": {
+                "type": "string"
+              },
+              "minimumOnScreenSeconds": {
+                "type": "number"
+              }
+            }
+          },
+          "eraConstraint": {
+            "type": "string",
+            "description": "Period the asset must belong to. Anachronistic footage for a historical claim is an explicit corpus failure mode ('using modern' appears 7 times in failure conditions)."
+          },
+          "required": {
+            "type": "boolean",
+            "default": true
+          },
+          "fallbackAcceptable": {
+            "type": "string",
+            "description": "What may substitute, and at what cost. Empty means nothing may substitute."
+          },
+          "sourceRef": {
+            "type": "string",
+            "description": "Where this role's evidence actually came from once bound. URL, archive reference, document name or asset path. Recorded for every proof role."
+          },
+          "attributionPolicy": {
+            "type": "string",
+            "enum": [
+              "record_only"
+            ],
+            "default": "record_only",
+            "description": "record_only: provenance is tracked in the contract and handoff; whether a credit appears in frame is decided per scene."
+          }
+        }
+      }
+    },
+    "visualEvents": {
+      "type": "array",
+      "description": "What the picture must DO, tied to the words that motivate it. 88.8% of reference events are rated strong alignment, so this is the field the whole system is judged on.",
+      "items": {
+        "type": "object",
+        "required": [
+          "eventId",
+          "triggerPhrase",
+          "eventType",
+          "description"
+        ],
+        "properties": {
+          "eventId": {
+            "type": "string"
+          },
+          "triggerPhrase": {
+            "type": "string",
+            "description": "The exact spoken words that motivate this event. Must appear verbatim in narration.text."
+          },
+          "triggerOffsetSeconds": {
+            "type": "number",
+            "description": "Seconds from unit start. Corpus median for the FIRST event is 2.3s, and only 30% of units fire their first event within 1s of the cut. Scenes establish, then the event lands. Do not default to zero."
+          },
+          "eventType": {
+            "enum": [
+              "reveal",
+              "removal",
+              "highlight",
+              "camera_move",
+              "transition",
+              "value_change",
+              "label_change",
+              "cut",
+              "hold"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "toleranceSeconds": {
+            "type": "number",
+            "default": 0.25,
+            "description": "How far the event may drift from the trigger before alignment is judged failed."
+          },
+          "criticality": {
+            "enum": [
+              "decisive",
+              "supporting",
+              "optional"
+            ],
+            "description": "decisive events that cannot be aligned are a hard rejection of the candidate."
+          }
+        }
+      }
+    },
+    "continuity": {
+      "type": "object",
+      "properties": {
+        "precedingContractId": {
+          "type": "string"
+        },
+        "followingContractId": {
+          "type": "string"
+        },
+        "carryForward": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Elements that should persist from the previous scene."
+        },
+        "mustDifferFrom": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Assets or treatments used recently that would read as a repeat."
+        },
+        "bridgeRequired": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when the visual family changes and a transition must carry the change. A family change with a good bridge is allowed, not a defect."
+        }
+      }
+    },
+    "prohibitions": {
+      "type": "array",
+      "description": "What must never be shown or implied. Populated from the claim set: anything the narration does not support.",
+      "items": {
+        "type": "object",
+        "required": [
+          "prohibition",
+          "reason"
+        ],
+        "properties": {
+          "prohibition": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "hard",
+              "soft"
+            ],
+            "default": "hard"
+          }
+        }
+      }
+    },
+    "successConditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "failureConditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "description": "Corpus frequency of failure themes across 681 recorded conditions: generic or stock or unrelated stand-in 19 per 100, illegible text 8, timing miss 6, clutter 5, anachronism and monotony below that."
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "createdBy",
+        "createdAt"
+      ],
+      "properties": {
+        "createdBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "rulesetVersion": {
+          "type": "string",
+          "description": "Version of the active rule set that produced this contract. Required for rollback."
+        },
+        "humanReviewed": {
+          "type": "boolean",
+          "default": false
+        },
+        "openQuestions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

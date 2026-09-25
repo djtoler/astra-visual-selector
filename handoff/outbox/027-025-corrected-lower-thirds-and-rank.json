@@ -1,0 +1,147 @@
+{
+ "purpose": "Supersedes 025-lower-thirds-and-rank-remeasure.json. Both preflight blockers in your 026 are fixed. Same 21 ids, corrected paths.",
+ "supersedes": "025-lower-thirds-and-rank-remeasure.json",
+ "prompt": "/Users/dwaynetoler/timeline/prompts/PROMPT-describe-clip.md",
+ "promptSha256": "d58028d6ad18e58aa0d6b5fcf7a8075a82e33da191af2bff71262e97c66b09b3",
+ "previousPromptSha256": "64e9839e56a8831c26918505289862798d51415b867c56b98b7958018c791636",
+ "whatChanged": "`carries: rank` now means COMPARATIVE rank only \u2014 who is ahead \u2014 never the order items arrive in. Sequence position is already recorded by `structure: sequence` and `staging: reveals_in_turn`; the vocabulary did not grow. Your round-2 report caught this.",
+ "yourBlocker1_fixed": "Right, and it was worse than three: 66 of 375 pool records carried a clip that was not the clip that had been measured, because load() fell through to the vendor's `sourcePath` reel. The MEASURED clip_path now wins in load() itself, not just in this manifest \u2014 a review UI would have played a 52s reel for a 10s scene. Every path below is checked to exist and asserted under 20s. Tests: MeasuredClipWins x2, proved to fail against the old loader.",
+ "yourBlocker2_fixed": "A real deadlock and you found it before spending. ingest_capability.py now validates against `set(pool) | set(C.local_pending())`. _local() is UNTOUCHED and still holds an unmeasured sidecar record out of selection. The two questions are different \u2014 may this be written, may this be chosen \u2014 and only the first moved. Tests: LocalTemplates gains two, one of which asserts the selection gate did not open. Verified: a synthetic record for a sidecar id validates, and the id is still absent from C.load().",
+ "model": "gemini-3.8-flash",
+ "twoGroups": {
+  "re-measure: rank": "15 records currently carrying `rank`, ALL of them. The 5 that look correct are a CONTROL \u2014 if they come back without `rank` the new wording is too strict and I want that from the same run.",
+  "new: lower third": "6 scenes cut this side from vendor demo reels. Held out of the pool until these records exist; the bootstrap above is what lets them be ingested."
+ },
+ "deliverTo": "/Users/dwaynetoler/timeline/handoff/inbox/",
+ "ingest": "python3 pipeline/ingest_capability.py <file> --write",
+ "costNote": "About $0.24 at your measured round-2 rate. My own estimate was 2.2x low because I priced input and ignored 303K thought tokens; your receipts are the only measured number either of us has.",
+ "count": 21,
+ "clips": [
+  {
+   "id": "01_finals_head_to_head",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/output/01_finals_head_to_head.mp4",
+   "seconds": 4.5,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "05_measured_height_ruler",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/output/05_measured_height_ruler.mp4",
+   "seconds": 4.8,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-004",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc/clips/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-004.mp4",
+   "seconds": 3.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-dropoff-carousels-2026-09-15-17-30-59-utc/clips/archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003.mp4",
+   "seconds": 9.97,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "archive3-infographic-bar-charts--review-006",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-infographic-bar-charts/clips/archive3-infographic-bar-charts--review-006.mp4",
+   "seconds": 4.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "text-list-carousel--review-001",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-001.mp4",
+   "seconds": 4.5,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "text-list-carousel--review-002",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-002.mp4",
+   "seconds": 5.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "text-list-carousel--review-004",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-004.mp4",
+   "seconds": 5.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "text-list-carousel--review-006",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-006.mp4",
+   "seconds": 4.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "text-list-carousel--review-007",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-007.mp4",
+   "seconds": 5.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "text-list-carousel--review-008",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-008.mp4",
+   "seconds": 5.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "text-list-carousel--review-009",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-009.mp4",
+   "seconds": 5.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "text-list-carousel--review-010",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-010.mp4",
+   "seconds": 7.93,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "truth-rank-fall",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-rank-fall.mp4",
+   "seconds": 9.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "truth-small-outlier",
+   "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-small-outlier.mp4",
+   "seconds": 5.0,
+   "why": "re-measure: rank"
+  },
+  {
+   "id": "grunge-lower-thirds--scene-001",
+   "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/grunge-lower-thirds--scene-001.mp4",
+   "seconds": 5.0,
+   "why": "new: lower third"
+  },
+  {
+   "id": "glass-lower-thirds--scene-001",
+   "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/glass-lower-thirds--scene-001.mp4",
+   "seconds": 3.0,
+   "why": "new: lower third"
+  },
+  {
+   "id": "paper-lower-thirds--scene-001",
+   "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/paper-lower-thirds--scene-001.mp4",
+   "seconds": 4.1,
+   "why": "new: lower third"
+  },
+  {
+   "id": "paper-lower-thirds--scene-002",
+   "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/paper-lower-thirds--scene-002.mp4",
+   "seconds": 4.23,
+   "why": "new: lower third"
+  },
+  {
+   "id": "paper-lower-thirds--scene-003",
+   "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/paper-lower-thirds--scene-003.mp4",
+   "seconds": 4.4,
+   "why": "new: lower third"
+  },
+  {
+   "id": "paper-lower-thirds--scene-004",
+   "clip": "/Users/dwaynetoler/timeline/grammar/local-clips/paper-lower-thirds--scene-004.mp4",
+   "seconds": 3.8,
+   "why": "new: lower third"
+  }
+ ]
+}

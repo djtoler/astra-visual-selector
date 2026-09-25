@@ -1,0 +1,316 @@
+<title>The Unseen Slice</title>
+<style>
+:root{
+  --ink:#151a1f; --ink2:#4d5a66; --ink3:#7d8b99; --line:#dde4ea; --line2:#eef2f6;
+  --bg:#f5f7f9; --card:#fff; --raised:#fafbfc;
+  --pick:#0d6b52; --pickbg:#e3f2ec; --held:#7a4a12; --heldbg:#fbf0de;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e7edf3; --ink2:#a2b0bd; --ink3:#76848f; --line:#2a333c; --line2:#212a32;
+  --bg:#0d1115; --card:#171d24; --raised:#1c232b;
+  --pick:#6ed4ab; --pickbg:#132c23; --held:#e0ad62; --heldbg:#2c2113;
+}}
+:root[data-theme="dark"]{
+  --ink:#e7edf3; --ink2:#a2b0bd; --ink3:#76848f; --line:#2a333c; --line2:#212a32;
+  --bg:#0d1115; --card:#171d24; --raised:#1c232b;
+  --pick:#6ed4ab; --pickbg:#132c23; --held:#e0ad62; --heldbg:#2c2113;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 18px 80px}
+
+header{padding-block:26px 18px;border-bottom:1px solid var(--line);margin-bottom:8px}
+h1{margin:0 0 8px;font-size:21px;letter-spacing:-.01em}
+.lede{margin:0 0 4px;color:var(--ink2);max-width:76ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:11px 0;margin-bottom:22px;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font:600 12px/1 var(--mono);padding:7px 11px;border-radius:99px;
+  background:var(--pickbg);color:var(--pick);white-space:nowrap}
+.pill.q{background:var(--line2);color:var(--ink2)}
+.st{font:12px/1.4 var(--mono);color:var(--ink3)}
+.bar button{font:600 12px/1 var(--mono);padding:7px 11px;border-radius:6px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.bar button[aria-pressed="true"]{border-color:var(--pick);color:var(--pick);
+  background:var(--pickbg)}
+
+section.beat{border:1px solid var(--line);border-radius:9px;background:var(--card);
+  margin-bottom:20px;overflow:hidden}
+section.beat.done{border-color:var(--pick)}
+.bh{padding:15px 17px;border-bottom:1px solid var(--line);background:var(--raised)}
+.bt{display:flex;gap:11px;align-items:baseline;flex-wrap:wrap;margin-bottom:7px}
+.bid{font:600 13px/1 var(--mono)}
+.bjob{font:11px/1 var(--mono);color:var(--ink3);text-transform:uppercase;
+  letter-spacing:.07em}
+.bn{font:11px/1 var(--mono);color:var(--pick);background:var(--pickbg);
+  padding:3px 7px;border-radius:3px}
+.quote{margin:0;color:var(--ink2);font-size:14px;font-style:italic;max-width:88ch}
+.yn{margin:9px 0 0;font:12.5px/1.55 var(--mono);color:var(--ink3);max-width:88ch}
+.yn b{color:var(--held)}
+
+.grp{padding:14px 17px 17px}
+.glabel{font:600 10.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink3);margin:0 0 10px}
+.grp + .grp{border-top:1px solid var(--line2)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(212px,1fr))}
+
+.c{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--card);
+  cursor:pointer;transition:border-color .12s,box-shadow .12s}
+.c:hover{border-color:var(--ink3)}
+.c.on{border-color:var(--pick);box-shadow:inset 0 0 0 1px var(--pick)}
+.c.heldc{border-color:var(--held);cursor:default;opacity:.92}
+.pv{position:relative;aspect-ratio:16/9;background:#05070a}
+.pv video,.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;
+  height:34px;border-radius:99px;border:0;cursor:pointer;background:rgba(5,7,10,.6);
+  backdrop-filter:blur(3px)}
+.play::before{content:"";position:absolute;left:13px;top:9px;border-left:11px solid #fff;
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+.play.on{opacity:0}.pv:hover .play.on{opacity:.75}
+.nostill{position:absolute;inset:0;display:grid;place-items:center;color:#5a6672;
+  font:11px/1 var(--mono)}
+.badge{position:absolute;left:7px;top:7px;padding:3px 7px;border-radius:3px;
+  font:600 9.5px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.badge.p{background:var(--pick);color:#fff}
+.badge.h{background:var(--held);color:#fff}
+.badge.v{background:rgba(5,7,10,.72);color:#d7dee6;left:auto;right:7px}
+.m{padding:8px 10px 10px}
+.mid{font:10.5px/1.35 var(--mono);color:var(--ink3);word-break:break-all;
+  margin-bottom:4px}
+.mname{font-size:12.5px;line-height:1.42;color:var(--ink2);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+details.more{margin-top:6px}
+details.more summary{font:10.5px/1 var(--mono);color:var(--ink3);cursor:pointer;
+  list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"▸ why";}
+details.more[open] summary::before{content:"▾ why";}
+details.more p{margin:6px 0 0;font-size:12px;color:var(--ink3);line-height:1.5}
+
+.nt{width:100%;margin:12px 17px 16px;width:calc(100% - 34px);padding:9px 11px;
+  border:1px solid var(--line);border-radius:6px;background:var(--raised);
+  color:var(--ink);font:13.5px/1.5 var(--sans);resize:vertical;min-height:44px}
+footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+  font:12px/1.6 var(--mono);color:var(--ink3)}
+@media (max-width:520px){ .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>The Unseen Slice</h1>
+  <p class="lede"><b>104 cards across 26 beats that have never been on screen.</b>
+  They were bound to the beat's job the whole time — the slate shows 10, one per
+  family, so the top families held every slot until you rejected them. Rejecting
+  pass 2 let the next tier up.</p>
+  <p class="lede">On each beat, what you already chose is shown first and marked.
+  The question is not &ldquo;pick one&rdquo; — it is <b>does any of these beat what
+  you have</b>. Picking nothing on a beat is a valid answer and keeps your
+  current choice.</p>
+</header>
+
+<div class="bar">
+  <span class="pill" id="tally">0 picked</span>
+  <span class="pill q" id="prog">0 / 26 beats visited</span>
+  <button id="filt" type="button" aria-pressed="false">Hide visited</button>
+  <span class="st" id="st">Loading&hellip;</span>
+</div>
+
+<div id="root"></div>
+
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D = null, db = null, state = {}, timer = null, hideVisited = false;
+
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];
+  });
+}
+function setS(m){ document.getElementById("st").textContent = m; }
+
+/* The artifact db returns FROZEN documents. Never write into one — build a fresh
+   object with copied arrays. CLAUDE.md, and the bug it came from. */
+function touch(k){
+  var s = state[k];
+  if (!s) { s = state[k] = { selected: [], note: "", visited: false }; }
+  return { selected: s.selected.slice(), note: s.note, visited: s.visited };
+}
+function put(k, next){ state[k] = next; }
+
+function media(id, cls, badge){
+  var hasClip = D.hasClip[id];
+  var poster  = D.thumbs[id];
+  var inner;
+  if (hasClip) {
+    inner = "<video src='media/" + esc(id) + ".mp4'"
+          + (poster ? " poster='" + esc(poster) + "'" : "")
+          + " muted playsinline preload='none'></video>"
+          + "<button class='play' type='button' aria-label='Play clip'></button>";
+  } else if (poster) {
+    inner = "<img src='" + esc(poster) + "' alt=''>"
+          + "<span class='badge v'>still</span>";
+  } else {
+    inner = "<span class='nostill'>no preview on disk</span>";
+  }
+  return "<div class='pv'>" + (badge || "") + inner + "</div>";
+}
+
+function card(o, beatKey, isHeld){
+  var s = state[beatKey] || { selected: [] };
+  var on = s.selected.indexOf(o.id) >= 0;
+  var badge = isHeld ? "<span class='badge h'>you chose this</span>"
+            : (on ? "<span class='badge p'>picked</span>" : "");
+  var why = "";
+  if (!isHeld && (o.mechanism || o.condition)) {
+    why = "<details class='more'><summary></summary><p>"
+        + esc(o.mechanism || "") + (o.condition ? " — " + esc(o.condition) : "")
+        + "</p></details>";
+  }
+  return "<article class='c" + (on ? " on" : "") + (isHeld ? " heldc" : "")
+       + "' data-beat='" + esc(beatKey) + "' data-id='" + esc(o.id)
+       + "' data-held='" + (isHeld ? "1" : "") + "'>"
+       + media(o.id, "", badge)
+       + "<div class='m'><div class='mid'>" + esc(o.id) + "</div>"
+       + "<div class='mname'>" + esc(o.name || "") + "</div>" + why + "</div></article>";
+}
+
+function render(){
+  if (!D) return;
+  var picked = 0, visited = 0;
+  var html = D.beats.map(function(b){
+    var s = state[b.beat] || { selected: [], note: "", visited: false };
+    picked += s.selected.length;
+    var isVisited = s.visited || s.selected.length > 0;
+    if (isVisited) visited++;
+    if (hideVisited && isVisited) return "";
+
+    var held = (b.held || []).map(function(id){
+      return card({ id: id, name: "" }, b.beat, true);
+    }).join("");
+
+    var req = (b.requiredEncoding || []).length
+            ? " · needs " + esc(b.requiredEncoding.join(", ")) : "";
+
+    return "<section class='beat" + (isVisited ? " done" : "") + "' id='b-" + esc(b.beat) + "'>"
+      + "<div class='bh'>"
+      +   "<div class='bt'><span class='bid'>" + esc(b.beat) + "</span>"
+      +     "<span class='bjob'>" + esc(b.job || "") + esc(req) + "</span>"
+      +     (s.selected.length ? "<span class='bn'>" + s.selected.length + " picked</span>" : "")
+      +   "</div>"
+      +   (b.quote ? "<p class='quote'>&ldquo;" + esc(b.quote) + "&rdquo;</p>" : "")
+      +   (b.note ? "<p class='yn'>Your pass-2 note: <b>" + esc(b.note) + "</b></p>" : "")
+      + "</div>"
+      + (held ? "<div class='grp'><p class='glabel'>What you already chose</p>"
+              + "<div class='grid'>" + held + "</div></div>" : "")
+      + "<div class='grp'><p class='glabel'>Never shown to you &mdash; "
+      +   b.unseen.length + " card" + (b.unseen.length === 1 ? "" : "s") + "</p>"
+      +   "<div class='grid'>"
+      +   b.unseen.map(function(o){ return card(o, b.beat, false); }).join("")
+      +   "</div></div>"
+      + "<textarea class='nt' data-beat='" + esc(b.beat) + "' rows='2' "
+      +   "placeholder='Why, or what is still missing on this beat'>"
+      +   esc(s.note) + "</textarea>"
+      + "</section>";
+  }).join("");
+
+  document.getElementById("root").innerHTML = html
+    || "<p class='lede'>Every beat visited. Uncheck &ldquo;Hide visited&rdquo; to review.</p>";
+  document.getElementById("tally").textContent = picked + " picked";
+  document.getElementById("prog").textContent = visited + " / " + D.beats.length + " beats visited";
+  document.getElementById("foot").textContent =
+    D.beats.length + " beats · " + D.beats.reduce(function(a, b){ return a + b.unseen.length; }, 0)
+    + " unseen cards · picking nothing on a beat keeps the choice you already made";
+}
+
+function save(beat){
+  if (!db) return;
+  var s = state[beat];
+  db.doc("pass3/" + beat).set({
+    selected: s.selected.slice(), note: s.note, visited: true,
+    updatedAt: new Date().toISOString()
+  }).then(function(){ setS("Saved " + beat + "."); })
+    .catch(function(e){ setS("Not saved: " + ((e && e.code) || "error")); });
+}
+
+document.addEventListener("click", function(e){
+  var pb = e.target.closest(".play");
+  if (pb) {
+    var v = pb.parentElement.querySelector("video");
+    if (!v) return;
+    if (v.paused) {
+      document.querySelectorAll("video").forEach(function(o){
+        if (o !== v) { o.pause();
+          var ob = o.parentElement.querySelector(".play");
+          if (ob) ob.classList.remove("on"); }
+      });
+      v.play().catch(function(){});
+      pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  if (e.target.closest("video") || e.target.closest("details")) return;
+  var c = e.target.closest(".c");
+  if (!c || c.dataset.held) return;
+  var beat = c.dataset.beat, id = c.dataset.id;
+  var next = touch(beat);
+  var i = next.selected.indexOf(id);
+  if (i >= 0) next.selected.splice(i, 1); else next.selected.push(id);
+  next.visited = true;
+  put(beat, next);
+  render();
+  save(beat);
+});
+
+document.addEventListener("ended", function(e){
+  if (e.target.tagName !== "VIDEO") return;
+  var b = e.target.parentElement.querySelector(".play");
+  if (b) b.classList.remove("on");
+}, true);
+
+document.addEventListener("input", function(e){
+  if (!e.target.classList.contains("nt")) return;
+  var beat = e.target.dataset.beat;
+  var next = touch(beat);
+  next.note = e.target.value;
+  next.visited = true;
+  put(beat, next);
+  clearTimeout(timer);
+  timer = setTimeout(function(){ save(beat); }, 700);
+});
+
+document.getElementById("filt").addEventListener("click", function(e){
+  hideVisited = !hideVisited;
+  e.target.setAttribute("aria-pressed", hideVisited ? "true" : "false");
+  e.target.textContent = hideVisited ? "Show all" : "Hide visited";
+  render();
+});
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d;
+  D.beats.forEach(function(b){ state[b.beat] = { selected: [], note: "", visited: false }; });
+  render();
+  return claude.use("db");
+}).then(function(x){
+  db = x;
+  if (!db) { setS("Picks cannot be saved in this view."); return; }
+  return Promise.all(D.beats.map(function(b){
+    return db.doc("pass3/" + b.beat).get().then(function(s){
+      var saved = s && s.exists ? s.data() : null;   // frozen — copy out, never write in
+      if (saved) {
+        state[b.beat] = { selected: (saved.selected || []).slice(),
+                          note: saved.note || "", visited: !!saved.visited };
+      }
+    }).catch(function(){});
+  })).then(function(){
+    render();
+    setS("Ready — saves as you go.");
+  });
+}).catch(function(e){ setS("Could not load: " + ((e && e.code) || "error")); });
+</script>

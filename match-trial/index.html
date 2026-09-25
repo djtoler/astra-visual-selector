@@ -1,0 +1,279 @@
+<title>Beat Match Trial</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#12171d; --ink-2:#414d5a; --ink-3:#6b7885; --line:#dbe1e7;
+  --bg:#f4f6f8; --card:#ffffff; --raise:#eef1f4;
+  --accent:#0f5c6b; --accent-soft:#e0eef0;
+  --fit:#1c6b4a; --fit-bg:#e2f2ea;
+  --fallback:#8a5a10; --fallback-bg:#f8eeda;
+  --contra:#9a3327; --contra-bg:#fae7e3;
+  --unres:#55606c; --unres-bg:#e9edf1;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e6ebf0; --ink-2:#a9b5c1; --ink-3:#7d8b99; --line:#2a333d;
+  --bg:#0d1116; --card:#151b22; --raise:#1c242c;
+  --accent:#63c6d8; --accent-soft:#12303a;
+  --fit:#6fd3a4; --fit-bg:#10301f;
+  --fallback:#e0b163; --fallback-bg:#332715;
+  --contra:#ee9084; --contra-bg:#361a17;
+  --unres:#9aa6b2; --unres-bg:#1e262e;
+}}
+:root[data-theme="dark"]{
+  --ink:#e6ebf0; --ink-2:#a9b5c1; --ink-3:#7d8b99; --line:#2a333d;
+  --bg:#0d1116; --card:#151b22; --raise:#1c242c;
+  --accent:#63c6d8; --accent-soft:#12303a;
+  --fit:#6fd3a4; --fit-bg:#10301f;
+  --fallback:#e0b163; --fallback-bg:#332715;
+  --contra:#ee9084; --contra-bg:#361a17;
+  --unres:#9aa6b2; --unres-bg:#1e262e;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:16px;padding-block:32px 72px}
+h1{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:700;letter-spacing:-.02em;margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--ink-2);max-width:68ch;margin:0 0 6px}
+.meta{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.02em;text-transform:uppercase}
+.status{margin-top:14px;font-family:var(--mono);font-size:.74rem;color:var(--ink-3);
+  border:1px solid var(--line);background:var(--card);border-radius:6px;padding:7px 10px;display:inline-block}
+.beat{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-top:26px;overflow:hidden}
+.beat-head{padding:18px 20px;border-bottom:1px solid var(--line)}
+.beat-id{font-family:var(--mono);font-size:.74rem;color:var(--accent);font-weight:600;letter-spacing:.06em}
+.beat-title{font-size:1.14rem;font-weight:600;margin:3px 0 2px;letter-spacing:-.01em}
+.beat-src{font-family:var(--mono);font-size:.72rem;color:var(--ink-3)}
+blockquote{margin:13px 0 0;padding:11px 14px;background:var(--raise);border-left:3px solid var(--accent);
+  border-radius:0 6px 6px 0;font-size:.95rem;color:var(--ink-2)}
+.intent{display:grid;gap:9px;margin-top:14px}
+@media(min-width:800px){.intent{grid-template-columns:repeat(3,1fr)}}
+.ifield{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg)}
+.ilabel{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);margin-bottom:4px}
+.ifield.lie .ilabel{color:var(--contra)}
+.ifield p{margin:0;font-size:.86rem;color:var(--ink-2)}
+.shape{margin-top:12px;font-family:var(--mono);font-size:.73rem;color:var(--ink-3)}
+.cands{display:grid;gap:14px;padding:18px 20px}
+@media(min-width:780px){.cands{grid-template-columns:repeat(3,1fr)}}
+.cand{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
+.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--raise);display:block;border-bottom:1px solid var(--line)}
+.stillwrap{position:relative}
+.stillbadge{position:absolute;left:8px;bottom:8px;font-family:var(--mono);font-size:.62rem;
+  letter-spacing:.04em;padding:3px 6px;border-radius:4px;background:rgba(12,18,24,.82);color:#e6ebf0}
+video.thumb{background:#000}
+.cbody{padding:12px 13px;display:flex;flex-direction:column;gap:9px;flex:1}
+.chip{display:inline-block;font-family:var(--mono);font-size:.64rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.06em;padding:3px 7px;border-radius:4px;align-self:flex-start}
+.chip.fit{color:var(--fit);background:var(--fit-bg)}
+.chip.fallback{color:var(--fallback);background:var(--fallback-bg)}
+.chip.contra{color:var(--contra);background:var(--contra-bg)}
+.chip.unres{color:var(--unres);background:var(--unres-bg)}
+.cid{font-family:var(--mono);font-size:.73rem;color:var(--ink);font-weight:500;word-break:break-word}
+.ckind{font-family:var(--mono);font-size:.66rem;color:var(--ink-3)}
+.why{font-size:.83rem;color:var(--ink-2);margin:0}
+.ev{font-family:var(--mono);font-size:.71rem;color:var(--ink-3);border-left:2px solid var(--line);padding-left:8px;margin:0}
+.ev b{color:var(--ink-2);font-weight:500}
+.fb{border-top:1px solid var(--line);padding:10px 13px;background:var(--card);display:flex;flex-direction:column;gap:8px}
+.verdicts{display:flex;gap:5px;flex-wrap:wrap}
+.vb{flex:1;min-width:58px;font-family:var(--mono);font-size:.7rem;font-weight:600;padding:6px 4px;border-radius:5px;
+  border:1px solid var(--line);background:var(--bg);color:var(--ink-2);cursor:pointer;transition:.12s}
+.vb:hover{border-color:var(--accent)}
+.vb[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+:root{--on-accent:#ffffff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--on-accent:#08141a}}
+:root[data-theme="dark"]{--on-accent:#08141a}
+textarea{width:100%;font-family:var(--sans);font-size:.83rem;color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:6px;padding:7px 9px;resize:vertical;min-height:44px}
+textarea:focus,.vb:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.beat-note{padding:0 20px 18px}
+.beat-note .ilabel{margin-bottom:5px}
+.shortage{margin:0 20px 18px;padding:12px 14px;border-radius:8px;background:var(--contra-bg);
+  border:1px solid var(--contra);color:var(--contra);font-size:.87rem}
+.shortage b{font-weight:600}
+footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink-3);font-size:.82rem;max-width:72ch}
+</style>
+
+<div class="wrap">
+<h1>Beat Match Trial</h1>
+<p class="sub">Four beats the tagging pilot never saw, matched against the scene catalog by entity count and written contract rather than by tags. Two came out clean, one eliminated a template on its own stated limitation, one found nothing.</p>
+<p class="meta">249 catalog records &middot; shape filter then contract read &middot; no tags used</p>
+<p class="sub" style="margin-top:8px">Five of the twelve candidates have a motion render and play here. The other seven are infographic layouts with a still preview and no rendered clip anywhere in the project, so their timing cannot be judged yet.</p>
+<div class="status" id="status">Loading saved feedback&hellip;</div>
+<div id="beats"></div>
+<footer>Verdicts and notes save as you type. Leave a beat note where the whole slate is wrong rather than one card.</footer>
+</div>
+
+<script>
+const BEATS = [
+ {id:"B1",title:"Cycle 1 REVEAL",src:"passage 07",n:1,kind:"single value",
+  quote:"Seventeen.",
+  takeaway:"The number should feel wrong against what was just shown.",
+  must:"One number. It is a year-of-career ordinal, not a calendar year or a quantity of anything.",
+  lie:"Decoration. Any chart, any second value, anything that invites comparison.",
+  shape:"234 of 249 records pass a capacity-1 filter. Shape is nearly useless here, so the contract text does all the work.",
+  cands:[
+   {id:"history-slideshow-envato--scene-001",vid:true,kind:"after effects · capacity 0",cls:"fit",label:"complete fit",
+    why:"Minimalist text on black. Nothing accumulates, nothing invites comparison, and there is no second value on screen.",
+    ev:"<b>description:</b> Minimalist text opener on black background."},
+   {id:"counters-envato--scene-003",vid:true,kind:"after effects · capacity 0",cls:"fallback",label:"weaker fallback",
+    why:"The strongest narration match in the whole catalog, and I still ranked it second. Every counter animates an accelerating count, which reads as a quantity piling up. Seventeen is an ordinal. Nothing is accumulating.",
+    ev:"<b>fits:</b> A single exact number is the point of the sentence. <b>conflict:</b> beat requires it not read as a quantity."},
+   {id:"modern-photo-slideshow-envato--scene-001",vid:true,kind:"after effects · capacity 0",cls:"fallback",label:"weaker fallback",
+    why:"Structurally a bare title reveal, which is right, but the blurred photo stack behind it is the decoration this beat rules out.",
+    ev:"<b>description:</b> Centered title reveal, blurred photo stack background."}]},
+
+ {id:"B2",title:"Cycle 2 PROVOKE",src:"passage 09",n:4,kind:"four artists, one percentage each",
+  quote:"Latto's biggest is half of everything she's ever streamed. Jay Rock's is fifty-two percent. Ab-Soul's, seventy-one. Biz Markie, seventy-nine.",
+  takeaway:"Concentration is the normal, healthy shape. These four are instances of a rule, not a leaderboard.",
+  must:"Each percentage is that artist's own biggest song against that artist's own total. Four different denominators.",
+  lie:"Ranking the four against each other, or putting them on one shared axis. Fifty-two and seventy-nine are not competing numbers.",
+  shape:"77 of 249 pass. Only 4 hold exactly four entities.",
+  cands:[
+   {id:"36_four_portrait_cards",kind:"infographic · 4 entities",cls:"fit",label:"complete fit",
+    why:"The closest thing to a literal match I found. This beat forbids ranking and forbids a shared axis. The template's own avoid-list forbids exactly those two things, in its own words.",
+    ev:"<b>encoding:</b> Four framed portrait cards compare text values using equal image treatment. <b>avoid:</b> A dense ranking · metric-driven portrait scaling"},
+   {id:"20_prime_portrait_cards",kind:"infographic · 4 subjects",cls:"fit",label:"complete fit",
+    why:"Equal cards, no size encoding, so no ranking is implied. Slightly off because it frames the four as a curated set sharing a status. These four share a pattern, not a status.",
+    ev:"<b>encoding:</b> Equal photographic cards communicate a curated set or shared status. <b>avoid:</b> A numeric ranking inferred from card size"},
+   {id:"intro-slideshow-full-720p--scene-019",vid:true,kind:"after effects · 4 focal assets",cls:"unres",label:"unresolved",
+    why:"Capacity is right and nothing else is established. It is a photo collage with no recorded text or value capacity, so whether it can carry four labelled percentages is unknown rather than false.",
+    ev:"<b>description:</b> Four-image collage overview for the four-part related-image sequence."}]},
+
+ {id:"B3",title:"Cycle 4 REVEAL",src:"passage 21",n:3,kind:"three artists with verse counts, plus a derived rate",
+  quote:"A hundred and eighty-one. Future has done two hundred thirty-two. Young Thug, three hundred and two. Fewer verses than either, and more streams than anyone: forty-three billion, roughly two hundred forty million a verse.",
+  takeaway:"The ground shifts rather than the claim collapsing. He does do a lot of features. That was never the interesting part.",
+  must:"Verse counts and stream rates are different quantities and must not share a scale. The per-verse rate is the load-bearing figure.",
+  lie:"Presenting the lower verse count as the refutation. It is context, not the answer.",
+  shape:"83 of 249 pass. Only 6 hold exactly three entities.",
+  cands:[
+   {id:"58_big_three_stat_rows",kind:"infographic · 3 subjects",cls:"fit",label:"complete fit",
+    why:"Exactly three subjects and several measures per row, so verse count and stream total sit as separate labelled figures instead of sharing one axis. That is the constraint this beat actually has.",
+    ev:"<b>encoding:</b> Three aligned portrait rows make five measures easy to scan. <b>avoid:</b> A continuous trend · more than three subjects"},
+   {id:"28_stat_profile_cards",kind:"infographic · 3 subjects",cls:"fit",label:"complete fit",
+    why:"Side-by-side text comparison with equal visual roles. Text values keep the two quantities apart, and equal roles stop the beat reading as a ranking of the three.",
+    ev:"<b>encoding:</b> Full-body cards offer side-by-side text comparisons with equal visual roles. <b>avoid:</b> One metric needing proportional body sizes"},
+   {id:"05_measured_height_ruler",vid:true,kind:"infographic · 3 subjects",cls:"contra",label:"contradicted",
+    why:"Eliminated on its own recorded limitation, not on a guess. It encodes magnitude as body height, and its own note says that height formula is affine rather than zero-based. The load-bearing figure here is a rate, and an affine scale cannot carry it truthfully.",
+    ev:"<b>encoding:</b> the native height formula is affine, not a zero-based ratio scale. <b>avoid:</b> exact ratio claims from unconverted measurement values"}]},
+
+ {id:"B4",title:"Cycle 6 REVEAL",src:"passages 23-24",n:6,kind:"six release-type categories summing to a total",
+  quote:"Number one as a lead single. Eleven times. As an album. Nine. As somebody else's guest. Four. As a mixtape. Three. As a joint album. Two. As a compilation. One. Thirty releases at number one.",
+  takeaway:"Breadth of format. The list should accumulate rather than arrive whole.",
+  must:"Thirty is the sum of six release types. The six are categories of release, not chart positions and not a sequence in time.",
+  lie:"Ordering the six as a ranking or a timeline. They are independent counts that happen to descend.",
+  shape:"71 of 249 pass. Only 2 hold exactly six entities.",
+  shortage:"No single template fits. The catalog has no six-slot labelled category list that is neither ranked nor chronological and does not require a portrait in every slot. My recommendation is a compound treatment: an accumulating text list for the six, then a counter scene for the thirty.",
+  cands:[
+   {id:"33_contract_portrait_grid",kind:"infographic · 6 entities",cls:"unres",label:"unresolved",
+    why:"The structure is exactly right. Six equal cells, one labelled count each, no proportional encoding, so nothing implies a ranking. The problem is the media role. Every slot wants a portrait and a mixtape has no face.",
+    ev:"<b>encoding:</b> Equal cells show labeled facts; no proportional image-size encoding. <b>avoid:</b> A proportional chart · many metrics per subject"},
+   {id:"16_ranked_table_and_bars",kind:"infographic · 20 rows",cls:"contra",label:"contradicted",
+    why:"It is a ranking, and the beat's prohibition is against reading the six as ranked. The counts descend by accident of the data, not by merit.",
+    ev:"<b>description:</b> Ranked table with aligned bars."},
+   {id:"06_historical_winners_table",kind:"infographic · 40 rows",cls:"contra",label:"contradicted",
+    why:"A chronological ledger, and the beat's prohibition is against reading the six as a sequence in time. Release types have no order.",
+    ev:"<b>description:</b> Long chronological ledger."}]}
+];
+
+const VERDICTS=[["right","Right"],["maybe","Maybe"],["wrong","Wrong"]];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let db=null, state={};
+
+function render(){
+  document.getElementById("beats").innerHTML = BEATS.map(b=>`
+    <section class="beat">
+      <div class="beat-head">
+        <div class="beat-id">${esc(b.id)}</div>
+        <div class="beat-title">${esc(b.title)}</div>
+        <div class="beat-src">${esc(b.src)} &middot; ${esc(b.n)} ${esc(b.kind)}</div>
+        <blockquote>${esc(b.quote)}</blockquote>
+        <div class="intent">
+          <div class="ifield"><div class="ilabel">Takeaway</div><p>${esc(b.takeaway)}</p></div>
+          <div class="ifield"><div class="ilabel">Must be true</div><p>${esc(b.must)}</p></div>
+          <div class="ifield lie"><div class="ilabel">Would be a lie</div><p>${esc(b.lie)}</p></div>
+        </div>
+        <div class="shape">${esc(b.shape)}</div>
+      </div>
+      ${b.shortage?`<div class="shortage"><b>Shortage.</b> ${esc(b.shortage)}</div>`:""}
+      <div class="cands">
+        ${b.cands.map(c=>`
+          <article class="cand">
+            ${c.vid
+              ? `<video class="thumb" src="media/${encodeURIComponent(c.id)}.mp4"
+                   poster="thumbs/${encodeURIComponent(c.id)}.jpg"
+                   controls muted loop playsinline preload="metadata"></video>`
+              : `<div class="stillwrap">
+                   <img class="thumb" src="thumbs/${encodeURIComponent(c.id)}.jpg" alt="" loading="lazy">
+                   <span class="stillbadge">still only &middot; no motion render</span>
+                 </div>`}
+            <div class="cbody">
+              <span class="chip ${c.cls}">${esc(c.label)}</span>
+              <div class="cid">${esc(c.id)}</div>
+              <div class="ckind">${esc(c.kind)}</div>
+              <p class="why">${esc(c.why)}</p>
+              <p class="ev">${c.ev}</p>
+            </div>
+            <div class="fb">
+              <div class="verdicts" role="group" aria-label="Verdict for ${esc(c.id)}">
+                ${VERDICTS.map(([v,l])=>`<button class="vb" type="button" data-beat="${b.id}" data-cand="${esc(c.id)}" data-v="${v}"
+                  aria-pressed="${(state[b.id]?.cands?.[c.id]?.verdict===v)?"true":"false"}">${l}</button>`).join("")}
+              </div>
+              <textarea data-beat="${b.id}" data-cand="${esc(c.id)}" placeholder="Why?"
+                >${esc(state[b.id]?.cands?.[c.id]?.note||"")}</textarea>
+            </div>
+          </article>`).join("")}
+      </div>
+      <div class="beat-note">
+        <div class="ilabel">What should have been here instead</div>
+        <textarea data-beat="${b.id}" data-beatnote="1" placeholder="Name a template, or describe the treatment."
+          >${esc(state[b.id]?.beatNote||"")}</textarea>
+      </div>
+    </section>`).join("");
+}
+
+function setStatus(t){document.getElementById("status").textContent=t;}
+
+const queues={};
+function save(beatId){
+  if(!db) return;
+  const body=JSON.parse(JSON.stringify(state[beatId]||{cands:{}}));
+  body.updatedAt=new Date().toISOString();
+  queues[beatId]=(queues[beatId]||Promise.resolve()).then(()=>
+    db.doc("feedback/"+beatId).set(body).then(()=>setStatus("Saved "+new Date().toLocaleTimeString()))
+     .catch(e=>setStatus("Not saved: "+(e&&e.code||"error")))
+  );
+}
+
+let timer=null;
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".vb"); if(!b) return;
+  const {beat,cand,v}=b.dataset;
+  state[beat]=state[beat]||{cands:{}}; state[beat].cands=state[beat].cands||{};
+  const cur=state[beat].cands[cand]||{};
+  cur.verdict = cur.verdict===v ? "" : v;
+  state[beat].cands[cand]=cur;
+  b.closest(".verdicts").querySelectorAll(".vb").forEach(x=>
+    x.setAttribute("aria-pressed", String(x.dataset.v===cur.verdict)));
+  save(beat);
+});
+document.addEventListener("input",e=>{
+  const t=e.target; if(t.tagName!=="TEXTAREA") return;
+  const beat=t.dataset.beat;
+  state[beat]=state[beat]||{cands:{}};
+  if(t.dataset.beatnote) state[beat].beatNote=t.value;
+  else{ state[beat].cands=state[beat].cands||{};
+    state[beat].cands[t.dataset.cand]={...(state[beat].cands[t.dataset.cand]||{}),note:t.value}; }
+  clearTimeout(timer); timer=setTimeout(()=>save(beat),700);
+});
+
+render();
+(async()=>{
+  db = await claude.use("db");
+  if(!db){ setStatus("Feedback cannot be saved in this view. Notes stay on screen only."); return; }
+  try{
+    const snap = await db.collection("feedback").get();
+    snap.docs.forEach(d=>{ state[d.id]=d.data(); });
+    render();
+    setStatus(snap.empty ? "Ready. Nothing saved yet." : "Loaded saved feedback.");
+  }catch(e){ setStatus("Could not load saved feedback: "+(e&&e.code||"error")); }
+})();
+</script>

@@ -1,0 +1,75 @@
+{
+ "truth-ratio-days": [
+  {
+   "job": "equivalence_restatement",
+   "confidence": "clear",
+   "mechanism": "ratio restates one span",
+   "evidence": "The callout reports the computed ratio between the two inputs.",
+   "condition": null
+  },
+  {
+   "job": "derived_quantity",
+   "confidence": "conditional",
+   "mechanism": "computed ratio callout",
+   "evidence": "The callout reports the computed ratio between the two inputs.",
+   "condition": "the ratio is framed as a rate rather than a restatement of one value in the other's terms"
+  }
+ ],
+ "truth-small-outlier": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "fixed-domain height comparison",
+   "evidence": "Vertical height directly encodes the measured value on a fixed 0\u201360M/day sample domain.",
+   "condition": null
+  },
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "clear",
+   "mechanism": "individual bars, no summing",
+   "evidence": "Marker size is fixed, preventing a second size encoding from exaggerating the gap.",
+   "condition": null
+  }
+ ],
+ "truth-population-field": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "labelled points in full field",
+   "evidence": "Labels and color identify selected entities but do not imply a second measure.",
+   "condition": null
+  },
+  {
+   "job": "parallel_instances",
+   "confidence": "conditional",
+   "mechanism": "equal-size entity markers",
+   "evidence": "All 93 usable Spotify rows have equal marker size.",
+   "condition": "the measure being compared is treated per-entity rather than as one shared population view"
+  }
+ ],
+ "truth-cohort-attrition": [
+  {
+   "job": "streak_over_time",
+   "confidence": "clear",
+   "mechanism": "downward exit-year motion",
+   "evidence": "Downward motion encodes the disclosed chart-streak exit year.",
+   "condition": null
+  },
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "highlighted survivors among cohort",
+   "evidence": "Remaining height and highlight identify the two narration-defined 18-year survivors.",
+   "condition": "the two survivors are narrated as distinct named peers rather than a summed subgroup"
+  }
+ ],
+ "truth-rank-fall": [
+  {
+   "job": "change_across_set",
+   "confidence": "clear",
+   "mechanism": "proportional downward rank travel",
+   "evidence": "Downward travel is proportional to rank places lost on one fixed linear axis.",
+   "condition": null
+  }
+ ]
+}

@@ -1,0 +1,156 @@
+<title>Thin Descriptions</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#12171d;--ink-2:#414d5a;--ink-3:#6b7885;--line:#dbe1e7;
+  --bg:#f4f6f8;--card:#fff;--raise:#eef1f4;--accent:#0f5c6b;
+  --yes:#1c6b4a;--no:#9a3327;--warn:#8a5a10;--warn-bg:#f8eeda;--on-accent:#fff;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--no:#ee9084;--warn:#e0b163;--warn-bg:#332715;
+  --on-accent:#08141a;}}
+:root[data-theme="dark"]{
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--no:#ee9084;--warn:#e0b163;--warn-bg:#332715;
+  --on-accent:#08141a;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:16px;padding-block:26px 70px}
+h1{font-size:clamp(1.35rem,3vw,1.75rem);font-weight:700;letter-spacing:-.02em;margin:0 0 5px}
+.sub{color:var(--ink-2);max-width:64ch;margin:0 0 3px}
+.status{font-family:var(--mono);font-size:.71rem;color:var(--ink-3);margin-top:12px;
+  border:1px solid var(--line);background:var(--card);border-radius:6px;padding:6px 10px;display:inline-block}
+.grid{display:grid;gap:13px;margin-top:16px;grid-template-columns:1fr}
+@media(min-width:620px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+.c{background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden;display:flex;flex-direction:column}
+.c.keep{border-color:var(--yes)}
+.c.drop{border-color:var(--no)}
+.c.fix{border-color:var(--warn)}
+.pv{position:relative;background:#000}
+.play{position:absolute;right:7px;bottom:7px;width:26px;height:26px;border-radius:50%;
+  border:none;background:rgba(12,18,24,.72);cursor:pointer;padding:0;
+  display:flex;align-items:center;justify-content:center}
+.play::before{content:"";border-style:solid;border-width:6px 0 6px 10px;
+  border-color:transparent transparent transparent #fff;margin-left:2px}
+.play.on::before{border-width:0;width:8px;height:9px;margin:0;
+  background:#fff;box-shadow:inset 3px 0 0 rgba(12,18,24,.72)}
+.play:hover{background:rgba(12,18,24,.92)}
+.play:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pv img,.pv video{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.chars{position:absolute;top:7px;right:7px;font-family:var(--mono);font-size:.6rem;padding:2px 6px;
+  border-radius:3px;background:var(--warn);color:#1a1205}
+.body{padding:10px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
+.id{font-family:var(--mono);font-size:.68rem;color:var(--accent);font-weight:600;word-break:break-word}
+.tmpl{font-family:var(--mono);font-size:.63rem;color:var(--ink-3)}
+.desc{font-size:.9rem;color:var(--ink);font-weight:500;background:var(--warn-bg);
+  border-left:3px solid var(--warn);padding:7px 10px;border-radius:0 5px 5px 0}
+.meta{font-size:.78rem;color:var(--ink-2)}
+.meta b{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--ink-3);display:block;font-weight:600}
+.none{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);font-style:italic}
+.acts{display:flex;gap:4px;padding:9px 12px;border-top:1px solid var(--line);background:var(--bg)}
+.b{flex:1;font-family:var(--mono);font-size:.67rem;font-weight:600;padding:6px 3px;border-radius:5px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer}
+.b:hover{border-color:var(--accent)}
+.b[aria-pressed="true"][data-v="keep"]{background:var(--yes);border-color:var(--yes);color:var(--on-accent)}
+.b[aria-pressed="true"][data-v="drop"]{background:var(--no);border-color:var(--no);color:var(--on-accent)}
+.b[aria-pressed="true"][data-v="fix"]{background:var(--warn);border-color:var(--warn);color:#1a1205}
+textarea{width:100%;font-family:var(--sans);font-size:.8rem;color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:6px;padding:6px 9px;resize:vertical;min-height:34px;margin-top:6px}
+textarea:focus,.b:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+</style>
+
+<div class="wrap">
+<h1>Thin Descriptions</h1>
+<p class="sub">Eleven of 425 records have a description under forty characters. They will still bind, but from very little, so they will bind weakly or not at all.</p>
+<p class="sub">Keep means bind as is. Fix means it needs a real description first. Drop means it should leave the corpus.</p>
+<div class="status" id="status">Loading&hellip;</div>
+<div class="grid" id="grid"></div>
+</div>
+
+<script>
+"use strict";
+const V=[["keep","Keep"],["fix","Needs desc"],["drop","Drop"]];
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let db=null,state={},D=[];
+function render(){
+  const done=Object.values(state).filter(x=>x.v).length;
+  document.getElementById("grid").innerHTML=D.map(x=>{
+    const st=state[x.id]||{};
+    return `<article class="c ${st.v||""}">
+      <div class="pv">
+        ${x.hasClip
+          ? `<video src="media/${encodeURIComponent(x.id)}.mp4" poster="thumbs/${encodeURIComponent(x.id)}.jpg"
+               muted playsinline preload="none"></video>
+             <button class="play" type="button" aria-label="Play clip"></button>`
+          : `<img src="thumbs/${encodeURIComponent(x.id)}.jpg" alt="" loading="lazy">`}
+        <span class="chars">${x.chars} chars</span></div>
+      <div class="body">
+        <div class="id">${esc(x.id)}</div>
+        <div class="tmpl">${esc(x.template)} · ${x.duration ?? "—"}s</div>
+        <div class="desc">${esc(x.description)}</div>
+        <div class="meta"><b>Use when</b>${x.useWhen?esc(x.useWhen):'<span class="none">not recorded</span>'}</div>
+        <div class="meta"><b>Avoid when</b>${x.avoidWhen?esc(Array.isArray(x.avoidWhen)?x.avoidWhen.join(" · "):x.avoidWhen):'<span class="none">not recorded</span>'}</div>
+      </div>
+      <div class="acts">
+        ${V.map(([v,l])=>`<button class="b" data-k="${x.id}" data-v="${v}" aria-pressed="${st.v===v}">${l}</button>`).join("")}
+      </div>
+      <div style="padding:0 12px 11px"><textarea data-k="${x.id}" placeholder="Note">${esc(st.note||"")}</textarea></div>
+    </article>`;}).join("");
+  document.getElementById("status").textContent =
+    `${done}/${D.length} judged` + (db ? "" : " — not saving in this view");
+}
+/* db docs come back frozen; writing into one fails silently in sloppy mode. Copy. */
+function touch(k){
+  const d=state[k]||{};
+  state[k]={v:d.v||"", note:d.note||""};
+  return state[k];
+}
+const q={};
+function save(k){
+  if(!db) return;
+  q[k]=(q[k]||Promise.resolve()).then(()=>db.doc("thin/"+k).set({...state[k],updatedAt:new Date().toISOString()})
+    .then(()=>{document.getElementById("status").textContent="Saved "+new Date().toLocaleTimeString();})
+    .catch(e=>{document.getElementById("status").textContent="Not saved: "+(e?.code||"error");}));
+}
+let t=null;
+document.addEventListener("click",e=>{
+  const pb=e.target.closest(".play");
+  if(pb){
+    const v=pb.parentElement.querySelector("video");
+    if(!v) return;
+    if(v.paused){
+      document.querySelectorAll("video").forEach(o=>{ if(o!==v){ o.pause();
+        const ob=o.parentElement.querySelector(".play"); if(ob) ob.classList.remove("on"); }});
+      v.play().catch(()=>{}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  if(e.target.closest("video")) return;
+  const b=e.target.closest(".b"); if(!b) return;
+  const {k,v}=b.dataset; const r=touch(k);
+  r.v = r.v===v ? "" : v;
+  save(k); render();
+});
+document.addEventListener("ended",e=>{
+  if(e.target.tagName!=="VIDEO") return;
+  const b=e.target.parentElement.querySelector(".play"); if(b) b.classList.remove("on");
+},true);
+document.addEventListener("input",e=>{
+  const x=e.target; if(x.tagName!=="TEXTAREA") return;
+  const k=x.dataset.k; touch(k).note=x.value;
+  clearTimeout(t); t=setTimeout(()=>save(k),700);
+});
+fetch("data.json").then(r=>r.json()).then(async d=>{
+  D=d; render();
+  db=await claude.use("db");
+  if(db){ try{
+    const s=await db.collection("thin").get();
+    s.docs.forEach(x=>{state[x.id]=x.data(); touch(x.id);});
+  }catch(e){} }
+  render();
+});
+</script>

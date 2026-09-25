@@ -1,0 +1,304 @@
+{
+ "06-the-history--scene-005": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "date plus cutout label",
+    "evidence": "Two cutouts with the main cutout repeated in the background, large date, pullback, label overlay on right."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "06-the-history--scene-006": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single cutout with date",
+    "evidence": "Cutout with background cutout, large date, right-to-left movement, centered label overlay."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "06-the-history--scene-007": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "paired cutout date reveal",
+    "evidence": "Two cutouts side by side with the main cutout in the background, large date, bottom-to-top movement, centered label overlay."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "06-the-history--scene-008": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single cutout with date",
+    "evidence": "Cutout with background cutout, large date, top-to-bottom movement, centered label overlay."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "06-the-history--scene-009": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single cutout pullback date",
+    "evidence": "Cutout with background cutout, large date, pullback, centered label overlay."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "06-the-history--scene-010": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single cutout with date",
+    "evidence": "Cutout with background cutout, large date, right-to-left movement, centered label overlay."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "06-the-history--scene-016": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "layered cutout date reveal",
+    "evidence": "Two cutouts across foreground and background, main cutout in the background, large date, bottom-to-top movement, centered label overlay."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "01_finals_head_to_head": {
+  "serves": [
+   {
+    "job": "parallel_instances",
+    "confidence": "clear",
+    "mechanism": "aligned per-subject metric rows",
+    "evidence": "Portraits identify subjects; aligned text compares metrics. Body size does not encode a value."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "03_dual_trend_lines": {
+  "serves": [
+   {
+    "job": "change_across_set",
+    "confidence": "clear",
+    "mechanism": "two lines over ordered steps",
+    "evidence": "Two lines per panel; the renderer also computes the mean difference between the two series."
+   },
+   {
+    "job": "derived_quantity",
+    "confidence": "conditional",
+    "mechanism": "computed mean-difference figure",
+    "evidence": "the renderer also computes the mean difference between the two series",
+    "condition": "when the mean difference itself is the beat's payload"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "05_measured_height_ruler": {
+  "serves": [
+   {
+    "job": "parallel_instances",
+    "confidence": "clear",
+    "mechanism": "bottom-aligned height comparison",
+    "evidence": "Bottom-aligned full-body height communicates magnitude; the native height formula is affine, not a zero-based ratio scale."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "one fixed-height reference bar",
+    "evidence": "Three slots remain fixed; never invent a third subject just to fill the layout.",
+    "condition": "when one of the three slots is used as a fixed target value"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "06_historical_winners_table": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "chronological text roster",
+    "evidence": "Text-led chronological lookup; column placement wraps the sequence and does not encode magnitude."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "07_labeled_outlier_scatter": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "callout position among points",
+    "evidence": "Position on two numeric axes shows association; callouts focus attention on selected points."
+   },
+   {
+    "job": "intersection_of_sets",
+    "confidence": "conditional",
+    "mechanism": "dual-axis threshold crossing",
+    "evidence": "Native bounds are x 25\u201350 and y 50\u201366.",
+    "condition": "when reference lines mark two qualifying thresholds on the axes"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "08_yearly_leader_timeline": {
+  "serves": [
+   {
+    "job": "streak_over_time",
+    "confidence": "clear",
+    "mechanism": "repeated leader across periods",
+    "evidence": "A categorical timeline of winners, including ties; portrait size is not magnitude."
+   },
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "listed leaders per period",
+    "evidence": "Supply one image per populated leader and preserve all 12 period rows."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "09_artist_field_grid": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "equal membership marks",
+    "evidence": "Equal marks show membership or coverage; no numerical variable controls size."
+   },
+   {
+    "job": "proportion_of_cohort",
+    "confidence": "conditional",
+    "mechanism": "highlighted subset of grid",
+    "evidence": "There is no numeric measure field in the active layout.",
+    "condition": "when a subset of the marks is visually distinguished as qualifying"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "10_two_era_rankings": {
+  "serves": [
+   {
+    "job": "change_across_set",
+    "confidence": "clear",
+    "mechanism": "side-by-side era rankings",
+    "evidence": "Two adjacent ordered lists compare the same measure across cohorts."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "11_defensive_numbers": {
+  "serves": [
+   {
+    "job": "parallel_instances",
+    "confidence": "clear",
+    "mechanism": "paired text metric comparison",
+    "evidence": "Two large contextual photos flank six text comparisons."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "14_quote_score_columns": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "quotation framing a claim",
+    "evidence": "Large quotations frame compact numeric evidence; text has no proportional scale."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "16_ranked_table_and_bars": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "ranked bars with lookup text",
+    "evidence": "Text supports precise lookup while bars compare the primary measure."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "bar measured against fixed cap",
+    "evidence": "The chart uses a fixed maximum of 10.",
+    "condition": "when the fixed maximum functions as the comparison bar"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "17_awards_height_board": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "area profile over ordered entities",
+    "evidence": "An area profile over ordered entities accompanies two ledgers; the numeric field can represent age, tenure or another continuous measure."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "18_cutout_intro": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "hero portrait with typography claim",
+    "evidence": "Large figure and typography create an introduction; no numeric scale.",
+    "condition": "when the typography states the claim and the portrait supports it visually"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ }
+}

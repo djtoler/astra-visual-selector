@@ -1,0 +1,651 @@
+{
+  "purpose": "Re-measure under the changed prompt, plus everything unmeasured.",
+  "prompt": "/Users/dwaynetoler/timeline/prompts/PROMPT-describe-clip.md",
+  "promptSha256": "96326905a89cde447856b174515cd27cded58f146f010cc4b679ca0c2ea24480",
+  "previousPromptSha256": "d58028d6ad18e58aa0d6b5fcf7a8075a82e33da191af2bff71262e97c66b09b3",
+  "whatChanged": "THE HEADLINE: a relation now counts whether it is shown in ONE FRAME or ACROSS THE CLIP. Every `carries` definition used to read as a claim about a single frame while everything temporal lived in `staging`, so a relation the clip PERFORMS was recorded by neither field. Across 396 records and three versions of this prompt, `overlap`, `aggregate` and `absence` were each assigned ZERO times \u2014 while nine records were staged accumulates_to_total and a scene built expressly to show an intersection came back as `difference`. A term never once used is more likely inoperable than universally absent. So: if the clip ENDS somewhere, judge what it ends on. If groups reduce, if parts gather, if an item leaves, that is the relation, and record the matching `staging` too.\n  overlap   ... OR across the clip as two sets reducing until only the members common to both remain\n  aggregate ... OR across the clip as items gathering, stacking or summing into a single figure\n  absence   ... or shown by an item leaving and not being replaced\nTWO TERMS ADDED: carries `parity` (two or more things read as THE SAME, deliberately equal, not merely unranked) and implies `independence` (a layout suggesting two figures are unrelated facts side by side).\nEARLIER, still in force: `readable` gained `label` and `statement`.",
+  "gapBeatCoverage": {
+    "04-04": {
+      "needs": "aggregate",
+      "bound": 6,
+      "inThisRun": 6,
+      "noClipSoUnanswerable": 0
+    },
+    "13-13a": {
+      "needs": "aggregate",
+      "bound": 21,
+      "inThisRun": 21,
+      "noClipSoUnanswerable": 0
+    },
+    "18-18": {
+      "needs": "aggregate",
+      "bound": 6,
+      "inThisRun": 6,
+      "noClipSoUnanswerable": 0
+    },
+    "22-22": {
+      "needs": "aggregate",
+      "bound": 6,
+      "inThisRun": 6,
+      "noClipSoUnanswerable": 0
+    },
+    "01-01": {
+      "needs": "derivation",
+      "bound": 13,
+      "inThisRun": 13,
+      "noClipSoUnanswerable": 0
+    },
+    "21-21b": {
+      "needs": "derivation",
+      "bound": 13,
+      "inThisRun": 13,
+      "noClipSoUnanswerable": 0
+    },
+    "28-28": {
+      "needs": "overlap",
+      "bound": 4,
+      "inThisRun": 4,
+      "noClipSoUnanswerable": 0
+    },
+    "30-30a": {
+      "needs": "absence",
+      "bound": 42,
+      "inThisRun": 42,
+      "noClipSoUnanswerable": 0
+    }
+  },
+  "whyThisScope": "Not every record \u2014 only those that could serve the eight beats whose requirement nothing currently meets: 04, 13a, 18, 22 need `aggregate`; 01 and 21b need `derivation`; 28 needs `overlap`; 30a needs `absence`. Measuring a record bound to none of their jobs answers no open question.",
+  "model": "gemini-3.8-flash",
+  "IMPORTANT_provisional": "0 records carry source:\"claude-visual\", provisional:true. Claude read them from 4fps frame grids at the user's explicit direction because this run had not happened yet. THEY ARE NOT MEASUREMENTS and your result replaces them outright \u2014 do not treat them as a prior, do not try to agree with them. If your reading differs, yours is the one that counts.",
+  "IMPORTANT_userIntent": "Some entries carry `userIntentDoNotUse` \u2014 the user's label for the pack: OVERLAP, DERIVATION, LISTS, BAR CHART OPTION. It records what they REACHED FOR the pack to do and is NOT evidence. Four `carries` values are at or near zero across the corpus and eight beats demand them, so there is real pressure to find them. Do not find them because a label says so. A clip that does not carry `overlap` must come back without it \u2014 one pack labelled OVERLAP already turned out to carry share_of_whole instead.",
+  "removedFromScope": {
+    "why": "Ids present in capability.json but NOT in set(C.load()) | set(C.local_pending()). The user removed these records from the corpus; their capability records remain as history and must never be re-bought. Excluded at build time \u2014 your 030 preflight caught this when it was not.",
+    "count": 0,
+    "ids": []
+  },
+  "deliverTo": "/Users/dwaynetoler/timeline/handoff/inbox/",
+  "ingest": "python3 pipeline/ingest_capability.py <file> --write",
+  "costNote": "~$0.77 for 66 clips at the measured round-2 rate. The 46 stills are a single image each against ~2,600 video tokens per clip, so they should land near $0.14 \u2014 but that is EXTRAPOLATED, not measured, because no still has ever been run through this prompt. Please report the actual split.",
+  "stills": {
+    "instruction": "THESE HAVE NO CLIP, ONLY A STILL. Judge exactly what one frame shows and no more. Most of the vocabulary is answerable from a still: whether size encodes magnitude, whether parts read as portions of a whole, whether a shared baseline makes heights comparable, what text is on screen. WHAT YOU CANNOT SEE, SAY SO: `staging` is unknowable from one frame \u2014 return \"unknown\" \u2014 and the across-the-clip forms of aggregate, overlap and absence cannot be judged, so record those ONLY if the single frame shows them. A chart displaying parts inside a visible total carries aggregate in one frame; a chart that animates the pooling does not show that here. Add \"still_only\" to `unclear` on every one of these.",
+    "whyTheyMatter": "Never measured, any of them \u2014 no carries, no readable, no slot counts. Not marginal: 83 bindings across 16 jobs, 77 option slots across 27 beats, and 19 of the user's own selections. They reached candidate pools through bind.py, which reads the prose description, while the capability pass never asked them anything. Every supply figure quoted before 2026-09-22 excluded them silently.",
+    "count": 46,
+    "records": [
+      {
+        "id": "06_historical_winners_table",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/06_historical_winners_table.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "07_labeled_outlier_scatter",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/07_labeled_outlier_scatter.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "08_yearly_leader_timeline",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/08_yearly_leader_timeline.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "09_artist_field_grid",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/09_artist_field_grid.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "10_two_era_rankings",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/10_two_era_rankings.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "11_defensive_numbers",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/11_defensive_numbers.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "14_quote_score_columns",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/14_quote_score_columns.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "16_ranked_table_and_bars",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/16_ranked_table_and_bars.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "17_awards_height_board",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/17_awards_height_board.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "18_cutout_intro",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/18_cutout_intro.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "20_prime_portrait_cards",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/20_prime_portrait_cards.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "22_single_measurement",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/22_single_measurement.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "23_portrait_scatter",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/23_portrait_scatter.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "24_dense_vertical_bars",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/24_dense_vertical_bars.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "25_career_value_list",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/25_career_value_list.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "26_mirrored_stat_compare",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/26_mirrored_stat_compare.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "27_rank_context_panel",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/27_rank_context_panel.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "28_stat_profile_cards",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/28_stat_profile_cards.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "30_dense_rank_bars",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/30_dense_rank_bars.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "31_greatest_team_scatter",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/31_greatest_team_scatter.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "32_record_height_bars",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/32_record_height_bars.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "34_superteam_bar_compare",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/34_superteam_bar_compare.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "35_shooting_portrait_matrix",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/35_shooting_portrait_matrix.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "36_four_portrait_cards",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/36_four_portrait_cards.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "37_fullbody_impact_lineup",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/37_fullbody_impact_lineup.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "38_matchup_win_list",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/38_matchup_win_list.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "39_five_player_impact",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/39_five_player_impact.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "40_two_era_fullbody_compare",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/40_two_era_fullbody_compare.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "41_five_value_headshots",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/41_five_value_headshots.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "42_playoff_rank_grid",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/42_playoff_rank_grid.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "43_successor_tier_grid",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/43_successor_tier_grid.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "44_three_metric_tables",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/44_three_metric_tables.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "45_two_metric_tables",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/45_two_metric_tables.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "46_similarity_criteria_table",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/46_similarity_criteria_table.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "47_similarity_ascending_bars",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/47_similarity_ascending_bars.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "48_playoff_path_summary",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/48_playoff_path_summary.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "49_similarity_final_results",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/49_similarity_final_results.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "50_championship_odds_history",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/50_championship_odds_history.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "51_debut_leaderboard",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/51_debut_leaderboard.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "52_rookie_record_columns",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/52_rookie_record_columns.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "53_lineup_rotation_columns",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/53_lineup_rotation_columns.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "54_trade_package_panels",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/54_trade_package_panels.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "55_best_vs_value",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/55_best_vs_value.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "56_seven_artist_stat_lineup",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/56_seven_artist_stat_lineup.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "57_three_playoff_run_cards",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/57_three_playoff_run_cards.jpg",
+        "why": "never measured"
+      },
+      {
+        "id": "58_big_three_stat_rows",
+        "still": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/profiles/previews/58_big_three_stat_rows.jpg",
+        "why": "never measured"
+      }
+    ]
+  },
+  "cannotRun": {
+    "count": 4,
+    "why": "unrendered infographics",
+    "ids": [
+      "catalog-gap-clean",
+      "hologram-stage",
+      "kendrick-red-stage-clean",
+      "topographic-cloud"
+    ]
+  },
+  "count": 66,
+  "clips": [
+    {
+      "id": "02-documentary-promo--scene-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-003.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "02-documentary-promo--scene-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-004.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "03-history-documentary-10-slides--scene-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-006.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "03_dual_trend_lines",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/output/03_dual_trend_lines.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "04-history-documentary-20-slides--scene-016",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-016.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "07-history-slideshow--scene-018",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-018.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "08-documentary-slideshow--scene-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-005.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "08-documentary-slideshow--scene-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-006.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "08-documentary-slideshow--scene-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-007.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc/clips/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc/clips/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-004.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc/clips/archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-006.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-carousel-galleries-loop-animation-2--review-v2-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-galleries-loop-animation-2/clips/archive3-carousel-galleries-loop-animation-2--review-v2-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-carousel-galleries-loop-animation-2--review-v2-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-galleries-loop-animation-2/clips/archive3-carousel-galleries-loop-animation-2--review-v2-002.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-carousel-galleries-loop-animation-2--review-v2-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-galleries-loop-animation-2/clips/archive3-carousel-galleries-loop-animation-2--review-v2-003.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-carousel-galleries-loop-animation-2--review-v2-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-galleries-loop-animation-2/clips/archive3-carousel-galleries-loop-animation-2--review-v2-004.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc/clips/archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-dropoff-carousels-2026-09-15-17-30-59-utc/clips/archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-002.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-dropoff-carousels-2026-09-15-17-30-59-utc/clips/archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-dropoff-carousels-2026-09-15-17-30-59-utc/clips/archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-004.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc/clips/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc/clips/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc/clips/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b.mp4",
+      "why": "re-measure: readable vocabulary"
+    },
+    {
+      "id": "archive3-infographic-bar-charts--review-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-infographic-bar-charts/clips/archive3-infographic-bar-charts--review-006.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-looped-slideshow-background--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-looped-slideshow-background/clips/archive3-looped-slideshow-background--review-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-moving-contact-sheets-2026-09-13-14-49-02-utc/clips/archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-number-count-pack-2026-09-13-15-09-11-utc/clips/archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "base-single-billboard",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/hero-comparison-template/renders/hero-comparison-five-heads-89-double-billboard-green-carousel.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "carousel-slideshow--review-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/carousel-slideshow/clips/carousel-slideshow--review-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "carousel-slideshow--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/carousel-slideshow/clips/carousel-slideshow--review-002.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "carousel-slideshow--review-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/carousel-slideshow/clips/carousel-slideshow--review-004.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "counters-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "counters-envato--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-002.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "counters-envato--scene-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-003.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "counters-envato--scene-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-005.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "counters-envato--scene-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-007.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "counters-envato--scene-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-008.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "counters-envato--scene-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-009.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-013",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-013.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "history-slideshow-envato--scene-014",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-014.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-005",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-005.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-006",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-006.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-033",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-033.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-037",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-037.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "intro-slideshow-full-720p--scene-044",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-044.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "memories-photo-slideshow-creative-slides-envato--scene-001",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-001.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-007.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-008.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-009.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "minimalism-slideshow--review-010",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/minimalism-slideshow/clips/minimalism-slideshow--review-010.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "modern-photo-slideshow-envato--scene-016",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-016.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-002.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-003.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-004",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-004.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-007",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-007.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-008",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-008.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "photo-slideshow-smooth-envato--scene-009",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-009.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "text-list-carousel--review-002",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-002.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "text-list-carousel--review-003",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-003.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "truth-cohort-attrition",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-cohort-attrition.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "truth-population-field",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-population-field.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "truth-rank-fall",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-rank-fall.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "truth-ratio-days",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-ratio-days.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "truth-small-outlier",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-small-outlier.mp4",
+      "why": "re-measure: widened vocabulary"
+    },
+    {
+      "id": "two-floors",
+      "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/cinematic-scatter/previews/clips/truth-two-floors-convergence.mp4",
+      "why": "new: user pack (OVERLAP)",
+      "userIntentDoNotUse": "OVERLAP",
+      "profile": "/Users/dwaynetoler/Documents/ChatGPT/Polish/cinematic-scatter/profiles/truthful-scene-profiles.json"
+    }
+  ]
+}

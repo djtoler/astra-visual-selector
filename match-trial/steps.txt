@@ -1,0 +1,109 @@
+MEDIA SELECTION — STEPS
+=======================
+
+HARD RULE: every binding and every judgment comes from running the pipeline.
+Never by reading descriptions and picking, never by regex over description text.
+A binding without provenance is invalid; pipeline/validate_bindings.py rejects it.
+
+Counts, thresholds and tolerances are not written here on purpose. They change.
+File paths are listed because they do not.
+
+KEY FILES
+  script + beat requirements  ~/timeline/script/year-seventeen-script-v4-intent.md
+  beat facts                  ~/timeline/match-trial/beats.json
+  candidate pool (USE THIS)   <scene-library>/description-inventory.json
+  subset (DO NOT USE)         <scene-library>/approved/catalog.json
+  pool loader + shape filter  ~/timeline/match-trial/candidates.py
+  judgment prompt             ~/timeline/match-trial/PROMPT.md
+  review UI                   ~/timeline/match-trial/index.html
+  standing project rules      <polish>/media_workflows.md
+  root cause of last trial    ~/timeline/match-trial/ROOT-CAUSE.md
+
+  <scene-library> = <polish>/ae-template-automation/scene-library
+  <polish>        = ~/Documents/ChatGPT/Polish
+
+1. SCRIPT GENERATION
+   - Write narration in cycles: provoke, predict, reveal, reconcile.
+   - Vary how each beat is implemented so the structure does not telegraph.
+   - Lock the wording. Every figure traceable to source.
+
+2. BEAT REQUIREMENTS  (written by the writer, at writing time)
+   -> year-seventeen-script-v4-intent.md
+   - Split each cycle into beats.
+   - Per beat, record in plain prose:
+       * Takeaway       - what the viewer should come away with
+       * Must be true   - what has to survive into the visual or the beat fails
+       * Would be a lie - the false implication a visual must not create
+   - Write only what the narration does not already say. Leave fields empty otherwise.
+   - Name a false implication, never a visual family.
+   - No tags, no vocabulary, no template names.
+
+3. BEAT FACTS  (derived, not authored)
+   -> beats.json
+   - Entity count and what kind of thing is being counted.
+   - Operation: count, compare, sum, intersect, reveal identity.
+   - Units per side, and whether units differ between sides.
+   - Anything unstated stays unknown. Never inferred.
+
+4. LOAD CANDIDATE POOL
+   -> candidates.py load()
+   - Source: description-inventory.json, every described collection.
+   - Never approved/catalog.json. It is a subset carrying no intake scenes,
+     which is where the carousels live.
+   - If a collection is missing from the pool, that is a bug, not a shortage.
+
+5. SHAPE FILTER  (deterministic, cheap, runs first)
+   -> candidates.py bounds() and shape()
+   - Read every capacity axis a record declares, not the first key found.
+   - Keep anything inside the configured slot tolerance of the beat count.
+   - Keep records with unknown capacity. Missing data never disqualifies.
+   - Flag mismatches beyond tolerance for review. Do not reject.
+   - This stage never eliminates on meaning.
+
+5b. BIND TEMPLATES TO JOBS  (one pass per template, reused across every video)
+   -> pipeline/bind.py + pipeline/PROMPT-bind.md
+   - Ask which jobs each template can serve. Not per beat; per template.
+   - Every result records promptSha, model, runId, verdict, mechanism, evidence.
+   - pipeline/validate_bindings.py must pass before the grammar is used.
+
+6. JUDGE EACH SURVIVOR  (one pass per candidate, against the beat)
+   -> PROMPT.md
+   - Read the record's own words: description, suits-narration, avoid-when,
+     caveats, encoding.
+   - Classify, first match wins:
+       contradicted    - the record's own avoid-when or caveat rules it out; quote it
+       unresolved      - the record does not say enough; name the unknown
+       complete fit    - must-be-true survives, nothing implies the lie
+       weaker fallback - communicates it, but something in the takeaway lands less well
+   - Return the mechanism in a few words. Required.
+   - Cite evidence lines. No scores, no probabilities, no ranking.
+
+7. BUILD THE SLATE
+   - Fill by distinct mechanism before a second instance of any mechanism.
+   - Do not rank. Equivalent candidates are an unordered set.
+   - Disclose how many tied and list what was displaced, with reasons.
+   - Show a shortage rather than filler.
+
+8. COMPOUND AND COMBINED TREATMENTS
+   - Scenes clipped from one template may combine to reach a slot count.
+   - Sequence-then-total counts as one candidate, not two.
+   - A composed treatment needs its own check: shared units, ordered cues,
+     transition and timing handoff. Components matching alone is not enough.
+
+9. HUMAN REVIEW
+   -> index.html
+   - Present beat, intent record, candidates, evidence and clips.
+   - Capture verdict and reason per candidate, plus what was missing.
+   - Feedback is a regression fixture, never a ranking override.
+
+10. NATIVE VERIFICATION   (not automated; still required before any render)
+    -> media_workflows.md holds the standing render and approval rules
+    - Slot editability, text capacity, reading holds, phrase-aligned timing.
+    - A thumbnail or description proves none of these.
+    - Selection is not approval. No probability authorizes a render.
+
+STATUS
+   Built:      steps 4, 5           (candidates.py)
+   Specified:  steps 6, 7           (PROMPT.md, not yet wired to a model)
+   Manual:     steps 1, 2, 3, 9
+   Open:       steps 8, 10

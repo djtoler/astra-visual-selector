@@ -1,0 +1,265 @@
+{
+ "carousel-slideshow--review-001": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "sequential unlabeled portrait reveal",
+    "evidence": "Presents media items in a continuously rotating carousel, bringing each card into focus in turn without text."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "carousel-slideshow--review-002": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "captioned sequential card reveal",
+    "evidence": "Cycles through a sequence of media cards along a 3D rotating path, bringing each subject into foreground focus in turn."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "carousel-slideshow--review-004": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "rotating identity roster",
+    "evidence": "Rotates a continuous carousel of media cards horizontally, bringing each subject into the center foreground in turn."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-carousel-galleries-loop-animation-2--review-v2-001": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "looping card-by-card roster",
+    "evidence": "Rotates media cards along a looping three-dimensional carousel, bringing each item into central focus in turn."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-carousel-galleries-loop-animation-2--review-v2-002": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "swirling multi-item roster",
+    "evidence": "Presents multiple media items streaming along a spiral vortex path around central text."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-carousel-galleries-loop-animation-2--review-v2-003": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "headed sequential card list",
+    "evidence": "Streams a sequence of media cards horizontally through 3D space, bringing each item into focal view in turn."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-carousel-galleries-loop-animation-2--review-v2-004": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "orbiting simultaneous roster",
+    "evidence": "Displays a continuous spiral arrangement of media items orbiting a central text overlay."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-looped-slideshow-background--review-001": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "equal-weight panel sequence",
+    "evidence": "Displays a continuous sequence of media panels along a curved tracking carousel at equal visual weight."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "cycling central-frame roster",
+    "evidence": "Presents multiple subjects along a curved horizontal carousel, scrolling them continuously through an enlarged central focus frame."
+   },
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "conditional",
+    "mechanism": "spotlighted subject with peripheral peers",
+    "evidence": "Portfolio showcase highlighting a primary subject while displaying related items in peripheral view",
+    "condition": "when one card is framed as the primary subject while the others stay visible, unsummed, in the periphery"
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-006": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "unfolding panel row",
+    "evidence": "Unfolds six media panels horizontally from a folded stack into an accordion row, then folds back down."
+   },
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "conditional",
+    "mechanism": "lead entity then unfolded peers",
+    "evidence": "Revealing a group or sequence of related items together after an introductory entity",
+    "condition": "when the initial folded card is a single entity distinct from the group that then unfolds"
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-001": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "uniform rotating card list",
+    "evidence": "Presents a rotating sequence of uniform media cards along a curved carousel, bringing multiple subjects into view in turn."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-002": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "labeled receding-stack roster",
+    "evidence": "Cycles through a sequence of cards from a receding stack, dropping each forward card off to reveal the next."
+   },
+   {
+    "job": "parallel_instances",
+    "confidence": "conditional",
+    "mechanism": "per-card exact-value labels",
+    "evidence": "holds 6 subject(s) at once, 6 in total, across 6 media well(s) and 24 text field(s)",
+    "condition": "when each card's text fields carry the same measure repeated per profile"
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-004": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "labeled rapid profile succession",
+    "evidence": "Streams a succession of uniform cards through three-dimensional space, each displaying an image, text labels, and numeric figures."
+   },
+   {
+    "job": "parallel_instances",
+    "confidence": "conditional",
+    "mechanism": "per-profile numeric figure",
+    "evidence": "each displaying an image, text labels, and numeric figures",
+    "condition": "when the numeric figure represents the same measure repeated across profiles"
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "titled central-focus sequence",
+    "evidence": "Cycles through a sequence of media cards in a three-dimensional carousel, bringing each subject into central focus in turn."
+   },
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "conditional",
+    "mechanism": "blurred peers around focal card",
+    "evidence": "3D central card carousel with depth blur, dark background, title intro, minimal corner labels.",
+    "condition": "when the depth-blurred surrounding cards stay legible as distinct peers to the focal card"
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "scrolling focal-position sequence",
+    "evidence": "Presents an ordered sequence of cards scrolling horizontally through a central focal position."
+   },
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "conditional",
+    "mechanism": "scaled focal card with flanking peers",
+    "evidence": "Horizontal rounded-card carousel on light background, center focal scaling with flanking cards.",
+    "condition": "when the flanking cards remain individually legible as named peers to the scaled focal card"
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "ribboned portrait sequence",
+    "evidence": "Scrolls a series of uniform portrait media cards horizontally along a curved continuous ribbon."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ },
+ "intro-slideshow-full-720p--scene-033": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "spread-to-close-up roster",
+    "evidence": "Presents multiple media items across an initial spread before transitioning through individual close-ups."
+   }
+  ],
+  "runId": "bind-20260920T1016",
+  "promptSha": "2e441f794dba",
+  "model": "claude-sonnet-5"
+ }
+}

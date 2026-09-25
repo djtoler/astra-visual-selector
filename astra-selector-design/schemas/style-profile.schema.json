@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "astra/style-profile.schema.json",
+  "title": "Deterministic dark cinematic style profile",
+  "description": "Turns 'dark cinematic' into constraints a machine can check and a reviewer can argue with. Every constraint declares whether it is LOCKED (never varies), FAMILY (a scene family may set its own value inside a stated range), or ADJUSTABLE (may be changed per scene with a reason). Every constraint also declares how it is checked. A rule that cannot be checked is a preference, and belongs in guidance, not here.",
+  "type": "object",
+  "required": ["profileId", "version", "scope", "constraints", "exceptions", "families"],
+  "properties": {
+    "profileId": {"type": "string"},
+    "version": {"type": "string", "description": "Semantic version. Every active rule is versioned and every change preserves rollback information."},
+    "supersedes": {"type": "string"},
+    "scope": {"enum": ["global", "project", "template_family", "template", "scene"], "description": "A style constraint promoted above its evidence is the main way this system would go wrong. Scope is mandatory."},
+    "evidence": {
+      "type": "array",
+      "description": "What supports this profile. Approved scenes, rejected scenes, user corrections. A constraint with no evidence entry is a proposal, not a rule.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {"enum": ["approved_scene", "rejected_scene", "user_correction", "reference_observation", "assumption"]},
+          "ref": {"type": "string"},
+          "note": {"type": "string"}
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "palette": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "backgroundLuminanceMax": {"type": "number", "description": "0-1. Checked by sampling frame corners and the modal background region."},
+            "allowedBackgroundHues": {"type": "array", "items": {"type": "string"}},
+            "accentHues": {"type": "array", "items": {"type": "string"}},
+            "forbiddenTreatments": {"type": "array", "items": {"type": "string"}, "description": "e.g. full-white backgrounds outside the archival exception, saturated primaries as fills."},
+            "checkMethod": {"enum": ["frame_sample", "aep_static_analysis", "human_review", "not_checkable"]}
+          }
+        },
+        "contrast": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "minimumTextContrastRatio": {"type": "number", "default": 4.5},
+            "minimumEvidenceTextContrastRatio": {"type": "number", "default": 7.0, "description": "Evidence must be readable, not merely present. Illegible text is the second most frequent failure theme in the reference corpus."},
+            "checkMethod": {"enum": ["frame_sample", "aep_static_analysis", "human_review", "not_checkable"]}
+          }
+        },
+        "typography": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "permittedFamilies": {"type": "array", "items": {"type": "string"}},
+            "minimumOnScreenPointSize": {"type": "number"},
+            "maximumSimultaneousFamilies": {"type": "integer", "default": 2},
+            "caseRules": {"type": "string"},
+            "checkMethod": {"enum": ["frame_sample", "aep_static_analysis", "human_review", "not_checkable"]}
+          }
+        },
+        "background": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "permitted": {"type": "array", "items": {"enum": ["black", "dark_neutral", "dark_tinted", "dark_gradient", "defocused_footage", "paper_archival"]}},
+            "forbidden": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "imageTreatment": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "gradePreset": {"type": "string"},
+            "grainPermitted": {"type": "boolean"},
+            "vignettePermitted": {"type": "boolean"},
+            "duplicateSubjectInFrameForbidden": {"type": "boolean", "default": true, "description": "Duplicated subjects are named in the brief's rejection gates."}
+          }
+        },
+        "cropAndFraming": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "minimumSourceResolution": {"type": "string"},
+            "maximumUpscaleFactor": {"type": "number", "default": 1.5},
+            "faceCropRules": {"type": "string", "description": "e.g. no crop through the chin or forehead; eyeline within the upper third."},
+            "checkMethod": {"enum": ["frame_sample", "asset_metadata", "human_review", "not_checkable"]}
+          }
+        },
+        "spacingAndDensity": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "safeMarginPercent": {"type": "number"},
+            "maximumSimultaneousTextBlocks": {"type": "integer"},
+            "maximumSimultaneousMediaElements": {"type": "integer", "description": "Clutter is the fourth most frequent failure theme in the corpus."}
+          }
+        },
+        "motionLanguage": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "permitted": {"type": "array", "items": {"enum": ["restrained", "moderate", "energetic", "kinetic"]}},
+            "easingStyle": {"type": "string"},
+            "maximumElementVelocity": {"type": "string"},
+            "forbidden": {"type": "array", "items": {"type": "string"}, "description": "e.g. bounce easing, spin-ins, comedic squash."}
+          }
+        },
+        "transitions": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "permitted": {"type": "array", "items": {"type": "string"}},
+            "forbidden": {"type": "array", "items": {"type": "string"}},
+            "maximumDurationSeconds": {"type": "number"},
+            "familyBridgeTransitions": {"type": "array", "items": {"type": "string"}, "description": "Transitions approved to carry a change of visual family. Cross-family cuts are allowed when bridged."}
+          }
+        },
+        "cameraBehaviour": {
+          "type": "object",
+          "properties": {
+            "binding": {"enum": ["LOCKED", "FAMILY", "ADJUSTABLE"]},
+            "permitted": {"type": "array", "items": {"enum": ["static", "slow_push", "slow_pull", "parallax", "orbit", "fly_through"]}},
+            "maximumMovePerSecond": {"type": "string"}
+          }
+        }
+      }
+    },
+    "families": {
+      "type": "array",
+      "description": "Scene families may vary, but only within the ranges the global profile allows. A family record states exactly which constraints it overrides and to what.",
+      "items": {
+        "type": "object",
+        "required": ["familyId", "overrides"],
+        "properties": {
+          "familyId": {"type": "string"},
+          "description": {"type": "string"},
+          "overrides": {"type": "object", "description": "Only constraints whose binding is FAMILY or ADJUSTABLE may appear here."},
+          "justification": {"type": "string"}
+        }
+      }
+    },
+    "exceptions": {
+      "type": "array",
+      "description": "Archival and evidentiary source material may keep its native appearance. The frame around it may not.",
+      "items": {
+        "type": "object",
+        "required": ["exceptionId", "appliesTo", "nativeAppearancePreserved", "frameMustComply"],
+        "properties": {
+          "exceptionId": {"type": "string"},
+          "appliesTo": {"enum": ["archival_footage", "archival_still", "document_or_screen", "data_or_number", "third_party_ui"]},
+          "nativeAppearancePreserved": {"type": "array", "items": {"type": "string"}, "description": "e.g. original colour, original grain, original aspect, original typography inside the document."},
+          "frameMustComply": {"type": "array", "items": {"type": "string"}, "description": "e.g. surrounding background, caption typography, transitions in and out, camera behaviour."},
+          "requiresUserApproval": {"type": "boolean", "default": false}
+        }
+      }
+    },
+    "styleConflictPolicy": {
+      "type": "object",
+      "description": "A conflict with the dark cinematic system is a flag, not an automatic rejection.",
+      "properties": {
+        "action": {"enum": ["flag_and_continue", "escalate", "reject"], "default": "flag_and_continue"},
+        "retainOnlyWhenNoStrongerOptionExists": {"type": "boolean", "default": true},
+        "outsideApprovedArchivalException": {"type": "string", "default": "last resort only"}
+      }
+    }
+  }
+}

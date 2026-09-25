@@ -1,0 +1,244 @@
+{
+ "20_prime_portrait_cards": [
+  {
+   "job": "enumerate",
+   "confidence": "clear",
+   "mechanism": "equal photographic roster cards",
+   "evidence": "Equal photographic cards communicate a curated set or shared status."
+  }
+ ],
+ "22_single_measurement": [
+  {
+   "job": "derived_quantity",
+   "confidence": "conditional",
+   "mechanism": "held single stated value",
+   "evidence": "emphasizes a stated value",
+   "condition": "when the stated value is a rate or a built total"
+  },
+  {
+   "job": "narrate_an_event",
+   "confidence": "conditional",
+   "mechanism": "spotlighted key fact",
+   "evidence": "spotlight; annotation; key fact",
+   "condition": "when the value marks a specific dated occurrence"
+  }
+ ],
+ "23_portrait_scatter": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "two-axis portrait position",
+   "evidence": "Portrait position on two axes communicates a relationship."
+  },
+  {
+   "job": "intersection_of_sets",
+   "confidence": "conditional",
+   "mechanism": "dual-axis threshold clearing",
+   "evidence": "Native bounds are x 0\u20131600 and y 32\u201360.",
+   "condition": "when each axis represents a distinct qualifying threshold"
+  }
+ ],
+ "24_dense_vertical_bars": [
+  {
+   "job": "entity_vs_benchmark",
+   "confidence": "clear",
+   "mechanism": "bars against fixed threshold",
+   "evidence": "threshold 20"
+  },
+  {
+   "job": "streak_over_time",
+   "confidence": "conditional",
+   "mechanism": "sequential bars above threshold",
+   "evidence": "Vertical bars show changes across a long sequence against a threshold.",
+   "condition": "when bars mark unbroken presence above the threshold"
+  }
+ ],
+ "25_career_value_list": [
+  {
+   "job": "members_then_total",
+   "confidence": "conditional",
+   "mechanism": "period list then sum",
+   "evidence": "compact period-by-period list",
+   "condition": "when the ledger ends in a summed career total"
+  },
+  {
+   "job": "streak_over_time",
+   "confidence": "conditional",
+   "mechanism": "consecutive period ledger",
+   "evidence": "period-by-period list",
+   "condition": "when periods represent an unbroken consecutive span"
+  }
+ ],
+ "26_mirrored_stat_compare": [
+  {
+   "job": "change_across_set",
+   "confidence": "clear",
+   "mechanism": "mirrored before-after text",
+   "evidence": "Mirrored text comparisons around one person emphasize change without scaling the body."
+  }
+ ],
+ "27_rank_context_panel": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "ranking list with context",
+   "evidence": "A dominant subject, ranking list and supporting peer context explain standing."
+  },
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "clear",
+   "mechanism": "hero versus named peers",
+   "evidence": "supporting peer context explain standing"
+  }
+ ],
+ "28_stat_profile_cards": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "equal side-by-side profiles",
+   "evidence": "Full-body cards offer side-by-side text comparisons with equal visual roles."
+  }
+ ],
+ "30_dense_rank_bars": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "dense ranked bar rows",
+   "evidence": "Dense horizontal bars compare a single quantity."
+  },
+  {
+   "job": "entity_vs_benchmark",
+   "confidence": "conditional",
+   "mechanism": "bars against set threshold",
+   "evidence": "Inspect the configured threshold and ranking order",
+   "condition": "when a threshold line is configured"
+  }
+ ],
+ "31_greatest_team_scatter": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "scattered relationship points",
+   "evidence": "relationship; summary; cohorts"
+  },
+  {
+   "job": "intersection_of_sets",
+   "confidence": "conditional",
+   "mechanism": "dual-axis cohort thresholds",
+   "evidence": "Both coordinates are mapped against 0\u2013100.",
+   "condition": "when axes represent two qualifying thresholds"
+  }
+ ],
+ "32_record_height_bars": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "scaled magnitude bar set",
+   "evidence": "Bars scale to the largest supplied value but have an 80-pixel minimum height.",
+   "condition": "when bars represent distinct named peers rather than a summed group"
+  }
+ ],
+ "34_superteam_bar_compare": [
+  {
+   "job": "one_vs_aggregate",
+   "confidence": "conditional",
+   "mechanism": "paired cohort totals",
+   "evidence": "Paired vertical bar charts compare two cohorts on a shared labeled scale.",
+   "condition": "when each cohort bar is a summed group total"
+  },
+  {
+   "job": "parallel_instances",
+   "confidence": "conditional",
+   "mechanism": "matched per-member bars",
+   "evidence": "group_sizes[n]=2",
+   "condition": "when each cohort's members are shown individually rather than summed"
+  }
+ ],
+ "35_shooting_portrait_matrix": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "matrix of individual rates",
+   "evidence": "Use one consistently defined measure and denominator"
+  },
+  {
+   "job": "derived_quantity",
+   "confidence": "conditional",
+   "mechanism": "percentage rate label",
+   "evidence": "if it is a percentage",
+   "condition": "when the displayed metric is a rate"
+  }
+ ],
+ "36_four_portrait_cards": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "four framed peer cards",
+   "evidence": "Four framed portrait cards compare text values using equal image treatment.",
+   "condition": "when one card is narratively the focal entity"
+  }
+ ],
+ "37_fullbody_impact_lineup": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "baseline lineup of figures",
+   "evidence": "A shared baseline creates a lineup; figure sizes are fixed stylistic placements."
+  }
+ ],
+ "38_matchup_win_list": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "clear",
+   "mechanism": "hero versus repeated opponents",
+   "evidence": "Repeated head-to-head rows create an outcome narrative around a featured person."
+  }
+ ],
+ "39_five_player_impact": [
+  {
+   "job": "enumerate",
+   "confidence": "clear",
+   "mechanism": "named roster by tier",
+   "evidence": "Only names and portraits are active person data."
+  },
+  {
+   "job": "category_breakdown",
+   "confidence": "conditional",
+   "mechanism": "tiered membership bands",
+   "evidence": "Three labeled bands communicate membership or tier placement.",
+   "condition": "when band sizes are counts summing to the full cohort"
+  }
+ ],
+ "40_two_era_fullbody_compare": [
+  {
+   "job": "parallel_instances",
+   "confidence": "clear",
+   "mechanism": "two aligned metric profiles",
+   "evidence": "Two large full-body figures frame aligned numeric comparisons."
+  },
+  {
+   "job": "change_across_set",
+   "confidence": "conditional",
+   "mechanism": "era-to-era metric shift",
+   "evidence": "Align units, reference dates and metric definitions across the two columns.",
+   "condition": "when the two figures are the same subject across two eras"
+  }
+ ],
+ "41_five_value_headshots": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "five headshot value cards",
+   "evidence": "Five headshots with prominent numbers create a simple comparison.",
+   "condition": "when one headshot is the narrative focus among peers"
+  }
+ ],
+ "42_playoff_rank_grid": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "numbered ranked grid",
+   "evidence": "Numbered positions and text values encode order; portrait size stays fixed."
+  }
+ ]
+}

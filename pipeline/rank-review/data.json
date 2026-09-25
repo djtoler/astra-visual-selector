@@ -1,0 +1,118 @@
+{
+ "cases": [
+  {
+   "id": "01_finals_head_to_head",
+   "status": "in question",
+   "doubt": "Codex: may depend on COLOURED NUMBERS rather than form. The rule says a viewer must still see it with every label stripped off. If the advantage is carried by a green figure beside a red one, that is readable, not carries.",
+   "asserts": "Compares two subjects side by side across multiple numerical metrics with color-coded advantages.",
+   "carries": [
+    "identity",
+    "rank"
+   ],
+   "readable": [
+    "exact_value",
+    "proportion"
+   ],
+   "implies": [
+    "competition"
+   ],
+   "structure": "pair",
+   "staging": "builds_up",
+   "clip": "media/01_finals_head_to_head.mp4",
+   "poster": "media/01_finals_head_to_head.jpg"
+  },
+  {
+   "id": "truth-rank-fall",
+   "status": "in question",
+   "doubt": "Codex: needs AXIS INTERPRETATION. Vertical position changes show displacement against a baseline. Does a viewer read who is ahead, or only that things moved?",
+   "asserts": "Plots multiple items in a 3D coordinate space, animating vertical position changes to show displacement relative to a baseline.",
+   "carries": [
+    "change_over_time",
+    "difference",
+    "rank",
+    "identity"
+   ],
+   "readable": [
+    "exact_value",
+    "difference"
+   ],
+   "implies": [
+    "ranking",
+    "competition"
+   ],
+   "structure": "axis_plot",
+   "staging": "all_at_once",
+   "clip": "media/truth-rank-fall.mp4",
+   "poster": "media/truth-rank-fall.jpg"
+  },
+  {
+   "id": "truth-small-outlier",
+   "status": "in question",
+   "doubt": "Codex: clearly shows SEPARATION, but separation is `difference`. Does it also say who is AHEAD, or only that one is far from the others?",
+   "asserts": "Plots three subjects across a coordinate space to isolate an outlier from a lower cluster, showing exact values and their difference.",
+   "carries": [
+    "magnitude",
+    "difference",
+    "rank",
+    "identity"
+   ],
+   "readable": [
+    "exact_value",
+    "difference",
+    "grouping"
+   ],
+   "implies": [
+    "ranking",
+    "competition"
+   ],
+   "structure": "axis_plot",
+   "staging": "all_at_once",
+   "clip": "media/truth-small-outlier.mp4",
+   "poster": "media/truth-small-outlier.jpg"
+  },
+  {
+   "id": "05_measured_height_ruler",
+   "status": "control \u2014 not in question",
+   "doubt": "Codex calls this one of the two clearest comparative cases. Here so you can see what an uncontested `rank` looks like beside the three that are contested.",
+   "asserts": "Compares three subjects side by side along a shared baseline, sizing their vertical heights to match printed measurement values.",
+   "carries": [
+    "magnitude",
+    "rank",
+    "difference",
+    "identity"
+   ],
+   "readable": [
+    "exact_value"
+   ],
+   "implies": [
+    "ranking"
+   ],
+   "structure": "list",
+   "staging": "reveals_in_turn",
+   "clip": "media/05_measured_height_ruler.mp4",
+   "poster": "media/05_measured_height_ruler.jpg"
+  },
+  {
+   "id": "archive3-infographic-bar-charts--review-006",
+   "status": "control \u2014 not in question",
+   "doubt": "The other clear case: five bars on one shared scale, ordered by magnitude.",
+   "asserts": "Displays five quantities on a shared percentage scale, using horizontal fill bars ordered by magnitude.",
+   "carries": [
+    "magnitude",
+    "share_of_whole",
+    "rank",
+    "difference"
+   ],
+   "readable": [
+    "proportion"
+   ],
+   "implies": [
+    "ranking"
+   ],
+   "structure": "list",
+   "staging": "builds_up",
+   "clip": "media/archive3-infographic-bar-charts--review-006.mp4",
+   "poster": "media/archive3-infographic-bar-charts--review-006.jpg"
+  }
+ ]
+}

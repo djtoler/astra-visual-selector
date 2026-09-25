@@ -1,0 +1,355 @@
+RCA-001  WHY THE SYSTEM DOES NOT LAND THE RIGHT CANDIDATE ON THE RIGHT BEAT
+Written 2026-09-20. Author: Claude. All numbers measured, not estimated; the command
+that produced each is reproducible from the repo.
+
+================================================================================
+1. OBJECTIVE
+================================================================================
+Land the right media candidate on the right beat.
+
+Unpacked, so it can be tested rather than admired:
+
+  Given a passage of narration, produce for each beat a small set of treatments such
+  that at least one of them communicates what the beat is saying, and none of them
+  communicates something the beat does not say.
+
+Two halves, and we have been treating only the first as the problem:
+  RECALL     the right treatment is somewhere in the set
+  PRECISION  the wrong treatments are not in the set
+
+At production scale the target is ~20 videos/day across niches, so whatever we build
+has to run without a human in the loop on the common case.
+
+================================================================================
+2. CURRENT APPROACH, AS BUILT
+================================================================================
+Six stages. Marked MODEL or DETERMINISTIC per the design principle in CLAUDE.md.
+
+STAGE 1  Narration -> beats                      MODEL      pipeline/PROMPT-beats.md
+  Per beat: quote, job (one of 20), entity_count, entity_kind, takeaway,
+  must_be_true[], must_be_perceptible[], would_be_a_lie[], unstated[].
+  Currently 40 beats over 435s of 823.5s of narration.
+
+STAGE 2  Template pool                           DETERMINISTIC  candidates.py load()
+  approved-list.json, enriched from description-inventory and catalog.
+  421 records. Per record: description, useWhen, avoid, axes (declared capacity),
+  clip path, and the source of every field.
+
+STAGE 3  Job binding                             MODEL, offline, once   bind.py
+  Every record judged against all 20 jobs. 22 calls, $3.74, 0 truncated.
+  642 bindings, each carrying promptSha, model, runId, verdict, mechanism, evidence.
+  validate_bindings.py refuses anything without all six.
+
+STAGE 4  Slate                                   DETERMINISTIC  diversify()
+  INPUT: the beat's job. Nothing else.
+  Look up job -> 7 to 249 bound rows. Group by template family, order families
+  rarest-first, take one row per family preferring the rarest mechanism cluster,
+  cap at 12.
+
+STAGE 5  Human review                            pipeline/ui2
+  User picks up to 6 per beat, or flags the beat as raw b-roll.
+
+STAGE 6  Grammar                                 primaries.json (currently empty)
+  Production would use a job's primary treatment.
+
+================================================================================
+3. WHAT ACTUALLY REACHES THE CHOOSER
+================================================================================
+This is the finding the rest of the analysis rests on.
+
+  BEAT FIELD            PRODUCED BY   USED BY SELECTION?
+  job                   stage 1       YES  - the only key
+  entity_count          stage 1       no
+  entity_kind           stage 1       no
+  takeaway              stage 1       no   - passed to the UI for the human to read
+  must_be_true[]        stage 1       no   - same
+  must_be_perceptible[] stage 1       no   - same
+  would_be_a_lie[]      stage 1       no   - same
+  unstated[]            stage 1       no   - same
+
+  RECORD FIELD          USED BY SELECTION?
+  description           stage 3 only, judged against the JOB, never against the beat
+  useWhen / avoid       stage 3 only
+  axes (capacity)       NOT USED. shape() is never called from shotlist.py.
+  mechanism             tiebreak only: decides which scene a family contributes
+
+Verified by grep: shotlist.py calls C.load(), C.diversify(), C.capacity_band().
+It never calls C.shape() or C.bounds(). The +/-33% tolerance rule the user specified
+personally, implemented and documented in CLAUDE.md, is not in the selection path.
+
+MEASURED CONSEQUENCE
+  40 beats produce 20 distinct slates. Half of all beats see a list identical to
+  another beat's, because the slate is a pure function of the job label.
+
+  Example. Both of these are job=narrate_an_event and therefore see the same 12:
+    02a  "Curren$y was on the 2009 XXL Freshman cover"          entity_count 1
+    28   (the other narrate_an_event beat)
+  133 treatments are bound to that job. All 133 are candidates for a beat whose
+  requirement is one portrait and a caption.
+
+WHAT THE BEAT ACTUALLY KNOWS AND WE THROW AWAY
+  beat 09, parallel_instances, entity_count 4:
+    must_be_perceptible: "The four percentages must be distinguishable as separate,
+    escalating values (50, 52, 71, 79), each anchored to its own artist."
+  beat 11a, one_vs_aggregate, entity_count 10:
+    must_be_perceptible: "Both shares must read as small slivers of a whole, not as
+    dominant portions."
+  beat 03, explain_the_encoding, entity_count 93:
+    must_be_perceptible: "a visible low-to-high ordering of dots by height, readable
+    starting from the bottom."
+
+  These are precise, checkable visual specifications. The extraction stage is doing
+  good work. Selection discards all of it and uses one word.
+
+================================================================================
+4. PROBLEMS OBSERVED, WITH EVIDENCE
+================================================================================
+P1  Options are wrong or dominated.
+    User verdict, repeatedly. Most recently 7 scenes of one pack on beat 02.02a.
+
+P2  Half the beats get an identical slate.  40 beats -> 20 slates.
+
+P3  The beat's capacity requirement is ignored.
+    Applying shape() with each beat's entity_count across all 40 beats:
+      exact    309  23%
+      within   150  11%
+      unknown  659  49%
+      outside  219  16%   <- would be removed by a filter we built and never wired in
+    Beat 03 (n=93): all 4 candidates are outside. The slate currently shows 1 of them
+    with no indication that nothing in the library can carry 93 entities.
+
+P4  Two of the three slate rules do not do what the code says.
+    Measured by disabling each axis and diffing every slate:
+      remove the cluster cap only ......  0 rows change
+      remove clustering entirely ....... 12 rows change, 4 of 20 jobs
+      remove the family cap ............  0 rows change
+    FAM_MAX is declared and never read. CLUSTER_MAX is read and never fires. The two
+    tests asserting them pass vacuously, by observing the loop rather than the constant.
+
+P5  Defect rate. Every defect this project has had was found by the user reading a UI.
+    Until today there were zero tests against 637 lines of deterministic code.
+
+P6  Library gaps, measured earlier and unchanged.
+    45 of 420 records have never been rendered to video.
+    49% of records declare no capacity at all, which caps what any capacity filter
+    can discriminate.
+    Roughly 43 of 468 records can carry a quantity, in a corpus meant to serve
+    data-driven documentary narration.
+
+================================================================================
+5. FIVE WHYS - CHAIN A: WHY THE CANDIDATES ARE WRONG FOR THE BEAT
+================================================================================
+W1  Why are the options wrong for this beat?
+    Because the slate is drawn from the job's bound set using diversity alone.
+    Nothing in the selection step consults what this beat requires.
+
+W2  Why does nothing consult the beat's requirements?
+    Because the only beat field that reaches selection is `job`. entity_count,
+    entity_kind, must_be_perceptible, must_be_true and would_be_a_lie are carried
+    through shotlist.py into the output dict and read only by the human in the UI.
+
+W3  Why is only `job` used?
+    Because stage 3 binds treatments to jobs offline, and stage 4 was designed as a
+    lookup. A lookup takes one key. The job became that key.
+
+W4  Why was a single key acceptable at design time?
+    Because the inversion away from per-beat catalog search was motivated by cost and
+    determinism: at ~500 beats/day a model call per beat looked expensive, slow and
+    unrepeatable. Collapsing the beat to a job made selection free.
+
+W5  Why did collapsing the beat to a job seem safe?
+    Because the members of a job's bound set were assumed roughly interchangeable -
+    "any treatment that can narrate an event will do for a beat that narrates an
+    event." They are not interchangeable. narrate_an_event binds 133 records and
+    enumerate binds 249, and inside those sets the members differ on precisely the
+    dimensions the beat specifies: how many things they can hold, whether a numeric
+    value is readable, whether they imply ranking.
+
+W6  Why was that assumption never caught?
+    Because no test asserted "the slate satisfies what the beat stated." No component
+    had a written definition of correct, so nothing could check one. 40 beats
+    collapsing to 20 slates produced no warning from anything.
+
+W7  Why did no component have a written definition of correct?
+    Because requirements lived in prose - in CLAUDE.md, in a message, in my reading of
+    a situation - and prose cannot fail. Only an executable assertion can fail.
+
+================================================================================
+6. FIVE WHYS - CHAIN B: WHY THE DEFECT RATE IS SO HIGH
+================================================================================
+W1  Why do so many defects reach the user?
+    Because nothing checked the code before the user saw it.
+
+W2  Why did nothing check it?
+    No tests existed until today.
+
+W3  Why no tests?
+    Each component was specified in prose and reviewed by eye in a UI. The UI was the
+    test harness, and the user was the assertion.
+
+W4  Why was prose the specification?
+    Because features were justified by narrative - "cluster the mechanisms to
+    diversify the slate" - rather than by a problem statement with a measurable
+    before and after.
+
+W5  Why narrative justification?
+    Because I optimised for producing something visible each turn instead of something
+    verified. A feature that sounds right ships faster than a feature that is shown to
+    be right, and the difference only surfaces when the user finds the defect.
+
+W6  Why did that survive so long?
+    Same as A-W7. With no definition of correct, "shipped" and "working" were
+    indistinguishable, so there was no signal to correct against.
+
+================================================================================
+7. ROOT CAUSE
+================================================================================
+The two chains converge on one thing.
+
+  ROOT CAUSE
+  Requirements were never written in a form that anything could check.
+
+  In chain A the unwritten requirement is the BEAT'S. The extraction stage produces a
+  real specification - capacity, what must be perceptible, what would be a lie - and
+  the pipeline compresses it to a single label before selection, so the specification
+  reaches a human's eyes and nothing else. The system is a job-to-treatment lookup
+  presented as a beat-to-treatment matcher.
+
+  In chain B the unwritten requirement is the COMPONENT'S. Every rule lived in prose,
+  so no rule could fail, so FAM_MAX could be declared and never read, and the test
+  written to guard it could pass without guarding anything.
+
+  These are the same failure at two levels: a specification that exists, is correct,
+  and is not connected to anything that enforces it.
+
+The user's new rule - problem, explanation, test - is the exact corrective for chain B.
+Chain A needs its own corrective: the beat's specification must become an input to
+selection, not a caption on the review card.
+
+================================================================================
+8. PROPOSED SOLUTIONS
+================================================================================
+Ordered by cost. Each states the problem it solves, why that is the real problem, and
+the test that validates it - per the no-drifting rule.
+
+--------------------------------------------------------------------------------
+S1  WIRE THE BEAT'S CAPACITY REQUIREMENT INTO SELECTION
+--------------------------------------------------------------------------------
+PROBLEM     The beat states entity_count. shape() implements the +/-33% tolerance
+            rule. They have never been connected.
+WHY REAL    A treatment that cannot hold the number of things the beat names cannot
+            communicate the beat, whatever else is true of it. This is the cheapest
+            available precision, and it is already built.
+CHANGE      shotlist.py filters the bound set with C.shape(rows, beat.entity_count)
+            before diversify. Keep exact, within, unknown. Drop outside. Order
+            exact > within > unknown. If the filter would empty the slate, keep the
+            unfiltered set and flag the beat - per the standing rule that slot counts
+            never disqualify, they flag.
+TEST        - no slate contains a record whose declared capacity is outside the beat's
+              tolerance band, unless the beat is flagged capacity_impossible
+            - beat 03 (n=93, all 4 outside) is flagged, not silently shown
+            - a beat whose candidates are all unknown-capacity is unchanged
+EXPECTED    Removes 16% of candidates across the corpus. Beat 07 goes 249 -> 187.
+HONEST LIMIT
+            16% is small, because 49% of records declare no capacity. This is
+            necessary and nowhere near sufficient. On its own it will not fix P1.
+
+--------------------------------------------------------------------------------
+S2  MAKE THE BEAT'S SPECIFICATION A JUDGED INPUT, NOT A CAPTION
+--------------------------------------------------------------------------------
+PROBLEM     must_be_perceptible and would_be_a_lie are precise, checkable requirements
+            that no stage reads. This is the root cause, stated as a change.
+WHY REAL    It is the only signal we have that distinguishes two beats sharing a job,
+            and distinguishing them is the whole objective. Without it the ceiling on
+            precision is set by how coarse the 20 jobs are, and narrate_an_event
+            binding 133 records says that ceiling is very low.
+CHANGE      A second judgment stage, per beat, over the already-narrowed candidate set
+            from S1. Prompt file PROMPT-fit.md. Input: the beat's takeaway,
+            must_be_perceptible, would_be_a_lie, entity_count and kind, plus each
+            candidate's written description. Output per candidate: serves / conflicts /
+            unclear, with cited evidence, carrying full provenance like every binding.
+            Classification with evidence, never a score - per the design principle.
+TEST        - a held-out set of beats the user labels once by hand; the stage must not
+              return a candidate the user marked as conflicting
+            - for beat 09 ("four percentages distinguishable as escalating values"), no
+              returned candidate is one that cannot show four distinct values
+            - every returned judgment carries promptSha, model, runId, evidence, or
+              validate refuses it
+COST        Judging one beat against ~20 candidates is roughly 3k in / 1k out, about
+            $0.024 at Sonnet 5 rates. 500 beats/day is ~$12/day. The original premise
+            that per-beat judgment was unaffordable does not survive contact with the
+            actual numbers - the whole 425-record binding run cost $3.74.
+            THIS IS A SPEND DECISION AND IS THE USER'S ALONE.
+
+--------------------------------------------------------------------------------
+S3  MAKE THE BINDING KEY RICHER INSTEAD OF ADDING A STAGE
+--------------------------------------------------------------------------------
+PROBLEM     Same as S2.
+WHY REAL    Same as S2.
+CHANGE      Bind to (job, capacity band) rather than job alone, so
+            narrate_an_event/one and narrate_an_event/several are different keys with
+            different bound sets. Deterministic, no per-beat model call, no new spend.
+TEST        - beats sharing a job but differing in band get different slates
+            - 40 beats produce more than 20 distinct slates
+TRADE       Cheaper than S2 and strictly weaker: it captures capacity and nothing else,
+            so it cannot act on must_be_perceptible or would_be_a_lie. It is close to
+            S1 folded into the key rather than applied as a filter.
+
+--------------------------------------------------------------------------------
+S4  FIX THE LIBRARY RATHER THAN THE SELECTOR
+--------------------------------------------------------------------------------
+PROBLEM     45 records have no render. 49% declare no capacity. ~43 of 468 can carry a
+            quantity at all.
+WHY REAL    Selection cannot return a treatment that does not exist or that nobody can
+            evaluate. If the library genuinely lacks the treatments the narration
+            needs, every improvement to the selector is polish on a constraint that
+            binds elsewhere.
+CHANGE      Render the 45. Declare capacity on the records missing it. Prune designs
+            that are poor, which only the user can see.
+TEST        - every record in the pool has a clip
+            - the share of records declaring capacity rises above a stated threshold
+            - preflight fails if either regresses
+NOTE        This competes with S1-S3 for the user's time, and may outrank them. It is
+            listed because the analysis does not get to assume the selector is the
+            binding constraint.
+
+--------------------------------------------------------------------------------
+S5  MAKE THE EXISTING RULES REAL (correction, not a feature)
+--------------------------------------------------------------------------------
+PROBLEM     P4. FAM_MAX unread, CLUSTER_MAX inert, both tests vacuous.
+WHY REAL    A rule the code does not enforce is a rule the user believes is protecting
+            them and is not.
+CHANGE      Read FAM_MAX in the loop. Make each cap test fail when its cap is removed.
+            Remove clustering if, after S1-S3, it still moves only 12 rows.
+TEST        - setting FAM_MAX=2 produces slates with two scenes from some family
+        	- setting CLUSTER_MAX=1 changes at least one slate
+            - both fail on the current code
+STATUS      Logged as no-drifting entry 0010, open.
+
+================================================================================
+9. RECOMMENDATION
+================================================================================
+Do S5 first - it is a correction to work already claimed done, and it is small.
+Then S1, because it is free, already built, and its absence is indefensible.
+
+S2 versus S3 is the real architectural decision, and it is the user's: S3 keeps the
+system free and deterministic but can only ever act on capacity; S2 acts on everything
+the beat states, costs roughly $12/day at target scale, and puts a model back in the
+per-beat path that the job-grammar inversion was specifically designed to remove.
+
+I am not recommending between them in this document, because the first-principles
+derivation requested for the next turn should reach its own answer without being
+anchored to this one. Comparing the two independently is the point of doing both.
+
+================================================================================
+10. WHAT THIS ANALYSIS DOES NOT CLAIM
+================================================================================
+- It does not claim the job grammar was the wrong inversion. The grammar fixed a real
+  failure: tags were non-discriminating, 4 tags sat on 80% of records, and ranking fell
+  through to alphabetical. That diagnosis still holds.
+- It does not claim the architecture must be redesigned. It identifies one specific,
+  locatable flaw - the beat is compressed to a label before selection - which is
+  addressable without a rewrite. Whether a rewrite is nonetheless the right call is
+  exactly what the first-principles pass should test independently.
+- It does not claim the defect list is complete. It is the list of defects that have
+  been found, and the absence of tests until today means the found set is a sample.

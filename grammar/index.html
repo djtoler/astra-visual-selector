@@ -1,0 +1,246 @@
+<title>Grammar Bindings</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#12171d; --ink-2:#414d5a; --ink-3:#6b7885; --line:#dbe1e7;
+  --bg:#f4f6f8; --card:#fff; --raise:#eef1f4; --accent:#0f5c6b;
+  --yes:#1c6b4a; --yes-bg:#e2f2ea; --no:#9a3327; --no-bg:#fae7e3;
+  --hole:#8a5a10; --hole-bg:#f8eeda; --on-accent:#fff;
+  --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--yes-bg:#10301f;--no:#ee9084;--no-bg:#361a17;
+  --hole:#e0b163;--hole-bg:#332715;--on-accent:#08141a;}}
+:root[data-theme="dark"]{
+  --ink:#e6ebf0;--ink-2:#a9b5c1;--ink-3:#7d8b99;--line:#2a333d;--bg:#0d1116;--card:#151b22;
+  --raise:#1c242c;--accent:#63c6d8;--yes:#6fd3a4;--yes-bg:#10301f;--no:#ee9084;--no-bg:#361a17;
+  --hole:#e0b163;--hole-bg:#332715;--on-accent:#08141a;}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:16px;padding-block:30px 70px}
+h1{font-size:clamp(1.5rem,3.4vw,2rem);font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
+.sub{color:var(--ink-2);max-width:66ch;margin:0 0 4px}
+.status{margin-top:12px;font-family:var(--mono);font-size:.73rem;color:var(--ink-3);
+  border:1px solid var(--line);background:var(--card);border-radius:6px;padding:6px 10px;display:inline-block}
+.job{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-top:22px;overflow:hidden}
+.jh{padding:16px 18px;border-bottom:1px solid var(--line)}
+.jname{font-family:var(--mono);font-size:.82rem;color:var(--accent);font-weight:600}
+.jdesc{font-size:1.02rem;font-weight:600;margin:3px 0 0}
+.jex{margin:9px 0 0;padding:9px 12px;background:var(--raise);border-left:3px solid var(--accent);
+  border-radius:0 6px 6px 0;font-size:.88rem;color:var(--ink-2)}
+.cards{display:grid;gap:12px;padding:16px 18px}
+@media(min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
+.c{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
+.c img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--raise);display:block;border-bottom:1px solid var(--line)}
+.cb{padding:10px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
+.cid{font-family:var(--mono);font-size:.72rem;font-weight:500;word-break:break-word}
+.cname{font-size:.86rem;color:var(--ink-2);font-weight:500}
+.cenc{font-family:var(--mono);font-size:.68rem;color:var(--ink-3)}
+.fb{border-top:1px solid var(--line);padding:9px 12px;background:var(--card);display:flex;flex-direction:column;gap:7px}
+.bts{display:flex;gap:5px}
+.b{flex:1;font-family:var(--mono);font-size:.7rem;font-weight:600;padding:6px 3px;border-radius:5px;
+  border:1px solid var(--line);background:var(--bg);color:var(--ink-2);cursor:pointer}
+.b:hover{border-color:var(--accent)}
+.b[aria-pressed="true"][data-v="yes"]{background:var(--yes);border-color:var(--yes);color:var(--on-accent)}
+.b[aria-pressed="true"][data-v="no"]{background:var(--no);border-color:var(--no);color:var(--on-accent)}
+.b[aria-pressed="true"][data-v="unsure"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+textarea{width:100%;font-family:var(--sans);font-size:.82rem;color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:6px;padding:6px 9px;resize:vertical;min-height:40px}
+textarea:focus,.b:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.jn{padding:0 18px 16px}
+.lbl{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);margin-bottom:4px}
+.holes{background:var(--hole-bg);border:1px solid var(--hole);border-radius:12px;margin-top:22px;padding:16px 18px}
+.holes h2{margin:0 0 4px;font-size:1.05rem;color:var(--hole)}
+.holes p{margin:0 0 12px;color:var(--ink-2);font-size:.9rem;max-width:66ch}
+.hole{border-top:1px solid var(--hole);padding:12px 0 0;margin-top:12px}
+.hole .jname{color:var(--hole)}
+.hole .spec{font-size:.87rem;color:var(--ink-2);margin:4px 0 8px}
+</style>
+
+<div class="wrap">
+<h1>Grammar Bindings</h1>
+<p class="sub">Each communication job, and the templates I paired with it. I made every pairing by reading descriptions and slot counts. I never opened a template. Mark whether each one actually does the job.</p>
+<p class="sub">Slot counts, timing, text fit and swappability are not in question. Only whether the treatment communicates the job.</p>
+<p class="sub"><b>Two decisions are at the top.</b> Everything below them is already reviewed.</p>
+<div class="status" id="status">Loading&hellip;</div>
+
+<section class="job" style="border-color:var(--accent)">
+  <div class="jh">
+    <div class="jname">decision 1</div>
+    <div class="jdesc">Does cohort attrition serve set intersection?</div>
+    <div class="jex">“Thirty billion on your own records. Twenty billion on everyone else’s. Five clear the left floor. Seven clear the right. Two names standing in the middle.”</div>
+    <div class="cenc" style="margin-top:8px">My read from its own record: no. It is built for attrition over time under <b>one</b> rule, and this beat has <b>two</b> simultaneous criteria and no time dimension. Overrule me if the picture says otherwise.</div>
+  </div>
+  <div class="cards">
+    <article class="c">
+      <img src="thumbs/truth-cohort-attrition.jpg" alt="" loading="lazy">
+      <div class="cb">
+        <div class="cid">truth-cohort-attrition</div>
+        <div class="cname">Cohort attrition to named survivors</div>
+        <div class="cenc">capacity: 6–30 starting entities · 1–3 named survivors · <b>one</b> disclosed exit rule</div>
+        <div class="cenc">encoding: downward motion encodes the disclosed chart-streak exit year; remaining height and highlight identify survivors</div>
+        <div class="cenc">avoid: narration needs career-end dates rather than chart-streak exits · the people did not share a meaningful comparison clock</div>
+        <div class="cenc" style="color:var(--no)">mismatch: beat has two thresholds, not one rule · cohort is 93, capacity tops out at 30 · beat has no time axis</div>
+      </div>
+      <div class="fb">
+        <div class="bts" role="group">
+          <button class="b" type="button" data-job="DECISION_intersection" data-id="use_attrition" data-v="yes" aria-pressed="false">Use it</button>
+          <button class="b" type="button" data-job="DECISION_intersection" data-id="use_attrition" data-v="no" aria-pressed="false">Build one</button>
+        </div>
+        <textarea data-job="DECISION_intersection" data-id="use_attrition" placeholder="Why?"></textarea>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="job" style="border-color:var(--accent)">
+  <div class="jh">
+    <div class="jname">decision 2</div>
+    <div class="jdesc">What rule killed these three?</div>
+    <div class="jex">“Travis Scott, sixty-seven billion. Kendrick, fifty-seven. Post Malone, fifty-six. Future, fifty-four.” — one entity against several named peers</div>
+    <div class="cenc" style="margin-top:8px">You rejected the top row and left the bottom row standing. It is not capacity: you kept ten columns and dropped eight bars. My guess is that rank-position and similarity-score framings are wrong for a job about each entity’s own magnitude. Name the actual rule and I will apply it everywhere.</div>
+  </div>
+  <div class="cards"><article class="c"><img src="thumbs/27_rank_context_panel.jpg" alt="" loading="lazy"><div class="cb"><div class="cid">27_rank_context_panel</div><div class="cname">Subject ranking with peer context</div><div class="cenc">heroes=1, rank_fields=8, peer_callouts=3 · intents: spotlight, rank, benchmark</div><div class="cenc" style="color:var(--no)">rejected</div></div></article><article class="c"><img src="thumbs/29_horizontal_media_bars.jpg" alt="" loading="lazy"><div class="cb"><div class="cid">29_horizontal_media_bars</div><div class="cname">Endpoint portraits on horizontal bars</div><div class="cenc">entities=8, metrics=1 · intents: magnitude, rank, comparison</div><div class="cenc" style="color:var(--no)">rejected</div></div></article><article class="c"><img src="thumbs/47_similarity_ascending_bars.jpg" alt="" loading="lazy"><div class="cb"><div class="cid">47_similarity_ascending_bars</div><div class="cname">Ascending score bars with benchmark</div><div class="cenc">entries=35, metrics=1, heroes=2 · intents: rank, magnitude, score</div><div class="cenc" style="color:var(--no)">rejected</div></div></article></div>
+  <div class="cards" style="padding-top:0"><article class="c"><img src="thumbs/51_debut_leaderboard.jpg" alt="" loading="lazy"><div class="cb"><div class="cid">51_debut_leaderboard</div><div class="cname">Hero-led seven-entry leaderboard</div><div class="cenc">entries=7, metrics=1, heroes=1 · intents: rank, spotlight, record</div><div class="cenc" style="color:var(--yes)">kept</div></div></article><article class="c"><img src="thumbs/52_rookie_record_columns.jpg" alt="" loading="lazy"><div class="cb"><div class="cid">52_rookie_record_columns</div><div class="cname">Ten portrait-topped magnitude columns</div><div class="cenc">entities=10, metrics=1 · intents: rank, magnitude, record</div><div class="cenc" style="color:var(--yes)">kept</div></div></article><article class="c"><img src="thumbs/32_record_height_bars.jpg" alt="" loading="lazy"><div class="cb"><div class="cid">32_record_height_bars</div><div class="cname">Full-body portraits inside magnitude bars</div><div class="cenc">entities=5, metrics=1 · intents: magnitude, compare, rank</div><div class="cenc" style="color:var(--yes)">kept</div></div></article><article class="c"><img src="thumbs/41_five_value_headshots.jpg" alt="" loading="lazy"><div class="cb"><div class="cid">41_five_value_headshots</div><div class="cname">Five portrait headline values</div><div class="cenc">subjects=5, metrics=1 · intents: compare, key facts, overview</div><div class="cenc" style="color:var(--yes)">kept</div></div></article></div>
+  <div class="jn">
+    <div class="lbl">The rule</div>
+    <textarea data-job="DECISION_rule" data-note="1" placeholder="Why those three and not these four?"></textarea>
+  </div>
+</section>
+
+<div id="jobs"></div>
+
+<div class="holes">
+<h2>Nothing to bind — six to source or build</h2>
+<p>These jobs appear in the script and no template in the library serves them. The one at the top is the spine of the argument and shows up four times in a single video.</p>
+<div id="holelist"></div>
+<div class="jn" style="padding:16px 0 0">
+  <div class="lbl">Anything else missing</div>
+  <textarea data-job="HOLES" data-note="1" placeholder="Other jobs with nowhere to land."></textarea>
+</div>
+</div>
+</div>
+
+<script>
+const JOBS=[
+ {k:"one_vs_aggregate",d:"One entity against a summed group",
+  ex:"“Stack all seven end to end. Ninety-seven billion. Seven careers.” — and “His ten win, twenty-one billion to fifteen.”",
+  note:"Only one weak pairing. This job runs four times in the video."},
+ {k:"one_vs_many_individually",d:"One entity against several named peers, not summed",
+  ex:"“Travis Scott, sixty-seven billion. Kendrick, fifty-seven. Post Malone, fifty-six. Future, fifty-four.”"},
+ {k:"locate_in_distribution",d:"Where one item sits among many",
+  ex:"“Near the top, Future. Travis Scott. Then one dot with open air under it.”"},
+ {k:"entity_vs_benchmark",d:"A value or a count against a fixed bar",
+  ex:"“He has thirty songs past a billion streams.”"},
+ {k:"proportion_of_cohort",d:"How much of a named fixed population qualifies",
+  ex:"“Thirty-five of the ninety-three rappers on the opening chart have zero.”",
+  note:"Every pairing is sized around thirty. The cohort is ninety-three."},
+ {k:"parallel_instances",d:"The same measure on several entities, each with its own denominator",
+  ex:"“Latto’s biggest is half of everything she’s ever streamed. Jay Rock’s is fifty-two percent. Ab-Soul’s, seventy-one.”"},
+ {k:"paired_values_by_group",d:"Two groups split by which of a member’s two values is larger",
+  ex:"“Post Malone, forty-nine billion on his own songs against six as a guest… Ty Dolla $ign, five billion on his own records and twenty-two as a guest.”",
+  note:"None of these expresses the flip between the two groups."},
+ {k:"streak_over_time",d:"Unbroken presence across a span",
+  ex:"“Eighteen straight years with something on a US chart.”"},
+ {k:"derived_quantity",d:"A rate, or a total built from a rate",
+  ex:"“Seven hundred times a second… by the time the day closes out it comes to fifty-nine million.”"},
+ {k:"equivalence_restatement",d:"One entity’s total restated in another entity’s units",
+  ex:"“Every song he has ever put on the platform… adds up to what this one catalog moves in twenty-four days.”",
+  note:"Two pairings, and one of them is reference-only."},
+];
+const HOLES=[
+ {k:"one_vs_aggregate_dedicated",d:"One hero magnitude against one summed group magnitude",
+  spec:"Contributors identified but not separately ranked. Must not read as a pairwise matchup. Used four times in one video."},
+ {k:"category_breakdown",d:"Labelled category counts summing to a stated total",
+  spec:"No portrait slot, no ranking order, no time order. Text labels carry identity. “Number one as a lead single. Eleven times. As an album. Nine…”"},
+ {k:"intersection_of_sets",d:"Who clears two separate thresholds",
+  spec:"Two independently labelled threshold groups and the members clearing both. The two criteria stay distinct and are never added."},
+ {k:"change_across_set",d:"Before and after position across a set",
+  spec:"About ten members, showing places moved, with one member that does not move. “Ab-Soul falls twenty-eight places… Drake finishes exactly where he started.”"},
+ {k:"explain_the_encoding",d:"A chart that teaches its own reading",
+  spec:"Axis meaning, then one dot, then the full field. Happens once per video. Nothing in the library does it."},
+ {k:"equivalence_restatement_dedicated",d:"One total expressed in another entity’s time units",
+  spec:"Both bases visible, no false common axis. Currently only a body-height metaphor whose scale is affine."},
+];
+const V=[["yes","Does it"],["no","No"],["unsure","Unsure"]];
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let db=null,state={},B={};
+
+function cards(job,rows){return rows.map(r=>`
+  <article class="c">
+    <img src="thumbs/${encodeURIComponent(r.id)}.jpg" alt="" loading="lazy">
+    <div class="cb">
+      <div class="cid">${esc(r.id)}</div>
+      <div class="cname">${esc(r.name)}</div>
+      ${r.cap?`<div class="cenc">${esc(r.cap)}</div>`:""}
+      ${r.enc?`<div class="cenc">${esc(r.enc)}</div>`:""}
+    </div>
+    <div class="fb">
+      <div class="bts" role="group">
+        ${V.map(([v,l])=>`<button class="b" type="button" data-job="${job}" data-id="${esc(r.id)}" data-v="${v}"
+          aria-pressed="${state[job]?.b?.[r.id]?.v===v?"true":"false"}">${l}</button>`).join("")}
+      </div>
+      <textarea data-job="${job}" data-id="${esc(r.id)}" placeholder="Why?">${esc(state[job]?.b?.[r.id]?.note||"")}</textarea>
+    </div>
+  </article>`).join("")}
+
+function render(){
+  document.getElementById("jobs").innerHTML=JOBS.map(j=>`
+    <section class="job">
+      <div class="jh">
+        <div class="jname">${esc(j.k)}</div>
+        <div class="jdesc">${esc(j.d)}</div>
+        <div class="jex">${esc(j.ex)}</div>
+        ${j.note?`<div class="cenc" style="margin-top:8px">${esc(j.note)}</div>`:""}
+      </div>
+      <div class="cards">${cards(j.k,B[j.k]||[])}</div>
+      <div class="jn">
+        <div class="lbl">Templates I missed for this job</div>
+        <textarea data-job="${j.k}" data-note="1" placeholder="Name them and I’ll add them.">${esc(state[j.k]?.note||"")}</textarea>
+      </div>
+    </section>`).join("");
+  document.getElementById("holelist").innerHTML=HOLES.map(h=>`
+    <div class="hole">
+      <div class="jname">${esc(h.k)}</div>
+      <div class="jdesc">${esc(h.d)}</div>
+      <div class="spec">${esc(h.spec)}</div>
+      <textarea data-job="HOLE_${h.k}" data-note="1" placeholder="Sourcing or building this? Note it here.">${esc(state["HOLE_"+h.k]?.note||"")}</textarea>
+    </div>`).join("");
+}
+const st=t=>document.getElementById("status").textContent=t;
+const q={};
+function save(k){
+  if(!db) return;
+  const body=JSON.parse(JSON.stringify(state[k]||{}));body.updatedAt=new Date().toISOString();
+  q[k]=(q[k]||Promise.resolve()).then(()=>db.doc("bindings/"+k).set(body)
+    .then(()=>st("Saved "+new Date().toLocaleTimeString())).catch(e=>st("Not saved: "+(e?.code||"error"))));
+}
+let t=null;
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".b"); if(!b) return;
+  const {job,id,v}=b.dataset;
+  state[job]=state[job]||{b:{}}; state[job].b=state[job].b||{};
+  const cur=state[job].b[id]||{}; cur.v = cur.v===v?"":v; state[job].b[id]=cur;
+  b.closest(".bts").querySelectorAll(".b").forEach(x=>x.setAttribute("aria-pressed",String(x.dataset.v===cur.v)));
+  save(job);
+});
+document.addEventListener("input",e=>{
+  const x=e.target; if(x.tagName!=="TEXTAREA") return;
+  const job=x.dataset.job; state[job]=state[job]||{b:{}};
+  if(x.dataset.note) state[job].note=x.value;
+  else { state[job].b=state[job].b||{}; state[job].b[x.dataset.id]={...(state[job].b[x.dataset.id]||{}),note:x.value}; }
+  clearTimeout(t); t=setTimeout(()=>save(job),700);
+});
+
+fetch("bindings.json").then(r=>r.json()).then(async d=>{
+  B=d; render();
+  db=await claude.use("db");
+  if(!db){st("Feedback cannot be saved in this view.");return;}
+  try{
+    const s=await db.collection("bindings").get();
+    s.docs.forEach(x=>state[x.id]=x.data());
+    render(); st(s.empty?"Ready.":"Loaded saved review.");
+  }catch(e){st("Could not load: "+(e?.code||"error"));}
+}).catch(()=>st("Could not load bindings."));
+</script>

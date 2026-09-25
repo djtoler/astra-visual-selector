@@ -1,0 +1,3034 @@
+{
+ "ruleProvenance": {
+  "baseRuleCount": 10,
+  "activeCorrections": [
+   "COR-0001-spatial-attrition",
+   "COR-0002-citation-policy",
+   "COR-0003-era-consistency-gate",
+   "COR-0004-change-budget-is-a-hint",
+   "COR-0005-portrait-legibility",
+   "COR-0006-intent-scoring-and-overview-route",
+   "COR-0007-scene-level-distinctness",
+   "COR-0008-defects-found-by-extending",
+   "COR-0009-per-shot-selection",
+   "COR-0010-defects-found-at-thirty",
+   "COR-0011-motion-profiles-adopted",
+   "COR-0012-schedule-replacement-is-the-mechanism",
+   "COR-0013-passage-28-allowed-kinds",
+   "COR-0014-measurement-was-the-problem"
+  ],
+  "revertedCorrections": [],
+  "maximumScope": "project",
+  "writesToProject": false
+ },
+ "shots": [
+  {
+   "shotId": "01",
+   "boundary": "measured",
+   "focalEntityCount": 2,
+   "durationSeconds": 4.08,
+   "events": [
+    "E1",
+    "E2"
+   ],
+   "binding": {
+    "bindings": [
+     {
+      "roleId": "xxl_cover_2009",
+      "attributionPolicy": "record_only",
+      "provenance": "media_library",
+      "sourceRef": "/Users/dwaynetoler/Media Library",
+      "sourceCandidates": null,
+      "editorialRole": "proof",
+      "sourceSpecificity": "exact_source_required",
+      "mediaFamily": "document_or_screen",
+      "status": "partially_bound",
+      "perEntity": {},
+      "artifacts": {
+       "XXL": {
+        "count": 0,
+        "image": 0,
+        "video": 0,
+        "cutout": 0,
+        "examples": [],
+        "assertedYears": []
+       },
+       "Freshman": {
+        "count": 0,
+        "image": 0,
+        "video": 0,
+        "cutout": 0,
+        "examples": [],
+        "assertedYears": []
+       }
+      },
+      "missing": [
+       "Freshman",
+       "XXL"
+      ],
+      "note": null
+     },
+     {
+      "roleId": "catalog_evidence",
+      "attributionPolicy": "record_only",
+      "provenance": "unknown",
+      "sourceRef": "NOT YET SOURCED",
+      "sourceCandidates": null,
+      "editorialRole": "proof",
+      "sourceSpecificity": "exact_source_required",
+      "mediaFamily": "document_or_screen",
+      "status": "missing",
+      "perEntity": {},
+      "artifacts": {},
+      "missing": [
+       "a source for catalog_evidence"
+      ],
+      "note": null
+     }
+    ],
+    "evidenceSources": [
+     {
+      "roleId": "xxl_cover_2009",
+      "provenance": "media_library",
+      "sourceRef": "/Users/dwaynetoler/Media Library",
+      "onScreenCredit": false
+     },
+     {
+      "roleId": "catalog_evidence",
+      "provenance": "unknown",
+      "sourceRef": "NOT YET SOURCED",
+      "onScreenCredit": false
+     }
+    ],
+    "missingAssets": [
+     "Freshman",
+     "XXL",
+     "a source for catalog_evidence"
+    ],
+    "anyMissing": true,
+    "dataRolesOutstanding": []
+   },
+   "slate": {
+    "slate": [
+     {
+      "kind": "after_effects",
+      "templateId": "Photo Slideshow \u2014 Memories",
+      "sceneId": "Photo Slideshow \u2014 Memories \u00b7 Scene 02",
+      "name": "Photo Slideshow \u2014 Memories \u00b7 Scene 02",
+      "approvedFamily": "two_person_portrait",
+      "familyMatchedOn": "entity_count",
+      "intents": [],
+      "capacityFits": true,
+      "carriesData": false,
+      "designedForEntities": 2,
+      "capacitySlack": 0,
+      "showsPortraits": true,
+      "placedBy": "approved family: two_person_portrait",
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.89,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 1.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "no_unsupported_implication",
+       "decisive_events_alignable",
+       "asset_quality_sufficient",
+       "era_consistent"
+      ],
+      "rank": 1
+     },
+     {
+      "kind": "after_effects",
+      "templateId": "Photo Slideshow \u2014 Smooth",
+      "sceneId": "Photo Slideshow \u2014 Smooth \u00b7 Scene 06",
+      "name": "Photo Slideshow \u2014 Smooth \u00b7 Scene 06",
+      "approvedFamily": "two_person_portrait",
+      "familyMatchedOn": "entity_count",
+      "intents": [],
+      "capacityFits": true,
+      "carriesData": false,
+      "designedForEntities": 2,
+      "capacitySlack": 0,
+      "showsPortraits": true,
+      "placedBy": "approved family: two_person_portrait",
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.89,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 1.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "no_unsupported_implication",
+       "decisive_events_alignable",
+       "asset_quality_sufficient",
+       "era_consistent"
+      ],
+      "rank": 2
+     },
+     {
+      "kind": "after_effects",
+      "templateId": "Memories Photo Slideshow \u2014 Creative Slides",
+      "sceneId": "Memories Photo Slideshow \u2014 Creative Slides \u00b7 Scene 08",
+      "name": "Memories Photo Slideshow \u2014 Creative Slides \u00b7 Scene 08",
+      "approvedFamily": "two_person_portrait",
+      "familyMatchedOn": "entity_count",
+      "intents": [],
+      "capacityFits": true,
+      "carriesData": false,
+      "designedForEntities": 2,
+      "capacitySlack": 0,
+      "showsPortraits": true,
+      "placedBy": "approved family: two_person_portrait",
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.89,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 1.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "no_unsupported_implication",
+       "decisive_events_alignable",
+       "asset_quality_sufficient",
+       "era_consistent"
+      ],
+      "rank": 3
+     },
+     {
+      "kind": "infographic",
+      "templateId": "01_finals_head_to_head",
+      "name": "Two-subject score comparison",
+      "intents": [
+       "compare",
+       "contrast",
+       "multiple metrics"
+      ],
+      "capacitySummary": "2 subjects; 9 shared metrics",
+      "capacityFits": true,
+      "capacityRange": [
+       2,
+       2
+      ],
+      "designedForEntities": 2,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "More than two subjects",
+       "one continuous trend"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.73,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient",
+       "era_consistent"
+      ],
+      "rank": 4
+     }
+    ],
+    "viableCount": 54,
+    "spatialFirstDetail": {
+     "fired": false,
+     "terms": [],
+     "triggerSource": "none",
+     "ruleVersion": "1.1.0-local"
+    },
+    "ruleProvenance": {
+     "baseRuleCount": 10,
+     "activeCorrections": [
+      "COR-0001-spatial-attrition",
+      "COR-0002-citation-policy",
+      "COR-0003-era-consistency-gate",
+      "COR-0004-change-budget-is-a-hint",
+      "COR-0005-portrait-legibility",
+      "COR-0006-intent-scoring-and-overview-route",
+      "COR-0007-scene-level-distinctness",
+      "COR-0008-defects-found-by-extending",
+      "COR-0009-per-shot-selection",
+      "COR-0010-defects-found-at-thirty",
+      "COR-0011-motion-profiles-adopted",
+      "COR-0012-schedule-replacement-is-the-mechanism",
+      "COR-0013-passage-28-allowed-kinds",
+      "COR-0014-measurement-was-the-problem"
+     ],
+     "revertedCorrections": [],
+     "maximumScope": "project",
+     "writesToProject": false
+    },
+    "rejectedCount": 31,
+    "poolSize": 85,
+    "rejectedSample": [
+     {
+      "kind": "cinematic_3d",
+      "templateId": "truth-rank-fall",
+      "name": "Before-and-after rank-loss field",
+      "intents": [
+       "rank",
+       "change",
+       "resilience"
+      ],
+      "capacitySummary": "3\u201312 entities; 1 rank delta per entity from a shared zero start; one optional hero expected to move little or not at all.",
+      "capacityFits": false,
+      "capacityRange": [
+       3,
+       12
+      ],
+      "avoidWhen": [
+       "The before and after rankings were computed with different populations",
+       "Absolute rank matters more than rank change",
+       "The metric is a value change rather than an ordinal rank change"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Ground truth records presentation 'document'; this container serves it poorly."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 12 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.5,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "era_consistent"
+      ]
+     },
+     {
+      "kind": "cinematic_3d",
+      "templateId": "truth-cohort-attrition",
+      "name": "Cohort attrition to named survivors",
+      "intents": [
+       "timeline",
+       "attrition",
+       "survival"
+      ],
+      "capacitySummary": "6\u201330 starting entities; a verified starting cohort; a chart-year record per entity; 1\u20133 named survivors; one disclosed exit rule.",
+      "capacityFits": false,
+      "capacityRange": [
+       6,
+       30
+      ],
+      "avoidWhen": [
+       "The starting cohort is not verified",
+       "The narration needs career-end dates rather than chart-streak exits",
+       "The people did not share a meaningful comparison clock"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Ground truth records presentation 'document'; this container serves it poorly."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.5,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "era_consistent"
+      ]
+     },
+     {
+      "kind": "infographic",
+      "templateId": "30_dense_rank_bars",
+      "name": "Compact portrait bar leaderboard",
+      "intents": [
+       "rank",
+       "magnitude",
+       "overview"
+      ],
+      "capacitySummary": "30 entities; 1 measure each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 28,
+      "avoidWhen": [
+       "A two-subject story",
+       "extensive text labels"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 2 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "era_consistent"
+      ]
+     },
+     {
+      "kind": "infographic",
+      "templateId": "23_portrait_scatter",
+      "name": "Dense portrait scatter",
+      "intents": [
+       "relationship",
+       "distribution",
+       "outliers"
+      ],
+      "capacitySummary": "30 entities; 2 numeric variables each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 28,
+      "avoidWhen": [
+       "A small roster",
+       "rank-only data",
+       "causal claims"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 2 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "era_consistent"
+      ]
+     },
+     {
+      "kind": "infographic",
+      "templateId": "53_lineup_rotation_columns",
+      "name": "Eight portrait columns with paired counts",
+      "intents": [
+       "compare",
+       "part to whole",
+       "overview"
+      ],
+      "capacitySummary": "8 entities; 2 numeric fields and 3 shared labels each",
+      "capacityFits": false,
+      "capacityRange": [
+       8,
+       8
+      ],
+      "designedForEntities": 8,
+      "showsPortraits": true,
+      "capacitySlack": 6,
+      "avoidWhen": [
+       "Treating the fixed colored panel height as a calculated share or percentage"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [8, 8] cannot hold 2 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 8 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "portraitFit": 0.46,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "era_consistent"
+      ]
+     },
+     {
+      "kind": "infographic",
+      "templateId": "29_horizontal_media_bars",
+      "name": "Endpoint portraits on horizontal bars",
+      "intents": [
+       "magnitude",
+       "rank",
+       "comparison"
+      ],
+      "capacitySummary": "8 entities; 1 measure each",
+      "capacityFits": false,
+      "capacityRange": [
+       8,
+       8
+      ],
+      "designedForEntities": 8,
+      "showsPortraits": true,
+      "capacitySlack": 6,
+      "avoidWhen": [
+       "Negative quantities",
+       "many metrics per person"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [8, 8] cannot hold 2 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "unknown",
+        "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "unknown",
+        "explanation": "1 roles only partially bound."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 8 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "unknown",
+        "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+       }
+      },
+      "portraitFit": 0.46,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 0.6,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "no_unsupported_implication",
+       "asset_quality_sufficient",
+       "density_acceptable",
+       "era_consistent"
+      ]
+     }
+    ],
+    "spatialFirstApplied": false
+   }
+  },
+  {
+   "shotId": "02",
+   "boundary": "measured",
+   "focalEntityCount": 2,
+   "durationSeconds": 12.31,
+   "events": [
+    "E3"
+   ],
+   "binding": {
+    "bindings": [
+     {
+      "roleId": "duration_ratio",
+      "attributionPolicy": "record_only",
+      "provenance": "unknown",
+      "sourceRef": "verified dataset, not yet bound",
+      "sourceCandidates": null,
+      "editorialRole": "proof",
+      "sourceSpecificity": "exact_source_required",
+      "mediaFamily": "data_or_number",
+      "status": "data_required",
+      "perEntity": {},
+      "artifacts": {},
+      "missing": [],
+      "note": "Values must come from the verified dataset, not the Media Library."
+     }
+    ],
+    "evidenceSources": [
+     {
+      "roleId": "duration_ratio",
+      "provenance": "unknown",
+      "sourceRef": "verified dataset, not yet bound",
+      "onScreenCredit": false
+     }
+    ],
+    "missingAssets": [],
+    "anyMissing": false,
+    "dataRolesOutstanding": [
+     "duration_ratio"
+    ]
+   },
+   "slate": {
+    "slate": [
+     {
+      "kind": "infographic",
+      "templateId": "01_finals_head_to_head",
+      "name": "Two-subject score comparison",
+      "intents": [
+       "compare",
+       "contrast",
+       "multiple metrics"
+      ],
+      "capacitySummary": "2 subjects; 9 shared metrics",
+      "capacityFits": true,
+      "capacityRange": [
+       2,
+       2
+      ],
+      "designedForEntities": 2,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "More than two subjects",
+       "one continuous trend"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.89,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [],
+      "placedBy": "rank",
+      "rank": 1
+     },
+     {
+      "kind": "infographic",
+      "templateId": "11_defensive_numbers",
+      "name": "Photo-led head-to-head metrics",
+      "intents": [
+       "compare",
+       "multiple metrics",
+       "editorial"
+      ],
+      "capacitySummary": "2 subjects; 6 shared metrics",
+      "capacityFits": true,
+      "capacityRange": [
+       2,
+       2
+      ],
+      "designedForEntities": 2,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "A many-subject overview",
+       "quantitative image-size comparison"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.89,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [],
+      "placedBy": "rank",
+      "rank": 2
+     },
+     {
+      "kind": "infographic",
+      "templateId": "12_four_round_scorecard",
+      "name": "Round-by-round scorecard",
+      "intents": [
+       "compare",
+       "stages",
+       "scorecard"
+      ],
+      "capacitySummary": "2 subjects; 12 metric rows grouped across 4 rounds",
+      "capacityFits": true,
+      "capacityRange": [
+       2,
+       2
+      ],
+      "designedForEntities": 2,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "A single continuous trend",
+       "arbitrary outcome claims"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.89,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [],
+      "placedBy": "rank",
+      "rank": 3
+     },
+     {
+      "kind": "infographic",
+      "templateId": "40_two_era_fullbody_compare",
+      "name": "Two full-body profiles with eight metrics",
+      "intents": [
+       "compare",
+       "multiple metrics",
+       "profiles"
+      ],
+      "capacitySummary": "2 subjects; 8 shared metrics and 1 period label each",
+      "capacityFits": true,
+      "capacityRange": [
+       2,
+       2
+      ],
+      "designedForEntities": 2,
+      "showsPortraits": true,
+      "capacitySlack": 0,
+      "avoidWhen": [
+       "Data-driven physical-size comparison",
+       "three subjects"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 1.0,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.89,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [],
+      "placedBy": "rank",
+      "rank": 4
+     }
+    ],
+    "viableCount": 37,
+    "spatialFirstDetail": {
+     "fired": false,
+     "terms": [],
+     "triggerSource": "none",
+     "ruleVersion": "1.1.0-local"
+    },
+    "ruleProvenance": {
+     "baseRuleCount": 10,
+     "activeCorrections": [
+      "COR-0001-spatial-attrition",
+      "COR-0002-citation-policy",
+      "COR-0003-era-consistency-gate",
+      "COR-0004-change-budget-is-a-hint",
+      "COR-0005-portrait-legibility",
+      "COR-0006-intent-scoring-and-overview-route",
+      "COR-0007-scene-level-distinctness",
+      "COR-0008-defects-found-by-extending",
+      "COR-0009-per-shot-selection",
+      "COR-0010-defects-found-at-thirty",
+      "COR-0011-motion-profiles-adopted",
+      "COR-0012-schedule-replacement-is-the-mechanism",
+      "COR-0013-passage-28-allowed-kinds",
+      "COR-0014-measurement-was-the-problem"
+     ],
+     "revertedCorrections": [],
+     "maximumScope": "project",
+     "writesToProject": false
+    },
+    "rejectedCount": 48,
+    "poolSize": 85,
+    "rejectedSample": [
+     {
+      "kind": "direct",
+      "templateId": "direct:archival_cut",
+      "name": "Archival or interview cut",
+      "carriesData": false,
+      "capacityFits": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "The passage carries verified values and this container encodes no data."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": []
+     },
+     {
+      "kind": "cinematic_3d",
+      "templateId": "truth-rank-fall",
+      "name": "Before-and-after rank-loss field",
+      "intents": [
+       "rank",
+       "change",
+       "resilience"
+      ],
+      "capacitySummary": "3\u201312 entities; 1 rank delta per entity from a shared zero start; one optional hero expected to move little or not at all.",
+      "capacityFits": false,
+      "capacityRange": [
+       3,
+       12
+      ],
+      "avoidWhen": [
+       "The before and after rankings were computed with different populations",
+       "Absolute rank matters more than rank change",
+       "The metric is a value change rather than an ordinal rank change"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [3, 12] cannot hold 2 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 12 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.5,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "density_acceptable"
+      ]
+     },
+     {
+      "kind": "cinematic_3d",
+      "templateId": "truth-cohort-attrition",
+      "name": "Cohort attrition to named survivors",
+      "intents": [
+       "timeline",
+       "attrition",
+       "survival"
+      ],
+      "capacitySummary": "6\u201330 starting entities; a verified starting cohort; a chart-year record per entity; 1\u20133 named survivors; one disclosed exit rule.",
+      "capacityFits": false,
+      "capacityRange": [
+       6,
+       30
+      ],
+      "avoidWhen": [
+       "The starting cohort is not verified",
+       "The narration needs career-end dates rather than chart-streak exits",
+       "The people did not share a meaningful comparison clock"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [6, 30] cannot hold 2 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.5,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "density_acceptable"
+      ]
+     },
+     {
+      "kind": "infographic",
+      "templateId": "30_dense_rank_bars",
+      "name": "Compact portrait bar leaderboard",
+      "intents": [
+       "rank",
+       "magnitude",
+       "overview"
+      ],
+      "capacitySummary": "30 entities; 1 measure each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 28,
+      "avoidWhen": [
+       "A two-subject story",
+       "extensive text labels"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 2 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "density_acceptable"
+      ]
+     },
+     {
+      "kind": "infographic",
+      "templateId": "23_portrait_scatter",
+      "name": "Dense portrait scatter",
+      "intents": [
+       "relationship",
+       "distribution",
+       "outliers"
+      ],
+      "capacitySummary": "30 entities; 2 numeric variables each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 28,
+      "avoidWhen": [
+       "A small roster",
+       "rank-only data",
+       "causal claims"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 2 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 2.0s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "1 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "unknown",
+        "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "density_acceptable"
+      ]
+     },
+     {
+      "kind": "after_effects",
+      "templateId": "02-documentary-promo",
+      "sceneId": "02-documentary-promo--scene-006",
+      "name": "Documentary Promo \u00b7 Scene 06",
+      "function": "paired presentation",
+      "focalEntityCount": null,
+      "nativeDurationSeconds": 9.3,
+      "retimeAllowed": true,
+      "acceptedMedia": [
+       "image",
+       "video"
+      ],
+      "appropriateNarration": null,
+      "avoidWhen": [],
+      "acceptedMediaTypes": [
+       "image",
+       "video"
+      ],
+      "hasProfile": true,
+      "documentaryRoles": {
+       "primary": [
+        "introduce",
+        "evidence",
+        "transition"
+       ],
+       "secondary": [
+        "reveal",
+        "context",
+        "quote",
+        "close"
+       ],
+       "weak": [
+        "represent_while_discussed"
+       ],
+       "notSupported": []
+      },
+      "usableReadingTimeSeconds": 3.23,
+      "usableReadingTimeMin": 2.22,
+      "stylePace": "Fast. Nine scenes in 31 seconds, most 2.5-4.0s.",
+      "styleDensity": "High. Several text blocks can be on screen simultaneously alongside a subject.",
+      "narrationSuitability": "limited",
+      "capacityFits": true,
+      "carriesData": false,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "The passage carries verified values and this container encodes no data."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Profile measures 3.23s usable reading time against a 2.0s requirement."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim"
+      ],
+      "unknowns": [
+       "decisive_events_alignable"
+      ]
+     }
+    ],
+    "spatialFirstApplied": false
+   }
+  }
+ ],
+ "contract": {
+  "contractId": "year-seventeen:P02",
+  "schemaVersion": 1,
+  "scriptRef": {
+   "scriptId": "year-seventeen",
+   "sectionId": "Named cover and catalog comparison",
+   "passageIndex": 2
+  },
+  "narration": {
+   "text": "Curren$y was on the 2009 XXL Freshman cover, and every song he has ever put on the platform \u2014 the mixtapes, the Jet Life run, the features, all of it stacked end to end \u2014 adds up to what this one catalog moves in twenty-four days.",
+   "measuredTranscript": "Currency was on the 2009 XXL Freshman cover. And every song he has ever put on the platform, the mix tapes, the jet life run, the features, all of its stacked end -to -end, adds up to what this one catalog moves in 24 days."
+  },
+  "timing": {
+   "timingSource": "measured_audio",
+   "audioStartSeconds": 10.81,
+   "audioEndSeconds": 27.2,
+   "audioDurationSeconds": 16.39,
+   "wordAlignmentCoverage": 0.8889,
+   "recordedShots": [
+    {
+     "shotId": "01",
+     "startSeconds": 10.81,
+     "endSeconds": 14.89,
+     "durationSeconds": 4.08,
+     "startsAt": "passage_start",
+     "endsAt": {
+      "seconds": 14.89,
+      "afterPhrase": "Freshman cover",
+      "type": "clause",
+      "cutPolicy": "adjacent_silence"
+     }
+    },
+    {
+     "shotId": "02",
+     "startSeconds": 14.89,
+     "endSeconds": 27.2,
+     "durationSeconds": 12.31,
+     "startsAt": {
+      "seconds": 14.89,
+      "afterPhrase": "Freshman cover",
+      "type": "clause",
+      "cutPolicy": "adjacent_silence"
+     },
+     "endsAt": "passage_end"
+    }
+   ],
+   "acceptableDurationSeconds": {
+    "min": 16.39,
+    "target": 16.39,
+    "max": null,
+    "note": "Descriptive. Corpus median 9.0s, p75 14.0s. Never a cap: the evidence sets the length."
+   },
+   "durationPolicy": {
+    "mode": "elastic",
+    "evidenceMustComplete": true,
+    "narrationYields": false,
+    "extensionRequired": []
+   },
+   "minimumReadableHoldSeconds": 2.0,
+   "internalChangeBudget": {
+    "enforcement": "advisory_only",
+    "requiredChanges": 3,
+    "secondsPerChangeCeiling": 6.8,
+    "eventsAvailable": 3,
+    "satisfied": true,
+    "standingException": null,
+    "note": "Advisory. May suggest splitting a unit, but never rejects a candidate and never forces a split. Overridden whenever the content needs the time."
+   }
+  },
+  "takeaway": "Curren$y's entire catalog equals what this one catalog moves in 24 days.",
+  "narrationJob": "compare",
+  "claims": [
+   {
+    "text": "Curren$y was on the 2009 XXL Freshman cover.",
+    "claimClass": "documented_fact",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "the 2009 XXL Freshman cover"
+    ]
+   },
+   {
+    "text": "His complete catalog equals 24 days of the subject's catalog.",
+    "claimClass": "quantity_or_statistic",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "verified lifetime totals for both catalogs"
+    ]
+   }
+  ],
+  "strictestEvidenceObligation": "exact_source_required",
+  "entities": [
+   {
+    "name": "Curren$y",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "medium"
+   },
+   {
+    "name": "Drake",
+    "entityType": "person",
+    "mustBeVisible": false,
+    "mustBeNamedOnScreen": false,
+    "recognitionRisk": "low"
+   }
+  ],
+  "focalEntityCount": 2,
+  "entityRelationship": "pair_contrasted",
+  "requiredMedia": [
+   {
+    "roleId": "xxl_cover_2009",
+    "editorialRole": "proof",
+    "mediaFamily": "document_or_screen",
+    "sourceSpecificity": "exact_source_required",
+    "contentRequirement": "The 2009 XXL Freshman cover with Curren$y visible on it.",
+    "shotId": "01",
+    "eraConstraint": "2009",
+    "legibilityRequirement": {
+     "textMustBeReadable": true,
+     "smallestMeaningfulElement": "the year and masthead",
+     "minimumOnScreenSeconds": 2.0
+    }
+   },
+   {
+    "roleId": "catalog_evidence",
+    "editorialRole": "proof",
+    "mediaFamily": "document_or_screen",
+    "sourceSpecificity": "exact_source_required",
+    "contentRequirement": "A screenshot of the Curren$y catalog on the platform, plus Jet Life release artwork, so the run described in the narration is actually shown.",
+    "shotId": "01"
+   },
+   {
+    "roleId": "duration_ratio",
+    "editorialRole": "proof",
+    "mediaFamily": "data_or_number",
+    "sourceSpecificity": "exact_source_required",
+    "contentRequirement": "Verified lifetime total for Curren$y and the subject's daily rate, expressed as the 17-years-against-24-days ratio.",
+    "shotId": "02"
+   }
+  ],
+  "visualEvents": [
+   {
+    "eventId": "E1",
+    "triggerPhrase": "Curren$y was on the 2009 XXL Freshman cover",
+    "eventType": "reveal",
+    "criticality": "decisive",
+    "description": "The 2009 cover fills frame with Curren$y identified.",
+    "shotId": "01",
+    "triggerOffsetSeconds": 0.35,
+    "measuredStartSeconds": 11.16,
+    "matchConfidence": 0.977,
+    "matchedTranscript": "Currency was on the 2009 XXL Freshman cover.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E2",
+    "triggerPhrase": "the mixtapes, the Jet Life run, the features",
+    "eventType": "reveal",
+    "criticality": "supporting",
+    "description": "Catalog screenshot and Jet Life artwork establish the body of work.",
+    "shotId": "01",
+    "triggerOffsetSeconds": 7.07,
+    "measuredStartSeconds": 17.88,
+    "matchConfidence": 0.988,
+    "matchedTranscript": "the mix tapes, the jet life run, the features,",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E3",
+    "triggerPhrase": "what this one catalog moves in twenty-four days",
+    "eventType": "value_change",
+    "criticality": "decisive",
+    "description": "The distance between a 17-year career and 24 days resolves.",
+    "shotId": "02",
+    "triggerOffsetSeconds": 13.23,
+    "measuredStartSeconds": 24.04,
+    "matchConfidence": 1.0,
+    "matchedTranscript": "what this one catalog moves in 24 days.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   }
+  ],
+  "prohibitions": [
+   {
+    "prohibition": "Do not represent the whole catalog with a single artist portrait.",
+    "reason": "User ruling on this passage: the chunk names a magazine cover, a catalog and the Jet Life run, and each needs its own supporting visual.",
+    "severity": "hard"
+   },
+   {
+    "prohibition": "Do not use the 2010 cover.",
+    "reason": "Curren$y is on the 2009 cover; 2010 is a different cohort used by passage 16.",
+    "severity": "hard"
+   }
+  ],
+  "successConditions": [
+   "The viewer sees the actual 2009 cover.",
+   "The viewer sees the scale of Curren$y's catalog.",
+   "The 17-years-against-24-days gap reads as a distance."
+  ],
+  "failureConditions": [
+   "One generic portrait stands in for cover, catalog and run.",
+   "The comparison reads as two numbers rather than a gap."
+  ],
+  "readingLoad": "normal",
+  "scriptConflict": null,
+  "proposedDecomposition": null,
+  "groundTruth": {
+   "desired": "2009 XXL Freshman cover inside an animation, followed by a 17-years-versus-24-days comparison",
+   "shots": "split",
+   "fallback": "artist portrait only",
+   "allowedKinds": null,
+   "allowedTemplateIds": null,
+   "preferredTemplateIds": null,
+   "presentation": "document"
+  },
+  "provenance": {
+   "createdBy": "astra prototype vertical slice",
+   "rulesetVersion": "0.2.0-prototype",
+   "authoredFields": [
+    "claims",
+    "entities",
+    "requiredMedia",
+    "visualEvents",
+    "prohibitions",
+    "successConditions",
+    "failureConditions"
+   ],
+   "measuredFields": [
+    "all timing values",
+    "event offsets"
+   ],
+   "humanReviewed": false
+  }
+ },
+ "binding": {
+  "bindings": [
+   {
+    "roleId": "xxl_cover_2009",
+    "attributionPolicy": "record_only",
+    "provenance": "media_library",
+    "sourceRef": "/Users/dwaynetoler/Media Library",
+    "sourceCandidates": null,
+    "editorialRole": "proof",
+    "sourceSpecificity": "exact_source_required",
+    "mediaFamily": "document_or_screen",
+    "status": "partially_bound",
+    "perEntity": {},
+    "artifacts": {
+     "XXL": {
+      "count": 0,
+      "image": 0,
+      "video": 0,
+      "cutout": 0,
+      "examples": [],
+      "assertedYears": []
+     },
+     "Freshman": {
+      "count": 0,
+      "image": 0,
+      "video": 0,
+      "cutout": 0,
+      "examples": [],
+      "assertedYears": []
+     }
+    },
+    "missing": [
+     "Freshman",
+     "XXL"
+    ],
+    "note": null
+   },
+   {
+    "roleId": "catalog_evidence",
+    "attributionPolicy": "record_only",
+    "provenance": "unknown",
+    "sourceRef": "NOT YET SOURCED",
+    "sourceCandidates": null,
+    "editorialRole": "proof",
+    "sourceSpecificity": "exact_source_required",
+    "mediaFamily": "document_or_screen",
+    "status": "missing",
+    "perEntity": {},
+    "artifacts": {},
+    "missing": [
+     "a source for catalog_evidence"
+    ],
+    "note": null
+   },
+   {
+    "roleId": "duration_ratio",
+    "attributionPolicy": "record_only",
+    "provenance": "unknown",
+    "sourceRef": "verified dataset, not yet bound",
+    "sourceCandidates": null,
+    "editorialRole": "proof",
+    "sourceSpecificity": "exact_source_required",
+    "mediaFamily": "data_or_number",
+    "status": "data_required",
+    "perEntity": {},
+    "artifacts": {},
+    "missing": [],
+    "note": "Values must come from the verified dataset, not the Media Library."
+   }
+  ],
+  "evidenceSources": [
+   {
+    "roleId": "xxl_cover_2009",
+    "provenance": "media_library",
+    "sourceRef": "/Users/dwaynetoler/Media Library",
+    "onScreenCredit": false
+   },
+   {
+    "roleId": "catalog_evidence",
+    "provenance": "unknown",
+    "sourceRef": "NOT YET SOURCED",
+    "onScreenCredit": false
+   },
+   {
+    "roleId": "duration_ratio",
+    "provenance": "unknown",
+    "sourceRef": "verified dataset, not yet bound",
+    "onScreenCredit": false
+   }
+  ],
+  "missingAssets": [
+   "Freshman",
+   "XXL",
+   "a source for catalog_evidence"
+  ],
+  "anyMissing": true,
+  "dataRolesOutstanding": [
+   "duration_ratio"
+  ]
+ },
+ "slate": {
+  "slate": [
+   {
+    "kind": "after_effects",
+    "templateId": "Photo Slideshow \u2014 Memories",
+    "sceneId": "Photo Slideshow \u2014 Memories \u00b7 Scene 02",
+    "name": "Photo Slideshow \u2014 Memories \u00b7 Scene 02",
+    "approvedFamily": "two_person_portrait",
+    "familyMatchedOn": "entity_count",
+    "intents": [],
+    "capacityFits": true,
+    "carriesData": false,
+    "designedForEntities": 2,
+    "capacitySlack": 0,
+    "showsPortraits": true,
+    "placedBy": "approved family: two_person_portrait",
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "portraitFit": 1.0,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.89,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 1.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "no_unsupported_implication",
+     "decisive_events_alignable",
+     "asset_quality_sufficient",
+     "era_consistent"
+    ],
+    "rank": 1
+   },
+   {
+    "kind": "after_effects",
+    "templateId": "Photo Slideshow \u2014 Smooth",
+    "sceneId": "Photo Slideshow \u2014 Smooth \u00b7 Scene 06",
+    "name": "Photo Slideshow \u2014 Smooth \u00b7 Scene 06",
+    "approvedFamily": "two_person_portrait",
+    "familyMatchedOn": "entity_count",
+    "intents": [],
+    "capacityFits": true,
+    "carriesData": false,
+    "designedForEntities": 2,
+    "capacitySlack": 0,
+    "showsPortraits": true,
+    "placedBy": "approved family: two_person_portrait",
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "portraitFit": 1.0,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.89,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 1.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "no_unsupported_implication",
+     "decisive_events_alignable",
+     "asset_quality_sufficient",
+     "era_consistent"
+    ],
+    "rank": 2
+   },
+   {
+    "kind": "after_effects",
+    "templateId": "Memories Photo Slideshow \u2014 Creative Slides",
+    "sceneId": "Memories Photo Slideshow \u2014 Creative Slides \u00b7 Scene 08",
+    "name": "Memories Photo Slideshow \u2014 Creative Slides \u00b7 Scene 08",
+    "approvedFamily": "two_person_portrait",
+    "familyMatchedOn": "entity_count",
+    "intents": [],
+    "capacityFits": true,
+    "carriesData": false,
+    "designedForEntities": 2,
+    "capacitySlack": 0,
+    "showsPortraits": true,
+    "placedBy": "approved family: two_person_portrait",
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "portraitFit": 1.0,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.89,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 1.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "no_unsupported_implication",
+     "decisive_events_alignable",
+     "asset_quality_sufficient",
+     "era_consistent"
+    ],
+    "rank": 3
+   },
+   {
+    "kind": "infographic",
+    "templateId": "01_finals_head_to_head",
+    "name": "Two-subject score comparison",
+    "intents": [
+     "compare",
+     "contrast",
+     "multiple metrics"
+    ],
+    "capacitySummary": "2 subjects; 9 shared metrics",
+    "capacityFits": true,
+    "capacityRange": [
+     2,
+     2
+    ],
+    "designedForEntities": 2,
+    "showsPortraits": true,
+    "capacitySlack": 0,
+    "avoidWhen": [
+     "More than two subjects",
+     "one continuous trend"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "1 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "portraitFit": 1.0,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.73,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient",
+     "era_consistent"
+    ],
+    "rank": 4
+   }
+  ],
+  "viableCount": 54,
+  "spatialFirstDetail": {
+   "fired": false,
+   "terms": [],
+   "triggerSource": "none",
+   "ruleVersion": "1.1.0-local"
+  },
+  "ruleProvenance": {
+   "baseRuleCount": 10,
+   "activeCorrections": [
+    "COR-0001-spatial-attrition",
+    "COR-0002-citation-policy",
+    "COR-0003-era-consistency-gate",
+    "COR-0004-change-budget-is-a-hint",
+    "COR-0005-portrait-legibility",
+    "COR-0006-intent-scoring-and-overview-route",
+    "COR-0007-scene-level-distinctness",
+    "COR-0008-defects-found-by-extending",
+    "COR-0009-per-shot-selection",
+    "COR-0010-defects-found-at-thirty",
+    "COR-0011-motion-profiles-adopted",
+    "COR-0012-schedule-replacement-is-the-mechanism",
+    "COR-0013-passage-28-allowed-kinds",
+    "COR-0014-measurement-was-the-problem"
+   ],
+   "revertedCorrections": [],
+   "maximumScope": "project",
+   "writesToProject": false
+  },
+  "rejectedCount": 31,
+  "poolSize": 85,
+  "rejectedSample": [
+   {
+    "kind": "cinematic_3d",
+    "templateId": "truth-rank-fall",
+    "name": "Before-and-after rank-loss field",
+    "intents": [
+     "rank",
+     "change",
+     "resilience"
+    ],
+    "capacitySummary": "3\u201312 entities; 1 rank delta per entity from a shared zero start; one optional hero expected to move little or not at all.",
+    "capacityFits": false,
+    "capacityRange": [
+     3,
+     12
+    ],
+    "avoidWhen": [
+     "The before and after rankings were computed with different populations",
+     "Absolute rank matters more than rank change",
+     "The metric is a value change rather than an ordinal rank change"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Ground truth records presentation 'document'; this container serves it poorly."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "1 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 12 but the passage has 2; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.5,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "era_consistent"
+    ]
+   },
+   {
+    "kind": "cinematic_3d",
+    "templateId": "truth-cohort-attrition",
+    "name": "Cohort attrition to named survivors",
+    "intents": [
+     "timeline",
+     "attrition",
+     "survival"
+    ],
+    "capacitySummary": "6\u201330 starting entities; a verified starting cohort; a chart-year record per entity; 1\u20133 named survivors; one disclosed exit rule.",
+    "capacityFits": false,
+    "capacityRange": [
+     6,
+     30
+    ],
+    "avoidWhen": [
+     "The starting cohort is not verified",
+     "The narration needs career-end dates rather than chart-streak exits",
+     "The people did not share a meaningful comparison clock"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Ground truth records presentation 'document'; this container serves it poorly."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "1 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.5,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "era_consistent"
+    ]
+   },
+   {
+    "kind": "infographic",
+    "templateId": "30_dense_rank_bars",
+    "name": "Compact portrait bar leaderboard",
+    "intents": [
+     "rank",
+     "magnitude",
+     "overview"
+    ],
+    "capacitySummary": "30 entities; 1 measure each",
+    "capacityFits": false,
+    "capacityRange": [
+     30,
+     30
+    ],
+    "designedForEntities": 30,
+    "showsPortraits": true,
+    "capacitySlack": 28,
+    "avoidWhen": [
+     "A two-subject story",
+     "extensive text labels"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [30, 30] cannot hold 2 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "1 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "era_consistent"
+    ]
+   },
+   {
+    "kind": "infographic",
+    "templateId": "23_portrait_scatter",
+    "name": "Dense portrait scatter",
+    "intents": [
+     "relationship",
+     "distribution",
+     "outliers"
+    ],
+    "capacitySummary": "30 entities; 2 numeric variables each",
+    "capacityFits": false,
+    "capacityRange": [
+     30,
+     30
+    ],
+    "designedForEntities": 30,
+    "showsPortraits": true,
+    "capacitySlack": 28,
+    "avoidWhen": [
+     "A small roster",
+     "rank-only data",
+     "causal claims"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [30, 30] cannot hold 2 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "1 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 30 but the passage has 2; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "era_consistent"
+    ]
+   },
+   {
+    "kind": "infographic",
+    "templateId": "53_lineup_rotation_columns",
+    "name": "Eight portrait columns with paired counts",
+    "intents": [
+     "compare",
+     "part to whole",
+     "overview"
+    ],
+    "capacitySummary": "8 entities; 2 numeric fields and 3 shared labels each",
+    "capacityFits": false,
+    "capacityRange": [
+     8,
+     8
+    ],
+    "designedForEntities": 8,
+    "showsPortraits": true,
+    "capacitySlack": 6,
+    "avoidWhen": [
+     "Treating the fixed colored panel height as a calculated share or percentage"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [8, 8] cannot hold 2 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "1 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 8 but the passage has 2; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "portraitFit": 0.46,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "era_consistent"
+    ]
+   },
+   {
+    "kind": "infographic",
+    "templateId": "29_horizontal_media_bars",
+    "name": "Endpoint portraits on horizontal bars",
+    "intents": [
+     "magnitude",
+     "rank",
+     "comparison"
+    ],
+    "capacitySummary": "8 entities; 1 measure each",
+    "capacityFits": false,
+    "capacityRange": [
+     8,
+     8
+    ],
+    "designedForEntities": 8,
+    "showsPortraits": true,
+    "capacitySlack": 6,
+    "avoidWhen": [
+     "Negative quantities",
+     "many metrics per person"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [8, 8] cannot hold 2 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "unknown",
+      "explanation": "Unbound entities would have to be represented somehow: ['Freshman', 'XXL', 'a source for catalog_evidence']."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 2.0s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "1 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "unknown",
+      "explanation": "1 roles only partially bound."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "unknown",
+      "explanation": "Container holds up to 8 but the passage has 2; portrait legibility at capacity is unrecorded."
+     },
+     "era_consistent": {
+      "result": "unknown",
+      "explanation": "Era constraints ['2009'] cannot be confirmed: no asset asserts a year yet."
+     }
+    },
+    "portraitFit": 0.46,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 0.6,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim"
+    ],
+    "unknowns": [
+     "no_unsupported_implication",
+     "asset_quality_sufficient",
+     "density_acceptable",
+     "era_consistent"
+    ]
+   }
+  ],
+  "spatialFirstApplied": false
+ },
+ "decision": {
+  "action": "blocked_missing_assets",
+  "winnerRank": 1,
+  "confidence": {
+   "value": null,
+   "method": "uncalibrated_prior",
+   "calibrationSampleSize": 0,
+   "note": "Auto-advance disabled by policy until calibrated against approved and rejected decisions."
+  },
+  "escalationTriggers": [
+   "assets_missing",
+   "candidates_close",
+   "evidence_insufficient",
+   "low_confidence"
+  ],
+  "reasons": [
+   "Unbound: Freshman, XXL, a source for catalog_evidence.",
+   "Verified values still required for: duration_ratio.",
+   "Top two candidates are tied on every priority level.",
+   "Winner has unresolved gates: no_unsupported_implication, decisive_events_alignable, asset_quality_sufficient, era_consistent."
+  ],
+  "shotCount": 2
+ },
+ "groundTruthCheck": {
+  "desired": "2009 XXL Freshman cover inside an animation, followed by a 17-years-versus-24-days comparison",
+  "desiredInSlate": false,
+  "desiredAtRank": null,
+  "recordedFallback": "artist portrait only"
+ }
+}

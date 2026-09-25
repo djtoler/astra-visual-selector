@@ -1,0 +1,415 @@
+<title>Media Slot Review</title>
+<style>
+:root{
+  --ink:#151a20; --ink2:#4c5865; --ink3:#7d8b99; --line:#dce3ea; --line2:#eef2f6;
+  --bg:#f5f7f9; --card:#fff; --raised:#fafbfc;
+  --pick:#0d6b52; --pickbg:#e3f2ec; --w:#9c2f1c; --wbg:#fbe8e4;
+  --gap:#8a5a10; --gapbg:#fbf0dd;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#e7edf3; --ink2:#a2b0bd; --ink3:#76848f; --line:#2a333c; --line2:#212a32;
+  --bg:#0d1115; --card:#171d24; --raised:#1c232b;
+  --pick:#6ed4ab; --pickbg:#132c23; --w:#f0907c; --wbg:#2e1713;
+  --gap:#e0ad62; --gapbg:#2c2113;
+}}
+:root[data-theme="dark"]{
+  --ink:#e7edf3; --ink2:#a2b0bd; --ink3:#76848f; --line:#2a333c; --line2:#212a32;
+  --bg:#0d1115; --card:#171d24; --raised:#1c232b;
+  --pick:#6ed4ab; --pickbg:#132c23; --w:#f0907c; --wbg:#2e1713;
+  --gap:#e0ad62; --gapbg:#2c2113;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px 80px}
+header{padding-block:24px 16px;border-bottom:1px solid var(--line)}
+h1{margin:0 0 8px;font-size:21px;letter-spacing:-.01em}
+.lede{margin:0 0 5px;color:var(--ink2);max-width:80ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+kbd{font:600 11px/1.5 var(--mono);background:var(--line2);border:1px solid var(--line);
+  border-bottom-width:2px;border-radius:4px;padding:1px 6px;color:var(--ink)}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:11px 0;margin-bottom:20px;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font:600 12px/1 var(--mono);padding:7px 11px;border-radius:99px;
+  background:var(--pickbg);color:var(--pick);white-space:nowrap}
+.pill.q{background:var(--line2);color:var(--ink2)}
+.pill.wr{background:var(--wbg);color:var(--w)}
+.st{font:12px/1.4 var(--mono);color:var(--ink3)}
+.filt{display:flex;gap:6px;align-items:center;margin-left:auto;flex-wrap:wrap}
+.filt .lbl{font:600 9.5px/1 var(--mono);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink3);margin-right:2px}
+.filt button{font:600 11px/1 var(--mono);padding:6px 10px;border-radius:6px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.filt button[aria-pressed="true"]{border-color:var(--pick);color:var(--pick);
+  background:var(--pickbg)}
+
+section.brief{border:1px solid var(--line);border-radius:9px;background:var(--card);
+  margin-bottom:20px;overflow:hidden}
+section.brief.done{border-color:var(--pick)}
+.bh{padding:15px 17px;border-bottom:1px solid var(--line);background:var(--raised)}
+.bt{display:flex;gap:11px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.bid{font:600 13px/1 var(--mono)}
+.bjob{font:11px/1 var(--mono);color:var(--ink3);text-transform:uppercase;letter-spacing:.07em}
+.bn{font:11px/1 var(--mono);color:var(--pick);background:var(--pickbg);padding:3px 7px;border-radius:3px}
+.bgap{font:11px/1 var(--mono);color:var(--gap);background:var(--gapbg);padding:3px 7px;border-radius:3px}
+.tpl{margin:7px 0 0;font:11px/1.6 var(--mono);color:var(--ink3)}
+.tpl b{color:var(--ink2);font-weight:600}
+.tpl span{display:inline-block;background:var(--line2);border-radius:3px;
+  padding:2px 7px;margin:2px 4px 0 0}
+.quote{margin:0;color:var(--ink2);font-size:14px;font-style:italic;max-width:90ch}
+
+.grp{padding:13px 17px 16px}
+.grp + .grp{border-top:1px solid var(--line2)}
+.glabel{font:600 10.5px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink3);margin:0 0 9px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.glabel .cnt{color:var(--ink2);letter-spacing:0;text-transform:none}
+.grid{display:grid;gap:11px;grid-template-columns:repeat(auto-fill,minmax(186px,1fr))}
+
+.c{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--card);
+  transition:border-color .12s,box-shadow .12s}
+.c.on{border-color:var(--pick);box-shadow:inset 0 0 0 1px var(--pick)}
+.pv{position:relative;aspect-ratio:1/1;background:#05070a;cursor:pointer}
+.pv video,.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:32px;height:32px;
+  border-radius:99px;border:0;cursor:pointer;background:rgba(5,7,10,.6);backdrop-filter:blur(3px)}
+.play::before{content:"";position:absolute;left:12px;top:8px;border-left:10px solid #fff;
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+.play.on{opacity:0}.pv:hover .play.on{opacity:.75}
+.badge{position:absolute;left:6px;top:6px;padding:3px 7px;border-radius:3px;
+  font:600 9.5px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.badge.p{background:var(--pick);color:#fff}
+.badge.v{background:rgba(5,7,10,.72);color:#d7dee6;left:auto;right:6px}
+.wbtn{position:absolute;right:6px;bottom:6px;width:26px;height:26px;border-radius:5px;
+  border:1px solid rgba(255,255,255,.25);background:rgba(5,7,10,.66);color:#fff;
+  font:700 12px/1 var(--mono);cursor:pointer;backdrop-filter:blur(3px)}
+.wbtn:hover{background:var(--w);border-color:var(--w)}
+.m{padding:7px 9px 9px}
+.why{font:10px/1.4 var(--mono);color:var(--ink3);word-break:break-word;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.why.weak{color:var(--gap)}
+.meta{font:9.5px/1.4 var(--mono);color:var(--ink3);margin-top:3px;opacity:.75}
+.empty{color:var(--gap);font:12.5px/1.5 var(--mono);background:var(--gapbg);
+  border-radius:6px;padding:10px 12px}
+.fb{margin-top:11px}
+.fb label{display:block;font:600 9.5px/1.5 var(--mono);letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.fb textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;
+  background:var(--raised);color:var(--ink);font:13px/1.5 var(--sans);resize:vertical;
+  min-height:38px}
+.fb textarea:focus{outline:2px solid var(--pick);outline-offset:-1px;border-color:var(--pick)}
+.fb.brieflevel{padding:0 17px 16px}
+.fb.brieflevel textarea{min-height:54px}
+.hasnote{color:var(--pick)}
+footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
+  font:12px/1.6 var(--mono);color:var(--ink3)}
+@media (max-width:520px){ .grid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Media Slot Review</h1>
+  <p class="lede"><b>Which asset fills this slot.</b> Each brief shows a GROUP tier —
+  one asset carrying every named entity, so one slot serves them all — then each
+  entity on its own.</p>
+  <p class="lede">Click a card to pick it. Press <kbd>W</kbd> on a card when it is the
+  <b>wrong person</b> — that is not beat-specific, it records that the asset is not
+  that entity <b>anywhere</b>, and the next candidate takes its place. The search is
+  deliberately loose, so W is what makes it get cleaner.</p>
+  <p class="lede">The <b>show</b> filter up top narrows what is on screen &mdash; a way
+  to look, not a way to lose a decision. Anything already picked stays visible under
+  every filter.</p>
+  <p class="lede"><b>Say what is wrong.</b> Every entity has a feedback box and every
+  brief has its own. A picked card tells us what worked; a note is the only thing
+  that can tell us what was never offered.</p>
+</header>
+
+<div class="bar">
+  <span class="pill" id="tally">0 picked</span>
+  <span class="pill q" id="prog">0 / 0 briefs</span>
+  <span class="pill wr" id="wrongn">0 marked wrong</span>
+  <span class="pill q" id="noten">0 notes</span>
+  <span class="st" id="st">Loading&hellip;</span>
+  <span class="filt">
+    <span class="lbl">show</span>
+    <button type="button" data-f="all"    aria-pressed="true">all</button>
+    <button type="button" data-f="image"  aria-pressed="false">images</button>
+    <button type="button" data-f="video"  aria-pressed="false">video</button>
+    <button type="button" data-f="cutout" aria-pressed="false">cutouts only</button>
+  </span>
+</div>
+
+<div id="root"></div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D=null, db=null, picks={}, wrong=[], notes={}, timer=null;
+var filt="all";   // all | image | video | cutout — view only, never saved
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function setS(m){ document.getElementById("st").textContent=m; }
+function wkey(id,ent){ return id+"::"+String(ent).toLowerCase(); }
+
+/* The db returns FROZEN documents. Copy out, never write in. */
+function touch(k){
+  var p = picks[k];
+  return p ? p.slice() : [];
+}
+function isWrong(id, ent){
+  var k = wkey(id, ent);
+  for (var i=0;i<wrong.length;i++){ if (wkey(wrong[i].assetId, wrong[i].entity)===k) return true; }
+  return false;
+}
+
+function passes(c){
+  if (filt === "image")  return c.mediaType === "image";
+  if (filt === "video")  return c.mediaType === "video";
+  if (filt === "cutout") return !!c.hasCutout;
+  return true;
+}
+function visible(cards){
+  var out=[];
+  for (var i=0;i<cards.length && out.length<D.show;i++){
+    var c = cards[i];
+    if (isWrong(c.id, c.entity)) continue;
+    // A PICKED card always stays on screen. A filter is a way to look, not a way
+    // to lose a decision already made.
+    if (!passes(c) && touchHas(c)) { out.push(c); continue; }
+    if (!passes(c)) continue;
+    out.push(c);
+  }
+  return out;
+}
+function touchHas(c){
+  var keys = Object.keys(picks);
+  for (var i=0;i<keys.length;i++){ if (picks[keys[i]].indexOf(c.id) >= 0) return true; }
+  return false;
+}
+
+function media(c){
+  var poster = D.thumbs[c.id], clip = D.hasClip[c.id];
+  if (clip) {
+    return "<video src='media/"+esc(c.id)+".mp4'"
+         + (poster ? " poster='"+esc(poster)+"'" : "")
+         + " muted playsinline preload='none'></video>"
+         + "<button class='play' type='button' aria-label='Play clip'></button>"
+         + "<span class='badge v'>video</span>";
+  }
+  return poster ? "<img src='"+esc(poster)+"' alt=''>"
+                : "<span class='badge v'>no preview</span>";
+}
+
+function card(c, briefKey, tier){
+  var sel = touch(briefKey+"::"+tier).indexOf(c.id) >= 0;
+  var weak = (c.why||"").indexOf("project:") === 0;
+  return "<article class='c"+(sel?" on":"")+"' data-id='"+esc(c.id)
+    + "' data-brief='"+esc(briefKey)+"' data-tier='"+esc(tier)
+    + "' data-entity='"+esc(c.entity)+"'>"
+    + "<div class='pv'>"+(sel?"<span class='badge p'>picked</span>":"")+media(c)
+    + "<button class='wbtn' type='button' title='Wrong person or entity'>W</button></div>"
+    + "<div class='m'><div class='why"+(weak?" weak":"")+"'>"+esc(c.why)+"</div>"
+    + "<div class='meta'>"+esc(c.mediaType)+(c.framing?" · "+esc(c.framing):"")
+    + (c.hasCutout?" · cutout":"")+(c.kind?" · "+esc(c.kind):"")+"</div></div></article>";
+}
+
+function render(){
+  if (!D) return;
+  var npick=0, done=0;
+  var html = D.briefs.map(function(b){
+    var any=false;
+    var groups = [];
+    if (b.group.length) {
+      var gv = visible(b.group);
+      groups.push({ tier:"group", label:"One asset carrying all "+b.entities.length,
+                    cards:gv, total:b.group.length });
+    }
+    b.entities.forEach(function(e){
+      var rows = b.individual[e] || [];
+      groups.push({ tier:"e:"+e, label:e, cards:visible(rows), total:rows.length });
+    });
+    var body = groups.map(function(g){
+      var sel = touch(b.brief+"::"+g.tier);
+      if (sel.length) { npick += sel.length; any = true; }
+      var inner = g.cards.length
+        ? "<div class='grid'>"+g.cards.map(function(c){return card(c,b.brief,g.tier);}).join("")+"</div>"
+        : "<div class='empty'>Nothing left for this entity — everything was marked wrong, "
+          + "or the library has none. This is a GAP and it is the sourcing list.</div>";
+      var en = (notes[b.brief]||{}).entityNotes || {};
+      var ev = en[g.tier] || "";
+      if (ev) any = true;
+      return "<div class='grp'><p class='glabel'>"+esc(g.label)
+        + "<span class='cnt"+(ev?" hasnote":"")+"'>"+g.cards.length+" shown of "+g.total
+        + (sel.length?" · "+sel.length+" picked":"")+(ev?" · noted":"")+"</span></p>"+inner
+        + "<div class='fb'><label>What is wrong or missing for "+esc(g.label)+"</label>"
+        + "<textarea data-brief='"+esc(b.brief)+"' data-tier='"+esc(g.tier)+"' rows='1' "
+        + "placeholder='e.g. all of these are too recent / needs a performance shot / "
+        + "wrong person entirely'>"+esc(ev)+"</textarea></div></div>";
+    }).join("");
+    if ((notes[b.brief]||{}).note) any = true;
+    if (any) done++;
+    return "<section class='brief"+(any?" done":"")+"'>"
+      + "<div class='bh'><div class='bt'><span class='bid'>"+esc(b.brief)+"</span>"
+      + "<span class='bjob'>"+esc(b.job||"")+" · needs "+b.slotsNeeded+" slot(s)</span>"
+      + (b.gaps.length?"<span class='bgap'>GAP: "+esc(b.gaps.join(", "))+"</span>":"")
+      + "</div>"
+      + (b.quote?"<p class='quote'>&ldquo;"+esc(b.quote)+"&rdquo;</p>":"")
+      + ((b.templates&&b.templates.length)
+         ? "<p class='tpl'><b>template you chose:</b> "
+           + b.templates.map(function(t){
+               return "<span>"+esc(t.id)+(t.mediaSlots!=null
+                      ? " &middot; "+t.mediaSlots+" media slot"+(t.mediaSlots===1?"":"s")
+                      : "")+"</span>"; }).join("")
+           + ((b.wantsFraming&&b.wantsFraming.length)
+              ? " &nbsp;<b>wants framing:</b> "+esc(b.wantsFraming.join(", "))
+              : "")
+           + ((b.wantsKind&&b.wantsKind.length)
+              ? " &nbsp;<b>wants kind:</b> "+esc(b.wantsKind.join(", "))
+                + (b.kindFrom?" <span style='opacity:.7'>("+esc(b.kindFrom)+")</span>":"")
+              : "")
+           + "</p>"
+         : "")
+      + "</div>"+body
+      + "<div class='fb brieflevel'><label>This brief &mdash; wrong entities, missing "
+      + "people, or what this slot actually needs</label>"
+      + "<textarea data-brief='"+esc(b.brief)+"' data-tier='__brief' rows='2' "
+      + "placeholder='e.g. this beat names Jay Rock, not Jay-Z / needs all three in one "
+      + "frame / should be archival, not a press photo'>"
+      + esc((notes[b.brief]||{}).note || "")+"</textarea></div></section>";
+  }).join("");
+  document.getElementById("root").innerHTML = html;
+  document.getElementById("tally").textContent = npick+" picked";
+  document.getElementById("prog").textContent = done+" / "+D.briefs.length+" briefs";
+  document.getElementById("wrongn").textContent = wrong.length+" marked wrong";
+  var nn = 0;
+  Object.keys(notes).forEach(function(k){
+    if ((notes[k].note||"").trim()) nn++;
+    Object.keys(notes[k].entityNotes||{}).forEach(function(t){
+      if ((notes[k].entityNotes[t]||"").trim()) nn++; });
+  });
+  document.getElementById("noten").textContent = nn+" note"+(nn===1?"":"s");
+  document.getElementById("foot").textContent =
+    D.library.assets+" assets in the library · "+D.show+" shown per entity, "
+    + D.queue+" in reserve · W is entity-scoped and applies to every brief";
+}
+
+function savePicks(k){
+  if (!db) return;
+  db.doc("media_picks/"+k.replace(/[^A-Za-z0-9_-]/g,"_"))
+    .set({ picks: picks[k].slice(), key: k, updatedAt: new Date().toISOString() })
+    .then(function(){ setS("Saved."); })
+    .catch(function(e){ setS("Not saved: "+((e&&e.code)||"error")); });
+}
+function saveNote(brief){
+  if (!db) return;
+  var n = notes[brief] || {note:"", entityNotes:{}};
+  db.doc("media_notes/"+brief.replace(/[^A-Za-z0-9_-]/g,"_"))
+    .set({ brief: brief, note: n.note || "",
+           entityNotes: JSON.parse(JSON.stringify(n.entityNotes || {})),
+           updatedAt: new Date().toISOString() })
+    .then(function(){ setS("Note saved."); })
+    .catch(function(e){ setS("Not saved: "+((e&&e.code)||"error")); });
+}
+
+function saveWrong(){
+  if (!db) return;
+  db.doc("media_corrections/wrong")
+    .set({ wrong: wrong.slice(), updatedAt: new Date().toISOString() })
+    .then(function(){ setS("Correction saved — applies everywhere."); })
+    .catch(function(e){ setS("Not saved: "+((e&&e.code)||"error")); });
+}
+
+document.addEventListener("click", function(e){
+  var wb = e.target.closest(".wbtn");
+  if (wb) {
+    var a = wb.closest(".c");
+    var id = a.dataset.id, ent = a.dataset.entity;
+    if (!isWrong(id, ent)) { wrong = wrong.concat([{assetId:id, entity:ent}]); }
+    // a wronged asset cannot stay picked
+    Object.keys(picks).forEach(function(k){
+      var i = picks[k].indexOf(id);
+      if (i>=0 && k.indexOf("::e:"+ent)>=0) { picks[k] = picks[k].slice(); picks[k].splice(i,1); savePicks(k); }
+    });
+    render(); saveWrong();
+    return;
+  }
+  var pb = e.target.closest(".play");
+  if (pb) {
+    var v = pb.parentElement.querySelector("video"); if (!v) return;
+    if (v.paused) {
+      document.querySelectorAll("video").forEach(function(o){
+        if (o!==v){ o.pause(); var b=o.parentElement.querySelector(".play"); if(b) b.classList.remove("on"); }});
+      v.play().catch(function(){}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  if (e.target.closest("video")) return;
+  var c = e.target.closest(".c"); if (!c) return;
+  var key = c.dataset.brief+"::"+c.dataset.tier;
+  var next = touch(key), i = next.indexOf(c.dataset.id);
+  if (i>=0) next.splice(i,1); else next.push(c.dataset.id);
+  picks[key] = next;
+  render(); savePicks(key);
+});
+
+document.querySelector(".filt").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  filt = b.dataset.f;
+  this.querySelectorAll("button").forEach(function(x){
+    x.setAttribute("aria-pressed", x.dataset.f === filt ? "true" : "false"); });
+  render();
+});
+
+document.addEventListener("input", function(e){
+  var t = e.target;
+  if (t.tagName !== "TEXTAREA" || !t.dataset.brief) return;
+  var b = t.dataset.brief, tier = t.dataset.tier;
+  // build a FRESH object rather than mutating one the db handed back
+  var cur = notes[b] || {note:"", entityNotes:{}};
+  var next = { note: cur.note, entityNotes: {} };
+  Object.keys(cur.entityNotes || {}).forEach(function(k){ next.entityNotes[k] = cur.entityNotes[k]; });
+  if (tier === "__brief") next.note = t.value; else next.entityNotes[tier] = t.value;
+  notes[b] = next;
+  // deliberately NOT re-rendering: a re-render on every keystroke would move the
+  // caret and drop focus mid-sentence.
+  clearTimeout(timer);
+  timer = setTimeout(function(){ saveNote(b); }, 700);
+});
+
+document.addEventListener("ended", function(e){
+  if (e.target.tagName!=="VIDEO") return;
+  var b = e.target.parentElement.querySelector(".play"); if (b) b.classList.remove("on");
+}, true);
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d; render(); return claude.use("db");
+}).then(function(x){
+  db = x;
+  if (!db) { setS("Judgments cannot be saved in this view."); return; }
+  return db.doc("media_corrections/wrong").get().then(function(s){
+    var saved = s && s.exists ? s.data() : null;  // frozen — copy out
+    if (saved && saved.wrong) { wrong = saved.wrong.map(function(w){
+      return { assetId: w.assetId, entity: w.entity }; }); }
+    return db.collection("media_picks").get();
+  }).then(function(snap){
+    if (snap && snap.docs) snap.docs.forEach(function(doc){
+      var v = doc.data();
+      if (v && v.key && v.picks) picks[v.key] = v.picks.slice();
+    });
+    return db.collection("media_notes").get();
+  }).then(function(snap){
+    if (snap && snap.docs) snap.docs.forEach(function(doc){
+      var v = doc.data();
+      if (!v || !v.brief) return;
+      var en = {};
+      Object.keys(v.entityNotes || {}).forEach(function(k){ en[k] = v.entityNotes[k]; });
+      notes[v.brief] = { note: v.note || "", entityNotes: en };
+    });
+    render(); setS("Ready — saves as you go.");
+  });
+}).catch(function(e){ setS("Could not load: "+((e&&e.code)||"error")); });
+</script>

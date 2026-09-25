@@ -1,0 +1,10 @@
+{
+ "_note": "Rulings the user made AFTER a pass was ingested, which change how that pass's record should be read. The pass files in grammar/passes/ are immutable and record what the ingest produced at the time; this file records what the user later said it meant. Applied to picks.json by pipeline/apply_pass_rulings.py.",
+ "passedIsJudged": {
+  "_quote": "why a fourth pass? consider that any pass weve done and i didnt not accept or comment on, should be considered a reject",
+  "_date": "2026-09-22",
+  "_means": "On EVERY pass, a card that was shown and not accepted is rejected, including on beats where the user selected nothing. The standing rule from 2026-09-21 -- a beat with zero picks must never be read as rejecting everything -- protects an AMBIGUOUS zero. The user has now said their zeros were never ambiguous. Only they can say that, so it is recorded with their words rather than inferred.",
+  "_appliesTo": ["pass-2026-09-21.json", "pass-2026-09-22.json"],
+  "_alreadyCarried": ["pass-2026-09-22b.json"]
+ }
+}

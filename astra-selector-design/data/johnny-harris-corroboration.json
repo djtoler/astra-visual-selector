@@ -1,0 +1,69 @@
+{
+ "schemaVersion": 1,
+ "purpose": "Independent corroboration of the cadence priors, from a corpus this design had not read.",
+ "source": "Polish/johnny-harris-analysis/runs/full-20260911 \u2014 197 of 198 videos, first two minutes each, Gemini 3.8 Flash at 4fps, batch cost $5.22.",
+ "caveat": "Intros only, and a different creator with a faster style. Tail figures run tighter than body content would. Corroborative, not authoritative.",
+ "corpusSize": {
+  "videos": 197,
+  "visualBeats": 2707
+ },
+ "beatDurationSeconds": {
+  "p25": 5.5,
+  "median": 8.0,
+  "p75": 11.0,
+  "p90": 14.0
+ },
+ "comparisonToThisDesignsPriors": {
+  "source": "4 creator references, 628 annotated units",
+  "p25": 6.0,
+  "median": 9.0,
+  "p75": 14.0,
+  "p90": 20.0,
+  "verdict": "Independently corroborated at the low and middle of the distribution. Median 8.0 against 9.0, p25 5.5 against 6.0. The upper tail differs because this corpus is intros, which run tighter than body content."
+ },
+ "estimatedCutsPerMinute": {
+  "p25": 17,
+  "median": 22,
+  "p75": 26.5,
+  "p90": 32,
+  "note": "These are SHOTS, not editorial units. Against roughly 5 to 7 editorial units per minute in the four references, that implies about three shots inside one editorial unit."
+ },
+ "introBoundarySeconds": {
+  "p25": 62.8,
+  "median": 95.5,
+  "p75": 114.5
+ },
+ "narrationToVisualRelationship": {
+  "basis": "2707 free-text values, 2551 distinct, themed by keyword",
+  "literal_illustration": 0.218,
+  "evidence_or_proof": 0.212,
+  "orients_or_geography": 0.089,
+  "amplifies_emotional": 0.066,
+  "contrast_counterpoint": 0.062,
+  "abstract_metaphor": 0.06,
+  "presenter_presence": 0.056,
+  "anticipates_foreshadows": 0.014,
+  "reading": "Literal illustration and evidence together account for 43% of beats. The dominant modes are showing the thing and proving the thing, which matches the four-reference finding that evidence is the most common obligation and substitution the most common failure."
+ },
+ "storyPhaseVocabulary": {
+  "note": "A fifth job vocabulary, for intro structure.",
+  "values": {
+   "context": 723,
+   "premise": 330,
+   "story_setup": 286,
+   "stakes": 279,
+   "cold_open": 236,
+   "thesis": 200,
+   "hook": 196,
+   "roadmap": 155,
+   "transition": 135,
+   "question": 111,
+   "other": 56
+  }
+ },
+ "sameNormalizationProblem": {
+  "footageTypes": "host_to_camera, 'host to camera' and host_on_camera are three spellings of one value.",
+  "transitions": "cut, 'hard cut', hard_cut and 'Hard Cut' are four spellings of one value.",
+  "implication": "The free-text drift documented in the four reference analyses is not specific to them. Any crosswalk has to normalize this corpus too."
+ }
+}

@@ -1,0 +1,318 @@
+{
+ "20_prime_portrait_cards": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "equal portrait roster",
+    "evidence": "Equal photographic cards communicate a curated set or shared status."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "editorial stamp claim",
+    "evidence": "Stamps are editorial labels, not calculated ratings.",
+    "condition": "stamps and photos must carry a qualitative claim rather than a ranking"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "22_single_measurement": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "single stated fact callout",
+    "evidence": "A ruler-like callout emphasizes a stated value; portrait height itself is fixed."
+   },
+   {
+    "job": "equivalence_restatement",
+    "confidence": "conditional",
+    "mechanism": "restated value callout",
+    "evidence": "Make the unit and meaning explicit so ruler styling does not imply physical stature.",
+    "condition": "the stated value must be a conversion into another entity's unit"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "23_portrait_scatter": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "two-axis point placement",
+    "evidence": "Portrait position on two axes communicates a relationship."
+   },
+   {
+    "job": "intersection_of_sets",
+    "confidence": "conditional",
+    "mechanism": "quadrant threshold crossing",
+    "evidence": "Native bounds are x 0\u20131600 and y 32\u201360.",
+    "condition": "the two axes must each represent a qualifying threshold"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "24_dense_vertical_bars": {
+  "serves": [
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "clear",
+    "mechanism": "bars against threshold line",
+    "evidence": "Vertical bars show changes across a long sequence against a threshold."
+   },
+   {
+    "job": "streak_over_time",
+    "confidence": "conditional",
+    "mechanism": "continuous bar sequence",
+    "evidence": "Vertical bars show changes across a long sequence against a threshold.",
+    "condition": "bars must encode unbroken presence rather than a fluctuating value"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "25_career_value_list": {
+  "serves": [
+   {
+    "job": "change_across_set",
+    "confidence": "clear",
+    "mechanism": "period-by-period progression list",
+    "evidence": "A full-body hero anchors a compact period-by-period list."
+   },
+   {
+    "job": "locate_in_distribution",
+    "confidence": "conditional",
+    "mechanism": "highlighted entry among periods",
+    "evidence": "highlights are not a substitute for verifying the maximum",
+    "condition": "the highlighted entry must represent that period's position among all listed periods"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "26_mirrored_stat_compare": {
+  "serves": [
+   {
+    "job": "change_across_set",
+    "confidence": "clear",
+    "mechanism": "mirrored before-after text",
+    "evidence": "Mirrored text comparisons around one person emphasize change without scaling the body."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "27_rank_context_panel": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "hero versus named peers",
+    "evidence": "A dominant subject, ranking list and supporting peer context explain standing."
+   },
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "ranking list placement",
+    "evidence": "Peer callouts and ranks must be supplied and sourced; portrait size is not rank magnitude."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "28_stat_profile_cards": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "side-by-side text comparison",
+    "evidence": "Full-body cards offer side-by-side text comparisons with equal visual roles."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "30_dense_rank_bars": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "dense ranked bar order",
+    "evidence": "Dense horizontal bars compare a single quantity."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "bars against configured threshold",
+    "evidence": "Inspect the configured threshold and ranking order",
+    "condition": "a threshold value must be defined in the data"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "31_greatest_team_scatter": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "scatter point placement",
+    "evidence": "Text summaries accompany an eight-point scatter; summary rows are not additional points."
+   },
+   {
+    "job": "intersection_of_sets",
+    "confidence": "conditional",
+    "mechanism": "quadrant threshold crossing",
+    "evidence": "Both coordinates are mapped against 0\u2013100.",
+    "condition": "axes must represent two qualifying thresholds"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "32_record_height_bars": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "scaled magnitude comparison",
+    "evidence": "Bars scale to the largest supplied value but have an 80-pixel minimum height."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "34_superteam_bar_compare": {
+  "serves": [
+   {
+    "job": "one_vs_aggregate",
+    "confidence": "conditional",
+    "mechanism": "paired cohort bar totals",
+    "evidence": "Paired vertical bar charts compare two cohorts on a shared labeled scale.",
+    "condition": "one bar column must represent a single entity and the other a summed group"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "35_shooting_portrait_matrix": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "labeled rate matrix",
+    "evidence": "Use one consistently defined measure and denominator if it is a percentage."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "36_four_portrait_cards": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "equal card text comparison",
+    "evidence": "Four framed portrait cards compare text values using equal image treatment."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "37_fullbody_impact_lineup": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "baseline lineup comparison",
+    "evidence": "A shared baseline creates a lineup; figure sizes are fixed stylistic placements."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "38_matchup_win_list": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "repeated head-to-head rows",
+    "evidence": "Repeated head-to-head rows create an outcome narrative around a featured person."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "39_five_player_impact": {
+  "serves": [
+   {
+    "job": "category_breakdown",
+    "confidence": "clear",
+    "mechanism": "three labeled membership bands",
+    "evidence": "Three labeled bands communicate membership or tier placement."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "40_two_era_fullbody_compare": {
+  "serves": [
+   {
+    "job": "change_across_set",
+    "confidence": "clear",
+    "mechanism": "two-era aligned comparison",
+    "evidence": "Two large full-body figures frame aligned numeric comparisons."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "41_five_value_headshots": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "prominent number comparison",
+    "evidence": "Five headshots with prominent numbers create a simple comparison."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "42_playoff_rank_grid": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "numbered rank positions",
+    "evidence": "Numbered positions and text values encode order; portrait size stays fixed."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ }
+}

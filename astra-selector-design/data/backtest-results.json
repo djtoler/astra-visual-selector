@@ -1,0 +1,92 @@
+{
+ "schemaVersion": 1,
+ "purpose": "Leave-one-reference-out back-test measuring how far narration structure alone determines visual treatment.",
+ "method": "Train additive log-odds priors on three reference documentaries, predict on the held-out fourth. hit@k = the creator's actual treatment set intersects the top k predictions. Baseline = always propose the k most frequent treatments from the training references.",
+ "corpus": "628 annotated visual units across 4 reference documentaries",
+ "results": {
+  "narrationOnlyToTreatment": {
+   "features": [
+    "rhetoricalFunction",
+    "focalEntityBucket",
+    "durationBucket",
+    "sourceSpecificity",
+    "editorialRole"
+   ],
+   "hit@1": 0.326,
+   "hit@1_baseline": 0.188,
+   "hit@2": 0.511,
+   "hit@4": 0.768,
+   "hit@4_baseline": 0.836
+  },
+  "mediaFamilyPlusContractToTreatment": {
+   "features": [
+    "mediaFamily",
+    "sourceSpecificity",
+    "editorialRole",
+    "focalEntityBucket",
+    "durationBucket"
+   ],
+   "hit@1": 0.406,
+   "hit@1_baseline": 0.188,
+   "hit@2": 0.583,
+   "hit@4": 0.791,
+   "hit@4_baseline": 0.836
+  },
+  "narrationToEditorialRole": {
+   "hit@1": 0.651,
+   "hit@1_baseline": 0.608,
+   "hit@2": 0.825
+  },
+  "narrationToSourceSpecificity": {
+   "hit@1": 0.583,
+   "hit@1_baseline": 0.548,
+   "hit@2": 0.854
+  },
+  "narrationToMediaFamily": {
+   "hit@1": 0.22,
+   "hit@1_baseline": 0.275,
+   "note": "below baseline; narration structure does not predict which media family to retrieve"
+  }
+ },
+ "perHeldOutReference": {
+  "ref1_exact_subject": {
+   "n": 274,
+   "hit@1": 0.31,
+   "hit@4": 0.792
+  },
+  "ref2_adjacent_data_led": {
+   "n": 32,
+   "hit@1": 0.125,
+   "hit@4": 0.688
+  },
+  "ref3_cross_topic": {
+   "n": 115,
+   "hit@1": 0.226,
+   "hit@4": 0.661
+  },
+  "ref4_cross_topic": {
+   "n": 207,
+   "hit@1": 0.435,
+   "hit@4": 0.807
+  }
+ },
+ "ambiguityCeiling": {
+  "method": "For every pair of units sharing an identical feature signature, how often do their treatment sets intersect?",
+  "randomPairChance": 0.342,
+  "sameNarrationContract": 0.449,
+  "sameMediaFamilyAlone": 0.562,
+  "sameMediaFamilyPlusContract": 0.677,
+  "sameCreatorSameContract": {
+   "ref1": 0.43,
+   "ref3": 0.688,
+   "ref4": 0.679
+  }
+ },
+ "conclusions": [
+  "Narration structure sharpens the single best guess (0.326 vs 0.188 baseline) but does not determine the treatment.",
+  "Two passages with an identical narration contract share a treatment only 44.9% of the time, barely above the 34.2% chance rate.",
+  "Knowing the media family raises that agreement to 67.7% and raises top-1 accuracy to 0.406. Available media, not narration structure, is the resolving input.",
+  "At four candidates every learned model scored below the always-propose-the-four-most-common baseline. A four-candidate slate must therefore be built for meaningful difference under gate constraints, not by taking the top four scores.",
+  "Top-1 reproduction of a creator's choice is the wrong success metric. Slate coverage plus zero gate violations is the defensible one."
+ ]
+}

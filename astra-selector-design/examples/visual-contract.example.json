@@ -1,0 +1,119 @@
+{
+  "contractId": "example:ref4:VU_081",
+  "schemaVersion": 1,
+  "_note": "Filled from a real annotated passage in creator-reference-4-full.json (unit VU_081, 631.0-645.0s). Used as a worked example because the project's own 30 annotated passages were not readable at design time. The narration text is the analysis cue, not a verbatim transcript, so it is marked as such.",
+  "scriptRef": {
+    "scriptId": "reference-4",
+    "sectionId": "legal-history",
+    "sectionPurpose": "Establish a documented pattern of aggressive legal retaliation.",
+    "passageIndex": 81
+  },
+  "narration": {
+    "text": "Trumps responded by countersuing the Department of Justice for a hundred million",
+    "precedingText": "The Justice Department filed suit over the rental practices.",
+    "followingText": "The countersuit was dismissed outright.",
+    "wordTimings": []
+  },
+  "timing": {
+    "timingSource": "measured_audio",
+    "audioStartSeconds": 631.0,
+    "audioEndSeconds": 645.0,
+    "audioDurationSeconds": 14.0,
+    "acceptableDurationSeconds": {"min": 9.0, "target": 14.0, "max": 18.0},
+    "minimumReadableHoldSeconds": 2.5,
+    "internalChangeBudget": {"requiredChanges": 2, "secondsPerChangeCeiling": 6.8}
+  },
+  "takeaway": "Trump counter-sued the government for an enormous sum, and the court threw it out.",
+  "narrationJob": "PROVE",
+  "rhetoricalFunction": "evidence",
+  "claims": [
+    {
+      "text": "The Trumps countersued the Department of Justice for $100 million.",
+      "claimClass": "documented_fact",
+      "evidenceObligation": "exact_source_required",
+      "sourceCandidates": ["the filed countersuit document, page showing the damages figure"],
+      "disputed": false,
+      "verificationStatus": "verified"
+    },
+    {
+      "text": "The countersuit was dismissed outright.",
+      "claimClass": "documented_fact",
+      "evidenceObligation": "exact_source_required",
+      "sourceCandidates": ["court record or contemporaneous reporting showing the dismissal"],
+      "disputed": false,
+      "verificationStatus": "verified"
+    }
+  ],
+  "entities": [
+    {"name": "Department of Justice", "entityType": "organization", "mustBeVisible": true, "mustBeNamedOnScreen": true, "recognitionRisk": "low"}
+  ],
+  "focalEntityCount": 1,
+  "entityRelationship": "single",
+  "requiredMedia": [
+    {
+      "roleId": "countersuit_document",
+      "editorialRole": "proof",
+      "contentRequirement": "The countersuit filing itself, cropped to the passage naming the Department of Justice and the $100 million figure, with the dismissal language reachable in the same document or a second page.",
+      "sourceSpecificity": "exact_source_required",
+      "mediaFamily": "document_or_screen",
+      "legibilityRequirement": {
+        "textMustBeReadable": true,
+        "smallestMeaningfulElement": "the damages figure and the dismissal clause",
+        "minimumOnScreenSeconds": 2.5
+      },
+      "eraConstraint": "contemporaneous with the filing",
+      "required": true,
+      "fallbackAcceptable": ""
+    }
+  ],
+  "visualEvents": [
+    {
+      "eventId": "E1",
+      "triggerPhrase": "countersue the Justice Department for 100 million",
+      "triggerOffsetSeconds": 4.0,
+      "eventType": "highlight",
+      "description": "Highlight travels to the countersuit clause and the damages figure becomes legible.",
+      "toleranceSeconds": 0.25,
+      "criticality": "decisive"
+    },
+    {
+      "eventId": "E2",
+      "triggerPhrase": "dismissed this suit outright",
+      "triggerOffsetSeconds": 10.0,
+      "eventType": "highlight",
+      "description": "Highlight moves to the dismissal clause.",
+      "toleranceSeconds": 0.25,
+      "criticality": "decisive"
+    }
+  ],
+  "continuity": {
+    "precedingContractId": "example:ref4:VU_080",
+    "followingContractId": "example:ref4:VU_082",
+    "carryForward": ["document presentation family"],
+    "mustDifferFrom": [],
+    "bridgeRequired": false
+  },
+  "prohibitions": [
+    {"prohibition": "Do not imply the countersuit succeeded or was partially upheld.", "reason": "The narration says it was dismissed outright.", "severity": "hard"},
+    {"prohibition": "Do not show a stock or generic legal document, gavel, or courthouse.", "reason": "The obligation is exact_source_required; a representative stand-in would present decoration as proof.", "severity": "hard"},
+    {"prohibition": "Do not show modern courtroom footage.", "reason": "Anachronism for a historical filing.", "severity": "hard"}
+  ],
+  "successConditions": [
+    "The viewer can read the $100 million figure while it is spoken.",
+    "The viewer can read the dismissal while it is spoken.",
+    "The document is identifiable as the actual filing."
+  ],
+  "failureConditions": [
+    "The document text is too small or on screen too briefly to read.",
+    "A generic legal document stands in for the actual filing.",
+    "The highlight lands before or after the phrase it belongs to.",
+    "The dismissal is never shown, leaving the countersuit looking successful."
+  ],
+  "provenance": {
+    "createdBy": "design-phase worked example",
+    "createdAt": "2026-09-16T00:00:00Z",
+    "rulesetVersion": "0.1.0-draft",
+    "humanReviewed": false,
+    "openQuestions": ["Is the actual filing obtainable, or only contemporaneous reporting about it?"]
+  }
+}

@@ -1,0 +1,360 @@
+{
+ "43_successor_tier_grid": {
+  "serves": [
+   {
+    "job": "category_breakdown",
+    "confidence": "clear",
+    "mechanism": "stacked ordinal tier bands",
+    "evidence": "Stacked bands show ordinal membership; neither within-tier spacing nor portrait size is a numerical score."
+   },
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "ordinal tier placement",
+    "evidence": "neither within-tier spacing nor portrait size is a numerical score."
+   },
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "portrait roster per tier",
+    "evidence": "Keep the fixed tier membership counts.",
+    "condition": "when tiers list names/criteria rather than a numeric score"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "44_three_metric_tables": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "featured heroes vs table rows",
+    "evidence": "Three compact tables expose component scores alongside featured subjects."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "component score against fixed bar",
+    "evidence": "SUITS NARRATION LIKE: score; compare; benchmark",
+    "condition": "when one table row functions as a fixed benchmark"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "45_two_metric_tables": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "paired unequal score tables",
+    "evidence": "Two unequal tables summarize two scoring dimensions."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "scored dimension vs benchmark",
+    "evidence": "SUITS NARRATION LIKE: score; compare; benchmark",
+    "condition": "when one dimension is treated as the fixed bar"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "46_similarity_criteria_table": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "hero ranked against candidates",
+    "evidence": "A ranking table beside a prominent reference person explains a supplied assessment."
+   },
+   {
+    "job": "define_terms",
+    "confidence": "conditional",
+    "mechanism": "criteria captions state method",
+    "evidence": "The six criteria are captions, not six separate numeric inputs.",
+    "condition": "when captions describe the rule rather than a score"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "47_similarity_ascending_bars": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "ascending sorted bar position",
+    "evidence": "Ascending zero-based bars show a distribution of scores."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "48_playoff_path_summary": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "computed arithmetic-mean stage",
+    "evidence": "An ordered path ends in the arithmetic mean of its four values."
+   },
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "ordered stage sequence",
+    "evidence": "SUITS NARRATION LIKE: sequence; summary; stages",
+    "condition": "when stages depict one chronological run's steps"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "49_similarity_final_results": {
+  "serves": [
+   {
+    "job": "parallel_instances",
+    "confidence": "clear",
+    "mechanism": "per-entry value columns",
+    "evidence": "A dense portrait-and-value directory supports broad comparison and lookup."
+   },
+   {
+    "job": "locate_in_distribution",
+    "confidence": "conditional",
+    "mechanism": "dense ranked directory position",
+    "evidence": "SUITS NARRATION LIKE: rank; lookup; overview",
+    "condition": "when ordering reflects a value-based rank"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "50_championship_odds_history": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "fixed outlier bar emphasis",
+    "evidence": "Bars extend from zero above or below the baseline, with fixed emphasis for an outlier position."
+   },
+   {
+    "job": "change_across_set",
+    "confidence": "conditional",
+    "mechanism": "period-by-period bar rendering",
+    "evidence": "CAPACITY: periods=37",
+    "condition": "when rendered at two moments to show a shift"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "51_debut_leaderboard": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "hero photo vs ranked field",
+    "evidence": "A leaderboard plus hero photo and lower-third emphasizes a record or featured entry."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "featured record vs field",
+    "evidence": "AVOID WHEN: a hero statistic inconsistent with its ranking",
+    "condition": "when the hero stat is a fixed record threshold"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "52_rookie_record_columns": {
+  "serves": [
+   {
+    "job": "parallel_instances",
+    "confidence": "clear",
+    "mechanism": "zero-based magnitude columns",
+    "evidence": "Zero-based columns scale by a fixed pixels-per-unit value; portraits follow bar tops."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "53_lineup_rotation_columns": {
+  "serves": [
+   {
+    "job": "parallel_instances",
+    "confidence": "clear",
+    "mechanism": "per-entity subset/total counts",
+    "evidence": "If using subset/total, ensure 0 \u2264 value \u2264 total and total > 0."
+   },
+   {
+    "job": "derived_quantity",
+    "confidence": "conditional",
+    "mechanism": "text-count ratio per entity",
+    "evidence": "Text counts are data-driven; colored column panels are fixed geometry, not a calculated percentage.",
+    "condition": "when the supplied count already represents a computed rate"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "54_trade_package_panels": {
+  "serves": [
+   {
+    "job": "enumerate",
+    "confidence": "clear",
+    "mechanism": "listed package member rosters",
+    "evidence": "Member counts by panel are 6 / 3 / 5 / 3 / 2 / 3 / 2."
+   },
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "hypothetical panel labeling",
+    "evidence": "explicitly label proposals as hypothetical",
+    "condition": "when panels show an unconfirmed proposed claim rather than measured data"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "55_best_vs_value": {
+  "serves": [
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "two aligned portrait metrics",
+    "evidence": "Two large portraits flank an aligned metric comparison.",
+    "condition": "when one portrait's metrics act as the fixed reference"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "56_seven_artist_stat_lineup": {
+  "serves": [
+   {
+    "job": "parallel_instances",
+    "confidence": "clear",
+    "mechanism": "seven-subject metric lineup",
+    "evidence": "A horizontal photo lineup carries multi-metric summaries and explicit ranks."
+   },
+   {
+    "job": "locate_in_distribution",
+    "confidence": "conditional",
+    "mechanism": "explicit supplied rank labels",
+    "evidence": "Ranks are supplied and must match their metric and comparison population.",
+    "condition": "when ranks depict position within a wider field"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "57_three_playoff_run_cards": {
+  "serves": [
+   {
+    "job": "members_then_total",
+    "confidence": "clear",
+    "mechanism": "roster list then summary numbers",
+    "evidence": "Three cards combine a group image, supporting list and two summary numbers."
+   },
+   {
+    "job": "parallel_instances",
+    "confidence": "conditional",
+    "mechanism": "three-card own-total summaries",
+    "evidence": "Preserve each card's different list and ensemble capacities",
+    "condition": "when each card's totals are its own independent denominator"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "58_big_three_stat_rows": {
+  "serves": [
+   {
+    "job": "one_vs_many_individually",
+    "confidence": "clear",
+    "mechanism": "three aligned portrait rows",
+    "evidence": "Three aligned portrait rows make five measures easy to scan."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "truth-ratio-days": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "computed ratio callout",
+    "evidence": "The callout reports the computed ratio between the two inputs."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "truth-small-outlier": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "fixed-domain height outlier",
+    "evidence": "Vertical height directly encodes the measured value on a fixed 0\u201360M/day sample domain."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "truth-population-field": {
+  "serves": [
+   {
+    "job": "locate_in_distribution",
+    "confidence": "clear",
+    "mechanism": "full-population height field",
+    "evidence": "Height encodes daily streams on a fixed 0\u201360M/day linear scale."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "truth-cohort-attrition": {
+  "serves": [
+   {
+    "job": "streak_over_time",
+    "confidence": "clear",
+    "mechanism": "downward exit-year motion",
+    "evidence": "Downward motion encodes the disclosed chart-streak exit year."
+   },
+   {
+    "job": "change_across_set",
+    "confidence": "conditional",
+    "mechanism": "cohort thinning over years",
+    "evidence": "Remaining height and highlight identify the two narration-defined 18-year survivors.",
+    "condition": "when rendered at successive years to show the cohort shrinking"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ }
+}

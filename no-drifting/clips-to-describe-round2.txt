@@ -1,0 +1,248 @@
+CLIPS STILL UNMEASURED — input list for prompts/PROMPT-describe-clip.md
+==============================================================================
+
+Generated 2026-09-21. Pool 421 records. Measured 208. Unmeasured 213.
+
+WHY THIS RUN. Four values in the `carries` vocabulary have ZERO records:
+  aggregate   derivation   overlap   absence
+197 of the 208 measured records came from THIS prompt version (sha
+64e9839e8...), which defines all four, so the model was asked and said no.
+But that is half a library. 9 of 40 beats sit on jobs literally named for
+three of those relations, and beat 30a needs `absence`. Until these 167 are
+measured we cannot tell a supply gap from a measurement gap — and on
+2026-09-21 that exact confusion was found twice (LOG 0046).
+
+PROMPT     prompts/PROMPT-describe-clip.md  — UNCHANGED, do not edit.
+           Same sha that produced 197 of the 208, so results merge cleanly.
+MODEL      gemini-3.8-flash, same as the first run.
+OUTPUT     one JSON object per clip; array, JSONL or a dir of .json all work.
+INGEST     python3 pipeline/ingest_capability.py <file-or-dir>          check
+           python3 pipeline/ingest_capability.py <file-or-dir> --write  merge
+           All-or-nothing: nothing merges unless every record validates.
+
+COST       the 208-record run was 1.01M in / 323K out. Pro rata for 167:
+           roughly $0.89 on gemini-3.8-flash.
+
+==============================================================================
+167 CLIPS TO RUN
+==============================================================================
+01_finals_head_to_head	/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/output/01_finals_head_to_head.mp4
+02-documentary-promo--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-002.mp4
+02-documentary-promo--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-003.mp4
+02-documentary-promo--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-004.mp4
+02-documentary-promo--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-005.mp4
+02-documentary-promo--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-006.mp4
+02-documentary-promo--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-007.mp4
+02-documentary-promo--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/02-documentary-promo/02-documentary-promo--scene-008.mp4
+03-history-documentary-10-slides--scene-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-001.mp4
+03-history-documentary-10-slides--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-003.mp4
+03-history-documentary-10-slides--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-004.mp4
+03-history-documentary-10-slides--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-005.mp4
+03-history-documentary-10-slides--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-006.mp4
+03-history-documentary-10-slides--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-007.mp4
+03-history-documentary-10-slides--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/03-history-documentary-10-slides/03-history-documentary-10-slides--scene-008.mp4
+03_dual_trend_lines	/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/output/03_dual_trend_lines.mp4
+04-history-documentary-20-slides--scene-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-010.mp4
+04-history-documentary-20-slides--scene-011	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-011.mp4
+04-history-documentary-20-slides--scene-012	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-012.mp4
+04-history-documentary-20-slides--scene-013	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-013.mp4
+04-history-documentary-20-slides--scene-014	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-014.mp4
+04-history-documentary-20-slides--scene-015	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-015.mp4
+04-history-documentary-20-slides--scene-016	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-016.mp4
+04-history-documentary-20-slides--scene-017	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/04-history-documentary-20-slides/04-history-documentary-20-slides--scene-017.mp4
+05_measured_height_ruler	/Users/dwaynetoler/Documents/ChatGPT/Polish/infographic-template-system/output/05_measured_height_ruler.mp4
+06-the-history--scene-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-001.mp4
+06-the-history--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-002.mp4
+06-the-history--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-003.mp4
+06-the-history--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-004.mp4
+06-the-history--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-005.mp4
+06-the-history--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-006.mp4
+06-the-history--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-007.mp4
+06-the-history--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-008.mp4
+06-the-history--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-009.mp4
+06-the-history--scene-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-010.mp4
+06-the-history--scene-016	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/06-the-history/06-the-history--scene-016.mp4
+07-history-slideshow--scene-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-001.mp4
+07-history-slideshow--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-002.mp4
+07-history-slideshow--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-003.mp4
+07-history-slideshow--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-004.mp4
+07-history-slideshow--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-005.mp4
+07-history-slideshow--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-006.mp4
+07-history-slideshow--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-007.mp4
+07-history-slideshow--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-008.mp4
+07-history-slideshow--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-009.mp4
+07-history-slideshow--scene-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-010.mp4
+07-history-slideshow--scene-011	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-011.mp4
+07-history-slideshow--scene-012	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-012.mp4
+07-history-slideshow--scene-013	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-013.mp4
+07-history-slideshow--scene-014	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-014.mp4
+07-history-slideshow--scene-015	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-015.mp4
+07-history-slideshow--scene-016	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-016.mp4
+07-history-slideshow--scene-017	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-017.mp4
+07-history-slideshow--scene-018	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/07-history-slideshow/07-history-slideshow--scene-018.mp4
+08-documentary-slideshow--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-003.mp4
+08-documentary-slideshow--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-004.mp4
+08-documentary-slideshow--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-005.mp4
+08-documentary-slideshow--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-006.mp4
+08-documentary-slideshow--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/08-documentary-slideshow/08-documentary-slideshow--scene-007.mp4
+counters-envato--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-002.mp4
+counters-envato--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-003.mp4
+counters-envato--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-004.mp4
+counters-envato--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-005.mp4
+counters-envato--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-006.mp4
+counters-envato--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-007.mp4
+counters-envato--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-008.mp4
+counters-envato--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/counters-envato/counters-envato--scene-009.mp4
+history-slideshow-envato--scene-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-001.mp4
+history-slideshow-envato--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-002.mp4
+history-slideshow-envato--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-003.mp4
+history-slideshow-envato--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-004.mp4
+history-slideshow-envato--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-005.mp4
+history-slideshow-envato--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-006.mp4
+history-slideshow-envato--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-007.mp4
+history-slideshow-envato--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-008.mp4
+history-slideshow-envato--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-009.mp4
+history-slideshow-envato--scene-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-010.mp4
+history-slideshow-envato--scene-011	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-011.mp4
+history-slideshow-envato--scene-012	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-012.mp4
+history-slideshow-envato--scene-013	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-013.mp4
+history-slideshow-envato--scene-014	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/history-slideshow-envato/history-slideshow-envato--scene-014.mp4
+intro-slideshow-full-720p--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-002.mp4
+intro-slideshow-full-720p--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-003.mp4
+intro-slideshow-full-720p--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-004.mp4
+intro-slideshow-full-720p--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-006.mp4
+intro-slideshow-full-720p--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-007.mp4
+intro-slideshow-full-720p--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-008.mp4
+intro-slideshow-full-720p--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-009.mp4
+intro-slideshow-full-720p--scene-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-010.mp4
+intro-slideshow-full-720p--scene-011	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-011.mp4
+intro-slideshow-full-720p--scene-012	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-012.mp4
+intro-slideshow-full-720p--scene-013	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-013.mp4
+intro-slideshow-full-720p--scene-015	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-015.mp4
+intro-slideshow-full-720p--scene-016	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-016.mp4
+intro-slideshow-full-720p--scene-017	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-017.mp4
+intro-slideshow-full-720p--scene-018	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-018.mp4
+intro-slideshow-full-720p--scene-019	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-019.mp4
+intro-slideshow-full-720p--scene-020	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-020.mp4
+intro-slideshow-full-720p--scene-021	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-021.mp4
+intro-slideshow-full-720p--scene-022	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-022.mp4
+intro-slideshow-full-720p--scene-023	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/intro-slideshow-full-720p/intro-slideshow-full-720p--scene-023.mp4
+memories-photo-slideshow-creative-slides-envato--scene-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-001.mp4
+memories-photo-slideshow-creative-slides-envato--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-002.mp4
+memories-photo-slideshow-creative-slides-envato--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-003.mp4
+memories-photo-slideshow-creative-slides-envato--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-004.mp4
+memories-photo-slideshow-creative-slides-envato--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-005.mp4
+memories-photo-slideshow-creative-slides-envato--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-007.mp4
+memories-photo-slideshow-creative-slides-envato--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-008.mp4
+memories-photo-slideshow-creative-slides-envato--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-009.mp4
+memories-photo-slideshow-creative-slides-envato--scene-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-010.mp4
+memories-photo-slideshow-creative-slides-envato--scene-011	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-011.mp4
+memories-photo-slideshow-creative-slides-envato--scene-012	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-012.mp4
+memories-photo-slideshow-creative-slides-envato--scene-013	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-013.mp4
+memories-photo-slideshow-creative-slides-envato--scene-014	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-014.mp4
+memories-photo-slideshow-creative-slides-envato--scene-015	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/memories-photo-slideshow-creative-slides-envato/memories-photo-slideshow-creative-slides-envato--scene-015.mp4
+modern-photo-slideshow-envato--scene-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-001.mp4
+modern-photo-slideshow-envato--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-002.mp4
+modern-photo-slideshow-envato--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-003.mp4
+modern-photo-slideshow-envato--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-004.mp4
+modern-photo-slideshow-envato--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-005.mp4
+modern-photo-slideshow-envato--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-006.mp4
+modern-photo-slideshow-envato--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-007.mp4
+modern-photo-slideshow-envato--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-008.mp4
+modern-photo-slideshow-envato--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-009.mp4
+modern-photo-slideshow-envato--scene-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-010.mp4
+modern-photo-slideshow-envato--scene-011	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-011.mp4
+modern-photo-slideshow-envato--scene-012	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-012.mp4
+modern-photo-slideshow-envato--scene-013	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-013.mp4
+modern-photo-slideshow-envato--scene-014	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-014.mp4
+modern-photo-slideshow-envato--scene-015	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-015.mp4
+modern-photo-slideshow-envato--scene-016	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/modern-photo-slideshow-envato/modern-photo-slideshow-envato--scene-016.mp4
+photo-slideshow-memories-envato--scene-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-memories-envato/photo-slideshow-memories-envato--scene-001.mp4
+photo-slideshow-memories-envato--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-memories-envato/photo-slideshow-memories-envato--scene-003.mp4
+photo-slideshow-memories-envato--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-memories-envato/photo-slideshow-memories-envato--scene-004.mp4
+photo-slideshow-memories-envato--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-memories-envato/photo-slideshow-memories-envato--scene-008.mp4
+photo-slideshow-smooth-envato--scene-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-002.mp4
+photo-slideshow-smooth-envato--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-003.mp4
+photo-slideshow-smooth-envato--scene-004	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-004.mp4
+photo-slideshow-smooth-envato--scene-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-005.mp4
+photo-slideshow-smooth-envato--scene-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-006.mp4
+photo-slideshow-smooth-envato--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-007.mp4
+photo-slideshow-smooth-envato--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-008.mp4
+photo-slideshow-smooth-envato--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-009.mp4
+photo-slideshow-smooth-envato--scene-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-010.mp4
+photo-slideshow-smooth-envato--scene-011	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-011.mp4
+photo-slideshow-smooth-envato--scene-013	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-013.mp4
+photo-slideshow-smooth-envato--scene-014	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-014.mp4
+photo-slideshow-smooth-envato--scene-015	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/photo-slideshow-smooth-envato/photo-slideshow-smooth-envato--scene-015.mp4
+story-on-photo-slideshow-envato--scene-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-001.mp4
+story-on-photo-slideshow-envato--scene-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-003.mp4
+story-on-photo-slideshow-envato--scene-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-007.mp4
+story-on-photo-slideshow-envato--scene-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-008.mp4
+story-on-photo-slideshow-envato--scene-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/clips/story-on-photo-slideshow-envato/story-on-photo-slideshow-envato--scene-009.mp4
+text-list-carousel--review-001	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-001.mp4
+text-list-carousel--review-002	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-002.mp4
+text-list-carousel--review-003	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-003.mp4
+text-list-carousel--review-005	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-005.mp4
+text-list-carousel--review-006	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-006.mp4
+text-list-carousel--review-007	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-007.mp4
+text-list-carousel--review-008	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-008.mp4
+text-list-carousel--review-009	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-009.mp4
+text-list-carousel--review-010	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/text-list-carousel/clips/text-list-carousel--review-010.mp4
+truth-cohort-attrition	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-cohort-attrition.mp4
+truth-population-field	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-population-field.mp4
+truth-rank-fall	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-rank-fall.mp4
+truth-ratio-days	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-ratio-days.mp4
+truth-small-outlier	/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/previews/cinematic-3d/truth-small-outlier.mp4
+
+==============================================================================
+46 RECORDS WITH NO CLIP — cannot be measured until rendered
+==============================================================================
+These are the unrendered infographics. They are the data-capable half of the
+library and the most likely home for aggregate/derivation/overlap/absence,
+so this run cannot fully settle the supply question on its own.
+06_historical_winners_table
+07_labeled_outlier_scatter
+08_yearly_leader_timeline
+09_artist_field_grid
+10_two_era_rankings
+11_defensive_numbers
+14_quote_score_columns
+16_ranked_table_and_bars
+17_awards_height_board
+18_cutout_intro
+20_prime_portrait_cards
+22_single_measurement
+23_portrait_scatter
+24_dense_vertical_bars
+25_career_value_list
+26_mirrored_stat_compare
+27_rank_context_panel
+28_stat_profile_cards
+30_dense_rank_bars
+31_greatest_team_scatter
+32_record_height_bars
+34_superteam_bar_compare
+35_shooting_portrait_matrix
+36_four_portrait_cards
+37_fullbody_impact_lineup
+38_matchup_win_list
+39_five_player_impact
+40_two_era_fullbody_compare
+41_five_value_headshots
+42_playoff_rank_grid
+43_successor_tier_grid
+44_three_metric_tables
+45_two_metric_tables
+46_similarity_criteria_table
+47_similarity_ascending_bars
+48_playoff_path_summary
+49_similarity_final_results
+50_championship_odds_history
+51_debut_leaderboard
+52_rookie_record_columns
+53_lineup_rotation_columns
+54_trade_package_panels
+55_best_vs_value
+56_seven_artist_stat_lineup
+57_three_playoff_run_cards
+58_big_three_stat_rows

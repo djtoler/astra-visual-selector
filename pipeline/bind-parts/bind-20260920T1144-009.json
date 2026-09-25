@@ -1,0 +1,356 @@
+{
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-010": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "single portrait plus caption",
+    "evidence": "Holds one subject accompanied by two lines of text, with no comparison to anything else."
+   },
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "credit label states moment",
+    "evidence": "upper-center credit label",
+    "condition": "the text field carries a date or event description rather than a plain name/title"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-011": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "single portrait plus caption",
+    "evidence": "Displays a single subject in a vertical frame with an accompanying two-line text header."
+   },
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "closing credit states moment",
+    "evidence": "Closing principal credit or concluding entity reveal",
+    "condition": "the text header carries a date or event description"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-001": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "accelerating single total",
+    "evidence": "Best for a single headline quantity or record total that should dominate the frame."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "count reaches record value",
+    "evidence": "record total that should dominate the frame",
+    "condition": "the target figure is a known fixed benchmark, such as a prior record"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-002": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "rising dollar total",
+    "evidence": "Best for revenue, sales, catalog value, contract value, or any single money claim."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-003": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "accelerating labeled statistic",
+    "evidence": "Best for one statistic that needs a unit, subject label, or compact explanation."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "single stat against stated bar",
+    "evidence": "one statistic that needs a unit, subject label, or compact explanation",
+    "condition": "the caption states a fixed threshold the number is measured against"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-004": {
+  "serves": [
+   {
+    "job": "proportion_of_cohort",
+    "confidence": "clear",
+    "mechanism": "rising percentage value",
+    "evidence": "Best for share, retention, completion, growth, or a percentage benchmark."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "clear",
+    "mechanism": "percentage against fixed bar",
+    "evidence": "or a percentage benchmark."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-005": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "dollar total with delta badge",
+    "evidence": "Best when the narration needs both a magnitude and its increase or decline."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-006": {
+  "serves": [
+   {
+    "job": "proportion_of_cohort",
+    "confidence": "clear",
+    "mechanism": "circular fill proportion",
+    "evidence": "A circular progress fill counts to a percentage beside a compact two-line label."
+   },
+   {
+    "job": "entity_vs_benchmark",
+    "confidence": "conditional",
+    "mechanism": "fill against completion target",
+    "evidence": "one completion, adoption, share, or survival metric with a short category name",
+    "condition": "the percentage represents progress toward a stated fixed target"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-007": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "condensed rising dollar counter",
+    "evidence": "Best for financial or commercial claims that need a slightly more designed title treatment."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-008": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "boxed total with delta tab",
+    "evidence": "Best for a primary total paired with a compact comparison delta."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "counters-envato--scene-009": {
+  "serves": [
+   {
+    "job": "derived_quantity",
+    "confidence": "clear",
+    "mechanism": "wide dollar total build",
+    "evidence": "Best for a closing financial magnitude, valuation, earnings total, or cumulative result."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "02-documentary-promo--scene-002": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "portrait plus descriptive caption",
+    "evidence": "Single-portrait entity description, grunge stripes, busy background.",
+    "condition": "the caption states a claim, norm, or limitation about the entity rather than data"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "02-documentary-promo--scene-003": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "text-only claim card",
+    "evidence": "Text presentation, grunge style."
+   },
+   {
+    "job": "define_terms",
+    "confidence": "conditional",
+    "mechanism": "text states a rule",
+    "evidence": "Text presentation, grunge style.",
+    "condition": "the text content defines a rule, weighting, or period"
+   },
+   {
+    "job": "pose_a_question",
+    "confidence": "conditional",
+    "mechanism": "text withholds an answer",
+    "evidence": "Text presentation, grunge style.",
+    "condition": "the text is phrased as a question directed at the viewer"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "02-documentary-promo--scene-004": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "text-only claim card",
+    "evidence": "Description text, grunge style."
+   },
+   {
+    "job": "define_terms",
+    "confidence": "conditional",
+    "mechanism": "text states a rule",
+    "evidence": "Description text, grunge style.",
+    "condition": "the text content defines a rule, weighting, or period"
+   },
+   {
+    "job": "pose_a_question",
+    "confidence": "conditional",
+    "mechanism": "text withholds an answer",
+    "evidence": "Description text, grunge style.",
+    "condition": "the text is phrased as a question directed at the viewer"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "02-documentary-promo--scene-005": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "cutout plus overlay claim",
+    "evidence": "Single full-body cutout in the background, text overlay, busy grunge background.",
+    "condition": "the overlay text states a claim about the entity"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "02-documentary-promo--scene-006": {
+  "serves": [
+   {
+    "job": "change_across_set",
+    "confidence": "conditional",
+    "mechanism": "sequential paired cutouts",
+    "evidence": "Two cutouts, one following the other.",
+    "condition": "the two cutouts depict the same subject at two points in time"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "02-documentary-promo--scene-007": {
+  "serves": [
+   {
+    "job": "narrate_an_event",
+    "confidence": "clear",
+    "mechanism": "dated portrait moment",
+    "evidence": "Date and description, small full-body portrait, grunge style."
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "02-documentary-promo--scene-008": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "conditional",
+    "mechanism": "crime photo plus caption",
+    "evidence": "Crime photo with ruler-style treatment, name and description.",
+    "condition": "the caption states a claim or norm rather than a dated incident"
+   },
+   {
+    "job": "narrate_an_event",
+    "confidence": "conditional",
+    "mechanism": "documented incident portrait",
+    "evidence": "Crime photo with ruler-style treatment, name and description.",
+    "condition": "the description includes a specific date or incident"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "08-documentary-slideshow--scene-003": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "layered image sequence subject",
+    "evidence": "Standalone entity presentation with one focal image and three to five supporting images in a layered parallax card wall."
+   },
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "supporting images list traits",
+    "evidence": "three to five supporting images in a layered parallax card wall",
+    "condition": "each supporting image stands for a distinct named claim rather than mere illustration"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ },
+ "08-documentary-slideshow--scene-004": {
+  "serves": [
+   {
+    "job": "assert_without_data",
+    "confidence": "clear",
+    "mechanism": "layered image sequence subject",
+    "evidence": "Standalone entity presentation with one focal image and three to five supporting images in a layered parallax card wall."
+   },
+   {
+    "job": "enumerate",
+    "confidence": "conditional",
+    "mechanism": "supporting images list traits",
+    "evidence": "three to five supporting images in a layered parallax card wall",
+    "condition": "each supporting image stands for a distinct named claim rather than mere illustration"
+   }
+  ],
+  "runId": "bind-20260920T1144",
+  "promptSha": "50337c792883",
+  "model": "claude-sonnet-5"
+ }
+}

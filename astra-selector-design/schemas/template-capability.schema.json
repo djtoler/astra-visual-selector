@@ -1,0 +1,595 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "astra/template-capability.schema.json",
+  "title": "Template, scene and treatment capability record",
+  "description": "EXTENSION to the project's existing per-scene `selectionContract`, not a replacement. All 185 approved scenes already carry a selectionContract with requiredAssets, presentation, acceptedMedia, videoTreatment, usageModes, nativeDurationSeconds and retimeAllowed; the infographic and cinematic-scatter profiles carry richer capacity, data_mapping, visual_encoding, avoid_when and input_contract records. Reuse those field names where they exist. The fields this schema adds are the ones nothing currently records: timing.internalEvents (without which phrase alignment cannot be computed), slots.textSlots (whether a container can name an entity, date or source), adjustability.colour.method and exposedControlCount (auto-extractable from the .aep), narrationFit.maximumEvidenceObligation, styleProfile.motionLanguage as a checkable reading-load value, and capacity.portraitLegibilityLimit. It also proposes populating focalEntityCount, present on only 14 of 185 approved scenes today. Attribution fields are informational. User ruling 2026-09-16: record the source, do not require it on screen, and never filter a container on attribution capability.",
+  "type": "object",
+  "required": [
+    "capabilityId",
+    "kind",
+    "identity",
+    "slots",
+    "timing",
+    "narrationFit",
+    "styleProfile",
+    "adjustability",
+    "status"
+  ],
+  "properties": {
+    "capabilityId": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "kind": {
+      "enum": [
+        "ae_template_scene",
+        "ae_template_sequence",
+        "generated_infographic",
+        "generated_counter",
+        "generated_spatial_scene",
+        "generated_custom_scene",
+        "direct_media_treatment",
+        "mogrt"
+      ],
+      "description": "direct_media_treatment covers the non-template answers: a clean cut to archival footage, an uncut interview hold, a single image on screen. These must be records too, or the selector cannot compare a template against not using one."
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "displayName",
+        "source"
+      ],
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "pack": {
+          "type": "string",
+          "description": "extraction:auto - parent folder"
+        },
+        "projectFile": {
+          "type": "string",
+          "description": "extraction:auto - path to .aep"
+        },
+        "compName": {
+          "type": "string",
+          "description": "extraction:auto"
+        },
+        "source": {
+          "enum": [
+            "owned_local",
+            "envato_owned",
+            "envato_candidate",
+            "generated",
+            "native"
+          ]
+        },
+        "previewPath": {
+          "type": "string"
+        },
+        "aeVersionRequired": {
+          "type": "string"
+        },
+        "pluginsRequired": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A pack requiring a plugin the machine lacks is unusable regardless of fit."
+        }
+      }
+    },
+    "slots": {
+      "type": "object",
+      "required": [
+        "mediaSlots",
+        "textSlots"
+      ],
+      "properties": {
+        "mediaSlots": {
+          "type": "object",
+          "required": [
+            "count"
+          ],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "extraction:auto from slot naming conventions such as 'Edit Image N', 'Media N', 'PLACEHOLDER N'."
+            },
+            "slotNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "extraction:auto"
+            },
+            "acceptsMotion": {
+              "type": "boolean"
+            },
+            "acceptsStills": {
+              "type": "boolean"
+            },
+            "aspectRatios": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "cropBehaviour": {
+              "enum": [
+                "fill_crop",
+                "fit_letterbox",
+                "masked_shape",
+                "unknown"
+              ],
+              "description": "fill_crop on a portrait asset is the mechanism behind the corpus's 'poor crops' rejection."
+            },
+            "simultaneousVisible": {
+              "type": "integer",
+              "description": "How many slots are on screen at once, as opposed to in sequence. This is what decides whether a container can serve a group_comparative contract."
+            }
+          }
+        },
+        "textSlots": {
+          "type": "object",
+          "required": [
+            "count"
+          ],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "extraction:auto"
+            },
+            "slotNames": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "extraction:auto"
+            },
+            "maxCharactersPerSlot": {
+              "type": "integer"
+            },
+            "supportsDateLabels": {
+              "type": "boolean",
+              "description": "Packs exposing 'Edit Date N' slots can carry chronology anchors natively."
+            },
+            "supportsAttribution": {
+              "type": "boolean",
+              "description": "Whether a source citation can be placed without overlapping the evidence. INFORMATIONAL ONLY. Per the 2026-09-16 citation ruling this must never disqualify a container: one with no text slot remains eligible for evidence passages."
+            }
+          }
+        },
+        "dataSlots": {
+          "type": "object",
+          "description": "Present on infographic and counter families.",
+          "properties": {
+            "count": {
+              "type": "integer"
+            },
+            "driverCompName": {
+              "type": "string",
+              "description": "e.g. 'Bar chart DATA', 'DATA NOTES'"
+            },
+            "seriesSupported": {
+              "type": "integer"
+            },
+            "maxCategories": {
+              "type": "integer"
+            },
+            "supportsNegativeValues": {
+              "type": "boolean"
+            },
+            "supportsAxisLabels": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "capacity": {
+      "type": "object",
+      "description": "Derived from slots, stated in contract terms so matching is direct.",
+      "properties": {
+        "focalEntityMin": {
+          "type": "integer"
+        },
+        "focalEntityMax": {
+          "type": "integer"
+        },
+        "supportedRelationships": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "single",
+              "pair_linked",
+              "pair_contrasted",
+              "group_comparative",
+              "group_collective",
+              "sequence_over_time",
+              "part_of_whole",
+              "none"
+            ]
+          }
+        },
+        "canNameEntitiesOnScreen": {
+          "type": "boolean",
+          "description": "False when textSlots.count is 0. A carousel with no text slot cannot serve a contract requiring mustBeNamedOnScreen."
+        },
+        "canCarryProof": {
+          "type": "boolean",
+          "description": "Corpus proof-role share by treatment: evidence_or_document 95%, infographic 52%, after_effects_scene 49%, counter 41%, spatial_or_cinematic_3d only 16%. Spatial scenes explain relationships; they rarely prove claims."
+        },
+        "portraitLegibilityLimit": {
+          "type": "integer",
+          "description": "Entity count beyond which this container's portraits stop being identifiable, which is lower than its structural capacity. Surfaced by user feedback on passage 14: a six-card layout was accepted because 'it has nice size portraits given that were only talking about a handful of artists', while higher-capacity layouts were questioned. Nothing currently records this."
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "required": [
+        "nativeDurationSeconds"
+      ],
+      "properties": {
+        "nativeDurationSeconds": {
+          "type": "number"
+        },
+        "speedAdjustableRange": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "description": "[min, max] multiplier that preserves readable motion. Speed adjustment is an approved adjustment; it is not permission to rescue a structurally wrong container."
+        },
+        "internalEvents": {
+          "type": "array",
+          "description": "The container's own beats. A contract event can only be aligned to a phrase if the container has an internal event that can be moved to that time. NOT PRESENT IN THE CURRENT CATALOG: timing control today is whole-scene retime (allowSpeedUp/allowSlowDown, outputDuration = nativeDuration / playbackRate), which fits a scene to a duration but cannot land a highlight on a word. Since phrase alignment is the project's stated highestPriorityGate, this is the most consequential missing field.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "eventId": {
+                "type": "string"
+              },
+              "nativeTimeSeconds": {
+                "type": "number"
+              },
+              "eventType": {
+                "enum": [
+                  "reveal",
+                  "removal",
+                  "highlight",
+                  "camera_move",
+                  "transition",
+                  "value_change",
+                  "label_change"
+                ]
+              },
+              "movable": {
+                "type": "boolean",
+                "description": "Whether the beat can be retimed independently of the rest of the scene."
+              },
+              "boundToSlot": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "minimumReadableHoldSeconds": {
+          "type": "number",
+          "description": "Shortest the container holds any element at native speed. If speeding the container to fit would push this below 1.5s, the adjustment is rejected."
+        },
+        "loopable": {
+          "type": "boolean"
+        },
+        "hasInOutHandles": {
+          "type": "boolean"
+        }
+      }
+    },
+    "narrationFit": {
+      "type": "object",
+      "description": "The reverse direction. What narration can this container validly serve?",
+      "required": [
+        "servesNarrationJobs"
+      ],
+      "properties": {
+        "servesNarrationJobs": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "PROVE",
+              "COMPARE",
+              "SCALE",
+              "SEQUENCE",
+              "EXPLAIN",
+              "INTRODUCE",
+              "ASSERT",
+              "FRAME",
+              "FEEL"
+            ]
+          }
+        },
+        "servesRhetoricalFunctions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requiredClaimStructure": {
+          "type": "string",
+          "description": "Plain language. 'One entity and a dated milestone per slot, in ascending order' is usable; 'good for timelines' is not."
+        },
+        "requiredMediaRoles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "subject",
+              "proof",
+              "context",
+              "identity",
+              "comparison",
+              "atmosphere",
+              "scale",
+              "chronology",
+              "transition_support"
+            ]
+          }
+        },
+        "maximumEvidenceObligation": {
+          "enum": [
+            "exact_source_required",
+            "exact_event_or_entity_required",
+            "representative_media_allowed",
+            "decorative_media_allowed"
+          ],
+          "description": "The strictest obligation this container can honour. A container that crops, stylizes or overlays evidence cannot honour exact_source_required."
+        },
+        "exampleNarrationStructures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "knownFailureModes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "observedInReferenceUnits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Unit ids from the reference corpus showing this pattern working, e.g. 'r1:VU_136'. Every claim in this record should be traceable to evidence or marked as untested."
+        }
+      }
+    },
+    "styleProfile": {
+      "type": "object",
+      "required": [
+        "compatibility"
+      ],
+      "properties": {
+        "compatibility": {
+          "enum": [
+            "compatible_as_supplied",
+            "compatible_after_safe_adjustment",
+            "last_resort_exception",
+            "incompatible"
+          ],
+          "description": "The four-way distinction required by the brief. Do not collapse it to a boolean."
+        },
+        "dominantBackground": {
+          "enum": [
+            "black",
+            "dark_neutral",
+            "dark_tinted",
+            "mid",
+            "light",
+            "white",
+            "paper",
+            "mixed"
+          ]
+        },
+        "palette": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "measuredContrastRatio": {
+          "type": "number"
+        },
+        "typographyFamilies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "motionLanguage": {
+          "enum": [
+            "restrained",
+            "moderate",
+            "energetic",
+            "kinetic"
+          ]
+        },
+        "transitionLanguage": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cameraBehaviour": {
+          "enum": [
+            "static",
+            "slow_push",
+            "parallax",
+            "orbit",
+            "fly_through",
+            "mixed"
+          ]
+        },
+        "textureOverlays": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Grain, scratches, dust, light leaks. Archival texture is an approved exception; a generic grunge overlay on a modern evidence document is not."
+        },
+        "archivalException": {
+          "type": "boolean",
+          "description": "True when this container is approved to present source material in its native appearance while its frame stays inside the dark cinematic system."
+        },
+        "motionActivity": {
+          "enum": [
+            "calm_readable",
+            "moderate",
+            "active",
+            "kinetic"
+          ],
+          "description": "Checkable reading-load value. The global rule `readability` rejects scenes whose motion prevents reading, and user feedback on passage 17 distinguishes a scene that is the wrong kind ('isnt made for reading, more for viewing') from one that is the right kind but too active ('the animation on them is a little too active for expecting the viewer to read rules'). That is a threshold, not a boolean, and no scene record carries it."
+        }
+      }
+    },
+    "adjustability": {
+      "type": "object",
+      "description": "Only the four approved adjustments may be assumed: speed, text removal, text modification, and colour where the template exposes or safely supports it. Anything else needs separate verification and approval.",
+      "required": [
+        "speed",
+        "textRemoval",
+        "textModification",
+        "colour"
+      ],
+      "properties": {
+        "speed": {
+          "enum": [
+            "supported",
+            "limited",
+            "unsupported"
+          ]
+        },
+        "textRemoval": {
+          "enum": [
+            "supported",
+            "limited",
+            "unsupported"
+          ]
+        },
+        "textModification": {
+          "enum": [
+            "supported",
+            "limited",
+            "unsupported"
+          ]
+        },
+        "colour": {
+          "type": "object",
+          "required": [
+            "method"
+          ],
+          "properties": {
+            "method": {
+              "enum": [
+                "exposed_color_controls",
+                "control_layer",
+                "precomp_edit_required",
+                "baked_unavailable"
+              ],
+              "description": "extraction:auto can distinguish exposed_color_controls by counting Color Control effects in the .aep. Only 53% of 180 scanned project files expose one at all, and in the Documentary and Archival category only 2 of 12 packs do."
+            },
+            "exposedControlCount": {
+              "type": "integer",
+              "description": "extraction:auto"
+            },
+            "safeToRecolour": {
+              "type": "boolean"
+            }
+          }
+        },
+        "structuralModification": {
+          "enum": [
+            "not_attempted",
+            "verified_safe",
+            "verified_unsafe",
+            "requires_approval"
+          ],
+          "default": "not_attempted",
+          "description": "Never assume this is available. A candidate depending on it must escalate to the user."
+        },
+        "adjustmentCostEstimate": {
+          "enum": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      }
+    },
+    "render": {
+      "type": "object",
+      "properties": {
+        "estimatedRenderSecondsPerOutputSecond": {
+          "type": "number"
+        },
+        "resolutions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "knownRenderIssues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "object",
+      "required": [
+        "approval",
+        "recordConfidence"
+      ],
+      "properties": {
+        "approval": {
+          "enum": [
+            "approved",
+            "pending_user_review",
+            "rejected",
+            "unreviewed"
+          ],
+          "description": "Scenes from the two named style reference packs are unreviewed until the user approves them individually."
+        },
+        "recordConfidence": {
+          "enum": [
+            "auto_extracted_unverified",
+            "preview_reviewed",
+            "human_verified",
+            "production_proven"
+          ]
+        },
+        "rejectionReasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lastVerifiedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "supersededBy": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+ "_note": "Manual per-beat flags, editable by hand and merged into grammar/picks.json at ingest. Separate from the review UI so a flag can be set without running a review pass, and so flags survive a UI rebuild. Beat keys are passage-beat, e.g. 17-17.",
+ "_flags": {
+  "needsTextTemplate": "the beat wants an on-screen text or question treatment. Three text templates are unprocessed as of 2026-09-21; this records where they go.",
+  "rawBroll": "the beat wants sourced footage. Admits match-cut vessels across jobs. Also settable in the review UI.",
+  "contentClass": "the beat declares a content class, which admits the templates SCOPE.md restricts to it. Scoped templates are bound to no job, so this is their only route into a slate. Set by hand; user decision, like rawBroll.",
+  "wantsMediaKind": "What KIND of media this beat's slots should take — person, footage, document, artwork, graphic. DECLARED, never extracted: the narration does not say it. Two extraction methods were built and measured against the user's own answers (LOG 0098): a 633-title work gazetteer found ONE true positive across 40 beats and any noise guard killed it; a work-noun signal hit 100% recall at 20% precision, because the whole script is about a catalog. The beat says \"Big back catalog\"; deciding that album covers serve it is TASTE. Ranks, never excludes, like every other kind signal."
+ },
+ "beats": {
+  "06-06": {
+   "needsTextTemplate": true,
+   "why": "define_terms, nothing acceptable — 'not even sure of the relevance' | 2026-09-21 contentClass timelines. User, arm B of the A/B: \"there's a timeline template we should have that would be perfect here\". 06-06 is define_terms — \"So Far Gone came out in 2009. This chart covers the year that ends on its seventeenth anniversary\" — a period with a start, an end and an anniversary. archive3-search-bar-business-timeline is scoped to `timelines` and was invisible because nothing passed a content class (LOG 0055b).",
+   "contentClass": [
+    "timelines"
+   ],
+   "wantsMediaKind": [
+    "artwork"
+   ],
+   "wantsMediaKindWhy": "User 2026-09-22: \"albums covers on a timeline would be good here.\""
+  },
+  "17-17": {
+   "needsTextTemplate": true,
+   "why": "define_terms — 'should've at least selected Text List Carousel. We may need more text options'"
+  },
+  "30-30b": {
+   "needsTextTemplate": true,
+   "why": "define_terms, nothing acceptable — 'no good selections available'"
+  },
+  "05-05b": {
+   "needsTextTemplate": true,
+   "why": "pose_a_question — '1 and 2 would only be good with an additional question mark layered on top'"
+  },
+  "10-10": {
+   "needsTextTemplate": true,
+   "why": "pose_a_question — 'we may need more selection for just text on screen or questions'"
+  },
+  "24-24": {
+   "needsTextTemplate": true,
+   "why": "pose_a_question, nothing acceptable, no note | 2026-09-22 contentClass timelines. User, pass 2 on beat 24: \"b-roll and/or the timeline template clips. they absolutely should've been in here.\" 24 is pose_a_question and the timeline is scoped to `timelines`, bound to no job, so only a declared content class can admit it. Same route as 06-06.",
+   "contentClass": [
+    "timelines"
+   ],
+   "wantsMediaKind": [
+    "document",
+    "artwork"
+   ],
+   "wantsMediaKindWhy": "User 2026-09-22: \"a list of song releases or matchcut of songs that have charted over the years or billboard articles about songs charting over the years.\""
+  },
+  "02-02b": {
+   "rawBroll": true,
+   "why": "User 2026-09-21: \"02b shouls suggest a slide show or carousel\". Pass-1 note: \"horrible first selections. a slideshow should house the mixtape covers, a b-roll match cut of YouTube video screenshots could handle the features.\" A/B note, both arms, zero selections: \"neither... needs something that can shows mixtapes, jetLife and features\".",
+   "reasoning": "The beat has TWO requirements and the beat record holds one. must_be_perceptible captured the RELATION — `magnitude`, the two catalogs reading as roughly equal. The user's notes are about the CONTENT — mixtape covers, Jet Life, features, which are specific real things that must appear on screen. Nothing in the beat record has a field for that; rawBroll is the flag that already exists for it, and the user's own words name a match cut. This is the mechanism as designed, not a new one."
+  },
+  "02-02a": {
+   "wantsMediaKind": [
+    "document",
+    "artwork"
+   ],
+   "wantsMediaKindWhy": "User 2026-09-22: \"we have the magazine referenced in the media library somewhere, probably not tagged, that would've been best selection.\" The beat is \"Curren$y was on the 2009 XXL Freshman cover\" — the right asset is the COVER, not a portrait."
+  },
+  "08-08": {
+   "wantsMediaKind": [
+    "artwork",
+    "footage"
+   ],
+   "wantsMediaKindWhy": "User 2026-09-22: \"should be album covers and feature single artworks. or a matchcut of super quick snippet clips of his features that have videos.\""
+  },
+  "18-18": {
+   "wantsMediaKind": [
+    "document",
+    "artwork"
+   ],
+   "wantsMediaKindWhy": "User 2026-09-22: \"also should use the mag cover.\" Same XXL class as 02-02a."
+  },
+  "23-23": {
+   "wantsMediaKind": [
+    "footage",
+    "document"
+   ],
+   "wantsMediaKindWhy": "User 2026-09-22: \"video footage from a song in 2015 belongs here. screenshots in a document template or w/out is approbate for here.\""
+  }
+ }
+}

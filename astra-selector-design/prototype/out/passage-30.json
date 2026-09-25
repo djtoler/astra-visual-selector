@@ -1,0 +1,2006 @@
+{
+ "ruleProvenance": {
+  "baseRuleCount": 10,
+  "activeCorrections": [
+   "COR-0001-spatial-attrition",
+   "COR-0002-citation-policy",
+   "COR-0003-era-consistency-gate",
+   "COR-0004-change-budget-is-a-hint",
+   "COR-0005-portrait-legibility",
+   "COR-0006-intent-scoring-and-overview-route",
+   "COR-0007-scene-level-distinctness",
+   "COR-0008-defects-found-by-extending",
+   "COR-0009-per-shot-selection",
+   "COR-0010-defects-found-at-thirty",
+   "COR-0011-motion-profiles-adopted",
+   "COR-0012-schedule-replacement-is-the-mechanism",
+   "COR-0013-passage-28-allowed-kinds",
+   "COR-0014-measurement-was-the-problem"
+  ],
+  "revertedCorrections": [],
+  "maximumScope": "project",
+  "writesToProject": false
+ },
+ "shots": [
+  {
+   "shotId": "01",
+   "boundary": "measured",
+   "focalEntityCount": 1,
+   "durationSeconds": 20.19,
+   "events": [
+    "E1",
+    "E2",
+    "E3"
+   ],
+   "binding": {
+    "bindings": [
+     {
+      "roleId": "named_historical_artist",
+      "attributionPolicy": "record_only",
+      "provenance": "media_library",
+      "sourceRef": "/Users/dwaynetoler/Media Library",
+      "sourceCandidates": null,
+      "editorialRole": "subject",
+      "sourceSpecificity": "exact_event_or_entity_required",
+      "mediaFamily": "portrait_still",
+      "status": "bound_local",
+      "perEntity": {
+       "Jay-Z": {
+        "count": 50,
+        "image": 31,
+        "video": 19,
+        "cutout": 10,
+        "examples": [
+         {
+          "assetId": "032c6c2cd1556a78c07cc392",
+          "type": "video",
+          "dimensions": "720x960"
+         },
+         {
+          "assetId": "03e35f2c62caddbe3054ad77",
+          "type": "video",
+          "dimensions": "720x1280"
+         },
+         {
+          "assetId": "0b6ec7c620b2085d649a80c0",
+          "type": "image",
+          "dimensions": "640x800"
+         }
+        ],
+        "assertedYears": [
+         "2019"
+        ]
+       }
+      },
+      "artifacts": {},
+      "missing": [],
+      "note": null
+     }
+    ],
+    "evidenceSources": [],
+    "missingAssets": [],
+    "anyMissing": false,
+    "dataRolesOutstanding": []
+   },
+   "slate": {
+    "slate": [
+     {
+      "kind": "after_effects",
+      "templateId": "02-documentary-promo",
+      "sceneId": "02-documentary-promo--scene-002",
+      "name": "Documentary Promo \u00b7 Scene 02",
+      "function": "entity explanation",
+      "focalEntityCount": null,
+      "nativeDurationSeconds": 3.6,
+      "retimeAllowed": true,
+      "acceptedMedia": [
+       "image",
+       "video"
+      ],
+      "appropriateNarration": null,
+      "avoidWhen": [],
+      "acceptedMediaTypes": [
+       "image",
+       "video"
+      ],
+      "hasProfile": true,
+      "documentaryRoles": {
+       "primary": [
+        "introduce",
+        "evidence",
+        "transition"
+       ],
+       "secondary": [
+        "reveal",
+        "context",
+        "quote",
+        "close"
+       ],
+       "weak": [
+        "represent_while_discussed"
+       ],
+       "notSupported": []
+      },
+      "usableReadingTimeSeconds": 3.23,
+      "usableReadingTimeMin": 2.22,
+      "stylePace": "Fast. Nine scenes in 31 seconds, most 2.5-4.0s.",
+      "styleDensity": "High. Several text blocks can be on screen simultaneously alongside a subject.",
+      "narrationSuitability": "limited",
+      "capacityFits": true,
+      "carriesData": false,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Profile measures 3.23s usable reading time against a 1.5s requirement."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "decisive_events_alignable",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 1
+     },
+     {
+      "kind": "after_effects",
+      "templateId": "03-history-documentary-10-slides",
+      "sceneId": "03-history-documentary-10-slides--scene-001",
+      "name": "History and Documentary \u2014 10 slides \u00b7 Scene 1",
+      "function": "entity reveal",
+      "focalEntityCount": null,
+      "nativeDurationSeconds": 9.37,
+      "retimeAllowed": true,
+      "acceptedMedia": [
+       "image",
+       "video"
+      ],
+      "appropriateNarration": null,
+      "avoidWhen": [],
+      "acceptedMediaTypes": [
+       "image",
+       "video"
+      ],
+      "hasProfile": true,
+      "documentaryRoles": {
+       "primary": [
+        "represent_while_discussed",
+        "context",
+        "introduce"
+       ],
+       "secondary": [
+        "reveal",
+        "transition",
+        "close"
+       ],
+       "weak": [
+        "evidence",
+        "quote"
+       ],
+       "notSupported": []
+      },
+      "usableReadingTimeSeconds": 8.57,
+      "usableReadingTimeMin": 5.97,
+      "stylePace": "Measured. Slides run 6.6-9.8 seconds with 6-9 seconds of settled core.",
+      "styleDensity": "Moderate. One subject plate plus a three-part text lockup, or one large year.",
+      "narrationSuitability": "excellent",
+      "capacityFits": true,
+      "carriesData": false,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Profile measures 8.57s usable reading time against a 1.5s requirement."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "decisive_events_alignable",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 2
+     },
+     {
+      "kind": "after_effects",
+      "templateId": "04-history-documentary-20-slides",
+      "sceneId": "04-history-documentary-20-slides--scene-016",
+      "name": "History and Documentary \u2014 20 slides \u00b7 Scene 16",
+      "function": "entity reveal",
+      "focalEntityCount": null,
+      "nativeDurationSeconds": 8.2,
+      "retimeAllowed": true,
+      "acceptedMedia": [
+       "image",
+       "video"
+      ],
+      "appropriateNarration": null,
+      "avoidWhen": [],
+      "acceptedMediaTypes": [
+       "image",
+       "video"
+      ],
+      "hasProfile": true,
+      "documentaryRoles": {
+       "primary": [
+        "represent_while_discussed",
+        "context",
+        "introduce"
+       ],
+       "secondary": [
+        "reveal",
+        "transition"
+       ],
+       "weak": [
+        "evidence",
+        "quote",
+        "close"
+       ],
+       "notSupported": []
+      },
+      "usableReadingTimeSeconds": 8.2,
+      "usableReadingTimeMin": 1.53,
+      "stylePace": "Measured. Slides run 6.6-9.8 seconds with 6-9 seconds of settled core.",
+      "styleDensity": "Moderate. One subject plate plus a three-part text lockup, or one large year.",
+      "narrationSuitability": "excellent",
+      "capacityFits": true,
+      "carriesData": false,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Profile measures 8.2s usable reading time against a 1.5s requirement."
+       },
+       "decisive_events_alignable": {
+        "result": "unknown",
+        "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.61,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "decisive_events_alignable",
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "placedBy": "rank",
+      "rank": 3
+     },
+     {
+      "kind": "infographic",
+      "templateId": "08_yearly_leader_timeline",
+      "name": "Period-by-period leaders",
+      "intents": [
+       "history",
+       "leaders",
+       "ties"
+      ],
+      "capacitySummary": "12 period rows; existing support for up to 3 leaders per period",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": null,
+      "showsPortraits": true,
+      "capacitySlack": null,
+      "avoidWhen": [
+       "More than three leaders in a period",
+       "continuous measurement trends"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "pass",
+        "explanation": "Every named entity has an asset or an authored value."
+       },
+       "evidence_legible": {
+        "result": "pass",
+        "explanation": "Duration admits the 1.5s readable hold."
+       },
+       "decisive_events_alignable": {
+        "result": "pass",
+        "explanation": "2 decisive events resolved; container schedules elements to phrases."
+       },
+       "asset_quality_sufficient": {
+        "result": "pass",
+        "explanation": "No unbound identity roles."
+       },
+       "not_forcing_a_template": {
+        "result": "pass",
+        "explanation": "No stronger direct treatment is being displaced."
+       },
+       "density_acceptable": {
+        "result": "pass",
+        "explanation": "Density proportionate to the entity count."
+       },
+       "era_consistent": {
+        "result": "pass",
+        "explanation": "No era constraint recorded."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.51,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [],
+      "unknowns": [
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      },
+      "rank": 4
+     }
+    ],
+    "viableCount": 51,
+    "spatialFirstDetail": {
+     "fired": false,
+     "terms": [],
+     "triggerSource": "none",
+     "ruleVersion": "1.1.0-local"
+    },
+    "ruleProvenance": {
+     "baseRuleCount": 10,
+     "activeCorrections": [
+      "COR-0001-spatial-attrition",
+      "COR-0002-citation-policy",
+      "COR-0003-era-consistency-gate",
+      "COR-0004-change-budget-is-a-hint",
+      "COR-0005-portrait-legibility",
+      "COR-0006-intent-scoring-and-overview-route",
+      "COR-0007-scene-level-distinctness",
+      "COR-0008-defects-found-by-extending",
+      "COR-0009-per-shot-selection",
+      "COR-0010-defects-found-at-thirty",
+      "COR-0011-motion-profiles-adopted",
+      "COR-0012-schedule-replacement-is-the-mechanism",
+      "COR-0013-passage-28-allowed-kinds",
+      "COR-0014-measurement-was-the-problem"
+     ],
+     "revertedCorrections": [],
+     "maximumScope": "project",
+     "writesToProject": false
+    },
+    "rejectedCount": 59,
+    "poolSize": 110,
+    "rejectedSample": [
+     {
+      "kind": "infographic",
+      "templateId": "07_labeled_outlier_scatter",
+      "name": "Annotated outlier scatter",
+      "intents": [
+       "relationship",
+       "outliers",
+       "two variables"
+      ],
+      "capacitySummary": "14 points; 2 numeric variables each; 5 named callout slots",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 14,
+      "showsPortraits": false,
+      "capacitySlack": 13,
+      "avoidWhen": [
+       "A ranked list",
+       "causal conclusions from correlation"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "fail",
+        "explanation": "Container is built for 14 entities. The narration names 1. Filling it would assert 13 people the script never mentions."
+       }
+      },
+      "portraitFit": "layout shows no portraits but the contract needs them",
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.31,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "no_unsupported_implication"
+      ],
+      "unknowns": [
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "47_similarity_ascending_bars",
+      "name": "Ascending score bars with benchmarks",
+      "intents": [
+       "rank",
+       "magnitude",
+       "score"
+      ],
+      "capacitySummary": "35 entries; 1 numeric score each; 2 hero portraits",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 35,
+      "showsPortraits": true,
+      "capacitySlack": 34,
+      "avoidWhen": [
+       "Negative scores",
+       "arbitrary order labeled as ascending"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "fail",
+        "explanation": "Container is built for 35 entities. The narration names 1. Filling it would assert 34 people the script never mentions."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.18,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "no_unsupported_implication"
+      ],
+      "unknowns": [
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "cinematic_3d",
+      "templateId": "truth-rank-fall",
+      "name": "Before-and-after rank-loss field",
+      "intents": [
+       "rank",
+       "change",
+       "resilience"
+      ],
+      "capacitySummary": "3\u201312 entities; 1 rank delta per entity from a shared zero start; one optional hero expected to move little or not at all.",
+      "capacityFits": false,
+      "capacityRange": [
+       3,
+       12
+      ],
+      "avoidWhen": [
+       "The before and after rankings were computed with different populations",
+       "Absolute rank matters more than rank change",
+       "The metric is a value change rather than an ordinal rank change"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [3, 12] cannot hold 1 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "fail",
+        "explanation": "Container is built for 3 entities. The narration names 1. Filling it would assert 2 people the script never mentions."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.5,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim",
+       "no_unsupported_implication"
+      ],
+      "unknowns": [
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "46_similarity_criteria_table",
+      "name": "Candidate scores with visible criteria",
+      "intents": [
+       "score",
+       "rank",
+       "explain"
+      ],
+      "capacitySummary": "10 candidates; 1 score each; 6 criteria captions; 1 hero",
+      "capacityFits": true,
+      "capacityRange": [
+       null,
+       null
+      ],
+      "designedForEntities": 10,
+      "showsPortraits": true,
+      "capacitySlack": 9,
+      "avoidWhen": [
+       "Automatic facial or identity inference",
+       "scoring without a defined method"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "pass",
+        "explanation": "Capacity admits the focal entity count."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "fail",
+        "explanation": "Container is built for 10 entities. The narration names 1. Filling it would assert 9 people the script never mentions."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 1.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.18,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "no_unsupported_implication"
+      ],
+      "unknowns": [
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "cinematic_3d",
+      "templateId": "truth-cohort-attrition",
+      "name": "Cohort attrition to named survivors",
+      "intents": [
+       "timeline",
+       "attrition",
+       "survival"
+      ],
+      "capacitySummary": "6\u201330 starting entities; a verified starting cohort; a chart-year record per entity; 1\u20133 named survivors; one disclosed exit rule.",
+      "capacityFits": false,
+      "capacityRange": [
+       6,
+       30
+      ],
+      "avoidWhen": [
+       "The starting cohort is not verified",
+       "The narration needs career-end dates rather than chart-streak exits",
+       "The people did not share a meaningful comparison clock"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [6, 30] cannot hold 1 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "fail",
+        "explanation": "Container is built for 6 entities. The narration names 1. Filling it would assert 5 people the script never mentions."
+       }
+      },
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.5,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim",
+       "no_unsupported_implication"
+      ],
+      "unknowns": [
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     },
+     {
+      "kind": "infographic",
+      "templateId": "30_dense_rank_bars",
+      "name": "Compact portrait bar leaderboard",
+      "intents": [
+       "rank",
+       "magnitude",
+       "overview"
+      ],
+      "capacitySummary": "30 entities; 1 measure each",
+      "capacityFits": false,
+      "capacityRange": [
+       30,
+       30
+      ],
+      "designedForEntities": 30,
+      "showsPortraits": true,
+      "capacitySlack": 29,
+      "avoidWhen": [
+       "A two-subject story",
+       "extensive text labels"
+      ],
+      "carriesData": true,
+      "spatialPreferred": false,
+      "gateResults": {
+       "communicates_claim": {
+        "result": "fail",
+        "explanation": "Capacity [30, 30] cannot hold 1 focal entities."
+       },
+       "evidence_specificity_honoured": {
+        "result": "pass",
+        "explanation": "Container can present the sourced values or artifact."
+       },
+       "no_unsupported_implication": {
+        "result": "fail",
+        "explanation": "Container is built for 30 entities. The narration names 1. Filling it would assert 29 people the script never mentions."
+       }
+      },
+      "portraitFit": 0.35,
+      "scores": {
+       "timingAlignment": 1.0,
+       "claimCommunication": 0.0,
+       "factualAccuracy": 1.0,
+       "structuralFit": 0.0,
+       "styleConsistency": 0.75,
+       "assetQuality": 0.7,
+       "polish": 0.7,
+       "renderCost": 0.8,
+       "curation": 0.0
+      },
+      "hardFail": [
+       "communicates_claim",
+       "no_unsupported_implication"
+      ],
+      "unknowns": [
+       "schedule_replacement_unproven"
+      ],
+      "scheduleReplacement": {
+       "required": true,
+       "proven": false,
+       "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+       "status": "unproven_on_this_template"
+      }
+     }
+    ],
+    "spatialFirstApplied": false
+   }
+  }
+ ],
+ "contract": {
+  "contractId": "year-seventeen:P30",
+  "schemaVersion": 1,
+  "scriptRef": {
+   "scriptId": "year-seventeen",
+   "sectionId": "Measurement limitation",
+   "passageIndex": 30
+  },
+  "narration": {
+   "text": "And the rappers this should really be measured against \u2014 the ones whose seventeenth year happened before streaming counted anything \u2014 can't go on this chart at all. There's no daily meter for Jay-Z's year seventeen. So *unprecedented* only reaches back as far as the streaming era, and that's as far as I'm taking it.",
+   "measuredTranscript": "And the rappers this should really be measured against the ones who 17th year happened before streaming counted anything. Can't go on this chart at all. There's no daily meter for jazzy's year 17. So unprecedented only reaches back as far as the streaming era. And that's as far as I'm taking it."
+  },
+  "timing": {
+   "timingSource": "measured_audio",
+   "audioStartSeconds": 784.17,
+   "audioEndSeconds": 804.36,
+   "audioDurationSeconds": 20.19,
+   "wordAlignmentCoverage": 0.9153,
+   "recordedShots": [
+    {
+     "shotId": "01",
+     "startSeconds": 784.17,
+     "endSeconds": 804.36,
+     "durationSeconds": 20.19,
+     "startsAt": "passage_start",
+     "endsAt": "passage_end"
+    }
+   ],
+   "acceptableDurationSeconds": {
+    "min": 20.19,
+    "target": 20.19,
+    "max": null,
+    "note": "Descriptive. Corpus median 9.0s, p75 14.0s. Never a cap: the evidence sets the length."
+   },
+   "durationPolicy": {
+    "mode": "elastic",
+    "evidenceMustComplete": true,
+    "narrationYields": false,
+    "extensionRequired": []
+   },
+   "minimumReadableHoldSeconds": 1.5,
+   "internalChangeBudget": {
+    "enforcement": "advisory_only",
+    "requiredChanges": 3,
+    "secondsPerChangeCeiling": 6.8,
+    "eventsAvailable": 3,
+    "satisfied": true,
+    "standingException": null,
+    "note": "Advisory. May suggest splitting a unit, but never rejects a candidate and never forces a split. Overridden whenever the content needs the time."
+   }
+  },
+  "takeaway": "Pre-streaming careers cannot be measured, so the claim is bounded to the streaming era.",
+  "narrationJob": "sequence",
+  "claims": [
+   {
+    "text": "Artists whose seventeenth year predates streaming cannot be placed on this chart.",
+    "claimClass": "rhetorical_framing",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "the documentary's own stated measurement limitation"
+    ]
+   },
+   {
+    "text": "There is no daily streaming meter for Jay-Z's seventeenth year.",
+    "claimClass": "documented_fact",
+    "evidenceObligation": "exact_event_or_entity_required",
+    "sourceCandidates": [
+     "absence of streaming data for that period"
+    ]
+   },
+   {
+    "text": "'Unprecedented' therefore reaches back only as far as the streaming era.",
+    "claimClass": "rhetorical_framing",
+    "evidenceObligation": "exact_source_required",
+    "sourceCandidates": [
+     "the documentary's own stated bound"
+    ]
+   }
+  ],
+  "strictestEvidenceObligation": "exact_source_required",
+  "entities": [
+   {
+    "name": "Jay-Z",
+    "entityType": "person",
+    "mustBeVisible": true,
+    "mustBeNamedOnScreen": true,
+    "recognitionRisk": "low"
+   }
+  ],
+  "focalEntityCount": 1,
+  "entityRelationship": "single",
+  "requiredMedia": [
+   {
+    "roleId": "named_historical_artist",
+    "editorialRole": "subject",
+    "mediaFamily": "portrait_still",
+    "sourceSpecificity": "exact_event_or_entity_required",
+    "contentRequirement": "Jay-Z, the only historical artist the narration names.",
+    "entityNames": [
+     "Jay-Z"
+    ]
+   }
+  ],
+  "visualEvents": [
+   {
+    "eventId": "E1",
+    "triggerPhrase": "can't go on this chart at all",
+    "eventType": "removal",
+    "criticality": "decisive",
+    "description": "The chart is shown as unable to hold them.",
+    "triggerOffsetSeconds": 7.03,
+    "measuredStartSeconds": 791.2,
+    "matchConfidence": 1.0,
+    "matchedTranscript": "Can't go on this chart at all.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E2",
+    "triggerPhrase": "no daily meter for Jay-Z's year seventeen",
+    "eventType": "reveal",
+    "criticality": "decisive",
+    "description": "Jay-Z appears as the named example.",
+    "triggerOffsetSeconds": 10.81,
+    "measuredStartSeconds": 794.98,
+    "matchConfidence": 0.939,
+    "matchedTranscript": "no daily meter for jazzy's year 17.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   },
+   {
+    "eventId": "E3",
+    "triggerPhrase": "that's as far as I'm taking it",
+    "eventType": "hold",
+    "criticality": "supporting",
+    "description": "The bound is accepted and held.",
+    "triggerOffsetSeconds": 18.57,
+    "measuredStartSeconds": 802.74,
+    "matchConfidence": 1.0,
+    "matchedTranscript": "that's as far as I'm taking it.",
+    "resolved": true,
+    "toleranceSeconds": 0.25
+   }
+  ],
+  "prohibitions": [
+   {
+    "prohibition": "Do not add historical artists the narration does not name.",
+    "reason": "The narration names Jay-Z and no one else. A five-slot scene would assert four careers the script never mentions.",
+    "severity": "hard"
+   }
+  ],
+  "successConditions": [
+   "The viewer understands the measurement stops at the streaming era.",
+   "Only Jay-Z is presented as the named example."
+  ],
+  "failureConditions": [
+   "Four unnamed peers are invented to fill a five-slot layout.",
+   "The limitation reads as a weakness rather than a stated bound."
+  ],
+  "readingLoad": "normal",
+  "scriptConflict": {
+   "conflict": "The recorded desired outcome asks for a five-slot scene using named historical artists. The narration names one.",
+   "narrationSupports": 1,
+   "desiredVisualRequires": 5,
+   "resolution": "Hold for script clarification. Either the script names four more artists or the visual drops to one.",
+   "recordedFallback": "hold for script clarification"
+  },
+  "proposedDecomposition": null,
+  "groundTruth": {
+   "desired": "Five-slot AE scene or five continuous portrait shots using named historical artists",
+   "shots": "sequence",
+   "fallback": "hold for script clarification; the narration names only Jay-Z but the intended visual needs five historical artists",
+   "allowedKinds": null,
+   "allowedTemplateIds": null,
+   "preferredTemplateIds": null,
+   "presentation": null
+  },
+  "provenance": {
+   "createdBy": "astra prototype vertical slice",
+   "rulesetVersion": "0.2.0-prototype",
+   "authoredFields": [
+    "claims",
+    "entities",
+    "requiredMedia",
+    "visualEvents",
+    "prohibitions",
+    "successConditions",
+    "failureConditions"
+   ],
+   "measuredFields": [
+    "all timing values",
+    "event offsets"
+   ],
+   "humanReviewed": false
+  }
+ },
+ "binding": {
+  "bindings": [
+   {
+    "roleId": "named_historical_artist",
+    "attributionPolicy": "record_only",
+    "provenance": "media_library",
+    "sourceRef": "/Users/dwaynetoler/Media Library",
+    "sourceCandidates": null,
+    "editorialRole": "subject",
+    "sourceSpecificity": "exact_event_or_entity_required",
+    "mediaFamily": "portrait_still",
+    "status": "bound_local",
+    "perEntity": {
+     "Jay-Z": {
+      "count": 50,
+      "image": 31,
+      "video": 19,
+      "cutout": 10,
+      "examples": [
+       {
+        "assetId": "032c6c2cd1556a78c07cc392",
+        "type": "video",
+        "dimensions": "720x960"
+       },
+       {
+        "assetId": "03e35f2c62caddbe3054ad77",
+        "type": "video",
+        "dimensions": "720x1280"
+       },
+       {
+        "assetId": "0b6ec7c620b2085d649a80c0",
+        "type": "image",
+        "dimensions": "640x800"
+       }
+      ],
+      "assertedYears": [
+       "2019"
+      ]
+     }
+    },
+    "artifacts": {},
+    "missing": [],
+    "note": null
+   }
+  ],
+  "evidenceSources": [],
+  "missingAssets": [],
+  "anyMissing": false,
+  "dataRolesOutstanding": []
+ },
+ "slate": {
+  "slate": [
+   {
+    "kind": "after_effects",
+    "templateId": "02-documentary-promo",
+    "sceneId": "02-documentary-promo--scene-002",
+    "name": "Documentary Promo \u00b7 Scene 02",
+    "function": "entity explanation",
+    "focalEntityCount": null,
+    "nativeDurationSeconds": 3.6,
+    "retimeAllowed": true,
+    "acceptedMedia": [
+     "image",
+     "video"
+    ],
+    "appropriateNarration": null,
+    "avoidWhen": [],
+    "acceptedMediaTypes": [
+     "image",
+     "video"
+    ],
+    "hasProfile": true,
+    "documentaryRoles": {
+     "primary": [
+      "introduce",
+      "evidence",
+      "transition"
+     ],
+     "secondary": [
+      "reveal",
+      "context",
+      "quote",
+      "close"
+     ],
+     "weak": [
+      "represent_while_discussed"
+     ],
+     "notSupported": []
+    },
+    "usableReadingTimeSeconds": 3.23,
+    "usableReadingTimeMin": 2.22,
+    "stylePace": "Fast. Nine scenes in 31 seconds, most 2.5-4.0s.",
+    "styleDensity": "High. Several text blocks can be on screen simultaneously alongside a subject.",
+    "narrationSuitability": "limited",
+    "capacityFits": true,
+    "carriesData": false,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "pass",
+      "explanation": "Every named entity has an asset or an authored value."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Profile measures 3.23s usable reading time against a 1.5s requirement."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "pass",
+      "explanation": "No unbound identity roles."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.61,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "decisive_events_alignable",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 1
+   },
+   {
+    "kind": "after_effects",
+    "templateId": "03-history-documentary-10-slides",
+    "sceneId": "03-history-documentary-10-slides--scene-001",
+    "name": "History and Documentary \u2014 10 slides \u00b7 Scene 1",
+    "function": "entity reveal",
+    "focalEntityCount": null,
+    "nativeDurationSeconds": 9.37,
+    "retimeAllowed": true,
+    "acceptedMedia": [
+     "image",
+     "video"
+    ],
+    "appropriateNarration": null,
+    "avoidWhen": [],
+    "acceptedMediaTypes": [
+     "image",
+     "video"
+    ],
+    "hasProfile": true,
+    "documentaryRoles": {
+     "primary": [
+      "represent_while_discussed",
+      "context",
+      "introduce"
+     ],
+     "secondary": [
+      "reveal",
+      "transition",
+      "close"
+     ],
+     "weak": [
+      "evidence",
+      "quote"
+     ],
+     "notSupported": []
+    },
+    "usableReadingTimeSeconds": 8.57,
+    "usableReadingTimeMin": 5.97,
+    "stylePace": "Measured. Slides run 6.6-9.8 seconds with 6-9 seconds of settled core.",
+    "styleDensity": "Moderate. One subject plate plus a three-part text lockup, or one large year.",
+    "narrationSuitability": "excellent",
+    "capacityFits": true,
+    "carriesData": false,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "pass",
+      "explanation": "Every named entity has an asset or an authored value."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Profile measures 8.57s usable reading time against a 1.5s requirement."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "pass",
+      "explanation": "No unbound identity roles."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.61,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "decisive_events_alignable",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 2
+   },
+   {
+    "kind": "after_effects",
+    "templateId": "04-history-documentary-20-slides",
+    "sceneId": "04-history-documentary-20-slides--scene-016",
+    "name": "History and Documentary \u2014 20 slides \u00b7 Scene 16",
+    "function": "entity reveal",
+    "focalEntityCount": null,
+    "nativeDurationSeconds": 8.2,
+    "retimeAllowed": true,
+    "acceptedMedia": [
+     "image",
+     "video"
+    ],
+    "appropriateNarration": null,
+    "avoidWhen": [],
+    "acceptedMediaTypes": [
+     "image",
+     "video"
+    ],
+    "hasProfile": true,
+    "documentaryRoles": {
+     "primary": [
+      "represent_while_discussed",
+      "context",
+      "introduce"
+     ],
+     "secondary": [
+      "reveal",
+      "transition"
+     ],
+     "weak": [
+      "evidence",
+      "quote",
+      "close"
+     ],
+     "notSupported": []
+    },
+    "usableReadingTimeSeconds": 8.2,
+    "usableReadingTimeMin": 1.53,
+    "stylePace": "Measured. Slides run 6.6-9.8 seconds with 6-9 seconds of settled core.",
+    "styleDensity": "Moderate. One subject plate plus a three-part text lockup, or one large year.",
+    "narrationSuitability": "excellent",
+    "capacityFits": true,
+    "carriesData": false,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "pass",
+      "explanation": "Every named entity has an asset or an authored value."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Profile measures 8.2s usable reading time against a 1.5s requirement."
+     },
+     "decisive_events_alignable": {
+      "result": "unknown",
+      "explanation": "Scene record carries no internal event beats, so alignment cannot be computed."
+     },
+     "asset_quality_sufficient": {
+      "result": "pass",
+      "explanation": "No unbound identity roles."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.61,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "decisive_events_alignable",
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "placedBy": "rank",
+    "rank": 3
+   },
+   {
+    "kind": "infographic",
+    "templateId": "08_yearly_leader_timeline",
+    "name": "Period-by-period leaders",
+    "intents": [
+     "history",
+     "leaders",
+     "ties"
+    ],
+    "capacitySummary": "12 period rows; existing support for up to 3 leaders per period",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": null,
+    "showsPortraits": true,
+    "capacitySlack": null,
+    "avoidWhen": [
+     "More than three leaders in a period",
+     "continuous measurement trends"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "pass",
+      "explanation": "Every named entity has an asset or an authored value."
+     },
+     "evidence_legible": {
+      "result": "pass",
+      "explanation": "Duration admits the 1.5s readable hold."
+     },
+     "decisive_events_alignable": {
+      "result": "pass",
+      "explanation": "2 decisive events resolved; container schedules elements to phrases."
+     },
+     "asset_quality_sufficient": {
+      "result": "pass",
+      "explanation": "No unbound identity roles."
+     },
+     "not_forcing_a_template": {
+      "result": "pass",
+      "explanation": "No stronger direct treatment is being displaced."
+     },
+     "density_acceptable": {
+      "result": "pass",
+      "explanation": "Density proportionate to the entity count."
+     },
+     "era_consistent": {
+      "result": "pass",
+      "explanation": "No era constraint recorded."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.51,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [],
+    "unknowns": [
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    },
+    "rank": 4
+   }
+  ],
+  "viableCount": 51,
+  "spatialFirstDetail": {
+   "fired": false,
+   "terms": [],
+   "triggerSource": "none",
+   "ruleVersion": "1.1.0-local"
+  },
+  "ruleProvenance": {
+   "baseRuleCount": 10,
+   "activeCorrections": [
+    "COR-0001-spatial-attrition",
+    "COR-0002-citation-policy",
+    "COR-0003-era-consistency-gate",
+    "COR-0004-change-budget-is-a-hint",
+    "COR-0005-portrait-legibility",
+    "COR-0006-intent-scoring-and-overview-route",
+    "COR-0007-scene-level-distinctness",
+    "COR-0008-defects-found-by-extending",
+    "COR-0009-per-shot-selection",
+    "COR-0010-defects-found-at-thirty",
+    "COR-0011-motion-profiles-adopted",
+    "COR-0012-schedule-replacement-is-the-mechanism",
+    "COR-0013-passage-28-allowed-kinds",
+    "COR-0014-measurement-was-the-problem"
+   ],
+   "revertedCorrections": [],
+   "maximumScope": "project",
+   "writesToProject": false
+  },
+  "rejectedCount": 59,
+  "poolSize": 110,
+  "rejectedSample": [
+   {
+    "kind": "infographic",
+    "templateId": "07_labeled_outlier_scatter",
+    "name": "Annotated outlier scatter",
+    "intents": [
+     "relationship",
+     "outliers",
+     "two variables"
+    ],
+    "capacitySummary": "14 points; 2 numeric variables each; 5 named callout slots",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 14,
+    "showsPortraits": false,
+    "capacitySlack": 13,
+    "avoidWhen": [
+     "A ranked list",
+     "causal conclusions from correlation"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "fail",
+      "explanation": "Container is built for 14 entities. The narration names 1. Filling it would assert 13 people the script never mentions."
+     }
+    },
+    "portraitFit": "layout shows no portraits but the contract needs them",
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.31,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "no_unsupported_implication"
+    ],
+    "unknowns": [
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "47_similarity_ascending_bars",
+    "name": "Ascending score bars with benchmarks",
+    "intents": [
+     "rank",
+     "magnitude",
+     "score"
+    ],
+    "capacitySummary": "35 entries; 1 numeric score each; 2 hero portraits",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 35,
+    "showsPortraits": true,
+    "capacitySlack": 34,
+    "avoidWhen": [
+     "Negative scores",
+     "arbitrary order labeled as ascending"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "fail",
+      "explanation": "Container is built for 35 entities. The narration names 1. Filling it would assert 34 people the script never mentions."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.18,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "no_unsupported_implication"
+    ],
+    "unknowns": [
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "cinematic_3d",
+    "templateId": "truth-rank-fall",
+    "name": "Before-and-after rank-loss field",
+    "intents": [
+     "rank",
+     "change",
+     "resilience"
+    ],
+    "capacitySummary": "3\u201312 entities; 1 rank delta per entity from a shared zero start; one optional hero expected to move little or not at all.",
+    "capacityFits": false,
+    "capacityRange": [
+     3,
+     12
+    ],
+    "avoidWhen": [
+     "The before and after rankings were computed with different populations",
+     "Absolute rank matters more than rank change",
+     "The metric is a value change rather than an ordinal rank change"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [3, 12] cannot hold 1 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "fail",
+      "explanation": "Container is built for 3 entities. The narration names 1. Filling it would assert 2 people the script never mentions."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.5,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim",
+     "no_unsupported_implication"
+    ],
+    "unknowns": [
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "46_similarity_criteria_table",
+    "name": "Candidate scores with visible criteria",
+    "intents": [
+     "score",
+     "rank",
+     "explain"
+    ],
+    "capacitySummary": "10 candidates; 1 score each; 6 criteria captions; 1 hero",
+    "capacityFits": true,
+    "capacityRange": [
+     null,
+     null
+    ],
+    "designedForEntities": 10,
+    "showsPortraits": true,
+    "capacitySlack": 9,
+    "avoidWhen": [
+     "Automatic facial or identity inference",
+     "scoring without a defined method"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "pass",
+      "explanation": "Capacity admits the focal entity count."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "fail",
+      "explanation": "Container is built for 10 entities. The narration names 1. Filling it would assert 9 people the script never mentions."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 1.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.18,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "no_unsupported_implication"
+    ],
+    "unknowns": [
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "cinematic_3d",
+    "templateId": "truth-cohort-attrition",
+    "name": "Cohort attrition to named survivors",
+    "intents": [
+     "timeline",
+     "attrition",
+     "survival"
+    ],
+    "capacitySummary": "6\u201330 starting entities; a verified starting cohort; a chart-year record per entity; 1\u20133 named survivors; one disclosed exit rule.",
+    "capacityFits": false,
+    "capacityRange": [
+     6,
+     30
+    ],
+    "avoidWhen": [
+     "The starting cohort is not verified",
+     "The narration needs career-end dates rather than chart-streak exits",
+     "The people did not share a meaningful comparison clock"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [6, 30] cannot hold 1 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "fail",
+      "explanation": "Container is built for 6 entities. The narration names 1. Filling it would assert 5 people the script never mentions."
+     }
+    },
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.5,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim",
+     "no_unsupported_implication"
+    ],
+    "unknowns": [
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   },
+   {
+    "kind": "infographic",
+    "templateId": "30_dense_rank_bars",
+    "name": "Compact portrait bar leaderboard",
+    "intents": [
+     "rank",
+     "magnitude",
+     "overview"
+    ],
+    "capacitySummary": "30 entities; 1 measure each",
+    "capacityFits": false,
+    "capacityRange": [
+     30,
+     30
+    ],
+    "designedForEntities": 30,
+    "showsPortraits": true,
+    "capacitySlack": 29,
+    "avoidWhen": [
+     "A two-subject story",
+     "extensive text labels"
+    ],
+    "carriesData": true,
+    "spatialPreferred": false,
+    "gateResults": {
+     "communicates_claim": {
+      "result": "fail",
+      "explanation": "Capacity [30, 30] cannot hold 1 focal entities."
+     },
+     "evidence_specificity_honoured": {
+      "result": "pass",
+      "explanation": "Container can present the sourced values or artifact."
+     },
+     "no_unsupported_implication": {
+      "result": "fail",
+      "explanation": "Container is built for 30 entities. The narration names 1. Filling it would assert 29 people the script never mentions."
+     }
+    },
+    "portraitFit": 0.35,
+    "scores": {
+     "timingAlignment": 1.0,
+     "claimCommunication": 0.0,
+     "factualAccuracy": 1.0,
+     "structuralFit": 0.0,
+     "styleConsistency": 0.75,
+     "assetQuality": 0.7,
+     "polish": 0.7,
+     "renderCost": 0.8,
+     "curation": 0.0
+    },
+    "hardFail": [
+     "communicates_claim",
+     "no_unsupported_implication"
+    ],
+    "unknowns": [
+     "schedule_replacement_unproven"
+    ],
+    "scheduleReplacement": {
+     "required": true,
+     "proven": false,
+     "reason": "2 decisive cues must land on their phrases, so the native schedule is replaced with a cue schedule.",
+     "status": "unproven_on_this_template"
+    }
+   }
+  ],
+  "spatialFirstApplied": false
+ },
+ "decision": {
+  "action": "blocked_script_conflict",
+  "winnerRank": 1,
+  "confidence": {
+   "value": null,
+   "method": "uncalibrated_prior",
+   "calibrationSampleSize": 0,
+   "note": "Auto-advance disabled by policy until calibrated against approved and rejected decisions."
+  },
+  "escalationTriggers": [
+   "candidates_close",
+   "low_confidence",
+   "script_conflict"
+  ],
+  "reasons": [
+   "The recorded desired outcome asks for a five-slot scene using named historical artists. The narration names one. Hold for script clarification. Either the script names four more artists or the visual drops to one.",
+   "Top two candidates are tied on every priority level.",
+   "Winner has unresolved gates: decisive_events_alignable, schedule_replacement_unproven."
+  ],
+  "shotCount": 1
+ },
+ "groundTruthCheck": {
+  "desired": "Five-slot AE scene or five continuous portrait shots using named historical artists",
+  "successCriterion": "refusal",
+  "desiredInSlate": true,
+  "desiredAtRank": 1,
+  "refused": true,
+  "recordedFallback": "hold for script clarification; the narration names only Jay-Z but the intended visual needs five historical artists"
+ }
+}

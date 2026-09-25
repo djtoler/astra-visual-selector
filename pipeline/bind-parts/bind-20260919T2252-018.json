@@ -1,0 +1,187 @@
+{
+ "06-the-history--scene-005": [
+  {
+   "job": "narrate_an_event",
+   "confidence": "clear",
+   "mechanism": "large date cutout reveal",
+   "evidence": "Two cutouts with the main cutout repeated in the background, large date, pullback, label overlay on right."
+  }
+ ],
+ "06-the-history--scene-006": [
+  {
+   "job": "narrate_an_event",
+   "confidence": "clear",
+   "mechanism": "single cutout date callout",
+   "evidence": "Cutout with background cutout, large date, right-to-left movement, centered label overlay."
+  }
+ ],
+ "06-the-history--scene-007": [
+  {
+   "job": "narrate_an_event",
+   "confidence": "clear",
+   "mechanism": "paired cutout date reveal",
+   "evidence": "Two cutouts side by side with the main cutout in the background, large date, bottom-to-top movement, centered label overlay."
+  }
+ ],
+ "06-the-history--scene-008": [
+  {
+   "job": "narrate_an_event",
+   "confidence": "clear",
+   "mechanism": "cutout with falling date",
+   "evidence": "Cutout with background cutout, large date, top-to-bottom movement, centered label overlay."
+  }
+ ],
+ "06-the-history--scene-009": [
+  {
+   "job": "narrate_an_event",
+   "confidence": "clear",
+   "mechanism": "pullback dated cutout",
+   "evidence": "Cutout with background cutout, large date, pullback, centered label overlay."
+  }
+ ],
+ "06-the-history--scene-010": [
+  {
+   "job": "narrate_an_event",
+   "confidence": "clear",
+   "mechanism": "sliding dated cutout",
+   "evidence": "Cutout with background cutout, large date, right-to-left movement, centered label overlay."
+  }
+ ],
+ "06-the-history--scene-016": [
+  {
+   "job": "narrate_an_event",
+   "confidence": "clear",
+   "mechanism": "layered cutout date rise",
+   "evidence": "Two cutouts across foreground and background, main cutout in the background, large date, bottom-to-top movement, centered label overlay."
+  }
+ ],
+ "01_finals_head_to_head": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "aligned text metric rows",
+   "evidence": "Portraits identify subjects; aligned text compares metrics.",
+   "condition": "used with exactly two named subjects, the second treated as the sole named peer"
+  }
+ ],
+ "03_dual_trend_lines": [
+  {
+   "job": "derived_quantity",
+   "confidence": "clear",
+   "mechanism": "computed mean difference",
+   "evidence": "the renderer also computes the mean difference between the two series"
+  }
+ ],
+ "05_measured_height_ruler": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "bottom-aligned height stack",
+   "evidence": "Bottom-aligned full-body height communicates magnitude; the native height formula is affine, not a zero-based ratio scale.",
+   "condition": "one of the three fixed subjects is treated as the focal entity against the other two"
+  }
+ ],
+ "06_historical_winners_table": [
+  {
+   "job": "enumerate",
+   "confidence": "clear",
+   "mechanism": "chronological text rows",
+   "evidence": "Text-led chronological lookup; column placement wraps the sequence and does not encode magnitude."
+  },
+  {
+   "job": "category_breakdown",
+   "confidence": "conditional",
+   "mechanism": "column-grouped record counts",
+   "evidence": "Keep all 40 records and the measured column groups.",
+   "condition": "the three display columns represent distinct categories whose entries sum to the full 40"
+  }
+ ],
+ "07_labeled_outlier_scatter": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "callout among scattered points",
+   "evidence": "Position on two numeric axes shows association; callouts focus attention on selected points."
+  }
+ ],
+ "08_yearly_leader_timeline": [
+  {
+   "job": "enumerate",
+   "confidence": "clear",
+   "mechanism": "named leader per period",
+   "evidence": "A categorical timeline of winners, including ties; portrait size is not magnitude."
+  },
+  {
+   "job": "streak_over_time",
+   "confidence": "conditional",
+   "mechanism": "repeated leader across periods",
+   "evidence": "preserve all 12 period rows",
+   "condition": "the same leader occupies multiple consecutive period rows"
+  }
+ ],
+ "09_artist_field_grid": [
+  {
+   "job": "enumerate",
+   "confidence": "clear",
+   "mechanism": "equal-size membership marks",
+   "evidence": "Equal marks show membership or coverage; no numerical variable controls size."
+  }
+ ],
+ "10_two_era_rankings": [
+  {
+   "job": "change_across_set",
+   "confidence": "clear",
+   "mechanism": "adjacent ranked-list eras",
+   "evidence": "Two adjacent ordered lists compare the same measure across cohorts."
+  }
+ ],
+ "11_defensive_numbers": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "flanking photos text stats",
+   "evidence": "Two large contextual photos flank six text comparisons.",
+   "condition": "used with exactly two named subjects, the second treated as the sole named peer"
+  }
+ ],
+ "14_quote_score_columns": [
+  {
+   "job": "one_vs_many_individually",
+   "confidence": "conditional",
+   "mechanism": "quote-framed evidence blocks",
+   "evidence": "Large quotations frame compact numeric evidence; text has no proportional scale.",
+   "condition": "the two quote blocks represent two entities compared narratively, without implying matched rows"
+  }
+ ],
+ "16_ranked_table_and_bars": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "ranked magnitude bars",
+   "evidence": "Text supports precise lookup while bars compare the primary measure."
+  },
+  {
+   "job": "enumerate",
+   "confidence": "conditional",
+   "mechanism": "precise value lookup table",
+   "evidence": "Text supports precise lookup while bars compare the primary measure.",
+   "condition": "the table is read for exact values independent of the bar magnitudes"
+  },
+  {
+   "job": "entity_vs_benchmark",
+   "confidence": "conditional",
+   "mechanism": "bar length against fixed cap",
+   "evidence": "The chart uses a fixed maximum of 10.",
+   "condition": "values are interpreted relative to that fixed ceiling as a benchmark"
+  }
+ ],
+ "17_awards_height_board": [
+  {
+   "job": "locate_in_distribution",
+   "confidence": "clear",
+   "mechanism": "ordered area profile",
+   "evidence": "An area profile over ordered entities accompanies two ledgers; the numeric field can represent age, tenure or another continuous measure."
+  }
+ ],
+ "18_cutout_intro": []
+}

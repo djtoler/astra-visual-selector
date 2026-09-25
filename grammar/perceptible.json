@@ -1,0 +1,959 @@
+{
+ "provenance": {
+  "promptSha": "764b3760ab3c",
+  "model": "claude-sonnet-5",
+  "runId": "perceptible-20260920T200145",
+  "generatedAt": "2026-09-20T20:09:20.627586"
+ },
+ "statements": {
+  "01-01#0": {
+   "beat": "01-01",
+   "statement_index": 0,
+   "carries": [
+    "derivation",
+    "change_over_time"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "equality"
+   ],
+   "evidence": {
+    "carries:derivation": "compounding across a day",
+    "carries:change_over_time": "compounding across a day",
+    "must_not_imply:equality": "not as two disconnected numbers"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "The negation 'two disconnected numbers' doesn't map cleanly onto any single implies term; it could be read as implying equality (two independent, parallel facts) or as having no matching term at all, since 'disconnection' itself isn't in the implies vocabulary.",
+   "statement": "the daily total should read as the per-second rate compounding across a day, not as two disconnected numbers",
+   "job": "derived_quantity",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "02-02b#0": {
+   "beat": "02-02b",
+   "statement_index": 0,
+   "carries": [
+    "magnitude"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "should register as roughly equal in magnitude"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "Curren$y's whole-career sum and the other catalog's 24-day slice should register as roughly equal in magnitude",
+   "job": "equivalence_restatement",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "03-03#0": {
+   "beat": "03-03",
+   "statement_index": 0,
+   "carries": [
+    "rank"
+   ],
+   "readable": [
+    "ordering"
+   ],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:rank": "a visible low-to-high ordering of dots by height",
+    "readable:ordering": "readable starting from the bottom"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "a visible low-to-high ordering of dots by height, readable starting from the bottom",
+   "job": "explain_the_encoding",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "04-04#0": {
+   "beat": "04-04",
+   "statement_index": 0,
+   "carries": [
+    "difference"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:difference": "a visible gap between the mystery dot and the next-highest dot(s)"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "a visible gap between the mystery dot and the next-highest dot(s)",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "04-04#1": {
+   "beat": "04-04",
+   "statement_index": 1,
+   "carries": [
+    "magnitude",
+    "aggregate"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "ranking"
+   ],
+   "evidence": {
+    "carries:magnitude": "clearly exceeding",
+    "carries:aggregate": "the combined total of Future's and Travis Scott's dots",
+    "must_not_imply:ranking": "not just exceeding either one alone"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "the mystery dot's height clearly exceeding the combined total of Future's and Travis Scott's dots, not just exceeding either one alone",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "05-05a#0": {
+   "beat": "05-05a",
+   "statement_index": 0,
+   "carries": [
+    "rank"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:rank": "standing as the topmost point across the full 93-dot field"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "the mystery dot standing as the topmost point across the full 93-dot field",
+   "job": "locate_in_distribution",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "08-08#0": {
+   "beat": "08-08",
+   "statement_index": 0,
+   "carries": [
+    "share_of_whole"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:share_of_whole": "the own-songs/other-people's-songs split should read as roughly even, not skewed to one side"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "If the catalog composition is shown visually, the own-songs/other-people's-songs split should read as roughly even, not skewed to one side.",
+   "job": "category_breakdown",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "09-09#0": {
+   "beat": "09-09",
+   "statement_index": 0,
+   "carries": [
+    "magnitude",
+    "identity"
+   ],
+   "readable": [
+    "exact_value"
+   ],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "distinguishable as separate, escalating values",
+    "carries:identity": "each anchored to its own artist",
+    "readable:exact_value": "(50, 52, 71, 79)"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The four percentages must be distinguishable as separate, escalating values (50, 52, 71, 79), each anchored to its own artist.",
+   "job": "parallel_instances",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "11-11a#0": {
+   "beat": "11-11a",
+   "statement_index": 0,
+   "carries": [
+    "magnitude",
+    "share_of_whole"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "completeness"
+   ],
+   "evidence": {
+    "carries:magnitude": "small slivers",
+    "carries:share_of_whole": "of a whole"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "the negation 'not as dominant portions' doesn't map cleanly onto any single term in the implies vocabulary; 'completeness' is the closest but the fit is approximate",
+   "statement": "Both shares must read as small slivers of a whole, not as dominant portions.",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "11-11a#1": {
+   "beat": "11-11a",
+   "statement_index": 1,
+   "carries": [
+    "difference",
+    "share_of_whole"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:difference": "must be visible as an increase",
+    "carries:share_of_whole": "still a minority of the whole"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The step from the one-song share to the ten-song share must be visible as an increase but still a minority of the whole.",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "11-11b#0": {
+   "beat": "11-11b",
+   "statement_index": 0,
+   "carries": [
+    "difference",
+    "magnitude"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:difference": "must read as clearly higher than Drake's fifteen percent",
+    "carries:magnitude": "while still low relative to a typical catalog"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "Future's figure must read as clearly higher than Drake's fifteen percent, while still low relative to a typical catalog.",
+   "job": "entity_vs_benchmark",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "12-12a#0": {
+   "beat": "12-12a",
+   "statement_index": 0,
+   "carries": [
+    "magnitude",
+    "change_over_time"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "visually distinguishable from each other",
+    "carries:change_over_time": "all reading as downward movement on one shared scale"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The three drop sizes (28, 13, 12) must be visually distinguishable from each other while all reading as downward movement on one shared scale.",
+   "job": "change_across_set",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "12-12b#0": {
+   "beat": "12-12b",
+   "statement_index": 0,
+   "carries": [
+    "change_over_time",
+    "difference"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:change_over_time": "must be visible as no movement at all",
+    "carries:difference": "distinct from Macklemore's three-spot drop"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "the 'no movement' requirement sits between change_over_time (a static state on the same movement scale) and absence (a zero distinct from a missing value); the vocabulary doesn't cleanly separate these once the change itself is zero.",
+   "statement": "Drake's zero rank change must be visible as no movement at all, distinct from Macklemore's three-spot drop.",
+   "job": "parallel_instances",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "12-12b#1": {
+   "beat": "12-12b",
+   "statement_index": 1,
+   "carries": [
+    "magnitude"
+   ],
+   "readable": [
+    "exact_value"
+   ],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "must read as higher than Macklemore's (73)",
+    "readable:exact_value": "Drake's percentage retained (97)"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "Drake's percentage retained (97) must read as higher than Macklemore's (73).",
+   "job": "parallel_instances",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "13-13a#0": {
+   "beat": "13-13a",
+   "statement_index": 0,
+   "carries": [
+    "magnitude"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "must read as far above the rest of the field"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "Drake's count of thirty must read as far above the rest of the field.",
+   "job": "locate_in_distribution",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "13-13a#1": {
+   "beat": "13-13a",
+   "statement_index": 1,
+   "carries": [
+    "magnitude",
+    "aggregate",
+    "rank"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "large, distinct cluster",
+    "carries:aggregate": "distinct cluster",
+    "carries:rank": "at the bottom of the same distribution Drake is placed in"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "'cluster' could be read as aggregate (pooling) or as a grouping/membership term; 'bottom of the distribution' could be rank or position rather than a strict aggregate.",
+   "statement": "The thirty-five-rapper zero group must be visible as a large, distinct cluster at the bottom of the same distribution Drake is placed in.",
+   "job": "locate_in_distribution",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "13-13b#0": {
+   "beat": "13-13b",
+   "statement_index": 0,
+   "carries": [
+    "share_of_whole"
+   ],
+   "readable": [
+    "proportion"
+   ],
+   "must_not_imply": [
+    "equality"
+   ],
+   "evidence": {
+    "carries:share_of_whole": "the large majority of the field",
+    "readable:proportion": "read as the large majority of the field",
+    "must_not_imply:equality": "not a narrow one"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "Eighty-one out of ninety-three must read as the large majority of the field, not a narrow one.",
+   "job": "proportion_of_cohort",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "14-14#0": {
+   "beat": "14-14",
+   "statement_index": 0,
+   "carries": [
+    "magnitude"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "read as Drake's side clearly larger"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The two totals (21 vs 15) must read as Drake's side clearly larger.",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "14-14#1": {
+   "beat": "14-14",
+   "statement_index": 1,
+   "carries": [
+    "identity"
+   ],
+   "readable": [
+    "difference"
+   ],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:identity": "one side is ten songs from one artist, the other is five songs from five different artists",
+    "readable:difference": "composition difference must stay legible"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "'composition difference' blends a structural contrast with a readable delta; it is unclear whether the intended term is 'difference' or a missing compositional-structure term.",
+   "statement": "The composition difference must stay legible: one side is ten songs from one artist, the other is five songs from five different artists.",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "16-16#0": {
+   "beat": "16-16",
+   "statement_index": 0,
+   "carries": [
+    "membership"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "completeness"
+   ],
+   "evidence": {
+    "carries:membership": "must read as visually distinct sets",
+    "must_not_imply:completeness": "not one undivided list"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "the requirement could also be framed as 'difference' (visible gap between the two sets) rather than 'membership'.",
+   "statement": "The 2009 group and the 2010 group must read as visually distinct sets, not one undivided list.",
+   "job": "enumerate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "18-18#0": {
+   "beat": "18-18",
+   "statement_index": 0,
+   "carries": [
+    "aggregate"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:aggregate": "build from individual member values up to one combined total"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The build from individual member values up to one combined total.",
+   "job": "members_then_total",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "18-18#1": {
+   "beat": "18-18",
+   "statement_index": 1,
+   "carries": [
+    "membership"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "completeness"
+   ],
+   "evidence": {
+    "carries:membership": "the total visibly represents all seven members",
+    "must_not_imply:completeness": "not only the two named examples"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "the negation concerns scope of representation (all seven vs. two), which only loosely maps onto 'completeness' in the implies vocabulary; a different reader might argue no term in that list fits and leave must_not_imply empty.",
+   "statement": "That the total visibly represents all seven members, not only the two named examples.",
+   "job": "members_then_total",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "19-19#0": {
+   "beat": "19-19",
+   "statement_index": 0,
+   "carries": [
+    "magnitude"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "ranking"
+   ],
+   "evidence": {
+    "carries:magnitude": "must read as nearly identical in size",
+    "must_not_imply:ranking": "with neither clearly dominant"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The two totals must read as nearly identical in size, with neither clearly dominant.",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "20-20#0": {
+   "beat": "20-20",
+   "statement_index": 0,
+   "carries": [
+    "magnitude"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "must read as visibly greater than each of the four separate values"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "His value must read as visibly greater than each of the four separate values.",
+   "job": "one_vs_many_individually",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "20-20#1": {
+   "beat": "20-20",
+   "statement_index": 1,
+   "carries": [
+    "identity"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "completeness"
+   ],
+   "evidence": {
+    "carries:identity": "The four must remain distinct, separate quantities",
+    "must_not_imply:completeness": "rather than merging into one combined figure"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "the negation ('merging into one combined figure') is essentially a request not to imply 'aggregate', which is a carries term, not one of the six implies terms; 'completeness' is the nearest available match but is an imperfect fit, and another reader might instead choose 'equality' or leave must_not_imply empty.",
+   "statement": "The four must remain distinct, separate quantities rather than merging into one combined figure.",
+   "job": "one_vs_many_individually",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "21-21a#0": {
+   "beat": "21-21a",
+   "statement_index": 0,
+   "carries": [
+    "rank"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:rank": "read as visibly the smallest of the three"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "Drake's count must read as visibly the smallest of the three.",
+   "job": "one_vs_many_individually",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "21-21b#0": {
+   "beat": "21-21b",
+   "statement_index": 0,
+   "carries": [
+    "derivation"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:derivation": "read as computed from the total and the verse count"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The per-verse figure must read as computed from the total and the verse count, not as an independent statistic.",
+   "job": "derived_quantity",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "22-22#0": {
+   "beat": "22-22",
+   "statement_index": 0,
+   "carries": [
+    "difference"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:difference": "appear nearly equal, with the combined side only slightly ahead"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "Drake's total and the eleven-rapper combined total must appear nearly equal, with the combined side only slightly ahead.",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "22-22#1": {
+   "beat": "22-22",
+   "statement_index": 1,
+   "carries": [
+    "aggregate"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "competition"
+   ],
+   "evidence": {
+    "carries:aggregate": "read as many careers pooled into one total",
+    "must_not_imply:competition": "not one comparably-sized peer"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "the negation 'not one comparably-sized peer' could map to either a competition framing (one-vs-one rival) or an equality framing (comparable magnitude); the implies vocabulary does not disambiguate which is intended.",
+   "statement": "The combined side must read as many careers pooled into one total, not one comparably-sized peer.",
+   "job": "one_vs_aggregate",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "24-24#0": {
+   "beat": "24-24",
+   "statement_index": 0,
+   "carries": [
+    "change_over_time"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "completeness"
+   ],
+   "evidence": {
+    "carries:change_over_time": "visible as a sequence",
+    "must_not_imply:completeness": "without yet showing which year, if any, fails the test"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The full seventeen-year span must be visible as a sequence without yet showing which year, if any, fails the test.",
+   "job": "pose_a_question",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "25-25a#0": {
+   "beat": "25-25a",
+   "statement_index": 0,
+   "carries": [
+    "change_over_time"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:change_over_time": "must read as continuous, with no gap in any year"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The eighteen-year streak must read as continuous, with no gap in any year.",
+   "job": "streak_over_time",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "25-25b#0": {
+   "beat": "25-25b",
+   "statement_index": 0,
+   "carries": [
+    "membership"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:membership": "should stand out as matching on this measure, with the rest of the set reading as not matching"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "The relation of two artists 'matching' on a measure isn't a clean fit for any single carries term \u2014 membership (shared group) is the closest, but the statement could also be read as a difference/outlier relation (the pair standing out against the rest).",
+   "statement": "Only Drake and J. Cole should stand out as matching on this measure, with the rest of the set reading as not matching.",
+   "job": "parallel_instances",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "26-26#0": {
+   "beat": "26-26",
+   "statement_index": 0,
+   "carries": [
+    "magnitude"
+   ],
+   "readable": [
+    "exact_value"
+   ],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:magnitude": "The magnitude differences between categories (eleven down to one) must read visually",
+    "readable:exact_value": "not only as printed numbers"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The magnitude differences between categories (eleven down to one) must read visually, not only as printed numbers.",
+   "job": "category_breakdown",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "27-27#0": {
+   "beat": "27-27",
+   "statement_index": 0,
+   "carries": [
+    "difference"
+   ],
+   "readable": [
+    "difference"
+   ],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:difference": "'own' must visibly exceed 'guest'; for the second group, 'guest' must visibly exceed 'own'",
+    "readable:difference": "the reversal itself must be legible"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "For the first group, 'own' must visibly exceed 'guest'; for the second group, 'guest' must visibly exceed 'own' \u2014 the reversal itself must be legible.",
+   "job": "inversion",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "27-27#1": {
+   "beat": "27-27",
+   "statement_index": 1,
+   "carries": [
+    "membership"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "ranking"
+   ],
+   "evidence": {
+    "carries:membership": "The two groups must read as distinct clusters"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The two groups must read as distinct clusters, not one ranked list.",
+   "job": "inversion",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "28-28#0": {
+   "beat": "28-28",
+   "statement_index": 0,
+   "carries": [
+    "overlap"
+   ],
+   "readable": [],
+   "must_not_imply": [],
+   "evidence": {
+    "carries:overlap": "must read as an overlap"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists.",
+   "job": "intersection_of_sets",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "29-29a#0": {
+   "beat": "29-29a",
+   "statement_index": 0,
+   "carries": [
+    "difference"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "completeness"
+   ],
+   "evidence": {
+    "carries:difference": "Lil Baby's rate must visibly exceed Drake's",
+    "must_not_imply:completeness": "even though this says nothing about their respective career-long totals"
+   },
+   "missing": null,
+   "confidence": "unclear",
+   "unclear_why": "\u2018exceed\u2019 could be read as magnitude (size comparison) or difference (a visible gap); the statement doesn't specify which visual form the comparison takes.",
+   "statement": "Lil Baby's rate must visibly exceed Drake's, even though this says nothing about their respective career-long totals.",
+   "job": "entity_vs_benchmark",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "29-29b#0": {
+   "beat": "29-29b",
+   "statement_index": 0,
+   "carries": [],
+   "readable": [],
+   "must_not_imply": [
+    "ranking"
+   ],
+   "evidence": {
+    "must_not_imply:ranking": "not ranked above or below each other"
+   },
+   "missing": "parity among multiple values that must visibly read as equal rather than merely unranked",
+   "confidence": "clear",
+   "statement": "The three values must read as equal to one another, not ranked above or below each other.",
+   "job": "parallel_instances",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  },
+  "30-30a#0": {
+   "beat": "30-30a",
+   "statement_index": 0,
+   "carries": [
+    "absence"
+   ],
+   "readable": [],
+   "must_not_imply": [
+    "ranking",
+    "completeness"
+   ],
+   "evidence": {
+    "carries:absence": "must read as a gap or omission",
+    "must_not_imply:ranking": "bottom-ranked position on the same scale",
+    "must_not_imply:completeness": "not as a zero"
+   },
+   "missing": null,
+   "confidence": "clear",
+   "statement": "Jay-Z's absence must read as a gap or omission, not as a zero or bottom-ranked position on the same scale.",
+   "job": "assert_without_data",
+   "provenance": {
+    "promptSha": "764b3760ab3c",
+    "model": "claude-sonnet-5",
+    "runId": "perceptible-20260920T200145",
+    "source": "pipeline"
+   }
+  }
+ }
+}

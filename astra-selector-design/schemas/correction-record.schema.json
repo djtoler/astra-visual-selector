@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "astra/correction-record.schema.json",
+  "title": "User correction and rule promotion record",
+  "description": "Every user correction is stored with the example and the decision that caused it, classified by scope, and never promoted straight to a global rule. Promotion is a separate, evidenced, approved act with rollback preserved.",
+  "type": "object",
+  "required": ["correctionId", "observedAt", "trigger", "correction", "scope", "status"],
+  "properties": {
+    "correctionId": {"type": "string"},
+    "schemaVersion": {"type": "integer", "const": 1},
+    "observedAt": {"type": "string", "format": "date-time"},
+    "trigger": {
+      "type": "object",
+      "required": ["contractId", "systemDecision"],
+      "description": "The exact decision that provoked the correction. Without this a correction cannot be re-tested later.",
+      "properties": {
+        "contractId": {"type": "string"},
+        "narrationText": {"type": "string"},
+        "systemDecision": {"type": "string"},
+        "candidateSlate": {"type": "array", "items": {"type": "string"}},
+        "rulesetVersion": {"type": "string"}
+      }
+    },
+    "correction": {
+      "type": "object",
+      "required": ["userSaid", "correctDecision"],
+      "properties": {
+        "userSaid": {"type": "string", "description": "Verbatim. Not a summary."},
+        "correctDecision": {"type": "string"},
+        "reasonGiven": {"type": "string"},
+        "reasonInferred": {"type": "string", "description": "Marked separately from what the user actually said. Inferred reasons never license promotion on their own."}
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": ["assertedScope", "evidenceCount"],
+      "properties": {
+        "assertedScope": {
+          "enum": ["passage", "asset", "scene", "template", "template_family", "project", "global"],
+          "description": "Default is the narrowest scope consistent with the evidence, which for a single correction is passage or asset."
+        },
+        "evidenceCount": {"type": "integer", "description": "How many independent examples support this scope. One example supports a passage-scoped fact and nothing wider."},
+        "supportingCorrectionIds": {"type": "array", "items": {"type": "string"}},
+        "contradictingCorrectionIds": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "proposedPromotion": {
+      "type": "object",
+      "description": "A broader rule is only proposed when multiple examples support it, and never activated without showing what it would change.",
+      "properties": {
+        "targetScope": {"enum": ["scene", "template", "template_family", "project", "global"]},
+        "proposedRule": {"type": "string"},
+        "supportingExamples": {"type": "array", "items": {"type": "string"}},
+        "impactPreview": {
+          "type": "object",
+          "description": "Which existing ground-truth decisions and recommendations would change if this rule activated. Required before approval.",
+          "properties": {
+            "decisionsChanged": {"type": "array", "items": {"type": "object", "properties": {"contractId": {"type": "string"}, "before": {"type": "string"}, "after": {"type": "string"}}}},
+            "groundTruthAgreementBefore": {"type": "number"},
+            "groundTruthAgreementAfter": {"type": "number"},
+            "regressions": {"type": "array", "items": {"type": "string"}, "description": "Previously correct decisions this rule would break. A promotion causing any regression needs explicit acknowledgement."}
+          }
+        },
+        "requiresUserApproval": {"type": "boolean", "default": true, "description": "Always true for template_family, project and global scope."},
+        "approvedBy": {"type": "string"},
+        "approvedAt": {"type": "string", "format": "date-time"}
+      }
+    },
+    "activeRule": {
+      "type": "object",
+      "properties": {
+        "ruleId": {"type": "string"},
+        "version": {"type": "string"},
+        "activatedAt": {"type": "string", "format": "date-time"},
+        "rollback": {
+          "type": "object",
+          "required": ["previousVersion"],
+          "properties": {
+            "previousVersion": {"type": "string"},
+            "previousRuleText": {"type": "string"},
+            "revertedAt": {"type": "string", "format": "date-time"},
+            "revertReason": {"type": "string"}
+          }
+        }
+      }
+    },
+    "status": {"enum": ["recorded", "promotion_proposed", "promotion_approved", "active", "reverted", "superseded", "rejected"]}
+  }
+}

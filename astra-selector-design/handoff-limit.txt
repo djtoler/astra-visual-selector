@@ -1,0 +1,338 @@
+
+
+Research → script → beat extraction → job classification → template selection → media selection → render → assemble → export. One line, narration in, finished long-form video out, at volume.
+
+Everything we've built is the middle: the part that decides what appears on screen and why, deterministically enough to run 500 times a day without a human in the loop except where taste is the input.
+
+And the thing I'd keep in front of us: the line is built at the front and hollow at the back. Research, script, beats, jobs, templates, media — all real. Render doesn't exist. Assembly doesn't exist. Your own handoff calls the Video Builder unbuilt.
+
+So the risk isn't that the planning half is wrong — it's that it keeps getting better while the half that turns a plan into a video hasn't started. One beat rendered end-to-end would tell us more about what's actually missing than another pass over anything upstream.
+
+UP NEXT: Nothing running. When the tagging lands, Claude rebuilds the media grid — and whenever you want, one beat through render is the cheapest test of the back half.
+
+✻ Churned for 20s · done Wednesday 1:03 PM
+
+❯ im not asking for that. i have other agents workinrrently. im getting images ready for tagging.should we move on instead of waiting and just come back to this
+
+Yes — don't wait.
+
+Three things are workable right now and none of them touch the library:
+
+1. The two catch-all jobs. enumerate (145) and narrate_an_event (141) hold 286 of 624 bindings, and 162 of those have never been shown to anyone. "Name a roster, no quantity" and "something happened, once, at a time" are absorbing a third of the corpus
+each. That's free to investigate, it's upstream ofipt, and it's baked into 624 bindings — cheap to fix now, expensive later.
+
+2. Beat-side media kind. A template can say "this thing extracts that a beat wants one. 02-02a wantsthe XXL cover, 06-06 wants album covers, 23-23 wants a 2015 music video. That closes the asymmetry in what we just built, and it's the same shape as the gazetteer — likely a second lookup table, not a model.
+
+✻ Churned for 20s · done Wednesday 1:03 PM
+
+❯ im not asking for that. i have other agents working on other system parts currently. im getting images ready for tagging. should we move on instead of waiting and just come back to this
+
+Yes — don't wait.
+
+Three things are workable right now and none of them touch the library:
+
+1. The two catch-all jobs. enumerate (145) and nar86 of 624 bindings, and 162 of those have never beensame constraints seriously twice.
+
+Where today sits. Template selection was effectives served, 107 picks, all traceable. But a templateis a container. Your point — even the data-oriented ones need media — is what reopened it, and the number is stark: 381 to 1,052 media slots across the templates you chose, depending on which renders. Not one of those beats can become a shot until they're
+filled. So the media half isn't a side quest; it'stween "selected" and "rendered."
+
+What I think is genuinely unresolved, in rough order of how much they'd change the plan:
+
+Nothing renders. Stage 12 in STEPS.md says DOES NOT EXIST in those words. No script fills a slot or produces a frame. Every one of your 107 picks is an empty container.
+
+Story doesn't port the way data does. The taxonomy holds — 70% of a story documentary's units got a job. But 81% of its media must be the exact real person, place or moment, and templates addressed roughly 1 beat in 5 against 9 in 10 for Year Seventeen.
+So "20/day across niches" is two capabilities wearmar ports cheaply, the delivery doesn't.
+
+Two jobs are doing too much. enumerate and narrate_an_event hold 286 of 624 bindings. More scripts won't fix that; every new script just routes more beats into them.
+
+Non-person subjects have no home. The XXL cover, a video. The gazetteer holds artists. Nothingextracts that a beat wants a magazine.
+
+What I'm less sure of, and would rather ask than assume. I don't know what "20 a day" is in service of — whether that's one channel's cadence, several channels, or a service you're selling. I don't know how the vidIQ side connects, if at all. And I've
+never seen a finished output from this system, so r comes from the reference analyses and yourcorrections, not from a rendered thing. If my model of the destination is wrong anywhere, it's most likely there.
+
+UP NEXT: Nothing running while you tag. If any of larly the strategic split between grammar anddelivery — say so, because it's the part most likely to be steering what I propose next.
+
+✻ Brewed for 46s · done Wednesday 12:59 PM
+
+❯ ok but this is all serving a automated long-form content creation pipeline. concisly, do you see that/
+
+Yes.
+
+Research → script → beat extraction → job classification → template selection → media selection → render → assemble → export.
+One line, narration in, finished long-form video o
+
+Everything we've built is the middle: the part thascreen and why, deterministically enough to run 500times a day without a human in the loop except where taste is the input.
+
+And the thing I'd keep in front of us: the line is built at the front and hollow at the back. Research, script, beats, jobs,
+templates, media — all real. Render doesn't exist.our own handoff calls the Video Builder unbuilt.
+
+So the risk isn't that the planning half is wrong — it's that it keeps getting better while the half that turns a plan into a
+video hasn't started. One beat rendered end-to-endwhat's actually missing than another pass overanything upstream.
+
+UP NEXT: Nothing running. When the tagging lands, Claude rebuilds the media grid — and whenever you want, one beat through render is the cheapest test of the back half.
+
+✻ Churned for 20s · done Wednesday 1:03 PM
+
+❯ im not asking for that. i have other agents working on other system parts currently. im getting images ready for tagging.
+  should we move on instead of waiting and just come
+
+Yes — don't wait.
+
+Three things are workable right now and none of them touch the library:
+
+1. The two catch-all jobs. enumerate (145) and narrate_an_event (141) hold 286 of 624 bindings, and 162 of those have never been shown to anyone. "Name a roster, no quantity" and  at a time" are absorbing a third of the corpuseach. That's free to investigate, it's upstream of every niche and every script, and it's baked into 624 bindings — cheap to fix now, expensive later.
+
+2. Beat-side media kind. A template can say "this slot takes a document"; nothing extracts that a beat wants one. 02-02a wants   the XXL cover, 06-06 wants album covers, 23-23 want closes the asymmetry in what we just built, andit's the same shape as the gazetteer — likely a second lookup table, not a model.
+
+3. The story test's remaining 244 units. $2.45, measured rate. Confirms rather than discovers, so it's the weakest of the three.
+Plus two small open items whenever you want them: four templates whose card declares more capacity than the render showed, and   CLAUDE.md line 364 still saying a large beat "rout — which your own ruling struck.
+                                                                                                                                 My pick: #1. It's free, it's the deepest thing we' and it affects the story niche as much as this one— story ran on 7 of 20 jobs with narrate_an_event and assert_without_data at the top, which is the same concentration showing up in a different genre.
+
+UP NEXT: Say the number and Claude starts. #1 begins with reading what those 141 bindings actually have in common — free, no
+model call.
+
+✻ Worked for 21s · done Wednesday 1:10 PM
+
+※ recap: We're building an automated long-form video pipeline; the media selector is done and waiting on your image tagging. Meanwhile I proposed investigating why two catch-all jobs hold half the 624 bindings. Say the word and I'll start.
+
+❯ whats he plan for 1 and 2
+
+Let me check one thing before promising #2 — wheth exists:
+
+  Ran 1 shell command
+
+633 album titles, and 5 of 6 test cases hit. So Faa mixtape, never RIAA-certified, which is a real and predictable boundary of that source.
+
+---
+
+Plan for #1 — the catch-all jobs
+
+Question: are enumerate and narrate_an_event one job each, or several wearing one name?
+
+Method, three passes, all free:
+
+a  cluster each job's bindings by their `mechanism
+   the bind prompt already recorded WHY each record serves the job — 145
+   mechanisms for enumerate. If they fall into disit
+   showing itself
+
+b  cross-check against measured `carries`
+   if the clusters also differ in what they encodeagree
+
+c  THE DECIDING TEST — where did your picks land?
+   you judged enumerate on 2 beats and narrate_an_
+   came from one mechanism cluster and the other 130 bindings never got
+   chosen, the job is really that cluster and the rest is noise
+
+(c) is the one that settles it, because your picks are the taste and a binding nobody ever chooses is a binding that shouldn't
+exist.
+
+Output: either a proposed split with names and evi the job is genuinely broad — in which case the fixisn't splitting, it's capping how much of the corpus one job may absorb.
+
+Cost: nothing. Risk: 4 beats is a thin denominator for (c). If it's inconclusive I'll say so rather than split on a hunch.
+
+---
+
+Plan for #2 — beat-side media kind
+
+Question: how does a beat say it wants a cover, not a portrait?
+
+1  build a WORK gazetteer from the same CSVs — 633 album titles, free,
+   same longest-match method as the artist one
+
+2  hand-declare the small closed set a chart dataset can't hold:
+   XXL, Billboard, Complex, Spotify, Apple Music, …
+   ~20 names, and I'd bring you the list rather than invent it
+
+3  extract() gains kinds: an artist → person, an a
+   a publication → document
+
+4  a brief's wanted kind becomes the union of what
+   intersected with what the chosen template takes
+
+Then 02-02a stops asking for "Curren$y, any framinXXL Freshman cover" — which is what your note saidshould have won.
+
+Cost: nothing. Risk: ambiguity gets worse, not bet an English word; Scorpion could be either. Sameguard as the artists — capitalisation, mid-sentence, and report rather than guess.
+
+The known hole: mixtapes. So Far Gone is the beat  it isn't in an RIAA file, because it was nevercertified. If a beat names a work the gazetteer lacks, it'll surface in unknown — visible, not silent — but it won't resolve.
+
+---
+
+Both are a similar size. #1 is upstream and shapes every niche; #2 is downstream and closes a hole we just opened. If you want
+them sequenced, #1 first for the same reason as be bindings and gets more expensive the longer itsits.
+
+UP NEXT: Say which, or both in that order, and Clas in either.
+
+✻ Cooked for 45s · done Wednesday 1:19 PM
+
+※ recap: You're building an automated long-form video pipeline; today we finished the media-candidate selector and I proposed two free next steps: splitting the two catch-all jobs, or letting beats ask for album covers and documents rather than only people.
+
+  Next: tell me which one, or both in that order.
+
+❯ start with 1. can we test the methods?
+
+Right question — a method that can't be falsified isn't a method. The test is a control group: run all three on jobs we're confident are coherent. If they show the same structure there, they detect nothing.
+
+Let me look at the raw material first:
+
+  Ran 1 shell command
+
+Mechanisms are free prose — 99 distinct out of 145 work. But the top ones already say something:
+
+enumerate          "single card roster reveal" · "sequential named reveals"
+                   · "paired captioned identity ca
+narrate_an_event   "dated card single milestone" · "single held image moment"
+                   · "single moment photo reveal"
+
+Those vary by staging — single / sequential / paired — which your own rules say is not a job distinction. Let me build the
+method properly and run it on all 20 so the contro
+
+  Ran 1 shell command
+
+Let me falsify the method before trusting it. Coverage might just be measuring size — small jobs trivially get high coverage:
+
+  Ran 1 shell command
+
+The method survives falsification. At equal size t the suspects 58–78%, so coverage isn't justmeasuring n. But now let me run the stronger test — a synthetic positive control: merge two jobs I know are different and see whether the method notices.
+
+  Ran 1 shell command
+
+This is the real result, and it contradicts my hyp
+
+single coherent jobs      68 – 86%
+merged pairs (known 2)    54 – 74%
+
+enumerate                 79%   ← in the SINGLE-job range, despite 145 bindings
+narrate_an_event          68%   ← borderline
+parallel_instances        59%   ← in the MERGED range, at 52 bindings
+change_across_set         54%   ← squarely merged, at 24 bindings
+
+Size isn't incoherence. Let me check the spread before I claim anything — a mean hides variance:
+
+  Ran 1 shell command
+
+Honest read: the bands overlap (73 vs 68), so this ranks suspects — it doesn't deliver a verdict. By it, change_across_set at
+53% is below every known merged pair, and enumerat
+
+Now the deciding test — do your picks concentrate? Let me check the denominator first, because it may be too thin to mean
+anything:
+
+  Ran 2 shell commands
+
+Test (c) is inconclusive and will stay that way — 4 to 10 picks against 24 to 145 bindings, and the picks just echo the job's own vocabulary. Let me complete the picture with (b):
+
+  Ran 1 shell command
+
+Test (b) breaks the case open — and not the way I
+
+job                    carries-sets   top set share
+narrate_an_event            3              91%   ←
+define_terms                3              81%
+enumerate                   8              66%
+parallel_instances         14              52%
+change_across_set          12              38%
+entity_vs_benchmark        11              22%   ←ontrol
+
+entity_vs_benchmark scored 83% on mechanism and 22als disagree on a job I picked as a control, whichmeans they aren't measuring the same thing and don't corroborate each other.
+
+So: yes, we can test the methods, and they fail th
+
+(a) mechanism coherence   survives size-falsification, discriminates known
+                          merges — but single 68-9AP.
+                          Ranks suspicion. Does not decide.
+(b) carries split         measures something real, but contradicts (a) on a
+                          control. Not corroborati
+(c) picks concentration   4-10 picks against 24-145 bindings. Inconclusive,
+                          and stays inconclusive at this data volume.
+
+Two things worth keeping anyway:
+
+My hypothesis was wrong. enumerate is coherent — 7 despite 145 bindings. Its variation is staging(single / sequential / paired), which your own rules already say is not a job distinction. Binding count was the wrong signal and I recommended #1 on it.
+
+The actual loose ones are smaller jobs. change_across_set at 53% mechanism / 38% carries, and parallel_instances at 58% / 52%. Both below every known merged pair on at least one axis.
+
+What I'd do with that: stop. Splitting a job on a signal whose bands overlap would rewrite 624 bindings on a hunch — the drift
+the rules exist to prevent. And the thing that wouanalysis of these 40 beats; it's more beats per job, which comes from running more scripts. The taxonomy question is answered by doing the work, not by studying this corpus harder.
+
+UP NEXT: Claude logs this as a negative result with the method and its bands recorded, so nobody re-runs it — then starts #2, the work gazetteer, which has no such ambiguity. Say if you'd rather I keep pushing on #1 instead.
+
+✻ Crunched for 3m 18s · done Wednesday 1:31 PM
+
+❯ go ahead
+
+  Ran 1 shell command
+
+Logged. Starting #2 — the work gazetteer.
+
+  Ran 1 shell command
+
+272 of 633 are one- or two-word titles that are ordinary English — BE, YE, TOP, KING, HOPE, WOLF, X. That's a far worse
+false-positive risk than the artist list. Let me manything:
+
+  Ran 1 shell command
+
+Decisive, and it kills #2 as designed:
+
+naive                71 matches — X from "XXL", BElayed"
++ capitalised        15 matches — still mostly noise
++ multi-word only     0 matches
+
+Exactly one true positive in 40 beats: Views, in "shattering somewhere around Views." And any guard strong enough to suppress
+the noise also suppresses it.
+
+The reason is worth more than the gazetteer would doesn't name albums — you do. Let me check whatthose beats actually have in common:
+
+  Ran 1 shell command
+
+Six beats, six different jobs — so job doesn't predict it. But look at the quotes: cover, came out, catalog, other people's   songs, class, A song from 2015, New records. They matter without naming a title. Let me test that asthe signal:
+                                                                                                                                Ran 1 shell command
+
+100% recall, 20% precision. Every beat you asked artwork for has a work-noun — and so do 24 others, because the whole script iabout a catalog. Four wrong suggestions per right
+
+So both approaches to #2 fail, and they fail for the same reason:
+                                                                                                                              title gazetteer   1 true positive in 40 beats, kil
+work-noun signal  100% recall, 20% precision                                                                                  
+The beat doesn't say what media it wants. You do. The narration says "Big back catalog" — deciding that album covers serve it taste, and it came from you reading the beat, not s text. No extractor recovers a judgment that wasnever written down.                                                                                                           
+Which means the right mechanism isn't extraction at all — it's a declaration, the same pattern you already have in beat-flags.json for rawBroll and needsTextTemplate. And your notes already contain six of them:                               
+  Ran 3 shell commands
+
+Good — the declarations exist but don't reach the briefs yet. Wiring the beat side into the kind want:
+                                                                                                                                Ran 1 shell command
+                                                                                                                                Two failures — one is my test's own operator preceguard. Let me look:
+                                                                                                                                Ran 1 shell command
+                                                                                                                                The existing guard is right — every flag needs a rw key instead of satisfying it. Making the guardstricter rather than sidestepping it:
+
+  Ran 2 shell commands
+                                                                                                                                My test reads the input file; wantsKind is compute
+                                                                                                                                Ran 1 shell command
+
+⏺ Artifact(/Users/dwaynetoler/timeline/pipeline/ui5-media/index.html)                                                           Updated ⧉ https://claude.ai/artifact/GPKqCV8VTb
+
+  Ran 1 shell command                                                                                                           
+Both done. 332 tests. ⧉ https://claude.ai/artifact/GPKqCV8VTbWSpN6DxoXhLy
+
+#1 — negative result, logged so nobody re-runs it
+                                                                                                                              The methods test cleanly and fail the bar for a ve survives size-falsification and discriminates known merges, but single jobs span 68–92% and merged pairs 55–73% — the bands overlap. The carries signal contradicts it on a job I'used as a control. The picks test has 4–10 picks a
+
+And my hypothesis was wrong. enumerate is coherent — 79% mechanism, 66% carries — despite being the largest binding set. Its  variation is staging, which your rules already sayI recommended that investigation on binding count,which turns out not to be the signal. The loosest jobs are small ones: change_across_set (53%/38%) and parallel_instances (58%/52%).                                                                                                                    
+What would settle it is more beats per job — which comes from running scripts, not studying these 40 harder.
+                                                                                                                              #2 — the gazetteer doesn't work, and the reason is
+
+633-title work gazetteer   ONE true positive in 40 beats (`Views`), and every
+                           noise guard kills it — X from "XXL", BE from "number"
+work-noun signal           100% recall, 20% precision — the whole script is                                                                              about a catalog
+                                                                                                                              The beat doesn't say what media it wants. You do. ck catalog"; deciding album covers serve it istaste. Those six beats also span six different jobs, so job doesn't predict it either.
+                                                                                                                              So it's declared, in beat-flags.json beside rawBro you'd already given:
+
+02-02a  document, artwork   "we have the magazine referenced in the media library"                                            06-06   artwork             "albums covers on a ti
+08-08   artwork, footage    "album covers and feature single artworks. or a matchcut"
+18-18   document, artwork   "also should use the mag cover"                                                                   23-23   footage, document   "video footage from a
+24-24   document, artwork   "billboard articles about songs charting"
+                                                                                                                              The beat's declaration beats the template's — the ts can take, you say what this beat should show, and yours is the more specific statement. 8 briefs now carry a kind, 6 from the beat and 2 from the template, and the grid shows which.                                                                                                                        
+Two things I had to correct in myself: I'd invented a new key to dodge the existing "every flag carries a reason" guard, so I made that guard stricter instead. And my own new test was broken twice — an operator-precedence bug, and it read the input filfor a field computed into the output, so it could
+
+UP NEXT: Nothing running. When your tagging lands, say so and Claude rebuilds — the 637 unknown-kind and 155 untagged-framing cards are the last big constraint on this half.
+
+✻ Baked for 6m 0s · done Wednesday 1:42 PM
+
+※ recap: We're building the media-selection half of the narration-to-video pipeline, so each template slot gets the right asset. Both investigations closed: job splitting isn't supported by the evidence, and beat media-kind is now declared from your notNext: you finish tagging the 907 untagged assets,

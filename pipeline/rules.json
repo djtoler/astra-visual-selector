@@ -1,0 +1,10 @@
+{
+  "_note": "Description-length rule only. A description shorter than min_chars cannot carry a mechanic, so the record binds weakly. The rule holds for every record unless one of `exceptions` appears in its template family or template id \u2014 a CONTAINS match, so a family can be named the way a person would say it. An exception that matches nothing fails preflight, so a typo cannot silently disable the rule. Empty exceptions means the rule holds universally.",
+  "thin_description": {
+    "min_chars": 40,
+    "max_pct": 10,
+    "exceptions": [
+      "intro-slideshow"
+    ]
+  }
+}
