@@ -10,6 +10,12 @@ built page data. A review nobody can reconstruct is a review that has to be redo
 
 --review-dir holds the artifact-db records, one JSON per beat, as written by
 Artifact read_db. They are USER DATA: copied through verbatim, never rewritten.
+
+The export also carries `issues_media_layer`, read from
+grammar/issues_media_layer.json — twelve problems drawn from this review. They are
+PLAUSIBLE, NOT VERIFIED: the measurements reproduce and the user's words are
+verbatim, but the problem statements and the impact claims are Claude's analysis
+and have not been through a versioned prompt.
 """
 import argparse, glob, json, os, pathlib, sys
 
@@ -177,6 +183,8 @@ def main():
             "templatesSelected": sum(b["templates"]["counts"]["selected"] for b in beats),
             "templatesRejected": sum(b["templates"]["counts"]["rejected"] for b in beats),
             "assetsDescribed": len(assets),
+            "issuesMediaLayer": len((jload(G / "issues_media_layer.json") or {})
+                                    .get("issues") or []),
         },
         "grammar": {
             "jobs": {job: [t["id"] for t in lst] for job, lst in bindings.items()},
@@ -194,6 +202,12 @@ def main():
         },
         "assets": assets,
         "beats": beats,
+        # PLAUSIBLE, NOT VERIFIED. Read from its own sidecar rather than written
+        # here, so the analysis is an editable artifact and this file stays
+        # generated. CLAUDE.md: "Claude's own reading is not evidence." The
+        # measurements in it are reproducible and the user's words are verbatim;
+        # the problem statements, the ranking and the impact claims are analysis.
+        "issues_media_layer": jload(G / "issues_media_layer.json"),
     }
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
     c = out["_counts"]

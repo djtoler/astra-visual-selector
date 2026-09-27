@@ -5779,5 +5779,71 @@ class BrollAddsToMediaOrReplacesIt(unittest.TestCase):
         self.assertIn("function adopt(", page)
 
 
+class TheIssueRegisterQuotesTheUserExactly(unittest.TestCase):
+    """grammar/issues_media_layer.json cites the user's words as evidence.
+
+    A paraphrase that hardens into a rule is the failure CLAUDE.md names: "Their
+    note is the evidence; do not paraphrase it into a rule without showing the
+    quote." So every quoted fragment must appear verbatim in that beat's own
+    review note, and every beat cited must exist. The issues themselves are
+    PLAUSIBLE, not verified — that label is asserted here too, because an
+    unverified analysis that loses its label reads as a finding.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.reg = json.loads((ROOT / "grammar" / "issues_media_layer.json").read_text())
+        p = ROOT / "grammar" / "beat-review-export-2026-09-27.json"
+        cls.ex = json.loads(p.read_text())
+        cls.notes = {b["beat"]: ((b["userReview"] or {}).get("note") or "")
+                     for b in cls.ex["beats"]}
+
+    @staticmethod
+    def _n(s):
+        return re.sub(r"\s+", " ", s).strip()
+
+    def test_every_quoted_fragment_is_verbatim(self):
+        checked = 0
+        for i in self.reg["issues"]:
+            for q in i["userWords"]:
+                note = self._n(self.notes.get(q["beat"], ""))
+                self.assertTrue(note, f"{i['id']} cites {q['beat']}, which has no note")
+                # "..." or an ellipsis marks an elision; each fragment must be real
+                for fr in [x.strip() for x in re.split(r"\.\.\.|\u2026",
+                                                      self._n(q["words"])) if x.strip()]:
+                    checked += 1
+                    self.assertIn(fr, note,
+                                  f"{i['id']} {q['beat']}: not the user's words")
+        self.assertGreater(checked, 20, "the register should cite the user throughout")
+
+    def test_every_cited_beat_exists(self):
+        have = {b["beat"] for b in self.ex["beats"]}
+        for i in self.reg["issues"]:
+            for b in i["beats"] + [q["beat"] for q in i["userWords"]]:
+                self.assertIn(b, have, f"{i['id']} cites unknown beat {b}")
+
+    def test_a_count_never_disagrees_with_its_own_list(self):
+        """PI-03 said 6 beats and listed 7. A number that contradicts the list
+        beside it costs the whole register its credibility."""
+        for i in self.reg["issues"]:
+            if i["beats"]:
+                self.assertGreaterEqual(
+                    i["beatsAffected"], len(i["beats"]),
+                    f"{i['id']} claims {i['beatsAffected']} but lists {len(i['beats'])}")
+
+    def test_the_register_declares_itself_unverified(self):
+        self.assertIn("PLAUSIBLE", self.reg["_status"].upper())
+        self.assertIn("not evidence", self.reg["_whyPlausible"])
+        self.assertTrue(self.reg["_withdrawn"],
+                        "the withdrawn measurement must stay on the record")
+
+    def test_the_export_carries_the_register(self):
+        """The section has to reach the file that gets pushed, not just its
+        sidecar."""
+        self.assertIn("issues_media_layer", self.ex)
+        self.assertEqual(len(self.ex["issues_media_layer"]["issues"]),
+                         self.ex["_counts"]["issuesMediaLayer"])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
