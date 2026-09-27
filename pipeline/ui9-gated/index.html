@@ -1,0 +1,277 @@
+<title>Keep Or Delete</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Archivo+Narrow:wght@600;700&display=swap">
+<style>
+:root{
+  --ink:#16130f; --ink2:#5a5148; --ink3:#8b8076; --line:#ddd5ca; --line2:#ece5db;
+  --bg:#f4efe7; --card:#fffdfa; --raised:#faf6f0;
+  --keep:#2f5d3f; --keepbg:#e2ede5;
+  --del:#8f2115; --delbg:#f6e4e0;
+  --sel:#2b5473; --selbg:#e0eaf2;
+  --warn:#7a4a10; --warnbg:#f6ead7;
+  --disp:"Archivo Narrow",Arial Narrow,sans-serif;
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --keep:#8fcaa3; --keepbg:#1c2c22; --del:#e8836f; --delbg:#38201b;
+  --sel:#8ab4d4; --selbg:#17252f; --warn:#d9a765; --warnbg:#2e2315;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --keep:#8fcaa3; --keepbg:#1c2c22; --del:#e8836f; --delbg:#38201b;
+  --sel:#8ab4d4; --selbg:#17252f; --warn:#d9a765; --warnbg:#2e2315;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 18px 110px}
+header{padding-block:22px 13px;border-bottom:2px solid var(--ink)}
+h1{margin:0 0 9px;font:700 27px/1.05 var(--disp);text-transform:uppercase;
+  letter-spacing:-.01em}
+.lede{margin:0 0 5px;color:var(--ink2);max-width:80ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+.tally{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.tally span{font:600 10.5px/1.5 var(--mono);padding:4px 9px;border-radius:3px;
+  background:var(--line2);color:var(--ink2);cursor:pointer;border:1px solid transparent}
+.tally span[aria-pressed="true"]{border-color:var(--ink);color:var(--ink);font-weight:700}
+.t-keep{background:var(--keepbg)!important;color:var(--keep)!important}
+.t-del{background:var(--delbg)!important;color:var(--del)!important}
+.t-unk{background:var(--warnbg)!important;color:var(--warn)!important}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:16px;
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bar .n{font:600 12px/1 var(--mono);padding:7px 10px;border-radius:99px;
+  background:var(--line2);color:var(--ink2);white-space:nowrap}
+.bar .n.sel{background:var(--selbg);color:var(--sel)}
+.act{font:700 11.5px/1 var(--mono);padding:8px 12px;border-radius:5px;cursor:pointer;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2)}
+.act.keep{border-color:var(--keep);color:var(--keep);background:var(--keepbg)}
+.act.del{border-color:var(--del);color:var(--del);background:var(--delbg)}
+.act:disabled{opacity:.35;cursor:default}
+.pager{display:flex;gap:4px;align-items:center;margin-left:auto;flex-wrap:wrap}
+.pager button{font:600 11.5px/1 var(--mono);min-width:31px;padding:7px 8px;
+  border-radius:5px;border:1px solid var(--line);background:var(--card);
+  color:var(--ink2);cursor:pointer}
+.pager button[aria-current="true"]{border-color:var(--ink);color:var(--ink);
+  background:var(--raised);font-weight:700}
+.pager button:disabled{opacity:.3;cursor:default}
+
+.grid{display:grid;gap:13px;grid-template-columns:repeat(auto-fill,minmax(206px,1fr))}
+.c{border:1px solid var(--line);border-radius:5px;background:var(--card);
+  overflow:hidden;display:flex;flex-direction:column}
+.c.on{border-color:var(--sel);box-shadow:inset 0 0 0 2px var(--sel)}
+.c.v-keep{border-color:var(--keep)}
+.c.v-delete{border-color:var(--del);opacity:.72}
+.pv{position:relative;aspect-ratio:1/1;background:#0c0a08;cursor:pointer}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.tick{position:absolute;left:7px;top:7px;width:24px;height:24px;border-radius:5px;
+  border:2px solid rgba(255,255,255,.75);background:rgba(5,7,10,.45);
+  font:700 13px/21px var(--mono);color:#fff;text-align:center}
+.c.on .tick{background:var(--sel);border-color:var(--sel)}
+.vid{position:absolute;right:6px;top:6px;padding:3px 7px;border-radius:3px;
+  font:600 9.5px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.05em;
+  background:rgba(5,7,10,.72);color:#d7dee6}
+.verdict{position:absolute;left:0;right:0;bottom:0;padding:4px 8px;
+  font:700 9.5px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.verdict.keep{background:var(--keep);color:#fff}
+.verdict.delete{background:var(--del);color:#fff}
+.m{padding:8px 10px 10px;display:flex;flex-direction:column;gap:5px;flex:1}
+.nm{font:600 11.5px/1.35 var(--sans)}
+.nm.none{color:var(--ink3);font-weight:500;font-style:italic}
+.fn{font:9.5px/1.35 var(--mono);color:var(--ink3);word-break:break-all;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sug{font:600 9.5px/1.4 var(--mono);padding:2px 6px;border-radius:3px;width:fit-content}
+.sug.keep{background:var(--keepbg);color:var(--keep)}
+.sug.delete{background:var(--delbg);color:var(--del)}
+.sug.unknown{background:var(--warnbg);color:var(--warn)}
+.sug.approved{background:var(--selbg);color:var(--sel)}
+.btns{display:flex;gap:5px;margin-top:auto;padding-top:4px}
+.btns button{flex:1;font:700 10.5px/1 var(--mono);padding:7px 4px;border-radius:4px;
+  border:1px solid var(--line);background:var(--raised);color:var(--ink2);cursor:pointer}
+.btns button.k[aria-pressed="true"]{border-color:var(--keep);color:var(--keep);background:var(--keepbg)}
+.btns button.d[aria-pressed="true"]{border-color:var(--del);color:var(--del);background:var(--delbg)}
+footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);
+  font:12px/1.7 var(--mono);color:var(--ink3);max-width:84ch}
+footer b{color:var(--ink2)}
+@media (max-width:640px){ h1{font-size:21px} .grid{grid-template-columns:repeat(auto-fill,minmax(146px,1fr))} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Keep Or Delete</h1>
+  <p class="lede"><b>256 assets your lifecycle gate is holding back.</b> Click a card
+  to select, then use <b>Keep</b> or <b>Delete</b> in the bar for everything selected.
+  Each card also has its own pair.</p>
+  <p class="lede">The coloured label on each card is <b>my suggestion, not a
+  decision</b> &mdash; I read the filename, which is the weakest evidence in this
+  system. Nothing is deleted from this page; it records what you want and I act on
+  it afterwards.</p>
+  <div class="tally" id="tally"></div>
+</header>
+
+<div class="bar">
+  <span class="n" id="count">&hellip;</span>
+  <span class="n sel" id="nsel">0 selected</span>
+  <button class="act keep" id="bkeep" type="button" disabled>Keep selected</button>
+  <button class="act del" id="bdel" type="button" disabled>Delete selected</button>
+  <button class="act" id="ball" type="button">Select page</button>
+  <button class="act" id="bclr" type="button" disabled>Clear</button>
+  <span class="pager" id="pager"></span>
+</div>
+
+<div class="grid" id="grid"></div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D = null, page = 0, PER = 20, filt = "all", sel = {}, verdict = {}, db = null;
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+function shown(){
+  if (!D) return [];
+  return filt === "all" ? D.cards
+       : D.cards.filter(function(c){ return c.suggest === filt; });
+}
+
+function card(c){
+  var v = verdict[c.id] || null, on = !!sel[c.id];
+  return "<article class='c"+(on?" on":"")+(v?" v-"+v:"")+"' data-id='"+esc(c.id)+"'>"
+    + "<div class='pv' data-pick='1'>"
+    + (c.img ? "<img src='"+esc(c.img)+"' loading='lazy' alt=''>" : "")
+    + "<span class='tick'>"+(on?"&#10003;":"")+"</span>"
+    + (c.type === "video" ? "<span class='vid'>video</span>" : "")
+    + (v ? "<span class='verdict "+v+"'>"+(v==="keep"?"keep":"delete")+"</span>" : "")
+    + "</div><div class='m'>"
+    + "<div class='nm"+(c.names.length?"":" none")+"'>"
+    + esc(c.names.length ? c.names.join(", ")
+          : (c.named.length ? c.named.join(", ")+" (filename only)" : "nobody tagged"))
+    + "</div>"
+    + (c.file ? "<div class='fn'>"+esc(c.file)+"</div>" : "")
+    + "<span class='sug "+esc(c.suggest)+"'>"+esc(c.suggest)+"</span>"
+    + "<div class='btns'>"
+    + "<button class='k' type='button' data-v='keep' aria-pressed='"
+    + (v==="keep"?"true":"false")+"'>Keep</button>"
+    + "<button class='d' type='button' data-v='delete' aria-pressed='"
+    + (v==="delete"?"true":"false")+"'>Delete</button>"
+    + "</div></div></article>";
+}
+
+function render(){
+  if (!D) return;
+  var list = shown(), n = list.length, pages = Math.max(1, Math.ceil(n / PER));
+  page = Math.max(0, Math.min(page, pages - 1));
+  var slice = list.slice(page * PER, page * PER + PER);
+  document.getElementById("grid").innerHTML = slice.map(card).join("");
+  document.getElementById("count").textContent =
+    n ? (page*PER+1)+"–"+(page*PER+slice.length)+" of "+n : "none";
+  var ns = Object.keys(sel).length;
+  document.getElementById("nsel").textContent = ns + " selected";
+  document.getElementById("bkeep").disabled = !ns;
+  document.getElementById("bdel").disabled = !ns;
+  document.getElementById("bclr").disabled = !ns;
+  var k = 0, dd = 0;
+  Object.keys(verdict).forEach(function(i){
+    if (verdict[i] === "keep") k++; else if (verdict[i] === "delete") dd++; });
+  var C = D._counts;
+  document.getElementById("tally").innerHTML =
+    [["all","",D.cards.length+" total"],
+     ["approved","","approved "+C.approved],
+     ["keep","t-keep","suggest keep "+C.keep],
+     ["unknown","t-unk","no name "+C.unknown],
+     ["delete","t-del","suggest delete "+C.delete]]
+    .map(function(x){
+      return "<span class='"+x[1]+"' data-f='"+x[0]+"' aria-pressed='"
+           + (filt===x[0]?"true":"false")+"'>"+esc(x[2])+"</span>"; }).join("")
+    + "<span class='t-keep'>you kept "+k+"</span>"
+    + "<span class='t-del'>you deleted "+dd+"</span>";
+  var btns = "<button type='button' data-p='prev'"+(page===0?" disabled":"")+">&larr;</button>";
+  for (var i = 0; i < pages; i++)
+    btns += "<button type='button' data-p='"+i+"' aria-current='"
+          + (i===page?"true":"false")+"'>"+(i+1)+"</button>";
+  btns += "<button type='button' data-p='next'"+(page===pages-1?" disabled":"")+">&rarr;</button>";
+  document.getElementById("pager").innerHTML = btns;
+}
+
+function save(ids){
+  if (!db) return;
+  ids.forEach(function(id){
+    db.doc("triage/"+id.replace(/[^A-Za-z0-9_-]/g,"_"))
+      .set({ assetId: id, verdict: verdict[id] || null,
+             updatedAt: new Date().toISOString() })
+      .catch(function(){});
+  });
+}
+
+function setV(ids, v){
+  ids.forEach(function(id){
+    if (verdict[id] === v) delete verdict[id]; else verdict[id] = v; });
+  render(); save(ids);
+}
+
+document.getElementById("grid").addEventListener("click", function(e){
+  var a = e.target.closest(".c"); if (!a) return;
+  var id = a.dataset.id;
+  var b = e.target.closest(".btns button");
+  if (b){ setV([id], b.dataset.v); return; }
+  if (sel[id]) delete sel[id]; else sel[id] = 1;
+  render();
+});
+
+document.getElementById("tally").addEventListener("click", function(e){
+  var s = e.target.closest("span[data-f]"); if (!s) return;
+  filt = s.dataset.f; page = 0; render();
+});
+
+document.getElementById("pager").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b || b.disabled) return;
+  var p = b.dataset.p;
+  page = p === "prev" ? page-1 : p === "next" ? page+1 : parseInt(p,10);
+  render(); window.scrollTo({top:0, behavior:"instant"});
+});
+
+document.getElementById("bkeep").onclick = function(){
+  var ids = Object.keys(sel); ids.forEach(function(i){ verdict[i] = "keep"; });
+  sel = {}; render(); save(ids);
+};
+document.getElementById("bdel").onclick = function(){
+  var ids = Object.keys(sel); ids.forEach(function(i){ verdict[i] = "delete"; });
+  sel = {}; render(); save(ids);
+};
+document.getElementById("ball").onclick = function(){
+  shown().slice(page*PER, page*PER+PER).forEach(function(c){ sel[c.id] = 1; });
+  render();
+};
+document.getElementById("bclr").onclick = function(){ sel = {}; render(); };
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d;
+  document.getElementById("foot").innerHTML =
+    "<b>Why each is gated.</b> <i>tag review is not complete</i> &mdash; nobody "
+    + "finished tagging it, so nothing could match it to a beat even if it were "
+    + "selectable. <i>no passing cutout receipt</i> &mdash; a cutout exists but was "
+    + "never checked, or was checked and rejected. <i>content class needs "
+    + "classification</i> &mdash; the library does not yet know if it is a person, "
+    + "an article or artwork.<br><br><b>On my suggestions.</b> `keep` means the "
+    + "filename names someone your script uses. `delete` means it names an artist "
+    + "the script never mentions. `no name` means I found nothing to go on &mdash; "
+    + "those need your eyes most.";
+  render();
+  return claude.use("db");
+}).then(function(x){
+  db = x;
+  if (!db) return;
+  return db.collection("triage").get().then(function(snap){
+    if (snap && snap.docs) snap.docs.forEach(function(doc){
+      var v = doc.data();            // frozen — copy out, never write in
+      if (v && v.assetId && v.verdict) verdict[v.assetId] = v.verdict;
+    });
+    render();
+  });
+}).catch(function(){});
+</script>

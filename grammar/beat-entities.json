@@ -1,0 +1,51 @@
+{
+ "_note": "Entities a beat's VISUAL needs that its TEXT does not name. A spatial scene plots people from the DATA, not from the sentence — capacity is a property of the data (CLAUDE.md standing rule). Unioned with the brief's own entities by build_media_review.py; it never removes one.",
+ "_why": "User 2026-09-26: '28 doesnt need 2 slots. the template is a spacial scene. it needs drake head or quarter shots as well as travis. plus it needs the other artists the beat is referring to'. Claude had been treating 28-28's empty GROUP tier as the problem — one asset showing both names — when the scene plots ten.",
+ "beats": {
+  "28-28": {
+   "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+   "entities": [
+    "21 Savage",
+    "Drake",
+    "Future",
+    "Kendrick Lamar",
+    "Nicki Minaj",
+    "Post Malone",
+    "Travis Scott",
+    "Ty Dolla $ign",
+    "XXXTentacion",
+    "Young Thug"
+   ],
+   "derivation": {
+    "source": "~/yt001data/hiphop_content_system/data/spotify_streams.csv",
+    "leftFloor": "streams_lead >= 30,000,000,000",
+    "left": [
+     "Drake",
+     "Kendrick Lamar",
+     "Post Malone",
+     "Travis Scott",
+     "XXXTentacion"
+    ],
+    "rightFloor": "streams_feature >= 20,000,000,000",
+    "right": [
+     "21 Savage",
+     "Drake",
+     "Future",
+     "Nicki Minaj",
+     "Travis Scott",
+     "Ty Dolla $ign",
+     "Young Thug"
+    ],
+    "check": "the beat says five clear the left and seven the right, with two names in the middle. The data returns exactly 5, exactly 7, and exactly {Drake, Travis Scott} in both. Reproducible, not inferred."
+   }
+  }
+ },
+ "_subject": {
+  "entity": "Drake",
+  "appliesTo": "every beat",
+  "why": "USER, across five pairing notes 2026-09-26: 'no drake to select from' (21-21a), 'missing a drake selection. he's the one they're being compared to. how can we see the difference if he isn't represented as a selection option as well' (20-20), 'need more future img options and drake options' (11-11b), 'no drake anywhere' (28-28), 'no drake' (29-29a).\nMEASURED: Drake was an entity on only 8 of 26 beats, while holding 129 candidates in the pool. Of the 18 beats that omitted him, 7 refer to him by PRONOUN ('He gets accused of living on features', 'every song he has ever put on the platform') and 5 by IMPLICATION ('one rapper', 'one dot with open air under it', 'the same slice', 'measured against'). A gazetteer matches capitalised roster names and can reach neither.\nThis is a single-subject documentary. Every chart in it is a comparison against its subject, so the subject is available on every beat by construction — not extracted, declared. entities.py stays honest: it still reports only what the text names, and this is a separate axis.",
+  "source": "user",
+  "at": "2026-09-26",
+  "notAnExtraction": true
+ }
+}

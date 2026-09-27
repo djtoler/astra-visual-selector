@@ -30,6 +30,9 @@ sys.path.insert(0, str(P))
 import media_candidates as M
 
 BRIEFS = P.parent / "grammar" / "media-briefs.json"
+# Entities a beat's VISUAL needs that its TEXT does not name — a spatial scene
+# plots people from the data, not from the sentence. LOG 0117.
+BEAT_ENTITIES = P.parent / "grammar" / "beat-entities.json"
 # Picks read back from the review. Every one is SHIPPED for its brief whatever the
 # rotation does — a selection is a decision (LOG 0090).
 PICKS = P.parent / "grammar" / "media-picks.json"
@@ -84,7 +87,25 @@ def media_direction(brief, flag):
 
 
 def template_previews(raw_briefs):
-    """Reuse the already-built preview cache. Missing means missing, not fabricated."""
+    """The cache first, then the SOURCE clip. A poster is never dropped.
+
+    The cache-only version emitted poster: None for 6 of 47 templates whose clip
+    was sitting on disk the whole time, so beats 01-01, 06-06, 11-11a, 12-12a,
+    21-21a, 24-24, 27-27 and 28-28 showed a black rectangle where the treatment
+    should be. Its docstring called that "missing means missing, not fabricated",
+    but extracting a real frame from the template's own clip fabricates nothing —
+    CLAUDE.md is explicit that the poster is not a size lever and that a <video>
+    without one "is a black rectangle until the viewer presses play, so a grid of
+    them shows nothing and the page cannot be skimmed."
+
+    A template with no clip and no still anywhere is genuinely missing, and this
+    RETURNS it in `noPreview` instead of leaving a silent None — a non-match has
+    to say something.
+    """
+    sys.path.insert(0, str(P.parent / "match-trial"))
+    import candidates as C
+    pool = {r["id"]: r for r in C.load(content_class="*")}
+    cap = C._capability()
     ids = sorted({t["id"] for b in raw_briefs
                   for t in (b.get("selectedTemplates") or [])})
     names = binding_names()
@@ -93,12 +114,31 @@ def template_previews(raw_briefs):
     for f in media_dir.iterdir():
         if f.is_file():
             f.unlink()
-    out = {}
+    TEMPLATE_CACHE.mkdir(parents=True, exist_ok=True)
+    out, recovered, none_at_all = {}, [], []
     for tid in ids:
         safe = re.sub(r"[^A-Za-z0-9_.-]", "_", tid)
         jpg = TEMPLATE_CACHE / f"{tid}.jpg"
         mp4 = TEMPLATE_CACHE / f"{tid}.mp4"
         item = {"label": names.get(tid, tid), "poster": None, "clip": None}
+        src = (pool.get(tid) or {}).get("clip")
+        src = src if (src and pathlib.Path(src).exists()) else None
+        still = (cap.get(tid) or {}).get("still_path")
+        still = still if (still and pathlib.Path(still).exists()) else None
+
+        if not mp4.exists() and src:
+            # transcode into the cache at review width, so the next build is free
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", src,
+                            "-t", str(SECS), "-vf", f"scale={WIDE}:-2",
+                            "-c:v", "libx264", "-crf", "30", "-preset", "veryfast",
+                            "-movflags", "+faststart", "-an", str(mp4)], check=False)
+            if mp4.exists():
+                recovered.append(("clip", tid))
+        if not jpg.exists():
+            for candidate in (mp4 if mp4.exists() else None, src, still):
+                if candidate and thumb(pathlib.Path(candidate), jpg):
+                    recovered.append(("poster", tid))
+                    break
         if jpg.exists():
             item["poster"] = ("data:image/jpeg;base64," +
                               base64.b64encode(jpg.read_bytes()).decode())
@@ -106,7 +146,15 @@ def template_previews(raw_briefs):
             dst = media_dir / f"{safe}.mp4"
             shutil.copy2(mp4, dst)
             item["clip"] = f"template-media/{safe}.mp4"
+        if not item["poster"]:
+            none_at_all.append(tid)
         out[tid] = item
+    if recovered:
+        print(f"   recovered {sum(1 for k,_ in recovered if k=='poster')} poster(s) and "
+              f"{sum(1 for k,_ in recovered if k=='clip')} clip(s) the cache was missing")
+    if none_at_all:
+        print(f"   NO PREVIEW POSSIBLE for {len(none_at_all)}: {none_at_all} "
+              "(no clip and no still on disk — a sourcing gap, not a build failure)")
     return out
 
 
@@ -132,8 +180,28 @@ def main():
     # What each entity has already shown on an EARLIER brief. Drake appears on
     # four briefs and gave the identical top-8 all four times; this is what stops
     # the fourth being the first again.
+    # WHEN each entity last saw an asset, not merely whether. The narration runs 804
+    # seconds and every beat carries a start time, so an asset shown at 0:20 is cool
+    # again by 3:20 rather than demoted for the rest of the video. LOG 0126.
     seen_for = {}
+    shown_at = {}
+    times = {}
+    _sl = P / "shotlist.capacity.json"
+    if _sl.exists():
+        for x in json.load(open(_sl)):
+            if x.get("start") is not None:
+                times[f"{x['passage']}-{x['beat']}"] = x["start"]
     picked = M.picked()
+    # A PICK THAT CANNOT SHIP IS RECORDED, NEVER DROPPED. Two shapes, and the
+    # second was being lost silently until 2026-09-26:
+    #   the asset left the pool, so nothing can show it;
+    #   the asset is in the pool but its TIER no longer exists. A group tier asks
+    #     for one asset carrying every entity on the beat. 28-28 now names ten
+    #     artists because a spatial scene plots from the data (LOG 0117), so no
+    #     single photograph can serve it and the tier is meaningless for that beat.
+    #     The pick was made against a slate that offered a Travis-Scott-only photo
+    #     as a Drake-and-Travis group asset, which was itself the defect fixed in
+    #     LOG 0104.
     displaced = []
     for key, ids in sorted(picked.items()):
         brief, tier = key.split("::", 1)
@@ -150,7 +218,20 @@ def main():
     for raw in raw_briefs:
         raw_by_family.setdefault(segment_family(raw.get("brief")), []).append(raw)
 
+    _be = json.load(open(BEAT_ENTITIES)) if BEAT_ENTITIES.exists() else {}
+    extra = _be.get("beats") or {}
+    SUBJECT = _be.get("_subject") or {}
     for b in raw_briefs:
+        # UNION, never replace: the text's own entities always survive.
+        more = (extra.get(b["brief"]) or {}).get("entities") or []
+        # THE SUBJECT IS ON EVERY BEAT. A single-subject documentary compares
+        # everything against its subject, and 12 of the 18 beats that never named
+        # Drake reach him by pronoun or implication, which no gazetteer resolves.
+        # Declared, not extracted — see grammar/beat-entities.json _subject.
+        subj = (SUBJECT or {}).get("entity")
+        if subj: more = list(more) + [subj]
+        if more:
+            b["entities"] = sorted(set(b["entities"]) | set(more))
         # FRAMING COMES FROM THE TEMPLATE THE USER CHOSE. A spatial node wants a
         # tight crop and a hero billboard wants half-body or wider; the same
         # entity needs different assets depending on what is rendering it.
@@ -167,12 +248,20 @@ def main():
         kinds = tuple(declared) if declared else tuple(sorted(
             {k for t in (b.get("selectedTemplates") or [])
              for k in M.kind_wanted(t["id"], t.get("kind"))}))
-        r = M.resolve(b["entities"], pool=pool, wrong=wrong, wants=wants, kinds=kinds)
+        # The beat's own words rank what its entity match returns. LOG 0113.
+        r = M.resolve(b["entities"], pool=pool, wrong=wrong, wants=wants,
+                      kinds=kinds, quote=b.get("quote") or "")
+        now = times.get(b["brief"])
         def pack(recs, entity, tier):
             used = seen_for.setdefault(entity, set())
+            hist = shown_at.setdefault(entity, {})
             pin = set(picked.get(b["brief"] + "::" + tier) or [])
-            recs = M.spread(recs, SHOW + QUEUE, used=used, pin=pin)
+            recs = M.spread(recs, SHOW + QUEUE, used=used, pin=pin,
+                            history=hist, now=now)
             used.update(x["id"] for x in recs[:SHOW])
+            if now is not None:
+                for x in recs[:SHOW]:
+                    hist.setdefault(x["id"], []).append(now)
             out = []
             for rec in recs:
                 out.append({"id": rec["id"], "entity": entity,
@@ -220,6 +309,33 @@ def main():
             "group": pack(r["group"], r["entities"][0] if r["entities"] else "", "group"),
             "individual": {e: pack(v, e, "e:" + e) for e, v in r["individual"].items()},
         })
+
+    shipped = set()
+    for b_ in briefs:
+        for c in b_["group"]:
+            shipped.add((b_["brief"], "group", c["id"]))
+        for e, v in b_["individual"].items():
+            for c in v:
+                shipped.add((b_["brief"], "e:" + e, c["id"]))
+    known = {(d["brief"], d["tier"], d["assetId"]) for d in displaced}
+    by_brief = {b_["brief"]: b_ for b_ in briefs}
+    for key, ids in sorted(picked.items()):
+        brief, tier = key.split("::", 1)
+        if brief not in by_brief: continue
+        for aid in ids:
+            if (brief, tier, aid) in shipped or (brief, tier, aid) in known:
+                continue
+            b_ = by_brief[brief]
+            if tier == "group" and not b_["group"]:
+                why = ("group_tier_not_applicable: this beat names "
+                       f"{len(b_['entities'])} entities and no single asset can "
+                       "carry them all")
+            elif tier.startswith("e:") and tier[2:] not in b_["individual"]:
+                why = f"entity_no_longer_on_this_beat: {tier[2:]}"
+            else:
+                why = "no_longer_matches_this_entity"
+            displaced.append({"brief": brief, "tier": tier, "assetId": aid,
+                              "reason": why})
 
     (UI / "media").mkdir(parents=True, exist_ok=True)
     for f in (UI / "media").iterdir():

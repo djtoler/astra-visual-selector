@@ -1,0 +1,212 @@
+<title>Bound Rejected Remaining</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Archivo+Narrow:wght@600;700&display=swap">
+<style>
+:root{
+  --ink:#16130f; --ink2:#5a5148; --ink3:#8b8076; --line:#ddd5ca; --line2:#ece5db;
+  --bg:#f4efe7; --card:#fffdfa; --raised:#faf6f0;
+  --bnd:#2b5473; --bndbg:#e0eaf2;
+  --rej:#8f2115; --rejbg:#f6e4e0;
+  --rem:#2f5d3f; --rembg:#e2ede5;
+  --pick:#7a3d10; --pickbg:#f6e8d7;
+  --disp:"Archivo Narrow",Arial Narrow,sans-serif;
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --bnd:#8ab4d4; --bndbg:#17252f; --rej:#e8836f; --rejbg:#38201b;
+  --rem:#8fcaa3; --rembg:#1c2c22; --pick:#d9a765; --pickbg:#2e2315;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --bnd:#8ab4d4; --bndbg:#17252f; --rej:#e8836f; --rejbg:#38201b;
+  --rem:#8fcaa3; --rembg:#1c2c22; --pick:#d9a765; --pickbg:#2e2315;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 18px 100px}
+header{padding-block:22px 12px;border-bottom:2px solid var(--ink)}
+h1{margin:0 0 9px;font:700 27px/1.05 var(--disp);text-transform:uppercase;letter-spacing:-.01em}
+.lede{margin:0 0 5px;color:var(--ink2);max-width:80ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+
+table.sum{width:100%;border-collapse:collapse;margin:14px 0 0;
+  font:12px/1.5 var(--mono)}
+table.sum th{text-align:left;font:700 9.5px/1.5 var(--disp);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink3);padding:5px 8px;border-bottom:1px solid var(--line)}
+table.sum td{padding:4px 8px;border-bottom:1px solid var(--line2)}
+table.sum td.n{text-align:right;font-variant-numeric:tabular-nums}
+table.sum tr{cursor:pointer}
+table.sum tr:hover td{background:var(--raised)}
+table.sum tr[aria-current="true"] td{background:var(--raised);font-weight:700}
+.empty{color:var(--rej);font-weight:700}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:16px;
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.n{font:600 12px/1 var(--mono);padding:7px 10px;border-radius:99px;
+  background:var(--line2);color:var(--ink2);white-space:nowrap}
+.n.b{background:var(--bndbg);color:var(--bnd)}
+.n.r{background:var(--rejbg);color:var(--rej)}
+.n.g{background:var(--rembg);color:var(--rem)}
+.pager{display:flex;gap:3px;margin-left:auto;flex-wrap:wrap}
+.pager button{font:600 10px/1 var(--mono);padding:6px 6px;border-radius:4px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.pager button[aria-current="true"]{border-color:var(--ink);color:var(--ink);
+  background:var(--raised);font-weight:700}
+.pager button.thin{border-color:var(--rej);color:var(--rej)}
+
+.beat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:0 5px 5px 0;padding:13px 16px;margin-bottom:16px}
+.beat .id{font:700 10px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:4px}
+.beat .q{margin:0;font-size:16px;line-height:1.45;font-weight:600}
+
+.sec{font:700 10.5px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  margin:18px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.sec.b{color:var(--bnd)} .sec.r{color:var(--rej)} .sec.g{color:var(--rem)}
+.sec em{font-style:normal;color:var(--ink3);font-weight:600;letter-spacing:0;
+  text-transform:none;font-family:var(--sans)}
+.grid{display:grid;gap:9px;grid-template-columns:repeat(auto-fill,minmax(118px,1fr))}
+.c{border:1px solid var(--line);border-radius:4px;background:var(--card);overflow:hidden}
+.c.r{opacity:.42}
+.c.p{border-color:var(--pick);box-shadow:inset 0 0 0 2px var(--pick)}
+.pv{position:relative;aspect-ratio:16/9;background:#0c0a08}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.tag{position:absolute;right:4px;top:4px;padding:2px 5px;border-radius:3px;
+  font:700 8px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.tag.p{background:var(--pick);color:#fff}
+.tag.s{background:rgba(5,7,10,.7);color:#d7dee6}
+.nm{padding:5px 7px 7px;font:9px/1.3 var(--mono);color:var(--ink3);word-break:break-all}
+.none{color:var(--rej);font:600 12px/1.5 var(--mono);background:var(--rejbg);
+  padding:9px 12px;border-radius:5px}
+footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);
+  font:12px/1.7 var(--mono);color:var(--ink3);max-width:84ch}
+footer b{color:var(--ink2)}
+@media (max-width:640px){ h1{font-size:21px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(88px,1fr))} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Bound, Rejected, Remaining</h1>
+  <p class="lede"><b>Why some slates look irrelevant.</b> A beat draws from the
+  templates bound to its job. Everything you rejected is removed from later slates
+  &mdash; correctly &mdash; and on a thin job that empties the binding, so what is
+  left is the residue you liked least.</p>
+  <p class="lede"><b>A rejection only counts against the job it was bound to.</b>
+  74 rejections on these beats were of templates bound to some other job &mdash;
+  admitted by a scope rule, a match-cut admission or a user instruction &mdash; and
+  they are not charged against this binding. Six beats have three or fewer left.</p>
+  <p class="lede">Stills, not clips: this is an audit of what happened, not a place
+  to judge a treatment. Click any row to open that beat.</p>
+  <table class="sum" id="sum"></table>
+</header>
+
+<div class="bar">
+  <span class="n" id="which">&hellip;</span>
+  <span class="n b" id="nb">bound</span>
+  <span class="n r" id="nr">rejected</span>
+  <span class="n g" id="ng">remaining</span>
+  <span class="pager" id="pager"></span>
+</div>
+
+<div id="root"></div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D=null, i=0;
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function beat(){ return D.beats[i]; }
+
+function card(id, kind, b){
+  var pick = b.selected.indexOf(id) >= 0, shown = b.shown.indexOf(id) >= 0;
+  return "<article class='c "+kind+(pick?" p":"")+"'>"
+    + "<div class='pv'>"
+    + (D.thumbs[id] ? "<img src='"+esc(D.thumbs[id])+"' loading='lazy' alt=''>" : "")
+    + (pick ? "<span class='tag p'>picked</span>"
+            : (shown && kind !== "r" ? "<span class='tag s'>on slate</span>" : ""))
+    + "</div><div class='nm'>"+esc(id)+"</div></article>";
+}
+
+function section(title, cls, ids, b, note){
+  if (!ids.length)
+    return "<p class='sec "+cls+"'>"+title+" <em>&mdash; none</em></p>"
+         + "<div class='none'>"+esc(note || "nothing here")+"</div>";
+  return "<p class='sec "+cls+"'>"+title+" <em>&mdash; "+ids.length+"</em></p>"
+       + "<div class='grid'>"+ids.map(function(x){ return card(x, cls, b); }).join("")+"</div>";
+}
+
+function render(){
+  var b = beat();
+  document.getElementById("root").innerHTML =
+    "<div class='beat'><div class='id'>beat "+esc(b.beat)+" &middot; "+esc(b.job)+"</div>"
+    + "<p class='q'>&ldquo;"+esc(b.quote)+"&rdquo;</p></div>"
+    + section("Remaining &mdash; still available to this beat", "g", b.remaining, b,
+              "You have rejected every template bound to this job. There is nothing "
+              + "left to offer, which is why the slate looks wrong.")
+    + section("Rejected &mdash; you said no on this beat", "r", b.rejected, b,
+              "Nothing rejected here yet.")
+    + section("Bound &mdash; everything this job can draw on", "b", b.bound, b,
+              "No template is bound to this job at all.");
+  document.getElementById("which").textContent =
+    "beat "+b.beat+"  ("+(i+1)+" of "+D.beats.length+")";
+  document.getElementById("nb").textContent = b.bound.length+" bound";
+  document.getElementById("nr").textContent = b.rejected.length+" rejected";
+  document.getElementById("ng").textContent = b.remaining.length+" remaining";
+  var pg = "";
+  for (var n = 0; n < D.beats.length; n++)
+    pg += "<button type='button' data-p='"+n+"' aria-current='"+(n===i?"true":"false")
+        + "' class='"+(D.beats[n].remaining.length <= 3 ? "thin" : "")+"'>"
+        + esc(D.beats[n].beat)+"</button>";
+  document.getElementById("pager").innerHTML = pg;
+  document.querySelectorAll("#sum tr[data-p]").forEach(function(r){
+    r.setAttribute("aria-current", r.dataset.p === String(i) ? "true" : "false"); });
+}
+
+function summary(){
+  var rows = D.beats.map(function(b, n){
+    return "<tr data-p='"+n+"'><td>"+esc(b.beat)+"</td><td>"+esc(b.job)+"</td>"
+      + "<td class='n'>"+b.bound.length+"</td>"
+      + "<td class='n'>"+b.rejected.length+"</td>"
+      + "<td class='n"+(b.remaining.length<=3?" empty":"")+"'>"+b.remaining.length+"</td>"
+      + "<td class='n'>"+b.shown.length+"</td></tr>";
+  }).join("");
+  document.getElementById("sum").innerHTML =
+    "<tr><th>beat</th><th>job</th><th style='text-align:right'>bound</th>"
+    + "<th style='text-align:right'>rejected</th><th style='text-align:right'>remaining</th>"
+    + "<th style='text-align:right'>on slate</th></tr>" + rows;
+}
+
+document.getElementById("sum").addEventListener("click", function(e){
+  var r = e.target.closest("tr[data-p]"); if (!r) return;
+  i = parseInt(r.dataset.p, 10); render();
+  document.getElementById("root").scrollIntoView({behavior:"smooth", block:"start"});
+});
+document.getElementById("pager").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  i = parseInt(b.dataset.p, 10); render();
+  window.scrollTo({top:0, behavior:"instant"});
+});
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d;
+  var thin = d.beats.filter(function(b){ return b.remaining.length <= 3; });
+  var rej = d.beats.reduce(function(a, b){ return a + b.rejected.length; }, 0);
+  document.getElementById("foot").innerHTML =
+    "<b>" + rej + " rejections across " + d.beats.length + " beats.</b> "
+    + thin.length + " beats have three or fewer templates left: "
+    + thin.map(function(b){ return b.beat; }).join(", ") + ". Those need more "
+    + "templates bound to their job — a re-bind, or new scenes cut — because no "
+    + "amount of reordering finds a good option in a set you have emptied.";
+  summary(); render();
+}).catch(function(){
+  document.getElementById("which").textContent = "Could not load data.json";
+});
+</script>

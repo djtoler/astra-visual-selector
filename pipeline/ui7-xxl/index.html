@@ -1,0 +1,192 @@
+<title>Which XXL Cover</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Archivo+Narrow:wght@600;700&display=swap">
+<style>
+:root{
+  --ink:#16130f; --ink2:#5a5148; --ink3:#8b8076; --line:#ddd5ca; --line2:#ece5db;
+  --bg:#f4efe7; --card:#fffdfa; --raised:#faf6f0;
+  --hit:#8f2115; --hitbg:#f6e4e0;
+  --ok:#2f5d3f; --okbg:#e2ede5;
+  --disp:"Archivo Narrow",Arial Narrow,sans-serif;
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --hit:#e8836f; --hitbg:#38201b;
+  --ok:#8fcaa3; --okbg:#1c2c22;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --hit:#e8836f; --hitbg:#38201b;
+  --ok:#8fcaa3; --okbg:#1c2c22;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 18px 80px}
+header{padding-block:26px 16px;border-bottom:2px solid var(--ink)}
+h1{margin:0 0 10px;font:700 30px/1.05 var(--disp);letter-spacing:-.01em;
+  text-transform:uppercase}
+.lede{margin:0 0 6px;color:var(--ink2);max-width:74ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:11px 0;margin-bottom:22px;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font:600 12px/1 var(--mono);padding:7px 11px;border-radius:99px;
+  background:var(--okbg);color:var(--ok);white-space:nowrap}
+.st{font:12px/1.4 var(--mono);color:var(--ink3)}
+
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.c{border:1px solid var(--line);border-radius:4px;background:var(--card);
+  overflow:hidden;display:flex;flex-direction:column}
+.c.set{border-color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+.pv{background:#0c0a08;display:block}
+.pv img{width:100%;height:auto;display:block}
+.m{padding:13px 15px 15px;display:flex;flex-direction:column;gap:11px;flex:1}
+.aid{font:600 11px/1.4 var(--mono);color:var(--ink3);word-break:break-all}
+.guess{font:12.5px/1.5 var(--sans);color:var(--ink2);background:var(--raised);
+  border-left:3px solid var(--line);padding:8px 11px;border-radius:0 4px 4px 0}
+.guess b{color:var(--ink);font-weight:700}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.tags span{font:600 10px/1.4 var(--mono);background:var(--line2);color:var(--ink2);
+  padding:3px 7px;border-radius:3px}
+.tags span.name{background:var(--hitbg);color:var(--hit)}
+.q{font:700 9.5px/1.5 var(--disp);letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:-4px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts button{font:600 11.5px/1 var(--mono);padding:8px 11px;border-radius:4px;
+  border:1px solid var(--line);background:var(--raised);color:var(--ink2);cursor:pointer}
+.opts button:hover{border-color:var(--ink3)}
+.opts button[aria-pressed="true"]{border-color:var(--ok);color:var(--ok);
+  background:var(--okbg)}
+textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:4px;
+  background:var(--raised);color:var(--ink);font:13px/1.5 var(--sans);resize:vertical;
+  min-height:56px}
+textarea:focus{outline:2px solid var(--ok);outline-offset:-1px;border-color:var(--ok)}
+footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);
+  font:12px/1.7 var(--mono);color:var(--ink3);max-width:78ch}
+footer b{color:var(--ink2)}
+@media (max-width:640px){ h1{font-size:24px} .grid{grid-template-columns:1fr} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Which XXL Cover</h1>
+  <p class="lede">Three XXL assets are in the library. <b>All three are tagged both
+  2009 and 2010</b>, so the year tags cannot tell them apart, and I cannot see the
+  images.</p>
+  <p class="lede">Beat 15-15 is <b>&ldquo;In 2010, XXL offered him a spot on the
+  Freshman cover. He turned it down.&rdquo;</b> The right asset is the cover Drake
+  is <b>not</b> on &mdash; which means it will never match a beat whose only entity
+  is Drake unless something connects them.</p>
+  <p class="lede">Name each one. The reading under each card is mine, from the OCR
+  name tags alone &mdash; overturn it freely.</p>
+</header>
+
+<div class="bar">
+  <span class="pill" id="tally">0 of 3 named</span>
+  <span class="st" id="st">Loading&hellip;</span>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D=null, db=null, said={}, timer=null;
+
+var OPTS = [
+  ["2009",  "2009 Freshman"],
+  ["2010",  "2010 Freshman"],
+  ["other", "Other XXL issue"],
+  ["notxxl","Not XXL at all"]
+];
+var NAMEY = /^(ace hood|cudi|kid cudi|wale|cole|nipsey|drake|nicki|curren\$y)$/i;
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function setS(m){ document.getElementById("st").textContent = m; }
+
+/* db documents are frozen — copy out, never write in */
+function touch(k){
+  var v = said[k];
+  return { issue: v ? v.issue : null, note: v ? v.note : "" };
+}
+
+function render(){
+  if (!D) return;
+  var n = 0;
+  document.getElementById("grid").innerHTML = D.cards.map(function(c){
+    var s = touch(c.short), set = !!s.issue;
+    if (set) n++;
+    var opts = OPTS.map(function(o){
+      return "<button type='button' data-id='"+esc(c.short)+"' data-v='"+esc(o[0])
+           + "' aria-pressed='"+(s.issue===o[0]?"true":"false")+"'>"+esc(o[1])+"</button>";
+    }).join("");
+    var tags = c.tags.map(function(t){
+      return "<span"+(NAMEY.test(t)?" class='name'":"")+">"+esc(t)+"</span>"; }).join("");
+    return "<article class='c"+(set?" set":"")+"'>"
+      + "<div class='pv'><img src='"+esc(c.data)+"' alt='XXL cover "+esc(c.short)+"'></div>"
+      + "<div class='m'>"
+      + "<div class='aid'>"+esc(c.short)+"&hellip;</div>"
+      + "<div class='guess'>My reading: <b>"+esc(c.guess)+"</b> &mdash; "+esc(c.why)+"</div>"
+      + "<div class='tags'>"+tags+"</div>"
+      + "<div><p class='q'>Which issue is this</p><div class='opts'>"+opts+"</div></div>"
+      + "<textarea data-id='"+esc(c.short)+"' placeholder='Who is on it? Anything "
+      + "else worth recording.'>"+esc(s.note)+"</textarea>"
+      + "</div></article>";
+  }).join("");
+  document.getElementById("tally").textContent = n+" of "+D.cards.length+" named";
+  document.getElementById("foot").innerHTML =
+    "<b>Why this matters.</b> The cover Drake turned down is the one he is not on, "
+    + "so entity matching can never reach it from beat 15-15. Once you name them I "
+    + "can connect the right asset to that beat directly, which is a user-named "
+    + "binding and outranks anything the pipeline derives.";
+}
+
+function save(id){
+  if (!db) return;
+  var s = touch(id);
+  db.doc("xxl/"+id.replace(/[^A-Za-z0-9_-]/g,"_"))
+    .set({ assetShort: id, issue: s.issue, note: s.note,
+           updatedAt: new Date().toISOString() })
+    .then(function(){ setS("Saved."); })
+    .catch(function(e){ setS("Not saved: "+((e&&e.code)||"error")); });
+}
+
+document.addEventListener("click", function(e){
+  var b = e.target.closest(".opts button"); if (!b) return;
+  var id = b.dataset.id, v = b.dataset.v, cur = touch(id);
+  said[id] = { issue: cur.issue === v ? null : v, note: cur.note };
+  render(); save(id);
+});
+
+document.addEventListener("input", function(e){
+  var t = e.target;
+  if (t.tagName !== "TEXTAREA" || !t.dataset.id) return;
+  var cur = touch(t.dataset.id);
+  said[t.dataset.id] = { issue: cur.issue, note: t.value };
+  // not re-rendering: it would move the caret mid-sentence
+  clearTimeout(timer);
+  timer = setTimeout(function(){ save(t.dataset.id); }, 600);
+});
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d; render(); return claude.use("db");
+}).then(function(x){
+  db = x;
+  if (!db){ setS("Answers cannot be saved in this view."); return; }
+  return db.collection("xxl").get().then(function(snap){
+    if (snap && snap.docs) snap.docs.forEach(function(doc){
+      var v = doc.data();               // frozen — copy out
+      if (v && v.assetShort) said[v.assetShort] = { issue: v.issue || null,
+                                                    note: v.note || "" };
+    });
+    render(); setS("Ready — saves as you go.");
+  });
+}).catch(function(e){ setS("Could not load: "+((e&&e.code)||"error")); });
+</script>

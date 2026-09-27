@@ -1,0 +1,550 @@
+<title>Beat Review</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Archivo+Narrow:wght@600;700&display=swap">
+<style>
+:root{
+  --ink:#16130f; --ink2:#5a5148; --ink3:#8b8076; --line:#ddd5ca; --line2:#ece5db;
+  --bg:#f4efe7; --card:#fffdfa; --raised:#faf6f0;
+  --tpl:#2b5473; --tplbg:#e0eaf2;
+  --med:#2f5d3f; --medbg:#e2ede5;
+  --you:#8f2115; --youbg:#f6e4e0;
+  --pair:#7a3d10; --pairbg:#f6e8d7;
+  --disp:"Archivo Narrow",Arial Narrow,sans-serif;
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --tpl:#8ab4d4; --tplbg:#17252f; --med:#8fcaa3; --medbg:#1c2c22;
+  --you:#e8836f; --youbg:#38201b; --pair:#d9a765; --pairbg:#2e2315;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --tpl:#8ab4d4; --tplbg:#17252f; --med:#8fcaa3; --medbg:#1c2c22;
+  --you:#e8836f; --youbg:#38201b; --pair:#d9a765; --pairbg:#2e2315;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1300px;margin:0 auto;padding:0 18px 120px}
+header{padding-block:18px 10px;border-bottom:2px solid var(--ink)}
+h1{margin:0 0 6px;font:700 24px/1.05 var(--disp);text-transform:uppercase;letter-spacing:-.01em}
+.lede{margin:0;color:var(--ink2);max-width:80ch;font-size:14px}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:9px 0;margin-bottom:14px;
+  display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.n{font:600 11.5px/1 var(--mono);padding:7px 9px;border-radius:99px;
+  background:var(--line2);color:var(--ink2);white-space:nowrap}
+.n.t{background:var(--tplbg);color:var(--tpl)}
+.n.m{background:var(--medbg);color:var(--med)}
+.act{font:700 11px/1 var(--mono);padding:8px 11px;border-radius:5px;cursor:pointer;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2)}
+.act.go{border-color:var(--pair);color:#fff;background:var(--pair)}
+.act:disabled{opacity:.3;cursor:default;background:var(--card);color:var(--ink3)}
+.nav{display:flex;gap:3px;margin-left:auto;flex-wrap:wrap;max-width:62%}
+.nav button{font:600 9.5px/1 var(--mono);padding:6px 5px;border-radius:4px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.nav button[aria-current="true"]{border-color:var(--ink);color:var(--ink);
+  background:var(--raised);font-weight:700}
+.nav button.rated{border-color:var(--pair);color:var(--pair)}
+
+.script{background:var(--card);border:1px solid var(--line);border-radius:6px;
+  padding:16px 20px;margin-bottom:14px;font-size:16px;line-height:1.62}
+.script .ctx{color:var(--ink3)}
+.script .beat{color:var(--ink);font-weight:700;background:var(--pairbg);
+  padding:2px 4px;border-radius:3px;box-decoration-break:clone;
+  -webkit-box-decoration-break:clone}
+.script .id{display:block;font:700 9.5px/1.5 var(--disp);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:9px}
+
+/* Where the beat sits in the whole piece. The script context above was the
+   beats glued together until 2026-09-26; this says which cycle and section
+   the narration is in when the beat lands. */
+.where{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  flex-wrap:wrap;margin:0 0 7px}
+.where .cy{font:700 10.5px/1.4 var(--disp);letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink2)}
+.where .cy em{font-style:normal;color:var(--ink3)}
+.where .of{font:10px/1.4 var(--mono);color:var(--ink3);white-space:nowrap}
+/* The cycle's test question, from the script itself — what this stretch of
+   narration is trying to establish. It is the context a reviewer needs to judge
+   whether a treatment communicates the beat at all. */
+.testq{margin:0 0 11px;padding:9px 13px;background:var(--pairbg);
+  border-left:3px solid var(--pair);border-radius:0 4px 4px 0}
+.testq b{display:block;font:700 8.5px/1.5 var(--disp);letter-spacing:.13em;
+  text-transform:uppercase;color:var(--pair);margin-bottom:2px}
+.testq span{font:600 14px/1.45 var(--sans);color:var(--ink)}
+.rail{display:flex;gap:2px;margin:0 0 13px}
+.rail i{flex:1;height:3px;border-radius:2px;background:var(--line2)}
+.rail i.past{background:var(--line)}
+.rail i.now{background:var(--pair);height:5px;margin-top:-1px}
+.drift{margin:11px 0 0;padding:9px 12px;background:var(--raised);
+  border-left:3px solid var(--line);border-radius:0 4px 4px 0}
+.drift b{display:block;font:700 9px/1.5 var(--disp);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.drift span{font:12.5px/1.55 var(--sans);color:var(--ink2)}
+
+.sec{font:700 10px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);margin:18px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--line);
+  display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.sec em{font-style:normal;color:var(--ink2);font-weight:600;letter-spacing:0;
+  text-transform:none;font-family:var(--sans);font-size:12.5px}
+.brl{display:inline-flex;align-items:center;gap:6px;margin-left:12px;
+  font:600 10.5px/1 var(--mono);color:var(--med);text-transform:none;letter-spacing:0;
+  cursor:pointer;background:var(--medbg);padding:6px 10px;border-radius:5px;
+  border:1px solid var(--med)}
+.brl input{accent-color:var(--med);width:14px;height:14px;cursor:pointer}
+.brl span{color:var(--ink3);font-weight:500}
+.brl.off{background:transparent;border-color:var(--line);color:var(--ink3)}
+.brl.m{border-color:var(--tpl);background:var(--tplbg);color:var(--tpl)}
+.brl.m input{accent-color:var(--tpl)}
+.brl.m.off{background:transparent;border-color:var(--line);color:var(--ink3)}
+.bdg.b{background:var(--med);color:#fff}
+/* A sourcing verdict, deliberately styled like the rating buttons rather than
+   the source checkboxes — it records a judgement about the library, not what
+   the page is showing. */
+.nob{margin-left:10px;font:700 10px/1 var(--mono);padding:7px 10px;border-radius:5px;
+  border:1px dashed var(--line);background:transparent;color:var(--ink3);
+  cursor:pointer;text-transform:none;letter-spacing:0}
+.nob[aria-pressed="true"]{border-style:solid;border-color:var(--you);
+  background:var(--youbg);color:var(--you)}
+.sec .mf{display:inline-flex;gap:4px;margin-left:auto}
+.sec .mf button{font:600 9px/1 var(--mono);padding:5px 7px;border-radius:4px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink3);cursor:pointer;
+  letter-spacing:0;text-transform:none}
+.sec .mf button[aria-pressed="true"]{border-color:var(--med);color:var(--med);background:var(--medbg)}
+
+.pairs{background:var(--pairbg);border:1px solid var(--pair);border-radius:6px;padding:11px 14px}
+.pr{display:flex;gap:10px;align-items:center;padding:7px 0;border-top:1px solid var(--line)}
+.pr:first-child{border-top:0}
+.pr .who{font:600 11px/1.4 var(--mono);flex:1;word-break:break-word}
+.pr .as{display:flex;gap:3px;flex-wrap:wrap}
+.pr .as img{width:30px;height:30px;object-fit:cover;border-radius:3px;display:block}
+.pr button{font:700 9.5px/1 var(--mono);padding:5px 8px;border-radius:4px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.nopair{font:12px/1.5 var(--mono);color:var(--ink3)}
+
+.rate{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0 2px}
+.rate button{font:700 15px/1 var(--mono);width:44px;height:40px;border-radius:6px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.rate button[aria-pressed="true"]{border-color:var(--pair);background:var(--pair);color:#fff}
+.rate .lab{font:11px/1.4 var(--mono);color:var(--ink3);margin-left:6px}
+
+.row{display:grid;gap:11px}
+.row.t{grid-template-columns:repeat(auto-fill,minmax(228px,1fr))}
+.row.m{grid-template-columns:repeat(auto-fill,minmax(112px,1fr))}
+.c{border:1px solid var(--line);border-radius:5px;background:var(--card);
+  overflow:hidden;cursor:pointer;display:flex;flex-direction:column}
+.c.on{box-shadow:inset 0 0 0 2px currentColor}
+.c.t.on{border-color:var(--tpl);color:var(--tpl)}
+.c.m.on{border-color:var(--med);color:var(--med)}
+.pv{position:relative;background:#0c0a08}
+.c.t .pv{aspect-ratio:16/9}
+.c.m .pv{aspect-ratio:1/1}
+/* CONTAIN, NOT COVER, on media. A 1:1 card with object-fit:cover crops a tall
+   portrait at the top and bottom — which on a cutout is the head and the feet,
+   the two things that say what the framing is. User: "some of the tops and
+   bottoms of thumbnails are cut off from my view." Templates keep cover: they
+   are 16:9 clips in a 16:9 card, so nothing is lost. */
+.pv video{width:100%;height:100%;object-fit:cover;display:block}
+.c.t .pv img{width:100%;height:100%;object-fit:cover;display:block}
+.c.m .pv img{width:100%;height:100%;object-fit:contain;display:block;
+  background:#0c0a08}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;height:34px;
+  border-radius:99px;border:0;cursor:pointer;background:rgba(5,7,10,.6);backdrop-filter:blur(3px)}
+.play::before{content:"";position:absolute;left:13px;top:9px;border-left:11px solid #fff;
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+.play.on{opacity:0}.pv:hover .play.on{opacity:.7}
+.tick{position:absolute;left:5px;top:5px;min-width:21px;height:21px;padding:0 5px;
+  border-radius:4px;border:2px solid rgba(255,255,255,.7);background:rgba(5,7,10,.45);
+  font:700 10px/18px var(--mono);color:#fff;text-align:center}
+.c.on .tick{background:currentColor;border-color:currentColor}
+.c.on .tick b{color:#fff}
+.bdg{position:absolute;right:5px;top:5px;padding:2px 5px;border-radius:3px;
+  font:700 8px/1.4 var(--mono);text-transform:uppercase;background:rgba(5,7,10,.72);color:#d7dee6}
+.bdg.p{background:var(--med);color:#fff}
+.m2{padding:7px 9px 9px}
+.tn{font:600 10.5px/1.32 var(--sans);word-break:break-word}
+.mech{font:9px/1.4 var(--mono);color:var(--ink2);margin-top:4px}
+.meta{font:9px/1.35 var(--mono);color:var(--ink3);margin-top:3px}
+.meta.wrong{color:var(--pair)}
+
+.said{background:var(--youbg);border-left:4px solid var(--you);border-radius:0 5px 5px 0;
+  padding:11px 15px}
+.said p{margin:0 0 9px;font-size:14px;line-height:1.5}
+.said p:last-child{margin:0}
+.said .src{display:block;font:9px/1.5 var(--mono);color:var(--you);opacity:.75;margin-top:2px}
+textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:5px;
+  background:var(--card);color:var(--ink);font:14px/1.55 var(--sans);resize:vertical;
+  min-height:86px}
+textarea:focus{outline:2px solid var(--pair);outline-offset:-1px;border-color:var(--pair)}
+.upd{font:11px/1.6 var(--mono);color:var(--ink3);background:var(--raised);
+  border:1px solid var(--line);border-radius:5px;padding:9px 12px;margin-top:10px}
+.upd b{color:var(--ink2)}
+footer{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+  font:11.5px/1.7 var(--mono);color:var(--ink3);max-width:84ch}
+@media (max-width:640px){ h1{font-size:19px} .nav{max-width:100%}
+  .row.t{grid-template-columns:1fr} .row.m{grid-template-columns:repeat(auto-fill,minmax(86px,1fr))} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Beat Review</h1>
+  <p class="lede">One beat a page. Rate the state you see, pair what should go
+  together, say what is still wrong.</p>
+  <p class="lede"><b>B-roll</b> switches the media list to video only, fetched
+  separately for this beat. Tick it where footage should carry the beat &mdash;
+  alongside the template's media or instead of it. It is thin on purpose: what is
+  missing is the point, and the ticks are the sourcing list.</p>
+</header>
+
+<div class="bar">
+  <span class="n" id="which">&hellip;</span>
+  <span class="n t" id="nt">no template</span>
+  <span class="n m" id="nm">0 media</span>
+  <button class="act go" id="bpair" type="button" disabled>Pair</button>
+  <button class="act" id="bclr" type="button">Clear</button>
+  <button class="act" id="bprev" type="button">&larr;</button>
+  <button class="act" id="bnext" type="button">&rarr;</button>
+  <span class="nav" id="nav"></span>
+</div>
+
+<div id="root"></div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+
+// One tick per beat, so a glance says how far into the piece this sits.
+function adopt(v){
+  // A SAVED RECORD IS THE PRECONDITION A FRESH PAGE CANNOT REPRODUCE. Records
+  // written before the two flags existed have only `broll`, and there a checked
+  // box MEANT media was hidden — so it reads as a replacement, not an add-on.
+  // Returns null when the record says nothing about sources, so the default
+  // (media on, b-roll off) stands rather than being overwritten with it.
+  if (!v) return null;
+  if (v.media !== undefined) return {m: !!v.media, b: !!v.broll};
+  if (v.broll !== undefined) return {m: !v.broll, b: !!v.broll};
+  return null;
+}
+
+function scriptHtml(b){
+  // CONTIGUOUS SCRIPT. before + mid + after is a real substring of the narration.
+  // The beat's own words are MARKED inside the sentence they belong to, and the
+  // REST of that sentence stays in full-strength ink, because it is the same
+  // sentence rather than context.
+  // NEVER splice b.quote in here. The quote is terse where the script is full,
+  // and on a shared sentence it is only half of one — which is how 02-02a came
+  // to read "Curren$y was on the 2009 XXL Freshman cover" then jump straight to
+  // "Here are ninety-three rappers": the other half of its sentence, which is
+  // beat 02-02b, was dropped. The user: "this is exatcly what I was rying to
+  // avoid."
+  var w = b.script, m = w.mid, a = w.hlStart, z = w.hlStart + w.hlLen;
+  return "<div class='script'><span class='id'>beat "+esc(b.beat)+" &middot; "
+    + esc(b.job)+" &middot; "+b.counts.bound+" templates bound to this job</span>"
+    + (w.before ? "<span class='ctx'>"+esc(w.before)+" </span>" : "")
+    + esc(m.slice(0, a))
+    + "<span class='beat'>"+esc(m.slice(a, z))+"</span>"
+    + esc(m.slice(z))
+    + (w.after ? "<span class='ctx'> "+esc(w.after)+"</span>" : "");
+}
+
+function srcLabel(k){
+  var st = mst(k);
+  return st.m && st.b ? "Media + b-roll" : st.b ? "B-roll only"
+       : st.m ? "Media" : "Nothing selected";
+}
+
+function rail(n, of){
+  var out = "";
+  for (var i = 1; i <= of; i++)
+    out += "<i class='" + (i === n ? "now" : (i < n ? "past" : "")) + "'></i>";
+  return out;
+}
+var D=null, i=0, tsel=null, msel=[], mfilt="all";
+var rate={}, note={}, pairs={}, srcs={}, nob={}, db=null, timer=null;
+
+// MEDIA AND B-ROLL ARE INDEPENDENT. The user, 2026-09-26: "broll be an optional
+// add on or replacement of media if not media is selected but broll is still
+// paired with a template." The first build made the checkbox SWAP one list for
+// the other, which allowed replacement and made addition impossible. Two flags:
+// both on is an add-on, media off + b-roll on is a replacement, and either way
+// whatever is selected pairs with the template.
+function mst(k){ var v = srcs[k]; return v ? v : {m:true, b:false}; }
+function setsrc(k, patch){
+  var v = mst(k);
+  srcs[k] = {m: patch.m === undefined ? v.m : patch.m,
+             b: patch.b === undefined ? v.b : patch.b};
+}
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function B(){ return D.beats[i]; }
+function key(){ return B().beat; }
+function mine(k){ var v = pairs[k]; return v ? v.slice() : []; }
+
+var LABEL = {1:"unusable", 2:"poor", 3:"workable", 4:"good", 5:"right"};
+
+function pool(b){
+  // B-ROLL IS A SEPARATE FETCH, not a filter. A video that serves a beat is
+  // often not a candidate for any entity on it — the clip is the shot, not a
+  // portrait of someone — so filtering the still list by media_type would show
+  // almost nothing. Union of the enabled sources, deduped by id: an asset can
+  // legitimately sit in both lists, and it must not appear twice or be
+  // selectable twice.
+  var st = mst(b.beat), out = [], seen = {};
+  if (st.m) b.media.forEach(function(m){
+    if (!seen[m.id]) { seen[m.id] = 1; out.push(m); } });
+  if (st.b) b.broll.forEach(function(m){
+    if (!seen[m.id]) { seen[m.id] = 1;
+                       out.push(Object.assign({}, m, {fromBroll:true})); } });
+  return out;
+}
+
+function mshown(b){
+  return pool(b).filter(function(m){
+    if (mfilt === "picked") return m.picked;
+    if (mfilt === "fits")   return m.fits !== false;
+    return true; });
+}
+
+function tcard(t){
+  var on = tsel === t.id;
+  return "<article class='c t"+(on?" on":"")+"' data-t='"+esc(t.id)+"'>"
+    + "<div class='pv'>"
+    + (t.clip ? "<video src='"+esc(t.clip)+"'"+(t.poster?" poster='"+esc(t.poster)+"'":"")
+                + " muted playsinline preload='none'></video>"
+                + "<button class='play' type='button' aria-label='Play clip'></button>"
+              : (t.poster ? "<img src='"+esc(t.poster)+"' alt=''>"
+                          : "<span class='bdg'>no preview</span>"))
+    + (t.picked ? "<span class='bdg p'>chosen</span>" : "")
+    + "<span class='tick'>"+(on?"&#10003;":"")+"</span></div>"
+    + "<div class='m2'><div class='tn'>"+esc(t.name)+"</div>"
+    + (t.mechanism ? "<div class='mech'>does: "+esc(t.mechanism)+"</div>" : "")
+    + "<div class='meta'>"+(t.slots==null?"slots unknown":t.slots+" slot"+(t.slots===1?"":"s"))
+    + (t.structure?" &middot; "+esc(t.structure):"")+"</div></div></article>";
+}
+
+function mcard(m){
+  var n = msel.indexOf(m.id), img = D.thumbs[m.id];
+  return "<article class='c m"+(n>=0?" on":"")+"' data-m='"+esc(m.id)+"'>"
+    + "<div class='pv'>"
+    + (m.clip
+        ? "<video src='"+esc(m.clip)+"'"+(img?" poster='"+esc(img)+"'":"")
+          + " muted playsinline preload='none'></video>"
+          + "<button class='play' type='button' aria-label='Play clip'></button>"
+        : (img ? "<img src='"+esc(img)+"' loading='lazy' alt=''>" : ""))
+    + (m.fromBroll && mst(key()).m ? "<span class='bdg b'>b-roll</span>"
+        : (m.video && !m.clip ? "<span class='bdg'>vid</span>" : ""))
+    + (m.picked?"<span class='bdg p' style='right:auto;left:5px;top:auto;bottom:5px'>picked</span>":"")
+    + "<span class='tick'>"+(n>=0?"<b>"+(n+1)+"</b>":"")+"</span></div>"
+    + "<div class='m2'><div class='tn'>"+esc(m.entity||"—")+"</div>"
+    + "<div class='meta"+(m.fits===false?" wrong":"")+"'>"+esc(m.framing||"no framing")+"</div>"
+    + "</div></article>";
+}
+
+function render(){
+  var b = B(), k = b.beat, mp = mine(k), tmap = {};
+  b.templates.forEach(function(t){ tmap[t.id] = t; });
+  var shown = mshown(b);
+  document.getElementById("root").innerHTML =
+    "<div class='where'><span class='cy'>"+esc(b.place.cycle)
+    + (b.place.section ? " <em>/</em> "+esc(b.place.section) : "")+"</span>"
+    + "<span class='of'>beat "+b.place.n+" of "+b.place.of+"</span></div>"
+    + "<div class='rail'>"+rail(b.place.n, b.place.of)+"</div>"
+    + (b.place.test
+        ? "<p class='testq'><b>What this cycle is testing</b><span>"
+          + esc(b.place.test)+"</span></p>"
+        : "")
+    + scriptHtml(b)
+    + (b.place.overlap < 1
+        ? "<div class='drift'><b>The beat was cut from different wording "
+          + "&mdash; "+Math.round(b.place.overlap*100)+"% of the words match</b>"
+          + "<span>&ldquo;"+esc(b.quote)+"&rdquo;</span></div>"
+        : "")
+    + "</div>"
+
+    + "<p class='sec'>Where this stands <em>&mdash; 1 unusable &rarr; 5 right</em></p>"
+    + "<div class='rate'>"
+    + [1,2,3,4,5].map(function(v){
+        return "<button type='button' data-rate='"+v+"' aria-pressed='"
+             + (rate[k]===v?"true":"false")+"'>"+v+"</button>"; }).join("")
+    + "<span class='lab'>"+(rate[k]?esc(LABEL[rate[k]]):"not rated")+"</span></div>"
+
+    + "<p class='sec'>Paired now <em>&mdash; "+(mp.length||b.paired.length)+"</em></p>"
+    + "<div class='pairs'>"
+    + ((mp.length || b.paired.length)
+        ? (mp.length ? mp : b.paired).map(function(p, n){
+            var ids = p.assets || p.slots || [];
+            return "<div class='pr'><div class='who'>"
+              + esc((tmap[p.templateId]||{}).name || p.templateId)+"</div>"
+              + "<div class='as'>"+ids.map(function(a){
+                  return D.thumbs[a] ? "<img src='"+esc(D.thumbs[a])+"' alt=''>"
+                                     : "<span class='meta'>"+esc(a.slice(0,8))+"</span>"; }).join("")
+              + "</div>"+(mp.length?"<button type='button' data-rm='"+n+"'>Remove</button>":"")
+              + "</div>"; }).join("")
+        : "<div class='nopair'>Nothing paired on this beat yet.</div>")
+    + "</div>"
+
+    + "<p class='sec'>Templates <em>&mdash; pick one</em></p>"
+    + "<div class='row t'>"+b.templates.map(tcard).join("")+"</div>"
+
+    + "<p class='sec'>"+srcLabel(k)+" <em>&mdash; click in slot order</em>"
+    + "<label class='brl m"+(mst(k).m?"":" off")+"'><input type='checkbox' id='usem'"
+    + (mst(k).m?" checked":"")+"> media <span>&mdash; "+b.media.length+"</span></label>"
+    + "<label class='brl"+(mst(k).b?"":" off")+"'><input type='checkbox' id='useb'"
+    + (mst(k).b?" checked":"")+"> b-roll <span>&mdash; video only, "
+    + b.broll.length+"</span></label>"
+    + "<button type='button' class='nob' id='nob' aria-pressed='"
+    + (nob[k]?"true":"false")+"'>no eligible b-roll"
+    + (nob[k]?" &check;":"")+"</button>"
+    + "<span class='mf'>"
+    + [["all","all "+pool(b).length],["fits","fits"],
+       ["picked","my picks"]].map(function(x){
+        return "<button type='button' data-mf='"+x[0]+"' aria-pressed='"
+             + (mfilt===x[0]?"true":"false")+"'>"+esc(x[1])+"</button>"; }).join("")
+    + "</span></p>"
+    + "<div class='row m'>"+shown.map(mcard).join("")+"</div>"
+
+    + (b.history.length
+        ? "<p class='sec'>What you have said before <em>&mdash; "+b.history.length+"</em></p>"
+          + "<div class='said'>"+b.history.map(function(h){
+              return "<p>&ldquo;"+esc(h.text)+"&rdquo;<span class='src'>"+esc(h.where)
+                   + (h.when?" &middot; "+esc(h.when):"")+"</span></p>"; }).join("")+"</div>"
+        : "")
+
+    + "<p class='sec'>What is still wrong</p>"
+    + "<textarea id='note' placeholder='Say what this beat needs that it has not got.'>"
+    + esc(note[k]||"")+"</textarea>"
+    + "<div class='upd'><b>Since your last review:</b> Drake is an entity on every "
+    + "beat now, not just the eight that named him. 173 unverified corrections were "
+    + "removed, so candidate pools roughly doubled. Tag matching runs both "
+    + "directions. Beats rank candidates on their own words. Headshot and quarter "
+    + "count as one framing. Rejected templates are hidden &mdash; "
+    + "<a href='#' id='showrej'>list the ones hidden on this beat</a>.</div>";
+
+  document.getElementById("which").textContent = "beat "+k+"  ("+(i+1)+" / "+D.beats.length+")";
+  document.getElementById("nt").textContent = tsel ? ((tmap[tsel]||{}).name||tsel).slice(0,30) : "no template";
+  document.getElementById("nm").textContent = msel.length+" of "+shown.length;
+  document.getElementById("bpair").disabled = !(tsel && msel.length);
+  document.getElementById("bprev").disabled = i === 0;
+  document.getElementById("bnext").disabled = i === D.beats.length - 1;
+  document.querySelectorAll("#nav button").forEach(function(x){
+    x.setAttribute("aria-current", x.dataset.p === String(i) ? "true" : "false");
+    x.className = rate[D.beats[x.dataset.p].beat] ? "rated" : ""; });
+}
+
+function payload(k, offered, now){
+  // NO ELIGIBLE B-ROLL IS A FINDING, NOT AN EMPTY FIELD. CLAUDE.md: "A beat with
+  // no selection is a finding, not missing data. It means nothing shown was good
+  // enough, and it points at the library." So the record keeps BOTH the verdict
+  // and how many clips were on offer when it was given — "none of 5" is a
+  // sourcing request; "none of 0" says the fetch found nothing to judge, which
+  // is a different problem with a different fix.
+  return { beat: k, rating: rate[k] || null, note: note[k] || "",
+           broll: mst(k).b, media: mst(k).m,
+           noBroll: !!nob[k], brollOffered: offered,
+           pairs: mine(k), updatedAt: now };
+}
+
+function save(k){
+  if (!db) return;
+  var b = D.beats.filter(function(x){ return x.beat === k; })[0];
+  db.doc("review/"+k.replace(/[^A-Za-z0-9_-]/g,"_"))
+    .set(payload(k, b ? b.broll.length : 0, new Date().toISOString()))
+    .catch(function(){});
+}
+
+document.addEventListener("click", function(e){
+  var pb = e.target.closest(".play");
+  if (pb){
+    var v = pb.parentElement.querySelector("video"); if (!v) return;
+    if (v.paused){
+      document.querySelectorAll("video").forEach(function(o){
+        if (o!==v){ o.pause(); var x=o.parentElement.querySelector(".play");
+                    if (x) x.classList.remove("on"); }});
+      v.play().catch(function(){}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  var rj = e.target.closest("#showrej");
+  if (rj){ e.preventDefault();
+    window.open("rejected.html#"+encodeURIComponent(key()), "_blank"); return; }
+  var rb = e.target.closest("button[data-rate]");
+  if (rb){ var k=key(); rate[k] = rate[k]===+rb.dataset.rate ? null : +rb.dataset.rate;
+           render(); save(k); return; }
+  var rm = e.target.closest("button[data-rm]");
+  if (rm){ var k2=key(), cur=mine(k2); cur.splice(+rm.dataset.rm,1);
+           pairs[k2]=cur; render(); save(k2); return; }
+  var nb2 = e.target.closest("#nob");
+  if (nb2){ var kn = key(); nob[kn] = !nob[kn]; render(); save(kn); return; }
+  var um = e.target.closest("#usem"), ub = e.target.closest("#useb");
+  if (um || ub){
+    var kb = key();
+    setsrc(kb, um ? {m: um.checked} : {b: ub.checked});
+    // KEEP the picks that still have a source. Clearing everything on a toggle
+    // throws away slot order the user built, and toggling b-roll ON must never
+    // cost them their media picks — that is the whole point of "add on".
+    var live = {}; pool(B()).forEach(function(m){ live[m.id] = 1; });
+    msel = msel.filter(function(id){ return live[id]; });
+    render(); save(kb); return;
+  }
+  var mf = e.target.closest("button[data-mf]");
+  if (mf){ mfilt = mf.dataset.mf; render(); return; }
+  if (e.target.closest("video")) return;
+  var t = e.target.closest(".c.t");
+  if (t){ tsel = tsel===t.dataset.t ? null : t.dataset.t; render(); return; }
+  var m = e.target.closest(".c.m");
+  if (m){ var id=m.dataset.m, n=msel.indexOf(id);
+          if (n>=0) msel.splice(n,1); else msel.push(id); render(); return; }
+  var nb = e.target.closest("#nav button");
+  if (nb){ i=+nb.dataset.p; tsel=null; msel=[]; render();
+           window.scrollTo({top:0,behavior:"instant"}); }
+});
+document.addEventListener("input", function(e){
+  if (e.target.id !== "note") return;
+  note[key()] = e.target.value;
+  clearTimeout(timer); timer = setTimeout(function(){ save(key()); }, 700);
+});
+document.addEventListener("ended", function(e){
+  if (e.target.tagName!=="VIDEO") return;
+  var p = e.target.parentElement.querySelector(".play"); if (p) p.classList.remove("on");
+}, true);
+document.getElementById("bpair").onclick = function(){
+  if (!tsel || !msel.length) return;
+  var k = key(), cur = mine(k);
+  cur.push({templateId: tsel, assets: msel.slice(), at: new Date().toISOString()});
+  pairs[k]=cur; tsel=null; msel=[]; render(); save(k);
+};
+document.getElementById("bclr").onclick = function(){ tsel=null; msel=[]; render(); };
+document.getElementById("bprev").onclick = function(){ if(i>0){i--;tsel=null;msel=[];render();window.scrollTo({top:0,behavior:"instant"});} };
+document.getElementById("bnext").onclick = function(){ if(i<D.beats.length-1){i++;tsel=null;msel=[];render();window.scrollTo({top:0,behavior:"instant"});} };
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d;
+  document.getElementById("nav").innerHTML = d.beats.map(function(b,n){
+    return "<button type='button' data-p='"+n+"'>"+esc(b.beat)+"</button>"; }).join("");
+  document.getElementById("foot").textContent =
+    d.beats.length + " beats. Script context is the two sentences either side, from "
+    + "the narration itself. Ratings, pairings and notes save as you go.";
+  render();
+  return claude.use("db");
+}).then(function(x){
+  db = x; if (!db) return;
+  return db.collection("review").get().then(function(snap){
+    if (snap && snap.docs) snap.docs.forEach(function(doc){
+      var v = doc.data();                    // frozen — copy out
+      if (!v || !v.beat) return;
+      if (v.rating) rate[v.beat] = v.rating;
+      if (v.note) note[v.beat] = v.note;
+      var ad = adopt(v); if (ad) srcs[v.beat] = ad;
+      if (v.noBroll) nob[v.beat] = true;
+      if (v.pairs) pairs[v.beat] = v.pairs.map(function(p){
+        return {templateId: p.templateId, assets: (p.assets||[]).slice(), at: p.at}; });
+    });
+    render();
+  });
+}).catch(function(){});
+</script>

@@ -1,0 +1,185 @@
+{
+ "_note": "Tags the USER added by name. The Media Library is read-only from this side — its ingest stays authoritative, our judgments stay ours, same split as media-corrections.json. Read by media_candidates.load().",
+ "_provenance": {
+  "source": "user",
+  "at": "2026-09-25",
+  "words": "go ahead and tag big sean | go ahead and tag currency for me as well"
+ },
+ "_why": "grammar/media-picks.json records this asset as the user's pick for Big Sean on beat 16-16, but its only link to him was a caption that is an import filename ('Imported from latest-imgs-new-20260908-2: big-sean-e1614723599888.jpg'), which LOG 0104's gate correctly holds out of the primary tier. A tag is the fix rather than an exception: it gives the asset real evidence, satisfies the gate, and makes it findable on every future beat naming him. LOG 0107.",
+ "tags": [
+  {
+   "assetId": "514d9283165faa83445e507f",
+   "tag": "Big Sean",
+   "source": "user",
+   "words": "go ahead and tag big sean"
+  },
+  {
+   "assetId": "9109a7d753a45dc6462b4baa",
+   "tag": "Curren$y",
+   "source": "user",
+   "words": "go ahead and tag currency for me as well",
+   "claudeBasis": "The user instructed the tag and named the asset only as 'the 2009 XXL Freshman cover'. Three XXL covers are in the pool, all tagged both 2009 and 2010, so the year tags do not discriminate. Claude selected this one because its OCR name tags are ace hood, kid cudi and wale — all 2009 Freshmen — while 2fad290bd62e carries cole and nipsey (2010) and f2b1dd416a43 carries drake and nicki (neither was ever a Freshman). NOT visually verified: Claude cannot see the image. If the user opens it and it is the wrong cover, move this entry."
+  },
+  {
+   "assetId": "2fad290bd62e4c2fdeaa7eed",
+   "tag": "J. Cole",
+   "source": "user",
+   "words": "done  [naming the three XXL covers in ui7-xxl]",
+   "claudeBasis": "User identified this asset as the 2010 XXL Freshman cover in the ui7-xxl review, 2026-09-26. Its OCR tags are the partial names `cole` and `nipsey`, and the contains rule is `entity in tag`, so `jcole` is never inside `cole` — the asset matched NO beat at all. These two tags normalise what the OCR already read; they add no person the OCR did not find. Deliberately NOT tagging Nicki Minaj: the user's own note says she and Drake turned the 2010 Freshman cover down, so she is not on it."
+  },
+  {
+   "assetId": "2fad290bd62e4c2fdeaa7eed",
+   "tag": "Nipsey Hussle",
+   "source": "user",
+   "words": "done  [naming the three XXL covers in ui7-xxl]",
+   "claudeBasis": "User identified this asset as the 2010 XXL Freshman cover in the ui7-xxl review, 2026-09-26. Its OCR tags are the partial names `cole` and `nipsey`, and the contains rule is `entity in tag`, so `jcole` is never inside `cole` — the asset matched NO beat at all. These two tags normalise what the OCR already read; they add no person the OCR did not find. Deliberately NOT tagging Nicki Minaj: the user's own note says she and Drake turned the 2010 Freshman cover down, so she is not on it."
+  },
+  {
+   "assetId": "2fad290bd62e4c2fdeaa7eed",
+   "tag": "Drake",
+   "source": "user",
+   "relation": "connected-to",
+   "asset": "2010 Freshman cover",
+   "words": "tag drake and Nicki on both the 2010 covers. they're not on it but they're connected to it",
+   "claudeBasis": "USER RULING 2026-09-26, naming the asset for beat 15-15: 'tag drake and Nicki on both the 2010 covers. they're not on it but they're connected to it'. This OVERTURNS Claude's decision in LOG 0114, which refused to tag Nicki on the 2010 Freshman cover on the grounds that she is not depicted. The user's rule is that a tag may record a CONNECTION, not only presence — and it is the only thing that can reach an asset defined by who is ABSENT from it. Beat 15-15 is 'XXL offered him a spot on the Freshman cover. He turned it down'; the correct asset is the cover without him, which no presence-based tag could ever surface."
+  },
+  {
+   "assetId": "2fad290bd62e4c2fdeaa7eed",
+   "tag": "Nicki Minaj",
+   "source": "user",
+   "relation": "connected-to",
+   "asset": "2010 Freshman cover",
+   "words": "tag drake and Nicki on both the 2010 covers. they're not on it but they're connected to it",
+   "claudeBasis": "USER RULING 2026-09-26, naming the asset for beat 15-15: 'tag drake and Nicki on both the 2010 covers. they're not on it but they're connected to it'. This OVERTURNS Claude's decision in LOG 0114, which refused to tag Nicki on the 2010 Freshman cover on the grounds that she is not depicted. The user's rule is that a tag may record a CONNECTION, not only presence — and it is the only thing that can reach an asset defined by who is ABSENT from it. Beat 15-15 is 'XXL offered him a spot on the Freshman cover. He turned it down'; the correct asset is the cover without him, which no presence-based tag could ever surface."
+  },
+  {
+   "assetId": "f2b1dd416a43c149de1d3728",
+   "tag": "Drake",
+   "source": "user",
+   "relation": "connected-to",
+   "asset": "Drake and Nicki duo cover",
+   "words": "tag drake and Nicki on both the 2010 covers. they're not on it but they're connected to it",
+   "claudeBasis": "USER RULING 2026-09-26, naming the asset for beat 15-15: 'tag drake and Nicki on both the 2010 covers. they're not on it but they're connected to it'. This OVERTURNS Claude's decision in LOG 0114, which refused to tag Nicki on the 2010 Freshman cover on the grounds that she is not depicted. The user's rule is that a tag may record a CONNECTION, not only presence — and it is the only thing that can reach an asset defined by who is ABSENT from it. Beat 15-15 is 'XXL offered him a spot on the Freshman cover. He turned it down'; the correct asset is the cover without him, which no presence-based tag could ever surface."
+  },
+  {
+   "assetId": "f2b1dd416a43c149de1d3728",
+   "tag": "Nicki Minaj",
+   "source": "user",
+   "relation": "connected-to",
+   "asset": "Drake and Nicki duo cover",
+   "words": "tag drake and Nicki on both the 2010 covers. they're not on it but they're connected to it",
+   "claudeBasis": "USER RULING 2026-09-26, naming the asset for beat 15-15: 'tag drake and Nicki on both the 2010 covers. they're not on it but they're connected to it'. This OVERTURNS Claude's decision in LOG 0114, which refused to tag Nicki on the 2010 Freshman cover on the grounds that she is not depicted. The user's rule is that a tag may record a CONNECTION, not only presence — and it is the only thing that can reach an asset defined by who is ABSENT from it. Beat 15-15 is 'XXL offered him a spot on the Freshman cover. He turned it down'; the correct asset is the cover without him, which no presence-based tag could ever surface."
+  },
+  {
+   "assetId": "7f19005adb51803f76449169",
+   "tag": "headshot",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "head and shoulders, cropped at the upper chest",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  },
+  {
+   "assetId": "a9604a0aa9140b44551cb727",
+   "tag": "half",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "head down to the hands at waist level",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  },
+  {
+   "assetId": "c6723e22f061ab9ed79de54c",
+   "tag": "half",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "head down to clasped hands at the waist",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  },
+  {
+   "assetId": "f2543ad46f1a9ec63b633835",
+   "tag": "full",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "head to feet, standing, boots visible",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  },
+  {
+   "assetId": "d27be924eb18a4c3358e60d1",
+   "tag": "headshot",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "head and upper chest, chains just visible",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  },
+  {
+   "assetId": "e358a68c4c4aee362971c350",
+   "tag": "headshot",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "head and upper chest",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  },
+  {
+   "assetId": "c8793c2a466266ee09b67e1e",
+   "tag": "headshot",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "head and upper chest under a wide-brim hat",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  },
+  {
+   "assetId": "eddd5e0966b5266216b9428c",
+   "tag": "quarter",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "head to mid-torso, arms not shown",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  },
+  {
+   "assetId": "079016f7b081ecaea8c27259",
+   "tag": "half",
+   "source": "user",
+   "axis": "framing",
+   "claudeSaw": "leaning from a car window, head to waist with one arm",
+   "words": "you tag who needs to be tagged framing to unlock 5 beats",
+   "claudeBasis": "Claude READ each image at 280px and judged the crop. This is a visual judgment, not a measurement, and it is the one kind of tag Claude can actually make — nothing in the catalog states framing, and the user asked for it directly: 'you tag who needs to be tagged framing to unlock 5 beats.' Each entry records what was seen so a wrong call is correctable against the same evidence."
+  }
+ ],
+ "remove": [
+  {
+   "assetId": "9109a7d753a45dc6462b4baa",
+   "tag": "2010",
+   "why": "this is the 2009 issue",
+   "words": "2010 xxl freshman cover is different fron 2010 xxl cover... theyre on the standard but the beat calls for freshman cover",
+   "claudeBasis": "OCR reads every word printed on a cover, so all three XXL assets came back tagged BOTH 2009 and 2010, and the standard 2010 issue came back tagged `freshmen` because its cover lines mention the class. True text, false metadata — and it made the three covers score identically (3 each, on 2010 and xxl) on the beat that asks for one of them. Removals follow the user's identification in pipeline/ui7-xxl."
+  },
+  {
+   "assetId": "2fad290bd62e4c2fdeaa7eed",
+   "tag": "2009",
+   "why": "this is the 2010 Freshman issue",
+   "words": "2010 xxl freshman cover is different fron 2010 xxl cover... theyre on the standard but the beat calls for freshman cover",
+   "claudeBasis": "OCR reads every word printed on a cover, so all three XXL assets came back tagged BOTH 2009 and 2010, and the standard 2010 issue came back tagged `freshmen` because its cover lines mention the class. True text, false metadata — and it made the three covers score identically (3 each, on 2010 and xxl) on the beat that asks for one of them. Removals follow the user's identification in pipeline/ui7-xxl."
+  },
+  {
+   "assetId": "f2b1dd416a43c149de1d3728",
+   "tag": "2009",
+   "why": "this is a 2010 issue",
+   "words": "2010 xxl freshman cover is different fron 2010 xxl cover... theyre on the standard but the beat calls for freshman cover",
+   "claudeBasis": "OCR reads every word printed on a cover, so all three XXL assets came back tagged BOTH 2009 and 2010, and the standard 2010 issue came back tagged `freshmen` because its cover lines mention the class. True text, false metadata — and it made the three covers score identically (3 each, on 2010 and xxl) on the beat that asks for one of them. Removals follow the user's identification in pipeline/ui7-xxl."
+  },
+  {
+   "assetId": "f2b1dd416a43c149de1d3728",
+   "tag": "freshmen",
+   "why": "this is the STANDARD 2010 cover, not the Freshman cover — the beat asks for the Freshman one",
+   "words": "2010 xxl freshman cover is different fron 2010 xxl cover... theyre on the standard but the beat calls for freshman cover",
+   "claudeBasis": "OCR reads every word printed on a cover, so all three XXL assets came back tagged BOTH 2009 and 2010, and the standard 2010 issue came back tagged `freshmen` because its cover lines mention the class. True text, false metadata — and it made the three covers score identically (3 each, on 2010 and xxl) on the beat that asks for one of them. Removals follow the user's identification in pipeline/ui7-xxl."
+  }
+ ]
+}

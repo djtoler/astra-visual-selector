@@ -1,0 +1,104 @@
+REVIEW LOG
+Started 2026-09-26. FEEDBACK is the user, verbatim. RESPONSE is Claude.
+
+================================================================================
+
+01-01
+
+FEEDBACK
+the media options available why are those the canidates and not a image of drake?
+we'll reconcile and move to the next beat
+
+RESPONSE
+You were right, and it was my bug.
+
+The entity was correct — all 10 candidates were Drake. But 9 of 10 were articles
+and 1 was artwork. No photograph of him.
+
+Asked resolve() the same question with the beat's own constraints, it returned 9
+person photos led by a headshot with delivered-identity evidence. So the selector
+was right and the page was wrong.
+
+The cause is in my page builder. I called resolve() without passing the beat's
+`wants` and `kinds` — even though I had computed `wants` and was using it to badge
+every card as fitting or not. Every card carried a fit badge measured against a
+constraint the ranking had ignored.
+
+With no framing preference applied, ordering fell through to aboutness, and an
+article about streaming shares more words with a beat about streaming than a
+photograph does. The documents were not wrong candidates; they were correctly
+ranked for a question nobody meant to ask. It was a throwaway inline script, which
+is why it had no test and no second look.
+
+Fixed and rebuilt as pipeline/build_full_review.py. Across all 40 beats: person
+photos on offer 416 -> 655, documents 107 -> 77, artwork 50 -> 19. 41 entity
+slates reordered. 01-01 now leads with Drake headshots, all marked as fitting.
+
+================================================================================
+
+01-01 (continued)
+
+FEEDBACK
+some of the tops and bottoms of thumbnails are cut off from my view. add a checkbox
+that says b-roll. allow b-roll to be used as addition to template/media or in place
+of media. when checked, fetch videos that can match the beat so select from the
+media but filter by video only. do this for every beat. it'll be sparse starting
+off but it'll inform media gaps and what / how to source
+
+RESPONSE
+Both done, across all 40 beats.
+
+THUMBNAILS. Media cards were object-fit:cover in a 1:1 box, so a tall portrait got
+cropped top and bottom — on a cutout that is the head and the feet, the two things
+that say what the framing is. Media now uses contain. Templates keep cover: they
+are 16:9 clips in a 16:9 card, so nothing is lost there.
+
+B-ROLL. A checkbox on every beat. It does not filter the still list — it swaps in a
+separately fetched, video-only set. Filtering the stills by media_type would have
+shown almost nothing, because a clip that serves a beat is usually not a portrait
+of anyone on it. Framing is deliberately not applied to b-roll either: a framing
+tag describes a still crop, and asking a clip to be a headshot would empty an
+already thin set.
+
+The state is saved per beat, so a ticked b-roll box is a recorded judgment about
+what this beat wants, not just a view.
+
+AND THE CARDS PLAY. B-roll cards were going to be stills, which is judging the
+wrong thing — footage is motion. There are only 31 distinct b-roll videos across
+all 40 beats, so every one is now a real clip with a play button.
+
+MEASURED: every beat has b-roll, min 5, median 5, max 17. 134 videos in a pool of
+583. Sparse, as you said it would be — and the ticks become the sourcing list.
+
+Page is 132 files, 12.7 MB of the 64 allowed.
+
+================================================================================
+================================================================================
+01-01 (and every beat) — script context
+FEEDBACK
+is that the script or the beats? i want the script! i need to see where things
+fit in the whole thing
+RESPONSE
+You were right. The "script context" was not the script. It was built by reading
+the blockquotes out of the passages annotation file and gluing them together —
+and those blockquotes ARE the beats. So the two sentences before beat 04-04 were
+the tail of beat 03-03, not narration. Just over half the script never reached
+the page: the passages corpus is 1,008 words, the script is 2,073.
+
+Fixed against script/year-seventeen-script-v4-intent.md, which is the written
+script with its cycles and PROVOKE/PREDICT/REVEAL/RECONCILE sections. Each beat
+now shows real narration either side, the cycle and section it sits in, and a
+40-tick rail for position in the whole piece.
+
+One thing you should know rather than have smoothed over: 13 of the 40 beats do
+not appear word-for-word in any script on disk. They came from a later wording.
+Example — beat 08-08 says "The explanations write themselves. Big back catalog…";
+both v3 and v4 say "…already has all three loaded. Big back catalog…". I flagged
+this to Codex on 2026-09-17 (handoff/outbox/007) and it was never settled.
+Those 13 are placed by word overlap in beat order, and each one says on the page
+how much of it matches and what the script on file actually reads there. I did
+not quietly fuzzy-match them into place.
+
+The open question is still yours: which is current, the script files or the
+wording the beats were cut from? If the beats are current, the script files in
+script/ are stale and should be updated from whatever produced the beats.

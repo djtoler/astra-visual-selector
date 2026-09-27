@@ -1,23 +1,55 @@
 {
  "_note": "What KIND of media a template's slots take. A separate axis from framing: framing answers HOW CLOSE, this answers WHAT IT IS. Three findings arrived at the same gap — the 3 templates where framing does not apply (user 2026-09-23: 'the undone 3 are for documents, screenshots and videos'), the briefs wanting the XXL Freshman cover and album artwork, and brief 23-23's 'screenshots in a document template'.",
- "_kinds": ["person", "footage", "document", "artwork", "graphic"],
+ "_kinds": [
+  "person",
+  "footage",
+  "document",
+  "artwork",
+  "graphic"
+ ],
  "_kindNote": "person = a photograph of someone. footage = a moving clip. document = an article, screenshot, or anything read as text. artwork = a cover, a sleeve, a poster. graphic = a chart or a generated image. A slot with no rule takes ANY kind.",
  "_rule": "RANKS, never excludes, like framing. An asset whose kind is UNKNOWN sits in the middle, never last — 660 of 1,381 assets carry no kind signal at all and punishing them would hide half the library.",
  "byId": {
   "screen-mockup-rfx--review-002": {
-   "wants": ["document", "footage"],
+   "wants": [
+    "document",
+    "footage"
+   ],
    "why": "User 2026-09-23: \"the undone 3 are for documents, screenshots and videos.\" A single media preview inside a video-player mockup."
   },
   "screen-mockup-rfx--review-003": {
-   "wants": ["document"],
+   "wants": [
+    "document"
+   ],
    "why": "User 2026-09-23, same ruling. A scrolling multi-section webpage layout — its media containers hold page content, not portraits."
   },
   "scrolling-screen--review-001": {
-   "wants": ["document", "artwork", "footage"],
+   "wants": [
+    "document",
+    "artwork",
+    "footage"
+   ],
    "why": "User 2026-09-23, same ruling. A continuous scrolling grid of uniform media cards; 28 slots of screenshots or covers, not 28 headshots."
   }
  },
- "byKind": {},
+ "byKind": {
+  "cinematic_3d": {
+   "wants": [
+    "person"
+   ],
+   "why": "User 2026-09-25 on brief 28-28: \"memes and articles shouldnt be here. image tags need a way to match template capability. it should only be quarter, headshot or no no size specified images all but out, available here. spatial needs only those for the noe.\" Earlier, the same ruling twice: \"all spatials plot people\" and \"each node on top of a stick will be a headshot or quarter img of an artist.\" The framing half of those words was already recorded in framing-rules.json as headshot+quarter; the KIND half was not, so kind_wanted() returned () for all 6 spatial templates and kfit() was a no-op. Measured before this: beat 28-28's Drake tier returned 28 cards — 18 document, 5 artwork, 5 person.",
+   "source": "user",
+   "at": "2026-09-25",
+   "appliesTo": [
+    "truth-ratio-days",
+    "truth-population-field",
+    "truth-rank-fall",
+    "truth-small-outlier",
+    "truth-cohort-attrition",
+    "two-floors"
+   ]
+  }
+ },
  "_byKindNote": "Empty. Nothing has needed a kind rule for a whole template kind yet; the three above are specific records.",
  "_beatSide": "NOT BUILT. Briefs 02-02a and 18-18 want the XXL Freshman cover, 06-06 and 08-08 want album covers, 23-23 wants a 2015 music video. Those are the BEAT asking for a kind, and nothing extracts that — the gazetteer holds artists, not publications or albums."
 }

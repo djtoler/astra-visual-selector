@@ -4882,3 +4882,1371 @@ VERIFIED    All eight evidence-boundary tests pass. The full suite passes 351 te
             Production Ready identity evidence. Remaining gaps are Ab-Soul,
             Ty Dolla $ign and XXXTentacion.
 STATUS      done
+
+================================================================================
+
+[0105] 2026-09-25  The deterministic layer could not run without the local library
+PROBLEM     Measured: 17 absolute paths under 3 local roots across 8 files
+            (~/Media Library, ~/Documents/ChatGPT/Polish, ~/yt001data). A session
+            with no library mounted cannot call media_candidates.load() at all —
+            it raises on a missing sqlite. The layer opens no pixels; it reads
+            ids, tags, faces, derivative paths, identity and kind.
+WHY REAL    The media is 11 GB; the metadata the code reads is 25 MB — 440:1. So
+            what blocks off-machine work is not the media, it is metadata behind
+            absolute paths. Objective: with the library unreachable nothing can
+            land a candidate on a beat, so the whole media half is local-only.
+CHANGE      pipeline/paths.py — the 3 roots in one place, each overridable
+            (ASTRA_MEDIA_LIBRARY, ASTRA_POLISH, ASTRA_SNAPSHOT); source() says
+            which source answers. pipeline/export_library.py — the catalog as
+            grammar/library-snapshot.json, 2.7 MB against 21 MB of binary sqlite,
+            carrying EXACTLY the 5 queries load() runs plus captions plus the
+            Production Ready delivery. media_candidates: _rows_live/_rows_snapshot,
+            module-level SOURCE, and one gate at the top of load() that names both
+            absent sources.
+TEST        tests/test_pipeline.py::TheSnapshotIsTheSameLibrary — 4 tests.
+            Proved to fail on 5 separate mutations: (1) reverting the fallback,
+            (2) flattening the delivery verification block to a summary bool,
+            (3) making paths.py ignore its env vars, (4) returning {} instead of
+            raising when both sources are absent, (5) dropping the tag rows from
+            the snapshot reader.
+VERIFIED    557 rows from both sources, identical id set, identical value for
+            every field of every row, and identical ranked ids in order across 5
+            resolve() queries (199 candidate rows). Consumers run:
+            media_candidates.py --role subject --cutout drake, build_media_review
+            (26 briefs, 427 card slots), build_framing_review (13 templates).
+            Full suite 355 tests OK.
+            THREE OF MY OWN CHECKS PASSED FOR THE WRONG REASON FIRST, all found
+            by mutating the code rather than by reading the test:
+              a. compared res["candidates"], a key resolve() does not return, so
+                 five artists compared 0 == 0 and printed "ALL IDENTICAL".
+              b. asserted paths.source() == "snapshot", which describes the
+                 filesystem, not where the rows came from. A build with hardcoded
+                 paths read the live catalog and passed. Fixed by asserting
+                 media_candidates.SOURCE, set by the reader that actually ran.
+              c. the equivalence check compared 6 sampled rows and 5 queries, so
+                 deleting all 12,517 library tag rows from the snapshot reader
+                 changed nothing observable. Tags carry framing, grouping and most
+                 of the match evidence — the exact loss the test exists to catch.
+                 Now compares every field of all 557 rows, with a floor assertion
+                 that the compared pool holds >3000 tags.
+            The export's _counts.delivered says 243; the loaded pool is 557. 243
+            counts person_view entries, while delivery() unions categories,
+            person_view and tags. The count is narrower than its name; not yet
+            corrected in the exporter.
+STATUS      open — R2 upload of the pixels is not built; only the metadata path is
+            proved. paths.py is not yet adopted by the 5 other files holding
+            absolute paths (classify_story, shotlist, build_review, extract,
+            candidates.py), so those remain local-only.
+
+================================================================================
+
+[0106] 2026-09-25  25 of the user's 74 entity picks no longer match their entity
+PROBLEM     Re-running build_media_review.py — as the consumer check for LOG 0105
+            — rewrote ui5-media/data.json, and AMediaPickSurvivesAReshuffle then
+            failed: 14 recorded picks are absent from the shipped cards while the
+            builder recorded only 2 as displaced. Probed directly against
+            media-picks.json: 25 of 74 entity picks across 16 briefs no longer
+            appear in resolve()'s individual tier for the entity they were picked
+            for. Affected: Future, Drake, Ab-Soul, Big Sean, Nicki Minaj, Wiz
+            Khalifa, Kendrick Lamar, Travis Scott, J. Cole.
+WHY REAL    A pick is the user's recorded decision and the standing rule is that a
+            selection survives every rerun (LOG 0031, and 0090 on the media side).
+            34% of the entity picks silently stopped being offered, and the
+            builder's displacedPicks list reports 2 of them — so the loss is
+            invisible in the artifact the user reviews.
+CAUSE       NOT the LOG 0105 refactor. Proved by swapping the pre-0105
+            media_candidates.py into pipeline/ in place and re-running the same
+            probe: identical output, 39 picks read, 74 entity picks, 557 rows, 25
+            missing, the same 16 keys.
+            *** CORRECTION 2026-09-25, same day. This entry first named LOG 0104
+            (identity evidence gating) as the cause. THAT WAS WRONG and it is
+            withdrawn here. Measured against Codex's own pre-0104 backup, in
+            place: 0104 removes 33 candidates (Drake 102->82, Kendrick 27->15)
+            but costs exactly ONE pick, 24 to 25. The real cause is LOG 0103,
+            the recovery of the localhost review state, which grew
+            grammar/media-corrections.json from 28 entries to 201 and suppresses
+            22 of the user's own picks. See LOG 0107. The mistake was assuming
+            the most recent change was the cause because it was the most recent,
+            without measuring the one before it. ***
+            The first two attempts to attribute this were both wrong and both
+            wrong the same way — a comparison that silently read nothing. Run one
+            put "pipeline" on sys.path AFTER the before-package, so both arms
+            imported the current module (__file__ showed it). Run two imported
+            the before-package from the scratchpad, where its P.parent/grammar
+            does not exist, so picked() returned {} and the arm reported
+            "0 missing across 0 picks" — read as a clean result.
+CHANGE      None yet. Recording the finding; the ruling is the user's, because
+            what it decides is whether those 25 picks are resurfaced for
+            reselection or the evidence gate is loosened for an entity the user
+            has already endorsed on that beat.
+TEST        tests/test_pipeline.py::AMediaPickSurvivesAReshuffle
+            ::test_every_recorded_pick_is_shipped_or_explicitly_displaced is
+            currently FAILING and correctly so. It is the test that caught this.
+VERIFIED    grammar/media-picks.json is untouched — 39 picks still read. Only the
+            derived ui5-media/data.json was rewritten, so no user decision is lost,
+            only unoffered.
+STATUS      open — needs a user ruling. Blocks nothing in LOG 0105.
+
+================================================================================
+
+[0107] 2026-09-25  173 reconstructed corrections suppress 22 of the user's picks
+PROBLEM     grammar/media-corrections.json held 28 entries the user made on
+            2026-09-22. LOG 0103's recovery of the localhost review state raised
+            it to 201 — 173 added, 0 removed. Measured, in place, on the real
+            pool: with the user's original 28, 3 of their 74 entity picks go
+            unoffered. With all 201, 25 do. 22 picks are suppressed by entries
+            that only the recovery introduced.
+            Those 22 are SELF-CONTRADICTORY, not merely aggressive. A correction
+            asserts "this asset is not that person." Ten of the 22 carry
+            _evidence == ('identity', <the same entity>) — the Production Ready
+            delivered identity, which CLAUDE.md calls authoritative. Nine more
+            carry ('tag', <the entity>). So for the same (asset, entity) pair the
+            system now holds three mutually exclusive claims: the user picked it,
+            the verified delivery says it is that person, and a correction says it
+            is not. Examples: 20-20 and 29-29b Travis Scott (2 assets, delivered
+            identity Travis Scott), 25-25b J. Cole (3 assets, 2 delivered),
+            16-16 and 18-18 Nicki Minaj (delivered Nicki Minaj), 08-08 Drake
+            (delivered Drake), 04-04/11-11b/20-20/21-21a Future (tag Future).
+WHY REAL    The user reported it first, unprompted: "media canidates wernt
+            properly selected and templates wernt either." The objective is
+            landing the right media on the right beat, and 30% of their recorded
+            entity picks are not being offered on the beat they were chosen for.
+            The standing rule is explicit — "A user selection becomes a permanent
+            binding and must survive every rerun" — and a correction the user did
+            not make is overriding a pick the user did.
+            The 22 contradictions also put a measured FLOOR on the recovery's
+            error rate: at least 22 of 173 entries, 12.7%, are wrong. The true
+            rate cannot be bounded, because the entries carry no provenance to
+            audit — see below.
+PROVENANCE  The entries are bare {assetId, entity}. No `source`, no user words, no
+            timestamp, no run id, and nothing distinguishing the user's 28 from the
+            recovered 173 inside the merged file. Under the HARD RULE — "Every
+            binding carries provenance or it is invalid" — all 201 are now
+            unauditable, including the 28 that were sound before the merge. The
+            pre-merge file survives as grammar/media-corrections.pre-live-recovery-
+            2026-09-25.json, which is the only reason the two sets can still be
+            separated at all.
+CHANGE      USER RULED 2026-09-25: "I want to get us back to where we were before
+            handing to codex this morning", and separately "codex help process and
+            tag media assets so that should still stand". So: the corrections file
+            is restored to the user's 28 pre-recovery entries; the 201-entry
+            version is QUARANTINED, not deleted, at
+            grammar/media-corrections.codex-recovery-201-quarantined.json.
+            The tagging is kept and is not affected by this — verified from git
+            that no Codex commit touches the Media Library, METADATA, the sqlite,
+            assets.jsonl or any tag data. That work lives outside this repo. A
+            re-export then picked up +2,440 tags that had landed since 12:21
+            (metadata-review 2303, subject-tag 231, human-approved-reconciliation
+            3) on the same 1,664 assets — pure enrichment.
+            RESULT, measured: picks not offered 25 -> 3. Candidate counts per
+            entity roughly doubled: Drake 82->127, Kendrick 15->35, Future 11->28,
+            Travis Scott 3->11, J. Cole 1->7, Nicki Minaj 7->12. The review
+            rebuild went from 180 to 284 distinct assets, 427 to 625 card slots,
+            13 to 49 clips, and Ab-Soul stopped being a gap.
+            This also retires the user's earlier complaint "need more in lib to
+            choose from, keep seeing same drake imgs" — the library was never
+            thin; 173 unprovenanced corrections were removing the candidates.
+            THE 3 REMAINING, each a separate cause, none from the recovery:
+              16-16 Big Sean 514d9283165f — caption-only evidence, held out by
+                LOG 0104's gate. Arguably correct; the caption is a filename.
+              16-16 Wiz Khalifa 4330073a1f5a — in the catalog, outside Production
+                Ready, so LOG 0101's boundary excludes it.
+              20-20 Kendrick Lamar 07e917c62e76 — same boundary.
+            Plus 2 GROUP-tier picks the entity-only probe never looked at
+            (28-28 62bf43b58ddb, 29-29a dbbe511e4188). The probe measured `e:`
+            tiers only and reported 25 as if it were the whole loss; the test,
+            which reads both tiers, is the reason that gap is known.
+TEST        Not yet written. The invariant it should guard follows from rules
+            already in CLAUDE.md and needs no new design: a correction may not
+            suppress an asset the user PICKED for that same entity, and a
+            correction contradicting a delivered identity needs the user's words.
+            Both are currently violated 22 and 10 times respectively.
+VERIFIED    Measured four ways on the live pool: corrections as they stand (25
+            unoffered), pre-recovery 28 (3), none at all (3), and per-pick
+            _evidence for each of the 22. grammar/media-picks.json is untouched.
+TEST        AMediaPickSurvivesAReshuffle is still failing, now on 3 picks instead
+            of 14, and correctly — each of the 3 has a named cause above and none
+            is silent. Added TheSnapshotIsTheSameLibrary::test_the_snapshot_is_not_
+            stale: the library is being tagged live, so a stale snapshot is the
+            expected condition and now fails by name with the remedy in the
+            message, instead of as a 2.3 MB assertEqual diff on the equivalence
+            test. Proved to fail by subtracting 2,440 from the snapshot's tag count.
+STATUS      open — the 3 remaining picks need a ruling: whether LOG 0101's
+            Production Ready boundary should admit an asset the user picked before
+            the boundary existed, and whether 0104's gate should yield to a pick.
+            Both are the same question in two places and it is the user's.
+            LOG 0105 is unaffected: its claim is that the snapshot equals the live
+            catalog, an equality between two readers of the same code, which holds
+            whatever the selection logic does.
+
+================================================================================
+
+[0108] 2026-09-25  Six template previews rendered as a black rectangle
+PROBLEM     build_media_review.template_previews() read ONLY pipeline/.thumbcache
+            and never extracted a frame. 6 of 47 templates had poster: None in
+            ui5-media/data.json while their clip existed on disk the whole time,
+            so 8 beats showed nothing where the treatment should be: 01-01, 06-06,
+            11-11a, 12-12a, 21-21a, 24-24, 27-27, 28-28. Templates affected:
+            ai-flowchart--scene-001, 3d-pie-chart-set--scene-002,
+            3dz-charts--scene-002, archive3-search-bar-business-timeline--scene-001,
+            base-single-billboard, two-floors. 6 clips were dropped the same way.
+            The function's docstring defended this as "Missing means missing, not
+            fabricated." Extracting a real frame from the template's own clip
+            fabricates nothing; the source was present and unread.
+WHY REAL    CLAUDE.md, non-negotiable: "Every clip carries a thumbnail... a
+            <video> with no poster is a black rectangle until the viewer presses
+            play, so a grid of them shows nothing and the page cannot be skimmed",
+            and the poster is explicitly not a size lever. The beat's framing want
+            is derived FROM the chosen template, so a reviewer judging media
+            against an invisible template is judging blind. Found while auditing
+            Codex's work after the user said "media canidates wernt properly
+            selected and templates wernt either" — this is the template half of
+            that report.
+CHANGE      template_previews() now falls back cache -> source clip -> still,
+            transcodes the recovered clip into the cache so the next build is free,
+            and PRINTS "NO PREVIEW POSSIBLE" for anything it genuinely cannot
+            render. Rebuild recovered 6 posters and 6 clips; posterless previews
+            0 of 47. The 11 remaining clip-less previews are still-only templates
+            with no clip on disk and are correctly absent.
+TEST        tests/test_pipeline.py::EveryTemplatePreviewCarriesAPoster, 2 tests.
+            THE FIRST VERSION OF THE SECOND TEST COULD NOT FAIL. It rebuilt the
+            review and asserted no preview was posterless — but the fix writes the
+            recovered posters INTO .thumbcache, so the cache-only code passed too
+            the moment the fix had run once. It would only ever have caught this on
+            a fresh clone. Replaced with a test that points template_previews at an
+            EMPTY temp cache, which is the state any clone starts in; that fails on
+            the pre-fix version with the real cache fully warm. Same failure shape
+            as LOG 0010 and as the three in 0105: a check that reported safety it
+            did not have.
+VERIFIED    Rest of the Codex audit came back CLEAN, and two of my own checks
+            were wrong before it did:
+              ui5-media/index.html — 11 of 11 Review UI rules hold on the rewrite,
+                no regression against the pre-change version.
+              template attribution — 24 of 24 briefs carry EXACTLY the templates
+                the user picked in grammar/picks.json, 0 dropped, 0 added; 2 briefs
+                (23-23, 30-30b) have no template pick recorded and correctly show
+                none. My first run reported 24 MISMATCH because it read
+                `selectedTemplates`, the key in the INPUT media-briefs.json, off
+                the OUTPUT data.json, where the field is `templates`. Fourth
+                instance this session of reading an input's key name from an output.
+              framing derivation — 21 of 26 briefs carry a framing want and all 21
+                equal exactly what their chosen templates declare.
+              clip durations — 30 template clips probed with ffprobe: median 4.00s,
+                min 1.00s, none under 1s. I had flagged all 30 as the 0.04-second
+                defect from file size alone (8-50 KB); they are simply 560px CRF-30
+                encodes. Size is not duration and the probe was free.
+STATUS      done
+
+================================================================================
+
+[0109] 2026-09-25  A project folder name is not evidence about what an asset shows
+PROBLEM     Ingestion project names are stored as tags, so the normalised contains
+            rule made them match artist names. `Drake Year 17 - Instagram` sat on 96
+            assets and put every one within reach of a Drake query. Measured: 2,254
+            of 14,957 tag rows are an ingestion project name; 825 of them are on
+            assets in the selectable pool, 12% of that pool's tags.
+WHY REAL    USER RULING, unprompted: "Drake Year 17 - Instagram. shouldnt be a tag.
+            that add garbage to the canidates. i seen this frst hand. projects
+            shouldnt be tags at all." A folder name records which batch imported an
+            asset; it says nothing about what the asset shows. Landing the right
+            media on the right beat cannot survive a signal that is not a signal.
+            THIS DOES NOT OVERTURN "ranks, never excludes". That rule says every
+            SIGNAL orders candidates and none removes them. There is nothing to
+            rank here. Caption evidence remains a ranked fallback.
+CHANGE      projects() derives the set from the library's OWN ingestions.project
+            column — 30 names — so a project created tomorrow is excluded the day it
+            appears. Not a declared deny-list: 19 of the 30 are dated batch names,
+            so a hand-written list would go stale on the next import. The library
+            already separates the concepts (media_search keeps `projects` and `tags`
+            in different columns), so this restores its own distinction.
+            _evidence() skips a project name in BOTH loops, at any strength.
+            ALSO: suppressed_claims() reads the library's 36 derived-source
+            tag_suppressions and voids weak evidence for that entity on that asset.
+            Asset 54e95e16b8 is a Kendrick Lamar birthday post that name-drops
+            Jay-Z and Kanye West; the library suppressed both from caption-entity,
+            and the raw caption text let the identical claim straight back in.
+            Scope is DERIVED sources only — it never touches delivered_identities
+            or faces, because 13cc794125 has 'Wiz Khalifa' suppressed from
+            face-recognition while the Production Ready delivery confirms him, and
+            the delivery is authoritative.
+TEST        AProjectNameIsNotEvidence, 5 tests, proved to fail on 3 mutations
+            (project tags readmitted; suppressed claim returned via caption;
+            excluding by SOURCE instead of by project NAME). Two of Codex's tests in
+            MediaEvidenceUsesARealFallbackBoundary asserted the OPPOSITE — "a weak
+            match must rank, not vanish" — and are INVERTED in place with the
+            ruling quoted, not deleted, so the reversal stays visible.
+MEASURED EFFECT, STATED PLAINLY
+            ZERO candidates change on the library and briefs as they stand.
+            resolve() computes `primary or all_matches`, and every entity currently
+            has primary evidence, so the weak tier is never consulted. I measured
+            this four ways before believing it: per-entity counts, total individual
+            cards (1469 -> 1469), group slates (6 -> 6), and the 4 slates that do
+            rely on non-primary evidence — all of which fall back to captions, not
+            projects. The change bites in the GAP case, an entity with no tag, face
+            or delivered identity, which is where a wrong candidate does the most
+            damage because there is nothing better beside it. Kept on the user's
+            ruling and on that risk, not on a candidate delta.
+TWO THINGS I GOT WRONG AND REVERSED
+            1. I also PROMOTED every non-project ingest tag to primary evidence,
+               reasoning that `Headshot` and `Group Photo` are real content. That
+               made unregistered collection-style tags STRONGER than before —
+               Codex's fixture "Jay-Z fan collection" is not in ingestions.project,
+               so it became primary identity evidence for Jay-Z. Exactly the failure
+               the ruling exists to stop. Reverted; the source-based demotion is
+               untouched. Caught by Codex's test, not by me.
+            2. I added a filter dropping suppressed tags at load. Measured: 0 of the
+               39 tag_suppressions rows still exist in `tags` — the library already
+               removed them — so it removed nothing and its test could not fail.
+               DELETED rather than kept as reassurance; replaced by a test that
+               guards the finding and fails if the library ever leaves them in.
+STATUS      done
+
+================================================================================
+
+[0110] 2026-09-25  A user tag, not an exception, for the Big Sean pick
+PROBLEM     grammar/media-picks.json records 514d9283165f as the user's pick for
+            Big Sean on beat 16-16, but its only machine evidence was a caption that
+            is an import filename — "Imported from latest-imgs-new-20260908-2:
+            big-sean-e1614723599888.jpg" — which LOG 0104's gate correctly holds out
+            of the primary tier. The asset already carried a tag `sean` that never
+            matched: the contains rule is `entity in tag` and "bigsean" is not
+            inside "sean". That asymmetry is deliberate; a bare `sean` could be Sean
+            Paul or Sean Combs.
+WHY REAL    User ruling: "go ahead and tag big sean." An exception fixes one card on
+            one beat. A tag gives the asset real evidence and makes it findable on
+            every future beat naming him, so the data gets stronger instead of the
+            rule getting weaker.
+CHANGE      grammar/media-tags.json — the additive counterpart to
+            media-corrections.json. The Media Library stays read-only from this
+            side; its ingest stays authoritative, our judgments stay ours.
+            user_tags() REFUSES an entry with no `words`, because a named binding
+            records the user's own words and a tag without them is
+            indistinguishable from one Claude invented. load() RAISES if a user tag
+            names an asset outside the selectable pool rather than ignoring it —
+            that would hide that they tagged something the delivery boundary
+            excludes, the same class as the 2 picks still open in 0107.
+TEST        AUserTagIsANamedBinding, 3 tests. Proved to fail with the sidecar moved
+            away, and the two guard tests proved by feeding a words-less entry and
+            an undelivered asset id.
+VERIFIED    _evidence -> ('tag', 'Big Sean'), primary. Big Sean candidates 1 -> 2,
+            the pick is offered, and the rebuild went 284 -> 285 distinct assets.
+            Suite 371 tests, 1 failure: AMediaPickSurvivesAReshuffle, now down to 4
+            picks from 14 — 16-16 Wiz Khalifa and 20-20 Kendrick Lamar (outside
+            Production Ready; the user said "let me re-pick"), and the 2 group picks
+            28-28 and 29-29a, which are correct rejections of a bad offer per 0107.
+STATUS      done
+
+================================================================================
+
+[0111] 2026-09-25  Display tier on R2, and two defects in my own upload tooling
+PROBLEM     The media is 11 GB and cannot go in git, but a cloud session and a
+            published review UI both need the pixels by URL. The metadata half was
+            solved in LOG 0105 (2.9 MB snapshot); the pixels were not.
+WHY REAL    Objective is landing the right media on the right beat. A review UI that
+            cannot show the candidate cannot get a judgment, and a cloud session
+            with no pixels can rank but never present.
+CHANGE      pipeline/r2_client.py — SigV4 over the standard library, no deps.
+            pipeline/r2_sync.py rewired onto it and onto the user's real bucket.
+            Uploaded the display tier: 557 objects, 1.46 GB, key
+            media/<asset_id>/display<ext>, derivable from the asset id so a UI needs
+            no lookup table.
+            WHY NOT THE aws CLI: the installed awscli 2.18.12 cannot load
+            _cffi_backend and exits 255 before the network. Repairing it is a change
+            to the user's machine and their decision, and it would leave the upload
+            path depending on a tool that has already failed once.
+VERIFIED    557 of 557 sent, 0 failed. Listed back and compared to the plan: 0
+            missing, 0 size mismatches, 0 unexpected extras, 1.46 GB both sides.
+            CONSUMER RUN: fetched an object over the public base URL — HTTP 200,
+            3,909,617 bytes, image/png, exactly the local size.
+THREE DEFECTS IN MY OWN TOOLING, ALL FOUND BY USING IT
+            1. A TEST THAT WOULD HAVE UPLOADED 1.46 GB. Rewiring preflight() to read
+               .env meant test_push_is_refused_without_configuration could no longer
+               withhold credentials — it set a bogus ASTRA_R2_PROFILE, which the new
+               code ignores. The suite ran it and I killed the run; the bucket was
+               verified empty at that moment, so nothing was sent. Fixed twice over:
+               ASTRA_ENV_FILE makes the credential source overridable so the test
+               withholds the real thing, AND --push now requires --confirm as a
+               second word, printing what it would have sent. Exit 1 either way.
+            2. MY PROGRESS MONITORING LIED. It reported "0 of 557 uploaded" while
+               434 objects were already in the bucket, including a probe file that
+               had just returned HTTP 200. list_objects parsed <Contents> with the
+               field order fixed as Key, LastModified, ETag, Size — the AWS S3
+               order. R2 returns Key, Size, LastModified, ETag, so the regex matched
+               nothing and reported an empty bucket. The same parser feeds the
+               skip-what-is-already-there logic, so a re-run would have re-uploaded
+               all 557 files and paid for every write twice. Now parses one
+               <Contents> block at a time and reads fields by name.
+            3. A 403 THAT LOOKED LIKE A PERMISSIONS BUG. The public pub-*.r2.dev
+               host sits behind Cloudflare bot protection and answers
+               Python-urllib's default agent with 403 "error code: 1010". Identical
+               in shape to "the bucket is not public". The same key returns 200 with
+               a Chrome agent and with no agent at all. Recorded as
+               r2_client.BROWSER_UA with fetch_public(), so the next reader does not
+               go after the wrong bug.
+TEST        TheR2ManifestMatchesWhatWasUploaded, 4 tests, deliberately OFFLINE — the
+            live check was done once at upload and re-running it every suite
+            invocation would make the suite depend on someone else's uptime. What it
+            guards is what can drift silently: the manifest is how a UI resolves an
+            asset id to a key, so a manifest disagreeing with the plan is a card
+            pointing at a key that is not there.
+            Also NoFileIsLostToAKeyCollision::test_push_needs_confirm_as_well.
+NOTE        The public base serves any object to anyone holding its URL. That is
+            required here — a published artifact runs in a browser and cannot sign
+            requests — and the keys are 24-hex asset ids, not guessable, while
+            listing still needs credentials. Stated so it is a recorded choice
+            rather than an assumption.
+STATUS      done
+
+================================================================================
+
+[0112] 2026-09-25  Media review ingested, and the notes name a real defect
+PROBLEM     No script ingested the media review. grammar/media-picks.json had been
+            written by hand, and the last hand-merge of a picks file silently
+            dropped 32 beats (LOG 0031 / 0090).
+CHANGE      pipeline/ingest_media_review.py. Merges, never replaces; REFUSES to
+            write if the result would hold fewer briefs or fewer selections than
+            what is on disk; derives rejections only on briefs the user judged and
+            records noneAcceptable where they judged nothing.
+            ORPHAN TIER GUARD. The artifact database never deletes a document, so
+            a tier whose entity label has changed keeps its picks forever —
+            09-09::e:Jay and 12-12a::e:Jay survive from before the gazetteer
+            resolved `Jay` to `Jay Rock`, holding 6 picks. Dropping them silently
+            is the defect and resurrecting a dead label is also wrong, so an orphan
+            is accepted ONLY when its picks are already recorded under another tier
+            of the same brief, and is a hard stop otherwise. Both orphans here are
+            exact duplicates of the e:Jay Rock picks, all three assets tagged
+            `jayrock`. Proved by injecting a pick recorded nowhere else: exit 1,
+            file untouched.
+VERIFIED    selections 76 -> 85, corrections 28 -> 57, rejections +395 derived,
+            4 noneAcceptable tiers, 22 notes. Read back through M.picked() and
+            M.corrections(), then the builder re-run: 262 distinct assets, 544 card
+            slots — down from 285/625 because the 29 new W presses removed
+            candidates, which is the mechanism working.
+CODEX RECOVERY, REVISITED HONESTLY
+            All 29 of the user's new W presses were ALREADY among the 173 entries
+            the recovery added and LOG 0107 quarantined. So the recovery was RIGHT
+            about those 29 and the user has now confirmed them independently, with
+            provenance. The revert was still correct: 22 of the 173 contradicted
+            the user's own picks and the authoritative delivered identity, and
+            nothing in the file distinguished the sound entries from those. The
+            lesson is about provenance, not accuracy — a correct claim with no
+            provenance is still unusable, and this is what recovering it properly
+            looks like. One of the 22, ed167411ccdb, the user had picked for Future
+            on 11-11b; shown it again, they removed the pick and pressed W.
+FINDINGS FROM THE 22 NOTES — each needs its own entry before it is acted on
+  A REAL DEFECT, 28-28: "memes and articles shouldnt be here. image tags need a way
+    to match template capability. it should only be quarter, headshot or no size
+    specified. spatial needs only those." Measured: the brief's chosen templates
+    (truth-cohort-attrition, two-floors) declare wantsFraming
+    ['headshot','quarter'], and the Drake tier returns 28 cards of which 18 are
+    kind=document and 5 are artwork — 5 people. Every one has framing None. So the
+    framing and kind wants are COMPUTED, DISPLAYED on the card, and never applied
+    to rank or filter. wantsKind is empty because no kind rule exists for spatial
+    templates, although the user has already ruled "all spatials plot people" and
+    "each node on top of a stick will be a headshot or quarter img of an artist".
+  15-15 IS NOT WHAT IT LOOKS LIKE: "nearly completely irrelevant … pulling from
+    somewhere that has the pre-processed images." Measured: 0 of 28 cards show a
+    raw original, so the display layer is behaving. The real fault is that the beat
+    is "In 2010, XXL offered him a spot on the Freshman cover", the match is
+    `tag:drake` alone, and all 28 candidates are Articles about anything. Entity
+    matching with no topical constraint. The correct asset is the XXL cover, which
+    the user says at 02-02a is in the library and untagged. Those 28 Articles also
+    carry no derivatives at all, so they are delivered uncropped — which is what
+    "before they're been cropped" is describing.
+  SOURCING, NOT SELECTION: 04-04 wants Travis headshots or quarter body; 21-21a
+    keeps returning the same Future images and wants more Thug; 30-30a waits on
+    older-era rappers; 06-06 wants cutouts and album covers on a timeline; 08-08
+    wants album covers or a match cut of feature clips; 10-10, 11-11b and 30-30b
+    want b-roll; 23-23 wants 2015 song footage; 24-24 wants a chart-history list
+    or billboard articles.
+  RE-RUN AFTER TAGGING: 16-16 J. Cole and Nipsey, 18-18 Nicki and the magazine
+    cover, 20-20, 25-25b Drake-and-J.-Cole video — all "more is available now".
+STATUS      open — the 28-28 defect is the next change and needs its own entry with
+            a failing test. The sourcing notes are a list for the user, not work.
+
+================================================================================
+
+[0113] 2026-09-25  The beat's own words rank what the entity match returns
+PROBLEM     An entity match says WHO a beat names. It never says what the beat is
+            ABOUT. Beat 15-15 is "In 2010, XXL offered him a spot on the Freshman
+            cover." The XXL cover is in the library, correctly tagged 2010, xxl,
+            freshmen, magazine cover — and came back as candidate 124 of 127 for
+            Drake (72 of 127 once the beat's kind filter applies), against a slate
+            that shows 28. 127 assets mention Drake and nothing knew which one was
+            about XXL.
+WHY REAL    The user found it, not a test: "we have the magazine referenced in the
+            media library somewhere, probably not tagged, that would've been best
+            selection" (02-02a), and separately at 15-15 "these are nearly
+            completely irrelevant". CLAUDE.md's objective is landing the right
+            media on the right beat, and here the right media was in the pool,
+            correctly tagged, and unreachable. I had reported this to the user as a
+            design problem needing topical matching. It was a ranking problem.
+CHANGE      quote_overlap(quote, rec, entities) counts the distinct words the
+            beat's quote and the asset's tags share. Literal, not semantic: no
+            model, no embedding, reproducible from two strings. resolve() takes
+            `quote=` and ranks on it AFTER kind and framing fit and BEFORE evidence
+            strength — once an asset can physically serve the slot, being about the
+            right THING outranks being a stronger match on WHO. Placed after
+            STRENGTH it leaves the cover behind every delivered-identity portrait,
+            which is the original defect.
+            RANKS, NEVER EXCLUDES. A zero-overlap asset keeps its place behind the
+            ones that overlap; nothing is removed. Asserted by a test that compares
+            the full id sets with and without the quote.
+THREE EXCLUSIONS, EACH MEASURED, NOT GUESSED
+            1. PROJECT NAMES, per LOG 0109 — a batch folder shares words with a
+               beat by accident.
+            2. FRAMING TAGS. First run: 11-11a ("Three percent") won on the tag
+               `Three Quarter`, 08-08 ("Half of it is other people's songs") on
+               `half`, 20-20 on `full`. Framing is already its own axis in fit(),
+               so counting it here is a second vote for the same fact and it
+               collides with numbers and quantities, which is most of what this
+               script's beats are made of. Changed slates 12 -> 7.
+            3. THE ENTITY'S OWN NAME. Second run: 3 of the 7 remaining changes were
+               decided purely on `wiz`/`khalifa`/`scott`. The entity is already
+               matched and already ranked by evidence strength, so counting its name
+               again inverts that ranking — it let an asset TAGGED "Wiz Khalifa"
+               outrank one the delivery confirms IS Wiz Khalifa. Changed slates
+               7 -> 4.
+            Each exclusion was found by printing the words that actually matched,
+            not by reading the aggregate. The aggregate looked good at every stage.
+TEST        TheBeatsOwnWordsRankCandidates, 4 tests. Proved to fail before the
+            change (resolve had no `quote`, quote_overlap did not exist) and again
+            afterwards by neutralising qscore: "124 != 1 : the XXL cover ranks 124
+            of 127 on a beat about XXL".
+VERIFIED    Across all 26 briefs and 51 entity slates, the top card changes on 4:
+              16-16 Curren$y  4/9   -> #1  score 6  on 2009 2010 cover cudi kid wale
+              02-02a Curren$y 4/9   -> #1  score 3  on 2009 cover xxl
+              15-15 Drake     72/127-> #1  score 3  on 2010 cover xxl
+              08-08 Drake     12/127-> #1  score 1  on song
+            The other 47 are unchanged, so this is surgical rather than a reshuffle.
+            Suite 379 tests, 1 failure — AMediaPickSurvivesAReshuffle, the 4 known
+            picks from 0107/0112.
+STILL OPEN, AND THE USER MUST SEE IT
+            The asset this promotes to #1 on 15-15, f2b1dd416a43, is tagged `drake`
+            and `nicki`. Neither was ever an XXL Freshman, so it is probably NOT the
+            2010 Freshman cover the beat describes — the cover Drake turned down is
+            more likely 2fad290bd62e, tagged `cole` and `nipsey`, both 2010
+            Freshmen. That one is not tagged `drake`, so it never becomes a
+            candidate for a beat whose only entity is Drake. The ranking is right;
+            the asset it surfaces may be the wrong cover, and Claude cannot see the
+            images to settle it.
+STATUS      open — pending the user confirming which of the three XXL assets is
+            which. The 28-28 framing/kind defect from 0112 is still unstarted.
+
+================================================================================
+
+[0114] 2026-09-26  A partial OCR name is a tag that can never match
+PROBLEM     The 2010 XXL Freshman cover, 2fad290bd62e, reached NO beat in the whole
+            script. Its OCR name tags are `cole` and `nipsey` — partial. The match
+            rule is `entity in tag`, so norm("J. Cole") = "jcole" is never inside
+            "cole", and a shorter tag can never satisfy a longer entity name. Same
+            shape as Big Sean's `sean` tag in LOG 0110 and as the XXL cover in 0113,
+            and the third instance this session of an asset that is present,
+            correctly tagged by a machine, and unreachable.
+WHY REAL    The user asked for it by name at 18-18: "also should use the mag cover".
+            The cover was in the pool the entire time. The asymmetry in the contains
+            rule is deliberate and correct — a bare `sean` could be Sean Paul, a
+            bare `cole` could be Cole Bennett — so the fix is the tag, not the rule.
+CHANGE      grammar/media-tags.json gains "J. Cole" and "Nipsey Hussle" on that
+            asset. These NORMALISE what the OCR already read; they add no person the
+            OCR did not find. Nicki Minaj deliberately NOT tagged: the user's own
+            note says she and Drake turned the 2010 Freshman cover down, so she is
+            not on it, and tagging her would be a false identity claim that then
+            surfaces on every Nicki beat.
+            grammar/xxl-covers.json records which asset is which issue, with the
+            user's words, because the library tags all three with BOTH 2009 and
+            2010 and nothing else distinguishes them.
+VERIFIED    Before: the 2010 cover was a candidate on zero beats. After:
+              16-16  J. Cole        rank 1 of 8
+              16-16  Nipsey Hussle  rank 1 of 3
+              18-18  J. Cole        rank 1 of 8
+            The 2009 cover is rank 1 for Curren$y on 02-02a and 16-16, and for Kid
+            Cudi and Wale on 16-16.
+THE USER SETTLED WHAT CLAUDE COULD NOT SEE
+            All three of Claude's readings from the OCR name tags were confirmed,
+            but the third carried a fact no tag held: f2b1dd416a43 is "the 2010
+            cover xxl gave Nicki and drake after they blew up in 2010 but didn't get
+            put on the 2009 cover. they got offered the 2010 freshman cover, both
+            turn it down because of the prior year snub and their blow up since.
+            they were offered a duo cover shortly after". LOG 0113 flagged this
+            asset as probably the wrong cover for 15-15. It is not the Freshman
+            cover, but it is the direct consequence of the refusal that beat
+            describes, so whether it serves the beat is a taste question and the
+            user's, not a defect.
+STILL OPEN  Beat 15-15 is "XXL offered him a spot on the Freshman cover. He turned
+            it down." The most literal asset is the cover he is NOT on — and an
+            asset can never match a beat whose only entity is someone absent from
+            it. Entity matching cannot reach it by construction, so it needs a
+            user-named binding. Presented to the user; not decided here.
+STATUS      open — pending the user's ruling on what serves 15-15.
+
+================================================================================
+
+[0115] 2026-09-26  Tag matching now runs both directions, without guessing
+PROBLEM     Matching was `entity in tag` only. norm("J. Cole") = "jcole" is never
+            inside the tag "cole", so a shorter machine-written tag could never
+            reach a longer entity name. Third asset this session that was present,
+            correctly tagged and unreachable: the 2010 XXL Freshman cover matched
+            NO beat in the script (0114), Big Sean's pick matched only a caption
+            (0110), the XXL cover ranked 124th (0113).
+WHY REAL    USER RULING: "we need more generous tag matching, shouldnt be case
+            sensitive and should be contains, not exact match." It was already
+            case-insensitive and already contains — in one direction. The user was
+            describing the symptom precisely; the asymmetry was the cause.
+CHANGE      The reverse direction matches TOKENS, and only tokens naming exactly
+            one roster artist. Two constraints, each from a measurement:
+              RAW SUBSTRING IS WRONG: `rick` sits inside `kendricklamar`, so a
+                reverse substring puts a Rick Ross tag on Kendrick Lamar.
+              A LENGTH FLOOR IS WRONG: any token at floor 3 brings `jay` to Jay
+                Rock on 72 assets, `lil` to Lil Baby on 10, `big` to Big Sean on 9.
+                Those are the 21 tokens entities.py already refuses to resolve
+                because they belong to several roster names. No length constant
+                appears in the final code — the roster decides, and it stays correct
+                as the roster grows.
+            grammar/class-tags.json: lifecycle and content-class vocabulary
+            excluded from identity evidence, same argument as project names in
+            0109. Found by measurement: the tag "Article Or Post" put `post` on
+            Post Malone across 48 assets.
+MEASURED    Over the 25 entities in this script: +32 candidates, every one correct —
+            kendrick x29, sean, cole, nicki. Zero false matches.
+              Kendrick Lamar  35 -> 51      Jay Rock     3 -> 3  (no `jay`)
+              J. Cole          8 ->  9      Post Malone  4 -> 4  (no `post`)
+              Nicki Minaj     12 -> 13      Lil Baby    13 -> 13 (no `lil`)
+              Big Sean         2 ->  3      Drake      127 -> 127
+            Review rebuild: 263 -> 290 distinct assets, 550 -> 574 card slots,
+            27 -> 50 clips.
+TEST        TagMatchingRunsBothDirections, 6 tests, proved to fail on the pre-change
+            file. They pin the two rejected designs directly: a Rick Ross tag must
+            not reach Kendrick Lamar, and `jay`/`lil`/`big`/`kid` must still refuse.
+IT BROKE ONE OF MY OWN TESTS, CORRECTLY
+            AUserTagIsANamedBinding asserted _evidence == ("tag", "Big Sean"), the
+            exact string of the tag added in 0110. With matching fixed, the asset's
+            own `sean` tag is found first, so the assertion failed. The test was
+            right about the behaviour and wrong to pin the mechanism; it now asserts
+            the pick is offered on primary evidence, whichever tag delivers it.
+            AND THE FINDING BEHIND IT: the Big Sean user tag from 0110, and the
+            J. Cole and Nipsey Hussle tags from 0114, are now REDUNDANT. All three
+            were workarounds for this bug. They are kept because the user asked for
+            them by name and they carry their words, but nothing depends on them.
+            Three hand-written patches disappeared when the actual cause was fixed,
+            which is the argument for fixing causes.
+STATUS      done
+
+================================================================================
+
+[0116] 2026-09-26  A spatial node holds a person, and the claim that justified it
+                   had already gone stale
+PROBLEM     The 6 cinematic_3d templates carried a FRAMING rule from the user's
+            words — headshot, quarter — and no KIND rule, so kind_wanted() returned
+            () for all of them and kfit() was a no-op.
+WHY REAL    USER RULING, brief 28-28: "memes and articles shouldnt be here. image
+            tags need a way to match template capability. it should only be quarter,
+            headshot or no no size specified images all but out, available here.
+            spatial needs only those for the noe." The same ruling twice before:
+            "all spatials plot people", "each node on top of a stick will be a
+            headshot or quarter img of an artist." The framing half of those words
+            was recorded in framing-rules.json on 2026-09-22; the KIND half was
+            dropped on the floor.
+CHANGE      grammar/media-kind-rules.json gains byKind.cinematic_3d -> ["person"],
+            carrying the quote, the date and the 6 template ids it applies to.
+TEST        ASpatialNodeHoldsAPersonNotAnArticle, 4 tests, 3 proved to fail before
+            the rule. The 4th — that a document is RANKED last and not deleted —
+            passed already, and is kept because it is the standing rule this change
+            could most easily have broken.
+THE JUSTIFYING MEASUREMENT WAS STALE AND I NEARLY SHIPPED IT
+            LOG 0112 recorded that beat 28-28's Drake tier returned 28 cards, 18 of
+            them documents. That number was measured BEFORE two changes landed:
+            0113, which ranks on the beat's own words, and 0115, which fixed tag
+            matching in both directions. Re-measured after this rule, across all 8
+            beats that use a spatial template, it displaces TWO cards from the
+            16-card window — one on 12-12b and one on 28-28, both `footage`, zero
+            documents. The first 16 cards on 28-28 were already 15 person and 1
+            footage before this rule existed.
+            So the documents problem the user reported was real and is fixed, but it
+            was fixed by 0113 and 0115, not by this. This rule is now insurance
+            against regression, not a repair. It is kept because it is the user's
+            explicit ruling and because a spatial node genuinely should not hold an
+            article — but it is logged at its measured worth, two cards, not at the
+            worth of the stale claim that prompted it.
+            CLAUDE.md names this exactly: "A claim outlives the evidence that
+            produced it... Go back and correct the claim, in the place it was
+            written, by name." Done here rather than in 0112, because 0112's number
+            was true when written.
+VERIFIED    Suite 389 tests, 1 failure — AMediaPickSurvivesAReshuffle, the 4 known
+            picks. Builder re-run clean.
+STATUS      done
+
+================================================================================
+
+[0117] 2026-09-26  A spatial beat's entities come from the data, not the sentence
+PROBLEM     Beat 28-28 recorded two entities, Drake and Travis Scott — every name
+            its text contains. Its template is a spatial scene, and the beat is
+            "Five clear the left floor. Seven clear the right. Panels come together
+            and two names are standing in the middle." The scene plots TWELVE
+            markers. Claude had been reporting the beat's empty GROUP tier as the
+            defect — one asset showing both names — and proposing two slots.
+WHY REAL    USER, correcting it directly: "28 doesnt need 2 slots. the template is
+            a spacial scene. it needs drake head or quarter shots as well as travis.
+            plus it needs the other artists the beat is referring to." CLAUDE.md
+            already says it — "Spatial scenes hold any number of things... capacity
+            is a property of the data, not the template" — and the selection layer
+            was still reading capacity off the sentence.
+            The script's own intent record forbids the shortcut: under PREDICT it
+            says "Would be a lie — Any name visible in the setup." The names are
+            withheld deliberately, so no amount of text extraction can recover them.
+CHANGE      grammar/beat-entities.json, a declaration of entities a beat's VISUAL
+            needs that its TEXT does not name. build_media_review UNIONS it with the
+            brief's own entities and never removes one.
+DERIVED AND CHECKED, NOT INFERRED
+            ~/yt001data/hiphop_content_system/data/spotify_streams.csv carries
+            streams_lead and streams_feature per artist. Applying the beat's own two
+            thresholds:
+              streams_lead    >= 30B  -> 5 artists: Drake 96.5B, Post Malone 49.3B,
+                                         Kendrick 41.2B, Travis Scott 35.7B,
+                                         XXXTentacion 34.7B
+              streams_feature >= 20B  -> 7 artists: Drake 43.5B, Travis 30.9B,
+                                         Nicki Minaj 27.2B, Future 26.2B,
+                                         21 Savage 23.4B, Ty Dolla $ign 22.4B,
+                                         Young Thug 20.7B
+            The beat says five, seven, and two names in the middle. The data returns
+            exactly 5, exactly 7, and exactly {Drake, Travis Scott} in both. That
+            triple agreement is the check — the derivation reproduces the beat
+            rather than being asserted alongside it.
+VERIFIED    28-28: 2 entities -> 10, slotsNeeded 8, candidates on 8 of the 10. The
+            two with none are Ty Dolla $ign and XXXTentacion — which are the
+            library's only two standing gaps, and now have a named reason to exist.
+            Card slots across the review 574 -> 645.
+STATUS      done
+
+================================================================================
+
+[0118] 2026-09-26  A tag may record a connection, not only a presence
+PROBLEM     Beat 15-15 is "In 2010, XXL offered him a spot on the Freshman cover. He
+            turned it down." The correct asset is the cover he is NOT on. No
+            presence-based tag can ever reach it: an asset defined by an absence has
+            nothing to match against.
+WHY REAL    USER RULING, after naming the asset in pipeline/ui8-name: "tag drake and
+            Nicki on both the 2010 covers. they're not on it but they're connected
+            to it."
+            THIS OVERTURNS A DECISION CLAUDE MADE. LOG 0114 explicitly refused to
+            tag Nicki Minaj on the 2010 Freshman cover, reasoning that she is not
+            depicted and that tagging her "would be a false identity claim that then
+            surfaces on every Nicki beat". The user's rule is broader than the one
+            Claude applied: a tag records a relation to an asset, and presence is
+            only one relation. The narrower rule was not wrong about the risk — it
+            was wrong that the risk outweighed reaching the asset at all.
+CHANGE      Four entries in grammar/media-tags.json, each carrying relation
+            "connected-to", the user's words, and which asset it is. Drake and Nicki
+            Minaj on both 2010 covers: the Freshman cover neither is on, and the duo
+            cover XXL gave them afterwards.
+VERIFIED    The user named 2fad290bd62e — the 2010 Freshman cover — for 15-15. It
+            now ranks 1 of 128 for Drake on that beat. Before this it was not a
+            candidate on any beat in the script at all (LOG 0114), and before 0115
+            it matched nothing anywhere.
+WORTH WATCHING
+            A connection tag is indistinguishable downstream from a presence tag:
+            both land in `tags` and both read as identity evidence. The delivered
+            identity and the faces table still record presence only, so the stronger
+            signals stay clean. If a connection tag starts surfacing an asset on
+            beats where the relation does not hold, the `relation` field already in
+            the sidecar is where the distinction would be enforced. Not built now —
+            no instance of it yet, and building for one would be drift.
+STATUS      done
+
+================================================================================
+
+[0119] 2026-09-26  The user can wave an asset past their own gate
+PROBLEM     Two of the user's recorded picks — Wiz Khalifa on 16-16 and Kendrick on
+            20-20 — sat outside the selectable pool because LOG 0101 narrowed it to
+            exactly the Production Ready delivery. Both are processed and tagged,
+            with cutout and preview derivatives. Their gate receipt reads "no
+            current registered cutout has a passing pre-clean quality receipt", and
+            NEITHER WAS REJECTED — neither was ever reviewed.
+CHANGE      grammar/approved-overrides.json, admitted by delivery(). It ADMITS only:
+            it never removes a delivered asset, and it confers no delivered
+            identity, kind or category, because the delivery is what confers those
+            and an approval is explicitly not a delivery.
+I READ THE RULING TOO BROADLY AND THE USER CAUGHT IT
+            "pass both wiz and kendrick in, theyre approved, anyone else gated is
+            approved too" — Claude scoped that to all 256 gate-blocked assets and
+            admitted 247, taking the pool 557 -> 804 and videos 134 -> 325, then
+            reported the 191 new videos as a win for the four b-roll notes. The
+            user: "wait, i meant who was with wiz and kendrick gated you said 8. not
+            a full 100+ approval." Rescoped to exactly the 8 blocked on that one
+            reason; pool 557 -> 565. The other 248 stay gated, 224 of them for "tag
+            review is not complete", which is a different problem and not one the
+            user waved through.
+            The b-roll observation was true and is now unfunded — those videos are
+            still gated, and saying so is better than keeping a number that a
+            narrower ruling no longer supports.
+AND THREE OF THE EIGHT WERE NOT IN WIZ AND KENDRICK'S SITUATION
+            5 of the 8 were never reviewed. 3 had their cutout explicitly REJECTED:
+            049c3666ace1 (meek mill / rick ross), 2a51577d80b0 (Jay-Z / camron /
+            dipset), d7bada48bde8 (drake / jay). Someone looked and said no. All 8
+            are admitted as instructed, and the 3 carry cutoutRejected so nothing
+            places that derivative. Surfaced rather than folded in, because
+            "approved" plainly meant the unreviewed case.
+TEST        AnApprovalAdmitsAndNeverDelivers, 4 tests — the scope is 8 and one gate
+            reason, an approved asset gets no delivered identity, both picks reach
+            the pool, and a rejected cutout stays flagged.
+STATUS      done
+
+================================================================================
+
+[0120] 2026-09-26  A Freshman cover and a standard cover scored identically
+PROBLEM     Measured: all three XXL assets scored 3, on ['2010','xxl'], for every
+            beat that asks for one of them. There was no discriminator at all, and
+            the right cover ranking first on 15-15 was partly luck in the
+            tiebreakers.
+WHY REAL    USER: "2010 xxl freshman cover is different fron 2010 xxl cover. how can
+            we make that the decider? they got snubbed on freshman cover and offered
+            a standard cover. theyre on the standard but the beat calls for freshman
+            cover." Two beats name a specific issue and the library could not tell
+            three issues apart.
+CAUSE, AND IT IS NOT AN OCR BUG
+            OCR reads every word printed on a page. Each issue prints the other year
+            somewhere, so all three came back tagged BOTH 2009 and 2010. The
+            standard 2010 issue came back tagged `freshmen` because its cover lines
+            mention the class. Every one of those tags is true text and false
+            metadata. And `freshman` never met `freshmen` anyway: the stemmer strips
+            a trailing `s` and that pair differs by a vowel.
+CHANGE      1. QUOTE_SYNONYMS — declared irregular plurals folded in _qtok.
+               Declared, not stemmed: a stemmer loose enough to fold freshman and
+               freshmen would mangle names, and English irregular plurals are a
+               closed set.
+            2. A `remove` list in grammar/media-tags.json — tags the user says do
+               not belong on an asset, mirroring the library's own tag_suppressions,
+               which is read-only from here. Four removals: the wrong year from each
+               of the three covers, and `freshmen` from the standard issue.
+A BUG THAT MADE THE FIX LOOK LIKE A NO-OP
+            The removal loop was placed immediately after the rows are read, which
+            is before the delivery merge — and the delivery manifest carries its own
+            `tags` map and re-appends every tag it holds. So `2009` and `freshmen`
+            came straight back, all three covers still scored 3, and the loop had
+            run with every key matching. Diagnosed by printing the tags after load()
+            rather than trusting that a correct-looking loop had an effect. Moved to
+            run last.
+VERIFIED    15-15 "In 2010 ... the Freshman cover": 2010 Freshman scores 4 and ranks
+            1; the standard scores 3 and ranks 2; the 2009 Freshman scores 3.
+            02-02a "the 2009 XXL Freshman cover": 2009 Freshman scores 4 and ranks
+            1; the standard drops to 2. A standard issue can no longer tie a
+            Freshman cover on a beat that says Freshman.
+TEST        AFreshmanCoverIsNotAStandardCover, 4 tests.
+STATUS      done
+
+================================================================================
+
+[0121] 2026-09-26  The 256 gated assets, and a poster bug of exactly the old shape
+PROBLEM     The user asked to see every gate-blocked asset, twenty to a page, with
+            the reason each is stuck. 256 assets, 191 of them video.
+CHANGE      pipeline/ui9-gated. Gallery grid, 20 per page, ordered so the useful
+            ones lead: the 8 approvals, then the other gate reasons, then the 224
+            blocked only on tag review. Thumbnails inlined as data URIs because 258
+            files would have exceeded the artifact's 255-file limit; data.json is
+            4.5 MB of the 16 MB allowed.
+            Stills, not clips, and the page says so: the purpose is reading WHY an
+            asset is stuck, not judging motion. Every poster is a real frame.
+THE SAME BUG I HAVE NOW MADE THREE TIMES
+            The first pass produced 139 posters of 256. I chose ffmpeg's arguments
+            from the ASSET'S media_type — and a video's `preview` derivative is a
+            still PNG, so `-ss 0.6 -frames:v 1` seeks past the end of a one-frame
+            image and writes nothing. THE FILE decides, not the record.
+            This is the third instance: the 0.04-second review clips came from
+            display_path substituting a video's still preview, and the template
+            previews came from reading a cache instead of the source. Each time the
+            record and the file disagreed and I trusted the record.
+            Also missed: METADATA/video-posters already holds 234 ready-made frames,
+            sharded by id prefix. Using it plus the extension check recovered all
+            117. 256 of 256 now carry a poster.
+REASONS, MEASURED
+              224  tag review is not complete
+               22  a cutout problem — never reviewed, rejected, or never registered
+               12  content class unresolved, or a source class incompatible with
+                   the pipeline it was routed to
+STATUS      done
+
+================================================================================
+
+[0122] 2026-09-26  A pick that cannot ship is recorded, never dropped
+PROBLEM     build_media_review recorded a displaced pick only when the asset had
+            left the pool. A pick whose TIER stopped applying was lost silently —
+            it simply did not appear, and nothing said why.
+WHY REAL    Standing rule: a user selection is a decision and must survive every
+            rerun (LOG 0031, 0090). 28-28 now names ten entities because a spatial
+            scene plots from the data (0117), so its GROUP tier — one asset carrying
+            every entity — cannot be served by any photograph. The user's group pick
+            there was made against a slate that offered a Travis-Scott-only photo as
+            a Drake-and-Travis group asset, which was itself the defect fixed in
+            0104. The pick cannot ship and the reason is worth saying out loud.
+CHANGE      The builder now walks every recorded pick against what it actually
+            shipped and records the rest with a reason:
+            group_tier_not_applicable, entity_no_longer_on_this_beat, or
+            no_longer_matches_this_entity.
+TEST        AMediaPickSurvivesAReshuffle::test_every_unshippable_pick_is_recorded_as_
+            displaced — walks the picks against the built slates and fails on any
+            that vanished without an entry.
+            AND I HAD TO CORRECT THE SIBLING TEST, which asserted two things that
+            were true only while one reason existed: that every reason equals
+            "not_in_production_ready", and that a displaced asset appears on NO card
+            anywhere. The second is wrong now — a photo displaced from 28-28's group
+            tier is still a good Travis Scott candidate on the same beat, and
+            banishing it would throw away a usable asset to satisfy bookkeeping. The
+            invariant is displaced FROM ITS TIER, not absent from the review.
+VERIFIED    Unshipped picks 14 -> 4 -> 2 -> 0 across the day. The last two are now
+            recorded with reasons rather than missing. Wiz Khalifa and Kendrick ship
+            because the user approved them (0119).
+            Suite 404 tests, 1 failure: TheR2ManifestMatchesWhatWasUploaded, which
+            correctly reports that the 8 newly approved assets are not on R2 and
+            names the command. Left failing — the remedy is spend and that is the
+            user's call.
+STATUS      done
+
+================================================================================
+
+[0123] 2026-09-26  The join: which asset fills which slot
+PROBLEM     Measured: 19 of 40 beats carried BOTH a template pick and media picks,
+            and nothing in the tree put them together. shotlist.py is template-only;
+            build_media_review.py is media-only. The one artifact the whole system
+            exists to produce — this beat, this template, slot 3 gets this asset —
+            did not exist, so every fully-decided beat had nowhere to go.
+            STEPS.md documents steps 1-11 and does not mention the media track at
+            all. The last several days of work are absent from the step file.
+WHY REAL    Objective is landing the right media on the right beat. Two separate
+            records of what the user decided, with no artifact joining them, is the
+            decision made and not delivered.
+CHANGE      pipeline/pair.py -> grammar/pairings.json. It PROPOSES: arithmetic over
+            what the template declares (slot count, framing, kind) and what the user
+            picked. `user` holds what they pair in the UI and OUTRANKS the proposal,
+            same standing as a pick — asserted by a test that plants a probe and
+            reruns the builder.
+            pipeline/ui10-pair — pick one template, click media in slot order, press
+            Pair. Template clips with one play button and a poster, per the standing
+            review-UI rule.
+THE FIRST VERSION RANKED BY FRAMING AND WAS WRONG IN A WAY THAT LOOKED RIGHT
+            Beat 20-20 is "Travis Scott, sixty-seven billion. Kendrick, fifty-seven.
+            Post Malone, fifty-six. Future, fifty-four" against a five-bar list. The
+            slot order IS the data order, so ranking the picks by framing fit put
+            Kendrick's photo on Travis's bar — plausible output, wrong answer. The
+            picks already carried their entity in the tier key, so the mapping was
+            free and I had simply not used it. A SLOT IS AN ENTITY, NOT A RANK.
+            Proved by mutation: ranking by framing alone fails with "slot for Future
+            holds an asset picked for someone else".
+AND I INVENTED A PROBLEM THE USER HAD ALREADY RULED OUT
+            The first version reported a `shortfall` wherever a template declared
+            more slots than the beat had media — 1424 slots against 197 assets, which
+            reads as a catastrophe. The standing rule says the opposite: "an 8-slot
+            template can be re-cut to 6 or 10, so declared capacity is a hint about
+            scale, never a gate." Renamed to `recutTo`. With entity-aware assignment
+            the real figure is 205 slots, 190 filled. The 1424 was an artifact of
+            treating a 30-slot grid as needing 30 assets.
+TEST        ASlotIsAnEntityNotARank, 5 tests: slots follow the beat's entity order,
+            a slot holds an asset picked for THAT entity, surplus is a re-cut, an
+            asset that fits nowhere is reported not dropped, no asset fills two slots,
+            and a user pairing survives a rerun.
+STATUS      open — pairings.json exists and is proposed-only. The user pairs next,
+            and their pairings are the evidence for rules that do not exist yet.
+            STEPS.md still omits the media track and now also omits this.
+
+================================================================================
+
+[0124] 2026-09-26  Headshot and quarter are one class, for now
+PROBLEM     The framing scale separates headshot from quarter, and only 20 assets in
+            the pool carry either tag — 11 and 9. Splitting them costs candidates on
+            the tightest-cropping templates, which are the spatial scenes that need
+            them most.
+WHY REAL    USER RULING: "we shiiuld treat headshot and quarter as the same for now."
+CHANGE      media_candidates.FRAMING_EQUIV, with framing_class() and
+            framing_matches(). DECLARED AS AN EQUIVALENCE, not collapsed in
+            FRAMING_TAGS: the underlying tags stay as the library wrote them, the
+            scale keeps five values, and lifting the ruling is deleting one line.
+            Collapsing the vocabulary would have destroyed a distinction the user
+            may want back, to save nothing.
+            pair.py and resolve() now share the one function. They had ranked framing
+            with separate copies of the same comparison, which is how two rules drift
+            into disagreeing — a test asserts pair.py calls M.framing_matches.
+TEST        HeadshotAndQuarterAreOneClass, 5 tests: either satisfies the other, the
+            equivalence does not reach the rest of the scale, unknown framing is
+            still unknown rather than a match, the underlying tags survive, and both
+            readers use the one rule.
+VERIFIED    Suite 414 tests OK. Snapshot re-exported after the staleness test caught
+            +21 assets and +226 tags arriving from the user's processing run.
+STATUS      done
+
+================================================================================
+
+[0125] 2026-09-26  The two worst slates are thin bindings, not wide ones — and a
+                   reordering that did not earn its place
+WHY LOOKED     User asked which of the five template-selection steps can improve.
+               Claude's stated hypothesis was that quality is lost at step 2, the
+               job lookup, because `enumerate` binds 145 templates and
+               `narrate_an_event` 141 — "a job that admits 145 of 425 records isn't
+               a constraint, it's a shrug."
+THE HYPOTHESIS WAS WRONG, MEASURED
+               The two slates the user called worst are not on the fat bindings.
+                 18-18 "horrible template choice" — job members_then_total, SIX
+                   templates bound, 3 clear and 3 conditional.
+                 27-27 "all straight garbage" — job inversion, TWELVE templates,
+                   11 conditional and 1 clear. The user picked the 1 clear.
+               Both are THIN or heavily qualified. And the fat bindings are not a
+               dumping ground either: enumerate and narrate_an_event overlap by only
+               21, 91 templates serve narrate_an_event alone, and enumerate is a
+               superset of no other job. Two guesses, both wrong, both cheap to check
+               and neither checked before being stated.
+ALSO WRONG, IN THE SAME BREATH
+               Claude said "verdict is validated but never used to rank anything."
+               It is key 4 of the within-family sort — (picked, enc, fit, CLEAR,
+               declared, rel, still, id) — and has been since before today. The grep
+               that produced the claim searched pipeline/ and function names in
+               candidates.py and missed a lambda body. A claim about code, made
+               without reading the code that would refute it.
+WHAT WAS ACTUALLY MISSING, AND WHAT IT WAS WORTH
+               `verdict` was absent from the FAMILY-level order — (named, picked,
+               bestenc, bestfit, bestrel, nomotion, size, name) — so a family whose
+               best binding is conditional could displace one judged clear. Added
+               bestver() below the two measured fits.
+               MEASURED ACROSS ALL 40 BEATS: 17 slates reordered, and the verdict mix
+               moved from clear 104 / conditional 123 to clear 107 / conditional 120.
+               +3 of 255 option slots. TWO BEATS GOT WORSE — 10-10 and 17-17 each
+               lost a clear option, because family order is dominated by bestenc and
+               bestfit, which come first and should.
+               REVERTED. The no-drifting rule is explicit: "anything that does not
+               measurably move the objective is drift, however much it improves."
+               Three slots out of 255, non-monotonic, is noise wearing a rationale.
+WHAT THE MEASUREMENT DOES SAY
+               Reordering cannot fix a binding set that is 11 of 12 conditional —
+               there is nothing better to promote. 27-27 and 18-18 need their jobs
+               RE-BOUND, not re-sorted, and that is a paid run and the user's call.
+               314 of 624 bindings are conditional; every one carries condition text,
+               and shotlist passes that text to the slate for display. Whether a
+               condition should gate rather than annotate is a design question nobody
+               has ruled on.
+STATUS         open — the diagnosis stands and no code change survives from it.
+
+================================================================================
+[0126] 2026-09-26  The review page's "script context" was the beats glued together
+
+PROBLEM     The full-review page (ui13) offers two sentences either side of each
+            beat, so the reviewer can see where it sits. build_full_review.
+            narration() built that corpus by reading the `>` blockquotes out of
+            year-seventeen-30-passages.md and concatenating them. THOSE
+            BLOCKQUOTES ARE THE BEATS. So the context around beat 04-04 was
+            "Higher dot, more plays per day. Start at the bottom." — the tail of
+            beat 03-03 — and every word of connective narration was absent.
+            Measured: the passages corpus is 1,008 words; the script is 2,073.
+            Just over half the narration never appeared on the page at all.
+            The user, reading it: "is that the script or the beats? i want the
+            script! i need to see where things fit in the whole thing"
+
+WHY IT      The objective is landing the right candidate on the right beat, and
+MATTERS     the reviewer judges that against what the beat is DOING in the piece.
+            A beat surrounded by its neighbouring beats reads as a list of
+            assertions; the same beat inside its cycle reads as a setup, a turn
+            or a payoff. 04-04 lands as the break in a climb the script spends
+            two sentences building — sentences the page did not have.
+
+FIX         script_doc() parses script/year-seventeen-script-v4-intent.md —
+            prose only, skipping the `>` intent records, keeping its CYCLE and
+            PROVOKE/PREDICT/REVEAL/RECONCILE shape. A Script class locates every
+            beat and serves the real neighbours, plus the cycle and section it
+            falls in, emitted as `place` and rendered above the script block
+            with a 40-tick rail.
+
+THE HARD    13 of 40 beats do not appear verbatim in ANY script on disk. They
+PART        were extracted from a later wording. handoff/outbox/007-from-claude-
+            script-drift.md recorded the same drift on 2026-09-17 and it was
+            never resolved. Example, 08-08: the beat says "The explanations
+            write themselves. Big back catalog…"; v3 and v4 both say "…already
+            has all three loaded. Big back catalog…".
+            Those 13 are placed by best word overlap, ORDER-PRESERVING: a beat
+            may only anchor after the beat before it and before the next beat
+            that matched exactly. UNCONSTRAINED SEARCH WAS WRONG — 23, 24 and
+            25a all collapsed onto one paragraph of CYCLE 6, and 25a/25b split
+            across PROVOKE and REVEAL. Constrained, all 40 run in order and
+            passages 01→30 map cleanly CYCLE 1→CODA.
+            Each carries its overlap and the page prints the script's own words
+            at that anchor under "The script on file reads differently here",
+            rather than implying a verbatim hit. Not fuzzy-matched into silence.
+
+TEST        TheContextIsTheScriptNotTheBeats x4.
+            1. 04-04's preceding context contains "catalogs that barely
+               register" — a sentence the script has and NO beat quote contains.
+               Proved to fail on the old builder by re-running the old
+               context(): it returned the tail of beat 03-03, probe absent.
+               The test also asserts the probe is in no beat, so it cannot pass
+               for the wrong reason.
+            2. every beat lands in a cycle; 01-01 is CYCLE 1/PROVOKE, 30-30b CODA
+            3. anchors run forward only — guards the CYCLE 6 collapse above
+            4. a reworded beat declares itself; an exact one stays silent
+
+VERIFIED    412 tests, 2 failures, both pre-existing and in unrelated code
+            (EveryTemplatePreviewCarriesAPoster — a clip with no still on disk;
+            GridCapacityIsTheCardNotTheRender — a capacity card). Builder ran:
+            40 beats, 124 templates, 229 media, data.json 5.2 MB, 130 of 255
+            files. Published as version 4 of the Beat Review artifact.
+
+ALSO FOUND  The Polish tree is no longer readable from this process — the
+            passages file and the cutout PNGs return "Operation not permitted",
+            and ffmpeg could not open two cutouts on this build.
+            CORRECTED 2026-09-26, same day: this entry first said "it is a macOS
+            file-access grant". That was a guess and it was wrong, and it sent
+            the user to re-check a Full Disk Access box they had already ticked.
+            MEASURED cause: VS Code runs from ~/Downloads and still carries its
+            Safari quarantine attribute, so Gatekeeper APP-TRANSLOCATES it — the
+            running binary is under /private/var/folders/.../AppTranslocation/
+            8D751E66-.../d/, a randomized read-only path that differs every
+            launch. TCC grants attach to a path, so no grant can stick to it.
+            The Full Disk Access entry is real and applies to an app identity
+            that is not the one running. Evidence: the process chain resolves to
+            the translocation path; `xattr -p com.apple.quarantine` on
+            ~/Downloads/Visual Studio Code.app returns
+            "00c3;64ed05d9;Safari;A99A81B2-..."; `ls -d ~/Documents` succeeds
+            while `ls ~/Documents` is denied, which is TCC refusing enumeration
+            rather than a unix permission (the dir is drwxr-xr-x, owned by the
+            user).
+            FIX IS THE USER'S: quit VS Code, move the bundle to /Applications,
+            strip the quarantine attribute, re-add it to Full Disk Access at the
+            new path. Not a code defect and nothing in the pipeline can work
+            around it.
+STATUS      done
+
+================================================================================
+[0127] 2026-09-26  A mirror of Codex's tree fails loudly or not at all
+
+PROBLEM     The Polish tree is unreadable (LOG 0126) and the fix is a local
+            copy. paths.py's own docstring names the danger a copy creates:
+            "the failure mode this file exists to prevent is not a missing file,
+            it is a present-but-stale one." Measured what is actually lost right
+            now, with approved-list.json readable but catalog.json and
+            description-inventory.json denied:
+                description   present on 445/445
+                mechanism     present on   0/445
+                name          present on   0/445
+                family        present on   0/445
+            WITHDRAWN 2026-09-26, same day, before anything was built on it.
+            This entry claimed "`family` at 0/445 is the live hazard. FAM_MAX
+            caps scenes per template family per slate; with no family on any
+            record the cap stops firing silently." BOTH HALVES ARE FALSE.
+              1. `family` is not a field. _family() DERIVES it from the record
+                 id with a regex stripping --review-NNN. It is 0/445 on a fully
+                 healthy pool and always has been. My probe asked r.get("family")
+                 on records whose keys are id/title/description/capability/
+                 encoding/axes/scope/kind — no "family", no "mechanism", no
+                 "name". FAM_MAX was never at risk.
+              2. MEASURED with the files present and again with both deleted:
+                 445 records either way, and NOT ONE FIELD DIFFERS on any record.
+                 catalog.json and description-inventory.json contribute nothing
+                 to load(). candidates.py line 34 already says so in a comment —
+                 "so it does not need description-inventory.json at all" — and I
+                 did not read it before asserting the opposite.
+            WHAT WAS ACTUALLY BROKEN by the file-access wall: narration() only,
+            the 10 KB passages file. That is the whole loss. The guard and the
+            sync are still worth having — a mirror that can silently fall behind
+            is a real hazard and Codex does push daily — but the urgency I
+            attached to them was manufactured from a field name I never checked.
+            This is the recurring failure mode named in CLAUDE.md: aggregating
+            over a heterogeneous collection, asserting instead of verifying.
+
+WHY IT      A stale pool does not look broken. Every slate still builds, every
+MATTERS     card still renders, and the wrong candidates land on the beat with
+            nothing anywhere recording that the pool was three days old. It is
+            the same shape as the snapshot-vs-live problem paths.py already
+            guards, arriving through a new door.
+
+THE         macOS denies read() on a TCC-protected file but still permits
+AFFORDANCE  stat(). Measured: open() on catalog.json raised PermissionError
+            while stat() returned 1.29 MB. So a mirror's freshness is decidable
+            even when the source's CONTENT is unreadable — mtime and size are
+            the whole question, and both survive the denial.
+
+FIX         mirror_status() walks the mirror and stats each file against its
+            source, returning fresh / stale / unverified / absent.
+            "unverified" exists because a source that cannot be stat'd at all
+            must not be reported as fresh — that is a claim the mirror has not
+            earned. One unknown among otherwise-matching files is stale, not
+            fresh: partial knowledge is not freshness.
+            _assert_mirror_fresh() sits inside polish_root(), which both
+            scene_library() and narration() call, so no consumer routes around
+            it. It RAISES rather than warning — a warning is indistinguishable
+            from the other 40 lines a builder prints, and the artifact it
+            produces carries no record of having been built on old data.
+            ASTRA_POLISH_SOURCE says where the real tree is, so the guard still
+            works when ASTRA_POLISH points elsewhere.
+
+A DEFECT    First version defaulted mirror_status() to mirror_root()
+FOUND BY    (~/timeline/polish-mirror) while the live mirror sat on
+RUNNING IT  ASTRA_POLISH. The report printed nothing at all for a mirror that
+            was in use. A guard that inspects the wrong directory is worse than
+            no guard, because its silence reads as a pass. Caught only by
+            running the consumer on a real fresh-then-stale mirror, not by
+            reading the code. _active_polish() and is_mirrored() now give the
+            guard and the report one answer to the question "what is in use".
+
+TEST        AStalePolishMirrorStopsTheRun x8. Proved to fail on the pre-guard
+            paths.py, reconstructed in the scratchpad: it has no mirror_status
+            at all, and polish_root() returned
+            /tmp/a-stale-mirror-that-does-not-exist without complaint. 5 fail on
+            AttributeError, the polish_root test fails because no SystemExit is
+            raised, the real-tree test fails on the missing polish_source.
+            Includes a regression test for the wrong-directory defect above,
+            calling mirror_status() with NO arguments exactly as main() does.
+
+VERIFIED    End to end on a real mirror. Fresh: "polish mirror FRESH 1/1 files
+            match <source>", exit 0. Source then regenerated: "STALE POLISH
+            MIRROR — 1 of 1 files are behind <source>", naming the file and both
+            sizes, exit 1. 420 tests, 2 failures, both pre-existing and
+            unrelated (EveryTemplatePreviewCarriesAPoster,
+            GridCapacityIsTheCardNotTheRender).
+
+STILL OPEN  This guards a copy. It does not keep the two trees in sync, and it
+            is one-directional — it can tell that Codex moved, never tell Codex
+            that we did. A shared source of truth is a design question and is
+            the user's call; raised separately.
+STATUS      done
+
+================================================================================
+[0128] 2026-09-26  The script context comes from v2.1, through a map, not a search
+
+USER        "this is the script that should be used: script/year-seventeen-script-
+            v2.1.md we can keep the beats the same but this scripts wordings helps
+            me understand context. the other one was too choppy. the befoe and
+            after sentences for each beat need to come from here. just make a map
+            if its a issue"
+
+PROBLEM     LOG 0126 pointed the review page at v4-intent. It reads choppy: v4 is
+            hard-wrapped and terse, and the beats were cut from it, so the prose
+            around a beat is the same clipped register as the beat. v2.1 words the
+            same claims in full sentences — "One rapper's catalog gets played on
+            Spotify seven hundred times a second" against the beat's "Seven
+            hundred times a second. That's how often one rapper's catalog gets
+            played on Spotify." Same claim, different sentence.
+
+WHY A MAP   MEASURED: 17 of 40 beats appear verbatim in v2.1 against 27 of 40 in
+            v4. No matcher finds the other 23 reliably, and one that silently
+            half-finds them is worse than a map somebody can read. The user said
+            so before I could argue it.
+            grammar/beat-script-map.json, 40 rows, each carrying cycle, section,
+            test question, char span, overlap, and the script's own words at that
+            spot. grammar/beat-script-map.overrides.json wins over any alignment
+            and is recorded source "user", so a row the user fixes survives a
+            rebuild.
+
+WHY IT      v2.1 is the SIX-cycle version; v3 has seven plus a coda. v3 did not
+STILL       reorder, it SPLIT v2.1's CYCLE 3 (WHOSE RECORDS?) into WHOSE RECORDS?,
+ALIGNS      THE ACCUSATION and WHERE IT TURNS — both the features material and the
+            "comparison turns on him" material sit in v2.1 cycle 3. Order is
+            preserved, so the order-preserving constraint from 0126 still holds.
+            Result: 01-08 in cycle 1, 09-14 in 2, 15-22 in 3, 23-26 in 4, 27-28
+            in 5, 29-30 in 6. Monotonic, no cycle revisited.
+
+WHAT V2.1   A TEST QUESTION per cycle, written in the script: "Is one hit carrying
+ADDS        him?", "Is his success built on features?", "Is it only his old
+            music?" That is what the cycle is trying to establish, which is what
+            a reviewer needs to judge whether a treatment communicates the beat.
+            v3 and v4 do not have it. Now shown above every beat.
+
+TWO DEFECTS FOUND BY RUNNING IT, NOT BY READING IT
+            1. SPANS STARTED MID-SENTENCE. A token-range span begins wherever the
+               overlap window landed. Beat 21-21a's span opened "got. He gets
+               accused of living on features" — "got" being the tail of the
+               PREVIOUS sentence, which also truncated the "before" context one
+               word early. The user asked for before and after SENTENCES, so the
+               beat's own span has to be whole sentences. Spans now snap outward
+               to sentence edges.
+            2. ONE CHARACTER MOVED A BEAT ACROSS A CYCLE. `[^.!?]*[.!?]+` includes
+               the space after the previous full stop, so a sentence opening a
+               paragraph starts one char BEFORE the paragraph does. Snapping back
+               to it put beat 15-15 — verbatim the first line of CYCLE 3 / PROVOKE
+               — into CYCLE 2 / RECONCILE, and dragged 23-23 and 29-29a back a
+               cycle too. Two fixes: sentences() excludes leading whitespace, and
+               the paragraph is read from the UNSNAPPED anchor, because widening a
+               span for readability must never relabel which cycle a beat is in.
+               Visible only in the cycle histogram. I nearly shipped it.
+
+TEST        TheContextIsTheScriptNotTheBeats x9, rewritten onto script_map.
+            The probe is "catalogs that barely register" — in v2.1, in no beat
+            quote, and the test asserts the second half so it cannot pass for the
+            wrong reason. Under the old builder no script-only sentence could
+            appear in any context at all, since the corpus WAS the beat quotes.
+            Plus: cycles appear in script order and none is revisited; every span
+            starts on a sentence boundary; sentences() excludes leading space;
+            15-15 is in CYCLE 3 (regression for defect 2); an override wins and is
+            marked source "user"; the map names the script it came from.
+
+VERIFIED    429 tests, 2 failures, both pre-existing and unrelated
+            (EveryTemplatePreviewCarriesAPoster, GridCapacityIsTheCardNotTheRender).
+            Builder ran: 40 beats, 124 templates, 229 media, 130 of 255 files.
+            Published as version 5 of the Beat Review artifact.
+            6 rows sit under 75% overlap — 08-08 63%, 03-03 67%, 21-21b 69%,
+            27-27 69%, 28-28 70%, 09-09 71% — each shown on the page with the
+            script's own words, not smoothed over. None under 60%.
+
+STATUS      done — script/year-seventeen-script-v2.1.md is now the context source.
+            v3 and v4-intent remain on disk; v4 keeps the per-beat intent records,
+            which v2.1 does not have and which nothing reads yet.
+
+================================================================================
+[0129] 2026-09-26  The page spliced the beat's quote into the script and dropped text
+
+USER        "technically, how is this what ends up presented to me: One rapper's
+            catalog gets played on Spotify seven hundred times a second, and by
+            the time the day closes out, that comes to fifty-nine million plays.
+            Curren$y was on the 2009 XXL Freshman cover Here are ninety-three
+            rappers, with one dot for each artist. ... how do we jump from
+            freshman cover to here are 93 rappers? this is exatcly what I was
+            rying to avoid."
+
+PROBLEM     The page rendered  before + beat.quote + after.  The two context
+            strings came from the SCRIPT; the middle came from the BEAT. Whenever
+            those are not the same words, the render is not the script.
+            The named case: ONE script sentence —
+              "Curren$y was on the 2009 XXL Freshman cover, and every song he has
+               ever put on the platform — the mixtapes, the Jet Life run, the
+               features, all of it stacked end to end — adds up to what this one
+               catalog moves in twenty-four days."
+            is SPLIT across beats 02-02a and 02-02b. 0128 snapped each beat's span
+            to the whole sentence, so "after" began PAST the sentence, and the
+            page printed 02-02a's four-word quote followed by the next paragraph.
+            02-02b's half — the entire equivalence the beat exists to make — was
+            absent from the page.
+            MEASURED: on the old shape, 28 OF 40 BEATS rendered text that is not a
+            substring of the narration at all. Not an edge case; the majority.
+
+WHY IT      This is the third time the same request has been missed. 0126 fixed
+MATTERS     the corpus (beats -> script), 0128 fixed the wording (v4 -> v2.1), and
+            the RENDER was wrong through both because I kept testing the pieces —
+            does `before` come from the script, is the cycle right — and never
+            once tested THE STRING THE USER READS. The user has now diagnosed it
+            from the page in one line, twice.
+
+FIX         Two spans per beat instead of one:
+              charStart/charLen  the HIGHLIGHT, this beat's own words
+              sentStart/sentLen  the ENVELOPE, whole sentences containing them
+            Located.window() returns before + mid + after, where mid is the
+            envelope rendered IN FULL and the highlight is marked inside it.
+            scriptHtml() in the page renders exactly that. Nothing is substituted
+            and nothing is dropped. 02-02a and 02-02b now show the same full
+            sentence and mark different halves of it, which also makes the two
+            sides legible as two decisions on one sentence.
+            The beat's own wording did not disappear: where it differs from the
+            script it moves to a labelled block, "The beat was cut from different
+            wording — N% of the words match", instead of being passed off as the
+            narration.
+
+TEST        test_what_the_page_shows_is_contiguous_script — for all 40 beats,
+            before + mid + after must be a REAL SUBSTRING of the narration.
+            PROVED TO FAIL on the old shape by reconstructing it: 28 of 40 beats
+            fail, including both halves of 02-02a/b and every one of the 21
+            reworded beats. New shape: 0 of 40 fail.
+            Plus: the highlight lies inside the envelope and is non-empty on every
+            beat; 02-02a and 02-02b share one mid and mark different halves, one
+            containing "Freshman cover" and the other "twenty-four days"; the page
+            no longer contains esc(b.before), so the splice cannot return.
+
+LESSON      A test on every input to a render is not a test of the render. The
+            three assertions that passed through this defect — context comes from
+            the script, cycles are in order, spans are sentence-aligned — were all
+            true and all beside the point. Assert on the artifact the user reads.
+
+VERIFIED    435 tests, 2 failures, both pre-existing and unrelated. Builder ran:
+            40 beats, 124 templates, 229 media. Published as version 8.
+STATUS      done

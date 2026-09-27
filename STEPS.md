@@ -117,6 +117,68 @@ Every path is relative to `~/timeline` unless marked `[codex]` (read-only, Codex
 
 ---
 
+---
+
+# The media track — steps M1 to M6
+
+Added 2026-09-26. Steps 1–11 above are the TEMPLATE half: which treatment serves a
+beat. This half is the other one: which ASSET goes in it. The two ran as separate
+tracks for days and nothing joined them until M6, which is why 19 fully-decided
+beats had nowhere to go.
+
+**The library is read-only from this side.** sqlite opens `mode=ro`, no file is
+moved or copied, and every judgment lives in a sidecar under `grammar/`.
+
+## M1 · Snapshot the library
+
+- **In** — `~/Media Library/METADATA/media-library.sqlite3` + `assets.jsonl` + the Production Ready manifest
+- **Does** — exports exactly the five queries the selector reads, plus captions, the delivery, the ingestion project names and the derived-source tag suppressions
+- **Out** → `grammar/library-snapshot.json` — roughly an eighth the size of the
+  binary sqlite it replaces, and diffable. Both grow as the library does, so the
+  ratio is the durable figure, not either number
+- **Runs** — `python3 pipeline/export_library.py --write`
+- **Why** — the media is 11 GB and the metadata is 25 MB. A session with no library mounted reads the snapshot and resolves identical candidates (LOG 0105)
+
+## M2 · Load the selectable pool
+
+- **In** — the snapshot or the live catalog; `grammar/approved-overrides.json`, `media-corrections.json`, `media-tags.json`
+- **Does** — admits exactly the Production Ready delivery plus assets the user waved past the gate. Applies user tags, user tag removals, W corrections. Derives kind, framing, group, display path
+- **Out** → in memory. 565 selectable as of 2026-09-26; re-measure rather than
+  quote it — the pool moves every time an asset clears the gate
+- **Runs** — `media_candidates.load()`
+- **Not** — the raw catalog. Most of what is in it is not selectable, and the boundary is the user's lifecycle gate, not this code
+
+## M3 · Resolve candidates for a beat
+
+- **In** — the beat's entities, its chosen templates' framing and kind wants, its quote
+- **Does** — entity match both directions (tokens, roster-unique only), ranks on kind fit, framing fit, aboutness against the beat's own words, then evidence strength. **Ranks, never excludes**
+- **Out** → a group tier and an individual tier per entity, plus `gaps`
+- **Runs** — `media_candidates.resolve(...)`
+
+## M4 · Build the media review
+
+- **In** — `grammar/media-briefs.json`, `beat-flags.json`, `beat-entities.json`
+- **Does** — one slate per beat per entity, spread across media type and framing, prior picks pinned; recovers template posters from the source when the cache misses
+- **Out** → `pipeline/ui5-media/{data.json,media/,template-media/}` — published as an Artifact
+- **Runs** — `python3 pipeline/build_media_review.py`
+
+## M5 · Ingest the media picks
+
+- **In** — the artifact database (`media_picks`, `media_notes`, `media_corrections`)
+- **Does** — merges; derives rejections from what was shown on a beat the user judged; records `noneAcceptable`; **refuses to write if the result holds fewer briefs or selections than disk**; stops on an orphan tier whose picks are recorded nowhere else
+- **Out** → `grammar/media-picks.json` + `grammar/media-corrections.json`
+- **Runs** — `python3 pipeline/ingest_media_review.py <harvest.json> --write`
+
+## M6 · Pair media to template — **the join**
+
+- **In** — `grammar/picks.json` (templates) + `grammar/media-picks.json` (assets) + the capability record
+- **Does** — proposes one asset per slot, one slot per ENTITY in the beat's order, honouring framing and kind. Surplus slots report `recutTo`, never a shortfall
+- **Out** → `grammar/pairings.json`; `user` outranks `proposed`
+- **Runs** — `python3 pipeline/pair.py --write`, reviewed in `pipeline/ui10-pair`
+- **Open** — the user's pairings are the evidence for rules that do not exist yet. The proposal is arithmetic; the taste is theirs
+
+---
+
 ## 12 · Modify and render — **DOES NOT EXIST**
 
 - **Would take** — a chosen template + the beat's data and media

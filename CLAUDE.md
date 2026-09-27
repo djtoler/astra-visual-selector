@@ -511,7 +511,9 @@ rather than reading them as history.
 | tests for the deterministic layer | `tests/test_pipeline.py` — `python3 tests/test_pipeline.py` |
 | review data builders | `pipeline/build_review.py`, `pipeline/build_clusters.py` |
 | cluster overrides | `grammar/clusters.overrides.json` |
-| script, with beat intent records | `script/year-seventeen-script-v4-intent.md` |
+| **narration script (context source)** | `script/year-seventeen-script-v2.1.md` — set by the user 2026-09-26 |
+| beat-to-script map | `grammar/beat-script-map.json`, built by `pipeline/script_map.py`; fix a row in `beat-script-map.overrides.json` |
+| script, with beat intent records | `script/year-seventeen-script-v4-intent.md` — v3 wording, not the context source |
 
 ## Tests
 

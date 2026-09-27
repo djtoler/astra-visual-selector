@@ -1,0 +1,358 @@
+<title>Pair Media To Template</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Archivo+Narrow:wght@600;700&display=swap">
+<style>
+:root{
+  --ink:#16130f; --ink2:#5a5148; --ink3:#8b8076; --line:#ddd5ca; --line2:#ece5db;
+  --bg:#f4efe7; --card:#fffdfa; --raised:#faf6f0;
+  --tpl:#2b5473; --tplbg:#e0eaf2;
+  --med:#2f5d3f; --medbg:#e2ede5;
+  --pair:#7a3d10; --pairbg:#f6e8d7;
+  --disp:"Archivo Narrow",Arial Narrow,sans-serif;
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --tpl:#8ab4d4; --tplbg:#17252f; --med:#8fcaa3; --medbg:#1c2c22;
+  --pair:#d9a765; --pairbg:#2e2315;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --tpl:#8ab4d4; --tplbg:#17252f; --med:#8fcaa3; --medbg:#1c2c22;
+  --pair:#d9a765; --pairbg:#2e2315;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 18px 120px}
+header{padding-block:22px 12px;border-bottom:2px solid var(--ink)}
+h1{margin:0 0 9px;font:700 27px/1.05 var(--disp);text-transform:uppercase;letter-spacing:-.01em}
+.lede{margin:0 0 5px;color:var(--ink2);max-width:80ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:18px;
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.n{font:600 12px/1 var(--mono);padding:7px 10px;border-radius:99px;
+  background:var(--line2);color:var(--ink2);white-space:nowrap}
+.n.t{background:var(--tplbg);color:var(--tpl)}
+.n.m{background:var(--medbg);color:var(--med)}
+.act{font:700 11.5px/1 var(--mono);padding:9px 14px;border-radius:5px;cursor:pointer;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2)}
+.act.go{border-color:var(--pair);color:#fff;background:var(--pair);font-size:12.5px}
+.act:disabled{opacity:.3;cursor:default;background:var(--card);color:var(--ink3)}
+.pager{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.pager button{font:600 11px/1 var(--mono);min-width:30px;padding:7px 7px;border-radius:5px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.pager button[aria-current="true"]{border-color:var(--ink);color:var(--ink);
+  background:var(--raised);font-weight:700}
+.pager button.done{border-color:var(--pair);color:var(--pair)}
+
+.beat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:0 5px 5px 0;padding:13px 16px;margin-bottom:18px}
+.beat .id{font:700 10px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:4px}
+.beat .q{margin:0 0 6px;font-size:16px;line-height:1.45;font-weight:600}
+.beat .e{font:11px/1.5 var(--mono);color:var(--ink3)}
+
+.sec{font:700 10.5px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);margin:20px 0 9px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.sec span{color:var(--ink2);letter-spacing:0;text-transform:none;font-weight:600}
+.row{display:grid;gap:12px}
+.row.t{grid-template-columns:repeat(auto-fill,minmax(236px,1fr))}
+.row.m{grid-template-columns:repeat(auto-fill,minmax(134px,1fr))}
+
+.c{border:1px solid var(--line);border-radius:5px;background:var(--card);
+  overflow:hidden;cursor:pointer;display:flex;flex-direction:column}
+.c.on{box-shadow:inset 0 0 0 2px currentColor}
+.c.t.on{border-color:var(--tpl);color:var(--tpl)}
+.c.m.on{border-color:var(--med);color:var(--med)}
+.pv{position:relative;background:#0c0a08}
+.c.t .pv{aspect-ratio:16/9}
+.c.m .pv{aspect-ratio:1/1}
+.pv img,.pv video{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;height:34px;
+  border-radius:99px;border:0;cursor:pointer;background:rgba(5,7,10,.6);backdrop-filter:blur(3px)}
+.play::before{content:"";position:absolute;left:13px;top:9px;border-left:11px solid #fff;
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+.play.on{opacity:0}.pv:hover .play.on{opacity:.7}
+.tick{position:absolute;left:6px;top:6px;min-width:22px;height:22px;padding:0 5px;
+  border-radius:5px;border:2px solid rgba(255,255,255,.72);background:rgba(5,7,10,.45);
+  font:700 11px/19px var(--mono);color:#fff;text-align:center}
+.c.on .tick{background:currentColor;border-color:currentColor}
+.c.on .tick b{color:#fff}
+.vb{position:absolute;right:6px;top:6px;padding:2px 6px;border-radius:3px;
+  font:600 9px/1.4 var(--mono);text-transform:uppercase;background:rgba(5,7,10,.72);color:#d7dee6}
+.m2{padding:7px 9px 9px}
+.tn{font:600 11px/1.35 var(--sans);word-break:break-word}
+.tm{font:9.5px/1.4 var(--mono);color:var(--ink3);margin-top:3px}
+.mn{font:600 10.5px/1.3 var(--sans)}
+.mm{font:9px/1.35 var(--mono);color:var(--ink3);margin-top:2px}
+.mm.wrong{color:var(--pair)}
+.mm.unk{opacity:.6}
+.pk{position:absolute;left:6px;bottom:6px;padding:2px 6px;border-radius:3px;
+  font:700 8.5px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.04em;
+  background:var(--med);color:#fff}
+.mf{display:inline-flex;gap:4px;margin-left:10px;vertical-align:middle}
+.mf button{font:600 9.5px/1 var(--mono);padding:5px 8px;border-radius:4px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink3);cursor:pointer;
+  text-transform:none;letter-spacing:0}
+.mf button[aria-pressed="true"]{border-color:var(--med);color:var(--med);
+  background:var(--medbg)}
+
+.pairs{margin-top:20px;border:1px solid var(--pair);border-radius:6px;
+  background:var(--pairbg);padding:12px 15px}
+.pairs h3{margin:0 0 9px;font:700 10.5px/1.5 var(--disp);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--pair)}
+.pr{display:flex;gap:9px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}
+.pr:first-of-type{border-top:0}
+.pr .who{font:600 11.5px/1.5 var(--mono);flex:1;word-break:break-word}
+.pr .as{display:flex;gap:4px;flex-wrap:wrap}
+.pr .as img{width:34px;height:34px;object-fit:cover;border-radius:3px;display:block}
+.pr button{font:700 10px/1 var(--mono);padding:6px 9px;border-radius:4px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.fb{margin-top:16px}
+.fb label{display:block;font:700 10px/1.5 var(--disp);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:5px;
+  background:var(--card);color:var(--ink);font:13.5px/1.5 var(--sans);resize:vertical;
+  min-height:62px}
+textarea:focus{outline:2px solid var(--pair);outline-offset:-1px;border-color:var(--pair)}
+footer{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);
+  font:12px/1.7 var(--mono);color:var(--ink3);max-width:84ch}
+footer b{color:var(--ink2)}
+@media (max-width:640px){ h1{font-size:21px}
+  .row.t{grid-template-columns:1fr} .row.m{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Pair Media To Template</h1>
+  <p class="lede"><b>Pick one template, pick the media that goes in it, press Pair.</b>
+  Media selects in the order you click, and that order becomes the slot order.</p>
+  <p class="lede">The numbered ticks show what I <b>proposed</b> &mdash; one asset per
+  entity, in the order the beat names them, honouring what the template says it wants.
+  Overrule it freely; your pairing is the record and the proposal is only a start.</p>
+  <p class="lede"><b>Every candidate is here now, not only what you picked before.</b>
+  The first version of this page offered your prior picks alone, which is why a
+  Travis Scott headshot that exists in the library could not be reached. A green
+  <b>picked</b> badge marks the ones you had already chosen; a highlighted framing
+  line means the asset does not match what this template asks for &mdash; shown, not
+  hidden, because an asset is a candidate whatever its tag says.</p>
+</header>
+
+<div class="bar">
+  <span class="n" id="which">&hellip;</span>
+  <span class="n t" id="nt">no template</span>
+  <span class="n m" id="nm">0 media</span>
+  <button class="act go" id="bpair" type="button" disabled>Pair</button>
+  <button class="act" id="bprop" type="button">Use my proposal</button>
+  <button class="act" id="bclr" type="button">Clear</button>
+  <span class="pager" id="pager"></span>
+</div>
+
+<div id="root"></div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D=null, i=0, tsel=null, msel=[], pairs={}, notes={}, db=null, timer=null;
+var mfilt="all";   // all | picked | fits — a way to look, never a way to lose a pick
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function beat(){ return D ? D.beats[i] : null; }
+function key(){ return beat() ? beat().beat : ""; }
+/* db docs are frozen — copy out, never write in */
+function pairsFor(k){ var v = pairs[k]; return v ? v.slice() : []; }
+
+function tcard(t){
+  var on = tsel === t.id;
+  return "<article class='c t"+(on?" on":"")+"' data-t='"+esc(t.id)+"'>"
+    + "<div class='pv'>"
+    + (t.clip
+        ? "<video src='"+esc(t.clip)+"'"+(t.poster?" poster='"+esc(t.poster)+"'":"")
+          + " muted playsinline preload='none'></video>"
+          + "<button class='play' type='button' aria-label='Play clip'></button>"
+        : (t.poster ? "<img src='"+esc(t.poster)+"' alt=''>"
+                    : "<span class='vb'>no preview</span>"))
+    + "<span class='tick'>"+(on?"&#10003;":"")+"</span></div>"
+    + "<div class='m2'><div class='tn'>"+esc(t.name)+"</div>"
+    + "<div class='tm'>"+t.slots+" slot"+(t.slots===1?"":"s")
+    + (t.structure?" &middot; "+esc(t.structure):"")
+    + (t.wants.length?"<br>wants "+esc(t.wants.join(", ")):"")
+    + (t.kinds.length?" &middot; "+esc(t.kinds.join(", ")):"")
+    + "</div></div></article>";
+}
+
+function mcard(m){
+  var n = msel.indexOf(m.id), img = D.thumbs[m.id];
+  var fitmark = m.fits === true ? "" : (m.fits === false ? " wrong" : " unk");
+  return "<article class='c m"+(n>=0?" on":"")+"' data-m='"+esc(m.id)+"'>"
+    + "<div class='pv'>"
+    + (img ? "<img src='"+esc(img)+"' loading='lazy' alt=''>" : "")
+    + (m.video ? "<span class='vb'>video</span>" : "")
+    + (m.picked ? "<span class='pk'>picked</span>" : "")
+    + "<span class='tick'>"+(n>=0?"<b>"+(n+1)+"</b>":"")+"</span></div>"
+    + "<div class='m2'><div class='mn'>"+esc(m.entity||"—")+"</div>"
+    + "<div class='mm"+fitmark+"'>"+esc(m.framing||"no framing tag")
+    + (m.kind?" &middot; "+esc(m.kind):"")+"</div></div></article>";
+}
+
+function mshown(b){
+  return b.media.filter(function(m){
+    if (mfilt === "picked") return m.picked;
+    if (mfilt === "fits")   return m.fits !== false;
+    return true;
+  });
+}
+
+function render(){
+  if (!D) return;
+  var b = beat(), mine = pairsFor(b.beat);
+  var tmap = {}; b.templates.forEach(function(t){ tmap[t.id] = t; });
+  var mmap = {}; b.media.forEach(function(m){ mmap[m.id] = m; });
+  document.getElementById("root").innerHTML =
+    "<div class='beat'><div class='id'>beat "+esc(b.beat)+"</div>"
+    + "<p class='q'>&ldquo;"+esc(b.quote)+"&rdquo;</p>"
+    + "<p class='e'>"+esc(b.entities.join(" &middot; "))+"</p></div>"
+    + "<p class='sec'>Templates you chose <span>&mdash; pick one</span></p>"
+    + "<div class='row t'>"+b.templates.map(tcard).join("")+"</div>"
+    + "<p class='sec'>Media for this beat <span>&mdash; click in slot order</span>"
+    + "<span class='mf'>"
+    + [["all","every candidate"],["fits","fits the template"],["picked","only my picks"]]
+        .map(function(x){ return "<button type='button' data-mf='"+x[0]
+              + "' aria-pressed='"+(mfilt===x[0]?"true":"false")+"'>"+x[1]+"</button>"; }).join("")
+    + "</span></p>"
+    + "<div class='row m'>"+mshown(b).map(mcard).join("")+"</div>"
+    + (mine.length
+        ? "<div class='pairs'><h3>Paired</h3>"+mine.map(function(p,n){
+            return "<div class='pr'><div class='who'>"
+              + esc((tmap[p.templateId]||{}).name || p.templateId)
+              + "<br><span style='color:var(--ink3)'>"+p.assets.length
+              + " asset"+(p.assets.length===1?"":"s")+"</span></div>"
+              + "<div class='as'>"+p.assets.map(function(a){
+                  var m = mmap[a];
+                  return m && m.img ? "<img src='"+esc(m.img)+"' alt=''>"
+                                    : "<span class='mm'>"+esc(a.slice(0,8))+"</span>"; }).join("")
+              + "</div><button type='button' data-rm='"+n+"'>Remove</button></div>";
+          }).join("")+"</div>"
+        : "")
+    + "<div class='fb'><label>Why this pairing, or what is still wrong</label>"
+    + "<textarea id='note' placeholder='e.g. the wide shot belongs on the hero slot, "
+    + "not the node'>"+esc(notes[b.beat]||"")+"</textarea></div>";
+  document.getElementById("which").textContent =
+    "beat "+b.beat+"  ("+(i+1)+" of "+D.beats.length+")";
+  document.getElementById("nt").textContent =
+    tsel ? ((tmap[tsel]||{}).name || tsel).slice(0,34) : "no template";
+  document.getElementById("nm").textContent =
+    msel.length+" of "+mshown(b).length+" shown";
+  document.getElementById("bpair").disabled = !(tsel && msel.length);
+  var pg = "";
+  for (var n = 0; n < D.beats.length; n++)
+    pg += "<button type='button' data-p='"+n+"' aria-current='"+(n===i?"true":"false")
+        + "' class='"+(pairsFor(D.beats[n].beat).length?"done":"")+"'>"
+        + esc(D.beats[n].beat)+"</button>";
+  document.getElementById("pager").innerHTML = pg;
+}
+
+function save(k){
+  if (!db) return;
+  db.doc("pairs/"+k.replace(/[^A-Za-z0-9_-]/g,"_"))
+    .set({ beat: k, pairs: pairsFor(k), note: notes[k] || "",
+           updatedAt: new Date().toISOString() })
+    .catch(function(){});
+}
+
+document.getElementById("root").addEventListener("click", function(e){
+  var pb = e.target.closest(".play");
+  if (pb){
+    var v = pb.parentElement.querySelector("video"); if (!v) return;
+    if (v.paused){
+      document.querySelectorAll("video").forEach(function(o){
+        if (o!==v){ o.pause(); var x=o.parentElement.querySelector(".play");
+                    if (x) x.classList.remove("on"); }});
+      v.play().catch(function(){}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  var rm = e.target.closest("button[data-rm]");
+  if (rm){
+    var k = key(), cur = pairsFor(k);
+    cur.splice(parseInt(rm.dataset.rm,10), 1);
+    pairs[k] = cur; render(); save(k); return;
+  }
+  if (e.target.closest("video")) return;
+  var t = e.target.closest(".c.t");
+  if (t){ tsel = (tsel === t.dataset.t) ? null : t.dataset.t; render(); return; }
+  var mf = e.target.closest("button[data-mf]");
+  if (mf){ mfilt = mf.dataset.mf; render(); return; }
+  var m = e.target.closest(".c.m");
+  if (m){
+    var id = m.dataset.m, n = msel.indexOf(id);
+    if (n >= 0) msel.splice(n,1); else msel.push(id);
+    render(); return;
+  }
+});
+
+document.getElementById("root").addEventListener("input", function(e){
+  if (e.target.id !== "note") return;
+  notes[key()] = e.target.value;
+  clearTimeout(timer); timer = setTimeout(function(){ save(key()); }, 600);
+});
+
+document.getElementById("bpair").onclick = function(){
+  if (!tsel || !msel.length) return;
+  var k = key(), cur = pairsFor(k);
+  cur.push({ templateId: tsel, assets: msel.slice(),
+             at: new Date().toISOString() });
+  pairs[k] = cur; tsel = null; msel = []; render(); save(k);
+};
+document.getElementById("bprop").onclick = function(){
+  var b = beat();
+  var t = b.templates.find(function(x){ return x.id === tsel; }) || b.templates[0];
+  if (!t) return;
+  tsel = t.id; msel = t.proposed.slice(); render();
+};
+document.getElementById("bclr").onclick = function(){ tsel = null; msel = []; render(); };
+document.getElementById("pager").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  i = parseInt(b.dataset.p,10); tsel = null; msel = [];
+  render(); window.scrollTo({top:0,behavior:"instant"});
+});
+document.addEventListener("ended", function(e){
+  if (e.target.tagName !== "VIDEO") return;
+  var b = e.target.parentElement.querySelector(".play");
+  if (b) b.classList.remove("on");
+}, true);
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d;
+  document.getElementById("foot").innerHTML =
+    "<b>What a pairing records.</b> The template, and the assets in the order you "
+    + "clicked them &mdash; that order is the slot order. More than one pairing per "
+    + "beat is fine; a beat can carry several templates.<br><br>"
+    + "<b>What happens next.</b> I read these back and look for what your choices "
+    + "have in common &mdash; which framing goes in which structure, what a hero "
+    + "slot takes against a node, when a document belongs. Those become rules on "
+    + "top of the ones already written, and the rules come from your choices rather "
+    + "than the other way round.";
+  render();
+  return claude.use("db");
+}).then(function(x){
+  db = x;
+  if (!db) return;
+  return db.collection("pairs").get().then(function(snap){
+    if (snap && snap.docs) snap.docs.forEach(function(doc){
+      var v = doc.data();
+      if (!v || !v.beat) return;
+      pairs[v.beat] = (v.pairs||[]).map(function(p){
+        return { templateId: p.templateId, assets: (p.assets||[]).slice(), at: p.at }; });
+      if (v.note) notes[v.beat] = v.note;
+    });
+    render();
+  });
+}).catch(function(){});
+</script>

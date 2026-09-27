@@ -7,7 +7,7 @@ the defect, so the suite reads as a record of what has actually gone wrong.
     python3 tests/test_pipeline.py          run everything
     python3 -m unittest tests.test_pipeline -v
 """
-import collections, json, os, pathlib, re, sys, unittest, warnings
+import collections, json, os, pathlib, re, shutil, subprocess, sys, tempfile, unittest, warnings
 warnings.simplefilter('ignore', ResourceWarning)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -3307,6 +3307,9 @@ class MediaEvidenceUsesARealFallbackBoundary(unittest.TestCase):
     A weak source may still be useful when it is all the library has.  It must be
     a fallback pool, though, not a lower-ranked card shuffled back into the same
     review slate as confirmed identity evidence.  User review 2026-09-25.
+
+    AMENDED 2026-09-25 by user ruling: that fallback applies to CAPTIONS only. A
+    project label is excluded outright — see the note above the two inverted tests.
     """
 
     def rec(self, **kw):
@@ -3358,19 +3361,42 @@ class MediaEvidenceUsesARealFallbackBoundary(unittest.TestCase):
                          ["delivered"])
         self.assertTrue(M._why(delivered, "drake").startswith("identity:"))
 
-    def test_a_project_match_says_it_is_a_project(self):
+    # ---- OVERRULED 2026-09-25 -------------------------------------------------
+    # Two tests here asserted that a project label is returned as a ranked weak
+    # match: test_a_project_match_says_it_is_a_project and
+    # test_a_project_match_is_still_returned ("a weak match must rank, not vanish").
+    # The user ruled the opposite: "Drake Year 17 - Instagram. shouldnt be a tag.
+    # that add garbage to the canidates. i seen this frst hand. projects shouldnt
+    # be tags at all."
+    #
+    # This does NOT overturn "ranks, never excludes". That rule says every SIGNAL
+    # orders candidates and none removes them. A project folder name is not a
+    # signal about what an asset shows — it records which batch imported it — so
+    # there is nothing to rank. Caption evidence is still a ranked fallback and is
+    # still covered, by test_caption_is_used_when_no_identity_evidence_exists.
+    # The two tests are inverted below rather than deleted, so the reversal stays
+    # visible to whoever reads this class next.
+
+    def test_a_project_name_claims_no_evidence_at_all(self):
         import media_candidates as M
         proj = self.rec(tags=[{"tag": "Drake Year 17 - Instagram",
                                "source": "ingest"}])
-        self.assertTrue(M._why(proj, "drake").startswith("project:"),
-                        M._why(proj, "drake"))
+        self.assertIsNone(M._evidence(proj, "drake"))
+        self.assertFalse(M._why(proj, "drake").startswith("project:"),
+                         "a project label is still claiming to be evidence")
 
-    def test_a_project_match_is_still_returned(self):
+    def test_a_project_name_is_not_returned_even_as_a_last_resort(self):
         import media_candidates as M
+        # a REAL ingestion project, so the derived set recognises it
+        self.assertIn(M.norm("Drake and Jay-Z together collection"), M.projects(),
+                      "fixture is not a registered project; the test would be vacuous")
         proj = self.rec(tags=[{"tag": "Drake and Jay-Z together collection",
                                "source": "ingest"}])
         out = M.resolve(["drake", "jay"], pool={"a": proj}, wrong=set())
-        self.assertEqual(len(out["group"]), 1, "a weak match must rank, not vanish")
+        self.assertEqual(out["group"], [], "a project label produced a group match")
+        self.assertEqual(out["individual"]["drake"], [])
+        # and the absence is REPORTED as a sourcing gap, never silently empty
+        self.assertEqual(sorted(out["gaps"]), ["drake", "jay"])
 
     def test_a_strong_group_prevents_a_weak_group_from_entering_the_pool(self):
         import media_candidates as M
@@ -3530,16 +3556,52 @@ class AMediaPickSurvivesAReshuffle(unittest.TestCase):
                          "a prior pick was silently lost or falsely displaced")
 
     def test_a_displaced_pick_is_preserved_but_never_reintroduced(self):
+        """Displaced from ITS TIER — not banished from the review.
+
+        The first version asserted two things that were true when only one reason
+        existed: that every reason is "not_in_production_ready", and that a
+        displaced asset appears on NO card anywhere. Both broke on 2026-09-26 when
+        the builder started recording the second shape of loss.
+        A pick can now be displaced because its TIER stopped applying — 28-28's
+        group tier asks for one asset carrying ten entities, which no photograph
+        does (LOG 0117) — while the asset itself stays a perfectly good candidate
+        for the entity it actually shows. Banishing it would throw away a usable
+        asset to satisfy a bookkeeping rule.
+        """
         f = ROOT / "pipeline" / "ui5-media" / "data.json"
         if not f.exists(): self.skipTest("not built")
         D = json.load(open(f))
-        cards = {c["id"] for b in D["briefs"] for c in b["group"]}
-        for b in D["briefs"]:
-            for tier in b["individual"].values():
-                cards.update(c["id"] for c in tier)
+        by = {b["brief"]: b for b in D["briefs"]}
         for x in D.get("displacedPicks", []):
-            self.assertEqual(x["reason"], "not_in_production_ready")
-            self.assertNotIn(x["assetId"], cards)
+            self.assertTrue(str(x.get("reason") or "").strip(),
+                            "a displaced pick carries no reason")
+            b = by.get(x["brief"])
+            if not b: continue
+            tier = x["tier"]
+            here = ({c["id"] for c in b["group"]} if tier == "group"
+                    else {c["id"] for c in b["individual"].get(tier[2:], [])})
+            self.assertNotIn(x["assetId"], here,
+                             f"{x['assetId'][:12]} was displaced from {x['brief']}"
+                             f"::{tier} and is still on that slate")
+
+    def test_every_unshippable_pick_is_recorded_as_displaced(self):
+        # The point of the list: a pick that cannot ship must never vanish quietly.
+        import media_candidates as M
+        f = ROOT / "pipeline" / "ui5-media" / "data.json"
+        if not f.exists(): self.skipTest("not built")
+        D = json.load(open(f))
+        by = {b["brief"]: b for b in D["briefs"]}
+        known = {(d["brief"], d["tier"], d["assetId"]) for d in D.get("displacedPicks", [])}
+        lost = []
+        for key, ids in M.picked().items():
+            brief, tier = key.split("::", 1)
+            b = by.get(brief)
+            if not b: continue
+            here = ({c["id"] for c in b["group"]} if tier == "group"
+                    else {c["id"] for c in b["individual"].get(tier[2:], [])})
+            lost += [(brief, tier, i) for i in ids
+                     if i not in here and (brief, tier, i) not in known]
+        self.assertEqual(lost, [], f"{len(lost)} pick(s) silently unshipped")
 
     def test_spread_keeps_a_pinned_record_even_when_rotated_out(self):
         import media_candidates as M
@@ -4122,7 +4184,20 @@ class ProductionReadyIsAuthoritative(unittest.TestCase):
         for cat, c in v["category_checks"].items():
             self.assertTrue(c["passed"], f"{cat} failed its own check")
             self.assertTrue(c["asset_ids_match"], f"{cat}: ids do not match files")
-        self.assertTrue(v["cutout_glow_sets_match"])
+        # AMENDED 2026-09-26: this read v["cutout_glow_sets_match"] and broke when
+        # the manifest regenerated at 05:24 without that key — the flag was absent,
+        # not false, while the condition was plainly true in the same file. The
+        # claim is checkable from the manifest's own categories, so it is CHECKED
+        # here rather than read, which is also stronger: a computed answer beats a
+        # self-report, and catches a manifest that disagrees with itself. LOG 0125.
+        d = self.man()
+        cut = {i["asset_id"] for i in d["categories"].get("Cutouts", [])}
+        glow = {i["asset_id"] for i in d["categories"].get("Glow Cutouts", [])}
+        self.assertEqual(cut, glow,
+                         f"{len(cut - glow)} cutout-only, {len(glow - cut)} glow-only")
+        if v.get("cutout_glow_sets_match") is not None:
+            self.assertTrue(v["cutout_glow_sets_match"],
+                            "the manifest says the sets differ but they match")
         self.assertTrue(v["protected_catalog_counts_unchanged"],
                         "the delivery changed the protected catalog")
 
@@ -4153,6 +4228,12 @@ class ProductionReadyIsAuthoritative(unittest.TestCase):
         pool = M.load()
         wrong = []
         for aid, delivered in M.delivery().items():
+            # A USER APPROVAL is admitted by delivery() but is not a delivery: it
+            # confers no approved bytes, because nothing approved any (LOG 0119).
+            # Holding it to this rule would make the user's own override look like
+            # a defect.
+            if delivered.get("userApproved"):
+                continue
             path = delivered.get("path")
             if not path or aid not in pool or not os.path.exists(path):
                 wrong.append(aid)
@@ -4198,6 +4279,1505 @@ class ProductionReadyIsAuthoritative(unittest.TestCase):
         out = M.resolve(["Macklemore"], pool=pool, wrong=set())
         self.assertTrue(out["individual"]["Macklemore"],
                         "Macklemore was delivered and is still a gap")
+
+class TheSnapshotIsTheSameLibrary(unittest.TestCase):
+    """A session with no Media Library mounted must resolve the SAME candidates.
+
+    THE PROBLEM. 17 absolute paths under 3 local roots. A cloud session has none
+    of them, so the deterministic layer — which never opens a pixel — cannot run
+    off this machine at all. Measured 2026-09-25: the media is 11 GB, the metadata
+    the code actually reads is 25 MB.
+
+    WHY THIS IS THE RIGHT TEST. A fallback that answers with LESS is worse than
+    one that fails, because a short candidate list is indistinguishable from a
+    thin library, and the whole objective is landing the right media on the beat.
+    So this does not assert "the snapshot loads" — it asserts the snapshot
+    produces byte-identical ranked ids to the live catalog, per entity, in order.
+    Written after a first version of this check compared res["candidates"], a key
+    resolve() does not return, and passed on 0 == 0 for five artists.
+    """
+    NOLIB = None
+
+    @classmethod
+    def setUpClass(cls):
+        import tempfile
+        cls.NOLIB = tempfile.mkdtemp(prefix="astra-nolib-")
+
+    def _run(self, snippet, env=None):
+        import json, os, subprocess, sys
+        e = dict(os.environ)
+        e["PYTHONPATH"] = str(ROOT / "pipeline") + os.pathsep + e.get("PYTHONPATH", "")
+        e.update(env or {})
+        r = subprocess.run([sys.executable, "-c", snippet], capture_output=True,
+                           text=True, env=e, cwd=str(ROOT))
+        self.assertIn("@@", r.stdout, f"child failed:\n{r.stdout[-800:]}\n{r.stderr[-2000:]}")
+        return json.loads(r.stdout.split("@@", 1)[1])
+
+    SNIP = ('import sys, json; sys.path.insert(0, "pipeline")\n'
+            'import media_candidates as M, paths as P\n'
+            'rows = M.load()\n'
+            'out = {"source": M.SOURCE, "pathsSays": P.source(),\n'
+            '       "rows": len(rows), "ids": sorted(rows), "r": {},\n'
+            '       "full": {k: {f: v[f] for f in sorted(v) if f != "_hay"}\n'
+            '                for k, v in rows.items()},\n'
+            '       "hay": {k: len(v["_hay"]) for k, v in rows.items()}}\n'
+            'for ents in (["Drake"], ["Kendrick Lamar"], ["Nipsey Hussle"], ["Jay Rock"],\n'
+            '             ["Drake", "Kendrick Lamar"]):\n'
+            '    res = M.resolve(ents, pool=rows)\n'
+            '    out["r"]["+".join(ents)] = {\n'
+            '        "group": [c["id"] for c in res.get("group") or []],\n'
+            '        "individual": {e: [c["id"] for c in v]\n'
+            '                       for e, v in (res.get("individual") or {}).items()}}\n'
+            'print("@@" + json.dumps(out))\n')
+
+    def test_the_snapshot_is_not_stale(self):
+        # The library is actively being tagged — +2,440 tags arrived between two
+        # exports 30 minutes apart on 2026-09-25. Staleness is the expected
+        # condition, not an exotic one, so it gets its own named test with a
+        # one-line remedy. Before this it surfaced as a 2.3 MB assertEqual diff
+        # on the equivalence test, which says nothing about what to do.
+        import sqlite3
+        import paths as PATHS
+        snap = PATHS.snapshot()
+        self.assertIsNotNone(snap, "no snapshot — run pipeline/export_library.py --write")
+        db_path = PATHS.library_db()
+        if not db_path:
+            self.skipTest("no live library mounted to compare against")
+        db = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+        live = {"assets": next(db.execute("select count(*) from assets"))[0],
+                "tags": next(db.execute("select count(*) from tags"))[0]}
+        have = {k: snap["_counts"][k] for k in ("assets", "tags")}
+        self.assertEqual(have, live,
+                         f"snapshot is STALE (taken {snap.get('_generatedAt')}): "
+                         f"{have} vs live {live}. Run: "
+                         "python3 pipeline/export_library.py --write")
+
+    def test_a_snapshot_session_resolves_the_identical_candidates(self):
+        live = self._run(self.SNIP)
+        snap = self._run(self.SNIP, {"ASTRA_MEDIA_LIBRARY": self.NOLIB})
+        # M.SOURCE is set by the reader that actually ran. Asserting
+        # paths.source() instead let a build with a hardcoded library path pass
+        # this while reading the live catalog — the two agreed by accident.
+        self.assertEqual(live["source"], "live")
+        self.assertEqual(snap["source"], "snapshot",
+                         "the no-library run still read rows from the local catalog")
+        self.assertEqual(snap["pathsSays"], "snapshot")
+        self.assertEqual(live["ids"], snap["ids"], "the pools differ")
+        compared = 0
+        for k in live["r"]:
+            compared += (len(live["r"][k]["group"])
+                         + sum(len(v) for v in live["r"][k]["individual"].values()))
+            self.assertEqual(live["r"][k], snap["r"][k],
+                             f"{k} resolves differently from the snapshot")
+        # the guard against the 0 == 0 pass that shipped the first version
+        self.assertGreater(compared, 100,
+                           "compared almost nothing — the queries came back empty")
+
+        # EVERY FIELD OF EVERY ROW, not a sample. Added because deleting all
+        # 12,517 library tag rows from the snapshot reader did NOT fail the
+        # version above: the five probe queries match on `people` and delivered
+        # identities and never read a tag, so a reader that silently dropped the
+        # tags looked identical. Tags carry framing, grouping and most of the
+        # match evidence, so that is the exact loss this whole test exists to
+        # catch, and it slipped through a check that read "ALL IDENTICAL".
+        if live["full"] != snap["full"]:
+            diff = [k for k in live["full"] if live["full"][k] != snap["full"].get(k)]
+            self.fail(f"{len(diff)} of {len(live['full'])} rows differ between the "
+                      f"live catalog and the snapshot, e.g. {diff[:3]}. If the "
+                      "library was tagged since the export, this is staleness, not "
+                      "a reader defect — run pipeline/export_library.py --write and "
+                      "see test_the_snapshot_is_not_stale.")
+        self.assertEqual(live["hay"], snap["hay"], "the match haystacks differ")
+        tagged = sum(len(r["tags"]) for r in live["full"].values())
+        self.assertGreater(tagged, 3000,
+                           f"only {tagged} tags in the compared pool — the "
+                           "comparison is not exercising the tag surface")
+
+    def test_the_snapshot_carries_the_verification_block_not_a_summary(self):
+        # A flattened `verification_passed: true` would let the snapshot path pass
+        # a gate the live path has to earn. The gate must be the SAME gate.
+        import json
+        import media_candidates as M
+        import paths as PATHS
+        snap = PATHS.snapshot()
+        self.assertIsNotNone(snap, "no snapshot — run pipeline/export_library.py --write")
+        d = snap.get("delivery")
+        self.assertTrue(d, "the snapshot has no delivery")
+        M.validate_delivery_manifest(d)          # raises if the block is missing
+        v = d["verification"]
+        self.assertEqual(set(v["category_checks"]), set(d["categories"]))
+        # cutout_glow_sets_match is NOT asserted here. The manifest regenerated
+        # 2026-09-26T05:24 dropped the flag entirely, and the validator now COMPUTES
+        # the claim from the categories instead of reading it — 261 Cutouts, 261
+        # Glow Cutouts, zero on either side alone. Asserting the flag would hold the
+        # snapshot to a self-report the manifest no longer makes. LOG 0125.
+        for key in ("person_view_covers_cutouts",
+                    "protected_catalog_counts_unchanged", "source_media_unchanged"):
+            self.assertIs(v.get(key), True, key)
+        cut = {i["asset_id"] for i in d["categories"].get("Cutouts", [])}
+        glow = {i["asset_id"] for i in d["categories"].get("Glow Cutouts", [])}
+        self.assertEqual(cut, glow, "the snapshot's cutout and glow sets differ")
+
+    def test_no_library_and_no_snapshot_raises_instead_of_returning_empty(self):
+        # The one thing worse than a stale pool is an EMPTY pool reported as a
+        # pool. Both absent must be an exception, never `{}`.
+        out = self._run(
+            'import sys, json; sys.path.insert(0, "pipeline")\n'
+            'import media_candidates as M\n'
+            'try:\n'
+            '    M.load(); print("@@" + json.dumps({"raised": None, "msg": ""}))\n'
+            'except Exception as e:\n'
+            '    print("@@" + json.dumps({"raised": type(e).__name__, "msg": str(e)}))\n',
+            {"ASTRA_MEDIA_LIBRARY": self.NOLIB,
+             "ASTRA_SNAPSHOT": self.NOLIB + "/does-not-exist.json"})
+        self.assertEqual(out["raised"], "FileNotFoundError",
+                         "an absent library AND absent snapshot returned a pool")
+        # and it must name the MISSING SOURCES. The first version of this passed
+        # on an unrelated error from delivery(), which fires first and says the
+        # manifest is missing — true, but it points at the wrong thing and left
+        # the guard this test claims to cover unreachable.
+        self.assertIn("no media source", out["msg"])
+        self.assertIn("snapshot", out["msg"])
+
+    def test_every_local_root_is_overridable(self):
+        # 17 hardcoded paths were the actual blocker. Each root reads its env var.
+        import os
+        import paths as PATHS
+        for var, fn in (("ASTRA_MEDIA_LIBRARY", PATHS.library_root),
+                        ("ASTRA_POLISH", PATHS.polish_root),
+                        ("ASTRA_SNAPSHOT", PATHS.snapshot_path)):
+            before = fn()
+            os.environ[var] = "/tmp/astra-override-probe"
+            try:
+                self.assertEqual(str(fn()), "/tmp/astra-override-probe",
+                                 f"{var} is ignored")
+            finally:
+                del os.environ[var]
+            self.assertEqual(fn(), before, f"{var} leaked after being unset")
+
+
+class NoFileIsLostToAKeyCollision(unittest.TestCase):
+    """An R2 key that two different files share loses one of them, silently.
+
+    THE PROBLEM, measured 2026-09-25 before any upload: `media/<id>/<role><ext>`
+    gave 2023 keys for 2275 file references, and 244 keys held more than one
+    distinct file. output/cutouts and output/quality-cutouts are both
+    derivative_type `cutout` — 440,621 and 1,074,025 bytes for one asset. Under
+    one key the later upload wins, and which one that is depends on iteration
+    order, so the better cutout can vanish without a message.
+
+    WHY IT MATTERS TO THE OBJECTIVE. The key is how a cloud session reaches the
+    pixels. A lost cutout is a candidate that cannot be shown on a beat, and the
+    loss is invisible — the manifest still lists the asset.
+
+    The first version dropped BOTH the harmless and the harmful case with
+    `if k in seen: return`, and reported neither.
+    """
+
+    def _pool(self, tmp):
+        import os
+        def w(name, body):
+            f = os.path.join(tmp, name)
+            with open(f, "wb") as fh: fh.write(body)
+            return f
+        return {
+            # same type, DIFFERENT bytes — must become two keys
+            "aaa": {"id": "aaa", "display": w("a_disp.png", b"A" * 10),
+                    "path": w("a_orig.jpg", b"O" * 10),
+                    "derivatives": [{"type": "cutout", "path": w("a_c1.png", b"1" * 10)},
+                                    {"type": "cutout", "path": w("a_c2.png", b"2" * 4000)}]},
+            # same type, SAME bytes in two places — must collapse to one key
+            "bbb": {"id": "bbb", "display": w("b_disp.png", b"B" * 10),
+                    "path": w("b_orig.jpg", b"P" * 10),
+                    "derivatives": [{"type": "preview", "path": w("b_p1.png", b"same" * 9)},
+                                    {"type": "preview", "path": w("b_p2.png", b"same" * 9)}]},
+        }
+
+    def test_two_different_files_never_share_one_key(self):
+        import tempfile
+        import r2_sync as R
+        with tempfile.TemporaryDirectory() as tmp:
+            items, collisions = R.plan("originals", pool=self._pool(tmp))
+        keys = [i["key"] for i in items]
+        self.assertEqual(len(keys), len(set(keys)), "a key is used twice")
+        cut = sorted(i["key"] for i in items if i["role"] == "cutout")
+        self.assertEqual(len(cut), 2, f"a cutout was dropped: {cut}")
+        self.assertEqual(len(collisions), 1, "the real collision was not reported")
+        for k in cut:
+            self.assertRegex(k, r"cutout-[0-9a-f]{8}\.png$",
+                             "the split keys carry no content discriminator")
+
+    def test_byte_identical_files_collapse_to_one_key(self):
+        import tempfile
+        import r2_sync as R
+        with tempfile.TemporaryDirectory() as tmp:
+            items, collisions = R.plan("originals", pool=self._pool(tmp))
+        prev = [i for i in items if i["role"] == "preview"]
+        self.assertEqual(len(prev), 1, "identical files were uploaded twice")
+        self.assertEqual(prev[0].get("duplicates"), 1, "the collapse was not reported")
+        # and a collapse is NOT a collision — it must not be flagged as one
+        self.assertNotIn("preview", " ".join(k for k, _ in collisions))
+
+    def test_the_display_tier_key_needs_no_content_hash(self):
+        # display_path() returns exactly one file per asset, so the display tier
+        # is collision-free and its key is derivable from the asset id alone.
+        # That is what lets the UIs build a URL without a manifest lookup.
+        import media_candidates as M
+        import r2_sync as R
+        items, collisions = R.plan("display")
+        self.assertEqual(collisions, [], "the display tier collides")
+        keys = [i["key"] for i in items]
+        self.assertEqual(len(keys), len(set(keys)))
+        self.assertEqual(len(keys), len(M.load()), "an asset has no display key")
+        for i in items[:50]:
+            self.assertEqual(i["key"], R.key_for(i["asset_id"], "display", i["local"]),
+                             "a display key is not derivable")
+
+    def test_push_is_refused_without_configuration(self):
+        """Spend is the user's decision. No credential, no upload, non-zero exit.
+
+        The first version of this set ASTRA_R2_PROFILE to a bogus name, which did
+        nothing once r2_sync read .env directly — so the test would have uploaded
+        1.46 GB to the real bucket. It withholds the ENV FILE now, which is the
+        actual credential source.
+        """
+        import subprocess
+        import tempfile
+        with tempfile.NamedTemporaryFile("w", suffix=".env", delete=False) as fh:
+            fh.write("# deliberately empty\n")
+            empty = fh.name
+        e = dict(os.environ)
+        e["ASTRA_ENV_FILE"] = empty
+        r = subprocess.run([sys.executable, "pipeline/r2_sync.py", "--push"],
+                           capture_output=True, text=True, cwd=str(ROOT), env=e)
+        os.unlink(empty)
+        self.assertEqual(r.returncode, 1, "a push with no credentials exited 0")
+        self.assertIn("REFUSING to push", r.stdout)
+        self.assertNotIn("sent", r.stdout.lower().replace("present", ""))
+
+    def test_push_needs_confirm_as_well(self):
+        # --push alone must not spend, even with every credential valid.
+        import subprocess
+        r = subprocess.run([sys.executable, "pipeline/r2_sync.py", "--push"],
+                           capture_output=True, text=True, cwd=str(ROOT))
+        self.assertEqual(r.returncode, 1, "--push alone exited 0")
+        self.assertIn("needs --confirm", r.stdout)
+
+
+class EveryTemplatePreviewCarriesAPoster(unittest.TestCase):
+    """A template shown without a poster is a black rectangle on the card.
+
+    THE PROBLEM, measured 2026-09-25: 6 of 47 template previews in ui5-media had
+    poster: None while their clip existed on disk. build_media_review's
+    template_previews() read only .thumbcache and never fell back to the source,
+    so beats 01-01, 06-06, 11-11a, 12-12a, 21-21a, 24-24, 27-27 and 28-28 showed
+    nothing where the treatment should be. The user reported the template side of
+    the review was wrong before this was found.
+
+    WHY IT MATTERS. CLAUDE.md: "Every clip carries a thumbnail... a grid of them
+    shows nothing and the page cannot be skimmed", and the poster is explicitly
+    not a size lever. The beat's framing want comes FROM the chosen template, so a
+    reviewer judging media against an invisible template is judging blind.
+    """
+
+    def test_no_preview_is_posterless_while_its_clip_exists(self):
+        f = ROOT / "pipeline" / "ui5-media" / "data.json"
+        if not f.exists(): self.skipTest("not built")
+        D = json.load(open(f))
+        tp = D.get("templatePreviews") or {}
+        self.assertTrue(tp, "the review carries no template previews at all")
+        sys.path.insert(0, str(ROOT / "match-trial"))
+        import candidates as C
+        pool = {r["id"]: r for r in C.load(content_class="*")}
+        cap = C._capability()
+        recoverable = []
+        for tid, item in tp.items():
+            if (item or {}).get("poster"): continue
+            src = (pool.get(tid) or {}).get("clip")
+            still = (cap.get(tid) or {}).get("still_path")
+            if (src and os.path.exists(src)) or (still and os.path.exists(still)):
+                recoverable.append(tid)
+        self.assertEqual(recoverable, [],
+                         f"{len(recoverable)} template(s) render as a black "
+                         f"rectangle although a frame is extractable: {recoverable}")
+
+    def test_it_recovers_a_poster_with_an_EMPTY_cache(self):
+        """The real test, because a warm cache hides the defect.
+
+        The first version of this rebuilt the review and checked the output. But
+        the fix writes the recovered posters INTO .thumbcache, so the cache-only
+        code then passes too — the test stopped being able to fail the moment the
+        fix ran once, and would only have caught this on a fresh machine. This
+        points template_previews at an empty cache directory instead, which is the
+        state any clone starts in.
+        """
+        import importlib, tempfile
+        sys.path.insert(0, str(ROOT / "pipeline"))
+        bmr = importlib.import_module("build_media_review")
+        briefs = json.load(open(ROOT / "grammar" / "media-briefs.json"))["briefs"]
+        # one brief whose template has a clip on disk and is worth a poster
+        sys.path.insert(0, str(ROOT / "match-trial"))
+        import candidates as C
+        pool = {r["id"]: r for r in C.load(content_class="*")}
+        pick = None
+        for b in briefs:
+            for t in (b.get("selectedTemplates") or []):
+                c = (pool.get(t["id"]) or {}).get("clip")
+                if c and os.path.exists(c):
+                    pick = b
+                    break
+            if pick: break
+        self.assertIsNotNone(pick, "no brief has a template with a clip on disk")
+        with tempfile.TemporaryDirectory() as cache, tempfile.TemporaryDirectory() as ui:
+            old_cache, old_ui = bmr.TEMPLATE_CACHE, bmr.UI
+            bmr.TEMPLATE_CACHE = pathlib.Path(cache)
+            bmr.UI = pathlib.Path(ui)
+            try:
+                out = bmr.template_previews([pick])
+            finally:
+                bmr.TEMPLATE_CACHE, bmr.UI = old_cache, old_ui
+        want = [t["id"] for t in pick["selectedTemplates"]
+                if (pool.get(t["id"]) or {}).get("clip")
+                and os.path.exists(pool[t["id"]]["clip"])]
+        for tid in want:
+            self.assertTrue((out.get(tid) or {}).get("poster"),
+                            f"{tid} came back posterless from an empty cache "
+                            "although its clip is on disk")
+
+
+class AProjectNameIsNotEvidence(unittest.TestCase):
+    """A folder name must never make an asset a candidate for the artist in it.
+
+    USER RULING 2026-09-25: "Drake Year 17 - Instagram. shouldnt be a tag. that
+    add garbage to the canidates. i seen this frst hand. projects shouldnt be tags
+    at all."
+
+    Measured: 2,254 of 14,957 tag rows are an ingestion project name; 825 of them
+    sit on assets in the selectable pool, 12% of that pool's tags. The project
+    `Drake Year 17 - Instagram` alone put 96 assets into reach of any Drake query
+    through the normalised contains rule.
+
+    HONEST SCOPE. On the library and briefs as they stand this removes ZERO
+    candidates, because resolve() computes `primary or all_matches` and every
+    entity currently has primary evidence, so the weak tier is never consulted.
+    It bites in the GAP case — an entity with no tag, face or delivered identity —
+    which is exactly where a wrong candidate does the most damage, because there is
+    nothing better beside it for the reviewer to prefer. These tests therefore
+    exercise the weak tier directly instead of asserting a count that does not move.
+    """
+
+    def _asset(self, aid, tags, captions=(), people=(), delivered=()):
+        import media_candidates as M
+        r = {"id": aid, "media_type": "image", "ext": ".jpg", "width": 800,
+             "height": 800, "duration": None, "path": f"/x/{aid}.jpg",
+             "tags": [{"tag": t, "source": s} for t, s in tags],
+             "people": list(people), "captions": list(captions),
+             "derivatives": [], "faces": 0,
+             "delivered_identities": list(delivered), "delivered_kind": "person",
+             "delivered_categories": ["Full Images"]}
+        r["framing"] = None; r["is_group"] = False; r["has_cutout"] = False
+        r["kind"] = "person"; r["display"] = r["path"]
+        return r
+
+    def test_a_project_tag_alone_makes_no_candidate(self):
+        import media_candidates as M
+        proj = sorted(M.projects())
+        self.assertTrue(proj, "no ingestion projects were derived from the library")
+        # the real project name the user named, in its real stored form
+        real = next((p for p in proj if "drakeyear17" in p), None)
+        self.assertIsNotNone(real, f"the named project is not in the derived set: {proj[:5]}")
+        rec = self._asset("p1", [("Drake Year 17 - Instagram", "ingest"),
+                                 ("Instagram", "ingest")])
+        self.assertIsNone(M._evidence(rec, "Drake"),
+                          "a project folder name is being treated as evidence of Drake")
+        self.assertFalse(M.matches(rec, "Drake", set()))
+        # and it must not reach the slate even when Drake has nothing else
+        out = M.resolve(["Drake"], pool={"p1": rec}, wrong=set())
+        self.assertEqual([c["id"] for c in out["individual"]["Drake"]], [],
+                         "a project-only asset reached the slate in the gap case")
+        self.assertIn("Drake", out["gaps"], "the gap was hidden rather than reported")
+
+    def test_a_non_project_ingest_tag_keeps_its_EXISTING_weight(self):
+        """The ruling removes project names. It does not re-weight anything else.
+
+        An earlier version of this asserted ("tag", "Drake") — i.e. that every
+        non-project ingest tag was promoted to primary evidence. That broke
+        MediaEvidenceUsesARealFallbackBoundary, and correctly: an unregistered
+        collection-style tag like "Jay-Z fan collection" is not in
+        ingestions.project, so promotion made it primary identity evidence for
+        Jay-Z. Stronger than before, on the strength of a folder name — the exact
+        failure the ruling exists to stop.
+        """
+        import media_candidates as M
+        rec = self._asset("p2", [("Drake", "ingest"), ("Headshot", "ingest")])
+        ev = M._evidence(rec, "Drake")
+        self.assertEqual(ev, ("project", "Drake"),
+                         "a non-project ingest tag changed weight")
+        self.assertNotIn(ev[0], M.PRIMARY_EVIDENCE)
+        # and a registered project name yields nothing at all, at any weight
+        rec2 = self._asset("p3", [("Drake Year 17 - Instagram", "ingest")])
+        self.assertIsNone(M._evidence(rec2, "Drake"))
+
+    def test_the_project_set_is_derived_not_hardcoded(self):
+        # 19 of the 30 current projects are dated batch names, so a hand-written
+        # deny list goes stale on the next import.
+        import media_candidates as M
+        src = (ROOT / "pipeline" / "media_candidates.py").read_text()
+        self.assertIn("from ingestions", src.replace("\n", " "),
+                      "the project set is not derived from ingestions.project")
+        self.assertGreater(len(M.projects()), 20)
+
+    def test_a_suppressed_claim_cannot_return_through_the_caption(self):
+        # asset 54e95e16b8 is a Kendrick Lamar birthday post that name-drops Jay-Z
+        # and Kanye West. The library suppressed both from caption-entity; the raw
+        # caption still says both, so dropping the tag alone let the identical
+        # claim back in.
+        import media_candidates as M
+        claims = M.suppressed_claims()
+        self.assertTrue(claims, "the library's tag_suppressions are not being read")
+        hit = [(a, e) for a, e in claims if e == M.norm("Jay-Z")]
+        self.assertTrue(hit, "the Jay-Z suppression is not among the claims")
+        aid = hit[0][0]
+        rec = self._asset(aid, [("Compton", "caption-location")],
+                          captions=["... joining the ranks of Hip Hop entrepreneurs "
+                                    "such as Jay-Z and Kanye West ..."])
+        self.assertIsNone(M._evidence(rec, "Jay-Z"),
+                          "a suppressed entity came back via the raw caption")
+        # an entity the library did NOT suppress on that asset is unaffected
+        self.assertEqual(M._evidence(rec, "Compton"), ("tag", "Compton"))
+
+    def test_tag_suppressions_are_historical_so_no_load_filter_is_kept(self):
+        """Guards the FINDING, and would fail if the library changed behaviour.
+
+        A filter dropping suppressed tags at load was written first and then
+        deleted: measured 2026-09-25, 0 of the 39 tag_suppressions rows still exist
+        in `tags`, so it removed nothing and its test could not fail. If the
+        library ever starts leaving suppressed tags in place, this fails and the
+        filter becomes necessary — which is the only reason to assert it.
+        """
+        import sqlite3
+        import paths as PATHS
+        if not PATHS.library_db(): self.skipTest("no live library")
+        db = sqlite3.connect(f"file:{PATHS.library_db()}?mode=ro", uri=True)
+        still = list(db.execute(
+            "select s.asset_id, s.tag from tag_suppressions s join tags t "
+            "on t.asset_id=s.asset_id and t.tag=s.tag and t.source=s.source"))
+        self.assertEqual(still, [],
+                         f"{len(still)} suppressed tag(s) are back in `tags` — "
+                         "_rows_live now needs the suppression filter that was "
+                         "removed as a no-op")
+
+
+class AUserTagIsANamedBinding(unittest.TestCase):
+    """The user tags an asset; that is evidence, and it must carry their words.
+
+    USER RULING 2026-09-25: "go ahead and tag big sean." Asset 514d9283165f is
+    their recorded pick for Big Sean on beat 16-16, but its only machine evidence
+    was a caption that is an import filename — LOG 0104's gate correctly held it
+    out of the primary tier. The asset already carried a tag `sean`, which never
+    matched: the contains rule is `entity in tag`, and "bigsean" is not inside
+    "sean". That asymmetry is deliberate — a bare `sean` could be Sean Paul.
+
+    A TAG, NOT AN EXCEPTION. An exception fixes one card on one beat. A tag gives
+    the asset real evidence and makes it findable on every future beat naming him.
+    It lives in grammar/media-tags.json because the Media Library is read-only from
+    this side, the same split as media-corrections.json.
+    """
+
+    def test_the_users_tag_becomes_primary_evidence(self):
+        """Asserts the OUTCOME, not which tag delivered it.
+
+        The first version asserted _evidence == ("tag", "Big Sean") — the exact
+        string of the tag added here. That broke the moment bidirectional matching
+        landed (LOG 0115), because the asset's own `sean` tag now reaches Big Sean
+        directly and is found first. The test was right about the behaviour and
+        wrong to pin the mechanism.
+        WORTH RECORDING: this user tag is now REDUNDANT. It was a workaround for a
+        matching bug, and the bug is fixed. It is kept because the user asked for it
+        by name and it carries their words, but nothing depends on it.
+        """
+        import media_candidates as M
+        rows = M.load()
+        aid = "514d9283165faa83445e507f"
+        self.assertIn(aid, rows, "the Big Sean pick is not in the pool")
+        ev = M._evidence(rows[aid], "Big Sean")
+        self.assertIsNotNone(ev, "the Big Sean pick has no evidence at all")
+        self.assertIn(ev[0], M.PRIMARY_EVIDENCE)
+        offered = {c["id"] for c in
+                   M.resolve(["Big Sean"], pool=rows)["individual"].get("Big Sean", [])}
+        self.assertIn(aid, offered, "the user's pick is still not offered")
+        # and the sidecar is still well-formed and still names this asset
+        self.assertIn(aid, M.user_tags())
+
+    def test_a_user_tag_without_the_users_words_is_refused(self):
+        # A named binding records their words (CLAUDE.md, HARD RULE). A tag with no
+        # words is indistinguishable from one Claude invented.
+        import importlib, json as _json, tempfile
+        import media_candidates as M
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as fh:
+            _json.dump({"tags": [{"assetId": "x", "tag": "Drake"}]}, fh)
+            bad = fh.name
+        old, M._UTAGS = M.USER_TAGS, None
+        M.USER_TAGS = pathlib.Path(bad)
+        try:
+            with self.assertRaises(ValueError) as cm:
+                M.user_tags()
+            self.assertIn("words", str(cm.exception))
+        finally:
+            M.USER_TAGS, M._UTAGS = old, None
+            os.unlink(bad)
+
+    def test_a_user_tag_on_an_undelivered_asset_is_a_finding(self):
+        # Silently ignoring it would hide that they tagged something the delivery
+        # boundary excludes — the same class as the 2 picks in LOG 0107.
+        import json as _json, tempfile
+        import media_candidates as M
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as fh:
+            _json.dump({"tags": [{"assetId": "deadbeef" * 3, "tag": "Drake",
+                                  "words": "test"}]}, fh)
+            bad = fh.name
+        old, M._UTAGS = M.USER_TAGS, None
+        M.USER_TAGS = pathlib.Path(bad)
+        try:
+            with self.assertRaises(ValueError) as cm:
+                M.load()
+            self.assertIn("absent from the selectable pool", str(cm.exception))
+        finally:
+            M.USER_TAGS, M._UTAGS = old, None
+            os.unlink(bad)
+
+
+class TheR2ManifestMatchesWhatWasUploaded(unittest.TestCase):
+    """Offline: the manifest must describe the plan it claims to have sent.
+
+    NO NETWORK IN THIS TEST. The live verification was done once, at upload:
+    557 of 557 objects, 1.46 GB, zero missing, zero size mismatches, zero extras,
+    and one object fetched over the public URL returning 200 and its exact byte
+    count. Re-running that on every suite invocation would make the suite slow and
+    dependent on someone else's uptime.
+
+    What this guards is the thing that CAN drift silently: the manifest is what a
+    review UI resolves an asset id through, so a manifest disagreeing with the plan
+    means a card pointing at a key that is not there.
+    """
+
+    def test_every_planned_display_asset_has_a_manifest_key(self):
+        f = ROOT / "grammar" / "r2-manifest.json"
+        if not f.exists(): self.skipTest("nothing uploaded yet")
+        m = json.load(open(f))
+        sys.path.insert(0, str(ROOT / "pipeline"))
+        import r2_sync as R
+        items, collisions = R.plan("display")
+        self.assertEqual(collisions, [])
+        planned = {i["asset_id"]: i["key"] for i in items}
+        # STALE AND WRONG ARE DIFFERENT. The pool grows when the user approves an
+        # asset, so a manifest that predates the approval is missing keys and the
+        # remedy is one push. A manifest that maps an asset to a DIFFERENT key than
+        # the plan is a card pointing at the wrong bytes, and that is a defect.
+        for aid, key in m["keys"].items():
+            if aid in planned:
+                self.assertEqual(key, planned[aid],
+                                 f"{aid[:12]} is uploaded under the wrong key")
+        missing = sorted(set(planned) - set(m["keys"]))
+        self.assertEqual(missing, [],
+                         f"{len(missing)} planned asset(s) are not uploaded — run "
+                         "python3 pipeline/r2_sync.py --push --confirm")
+        self.assertEqual(m["_failed"], 0, "the upload reported failures")
+        self.assertEqual(m["_sent"] + m["_skipped"], len(planned))
+
+    def test_the_manifest_key_is_derivable_from_the_asset_id(self):
+        # This is what lets a UI build a URL without carrying a lookup table.
+        f = ROOT / "grammar" / "r2-manifest.json"
+        if not f.exists(): self.skipTest("nothing uploaded yet")
+        m = json.load(open(f))
+        for aid, key in list(m["keys"].items())[:50]:
+            self.assertTrue(key.startswith(f"media/{aid}/display."),
+                            f"{key} is not derivable from {aid}")
+
+    def test_the_public_base_is_recorded(self):
+        f = ROOT / "grammar" / "r2-manifest.json"
+        if not f.exists(): self.skipTest("nothing uploaded yet")
+        m = json.load(open(f))
+        self.assertTrue(m.get("_publicBase", "").startswith("https://"),
+                        "no public base url recorded — a UI cannot build a URL")
+
+    def test_a_public_fetch_sends_a_browser_user_agent(self):
+        # pub-*.r2.dev is behind Cloudflare bot protection: Python-urllib's default
+        # agent gets 403 "error code: 1010", which reads exactly like the bucket
+        # not being public and sends the reader after the wrong bug.
+        src = (ROOT / "pipeline" / "r2_client.py").read_text()
+        self.assertIn("BROWSER_UA", src)
+        fn = src.split("def fetch_public", 1)[1].split("\n\n", 1)[0]
+        self.assertIn("User-Agent", fn)
+
+
+class TheBeatsOwnWordsRankCandidates(unittest.TestCase):
+    """An entity match says WHO. It never says what the beat is about.
+
+    THE PROBLEM, measured 2026-09-25 and reported by the user first: beat 15-15 is
+    "In 2010, XXL offered him a spot on the Freshman cover." The XXL cover asset is
+    correctly tagged — 2010, xxl, freshmen, magazine cover — and it came back as
+    candidate 124 of 127 for Drake, 96 places below a slate that shows 28. The user:
+    "we have the magazine referenced in the media library somewhere". It was there
+    the whole time; nothing in the ranking knew the beat was ABOUT XXL, only that
+    it mentioned Drake, and 127 assets mention Drake.
+
+    THE SIGNAL IS LITERAL, NOT SEMANTIC. Count the words the beat's quote and the
+    asset's tags share. No model, no embedding, reproducible. Measured across the
+    127: the cover scores 3 and the next best scores 1, with 111 scoring zero.
+
+    IT RANKS, IT NEVER EXCLUDES — the standing rule. A zero-overlap asset keeps its
+    place behind the ones that overlap; it is not removed. Project names are
+    excluded from the comparison for the same reason they are excluded from
+    evidence (LOG 0109): a batch folder shares words with a beat by accident.
+    """
+
+    def test_a_beat_about_xxl_ranks_THE_COVER_THE_USER_NAMED_first(self):
+        """Pinned to the user's ruling, not to Claude's guess.
+
+        The first version asserted f2b1dd416a43 — the Drake and Nicki duo cover —
+        because that is what the ranking surfaced when only it was tagged `drake`.
+        LOG 0113 flagged at the time that it was probably the wrong cover, and it
+        was: the user named 2fad290bd62e, the 2010 Freshman cover he is NOT on, and
+        ruled that Drake and Nicki be tagged on both as a CONNECTION (LOG 0118).
+        The ranking was always right; the asset it could reach was not.
+        """
+        import media_candidates as M
+        rows = M.load()
+        briefs = json.load(open(ROOT / "grammar" / "media-briefs.json"))["briefs"]
+        b = next(x for x in briefs if x["brief"] == "15-15")
+        named = json.load(open(ROOT / "grammar" / "xxl-covers.json"))["covers"]
+        want = next(c["assetId"] for c in named
+                    if c["issue"] == "2010 XXL Freshman cover")
+        self.assertIn(want, rows, "the cover the user named is not in the pool")
+        ids = [c["id"] for c in
+               M.resolve(["Drake"], pool=rows, quote=b["quote"])["individual"]["Drake"]]
+        self.assertIn(want, ids, "the named cover is not even a candidate")
+        rank = ids.index(want) + 1
+        self.assertEqual(rank, 1,
+                         f"the cover the user named ranks {rank} of {len(ids)}")
+
+    def test_it_ranks_and_never_excludes(self):
+        import media_candidates as M
+        rows = M.load()
+        plain = M.resolve(["Drake"], pool=rows)["individual"]["Drake"]
+        ranked = M.resolve(["Drake"], pool=rows,
+                           quote="In 2010, XXL offered him a spot on the Freshman "
+                                 "cover.")["individual"]["Drake"]
+        self.assertEqual(sorted(c["id"] for c in plain),
+                         sorted(c["id"] for c in ranked),
+                         "the quote signal dropped a candidate instead of reordering")
+
+    def test_a_project_name_cannot_score(self):
+        # "Drake Year 17 - Instagram" shares `drake` and `17` with half the script.
+        import media_candidates as M
+        rec = {"id": "x", "tags": [{"tag": "Drake Year 17 - Instagram",
+                                    "source": "ingest"}], "captions": []}
+        self.assertEqual(M.quote_overlap("Drake in year seventeen, 17 years in",
+                                         rec), 0)
+
+    def test_no_quote_changes_nothing(self):
+        import media_candidates as M
+        rows = M.load()
+        a = [c["id"] for c in M.resolve(["Drake"], pool=rows)["individual"]["Drake"]]
+        b = [c["id"] for c in M.resolve(["Drake"], pool=rows, quote="")
+             ["individual"]["Drake"]]
+        self.assertEqual(a, b, "an absent quote must be a no-op, not a reshuffle")
+
+
+class TagMatchingRunsBothDirections(unittest.TestCase):
+    """A shorter tag must reach a longer entity name, without guessing.
+
+    USER RULING 2026-09-26: "we need more generous tag matching, shouldnt be case
+    sensitive and should be contains, not exact match."
+
+    It was already case-insensitive and already contains — but one way round only,
+    entity inside tag. So norm("J. Cole") = "jcole" never matched the tag `cole`,
+    and the 2010 XXL Freshman cover, whose OCR tags are `cole` and `nipsey`,
+    reached NO beat in the entire script (LOG 0114). Third instance this session of
+    an asset present, correctly machine-tagged, and unreachable.
+
+    THE REVERSE DIRECTION IS THE DANGEROUS ONE, so it is constrained twice:
+      TOKENS, NOT SUBSTRINGS. `rick` is inside `kendricklamar`; a raw reverse
+        substring puts a Rick Ross tag on Kendrick Lamar.
+      ROSTER-UNIQUE TOKENS ONLY. Any token at a length floor brings `jay` to Jay
+        Rock on 72 assets, `lil` to Lil Baby on 10, `big` to Big Sean on 9 — the
+        exact tokens entities.py refuses to resolve because they belong to several
+        roster names. No length constant appears anywhere; the roster decides.
+    Measured over the 25 entities in this script: +32 candidates, all correct.
+    """
+
+    def _rec(self, tags):
+        return {"id": "t", "tags": [{"tag": t, "source": "subject-tag"} for t in tags],
+                "people": [], "captions": [], "delivered_identities": []}
+
+    def test_a_partial_name_tag_now_reaches_the_full_entity(self):
+        import media_candidates as M
+        self.assertEqual(M._evidence(self._rec(["cole"]), "J. Cole"), ("tag", "cole"))
+        self.assertEqual(M._evidence(self._rec(["nipsey"]), "Nipsey Hussle"),
+                         ("tag", "nipsey"))
+        self.assertEqual(M._evidence(self._rec(["KENDRICK"]), "Kendrick Lamar"),
+                         ("tag", "KENDRICK"))   # case-insensitive, as asked
+
+    def test_it_never_matches_a_substring_across_a_name_boundary(self):
+        # `rick` sits inside `kendricklamar`. Tokens stop it; raw contains does not.
+        import media_candidates as M
+        self.assertIsNone(M._evidence(self._rec(["Rick"]), "Kendrick Lamar"))
+        self.assertIsNone(M._evidence(self._rec(["Rick Ross"]), "Kendrick Lamar"))
+
+    def test_an_ambiguous_token_still_refuses_to_guess(self):
+        # `jay` belongs to Jay Rock AND Jay-Z; `lil` and `big` to many. Guessing
+        # puts the wrong person on screen, the one failure review cannot correct.
+        import media_candidates as M
+        for tok, ent in (("jay", "Jay Rock"), ("lil", "Lil Baby"),
+                         ("big", "Big Sean"), ("kid", "Kid Cudi")):
+            self.assertIsNone(M._evidence(self._rec([tok]), ent),
+                              f"the ambiguous token {tok!r} resolved to {ent}")
+
+    def test_a_content_class_word_is_not_a_name(self):
+        # "Article Or Post" put `post` on Post Malone across 48 assets.
+        import media_candidates as M
+        self.assertTrue(M.is_class_tag("Article Or Post"))
+        self.assertIsNone(M._evidence(self._rec(["Article Or Post"]), "Post Malone"))
+        self.assertIsNone(M._evidence(self._rec(["Social Post"]), "Post Malone"))
+
+    def test_the_2010_freshman_cover_now_reaches_a_beat(self):
+        # The asset the user identified, which matched nothing before this.
+        import media_candidates as M
+        rows = M.load()
+        aid = next((k for k in rows if k.startswith("2fad290bd62e")), None)
+        self.assertIsNotNone(aid, "the 2010 Freshman cover is not in the pool")
+        for ent in ("J. Cole", "Nipsey Hussle"):
+            got = {c["id"] for c in
+                   M.resolve([ent], pool=rows)["individual"].get(ent, [])}
+            self.assertIn(aid, got, f"the 2010 cover does not reach {ent}")
+
+    def test_the_contamination_it_would_have_caused_did_not_happen(self):
+        # Jay Rock and Post Malone are the two entities the rejected designs broke.
+        import media_candidates as M
+        rows = M.load()
+        self.assertLessEqual(
+            len(M.resolve(["Jay Rock"], pool=rows)["individual"]["Jay Rock"]), 6,
+            "Jay Rock picked up the ambiguous `jay` token")
+        self.assertLessEqual(
+            len(M.resolve(["Post Malone"], pool=rows)["individual"]["Post Malone"]), 8,
+            "Post Malone picked up `post` from a content-class tag")
+
+
+class ASpatialNodeHoldsAPersonNotAnArticle(unittest.TestCase):
+    """A marker on a stem is a person. It was being offered memes.
+
+    USER RULING, brief 28-28, 2026-09-25: "memes and articles shouldnt be here.
+    image tags need a way to match template capability. it should only be quarter,
+    headshot or no no size specified images all but out, available here. spatial
+    needs only those for the noe." And earlier: "all spatials plot people", "each
+    node on top of a stick will be a headshot or quarter img of an artist".
+
+    Measured: the 6 cinematic_3d templates carry a FRAMING rule from those same
+    words — headshot, quarter — and no KIND rule at all, so kind_wanted() returned
+    () and kfit() was a no-op. Beat 28-28's Drake tier came back 28 cards: 18
+    document, 5 artwork, 5 person.
+
+    RANKS, NEVER EXCLUDES. A document is not removed; it sorts behind every person
+    and every asset whose kind is unknown, which pushes it off the 16-card window
+    without hiding it from a reviewer who goes looking.
+    """
+
+    def test_a_spatial_template_wants_a_person(self):
+        import media_candidates as M
+        for tid in ("truth-cohort-attrition", "two-floors", "truth-rank-fall"):
+            self.assertEqual(M.kind_wanted(tid, "cinematic_3d"), ("person",),
+                             f"{tid} declares no kind")
+
+    def test_the_rule_quotes_the_user(self):
+        # A factual claim about a template belongs in the register with its source,
+        # never as a bare constant (CLAUDE.md).
+        rules = json.load(open(ROOT / "grammar" / "media-kind-rules.json"))
+        why = ((rules.get("byKind") or {}).get("cinematic_3d") or {}).get("why", "")
+        self.assertIn("memes and articles", why,
+                      "the spatial kind rule does not carry the user's words")
+
+    def test_beat_28_28_stops_leading_with_documents(self):
+        import media_candidates as M
+        rows = M.load()
+        briefs = json.load(open(ROOT / "grammar" / "media-briefs.json"))["briefs"]
+        b = next(x for x in briefs if x["brief"] == "28-28")
+        wants = tuple(sorted({f for t in b["selectedTemplates"]
+                              for f in M.framing_wanted(t["id"], t.get("kind"))}))
+        kinds = tuple(sorted({k for t in b["selectedTemplates"]
+                              for k in M.kind_wanted(t["id"], t.get("kind"))}))
+        self.assertEqual(kinds, ("person",), "28-28 still wants no particular kind")
+        out = M.resolve(b["entities"], pool=rows, wants=wants, kinds=kinds,
+                        quote=b["quote"])
+        top = out["individual"]["Drake"][:8]
+        self.assertTrue(top, "no Drake candidates at all")
+        docs = [c for c in top if (c.get("kind") or M.kind_of(c)) == "document"]
+        self.assertEqual(docs, [],
+                         f"{len(docs)} of the first 8 cards are still documents")
+
+    def test_a_document_is_ranked_last_not_deleted(self):
+        # The standing rule is rank, never exclude — the library must stay visible.
+        import media_candidates as M
+        rows = M.load()
+        plain = {c["id"] for c in
+                 M.resolve(["Drake"], pool=rows)["individual"]["Drake"]}
+        ranked = {c["id"] for c in
+                  M.resolve(["Drake"], pool=rows, kinds=("person",))
+                  ["individual"]["Drake"]}
+        self.assertEqual(plain, ranked, "the kind rule DELETED candidates")
+
+
+class AFreshmanCoverIsNotAStandardCover(unittest.TestCase):
+    """OCR reads every word on a page, including the ones that are not about it.
+
+    USER 2026-09-26: "2010 xxl freshman cover is different fron 2010 xxl cover...
+    theyre on the standard but the beat calls for freshman cover."
+
+    Measured before the fix: all three XXL assets scored IDENTICALLY, 3 each, on
+    ['2010','xxl'], for every beat that asks for one of them. Two causes, both the
+    OCR being faithful to the page rather than wrong:
+      EVERY cover was tagged BOTH 2009 and 2010 — each issue prints the other year
+        somewhere on it.
+      The STANDARD 2010 issue was tagged `freshmen`, because its cover lines
+        mention the class. True text, false metadata.
+    And `freshman` never met `freshmen` regardless: the stemmer strips a trailing
+    `s`, and that pair differs by a vowel. It is an irregular plural, so it is
+    declared in QUOTE_SYNONYMS rather than stemmed — a stemmer loose enough to fold
+    it would mangle names.
+    """
+
+    def _cover(self, issue):
+        import json as _j
+        for c in _j.load(open(ROOT / "grammar" / "xxl-covers.json"))["covers"]:
+            if c["issue"] == issue: return c["assetId"]
+        self.fail(f"no cover recorded as {issue!r}")
+
+    def test_freshman_and_freshmen_are_the_same_word(self):
+        import media_candidates as M
+        self.assertEqual(M._qtok("Freshman cover"), M._qtok("freshmen covers"))
+
+    def test_the_standard_cover_no_longer_claims_to_be_a_freshman_cover(self):
+        import media_candidates as M
+        rows = M.load()
+        std = self._cover("Drake and Nicki Minaj duo cover")
+        tags = {M.norm(t["tag"]) for t in rows[std]["tags"]}
+        self.assertNotIn("freshmen", tags, "the standard issue still claims freshmen")
+        self.assertNotIn("2009", tags, "the 2010 standard issue still claims 2009")
+
+    def test_each_freshman_beat_ranks_its_own_year_first(self):
+        import media_candidates as M
+        rows = M.load()
+        briefs = {b["brief"]: b for b in
+                  json.load(open(ROOT / "grammar" / "media-briefs.json"))["briefs"]}
+        for beat, ent, issue in (("15-15", "Drake", "2010 XXL Freshman cover"),
+                                 ("02-02a", "Curren$y", "2009 XXL Freshman cover")):
+            want = self._cover(issue)
+            b = briefs[beat]
+            ids = [c["id"] for c in M.resolve([ent], pool=rows, quote=b["quote"])
+                   ["individual"].get(ent, [])]
+            self.assertIn(want, ids, f"{issue} is not a candidate on {beat}")
+            self.assertEqual(ids.index(want) + 1, 1,
+                             f"{beat} does not rank {issue} first")
+
+    def test_the_standard_cover_scores_below_the_freshman_one(self):
+        import media_candidates as M
+        rows = M.load()
+        b = next(x for x in json.load(open(ROOT / "grammar" / "media-briefs.json"))
+                 ["briefs"] if x["brief"] == "15-15")
+        fresh = M.quote_overlap(b["quote"], rows[self._cover("2010 XXL Freshman cover")],
+                                ("Drake",))
+        std = M.quote_overlap(b["quote"],
+                              rows[self._cover("Drake and Nicki Minaj duo cover")],
+                              ("Drake",))
+        self.assertGreater(fresh, std,
+                           "the standard cover still scores as high as the Freshman one")
+
+
+class AnApprovalAdmitsAndNeverDelivers(unittest.TestCase):
+    """The user can wave an asset past their gate. It is still not a delivery.
+
+    USER 2026-09-26: "pass both wiz and kendrick in, theyre approved, anyone else
+    gated is approved too", then the correction: "wait, i meant who was with wiz and
+    kendrick gated you said 8. not a full 100+ approval." Claude had read the first
+    as all 256 gate-blocked assets and admitted 247 of them.
+    """
+
+    def test_it_is_scoped_to_the_eight_not_the_whole_gate(self):
+        d = json.load(open(ROOT / "grammar" / "approved-overrides.json"))
+        self.assertEqual(len(d["approved"]), 8,
+                         "the approval is not scoped to the eight the user meant")
+        reasons = {r for a in d["approved"] for r in a["gateSaid"]}
+        self.assertEqual(reasons,
+                         {"no current registered cutout has a passing pre-clean "
+                          "quality receipt"},
+                         "the approval reaches assets gated for another reason")
+
+    def test_an_approved_asset_carries_no_delivered_identity(self):
+        # The delivery is what confers identity, kind and category. An approval is
+        # explicitly not a delivery, so it must confer none of them.
+        import media_candidates as M
+        rows = M.load()
+        d = json.load(open(ROOT / "grammar" / "approved-overrides.json"))
+        for a in d["approved"]:
+            r = rows.get(a["assetId"])
+            if not r: continue
+            self.assertEqual(r.get("delivered_identities") or [], [],
+                             f"{a['assetId'][:12]} was given a delivered identity")
+            self.assertEqual(r.get("delivered_categories") or [], [])
+
+    def test_both_of_the_users_blocked_picks_are_in_the_pool(self):
+        import media_candidates as M
+        rows = M.load()
+        for a8, who in (("4330073a1f5a", "Wiz Khalifa"), ("07e917c62e76", "Kendrick")):
+            self.assertTrue(any(k.startswith(a8) for k in rows),
+                            f"the {who} pick is still outside the pool")
+
+    def test_a_rejected_cutout_is_flagged_not_hidden(self):
+        # 3 of the 8 had their cutout REJECTED, not merely unreviewed. The asset is
+        # admitted; the bad derivative must stay identifiable.
+        d = json.load(open(ROOT / "grammar" / "approved-overrides.json"))
+        rejected = [a for a in d["approved"] if a.get("cutoutRejected")]
+        self.assertEqual(len(rejected), 3)
+        for a in rejected:
+            self.assertEqual(a["cutoutReview"], "reject")
+
+
+class ASlotIsAnEntityNotARank(unittest.TestCase):
+    """The join: which asset fills which slot, per beat, per chosen template.
+
+    THE GAP, measured 2026-09-26: 19 of 40 beats carried BOTH a template pick and
+    media picks, and nothing in the tree put them together. shotlist.py is
+    template-only, build_media_review.py is media-only. The one artifact the whole
+    system exists to produce did not exist.
+
+    THE FIRST VERSION ASSIGNED BY FRAMING ALONE and was wrong in a way that looked
+    fine: beat 20-20 is "Travis Scott, sixty-seven billion. Kendrick, fifty-seven.
+    Post Malone, fifty-six. Future, fifty-four" against a five-bar list. The slot
+    order IS the data order, so ranking by framing put Kendrick's photo on Travis's
+    bar. Picks already carry their entity in the tier key, so the mapping was free
+    and I had simply not used it.
+
+    IT PROPOSES, IT DOES NOT DECIDE. The user pairs in the UI and their pairing
+    outranks this, on the same standing as a pick.
+    """
+
+    def _pairings(self):
+        f = ROOT / "grammar" / "pairings.json"
+        if not f.exists(): self.skipTest("not built")
+        return json.load(open(f))
+
+    def test_each_slot_names_the_entity_it_serves(self):
+        d = self._pairings()
+        b = d["beats"].get("20-20")
+        self.assertIsNotNone(b, "beat 20-20 has no pairing")
+        p = next((x for x in b["proposed"] if x["templateId"] == "32_record_height_bars"), None)
+        self.assertIsNotNone(p, "the bar list is not among 20-20's templates")
+        named = [s["forEntity"] for s in p["slots"] if s["forEntity"]]
+        self.assertEqual(named[:4], b["entities"][:4],
+                         "slots do not follow the order the beat names its entities")
+        for s in p["slots"]:
+            if s["forEntity"] and s["asset"]:
+                self.assertIn(s["asset"], M_picks_for(s["forEntity"], "20-20"),
+                              f"slot for {s['forEntity']} holds an asset picked for "
+                              "someone else")
+
+    def test_a_surplus_of_slots_is_a_recut_not_a_shortfall(self):
+        # Standing rule: "an 8-slot template can be re-cut to 6 or 10, so declared
+        # capacity is a hint about scale, never a gate." Calling it a shortfall
+        # would invent a problem the user has already ruled is not one.
+        d = self._pairings()
+        src = (ROOT / "pipeline" / "pair.py").read_text()
+        self.assertNotIn('"shortfall"', src, "pair.py still reports a shortfall")
+        self.assertIn("recutTo", src)
+        any_recut = [p for b in d["beats"].values() for p in b["proposed"] if p["recutTo"]]
+        self.assertTrue(any_recut, "no template reports a re-cut — is the field wired?")
+        for p in any_recut:
+            self.assertLess(p["recutTo"], p["mediaSlots"])
+
+    def test_an_asset_that_fits_nowhere_is_reported_not_dropped(self):
+        d = self._pairings()
+        for name, b in d["beats"].items():
+            placed = {s["asset"] for p in b["proposed"] for s in p["slots"] if s["asset"]}
+            for p in b["proposed"]:
+                accounted = placed | set(p["unplaced"])
+                for a in b["pickedAssets"]:
+                    if a in M_pool():
+                        self.assertIn(a, accounted,
+                                      f"{name}: picked asset {a[:12]} is neither "
+                                      "placed nor reported unplaced")
+
+    def test_a_repeat_is_allowed_but_only_after_every_distinct_asset(self):
+        """OVERRULED 2026-09-26. This test forbade a repeat outright.
+
+        The user on 25-25b: "j Cole in the middle image and 2 instances of the mag
+        cover on outside portraits... we need some paring logic that can facilitate
+        something like that." The prohibition was mine and was never a rule —
+        grammar/MERGE.md already says "fill unused slots with declared loop repeats,
+        never by inventing an entity", which is the opposite.
+        What survives is the part that was worth guarding: variety comes first. A
+        repeat may only appear once every distinct asset has a slot, and it must be
+        MARKED, so a reviewer can tell a deep library from a looping one.
+        """
+        d = self._pairings()
+        for name, b in d["beats"].items():
+            for p in b["proposed"]:
+                firsts = [s["asset"] for s in p["slots"]
+                          if s["asset"] and not s.get("repeat")]
+                self.assertEqual(len(firsts), len(set(firsts)),
+                                 f"{name}/{p['templateId']} repeats before every "
+                                 "distinct asset is placed")
+                for s in p["slots"]:
+                    if s.get("repeat"):
+                        self.assertIn(s["asset"], firsts,
+                                      "a repeat names an asset that has no slot of "
+                                      "its own")
+
+    def test_a_user_pairing_survives_a_rerun(self):
+        # The user's pairing has the standing of a pick. A rebuild must not erase it.
+        import subprocess
+        f = ROOT / "grammar" / "pairings.json"
+        if not f.exists(): self.skipTest("not built")
+        before = json.load(open(f))
+        before.setdefault("user", {})["__probe__"] = {"templateId": "t", "slots": []}
+        f.write_text(json.dumps(before, indent=1))
+        try:
+            subprocess.run([sys.executable, "pipeline/pair.py", "--write"],
+                           capture_output=True, text=True, cwd=str(ROOT))
+            after = json.load(open(f))
+            self.assertIn("__probe__", after.get("user") or {},
+                          "a rerun discarded the user's pairings")
+        finally:
+            d = json.load(open(f))
+            (d.get("user") or {}).pop("__probe__", None)
+            f.write_text(json.dumps(d, indent=1, ensure_ascii=False))
+
+
+def M_pool():
+    import media_candidates as M
+    return M.load()
+
+
+def M_picks_for(entity, beat):
+    import media_candidates as M
+    return M.picked().get(f"{beat}::e:{entity}") or []
+
+
+class HeadshotAndQuarterAreOneClass(unittest.TestCase):
+    """USER RULING 2026-09-26: "we shiiuld treat headshot and quarter as the same
+    for now."
+
+    They are adjacent on the scale — quarter is head-and-chest, headshot is
+    head-and-shoulders — and only 20 assets in the pool carry either tag, split 11
+    and 9. Splitting hairs between them costs candidates on the tightest-cropping
+    templates, which are the spatial scenes that need them most.
+
+    DECLARED AS AN EQUIVALENCE, not collapsed in FRAMING_TAGS. The underlying tags
+    stay as the library wrote them, the scale keeps five values, and lifting the
+    ruling is deleting one line. Collapsing the vocabulary would have thrown away
+    a distinction the user may want back.
+    """
+
+    def test_either_satisfies_a_template_asking_for_the_other(self):
+        import media_candidates as M
+        self.assertTrue(M.framing_matches("quarter", ("headshot",)))
+        self.assertTrue(M.framing_matches("headshot", ("quarter",)))
+
+    def test_it_does_not_reach_across_the_rest_of_the_scale(self):
+        import media_candidates as M
+        for f in ("half", "three_quarter", "full"):
+            self.assertFalse(M.framing_matches(f, ("headshot",)), f)
+            self.assertFalse(M.framing_matches("headshot", (f,)), f)
+
+    def test_unknown_framing_is_still_unknown_not_a_match(self):
+        # 430 of 565 pool assets carry no framing tag. They must rank in the
+        # MIDDLE, never as a match and never last.
+        import media_candidates as M
+        self.assertIsNone(M.framing_matches(None, ("headshot",)))
+
+    def test_the_underlying_tags_are_untouched(self):
+        import collections
+        import media_candidates as M
+        c = collections.Counter(r["framing"] for r in M.load().values())
+        self.assertGreater(c.get("headshot", 0), 0, "headshot was collapsed away")
+        self.assertGreater(c.get("quarter", 0), 0, "quarter was collapsed away")
+        self.assertEqual(len(M.FRAMING_SCALE), 5, "the scale lost a value")
+
+    def test_both_readers_use_the_same_rule(self):
+        # resolve() and pair.py ranked framing independently. Two copies of one
+        # rule is how they drift.
+        src = (ROOT / "pipeline" / "pair.py").read_text()
+        self.assertIn("M.framing_matches", src,
+                      "pair.py ranks framing with its own copy of the rule")
+
+
+class TheContextIsTheScriptNotTheBeats(unittest.TestCase):
+    """The review page's "script context" was built out of the beats themselves.
+
+    build_full_review.narration() read the `>` blockquotes from the passages
+    annotation file and concatenated them. Those blockquotes ARE the beats, so
+    the two sentences either side of a beat were just the neighbouring beats.
+    The user: "is that the script or the beats? i want the script! i need to see
+    where things fit in the whole thing" — and then, on the script to use:
+    "this is the script that should be used ... the other one was too choppy."
+
+    The probe is a sentence v2.1 has that no beat quote contains. Under the old
+    builder no such sentence could appear in any context, because the corpus was
+    the beat quotes and nothing else.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        sys.path.insert(0, str(ROOT / "pipeline"))
+        import script_map
+        cls.SM = script_map
+        cls.shots = {f"{x['passage']}-{x['beat']}": x for x in
+                     json.load(open(ROOT / "pipeline" / "shotlist.capacity.json"))}
+        cls.keys = sorted(cls.shots)
+        cls.L, cls.rows = script_map.load()
+        cls.byb = {r["beat"]: r for r in cls.rows}
+
+    def test_context_carries_narration_no_beat_contains(self):
+        probe = "catalogs that barely register"
+        self.assertFalse(any(probe in v["quote"] for v in self.shots.values()),
+                         "probe must not be inside any beat, or it proves nothing")
+        before, _ = self.L.context("04-04")
+        self.assertIn(probe, before,
+                      "04-04's preceding context is connective script prose")
+
+    def test_every_beat_is_mapped(self):
+        self.assertEqual(set(self.byb), set(self.keys))
+        for k in self.keys:
+            self.assertTrue(self.byb[k]["cycle"], f"{k} has no cycle")
+
+    def test_anchors_run_forward_only(self):
+        """21 beats are reworded and placed by overlap. Unconstrained, 23, 24 and
+        25a collapsed onto one paragraph."""
+        at = [self.byb[k]["charStart"] for k in self.keys]
+        for i in range(1, len(at)):
+            self.assertGreaterEqual(at[i], at[i - 1],
+                                    f"{self.keys[i]} anchors before {self.keys[i-1]}")
+
+    def test_cycles_appear_in_script_order(self):
+        seen = []
+        for k in self.keys:
+            c = self.byb[k]["cycle"]
+            if not seen or seen[-1] != c:
+                self.assertNotIn(c, seen, f"{c} is revisited at {k}")
+                seen.append(c)
+        self.assertEqual(seen[0], "CYCLE 1 — THE TAP")
+        self.assertEqual(len(seen), 6, "v2.1 has six cycles")
+
+    def test_beat_15_lands_in_cycle_3_where_the_script_puts_it(self):
+        """REGRESSION. 15-15 is verbatim the first line of CYCLE 3 / PROVOKE, and
+        it was reported in CYCLE 2 / RECONCILE. Cause: `[^.!?]*[.!?]+` includes
+        the space after the previous full stop, so the sentence opening a
+        paragraph starts one char before the paragraph, and snapping the span
+        back to it moved the beat across the cycle boundary. One character."""
+        r = self.byb["15-15"]
+        self.assertTrue(r["cycle"].startswith("CYCLE 3"), r["cycle"])
+        self.assertEqual(r["section"], "PROVOKE")
+
+    def test_sentence_spans_exclude_leading_whitespace(self):
+        t = "One. Two. Three."
+        spans = self.SM.sentences(t)
+        for a, b in spans:
+            self.assertFalse(t[a].isspace(), f"span at {a} starts on whitespace")
+        self.assertEqual([t[a:b] for a, b in spans], ["One.", "Two.", "Three."])
+
+    def test_every_envelope_starts_on_a_sentence_boundary(self):
+        """The rendered envelope is whole sentences, so the context never stops
+        mid-clause. Before snapping, 21-21a's began "got. He gets accused..." —
+        "got" being the tail of the previous sentence."""
+        starts = {a for a, _ in self.SM.sentences(self.L.full)}
+        for k in self.keys:
+            self.assertIn(self.byb[k]["sentStart"], starts,
+                          f"{k}'s envelope does not start on a sentence boundary")
+
+    def test_what_the_page_shows_is_contiguous_script(self):
+        """THE DEFECT THIS EXISTS TO STOP. The page used to render
+        before + beat.quote + after, splicing the beat's terse quote where the
+        script's own words go. Beats 02-02a and 02-02b SHARE one script sentence
+        — "Curren$y was on the 2009 XXL Freshman cover, and every song he has
+        ever put on the platform ... twenty-four days." — so on 02-02a the splice
+        dropped 02-02b's half and the page read "Curren$y was on the 2009 XXL
+        Freshman cover" then jumped to "Here are ninety-three rappers". The user:
+        "how do we jump from freshman cover to here are 93 rappers? this is
+        exatcly what I was rying to avoid."
+
+        A window is now before + mid + after, and that must be a REAL SUBSTRING
+        of the narration for every beat. The old shape cannot satisfy this on any
+        beat whose quote is not verbatim — 21 of 40 — nor on either half of a
+        shared sentence.
+        """
+        for k in self.keys:
+            w = self.L.window(k)
+            joined = " ".join(x for x in (w["before"], w["mid"], w["after"]) if x)
+            self.assertIn(joined, self.L.full,
+                          f"{k}: what the page shows is not contiguous script")
+
+    def test_the_highlight_is_inside_the_envelope_and_is_the_beat(self):
+        """The mark has to land on this beat's words, not the whole sentence —
+        that is what keeps 02-02a and 02-02b distinguishable when they share
+        one."""
+        for k in self.keys:
+            w = self.L.window(k)
+            self.assertGreaterEqual(w["hlStart"], 0, k)
+            self.assertLessEqual(w["hlStart"] + w["hlLen"], len(w["mid"]), k)
+            self.assertGreater(w["hlLen"], 0, f"{k} highlights nothing")
+        a, b = self.L.window("02-02a"), self.L.window("02-02b")
+        self.assertEqual(a["mid"], b["mid"], "they share one sentence")
+        ha = a["mid"][a["hlStart"]:a["hlStart"] + a["hlLen"]]
+        hb = b["mid"][b["hlStart"]:b["hlStart"] + b["hlLen"]]
+        self.assertNotEqual(ha, hb, "each half must mark its own words")
+        self.assertIn("Freshman cover", ha)
+        self.assertIn("twenty-four days", hb)
+
+    def test_the_page_never_splices_the_quote_into_the_prose(self):
+        page = (ROOT / "pipeline" / "ui13-review" / "index.html").read_text()
+        self.assertNotIn("esc(b.before)", page,
+                         "the old before/quote/after splice must be gone")
+        self.assertIn("function scriptHtml(", page)
+
+    def test_a_user_override_wins_and_is_marked(self):
+        ovp = ROOT / "grammar" / "beat-script-map.overrides.json"
+        had = ovp.read_text() if ovp.exists() else None
+        try:
+            ovp.write_text(json.dumps({"beats": [
+                {"beat": "01-01", "cycle": "CYCLE 9 — TEST", "section": "X"}]}))
+            rows = self.SM.build()[0]
+            r = next(x for x in rows if x["beat"] == "01-01")
+            self.assertEqual(r["cycle"], "CYCLE 9 — TEST")
+            self.assertEqual(r["source"], "user",
+                             "a user row must be traceable as one")
+        finally:
+            if had is None: ovp.unlink(missing_ok=True)
+            else: ovp.write_text(had)
+            self.SM.build()
+
+    def test_the_map_names_the_script_it_was_built_from(self):
+        d = json.loads((ROOT / "grammar" / "beat-script-map.json").read_text())
+        self.assertIn("v2.1", d["_script"])
+
+
+class AStalePolishMirrorStopsTheRun(unittest.TestCase):
+    """A local copy of Codex's tree must fail loudly when it falls behind.
+
+    The Polish tree became unreadable on 2026-09-26 (LOG 0126), so the pool is
+    read from a mirror under ~/timeline. paths.py's own docstring names the
+    danger: "the failure mode this file exists to prevent is not a missing file,
+    it is a present-but-stale one." When Codex regenerates approved-list.json,
+    a mirror keeps serving the old pool and every slate built from it is wrong
+    with nothing saying so.
+
+    What makes this checkable: macOS denies read() on a TCC-protected file but
+    still permits stat(). Measured — open() on catalog.json raised
+    PermissionError while stat() returned 1.29 MB. mtime and size are enough.
+    """
+
+    def setUp(self):
+        sys.path.insert(0, str(ROOT / "pipeline"))
+        import paths
+        self.paths = paths
+        paths._checked.clear()
+        self.tmp = pathlib.Path(tempfile.mkdtemp())
+        self.src = self.tmp / "source"; self.mir = self.tmp / "mirror"
+        for d in (self.src, self.mir):
+            (d / "ae-template-automation" / "scene-library").mkdir(parents=True)
+        self.rel = pathlib.Path("ae-template-automation/scene-library/pool.json")
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+        self.paths._checked.clear()
+
+    def _write(self, which, text, mtime):
+        p = (self.src if which == "src" else self.mir) / self.rel
+        p.write_text(text)
+        os.utime(p, (mtime, mtime))
+
+    def test_a_matching_copy_is_fresh(self):
+        self._write("src", '{"a":1}', 1000)
+        self._write("mir", '{"a":1}', 1000)
+        v, rows = self.paths.mirror_status(self.mir, self.src)
+        self.assertEqual(v, "fresh", rows)
+
+    def test_a_newer_source_is_stale(self):
+        """Codex regenerated the pool; the mirror still holds yesterday's."""
+        self._write("mir", '{"a":1}', 1000)
+        self._write("src", '{"a":2}', 9000)
+        v, rows = self.paths.mirror_status(self.mir, self.src)
+        self.assertEqual(v, "stale", rows)
+
+    def test_a_same_age_but_different_size_is_stale(self):
+        """cp -p preserves mtime, so mtime alone would call this fresh."""
+        self._write("mir", '{"a":1}', 1000)
+        self._write("src", '{"a":1,"b":2}', 1000)
+        v, _ = self.paths.mirror_status(self.mir, self.src)
+        self.assertEqual(v, "stale")
+
+    def test_an_unreachable_source_is_unverified_not_fresh(self):
+        """The honest answer when the source cannot be stat'd at all. Calling
+        this "fresh" is the claim the mirror is not entitled to make."""
+        self._write("mir", '{"a":1}', 1000)
+        v, rows = self.paths.mirror_status(self.mir, self.tmp / "gone")
+        self.assertEqual(v, "unverified", rows)
+
+    def test_one_unknown_among_fresh_files_is_not_fresh(self):
+        """Partial knowledge is not freshness."""
+        self._write("src", '{"a":1}', 1000)
+        self._write("mir", '{"a":1}', 1000)
+        orphan = self.mir / "ae-template-automation" / "orphan.json"
+        orphan.write_text("{}")
+        v, _ = self.paths.mirror_status(self.mir, self.src)
+        self.assertNotEqual(v, "fresh")
+
+    def test_polish_root_refuses_to_return_a_stale_mirror(self):
+        """The guard sits in polish_root(), which scene_library() and narration()
+        both call, so no consumer can route around it."""
+        self._write("mir", '{"a":1}', 1000)
+        self._write("src", '{"a":2}', 9000)
+        old = dict(os.environ)
+        try:
+            os.environ["ASTRA_POLISH"] = str(self.mir)
+            os.environ["ASTRA_POLISH_SOURCE"] = str(self.src)
+            with self.assertRaises(SystemExit) as cm:
+                self.paths.scene_library()
+            self.assertIn("STALE POLISH MIRROR", str(cm.exception))
+        finally:
+            os.environ.clear(); os.environ.update(old)
+
+    def test_it_inspects_the_mirror_in_use_not_the_default_path(self):
+        """Found by running it. mirror_status() defaulted to mirror_root()
+        (~/timeline/polish-mirror) while a live mirror sat on ASTRA_POLISH, so
+        the report said "absent" with a stale mirror in use. A guard that
+        inspects the wrong directory is worse than none: its silence reads as
+        a pass."""
+        self._write("mir", '{"a":1}', 1000)
+        self._write("src", '{"a":2,"b":3}', 9000)
+        old = dict(os.environ)
+        try:
+            os.environ["ASTRA_POLISH"] = str(self.mir)
+            os.environ["ASTRA_POLISH_SOURCE"] = str(self.src)
+            os.environ["ASTRA_POLISH_MIRROR"] = str(self.tmp / "not-the-one-in-use")
+            v, rows = self.paths.mirror_status()      # no arguments, as main() calls it
+            self.assertEqual(v, "stale", rows)
+        finally:
+            os.environ.clear(); os.environ.update(old)
+
+    def test_the_real_tree_is_never_checked_against_itself(self):
+        old = dict(os.environ)
+        try:
+            os.environ["ASTRA_POLISH"] = str(self.src)
+            os.environ["ASTRA_POLISH_SOURCE"] = str(self.src)
+            self.assertEqual(self.paths.polish_root(), self.src)
+        finally:
+            os.environ.clear(); os.environ.update(old)
+
+
+class ThePolishMirrorIsContentAddressed(unittest.TestCase):
+    """The mirror is verified against GitHub blob shas, not mtimes.
+
+    Codex's tree is github.com/djtoler/Polish, pushed to daily. A git blob sha
+    says a file IS the same file; an mtime only approximates it, and a `cp`
+    resets it. polish_sync computes the sha itself on every fetched byte, so a
+    truncated or substituted download cannot be written into the mirror.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        sys.path.insert(0, str(ROOT / "pipeline"))
+        import polish_sync
+        cls.PS = polish_sync
+
+    def test_blob_sha_is_gits_own_object_id(self):
+        """Verified against a known git hash-object result: the empty blob."""
+        self.assertEqual(self.PS.blob_sha(b""),
+                         "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391")
+        self.assertEqual(self.PS.blob_sha(b"hello\n"),
+                         "ce013625030ba8dba906f756967f9e9ca394464a")
+
+    def test_a_length_only_check_would_not_catch_substitution(self):
+        """Why the sha and not the size: same length, different bytes."""
+        a, b = b'{"pool":"v1"}', b'{"pool":"v2"}'
+        self.assertEqual(len(a), len(b))
+        self.assertNotEqual(self.PS.blob_sha(a), self.PS.blob_sha(b))
+
+    def test_every_fetched_file_names_its_consumer(self):
+        """A file with no consumer does not belong in the mirror. 4.5 MB is
+        fetched out of a 338 MB repo precisely because the list is justified."""
+        self.assertTrue(self.PS.FILES)
+        for path, why in self.PS.FILES.items():
+            self.assertTrue(why and len(why) > 12,
+                            f"{path} is fetched with no stated consumer")
+
+    def test_the_manifest_records_the_commit_it_came_from(self):
+        m = self.PS.MANIFEST
+        if not m.exists():
+            self.skipTest("mirror not fetched in this environment")
+        d = json.loads(m.read_text())
+        for k in ("repo", "ref", "commit", "fetchedAt", "files"):
+            self.assertIn(k, d, "the mirror must say what it is a copy of")
+        self.assertEqual(set(d["files"]), set(self.PS.FILES))
+
+
+class BrollAddsToMediaOrReplacesIt(unittest.TestCase):
+    """B-roll is an add-on OR a replacement, and media toggles independently.
+
+    The user asked for this twice. 2026-09-26, first: "allow b-roll to be used as
+    addition to template/media or in place of media." The build made the checkbox
+    SWAP one list for the other, which allowed replacement and made addition
+    unreachable — measured on the old function, there is no value of the flag
+    that yields media AND b-roll. Second: "clicking b-roll should toggle media on
+    or off. i specifically asked for earlier, that broll be an optional add on or
+    replacement of media if not media is selected but broll is still paired with
+    a template."
+
+    The assertions run the ACTUAL functions extracted from the shipped page, not
+    a copy of them, so the test cannot pass against a page that lost the change.
+    """
+
+    PAGE = ROOT / "pipeline" / "ui13-review" / "index.html"
+    HARNESS = ROOT / "tests" / "brollstate.mjs"
+
+    def test_the_shipped_page_satisfies_every_source_combination(self):
+        if not shutil.which("node"):
+            self.skipTest("node not available")
+        out = subprocess.run(["node", str(self.HARNESS), str(self.PAGE)],
+                             capture_output=True, text=True)
+        rows = json.loads(out.stdout or "[]")
+        self.assertTrue(rows, out.stderr[:400])
+        bad = [r for r in rows if not r["ok"]]
+        self.assertFalse(bad, "\n".join(
+            f"{r['what']}: got {r['got']} want {r['want']}" for r in bad))
+        # the four combinations, named, so a reader sees what is guaranteed
+        for what in ("default is media only", "add-on unions and dedupes",
+                     "replacement is b-roll only", "both off yields nothing",
+                     "b-roll on leaves media on",
+                     "old record: checked box meant replacement",
+                     "the record keeps how many clips were on offer",
+                     "none of 5 is a sourcing request, distinct from none of 0",
+                     "the record's shape is fixed"):
+            self.assertIn(what, [r["what"] for r in rows])
+
+    def test_the_sourcing_verdict_reaches_the_record(self):
+        """"add an additional button that says no eligible b-roll, to track
+        sourcing needs" — a button whose verdict never leaves the page tracks
+        nothing, so the shape of the saved record is part of the feature."""
+        page = self.PAGE.read_text()
+        self.assertIn("id='nob'", page, "the button must exist")
+        self.assertIn("noBroll", page)
+        self.assertIn("brollOffered", page,
+                      "the count on offer is what makes the verdict actionable")
+        self.assertIn("if (v.noBroll) nob[v.beat] = true;", page,
+                      "the verdict must survive a reload")
+
+    def test_the_page_no_longer_swaps_one_list_for_the_other(self):
+        """The old shape, verbatim, must be gone — it is what made add-on
+        impossible."""
+        page = self.PAGE.read_text()
+        self.assertNotIn("broll[b.beat] ? b.broll : b.media", page)
+        self.assertIn("function pool(", page)
+        self.assertIn("function adopt(", page)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

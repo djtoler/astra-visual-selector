@@ -25,10 +25,18 @@ Infographic Bar Charts/
 *.avif
 *.gif
 
+# ── CODEX'S TREE, MIRRORED ────────────────────────────────────────────────
+# polish-mirror/ is a copy of github.com/djtoler/Polish fetched by
+# pipeline/polish_sync.py. It is Codex's content, it has its own repo, and a
+# second copy here is a second source of truth that can silently go stale.
+# Refetch with: python3 pipeline/polish_sync.py --fetch
+polish-mirror/
+
 # ── GENERATED review payloads ─────────────────────────────────────────────
 # data.json carries base64 posters (13 MB for one UI). The builder regenerates
 # it from the library in seconds; the BUILDER is the source, not its output.
 pipeline/ui*/data.json
+pipeline/ui*/rejected.json
 pipeline/ui*/media/
 pipeline/_retired/*/data.json
 pipeline/lt-pick/

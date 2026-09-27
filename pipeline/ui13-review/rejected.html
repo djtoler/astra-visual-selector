@@ -1,0 +1,102 @@
+<title>Hidden By Your Rejections</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Archivo+Narrow:wght@600;700&display=swap">
+<style>
+:root{
+  --ink:#16130f; --ink2:#5a5148; --ink3:#8b8076; --line:#ddd5ca; --line2:#ece5db;
+  --bg:#f4efe7; --card:#fffdfa; --raised:#faf6f0; --rej:#8f2115; --rejbg:#f6e4e0;
+  --disp:"Archivo Narrow",Arial Narrow,sans-serif;
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a; --rej:#e8836f; --rejbg:#38201b;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a; --rej:#e8836f; --rejbg:#38201b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 18px 80px}
+header{padding-block:20px 12px;border-bottom:2px solid var(--ink)}
+h1{margin:0 0 8px;font:700 24px/1.05 var(--disp);text-transform:uppercase;letter-spacing:-.01em}
+.lede{margin:0 0 5px;color:var(--ink2);max-width:80ch;font-size:14px}
+.lede b{color:var(--ink)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:9px 0;margin-bottom:16px;
+  display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.n{font:600 11.5px/1 var(--mono);padding:7px 10px;border-radius:99px;
+  background:var(--rejbg);color:var(--rej);white-space:nowrap;margin-right:6px}
+.bar button{font:600 9.5px/1 var(--mono);padding:6px 6px;border-radius:4px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.bar button[aria-current="true"]{border-color:var(--ink);color:var(--ink);
+  background:var(--raised);font-weight:700}
+.grid{display:grid;gap:11px;grid-template-columns:repeat(auto-fill,minmax(178px,1fr))}
+.c{border:1px solid var(--line);border-radius:5px;background:var(--card);overflow:hidden;
+  opacity:.72}
+.pv{position:relative;aspect-ratio:16/9;background:#0c0a08}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.m2{padding:7px 9px 9px}
+.tn{font:600 10.5px/1.32 var(--sans);word-break:break-word}
+.meta{font:9px/1.35 var(--mono);color:var(--ink3);margin-top:3px}
+.tid{font:8px/1.3 var(--mono);color:var(--ink3);opacity:.55;margin-top:3px;word-break:break-all}
+footer{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+  font:11.5px/1.7 var(--mono);color:var(--ink3);max-width:82ch}
+@media (max-width:640px){ .grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Hidden By Your Rejections</h1>
+  <p class="lede"><b>Templates that were bound to a beat's job and removed because
+  you said no.</b> They are not offered on any later slate &mdash; this page is the
+  only way to see them.</p>
+  <p class="lede">Nothing here is re-offered by opening it. If one should come back,
+  say so on the beat and it can be un-rejected.</p>
+</header>
+<div class="bar"><span class="n" id="n">&hellip;</span><span id="nav"></span></div>
+<div class="grid" id="grid"></div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D=null, k=null;
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function render(){
+  var list = D.beats[k] || [];
+  document.getElementById("grid").innerHTML = list.map(function(t){
+    return "<article class='c'><div class='pv'>"
+      + (D.posters[t.id] ? "<img src='"+esc(D.posters[t.id])+"' loading='lazy' alt=''>" : "")
+      + "</div><div class='m2'><div class='tn'>"+esc(t.name)+"</div>"
+      + "<div class='meta'>"+(t.slots==null?"slots unknown":t.slots+" slot"+(t.slots===1?"":"s"))
+      + (t.structure?" &middot; "+esc(t.structure):"")+"</div>"
+      + "<div class='tid'>"+esc(t.id)+"</div></div></article>"; }).join("")
+    || "<p class='meta'>Nothing was rejected on this beat.</p>";
+  document.getElementById("n").textContent = "beat "+k+" — "+list.length+" hidden";
+  document.querySelectorAll("#nav button").forEach(function(x){
+    x.setAttribute("aria-current", x.dataset.k === k ? "true" : "false"); });
+}
+document.getElementById("nav").addEventListener("click", function(e){
+  var b = e.target.closest("button"); if (!b) return;
+  k = b.dataset.k; location.hash = encodeURIComponent(k); render();
+  window.scrollTo({top:0, behavior:"instant"});
+});
+fetch("rejected.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d;
+  var keys = Object.keys(d.beats).sort();
+  k = decodeURIComponent((location.hash||"").slice(1)) || keys[0];
+  if (!d.beats[k]) k = keys[0];
+  document.getElementById("nav").innerHTML = keys.map(function(x){
+    return "<button type='button' data-k='"+esc(x)+"'>"+esc(x)+"</button>"; }).join("");
+  var tot = keys.reduce(function(a,x){ return a + d.beats[x].length; }, 0);
+  document.getElementById("foot").textContent =
+    tot + " rejections across " + keys.length + " beats, counting only templates "
+    + "bound to that beat's own job. Rejections of templates admitted by a scope "
+    + "rule or a match-cut admission are not shown here — they belong to a "
+    + "different binding.";
+  render();
+}).catch(function(){ document.getElementById("n").textContent = "Could not load"; });
+</script>

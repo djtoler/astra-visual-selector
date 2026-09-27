@@ -1,0 +1,192 @@
+<title>Name The Asset</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Archivo+Narrow:wght@600;700&display=swap">
+<style>
+:root{
+  --ink:#16130f; --ink2:#5a5148; --ink3:#8b8076; --line:#ddd5ca; --line2:#ece5db;
+  --bg:#f4efe7; --card:#fffdfa; --raised:#faf6f0;
+  --pick:#2f5d3f; --pickbg:#e2ede5;
+  --known:#7a4a10; --knownbg:#f6ead7;
+  --no:#8f2115; --nobg:#f6e4e0;
+  --disp:"Archivo Narrow",Arial Narrow,sans-serif;
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --pick:#8fcaa3; --pickbg:#1c2c22;
+  --known:#d9a765; --knownbg:#2e2315;
+  --no:#e8836f; --nobg:#38201b;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --pick:#8fcaa3; --pickbg:#1c2c22;
+  --known:#d9a765; --knownbg:#2e2315;
+  --no:#e8836f; --nobg:#38201b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1260px;margin:0 auto;padding:0 18px 80px}
+header{padding-block:26px 16px;border-bottom:2px solid var(--ink)}
+h1{margin:0 0 12px;font:700 30px/1.05 var(--disp);text-transform:uppercase;
+  letter-spacing:-.01em}
+.beat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:0 5px 5px 0;padding:14px 17px;margin:0 0 14px}
+.beat .id{font:700 10px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:5px}
+.beat .q{margin:0;font-size:17px;line-height:1.45;font-weight:600}
+.lede{margin:0 0 6px;color:var(--ink2);max-width:76ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:11px 0;margin-bottom:20px;
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pill{font:600 12px/1 var(--mono);padding:7px 11px;border-radius:99px;
+  background:var(--pickbg);color:var(--pick);white-space:nowrap}
+.st{font:12px/1.4 var(--mono);color:var(--ink3)}
+
+.sec{font:700 10.5px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(228px,1fr))}
+.c{border:1px solid var(--line);border-radius:5px;background:var(--card);
+  overflow:hidden;display:flex;flex-direction:column;cursor:pointer}
+.c:hover{border-color:var(--ink3)}
+.c.on{border-color:var(--pick);box-shadow:inset 0 0 0 2px var(--pick)}
+.pv{position:relative;background:#0c0a08;aspect-ratio:3/4;overflow:hidden}
+.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.flag{position:absolute;left:0;top:0;right:0;padding:5px 9px;
+  font:700 9.5px/1.4 var(--mono);letter-spacing:.05em;text-transform:uppercase;
+  background:var(--knownbg);color:var(--known)}
+.chk{position:absolute;right:7px;bottom:7px;width:26px;height:26px;border-radius:99px;
+  background:var(--pick);color:#fff;font:700 14px/26px var(--mono);text-align:center;
+  display:none}
+.c.on .chk{display:block}
+.m{padding:9px 11px 11px;display:flex;flex-direction:column;gap:5px}
+.sid{font:600 10px/1.3 var(--mono);color:var(--ink3)}
+.on{font:600 11.5px/1.4 var(--sans);color:var(--ink)}
+.noton{font:11px/1.4 var(--sans);color:var(--no);background:var(--nobg);
+  padding:2px 6px;border-radius:3px;display:inline-block;width:fit-content}
+.why{font:10px/1.4 var(--mono);color:var(--ink3);word-break:break-word}
+.notefield{margin-top:22px}
+.notefield label{display:block;font:700 10px/1.5 var(--disp);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
+textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:5px;
+  background:var(--card);color:var(--ink);font:14px/1.55 var(--sans);resize:vertical;
+  min-height:72px}
+textarea:focus{outline:2px solid var(--pick);outline-offset:-1px;border-color:var(--pick)}
+footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);
+  font:12px/1.7 var(--mono);color:var(--ink3);max-width:80ch}
+footer b{color:var(--ink2)}
+@media (max-width:640px){ h1{font-size:23px} .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Name The Asset</h1>
+  <div class="beat" id="beat"></div>
+  <p class="lede"><b>Pick every asset that serves this beat.</b> More than one is
+  fine &mdash; if it wants a sequence, say so in the note.</p>
+  <p class="lede">The three covers you named are first, with what is on each one.
+  After them, the candidates the pipeline currently ranks highest, in its order.</p>
+</header>
+
+<div class="bar">
+  <span class="pill" id="tally">0 chosen</span>
+  <span class="st" id="st">Loading&hellip;</span>
+</div>
+
+<div id="root"></div>
+
+<div class="notefield">
+  <label>Why this one, or what is still missing</label>
+  <textarea id="note" placeholder="e.g. use the 2010 cover he is not on, then the duo cover as the payoff"></textarea>
+</div>
+
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D=null, db=null, chosen=[], note="", timer=null;
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function setS(m){ document.getElementById("st").textContent = m; }
+
+function card(c){
+  var on = chosen.indexOf(c.id) >= 0;
+  return "<article class='c"+(on?" on":"")+"' data-id='"+esc(c.id)+"'>"
+    + "<div class='pv'>"
+    + (c.known ? "<span class='flag'>"+esc(c.known)+"</span>" : "")
+    + "<img src='"+esc(c.img)+"' loading='lazy' alt='"+esc(c.short)+"'>"
+    + "<span class='chk'>&#10003;</span></div>"
+    + "<div class='m'><div class='sid'>"+esc(c.short)+"&hellip;"
+    + (c.rank ? " &middot; ranked "+c.rank : "")+"</div>"
+    + (c.onIt && c.onIt.length
+        ? "<div class='on'>On it: "+esc(c.onIt.join(", "))+"</div>" : "")
+    + (c.notOnIt && c.notOnIt.length
+        ? "<div class='noton'>Not on it: "+esc(c.notOnIt.join(", "))+"</div>" : "")
+    + "<div class='why'>"+esc(c.why)+"</div></div></article>";
+}
+
+function render(){
+  if (!D) return;
+  var named = D.cards.filter(function(c){ return c.known; });
+  var rest  = D.cards.filter(function(c){ return !c.known; });
+  var html = "";
+  if (named.length)
+    html += "<p class='sec'>The covers you named</p><div class='grid'>"
+          + named.map(card).join("") + "</div>";
+  if (rest.length)
+    html += "<p class='sec'>What the pipeline ranks highest right now</p>"
+          + "<div class='grid'>" + rest.map(card).join("") + "</div>";
+  document.getElementById("root").innerHTML = html;
+  document.getElementById("tally").textContent =
+    chosen.length + " chosen";
+  document.getElementById("foot").innerHTML =
+    "<b>" + esc(D.beat.problem) + "</b>";
+}
+
+function save(){
+  if (!db) return;
+  db.doc("naming/" + D.beat.id.replace(/[^A-Za-z0-9_-]/g,"_"))
+    .set({ beat: D.beat.id, chosen: chosen.slice(), note: note,
+           updatedAt: new Date().toISOString() })
+    .then(function(){ setS("Saved."); })
+    .catch(function(e){ setS("Not saved: "+((e&&e.code)||"error")); });
+}
+
+document.addEventListener("click", function(e){
+  var a = e.target.closest(".c"); if (!a) return;
+  var id = a.dataset.id, i = chosen.indexOf(id);
+  chosen = chosen.slice();
+  if (i >= 0) chosen.splice(i,1); else chosen.push(id);
+  render(); save();
+});
+
+document.getElementById("note").addEventListener("input", function(){
+  note = this.value;
+  clearTimeout(timer);
+  timer = setTimeout(save, 600);
+});
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d;
+  document.getElementById("beat").innerHTML =
+    "<div class='id'>beat "+esc(d.beat.id)+" &middot; "+esc(d.beat.job)+"</div>"
+    + "<p class='q'>&ldquo;"+esc(d.beat.quote)+"&rdquo;</p>";
+  render();
+  return claude.use("db");
+}).then(function(x){
+  db = x;
+  if (!db){ setS("Choices cannot be saved in this view."); return; }
+  return db.doc("naming/"+D.beat.id.replace(/[^A-Za-z0-9_-]/g,"_")).get()
+    .then(function(s){
+      var v = s && s.exists ? s.data() : null;   // frozen — copy out
+      if (v){ chosen = (v.chosen||[]).slice(); note = v.note || ""; }
+      document.getElementById("note").value = note;
+      render(); setS("Ready — saves as you go.");
+    });
+}).catch(function(e){ setS("Could not load: "+((e&&e.code)||"error")); });
+</script>

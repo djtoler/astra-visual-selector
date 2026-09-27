@@ -1,0 +1,182 @@
+<title>What You Called Wrong</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Archivo+Narrow:wght@600;700&display=swap">
+<style>
+:root{
+  --ink:#16130f; --ink2:#5a5148; --ink3:#8b8076; --line:#ddd5ca; --line2:#ece5db;
+  --bg:#f4efe7; --card:#fffdfa; --raised:#faf6f0;
+  --you:#8f2115; --youbg:#f6e4e0;
+  --pick:#2f5d3f; --pickbg:#e2ede5;
+  --disp:"Archivo Narrow",Arial Narrow,sans-serif;
+  --sans:Archivo,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --you:#e8836f; --youbg:#38201b; --pick:#8fcaa3; --pickbg:#1c2c22;
+}}
+:root[data-theme="dark"]{
+  --ink:#f0e9e0; --ink2:#b3a89c; --ink3:#857a6f; --line:#3a332c; --line2:#2a241e;
+  --bg:#141210; --card:#1e1a16; --raised:#241f1a;
+  --you:#e8836f; --youbg:#38201b; --pick:#8fcaa3; --pickbg:#1c2c22;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px 100px}
+header{padding-block:22px 12px;border-bottom:2px solid var(--ink)}
+h1{margin:0 0 9px;font:700 27px/1.05 var(--disp);text-transform:uppercase;letter-spacing:-.01em}
+.lede{margin:0 0 5px;color:var(--ink2);max-width:78ch;font-size:14.5px}
+.lede b{color:var(--ink)}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);
+  border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:16px;
+  display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.bar button{font:600 11px/1 var(--mono);padding:8px 10px;border-radius:5px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.bar button[aria-current="true"]{border-color:var(--you);color:var(--you);
+  background:var(--youbg);font-weight:700}
+
+.beat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--ink);
+  border-radius:0 5px 5px 0;padding:14px 17px;margin-bottom:14px}
+.beat .id{font:700 10px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:4px}
+.beat .q{margin:0 0 8px;font-size:16.5px;line-height:1.45;font-weight:600}
+.beat .m{font:11px/1.6 var(--mono);color:var(--ink3)}
+
+.said{background:var(--youbg);border-left:4px solid var(--you);border-radius:0 5px 5px 0;
+  padding:12px 16px;margin-bottom:16px}
+.said h3{margin:0 0 7px;font:700 9.5px/1.5 var(--disp);letter-spacing:.12em;
+  text-transform:uppercase;color:var(--you)}
+.said p{margin:0 0 8px;font-size:14.5px;line-height:1.5;color:var(--ink)}
+.said p:last-child{margin-bottom:0}
+.said .src{font:9.5px/1.5 var(--mono);color:var(--you);opacity:.75;display:block;
+  margin-top:2px}
+
+.sec{font:700 10.5px/1.5 var(--disp);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink3);margin:18px 0 9px;padding-bottom:5px;border-bottom:1px solid var(--line)}
+.grid{display:grid;gap:13px;grid-template-columns:repeat(auto-fill,minmax(248px,1fr))}
+.c{border:1px solid var(--line);border-radius:5px;background:var(--card);overflow:hidden}
+.c.p{border-color:var(--pick);box-shadow:inset 0 0 0 2px var(--pick)}
+.pv{position:relative;aspect-ratio:16/9;background:#0c0a08}
+.pv video,.pv img{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;
+  border-radius:99px;border:0;cursor:pointer;background:rgba(5,7,10,.6);backdrop-filter:blur(3px)}
+.play::before{content:"";position:absolute;left:14px;top:10px;border-left:12px solid #fff;
+  border-top:8px solid transparent;border-bottom:8px solid transparent}
+.play.on{opacity:0}.pv:hover .play.on{opacity:.7}
+.tag{position:absolute;right:6px;top:6px;padding:3px 7px;border-radius:3px;
+  font:700 8.5px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.04em;
+  background:var(--pick);color:#fff}
+.still{position:absolute;left:6px;top:6px;padding:3px 7px;border-radius:3px;
+  font:700 8.5px/1.4 var(--mono);text-transform:uppercase;
+  background:rgba(5,7,10,.72);color:#d7dee6}
+.m2{padding:9px 11px 11px}
+.tn{font:600 11.5px/1.35 var(--sans);word-break:break-word}
+.mech{font:10px/1.45 var(--mono);color:var(--ink2);margin-top:5px}
+.meta{font:9.5px/1.4 var(--mono);color:var(--ink3);margin-top:4px}
+.tid{font:8.5px/1.3 var(--mono);color:var(--ink3);opacity:.6;margin-top:4px;word-break:break-all}
+footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);
+  font:12px/1.7 var(--mono);color:var(--ink3);max-width:84ch}
+footer b{color:var(--ink2)}
+@media (max-width:640px){ h1{font-size:21px} .grid{grid-template-columns:1fr} }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>What You Called Wrong</h1>
+  <p class="lede"><b>Thirteen beats you said the templates were wrong on</b>, with
+  your words and every template the slate actually offered.</p>
+  <p class="lede">Clips, not stills &mdash; you are judging treatments here, and
+  motion is most of what a treatment is. One play button, plays once, stops at the
+  end.</p>
+</header>
+
+<div class="bar" id="bar"></div>
+<div id="root"></div>
+<footer id="foot"></footer>
+</div>
+
+<script>
+"use strict";
+var D=null, i=0;
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+function card(t){
+  return "<article class='c"+(t.picked?" p":"")+"'>"
+    + "<div class='pv'>"
+    + (t.clip
+        ? "<video src='"+esc(t.clip)+"'"+(t.poster?" poster='"+esc(t.poster)+"'":"")
+          + " muted playsinline preload='none'></video>"
+          + "<button class='play' type='button' aria-label='Play clip'></button>"
+        : (t.poster ? "<img src='"+esc(t.poster)+"' alt=''><span class='still'>still only</span>"
+                    : "<span class='still'>no preview</span>"))
+    + (t.picked ? "<span class='tag'>you picked</span>" : "")
+    + "</div><div class='m2'>"
+    + "<div class='tn'>"+esc(t.name)+"</div>"
+    + (t.mechanism ? "<div class='mech'>does: "+esc(t.mechanism)+"</div>" : "")
+    + "<div class='meta'>"+(t.slots==null?"slots unknown":t.slots+" media slot"
+        +(t.slots===1?"":"s"))+(t.structure?" &middot; "+esc(t.structure):"")+"</div>"
+    + "<div class='tid'>"+esc(t.id)+"</div>"
+    + "</div></article>";
+}
+
+function render(){
+  var b = D.beats[i];
+  document.getElementById("root").innerHTML =
+    "<div class='beat'><div class='id'>beat "+esc(b.beat)+" &middot; "+esc(b.job)+"</div>"
+    + "<p class='q'>&ldquo;"+esc(b.quote)+"&rdquo;</p>"
+    + "<p class='m'>"+b.bound+" bound to this job &middot; "+b.rejected
+    + " rejected &middot; "+b.remaining+" remaining &middot; "+b.shown.length
+    + " offered here</p></div>"
+    + (b.notes.length
+        ? "<div class='said'><h3>What you said</h3>"
+          + b.notes.map(function(n){
+              return "<p>&ldquo;"+esc(n[1])+"&rdquo;<span class='src'>"
+                   + esc(n[0])+"</span></p>"; }).join("")
+          + "</div>"
+        : "")
+    + "<p class='sec'>What the slate offered &mdash; "+b.shown.length+"</p>"
+    + "<div class='grid'>"+b.shown.map(card).join("")+"</div>";
+  document.querySelectorAll("#bar button").forEach(function(x){
+    x.setAttribute("aria-current", x.dataset.p === String(i) ? "true" : "false"); });
+  window.scrollTo({top:0, behavior:"instant"});
+}
+
+document.addEventListener("click", function(e){
+  var pb = e.target.closest(".play");
+  if (pb){
+    var v = pb.parentElement.querySelector("video"); if (!v) return;
+    if (v.paused){
+      document.querySelectorAll("video").forEach(function(o){
+        if (o!==v){ o.pause(); var x=o.parentElement.querySelector(".play");
+                    if (x) x.classList.remove("on"); }});
+      v.play().catch(function(){}); pb.classList.add("on");
+    } else { v.pause(); pb.classList.remove("on"); }
+    return;
+  }
+  var b = e.target.closest("#bar button");
+  if (b){ i = parseInt(b.dataset.p, 10); render(); }
+});
+document.addEventListener("ended", function(e){
+  if (e.target.tagName !== "VIDEO") return;
+  var p = e.target.parentElement.querySelector(".play");
+  if (p) p.classList.remove("on");
+}, true);
+
+fetch("data.json").then(function(r){ return r.json(); }).then(function(d){
+  D = d;
+  document.getElementById("bar").innerHTML = d.beats.map(function(b, n){
+    return "<button type='button' data-p='"+n+"'>"+esc(b.beat)+"</button>"; }).join("");
+  document.getElementById("foot").innerHTML =
+    "<b>Where these came from.</b> Your notes live in two places and had never been "
+    + "read together: the media review's per-beat and per-entity boxes, and the "
+    + "pairing page's note field. The pairing notes &mdash; which hold the sharpest "
+    + "ones, 18-18 and 27-27 &mdash; were never ingested into any grammar file at "
+    + "all. They existed only in that page's database until now.";
+  render();
+}).catch(function(){
+  document.getElementById("root").textContent = "Could not load data.json";
+});
+</script>
