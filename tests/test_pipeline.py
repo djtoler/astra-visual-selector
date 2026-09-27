@@ -5780,7 +5780,7 @@ class BrollAddsToMediaOrReplacesIt(unittest.TestCase):
 
 
 class TheIssueRegisterQuotesTheUserExactly(unittest.TestCase):
-    """grammar/issues_media_layer.json cites the user's words as evidence.
+    """grammar/issues_matching_layer.json cites the user's words as evidence.
 
     A paraphrase that hardens into a rule is the failure CLAUDE.md names: "Their
     note is the evidence; do not paraphrase it into a rule without showing the
@@ -5792,7 +5792,7 @@ class TheIssueRegisterQuotesTheUserExactly(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.reg = json.loads((ROOT / "grammar" / "issues_media_layer.json").read_text())
+        cls.reg = json.loads((ROOT / "grammar" / "issues_matching_layer.json").read_text())
         p = ROOT / "grammar" / "beat-review-export-2026-09-27.json"
         cls.ex = json.loads(p.read_text())
         cls.notes = {b["beat"]: ((b["userReview"] or {}).get("note") or "")
@@ -5840,9 +5840,9 @@ class TheIssueRegisterQuotesTheUserExactly(unittest.TestCase):
     def test_the_export_carries_the_register(self):
         """The section has to reach the file that gets pushed, not just its
         sidecar."""
-        self.assertIn("issues_media_layer", self.ex)
-        self.assertEqual(len(self.ex["issues_media_layer"]["issues"]),
-                         self.ex["_counts"]["issuesMediaLayer"])
+        self.assertIn("issues_matching_layer", self.ex)
+        self.assertEqual(len(self.ex["issues_matching_layer"]["issues"]),
+                         self.ex["_counts"]["issuesMatchingLayer"])
 
 
 if __name__ == "__main__":
