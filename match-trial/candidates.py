@@ -481,6 +481,7 @@ NON_SUBJECT_AXES = frozenset({
 # ---------------------------------------------------------------------------
 SPATIAL_KINDS    = frozenset({"cinematic_3d"})
 SPATIAL_MAX_SLOTS = 20
+LONG_CAROUSEL_MIN_PEOPLE = 10
 
 # ---------------------------------------------------------------------------
 # Match-cut capability
@@ -551,6 +552,38 @@ def is_spatial(rec):
 def needs_spatial(entity_count):
     """True when no flat template can credibly hold this many things."""
     return isinstance(entity_count, int) and entity_count > SPATIAL_MAX_SLOTS
+
+def needs_long_carousel(entity_count):
+    """True when a people roster should expose a capacity-qualified AE carousel."""
+    return isinstance(entity_count, int) and entity_count >= LONG_CAROUSEL_MIN_PEOPLE
+
+def is_long_media_carousel(rec, required_slots=LONG_CAROUSEL_MIN_PEOPLE):
+    """Return whether an AE media carousel is measured to hold the full roster.
+
+    The distinction is intentionally structural. A title containing ``carousel`` is
+    not enough: the record must be an After Effects template, carry identity through
+    media, reveal a sequence in turn, and report enough media and total slots. This
+    excludes text-list carousels as well as spatial and infographic-system scenes.
+    """
+    if rec.get("kind") != "after_effects":
+        return False
+    if not isinstance(required_slots, int) or required_slots < LONG_CAROUSEL_MIN_PEOPLE:
+        return False
+    label = " ".join(str(rec.get(key) or "") for key in ("id", "template", "title")).lower()
+    if "carousel" not in label:
+        return False
+    capability = rec.get("capability") or {}
+    if capability.get("structure") != "sequence" or capability.get("staging") != "reveals_in_turn":
+        return False
+    if "identity" not in (capability.get("carries") or []):
+        return False
+    media_slots = capability.get("media_slots")
+    total_slots = capability.get("slots_total")
+    return (
+        isinstance(media_slots, int)
+        and isinstance(total_slots, int)
+        and min(media_slots, total_slots) >= required_slots
+    )
 
 def _axis_base(k):
     return k.split("[")[0]

@@ -34,13 +34,14 @@ class MatchingAccuracyBatch01(unittest.TestCase):
         second = self.subject.dumps(self.subject.evaluate(self.request))
         self.assertEqual(first, second)
 
-    def test_ten_plus_case_exposes_the_old_threshold_defect(self):
-        case = self.cases["ten_plus_all_spatial"]
-        self.assertEqual(case["status"], "fail")
+    def test_ten_plus_case_uses_a_long_ae_carousel_not_spatial_or_infographic(self):
+        case = self.cases["ten_plus_long_carousel"]
+        self.assertEqual(case["status"], "pass")
         self.assertEqual(case["observed"]["taskEntityCount"], 11)
-        self.assertEqual(case["observed"]["availableSpatialCount"], 10)
-        self.assertEqual(case["observed"]["offeredSpatialIds"], [])
-        self.assertEqual(len(case["observed"]["missingSpatialIds"]), 10)
+        self.assertTrue(case["observed"]["longCarouselRuleApplies"])
+        self.assertGreaterEqual(case["observed"]["eligibleLongCarouselCount"], 1)
+        self.assertGreaterEqual(len(case["observed"]["offeredLongCarouselIds"]), 1)
+        self.assertFalse(case["observed"]["spatialOrInfographicCanSatisfyRule"])
 
     def test_split_beat_remains_two_tasks_with_unknown_task_timing(self):
         case = self.cases["split_beat_visual_tasks"]
@@ -76,4 +77,3 @@ class MatchingAccuracyBatch01(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

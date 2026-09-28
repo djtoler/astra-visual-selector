@@ -85,37 +85,49 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
     issues = _read(root / request["sources"]["matchingIssues"]["path"])["issues"]
     pool = candidate_pool.load()
     pool_by_id = {row["id"]: row for row in pool}
-    spatial_ids = sorted(row["id"] for row in pool if candidate_pool.is_spatial(row))
     cases = {row["id"]: row for row in request["cases"]}
     results: list[dict[str, Any]] = []
 
-    # 1. Eleven people must expose every available spatial scene.
-    case = cases["ten_plus_all_spatial"]
+    # 1. Eleven people must expose a capacity-qualified AE long-media carousel.
+    case = cases["ten_plus_long_carousel"]
     task = _one(visual_tasks, "id", case["taskIds"][0])
     shot = _one(shots, "__sourceBeatId", case["sourceBeatId"]) if any(
         "__sourceBeatId" in row for row in shots
     ) else _one([{**row, "__sourceBeatId": _shot_id(row)} for row in shots],
                 "__sourceBeatId", case["sourceBeatId"])
     reachable = _reachable_option_ids(shot)
-    offered_spatial = sorted(set(spatial_ids) & reachable)
-    missing_spatial = sorted(set(spatial_ids) - reachable)
-    passed = task.get("entityCount", 0) >= case["minimumPeople"] and not missing_spatial
+    entity_count = task.get("entityCount", 0)
+    eligible_carousel_ids = sorted(
+        row["id"] for row in pool
+        if candidate_pool.is_long_media_carousel(row, entity_count)
+    )
+    offered_carousel_ids = sorted(set(eligible_carousel_ids) & reachable)
+    offered_non_ae_ids = sorted(
+        row_id for row_id in reachable
+        if row_id in pool_by_id and pool_by_id[row_id].get("kind") != "after_effects"
+    )
+    passed = (
+        entity_count >= case["minimumPeople"]
+        and bool(offered_carousel_ids)
+        and all(pool_by_id[row_id].get("kind") == "after_effects" for row_id in offered_carousel_ids)
+    )
     results.append({
         "id": case["id"],
         "status": "pass" if passed else "fail",
         "expected": case["expected"],
         "observed": {
-            "taskEntityCount": task.get("entityCount"),
-            "currentSpatialThresholdAcceptsTask": candidate_pool.needs_spatial(task.get("entityCount")),
-            "availableSpatialCount": len(spatial_ids),
-            "availableSpatialIds": spatial_ids,
-            "offeredSpatialIds": offered_spatial,
-            "missingSpatialIds": missing_spatial,
+            "taskEntityCount": entity_count,
+            "longCarouselRuleApplies": candidate_pool.needs_long_carousel(entity_count),
+            "eligibleLongCarouselCount": len(eligible_carousel_ids),
+            "eligibleLongCarouselIds": eligible_carousel_ids,
+            "offeredLongCarouselIds": offered_carousel_ids,
+            "offeredNonAfterEffectsIds": offered_non_ae_ids,
+            "spatialOrInfographicCanSatisfyRule": False,
         },
         "reason": (
-            "Every available spatial scene is reachable."
+            "A capacity-qualified long-carousel After Effects scene is offered."
             if passed else
-            "The current matcher still uses the older over-20 route and does not offer every spatial scene for this eleven-person task."
+            "The eleven-person task does not offer a capacity-qualified long-carousel After Effects scene."
         ),
     })
 

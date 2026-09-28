@@ -348,6 +348,39 @@ def route_spatial(beat, bound, pool_index):
         f"job. Adding all {len(allsp)} spatial scenes unbound; none has been judged for "
         f"it. The {len(bound)} bound flat template(s) follow, and would need a re-cut.")
 
+def route_long_carousel(beat, bound, pool_index):
+    """For a 10+ person visual, expose measured AE carousels that hold the roster.
+
+    This route is specific to After Effects templates. Spatial and infographic-system
+    scenes remain separate systems and never satisfy it. Existing bound options are
+    preserved; when no qualifying carousel is bound, every capacity-qualified one is
+    added as an unbound review candidate rather than silently selecting one.
+    """
+    n = beat.get("entity_count")
+    if not C.needs_long_carousel(n):
+        return bound, None
+    eligible = [r for r in pool_index.values() if C.is_long_media_carousel(r, n)]
+    bound_carousels = [
+        row for row in bound
+        if C.is_long_media_carousel(pool_index.get(row["id"], row), n)
+    ]
+    if bound_carousels:
+        return bound, (
+            f"{n} people require a long AE media carousel; "
+            f"{len(bound_carousels)} capacity-qualified bound option(s) are offered."
+        )
+    have = {row["id"] for row in bound}
+    additions = [
+        {"id": row["id"], "name": row.get("description"),
+         "provenance": {"source": "long-carousel-route", "verdict": "unbound"}}
+        for row in eligible if row["id"] not in have
+    ]
+    return additions + bound, (
+        f"MAY NEED TEMPLATE SOURCE — {n} people require a long AE media carousel. "
+        f"Adding {len(additions)} capacity-qualified unbound carousel option(s); "
+        "spatial and infographic scenes do not satisfy this AE-template route."
+    )
+
 def main():
     beats=json.load(open(P/"beats-all.json"))
     grammar=json.load(open(G))
@@ -406,7 +439,8 @@ def main():
                      if (r.get("provenance") or {}).get("verdict") == "user-named"}
             bound, rej_note = drop_prior_rejections(b, bound, picks, keep=named)
             for r in bound: r["_rel"] = rel.get(b["id"], {}).get(r["id"])
-            routed, route_note = route_spatial(b, bound, pool_index)
+            routed, carousel_note = route_long_carousel(b, bound, pool_index)
+            routed, route_note = route_spatial(b, routed, pool_index)
             cap_note = None
             if CAPACITY: routed, cap_note = capacity_rank(b, routed, pool_index)
             # THE HANDSHAKE, after capacity so both annotations exist, and ahead of
@@ -421,7 +455,8 @@ def main():
             slate, flooded, note = C.diversify(routed, limit=SLATE_LIMIT, corpus_size=corpus,
                                                pool_index=pool_index,
                                                bound_families=bound_fams)
-            for extra in (rej_note, mc_note, sc_note, un_note, route_note, cap_note, enc_note):
+            for extra in (rej_note, mc_note, sc_note, un_note, carousel_note,
+                          route_note, cap_note, enc_note):
                 if extra: note = f"{extra} {note or ''}".strip()
             chosen=primaries.get(b["job"])
             primary=next((r for r in bound if r["id"]==chosen), None) if chosen else None
@@ -446,6 +481,7 @@ def main():
               "optionsTotal":len(bound),
               "flooded":flooded,
               "spatialRoute":C.needs_spatial(b.get("entity_count")),
+              "longCarouselRoute":C.needs_long_carousel(b.get("entity_count")),
               "needsTemplateSource":bool(route_note and route_note.startswith("MAY NEED")),
               "needsEncoding":bool(enc_note),
               "requiredEncoding":sorted((perceptible.get(f"{pid}-{b['id']}", {})
