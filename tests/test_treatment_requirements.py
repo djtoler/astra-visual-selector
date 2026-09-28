@@ -1,5 +1,7 @@
 import copy
+import json
 import unittest
+from pathlib import Path
 
 
 class TreatmentRequirementsPilot(unittest.TestCase):
@@ -62,6 +64,31 @@ class TreatmentRequirementsPilot(unittest.TestCase):
             self.subject.dumps(self.subject.build_pilot_request()),
             self.subject.dumps(self.subject.build_pilot_request()),
         )
+
+    def test_editor_review_assigns_zoom_to_post_not_template(self):
+        root = Path(__file__).resolve().parents[1]
+        review = json.loads(
+            (root / "treatment-requirements" / "pilot-001" / "review-001.json").read_text()
+        )
+        treatment = review["approvedTreatment"]
+        self.assertEqual(review["decision"], "approved_treatment_requirements")
+        self.assertFalse(treatment["nativeZoomRequired"])
+        self.assertTrue(treatment["postZoomAuthorized"])
+        self.assertFalse(review["selectionAuthorized"])
+        self.assertFalse(review["renderingAuthorized"])
+
+    def test_approved_treatment_remains_conditional_on_resolution_and_timing(self):
+        root = Path(__file__).resolve().parents[1]
+        comparison = json.loads(
+            (root / "treatment-requirements" / "pilot-001" / "capacity-comparison.json").read_text()
+        )
+        self.assertEqual(comparison["verdict"], "conditional")
+        self.assertEqual(comparison["mediaAssessment"]["assetId"],
+                         "9109a7d753a45dc6462b4baa")
+        self.assertEqual(comparison["mediaAssessment"]["pixelWidth"], 546)
+        self.assertEqual(len(comparison["templateAssessment"]["missingOrUnverified"]), 2)
+        self.assertFalse(comparison["selectionAuthorized"])
+        self.assertFalse(comparison["renderingAuthorized"])
 
 
 if __name__ == "__main__":
