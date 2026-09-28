@@ -48,6 +48,21 @@ remaining visually withheld; a semantic item count is not automatically a person
 The slate, media, and pairing stages do not consume this artifact yet; activation requires a
 separate reviewed migration with before/after output.
 
+### 2c. VisualTask / measured AE comparison — `PARTIAL`, review-only · deterministic
+`pipeline/visualtask_ae_spec_comparison.py` imports the frozen AE measurements into a
+portable exact-data index, links only explicitly reviewed scene families to measured
+projects, and compares task-scoped display-identity demand with the unchanged current
+slate. It emits 41 task rows without ranking, selecting, pairing, or rendering.
+**Out:** `grammar/ae-template-technical-index.json` and
+`reports/visualtask-ae-spec-comparison.json`.
+**Believes:** project-wide technical capacity can rule a demand out only when the slot
+inventory is complete; a project-family link cannot prove which native composition backs
+an individual preview scene.
+**Known incomplete:** exact scene-to-composition mapping, required task data fields,
+media-kind constraints, single/group eligibility, text limits, exact task timing, and media
+availability are not yet encoded. Therefore `fillable_now` is deliberately not computable,
+and this comparison is not connected to the live slate.
+
 ## 3. Template pool — `BUILT` · deterministic · `match-trial/candidates.py load()`
 `approved-list.json` enriched from `description-inventory.json` and `catalog.json`.
 **Out:** 421 records — description, useWhen, avoid, axes, clip path, capability, kind.

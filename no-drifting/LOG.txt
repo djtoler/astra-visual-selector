@@ -6307,3 +6307,53 @@ VERIFIED    Builder and consumer independently report 40 source beats, 41 tasks,
 
 STATUS      done — review-only pilot. Activation in slate/media/pairing is a later
             separately tested migration, not implied by this artifact.
+
+================================================================================
+[0131] 2026-09-27  VisualTasks can be compared with measured AE capacity without activation
+
+PROBLEM     The pilot has 41 task-scoped matching units and the AE inspection has
+            32 source-bound projects, 3,926 compositions and 3,078 exact text
+            fields, but neither side could consume the other. Approved preview
+            scenes still carried unverified native composition IDs, so the live
+            slate could recommend a family without showing what its measured
+            project can hold. The two tasks split from beat 28 also had no way to
+            remain separate in a technical comparison.
+
+WHY REAL    Landing the right media candidate on the right task requires knowing
+            whether the existing template can technically accept the display
+            demand. Without a source-bound join, capacity is invisible to matching;
+            without conservative evidence boundaries, a project-level measurement
+            can be misrepresented as proof that a particular preview scene is
+            fillable.
+
+CHANGE      `pipeline/visualtask_ae_spec_comparison.py` imports the frozen AE
+            summary, composition and text-field reports into a portable index,
+            validates explicit family-to-project links, and attaches project-level
+            capacity to the unchanged baseline candidate slate for all 41 tasks.
+            It reports possible, conflict, unknown or unmapped. Zero verified slots
+            and incomplete slot inventories remain unknown instead of becoming
+            false conflicts. It cannot emit `fillable_now`, authorize selection or
+            rendering, or modify live slate, binding, media or pairing artifacts.
+
+TEST        `VisualTaskAESpecComparison`, 10 tests. Before implementation the
+            focused suite failed with ImportError because
+            `pipeline.visualtask_ae_spec_comparison` did not exist. Tests cover
+            complete report reconciliation, exact known capacity values, all 41
+            tasks, the beat-28 split, task-scoped entity demand, conservative
+            verdicts, zero-slot abstention, invalid crosswalks, stale source hashes,
+            duplicate tasks, determinism and consumption of the written artifact.
+
+VERIFIED    The imported index reconciles 32 projects, 3,926 compositions and
+            3,078 text fields. The comparison evaluates 257 unchanged baseline
+            candidates across 41 VisualTasks: 57 have explicit measured-project
+            links and 200 remain unmapped; 47 are project-capacity-possible and 10
+            remain capacity-unknown. No candidate is called fillable now. Focused
+            tests: 10 passing; VisualTask regressions: 15 passing; AE inspection
+            regressions: 13 passing. Full repository suite: 465 run, 451 passed,
+            13 skipped, and the same pre-existing environment-dependent R2 test
+            failed because Cloudflare credentials are absent and preflight stops
+            before its expected `--confirm` message. No AE application, render,
+            paid call, source-template edit, live ranking or selection change occurred.
+
+STATUS      done — read-only comparison test; exact scene/native composition
+            mapping and the remaining plan-line-107 fields are the next gate.

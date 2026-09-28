@@ -30,6 +30,14 @@ Every path is relative to `~/timeline` unless marked `[codex]` (read-only, Codex
 - **Runs** — `python3 -m pipeline.visual_tasks build`; `python3 -m pipeline.visual_tasks validate`
 - **Consumer** — the validator currently consumes this artifact. Slate, media, and pairing stages do **not** read it yet, so this pilot cannot silently change live choices before review.
 
+### 1c · Compare VisualTasks with measured AE capacity — review-only test
+
+- **In** — `grammar/visual-tasks.json`, the unchanged capacity slate, approved scene catalog, explicit `grammar/ae-template-spec-links.json`, and portable `grammar/ae-template-technical-index.json`
+- **Does** — attaches measured project-level media, timing, and text evidence to existing candidates; reports possible, conflict, unknown, or unmapped without treating a family link as an exact native-composition mapping
+- **Out** → `reports/visualtask-ae-spec-comparison.json` (41 tasks, 257 existing candidates; no live ranking or selection change)
+- **Runs** — `python3 -m pipeline.visualtask_ae_spec_comparison build`; `python3 -m pipeline.visualtask_ae_spec_comparison validate`
+- **Boundary** — cannot emit `fillable_now`; exact composition mapping, required fields, media kinds, person/group eligibility, text limits, task timing, and media availability remain required.
+
 ## 2 · Load the template pool
 
 - **In** — `astra-selector-design/approved_media/approved-list.json` (generated export, never hand-edited); sidecars `grammar/local-templates.json`, `grammar/eligibility-overrides.json`, `grammar/capability.json`
