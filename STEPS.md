@@ -33,10 +33,10 @@ Every path is relative to `~/timeline` unless marked `[codex]` (read-only, Codex
 ### 1c · Compare VisualTasks with measured AE capacity — review-only test
 
 - **In** — `grammar/visual-tasks.json`, the unchanged capacity slate, approved scene catalog, explicit `grammar/ae-template-spec-links.json`, and portable `grammar/ae-template-technical-index.json`
-- **Does** — attaches measured project-level media, timing, and text evidence to existing candidates; reports possible, conflict, unknown, or unmapped without treating a family link as an exact native-composition mapping
+- **Does** — attaches measured media, timing, slot, and exact recursive text-field evidence to existing candidates; uses `grammar/ae-scene-composition-mappings.json` for 20 source-evidenced exact scene mappings and preserves four ambiguous scenes as unresolved
 - **Out** → `reports/visualtask-ae-spec-comparison.json` (41 tasks, 257 existing candidates; no live ranking or selection change)
 - **Runs** — `python3 -m pipeline.visualtask_ae_spec_comparison build`; `python3 -m pipeline.visualtask_ae_spec_comparison validate`
-- **Boundary** — cannot emit `fillable_now`; exact composition mapping, required fields, media kinds, person/group eligibility, text limits, task timing, and media availability remain required.
+- **Boundary** — cannot emit `fillable_now`; four exact composition mappings plus task-required fields, media-kind constraints, person/group eligibility, text limits, exact task timing, and media availability remain required.
 
 ## 2 · Load the template pool
 

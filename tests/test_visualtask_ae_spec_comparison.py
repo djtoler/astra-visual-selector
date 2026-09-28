@@ -61,7 +61,10 @@ class VisualTaskAESpecComparison(unittest.TestCase):
         self.assertGreater(result["counts"]["unmappedCandidates"], 0)
         self.assertNotIn("fillable_now", json.dumps(comparisons))
         mapped = [row for row in comparisons if row.get("projectId")]
-        self.assertTrue(all("exact_scene_to_native_composition_mapping" in row["missingForFillableNow"] for row in mapped))
+        exact = [row for row in mapped if row.get("exactComposition")]
+        unresolved = [row for row in mapped if row.get("mappingUnresolved")]
+        self.assertTrue(all("exact_scene_to_native_composition_mapping" not in row["missingForFillableNow"] for row in exact))
+        self.assertTrue(all("exact_scene_to_native_composition_mapping" in row["missingForFillableNow"] for row in unresolved))
 
     def test_zero_verified_slots_are_unknown_not_a_false_conflict(self):
         result = subject.build_comparison()
@@ -71,7 +74,7 @@ class VisualTaskAESpecComparison(unittest.TestCase):
             if candidate["candidateId"].startswith("archive3-dropoff-carousels")
         )
         self.assertEqual(dropoff["projectId"], "project")
-        self.assertEqual(dropoff["verdict"], "project_capacity_unknown")
+        self.assertEqual(dropoff["verdict"], "exact_capacity_unknown")
 
     def test_bad_crosswalk_project_fails_closed(self):
         links = json.loads((ROOT / "grammar" / "ae-template-spec-links.json").read_text())

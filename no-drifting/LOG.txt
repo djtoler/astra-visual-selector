@@ -6357,3 +6357,46 @@ VERIFIED    The imported index reconciles 32 projects, 3,926 compositions and
 
 STATUS      done — read-only comparison test; exact scene/native composition
             mapping and the remaining plan-line-107 fields are the next gate.
+
+================================================================================
+[0132] 2026-09-27  Exact native compositions replace project-wide guesses for 20 scenes
+
+PROBLEM     The read-only comparison linked 24 unique preview scenes to measured
+            AE projects but zero to an exact native composition. Consequently all
+            57 mapped candidate placements used a project-wide maximum, even when
+            the project contained many compositions with different slot, text,
+            duration and aspect-ratio values.
+
+WHY REAL    Project-wide capacity can hide a scene-level shortfall or imply controls
+            that belong to another composition. Matching needs the technical limits
+            of the specific scene being offered, while refusing to invent an exact
+            identity where the preview/native relationship remains ambiguous.
+
+CHANGE      `grammar/ae-scene-composition-mappings.json` records the complete
+            24-scene scope separately from the approved catalog: 20 source-evidenced
+            exact composition IDs/paths and four unresolved records with their
+            remaining candidate compositions. Evidence comes from source-bound
+            master preview layer intervals, unique final-comp names/structures, or
+            numbered package sequences. The comparison now consumes exact native
+            dimensions, duration, total/simultaneous visual inputs, recursive media
+            slots and recursive text-field identities where verified. Unresolved
+            scenes retain conservative project envelopes.
+
+TEST        `ExactSceneCompositionMappings`, 8 tests. Before implementation it
+            failed because `validate_scene_mappings` did not exist. The suite covers
+            complete 20/4 scope, exact carousel-flow metrics, recursive text fields,
+            master-timeline mapping, unresolved preservation, bad composition IDs,
+            and missing scope records. The 10 prior comparison tests remain active.
+
+VERIFIED    Focused mapping/comparison tests: 18 passing; VisualTask regressions:
+            15 passing; AE technical-spec regressions: 13 passing. The full suite ran
+            473 tests: 459 passed, 13 skipped, and the same pre-existing Cloudflare
+            credentials test failed because its preflight stops before the expected
+            `--confirm` message. The rebuilt comparison retains 41 VisualTasks and
+            257 unchanged candidate placements. Among 57 measured placements, 47 now
+            use exact compositions (36 capacity-possible, 11 capacity-unknown) and 10
+            retain project-level evidence from four unresolved unique scenes. No
+            candidate is called fillable now.
+
+STATUS      done — exact for 20 of 24 in-scope scenes; four ambiguities and the
+            remaining task/media/text/timing fields stay explicit next gates.

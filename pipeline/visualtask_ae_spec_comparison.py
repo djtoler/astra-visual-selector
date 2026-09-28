@@ -22,6 +22,7 @@ DEFAULT_SLATE = ROOT / "pipeline" / "shotlist.capacity.json"
 DEFAULT_CATALOG = ROOT / "astra-selector-design" / "approved_media" / "approved-list.json"
 DEFAULT_LINKS = ROOT / "grammar" / "ae-template-spec-links.json"
 DEFAULT_INDEX = ROOT / "grammar" / "ae-template-technical-index.json"
+DEFAULT_SCENE_MAPPINGS = ROOT / "grammar" / "ae-scene-composition-mappings.json"
 DEFAULT_OUTPUT = ROOT / "reports" / "visualtask-ae-spec-comparison.json"
 DEFAULT_BASELINE_ENTITIES = ROOT / "grammar" / "beat-entities.json"
 PROTECTED_LIVE_ARTIFACTS = (
@@ -82,11 +83,21 @@ def import_technical_index(summary_path: Path, compositions_path: Path, text_fie
     summary = _read(summary_path)
     project_rows = summary.get("projects") or []
     projects: dict[str, dict[str, Any]] = {}
+    capacity_details: dict[str, dict[int, dict[str, Any]]] = {}
     for row in project_rows:
         project_id = row["id"]
         if project_id in projects:
             raise ValueError(f"duplicate measured project id: {project_id}")
         source_project = Path(row["sourceProject"])
+        capacity_path = Path(row["capacityFile"])
+        if not capacity_path.is_file():
+            raise ValueError(f"measured capacity report is missing: {project_id}")
+        capacity_report = _read(capacity_path)
+        if capacity_report.get("sourceSha256") != row["expectedSourceSha256"]:
+            raise ValueError(f"capacity report source hash mismatch: {project_id}")
+        capacity_details[project_id] = {
+            int(comp["compositionId"]): comp for comp in capacity_report.get("compositions") or []
+        }
         projects[project_id] = {
             "id": project_id,
             "batchId": row["batchId"],
@@ -95,6 +106,7 @@ def import_technical_index(summary_path: Path, compositions_path: Path, text_fie
             "sourceProjectName": source_project.name,
             "sourceProjectSha256": row["expectedSourceSha256"],
             "sourceUnchanged": bool(row["sourceUnchanged"]),
+            "capacityReport": _source(capacity_path),
             "projectSummary": row.get("projectSummary") or {},
             "reportedCompositionCount": int(row["compositionCount"]),
             "compositions": [],
@@ -106,8 +118,12 @@ def import_technical_index(summary_path: Path, compositions_path: Path, text_fie
             project_id = row["project_id"]
             if project_id not in projects:
                 raise ValueError(f"composition references unknown measured project: {project_id}")
+            composition_id = _int(row["composition_id"])
+            detail = capacity_details[project_id].get(composition_id)
+            if not detail or detail.get("compositionPath") != row["composition_path"]:
+                raise ValueError(f"capacity detail mismatch: {project_id}:{composition_id}")
             projects[project_id]["compositions"].append({
-                "id": _int(row["composition_id"]),
+                "id": composition_id,
                 "path": row["composition_path"],
                 "width": _int(row["width"]),
                 "height": _int(row["height"]),
@@ -125,6 +141,16 @@ def import_technical_index(summary_path: Path, compositions_path: Path, text_fie
                 "maxSimultaneouslyEnabledDirectInputs": _int(row["max_simultaneously_enabled_direct_inputs"]),
                 "maxSimultaneouslyEnabledRecursiveVisualInputs": _int(row["max_simultaneously_enabled_recursive_visual_inputs"]),
                 "unresolvedCount": _int(row["unresolved_count"]),
+                "recursiveTextFieldIds": [field["id"] for field in detail["recursiveEditableTextFields"]],
+                "recursiveVisualMediaInputs": [
+                    {
+                        "id": media["id"],
+                        "kind": media["kind"],
+                        "path": media.get("path"),
+                        "evidence": media.get("evidence"),
+                    }
+                    for media in detail["recursiveVisualMediaInputs"]
+                ],
             })
 
     with text_fields_path.open(newline="", encoding="utf-8") as handle:
@@ -133,6 +159,7 @@ def import_technical_index(summary_path: Path, compositions_path: Path, text_fie
             if project_id not in projects:
                 raise ValueError(f"text field references unknown measured project: {project_id}")
             projects[project_id]["textFields"].append({
+                "id": f"text:{_int(row['composition_id'])}:{_int(row['layer_index'])}",
                 "compositionId": _int(row["composition_id"]),
                 "compositionPath": row["composition_path"],
                 "layerIndex": _int(row["layer_index"]),
@@ -151,6 +178,14 @@ def import_technical_index(summary_path: Path, compositions_path: Path, text_fie
         project["textFields"].sort(key=lambda row: (row["compositionPath"], row["layerIndex"]))
         if len(project["compositions"]) != project["reportedCompositionCount"]:
             raise ValueError(f"composition count mismatch: {project['id']}")
+        text_ids = {field["id"] for field in project["textFields"]}
+        for composition in project["compositions"]:
+            if len(composition["recursiveTextFieldIds"]) != composition["recursiveEditableTextFields"]:
+                raise ValueError(f"recursive text count mismatch: {project['id']}:{composition['id']}")
+            if any(field_id not in text_ids for field_id in composition["recursiveTextFieldIds"]):
+                raise ValueError(f"recursive text field is missing: {project['id']}:{composition['id']}")
+            if len(composition["recursiveVisualMediaInputs"]) != composition["totalIndependentVisualMediaInputs"]:
+                raise ValueError(f"recursive media count mismatch: {project['id']}:{composition['id']}")
         project["capacityEnvelope"] = {
             "maxTotalIndependentVisualMediaInputs": max(
                 (row["totalIndependentVisualMediaInputs"] for row in project["compositions"]), default=0
@@ -207,6 +242,14 @@ def validate_technical_index(artifact: dict[str, Any]) -> dict[str, int]:
             raise ValueError(f"duplicate composition id: {project['id']}")
         if len(comp_ids) != project.get("reportedCompositionCount"):
             raise ValueError(f"stale composition count: {project['id']}")
+        text_ids = {field.get("id") for field in project.get("textFields") or []}
+        for composition in project.get("compositions") or []:
+            if len(composition.get("recursiveTextFieldIds") or []) != composition.get("recursiveEditableTextFields"):
+                raise ValueError(f"stale recursive text fields: {project['id']}:{composition.get('id')}")
+            if any(field_id not in text_ids for field_id in composition.get("recursiveTextFieldIds") or []):
+                raise ValueError(f"unknown recursive text field: {project['id']}:{composition.get('id')}")
+            if len(composition.get("recursiveVisualMediaInputs") or []) != composition.get("totalIndependentVisualMediaInputs"):
+                raise ValueError(f"stale recursive media inputs: {project['id']}:{composition.get('id')}")
     counts = {
         "projects": len(projects),
         "compositions": sum(len(row.get("compositions") or []) for row in projects),
@@ -254,6 +297,61 @@ def _link_index(links: dict[str, Any], projects: dict[str, dict[str, Any]]) -> d
     return out
 
 
+def validate_scene_mappings(
+    artifact: dict[str, Any],
+    technical: dict[str, Any],
+    expected_scene_projects: dict[str, str],
+) -> dict[str, int]:
+    """Validate exact mappings against both the comparison scope and measured index."""
+    if artifact.get("schemaVersion") != 1:
+        raise ValueError("unsupported scene-composition mapping schema")
+    projects = {row["id"]: row for row in technical.get("projects") or []}
+    rows = artifact.get("mappings") or []
+    ids = [row.get("sceneId") for row in rows]
+    if len(ids) != len(set(ids)):
+        raise ValueError("duplicate scene-composition mapping")
+    if set(ids) != set(expected_scene_projects):
+        missing = sorted(set(expected_scene_projects) - set(ids))
+        extra = sorted(set(ids) - set(expected_scene_projects))
+        raise ValueError(f"scene-composition mapping scope mismatch: missing={missing}, extra={extra}")
+    if (artifact.get("scope") or {}).get("uniqueScenes") != len(expected_scene_projects):
+        raise ValueError("scene-composition mapping scope count is stale")
+    verified = 0
+    unresolved = 0
+    for row in rows:
+        scene_id = row["sceneId"]
+        project_id = row.get("projectId")
+        if project_id != expected_scene_projects[scene_id]:
+            raise ValueError(f"mapping uses wrong measured project: {scene_id}")
+        if project_id not in projects:
+            raise ValueError(f"mapping uses unknown measured project: {project_id}")
+        compositions = {comp["id"]: comp for comp in projects[project_id]["compositions"]}
+        paths = {comp["path"] for comp in compositions.values()}
+        status = row.get("status")
+        if status == "verified":
+            verified += 1
+            comp_id = row.get("compositionId")
+            comp = compositions.get(comp_id)
+            if not comp or comp["path"] != row.get("compositionPath"):
+                raise ValueError(f"composition id/path mismatch: {scene_id}")
+            if not isinstance(row.get("evidence"), str) or not row["evidence"].strip():
+                raise ValueError(f"verified mapping lacks evidence: {scene_id}")
+            if row.get("reason") or row.get("candidateCompositionPaths"):
+                raise ValueError(f"verified mapping contains unresolved fields: {scene_id}")
+        elif status == "unresolved":
+            unresolved += 1
+            candidates = row.get("candidateCompositionPaths") or []
+            if not isinstance(row.get("reason"), str) or not row["reason"].strip():
+                raise ValueError(f"unresolved mapping lacks reason: {scene_id}")
+            if len(candidates) < 2 or any(path not in paths for path in candidates):
+                raise ValueError(f"unresolved mapping has invalid candidates: {scene_id}")
+            if row.get("compositionId") is not None or row.get("compositionPath") is not None:
+                raise ValueError(f"unresolved mapping claims an exact composition: {scene_id}")
+        else:
+            raise ValueError(f"invalid scene-composition mapping status: {scene_id}")
+    return {"scenes": len(rows), "verified": verified, "unresolved": unresolved}
+
+
 def _slate_index(slate: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     out = {}
     for row in slate:
@@ -271,6 +369,7 @@ def build_comparison(
     catalog_path: Path = DEFAULT_CATALOG,
     links_path: Path = DEFAULT_LINKS,
     index_path: Path = DEFAULT_INDEX,
+    scene_mappings_path: Path = DEFAULT_SCENE_MAPPINGS,
     baseline_entities_path: Path = DEFAULT_BASELINE_ENTITIES,
 ) -> dict[str, Any]:
     paths = {
@@ -279,6 +378,7 @@ def build_comparison(
         "approvedCatalog": Path(catalog_path),
         "specLinks": Path(links_path),
         "technicalIndex": Path(index_path),
+        "sceneMappings": Path(scene_mappings_path),
         "baselineEntities": Path(baseline_entities_path),
     }
     tasks_artifact = _read(paths["visualTasks"])
@@ -293,6 +393,22 @@ def build_comparison(
     links = _link_index(_read(paths["specLinks"]), projects)
     baseline_entities = _read(paths["baselineEntities"])
     global_subject = (baseline_entities.get("_subject") or {}).get("entity")
+
+    expected_scene_projects: dict[str, str] = {}
+    for task in tasks:
+        baseline = slate.get(task["sourceBeatId"])
+        if not baseline:
+            continue
+        for option in baseline.get("options") or []:
+            scene = scenes.get(option["id"])
+            link = links.get(scene.get("familyId")) if scene else None
+            if link:
+                previous = expected_scene_projects.setdefault(option["id"], link["projectId"])
+                if previous != link["projectId"]:
+                    raise ValueError(f"scene links to multiple measured projects: {option['id']}")
+    scene_mappings_artifact = _read(paths["sceneMappings"])
+    mapping_counts = validate_scene_mappings(scene_mappings_artifact, technical, expected_scene_projects)
+    scene_mappings = {row["sceneId"]: row for row in scene_mappings_artifact["mappings"]}
 
     rows = []
     verdict_counts: Counter[str] = Counter()
@@ -325,43 +441,73 @@ def build_comparison(
                 continue
             mapped_candidates += 1
             project = projects[link["projectId"]]
-            maximum = project["capacityEnvelope"]["maxSimultaneouslyEnabledRecursiveVisualInputs"]
+            mapping = scene_mappings[scene_id]
+            exact_comp = None
+            if mapping["status"] == "verified":
+                exact_comp = next(
+                    row for row in project["compositions"]
+                    if row["id"] == mapping["compositionId"]
+                )
+            maximum = (
+                exact_comp["maxSimultaneouslyEnabledRecursiveVisualInputs"]
+                if exact_comp else project["capacityEnvelope"]["maxSimultaneouslyEnabledRecursiveVisualInputs"]
+            )
             unresolved_slots = int(project["projectSummary"].get("unresolvedFileFootageCandidates") or 0)
             verified_slots = int(project["projectSummary"].get("verifiedIndependentVisualMediaInputs") or 0)
             if display_demand > maximum and (maximum == 0 or verified_slots == 0 or unresolved_slots > 0):
-                verdict = "project_capacity_unknown"
+                verdict = "exact_capacity_unknown" if exact_comp else "project_capacity_unknown"
                 reason = (
-                    f"The family is linked, but the inspector verified {verified_slots} project media slots "
-                    f"and retained {unresolved_slots} unresolved footage candidates; zero or a lower bound is "
+                    f"The scene is {'exactly mapped' if exact_comp else 'family-linked'}, but the inspector verified "
+                    f"{verified_slots} project media slots and retained {unresolved_slots} unresolved footage candidates; zero or a lower bound is "
                     "not treated as proof that the preview scene cannot hold the task."
                 )
             elif display_demand > maximum:
-                verdict = "project_capacity_conflict"
+                verdict = "exact_capacity_conflict" if exact_comp else "project_capacity_conflict"
                 reason = (
                     f"Task needs {display_demand} display-eligible identities, exceeding the measured "
-                    f"project-wide simultaneous visual-input maximum of {maximum}."
+                    f"{'exact-composition' if exact_comp else 'project-wide'} simultaneous visual-input maximum of {maximum}."
                 )
             else:
-                verdict = "project_capacity_possible"
+                verdict = "exact_capacity_possible" if exact_comp else "project_capacity_possible"
                 reason = (
-                    f"Project-wide simultaneous capacity {maximum} does not rule out display demand "
-                    f"{display_demand}; the individual preview scene is not mapped to a native composition."
+                    f"{'Exact composition' if exact_comp else 'Project-wide'} simultaneous capacity {maximum} "
+                    f"does not rule out display demand {display_demand}; remaining matching fields still block fillability."
                 )
             missing = list(MISSING_FOR_FILLABLE_NOW)
-            if link["compositionMappingStatus"] == "verified" and scene and scene["nativeCompositionId"] is not None:
+            if exact_comp:
                 missing.remove("exact_scene_to_native_composition_mapping")
-            comparisons.append({
+            comparison = {
                 "candidateId": scene_id,
                 "familyId": family_id,
                 "projectId": project["id"],
                 "projectEvidenceStatus": project["resultStatus"],
-                "compositionMappingStatus": link["compositionMappingStatus"],
+                "compositionMappingStatus": mapping["status"],
                 "displayIdentityDemand": display_demand,
                 "projectCapacityEnvelope": project["capacityEnvelope"],
                 "verdict": verdict,
                 "reason": reason,
                 "missingForFillableNow": missing,
-            })
+            }
+            if exact_comp:
+                text_fields_by_id = {field["id"]: field for field in project["textFields"]}
+                comparison["exactComposition"] = {
+                    **exact_comp,
+                    "directTextFields": [
+                        field for field in project["textFields"]
+                        if field["compositionId"] == exact_comp["id"]
+                    ],
+                    "recursiveTextFields": [
+                        text_fields_by_id[field_id]
+                        for field_id in exact_comp["recursiveTextFieldIds"]
+                    ],
+                    "mappingEvidence": mapping["evidence"],
+                }
+            else:
+                comparison["mappingUnresolved"] = {
+                    "reason": mapping["reason"],
+                    "candidateCompositionPaths": mapping["candidateCompositionPaths"],
+                }
+            comparisons.append(comparison)
             verdict_counts[verdict] += 1
         rows.append({
             "taskId": task["id"],
@@ -398,6 +544,11 @@ def build_comparison(
             "projectCapacityPossible": verdict_counts["project_capacity_possible"],
             "projectCapacityConflicts": verdict_counts["project_capacity_conflict"],
             "projectCapacityUnknown": verdict_counts["project_capacity_unknown"],
+            "exactCapacityPossible": verdict_counts["exact_capacity_possible"],
+            "exactCapacityConflicts": verdict_counts["exact_capacity_conflict"],
+            "exactCapacityUnknown": verdict_counts["exact_capacity_unknown"],
+            "verifiedUniqueSceneMappings": mapping_counts["verified"],
+            "unresolvedUniqueSceneMappings": mapping_counts["unresolved"],
         },
         "evidenceBoundary": {
             "canDecide": [
@@ -441,6 +592,11 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
         "projectCapacityPossible": verdicts["project_capacity_possible"],
         "projectCapacityConflicts": verdicts["project_capacity_conflict"],
         "projectCapacityUnknown": verdicts["project_capacity_unknown"],
+        "exactCapacityPossible": verdicts["exact_capacity_possible"],
+        "exactCapacityConflicts": verdicts["exact_capacity_conflict"],
+        "exactCapacityUnknown": verdicts["exact_capacity_unknown"],
+        "verifiedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("exactComposition")}),
+        "unresolvedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("mappingUnresolved")}),
     }
     if counts != artifact.get("counts"):
         raise ValueError(f"comparison counts are stale: {counts}")
@@ -449,6 +605,9 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
         "project_capacity_possible",
         "project_capacity_conflict",
         "project_capacity_unknown",
+        "exact_capacity_possible",
+        "exact_capacity_conflict",
+        "exact_capacity_unknown",
     }
     if any(row.get("verdict") not in allowed for row in comparisons):
         raise ValueError("comparison contains an unauthorized verdict")
@@ -469,6 +628,7 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
             catalog_path=ROOT / artifact["sources"]["approvedCatalog"]["path"],
             links_path=ROOT / artifact["sources"]["specLinks"]["path"],
             index_path=ROOT / artifact["sources"]["technicalIndex"]["path"],
+            scene_mappings_path=ROOT / artifact["sources"]["sceneMappings"]["path"],
             baseline_entities_path=ROOT / artifact["sources"]["baselineEntities"]["path"],
         )
         if dumps(replay) != dumps(artifact):

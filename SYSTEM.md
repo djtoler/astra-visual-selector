@@ -52,16 +52,21 @@ separate reviewed migration with before/after output.
 `pipeline/visualtask_ae_spec_comparison.py` imports the frozen AE measurements into a
 portable exact-data index, links only explicitly reviewed scene families to measured
 projects, and compares task-scoped display-identity demand with the unchanged current
-slate. It emits 41 task rows without ranking, selecting, pairing, or rendering.
+slate. A separate mapping sidecar resolves 20 of the 24 in-scope preview scenes to exact
+native compositions from native master-timeline intervals or unique composition-name and
+structure evidence; four ambiguous mappings remain explicit. It emits 41 task rows without
+ranking, selecting, pairing, or rendering.
 **Out:** `grammar/ae-template-technical-index.json` and
 `reports/visualtask-ae-spec-comparison.json`.
 **Believes:** project-wide technical capacity can rule a demand out only when the slot
 inventory is complete; a project-family link cannot prove which native composition backs
 an individual preview scene.
-**Known incomplete:** exact scene-to-composition mapping, required task data fields,
+**Known incomplete:** four exact scene-to-composition mappings, required task data fields,
 media-kind constraints, single/group eligibility, text limits, exact task timing, and media
-availability are not yet encoded. Therefore `fillable_now` is deliberately not computable,
-and this comparison is not connected to the live slate.
+availability are not yet encoded. The 20 exact mappings expose their native dimensions,
+duration, simultaneous/total media inputs and recursive text-field identities. Even so,
+`fillable_now` is deliberately not computable, and this comparison is not connected to the
+live slate.
 
 ## 3. Template pool — `BUILT` · deterministic · `match-trial/candidates.py load()`
 `approved-list.json` enriched from `description-inventory.json` and `catalog.json`.
