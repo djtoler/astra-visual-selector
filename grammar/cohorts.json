@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "cohorts": [
+    {
+      "id": "spotify-opening-chart",
+      "version": "2026-08-28-status-ok",
+      "label": "Year Seventeen opening-chart Spotify cohort",
+      "source": {
+        "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+        "sha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+        "selectionRule": "status == ok",
+        "basis": "Measured from the source CSV: 93 of 140 rows have status ok."
+      },
+      "members": [
+        "Wale", "B.o.B", "Curren$y", "Kid Cudi", "J. Cole", "Nipsey Hussle",
+        "Wiz Khalifa", "Big Sean", "Freddie Gibbs", "Jay Rock", "Kendrick Lamar",
+        "Meek Mill", "Mac Miller", "YG", "Yelawolf", "Future", "French Montana",
+        "Macklemore", "Kid Ink", "Hopsin", "Iggy Azalea", "Travis Scott",
+        "ScHoolboy Q", "Joey Bada$$", "Chief Keef", "Logic", "Ab-Soul",
+        "Chance the Rapper", "Ty Dolla $ign", "Kevin Gates", "Rich Homie Quan",
+        "Lil Durk", "Isaiah Rashad", "August Alsina", "Fetty Wap", "Vince Staples",
+        "GoldLink", "K Camp", "DeJ Loaf", "Shy Glizzy", "21 Savage", "Kodak Black",
+        "Lil Uzi Vert", "Denzel Curry", "Lil Yachty", "Anderson .Paak", "Desiigner",
+        "G Herbo", "Lil Dicky", "A Boogie Wit da Hoodie", "Playboi Carti",
+        "XXXTentacion", "PnB Rock", "MadeinTYO", "Kyle", "Ski Mask the Slump God",
+        "Lil Pump", "JID", "Trippie Redd", "Smokepurpp", "Stefflon Don", "BlocBoy JB",
+        "YBN Nahmir", "NAV", "6ix9ine", "DaBaby", "Roddy Ricch", "Megan Thee Stallion",
+        "Gunna", "Comethazine", "Lil Mosey", "YBN Cordae", "Blueface", "Polo G",
+        "Jack Harlow", "Lil Tjay", "Fivio Foreign", "Rod Wave", "Latto", "NLE Choppa",
+        "Iann Dior", "Drake", "Nicki Minaj", "ASAP Rocky", "Tory Lanez", "Young Thug",
+        "Post Malone", "Migos", "Rae Sremmurd", "Cardi B", "Young M.A", "Lil Baby",
+        "Lil Skies"
+      ]
+    },
+    {
+      "id": "two-floors-qualifiers",
+      "version": "2026-09-26-thresholds-v1",
+      "label": "Artists clearing either threshold in beat 28",
+      "source": {
+        "path": "grammar/beat-entities.json",
+        "selectionRule": "union(streams_lead >= 30B, streams_feature >= 20B)",
+        "basis": "Existing source-bound derivation for beat 28-28; five clear the left threshold, seven clear the right, and Drake plus Travis Scott clear both."
+      },
+      "members": [
+        "21 Savage", "Drake", "Future", "Kendrick Lamar", "Nicki Minaj",
+        "Post Malone", "Travis Scott", "Ty Dolla $ign", "XXXTentacion", "Young Thug"
+      ]
+    }
+  ]
+}

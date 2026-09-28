@@ -36,6 +36,18 @@ describes the beat's scale.
   across six categories and there is no field for the second dimension (FACTS 2.8).
 - `would_be_a_lie` is mostly caption constraints, not selection criteria (LOG, user).
 
+### 2b. Beats to VisualTasks — `PARTIAL`, review-only · deterministic · `pipeline/visual_tasks.py`
+Builds a source-hashed representation that can split a beat into exact narration tasks,
+attach source-bound implied entities, and expand versioned cohorts. The current pilot emits
+41 tasks from 40 beats and records one reviewed split for beat 28. It does not read the
+global `_subject` declaration and does not guess an unresolved subject as Drake.
+**Out:** `grammar/visual-tasks.json`.
+**Believes:** a task is the matching unit; an entity may be resolved for continuity while
+remaining visually withheld; a semantic item count is not automatically a person count.
+**Known incomplete:** only the first source-bound overrides and two cohorts are encoded.
+The slate, media, and pairing stages do not consume this artifact yet; activation requires a
+separate reviewed migration with before/after output.
+
 ## 3. Template pool — `BUILT` · deterministic · `match-trial/candidates.py load()`
 `approved-list.json` enriched from `description-inventory.json` and `catalog.json`.
 **Out:** 421 records — description, useWhen, avoid, axes, clip path, capability, kind.

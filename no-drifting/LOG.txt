@@ -6250,3 +6250,60 @@ LESSON      A test on every input to a render is not a test of the render. The
 VERIFIED    435 tests, 2 failures, both pre-existing and unrelated. Builder ran:
             40 beats, 124 templates, 229 media. Published as version 8.
 STATUS      done
+
+================================================================================
+[0130] 2026-09-27  VisualTasks stop global-subject inheritance before matching
+
+PROBLEM     The current entity sidecar says `_subject: Drake` and
+            `appliesTo: every beat`. The 31-beat review measured the result:
+            36 of 40 beats received Drake without naming him, 367 of 708 media
+            candidates were Drake, and 13 beats offered only Drake. Eleven beats
+            refer to cohorts that do not expand, and eight need more than one
+            communication task while the pipeline permits one job per beat.
+
+WHY REAL    The objective is the right media candidate on the right narration
+            task. A global subject injects wrong-person media before template fit
+            is even considered; an unexpanded cohort makes the required media
+            impossible to request; a one-task beat forces separate claims into one
+            template and pairing. These are upstream causes of PI-01, PI-02 and
+            PI-05, not ranking defects.
+
+CHANGE      `pipeline/visual_tasks.py` builds a derived, source-hashed artifact
+            without changing beats, picks, bindings, media picks or pairings.
+            It creates one default task per beat, supports exact-span splits,
+            validates source-bound implied entities, expands versioned cohorts,
+            distinguishes resolved identity from display eligibility, and fails
+            closed on unknown entities, stale cohort versions, lost source text,
+            duplicate task IDs and stale source hashes.
+
+            `grammar/visual-task-overrides.json` records the four approved pilot
+            cases. 01-01 resolves Drake but keeps him visually withheld. 02-02b
+            resolves Curren$y and does not inherit Drake. 03-03 expands the exact
+            93-row `status == ok` Spotify cohort. 28-28 splits threshold setup from
+            the ten-person spatial comparison. `grammar/cohorts.json` versions the
+            two cohort definitions and retains their source rules.
+
+            The only current consumer is the separate validator. Slate, media and
+            pairing do not read the artifact yet, so an unreviewed pilot cannot
+            silently change live results.
+
+TEST        `VisualTaskPilot`, 15 tests. The suite was run before implementation
+            and failed on ImportError because `pipeline.visual_tasks` did not
+            exist. It now covers the four real acceptance cases, no global Drake,
+            exact task splitting, unresolved-subject abstention, invalid entity,
+            invalid span, stale cohort version, deterministic bytes, stale source
+            hash, duplicate task ID, content replay, and the actual downstream
+            validator.
+
+VERIFIED    Builder and consumer independently report 40 source beats, 41 tasks,
+            one split beat, two cohort tasks, two implied-entity tasks and one
+            explicitly unresolved task. Focused tests: 15 passing. The 93-member
+            task contains Drake exactly once; 07-07 contains no Drake; 28 setup has
+            no display entities and its spatial task has all ten derived artists.
+            Full repository suite: 455 tests run, 441 passed, 13 skipped, and the
+            same pre-change R2 confirmation test failed because Cloudflare
+            credentials are absent and preflight refuses before reaching its
+            `--confirm` assertion.
+
+STATUS      done — review-only pilot. Activation in slate/media/pairing is a later
+            separately tested migration, not implied by this artifact.

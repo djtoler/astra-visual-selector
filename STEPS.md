@@ -22,6 +22,14 @@ Every path is relative to `~/timeline` unless marked `[codex]` (read-only, Codex
 - **Out** → `pipeline/beats-all.json`
 - **Runs** — `pipeline/extract.py <first> <last>` → `pipeline/run.py` (claude-sonnet-5)
 
+### 1b · Derive VisualTasks — review-only pilot
+
+- **In** — `pipeline/beats-all.json`, narration timing, `grammar/visual-task-overrides.json`, `grammar/cohorts.json`, and the entity roster
+- **Does** — creates exact-span tasks, resolves only source-bound explicit/implied entities, expands versioned cohorts, and preserves unresolved identity instead of inheriting the documentary subject
+- **Out** → `grammar/visual-tasks.json` (41 tasks from 40 source beats; beat 28 is the first reviewed split)
+- **Runs** — `python3 -m pipeline.visual_tasks build`; `python3 -m pipeline.visual_tasks validate`
+- **Consumer** — the validator currently consumes this artifact. Slate, media, and pairing stages do **not** read it yet, so this pilot cannot silently change live choices before review.
+
 ## 2 · Load the template pool
 
 - **In** — `astra-selector-design/approved_media/approved-list.json` (generated export, never hand-edited); sidecars `grammar/local-templates.json`, `grammar/eligibility-overrides.json`, `grammar/capability.json`
