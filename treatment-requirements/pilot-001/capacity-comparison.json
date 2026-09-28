@@ -20,6 +20,10 @@
     ],
     "missingOrUnverified": [
       {
+        "requirement": "Open and render the original native project on the current host.",
+        "reason": "The original project was saved by After Effects 26.0 (Windows 64), while this Mac currently has After Effects 2025. Both the local and volume copies have the same SHA-256 and the prior native open attempt failed with Adobe's version-compatibility error."
+      },
+      {
         "requirement": "Readable full cover and recognizable Curren$y after the post zoom.",
         "reason": "The existing Production Ready asset is only 546 by 246 pixels while the native composition is 3840 by 2160; zoom quality has not been tested."
       },
@@ -38,9 +42,20 @@
     "editorialIdentityEvidence": "grammar/xxl-covers.json identifies this asset as the 2009 XXL Freshman cover and lists Curren$y among the people on it."
   },
   "nextActions": [
+    "Install/open After Effects 26 on this Mac or obtain a source-equivalent AE-25-compatible copy of the project; do not rebuild the template.",
     "Locate or source a higher-resolution copy of the same 2009 XXL Freshman cover artifact, or run a quality review proving the existing file remains acceptable after the post zoom.",
-    "Obtain the editor's treatment-specific timing decision for the 8.008-second native scene and 3.1-second narration span."
+    "Execute the already authorized 3.1-second native trim test. The zoom remains entirely in post and is not part of this render."
   ],
+  "nativeTestPreparation": {
+    "status": "gate_passed_render_blocked_by_ae_version",
+    "requestDigest": "be505cf330c553841cc468eb99bdfe8ebaaa330b0ede83fc1b9b30b18a780364",
+    "sourceProjectSha256": "b42c6b6388592208bf0eabc04b73e04fd5c0ed78ad1229c30d3f8110035411dc",
+    "currentInstalledAE": "25",
+    "requiredAE": "26.0",
+    "outputProduced": false,
+    "zoomIncluded": false,
+    "trimDurationSeconds": 3.1
+  },
   "selectionAuthorized": false,
   "renderingAuthorized": false
 }

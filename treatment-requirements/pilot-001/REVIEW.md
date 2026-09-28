@@ -34,6 +34,6 @@ This direction supersedes the older beat-specific rejection of the user-identifi
 ## What remains conditional
 
 1. The exact Production Ready cover asset is only 546×246 pixels. A higher-resolution version is preferred for the 4K composition and post zoom; otherwise image quality needs review.
-2. For the 8.008-second scene over a 3.1-second narration task, trimming or another timing adjustment still needs a treatment-specific decision.
+2. The editor authorized the 3.1-second native trim test, but the original project requires After Effects 26.0 and the current Mac has After Effects 2025. Both available project copies are byte-identical and the earlier native open attempt failed at project opening. The gated request is ready; no output has been produced.
 
-Approval of this treatment covers only the content requirements. It does not select the template or authorize a render.
+Approval of this treatment covers only the content requirements and does not select the template. A later, separate user instruction authorizes the flagged native 3.1-second test render only; it does not authorize final rendering.

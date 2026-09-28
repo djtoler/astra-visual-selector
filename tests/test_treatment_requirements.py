@@ -86,7 +86,13 @@ class TreatmentRequirementsPilot(unittest.TestCase):
         self.assertEqual(comparison["mediaAssessment"]["assetId"],
                          "9109a7d753a45dc6462b4baa")
         self.assertEqual(comparison["mediaAssessment"]["pixelWidth"], 546)
-        self.assertEqual(len(comparison["templateAssessment"]["missingOrUnverified"]), 2)
+        self.assertEqual(len(comparison["templateAssessment"]["missingOrUnverified"]), 3)
+        preparation = comparison["nativeTestPreparation"]
+        self.assertEqual(preparation["status"], "gate_passed_render_blocked_by_ae_version")
+        self.assertEqual(preparation["requiredAE"], "26.0")
+        self.assertFalse(preparation["outputProduced"])
+        self.assertFalse(preparation["zoomIncluded"])
+        self.assertEqual(preparation["trimDurationSeconds"], 3.1)
         self.assertFalse(comparison["selectionAuthorized"])
         self.assertFalse(comparison["renderingAuthorized"])
 
