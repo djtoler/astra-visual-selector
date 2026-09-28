@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "batchId": "matching-accuracy-001",
+  "purpose": "Read-only contrasting matching-layer accuracy test",
+  "reviewState": "treatment_proposals_unreviewed",
+  "activationState": "review_only_not_connected",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "sources": {
+    "visualTasks": {
+      "path": "grammar/visual-tasks.json",
+      "sha256": "0dcc1de301d5ddf124b3a62d3811ecfb3ae6c08bd4c09f80fdfd85797ab1b442"
+    },
+    "technicalComparison": {
+      "path": "reports/visualtask-ae-spec-comparison.json",
+      "sha256": "02d5b713408adc8a418f13597ed6a7a6ed7dfd26a05c4012722d29d4502998ba"
+    },
+    "currentSlate": {
+      "path": "pipeline/shotlist.capacity.json",
+      "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
+    },
+    "reviewExport": {
+      "path": "grammar/beat-review-export-2026-09-27.json",
+      "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d"
+    },
+    "matchingIssues": {
+      "path": "grammar/issues_matching_layer.json",
+      "sha256": "2cea7c5a268321076b493f91bc12392a374f31e3795f462e73ebe2e8d070ad3c"
+    },
+    "approvedTemplates": {
+      "path": "astra-selector-design/approved_media/approved-list.json",
+      "sha256": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e"
+    },
+    "localTemplates": {
+      "path": "grammar/local-templates.json",
+      "sha256": "75f02bd08f3f343d84fdd7e9098129fc396fb7b708312841af9be97b16d9cc8c"
+    }
+  },
+  "cases": [
+    {
+      "id": "ten_plus_all_spatial",
+      "taskIds": ["16-16.main"],
+      "sourceBeatId": "16-16",
+      "expected": "all_available_spatial_scenes_offered",
+      "minimumPeople": 10
+    },
+    {
+      "id": "split_beat_visual_tasks",
+      "taskIds": ["28-28.setup", "28-28.overlap"],
+      "sourceBeatId": "28-28",
+      "expected": "distinct_tasks_preserved_without_invented_timing"
+    },
+    {
+      "id": "text_heavy_document",
+      "taskIds": ["17-17.main"],
+      "sourceBeatId": "17-17",
+      "candidateId": "02-documentary-promo--scene-003",
+      "expected": "unresolved_pending_exact_text_mapping_and_editor_review",
+      "treatmentProposal": {
+        "status": "unreviewed",
+        "mediaKind": "document",
+        "requiredOnScreenText": [
+          "ONE RULE FOR EVERYBODY",
+          "FULL CREDIT",
+          "Lead or equal co-lead",
+          "HALF CREDIT",
+          "Feature or remix verse"
+        ]
+      }
+    },
+    {
+      "id": "actual_footage_required",
+      "taskIds": ["01-01.subject"],
+      "sourceBeatId": "01-01",
+      "expected": "actual_performance_footage_requirement_preserved",
+      "requiredMediaKind": "footage",
+      "requiredEntity": "Drake",
+      "reviewQuote": "drake b-roll performance footage needed"
+    },
+    {
+      "id": "missing_media_conditional",
+      "taskIds": ["15-15.main"],
+      "sourceBeatId": "15-15",
+      "candidateId": "screen-mockup-rfx--review-002",
+      "expected": "conditional_with_typed_missing_media_brief",
+      "treatmentProposal": {
+        "status": "unreviewed",
+        "mediaKind": "footage",
+        "content": "Authentic event-specific b-roll establishing the 2010 XXL offer and Drake's refusal",
+        "missingMediaBrief": {
+          "entity": "Drake",
+          "artifactOrEvent": "2010 XXL Freshman offer and refusal",
+          "mediaKind": "footage",
+          "status": "missing"
+        }
+      },
+      "reviewQuote": "no available broll"
+    }
+  ]
+}

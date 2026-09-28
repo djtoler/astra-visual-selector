@@ -1,0 +1,21 @@
+[
+  {
+    "decision": "Run the requested five-case contrasting matching accuracy batch as a read-only, replayable measurement without changing live picks, pairings, rendering, source templates, or treatment approval state.",
+    "source": "User instruction: test a small contrasting batch covering 10+ people, split visual tasks, text-heavy document treatment, actual footage, and conditional missing media.",
+    "scope": "Matching accuracy batch 001 only.",
+    "reason": "The existing workflow already calls for this contrasting set after the first matching pilot and requires proposed treatments to remain subject to human review.",
+    "outcome": "already_covered",
+    "sections": [
+      "## Human-reviewed treatment requirements — 2026-09-28",
+      "## Matching-layer rulings — 2026-09-28"
+    ]
+  },
+  {
+    "decision": "Treat the measured 2-pass, 3-fail result as diagnostic evidence only; do not silently repair the matcher inside the measurement batch.",
+    "source": "Saved batch plan and evaluator output.",
+    "scope": "Publication and interpretation of matching-accuracy/batch-001/report.json.",
+    "reason": "Keeping measurement separate from implementation makes the three rule gaps reproducible and prevents unreviewed treatment proposals from becoming production decisions.",
+    "outcome": "no_change",
+    "sections": []
+  }
+]

@@ -1,0 +1,153 @@
+{
+  "activationState": "review_only_not_connected",
+  "batchId": "matching-accuracy-001",
+  "cases": [
+    {
+      "expected": "all_available_spatial_scenes_offered",
+      "id": "ten_plus_all_spatial",
+      "observed": {
+        "availableSpatialCount": 10,
+        "availableSpatialIds": [
+          "catalog-gap-clean",
+          "hologram-stage",
+          "kendrick-red-stage-clean",
+          "topographic-cloud",
+          "truth-cohort-attrition",
+          "truth-population-field",
+          "truth-rank-fall",
+          "truth-ratio-days",
+          "truth-small-outlier",
+          "two-floors"
+        ],
+        "currentSpatialThresholdAcceptsTask": false,
+        "missingSpatialIds": [
+          "catalog-gap-clean",
+          "hologram-stage",
+          "kendrick-red-stage-clean",
+          "topographic-cloud",
+          "truth-cohort-attrition",
+          "truth-population-field",
+          "truth-rank-fall",
+          "truth-ratio-days",
+          "truth-small-outlier",
+          "two-floors"
+        ],
+        "offeredSpatialIds": [],
+        "taskEntityCount": 11
+      },
+      "reason": "The current matcher still uses the older over-20 route and does not offer every spatial scene for this eleven-person task.",
+      "status": "fail"
+    },
+    {
+      "expected": "distinct_tasks_preserved_without_invented_timing",
+      "id": "split_beat_visual_tasks",
+      "observed": {
+        "continuityGroups": [
+          null,
+          "28-two-floors"
+        ],
+        "quotesAreDistinct": true,
+        "taskIds": [
+          "28-28.setup",
+          "28-28.overlap"
+        ],
+        "taskRoles": [
+          "setup_text",
+          "spatial_comparison"
+        ],
+        "timingStates": [
+          "unresolved_split_task_span",
+          "unresolved_split_task_span"
+        ]
+      },
+      "reason": "The VisualTask layer preserves the two communication jobs and correctly refuses to invent per-task timing.",
+      "status": "pass"
+    },
+    {
+      "expected": "unresolved_pending_exact_text_mapping_and_editor_review",
+      "id": "text_heavy_document",
+      "missingRequirements": [
+        "exact_scene_to_native_composition_mapping",
+        "exact_editable_text_fields_and_limits",
+        "editor_approved_treatment"
+      ],
+      "observed": {
+        "candidateId": "02-documentary-promo--scene-003",
+        "candidateOnSlate": true,
+        "exactCompositionMapped": false,
+        "requiredOnScreenText": [
+          "ONE RULE FOR EVERYBODY",
+          "FULL CREDIT",
+          "Lead or equal co-lead",
+          "HALF CREDIT",
+          "Feature or remix verse"
+        ],
+        "technicalVerdict": "technical_spec_unmapped",
+        "treatmentReviewState": "unreviewed"
+      },
+      "reason": "The existing document candidate is retained, but the system does not overclaim its unmeasured text capacity.",
+      "status": "pass"
+    },
+    {
+      "expected": "actual_performance_footage_requirement_preserved",
+      "id": "actual_footage_required",
+      "missingRequirements": [
+        "required_media_kind:footage",
+        "required_footage_entity:Drake",
+        "performance_footage_content_constraint"
+      ],
+      "observed": {
+        "currentCandidateIds": [
+          "counters-envato--scene-002",
+          "ai-flowchart--scene-001"
+        ],
+        "currentMediaRequirementStatus": "unresolved_treatment_dependent",
+        "encodedRequiredMediaKinds": null,
+        "reviewDirection": [
+          "drake b-roll performance footage needed"
+        ],
+        "reviewDirectionFound": true
+      },
+      "reason": "The review explicitly requires Drake performance footage, but the task still says its media kind is unresolved.",
+      "status": "fail"
+    },
+    {
+      "expected": "conditional_with_typed_missing_media_brief",
+      "expectedMissingMediaBrief": {
+        "artifactOrEvent": "2010 XXL Freshman offer and refusal",
+        "entity": "Drake",
+        "mediaKind": "footage",
+        "status": "missing"
+      },
+      "id": "missing_media_conditional",
+      "observed": {
+        "candidateId": "screen-mockup-rfx--review-002",
+        "candidateOnSlate": true,
+        "currentTechnicalVerdict": "exact_technical_evidence_partial",
+        "savedReviewNote": "no available broll",
+        "typedMissingMediaBriefPresent": false
+      },
+      "reason": "The saved review says no appropriate b-roll is available, but the current matcher does not emit a typed conditional media brief.",
+      "status": "fail"
+    }
+  ],
+  "nextBoundary": "Treat failures as measured matching-layer work. Do not activate unreviewed treatment proposals.",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sourceHashes": {
+    "approvedTemplates": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e",
+    "currentSlate": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c",
+    "localTemplates": "75f02bd08f3f343d84fdd7e9098129fc396fb7b708312841af9be97b16d9cc8c",
+    "matchingIssues": "2cea7c5a268321076b493f91bc12392a374f31e3795f462e73ebe2e8d070ad3c",
+    "reviewExport": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d",
+    "technicalComparison": "02d5b713408adc8a418f13597ed6a7a6ed7dfd26a05c4012722d29d4502998ba",
+    "visualTasks": "0dcc1de301d5ddf124b3a62d3811ecfb3ae6c08bd4c09f80fdfd85797ab1b442"
+  },
+  "summary": {
+    "allPassed": false,
+    "failed": 3,
+    "passed": 2,
+    "total": 5
+  }
+}
