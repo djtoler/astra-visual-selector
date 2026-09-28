@@ -68,8 +68,8 @@ Started on 2026-09-28:
 | 1. Freeze one pilot pairing | Deterministic preparation selected the first exact-mapped candidate with exact task timing: `02-02a.main` / `screen-mockup-rfx--review-002`, native composition 262. The request binds comparison, catalog, slate, prompt and schema by hash. | Passed |
 | 2. Prompt and schema | `PROMPT-treatment-requirements.md`, the closed draft schema and custom validator prohibit approval, fillability verdicts, invented slots, custom structural extensions, selection and rendering. | Passed for preparation |
 | 3. Prepare before call | `treatment-requirements/pilot-001/request.json` was built and consumed by the validator. It exposes one verified media input, zero native text fields, 8.008 seconds native duration and 3.1 seconds task duration. No paid call was made. No prior measured run of this exact request shape exists, so no cost estimate is claimed yet. | Passed; call pending authorization |
-| 4. Validate draft | Validator implemented and tested against invented slots, fabricated approval/fillability and stale request hashes. | Ready; no draft yet |
-| 5. User review | Requires a validated model draft and a review surface. | Pending |
+| 4. Validate draft | `treatment-requirements/pilot-001/draft.json` proposes the one verified visual slot for the 2009 XXL Freshman cover, assigns the exact identity/date requirements, adds no native text, and preserves six unresolved questions. The deterministic validator reports one media, zero text and two data assignments without approval or verdict. | Passed for the unreviewed draft |
+| 5. User review | `treatment-requirements/pilot-001/REVIEW.md` presents the source task, proposed treatment, verified capacity and four editor decisions beside the existing source clip. | Ready; user decision pending |
 | 6. Compare approved treatments | Requires a saved user-reviewed treatment. | Pending |
 
 No VisualTask was rewritten. No AE application, render, paid call, source-template edit, live ranking, pairing or selection change occurred.

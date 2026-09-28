@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "requestSha256": "a71815a7b2d723aa4ecd619eaf33d7e50040dbe071b2800f6d984fda1b9dbde4",
+  "taskId": "02-02a.main",
+  "candidateId": "screen-mockup-rfx--review-002",
+  "reviewState": "model_draft_unreviewed",
+  "verdict": null,
+  "treatmentSummary": "Use the one verified visual slot for a high-resolution image of the 2009 XXL Freshman cover as the page/playback surface. The artifact itself carries the credential; this composition has no verified editable text fields.",
+  "mediaAssignments": [
+    {
+      "slotId": "footage:1126",
+      "contentRole": "Show the source artifact that establishes Curren$y's 2009 XXL Freshman cover appearance.",
+      "mediaKind": "document",
+      "content": "A verified high-resolution image of the 2009 XXL Freshman cover, presented as the single page-shaped visual.",
+      "evidence": "Curren$y was on the 2009 XXL Freshman cover",
+      "status": "proposed"
+    }
+  ],
+  "textAssignments": [],
+  "dataAssignments": [
+    {
+      "encoding": "identity",
+      "label": "artist",
+      "value": "Curren$y",
+      "relationship": "appeared on the 2009 XXL Freshman cover",
+      "evidence": "Curren$y was on the 2009 XXL Freshman cover"
+    },
+    {
+      "encoding": "date",
+      "label": "cover year",
+      "value": "2009",
+      "relationship": "dates the biographical credential",
+      "evidence": "Curren$y was on the 2009 XXL Freshman cover"
+    }
+  ],
+  "timingProposal": {
+    "status": "unresolved_user_policy",
+    "nativeDurationSeconds": 8.008008008008009,
+    "taskDurationSeconds": 3.1,
+    "proposedAdjustments": null,
+    "evidence": "The verified native composition is 8.008008008008009 seconds and the exact task audio span is 3.1 seconds; no timing adjustment is authorized in the request."
+  },
+  "unresolved": [
+    {
+      "field": "source asset",
+      "reason": "The request does not supply or verify the exact 2009 XXL Freshman cover asset."
+    },
+    {
+      "field": "other people visible on the cover",
+      "reason": "The source says only Curren$y is display-eligible and does not state who else appeared; the full cover may visibly include other people, so the editor must decide whether the evidence artifact is acceptable as a whole or needs an existing supported crop/treatment."
+    },
+    {
+      "field": "readability and crop",
+      "reason": "The native slot proves one visual input, but does not verify that Curren$y or the cover identity remains recognizable after perspective, crop, and motion."
+    },
+    {
+      "field": "native input compatibility",
+      "reason": "The verified slot is visual and currently uses a JPEG placeholder, but the reviewed preview explicitly says to verify accepted native input and crop."
+    },
+    {
+      "field": "on-screen text",
+      "reason": "The composition has zero verified editable text fields; any title visible in the supplied artifact would be embedded in the image rather than a native scene control."
+    },
+    {
+      "field": "timing adjustment",
+      "reason": "The 8.008-second native scene exceeds the 3.1-second task span by 4.908 seconds, and trim, speed change, freeze, loop, or extension policy requires an editor decision."
+    }
+  ],
+  "evidence": [
+    {
+      "kind": "verified_native_fact",
+      "quote": "03 Others/Final Scenes/Scene_02 has one verified visual input, zero verified editable text fields, and an 8.008008008008009-second native duration."
+    },
+    {
+      "kind": "source_requirement",
+      "quote": "Curren$y was on the 2009 XXL Freshman cover"
+    },
+    {
+      "kind": "source_requirement",
+      "quote": "this is a biographical credential from 2009, not a streaming or chart metric"
+    },
+    {
+      "kind": "source_requirement",
+      "quote": "One composite page-shaped image or playback surface presented in perspective; visible source content can depict entities, catalogs or evidence."
+    }
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}
