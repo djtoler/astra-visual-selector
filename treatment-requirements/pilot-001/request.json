@@ -1,0 +1,193 @@
+{
+  "baselineCandidate": {
+    "condition": "used when the video shown represents one specific release event",
+    "evidence": "Video player screen mockup, centered 3D display, left text callouts, subtle drift.",
+    "mechanism": "centered video display reveal",
+    "name": "Video player screen mockup, centered 3D display, left text callouts, subtle drift."
+  },
+  "candidateId": "screen-mockup-rfx--review-002",
+  "draftingRules": {
+    "customStructuralExtensionAllowed": false,
+    "modelMayApprove": false,
+    "modelMayPropose": true,
+    "unknownsRemainUnresolved": true,
+    "userReviewRequired": true
+  },
+  "nativeComposition": {
+    "allowedMediaSlots": [
+      {
+        "evidence": "native_placeholder_footage",
+        "id": "footage:1126",
+        "kind": "visual",
+        "path": "03 Others/Media/Footage/Placeholder_02.jpg"
+      }
+    ],
+    "allowedTextFields": [],
+    "durationSeconds": 8.008008008008009,
+    "height": 2160,
+    "id": 262,
+    "mappingEvidence": "The measured render master sequences eight numbered native scenes in order; the reviewed second excerpt corresponds to Scene_02.",
+    "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
+    "path": "03 Others/Final Scenes/Scene_02",
+    "recursiveEditableTextFields": 0,
+    "totalIndependentVisualMediaInputs": 1,
+    "width": 3840
+  },
+  "purpose": "Prepare one unreviewed treatment-requirements draft for human review",
+  "renderingAuthorized": false,
+  "requestSha256ForDraft": "a71815a7b2d723aa4ecd619eaf33d7e50040dbe071b2800f6d984fda1b9dbde4",
+  "reviewState": "awaiting_model_draft",
+  "reviewedPreview": {
+    "clip": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/screen-mockup-rfx/clips/screen-mockup-rfx--review-002.mp4",
+    "description": "Video player screen mockup, centered 3D display, left text callouts, subtle drift.",
+    "replacementConstraints": [
+      "Preserve focal content and readable geometry; do not infer native input types or text controls from sample content."
+    ],
+    "reusableStructure": "One composite page-shaped image or playback surface presented in perspective; visible source content can depict entities, catalogs or evidence.",
+    "scriptMatching": {
+      "appropriateNarration": [
+        "Introduce a source, subject, release, product or collection through one page-shaped visual.",
+        "Present a specific article, source page or media item when its decisive content can be read."
+      ],
+      "avoidWhen": [
+        "Perspective, crop or motion prevents the required text/image from being read.",
+        "Page chrome implies a false source or relationship."
+      ],
+      "rationale": "The visible reusable structure is a perspective media surface. Sample web/video content and embedded words do not establish native video-only inputs or independent text controls.",
+      "requiredAssets": [
+        "A suitably shaped high-resolution page image or recording; verify accepted native input and crop."
+      ]
+    },
+    "thumbnail": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/screen-mockup-rfx/clips/screen-mockup-rfx--review-002.jpg",
+    "title": "Video page / playback",
+    "uncertainties": [
+      "Showcase shots are not verified as an eight-part connected sequence. Text visible within the source page/video is not a verified editable scene label."
+    ]
+  },
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sourceBeatId": "02-02a",
+  "sources": {
+    "baselineSlate": {
+      "bytes": 255954,
+      "path": "shotlist.capacity.json",
+      "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
+    },
+    "catalog": {
+      "bytes": 2809862,
+      "path": "approved-list.json",
+      "sha256": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e"
+    },
+    "comparison": {
+      "bytes": 1362247,
+      "path": "visualtask-ae-spec-comparison.json",
+      "sha256": "02d5b713408adc8a418f13597ed6a7a6ed7dfd26a05c4012722d29d4502998ba"
+    },
+    "prompt": {
+      "bytes": 4116,
+      "path": "PROMPT-treatment-requirements.md",
+      "sha256": "c125b0ed4ffa601da85c89b262d93e5d0478eea54a765bbc723f28f81893256e"
+    },
+    "schema": {
+      "bytes": 1154,
+      "path": "treatment-requirements.schema.json",
+      "sha256": "510cb528b175fef3ee6e219eba9ab09c12b0cfe8217a7c1a2149d3d738a3bc38"
+    }
+  },
+  "task": {
+    "displayEligibleIdentities": [
+      "Curren$y"
+    ],
+    "quote": "Curren$y was on the 2009 XXL Freshman cover",
+    "requirements": {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Curren$y"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "who else appeared on that 2009 cover"
+        ],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "that the cover appearance is itself a play-count or ranking figure"
+        ],
+        "truthConstraints": [
+          "this is a biographical credential from 2009, not a streaming or chart metric"
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "this is a biographical credential from 2009, not a streaming or chart metric"
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "02-02a",
+      "taskId": "02-02a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 3.1,
+          "endSeconds": 14.64,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 11.54
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 3.1,
+          "endSeconds": 14.64,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 11.54
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "narrate_an_event",
+        "takeaway": "Curren$y is established as a credentialed, recognized artist before he's used as a comparison point.",
+        "taskRole": "main"
+      }
+    },
+    "resolvedIdentities": [
+      "Curren$y"
+    ],
+    "taskRole": "main"
+  },
+  "taskId": "02-02a.main",
+  "timingObservation": {
+    "nativeCompositionDurationSeconds": 8.008008008008009,
+    "nativeDurationCoversUnmodifiedTask": true,
+    "nativeMinusTaskSeconds": 4.908008008008009,
+    "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+    "status": "observation_only_not_timing_fit",
+    "taskAudioDurationSeconds": 3.1
+  },
+  "timingPolicy": {
+    "allowedAdjustments": null,
+    "optionsRequiringDecision": [
+      "trim",
+      "loop",
+      "freeze",
+      "speed_change",
+      "extend"
+    ],
+    "status": "requires_user_decision"
+  }
+}

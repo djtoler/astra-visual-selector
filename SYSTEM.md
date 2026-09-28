@@ -72,6 +72,17 @@ simultaneous/total media inputs and recursive text-field identities. Even so,
 `fillable_now` is deliberately not computable, and this comparison is not connected to the
 live slate.
 
+### 2d. Treatment-requirements drafting — `PARTIAL`, review-only · model draft + human decision
+`pipeline/treatment_requirements.py` deterministically prepares one exact VisualTask/template
+pair for candidate-specific treatment drafting. The versioned prompt may propose mappings to
+verified native media slots and text fields, but it cannot approve, select, render, issue a
+fillability verdict, or invent a control. The user reviews every proposal.
+**Out:** `treatment-requirements/pilot-001/request.json`.
+**Current pilot:** `02-02a.main` with `screen-mockup-rfx--review-002`, exact native
+composition 262. It has one verified media input, zero editable text fields, 8.008 seconds
+native duration and 3.1 seconds of saved task audio. Timing adjustment policy is deliberately
+unset pending the user's decision. No model call has been made.
+
 ## 3. Template pool — `BUILT` · deterministic · `match-trial/candidates.py load()`
 `approved-list.json` enriched from `description-inventory.json` and `catalog.json`.
 **Out:** 421 records — description, useWhen, avoid, axes, clip path, capability, kind.

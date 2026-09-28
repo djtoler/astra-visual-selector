@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Unreviewed treatment requirements draft",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "requestSha256",
+    "taskId",
+    "candidateId",
+    "reviewState",
+    "verdict",
+    "mediaAssignments",
+    "textAssignments",
+    "dataAssignments",
+    "timingProposal",
+    "unresolved",
+    "evidence",
+    "selectionAuthorized",
+    "renderingAuthorized"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "requestSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "taskId": {"type": "string"},
+    "candidateId": {"type": "string"},
+    "reviewState": {"const": "model_draft_unreviewed"},
+    "verdict": {"type": "null"},
+    "treatmentSummary": {"type": ["string", "null"]},
+    "mediaAssignments": {"type": "array"},
+    "textAssignments": {"type": "array"},
+    "dataAssignments": {"type": "array"},
+    "timingProposal": {"type": "object"},
+    "unresolved": {"type": "array"},
+    "evidence": {"type": "array"},
+    "selectionAuthorized": {"const": false},
+    "renderingAuthorized": {"const": false}
+  },
+  "additionalProperties": false
+}

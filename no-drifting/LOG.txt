@@ -6460,3 +6460,39 @@ VERIFIED    Focused requirements, comparison and exact-mapping suites: 29 passin
 
 STATUS      done — task requirements are honest but incomplete; treatment-specific
             slot/media/text/data assignments are the next matching-layer gate.
+
+================================================================================
+[0134] 2026-09-28  Treatment proposals become reviewable records, never model decisions
+
+PROBLEM     The system now knows exact task constraints and native AE controls but
+            has no artifact assigning a specific task requirement to a specific
+            native media slot, text field, data encoding or timing treatment. Doing
+            that silently in conversation would make untraceable model judgment look
+            like verified matching evidence.
+
+WHY REAL    Fillability needs candidate-specific instructions, but the editor must
+            decide whether those instructions communicate the task. A model can draft
+            the mapping; it cannot approve the editorial treatment or invent native
+            controls to make a candidate fit.
+
+CHANGE      A separate branch and saved plan now define model-draft, deterministic-
+            validation and user-review roles. `PROMPT-treatment-requirements.md`, a
+            closed schema and `pipeline/treatment_requirements.py` prepare one exact
+            source-bound pilot request. The validator rejects invented native slots,
+            stale requests, timing changes without user policy, model approval,
+            fillability verdicts, selection and rendering authorization.
+
+TEST        `TreatmentRequirementsPilot`, seven tests. Before implementation it failed
+            because `pipeline.treatment_requirements` did not exist. It covers the
+            deterministic pilot identity, exact native slot/text inventory, unresolved
+            timing policy, approval/fillability denial, unknown slots, stale hashes and
+            deterministic replay.
+
+VERIFIED    Seven tests pass. The prepared pilot is `02-02a.main` with
+            `screen-mockup-rfx--review-002`, exact native composition 262: one media
+            input, zero editable text fields, 8.008 seconds native duration and 3.1
+            seconds saved task audio. No LLM call or paid call was made. No existing
+            VisualTask, slate, pairing, media pick, selection or render artifact changed.
+
+STATUS      done — free preparation complete; timing policy, model draft and user
+            review remain pending.

@@ -38,6 +38,14 @@ Every path is relative to `~/timeline` unless marked `[codex]` (read-only, Codex
 - **Runs** — `python3 -m pipeline.visualtask_requirements build`; `python3 -m pipeline.visualtask_requirements validate`; `python3 -m pipeline.visualtask_ae_spec_comparison build`; `python3 -m pipeline.visualtask_ae_spec_comparison validate`
 - **Boundary** — cannot emit `fillable_now`; four scene mappings, two split-task audio spans, treatment-specific media-slot counts and kinds, person/group eligibility, typed data fields, required on-screen text and limits, duration-adjustment policy, and media availability remain unresolved.
 
+### 1d · Draft treatment requirements — human-review pilot
+
+- **In** — one existing VisualTask/candidate pairing, its reviewed preview record, verified exact native composition, and `prompts/PROMPT-treatment-requirements.md`
+- **Does** — prepares a source-bound request for an LLM to propose slot, text, data, and timing assignments; deterministic validation blocks invented controls, approvals, fillability verdicts, selection, and rendering authorization
+- **Out** → `treatment-requirements/pilot-001/request.json` (currently prepared only; no paid model call or treatment draft)
+- **Runs** — `python3 -m pipeline.treatment_requirements prepare`
+- **Consumer** — `pipeline.treatment_requirements.validate_draft` will consume a model draft. Only a later saved user review can approve or edit it; approved treatments remain disconnected from live selection while this branch is a pilot.
+
 ## 2 · Load the template pool
 
 - **In** — `astra-selector-design/approved_media/approved-list.json` (generated export, never hand-edited); sidecars `grammar/local-templates.json`, `grammar/eligibility-overrides.json`, `grammar/capability.json`
