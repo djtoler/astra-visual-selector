@@ -383,8 +383,9 @@ class Spatial(unittest.TestCase):
     def test_unlimited_counts_as_feasible(self):
         self.assertIn("unlimited", C.FEASIBLE)
 
-    def test_the_threshold_is_exclusive_at_twenty(self):
-        self.assertFalse(C.needs_spatial(20))
+    def test_the_threshold_includes_twenty(self):
+        self.assertFalse(C.needs_spatial(19))
+        self.assertTrue(C.needs_spatial(20))
         self.assertTrue(C.needs_spatial(21))
         self.assertFalse(C.needs_spatial(None))
 
@@ -408,7 +409,7 @@ class Spatial(unittest.TestCase):
         shots = json.load(open(f))
         pool = {r["id"]: r for r in pool_or_skip(self)}
         routed = [s for s in shots if s.get("spatialRoute")]
-        self.assertTrue(routed, "no beat over 20 slots — has the corpus changed?")
+        self.assertTrue(routed, "no beat at 20+ slots — has the corpus changed?")
         # The invariant is ADMISSION. Order is decided by encoding fit first and
         # capacity second, by design, so a flat template that CARRIES what the beat
         # needs may legitimately outrank a spatial one that does not — beat 13-13a
@@ -674,7 +675,7 @@ class SpatialRanksNeverExcludes(unittest.TestCase):
         bound = [{"id": "flat"}]
         rows, note = shotlist.route_spatial({"entity_count": 93}, bound, self.pool())
         self.assertEqual([r["id"] for r in rows], ["sp", "flat"])
-        self.assertIn("MAY NEED TEMPLATE SOURCE", note)
+        self.assertIn("all 1 available spatial", note)
 
     def test_a_beat_under_the_threshold_is_untouched(self):
         import shotlist

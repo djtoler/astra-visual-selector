@@ -35,13 +35,15 @@ class MatchingAccuracyBatch01(unittest.TestCase):
         self.assertEqual(first, second)
 
     def test_ten_plus_case_uses_a_long_ae_carousel_not_spatial_or_infographic(self):
-        case = self.cases["ten_plus_long_carousel"]
+        case = self.cases["eleven_person_long_carousel_test"]
         self.assertEqual(case["status"], "pass")
         self.assertEqual(case["observed"]["taskEntityCount"], 11)
-        self.assertTrue(case["observed"]["longCarouselRuleApplies"])
+        self.assertTrue(case["observed"]["batchTreatmentRequiresLongCarousel"])
         self.assertGreaterEqual(case["observed"]["eligibleLongCarouselCount"], 1)
         self.assertGreaterEqual(len(case["observed"]["offeredLongCarouselIds"]), 1)
-        self.assertFalse(case["observed"]["spatialOrInfographicCanSatisfyRule"])
+        self.assertFalse(
+            case["observed"]["spatialOrInfographicSatisfiesThisBatchTreatment"]
+        )
 
     def test_split_beat_remains_two_tasks_with_unknown_task_timing(self):
         case = self.cases["split_beat_visual_tasks"]

@@ -9,7 +9,7 @@ Run one read-only, replayable matching-layer accuracy batch across five delibera
 
 ## Frozen cases
 
-1. **Ten-or-more people:** `16-16.main` names eleven visible cohort members. At least one After Effects long-media-carousel scene with verified capacity for all eleven must be offered. Spatial and infographic-system scenes do not satisfy this AE-template case.
+1. **Eleven-person carousel test:** `16-16.main` names eleven visible cohort members. For this test, at least one After Effects long-media-carousel scene with verified capacity for all eleven must be offered. This treatment is batch-specific, not a general 10+ routing rule. The separate global rule automatically adds every available spatial scene only at 20+ people.
 2. **Split beat:** source beat `28-28` must remain two distinct VisualTasks: setup text and spatial overlap. A whole-beat candidate list must not erase that separation or invent per-task timing.
 3. **Text-heavy/document treatment:** `17-17.main` with existing candidate `02-documentary-promo--scene-003`. The proposed treatment must communicate one universal rule plus the full-credit and half-credit definitions. Missing exact native text-field mapping must stay unresolved rather than becoming `fillable_now`.
 4. **Actual footage required:** `01-01.subject`. The user's saved direction requires Drake performance footage. A counter, diagram or still cannot silently satisfy that requirement.
@@ -62,9 +62,9 @@ Completed on 2026-09-28 with no deviation from the saved stage order.
 - Source binding: passed for all seven frozen input artifacts.
 - Five-case evaluation: completed; 3 passed and 2 failed against the corrected matching rules.
 - Review boundary: passed; the report remains `review_only_not_connected`, with selection and rendering authorization false.
-- Focused verification: 13 batch and long-carousel routing tests passed.
+- Focused verification: 16 batch, carousel-treatment and 20+ spatial-admission tests passed.
 - Related regression verification: 45 VisualTask, technical-requirement, AE-spec and treatment-requirement tests passed.
-- Repeatability: two evaluator runs and the saved report were byte-identical (`sha256: 37c5b69ee1af40ccc4b53b067152f24fb7597860987a251cad9d128c3f8e42a5`).
+- Repeatability: two evaluator runs and the saved report were byte-identical (`sha256: dcd693ded983281b825c58da3a096e76b313a31843ab8d68dd9f27b1207ea027`).
 - Published result: `matching-accuracy/batch-001/report.json`.
 
-The original 10+ spatial expectation was corrected after editor review: this case now requires a capacity-qualified long-carousel After Effects template and explicitly excludes spatial and infographic systems from satisfying the AE-template rule. The corrected batch leaves two measured gaps intentionally unrepaired: the saved actual-footage direction is not encoded as a typed requirement, and saved missing-media evidence does not yet produce a typed `conditional` result.
+The original 10+ spatial expectation was corrected after editor review: this case uses a capacity-qualified long-carousel After Effects template only as its specific test treatment. It does not establish a global long-carousel threshold. The separate matching rule automatically includes every available spatial scene at 20+ people while preserving other valid options. The corrected batch leaves two measured gaps intentionally unrepaired: the saved actual-footage direction is not encoded as a typed requirement, and saved missing-media evidence does not yet produce a typed `conditional` result.

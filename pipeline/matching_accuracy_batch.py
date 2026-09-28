@@ -89,7 +89,7 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
     results: list[dict[str, Any]] = []
 
     # 1. Eleven people must expose a capacity-qualified AE long-media carousel.
-    case = cases["ten_plus_long_carousel"]
+    case = cases["eleven_person_long_carousel_test"]
     task = _one(visual_tasks, "id", case["taskIds"][0])
     shot = _one(shots, "__sourceBeatId", case["sourceBeatId"]) if any(
         "__sourceBeatId" in row for row in shots
@@ -117,12 +117,12 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
         "expected": case["expected"],
         "observed": {
             "taskEntityCount": entity_count,
-            "longCarouselRuleApplies": candidate_pool.needs_long_carousel(entity_count),
+            "batchTreatmentRequiresLongCarousel": True,
             "eligibleLongCarouselCount": len(eligible_carousel_ids),
             "eligibleLongCarouselIds": eligible_carousel_ids,
             "offeredLongCarouselIds": offered_carousel_ids,
             "offeredNonAfterEffectsIds": offered_non_ae_ids,
-            "spatialOrInfographicCanSatisfyRule": False,
+            "spatialOrInfographicSatisfiesThisBatchTreatment": False,
         },
         "reason": (
             "A capacity-qualified long-carousel After Effects scene is offered."

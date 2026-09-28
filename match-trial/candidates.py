@@ -476,12 +476,11 @@ NON_SUBJECT_AXES = frozenset({
 # would be a fiction. User ruling 2026-09-20: "all spatial scenes have unlimited
 # capacity. we can make it whatever we need to."
 #
-# Above SPATIAL_MAX_SLOTS no flat template is credible, so a beat that big routes to
-# a spatial scene and is flagged — the library may simply not hold what it needs.
+# At twenty or more required people, every available spatial scene is admitted as an
+# additive option. Below twenty, spatial scenes remain eligible through ordinary fit.
 # ---------------------------------------------------------------------------
-SPATIAL_KINDS    = frozenset({"cinematic_3d"})
-SPATIAL_MAX_SLOTS = 20
-LONG_CAROUSEL_MIN_PEOPLE = 10
+SPATIAL_KINDS = frozenset({"cinematic_3d"})
+SPATIAL_AUTO_MIN_PEOPLE = 20
 
 # ---------------------------------------------------------------------------
 # Match-cut capability
@@ -550,14 +549,10 @@ def is_spatial(rec):
     return rec.get("kind") in SPATIAL_KINDS
 
 def needs_spatial(entity_count):
-    """True when no flat template can credibly hold this many things."""
-    return isinstance(entity_count, int) and entity_count > SPATIAL_MAX_SLOTS
+    """True when every available spatial scene must be admitted as an option."""
+    return isinstance(entity_count, int) and entity_count >= SPATIAL_AUTO_MIN_PEOPLE
 
-def needs_long_carousel(entity_count):
-    """True when a people roster should expose a capacity-qualified AE carousel."""
-    return isinstance(entity_count, int) and entity_count >= LONG_CAROUSEL_MIN_PEOPLE
-
-def is_long_media_carousel(rec, required_slots=LONG_CAROUSEL_MIN_PEOPLE):
+def is_long_media_carousel(rec, required_slots):
     """Return whether an AE media carousel is measured to hold the full roster.
 
     The distinction is intentionally structural. A title containing ``carousel`` is
@@ -567,7 +562,7 @@ def is_long_media_carousel(rec, required_slots=LONG_CAROUSEL_MIN_PEOPLE):
     """
     if rec.get("kind") != "after_effects":
         return False
-    if not isinstance(required_slots, int) or required_slots < LONG_CAROUSEL_MIN_PEOPLE:
+    if not isinstance(required_slots, int) or required_slots < 1:
         return False
     label = " ".join(str(rec.get(key) or "") for key in ("id", "template", "title")).lower()
     if "carousel" not in label:
