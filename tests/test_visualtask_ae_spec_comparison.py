@@ -55,7 +55,7 @@ class VisualTaskAESpecComparison(unittest.TestCase):
         self.assertEqual(result["activationState"], "review_only_not_connected")
         self.assertFalse(result["selectionAuthorized"])
         self.assertFalse(result["renderingAuthorized"])
-        self.assertEqual(result["evidenceBoundary"]["fillableNowStatus"], "not_computable_from_current_fields")
+        self.assertEqual(result["evidenceBoundary"]["fillableNowStatus"], "not_computable_until_treatment_requirements_are_reviewed")
         comparisons = [candidate for row in result["tasks"] for candidate in row["candidateComparisons"]]
         self.assertGreater(result["counts"]["mappedCandidates"], 0)
         self.assertGreater(result["counts"]["unmappedCandidates"], 0)
@@ -66,7 +66,32 @@ class VisualTaskAESpecComparison(unittest.TestCase):
         self.assertTrue(all("exact_scene_to_native_composition_mapping" not in row["missingForFillableNow"] for row in exact))
         self.assertTrue(all("exact_scene_to_native_composition_mapping" in row["missingForFillableNow"] for row in unresolved))
 
-    def test_zero_verified_slots_are_unknown_not_a_false_conflict(self):
+    def test_identity_count_is_not_used_as_media_slot_demand(self):
+        result = subject.build_comparison()
+        task = next(row for row in result["tasks"] if row["taskId"] == "03-03.opening_chart")
+        self.assertEqual(task["displayIdentityDemand"], 93)
+        self.assertIsNone(task["technicalRequirements"]["mediaRequirements"]["requiredSlotCount"])
+        comparisons = [candidate for row in result["tasks"] for candidate in row["candidateComparisons"]]
+        self.assertFalse(any("capacity_possible" in row["verdict"] for row in comparisons))
+        self.assertFalse(any("capacity_conflict" in row["verdict"] for row in comparisons))
+
+    def test_exact_task_and_composition_produce_duration_observation_not_fit(self):
+        result = subject.build_comparison()
+        task = next(row for row in result["tasks"] if row["taskId"] == "02-02a.main")
+        candidate = next(row for row in task["candidateComparisons"] if row["candidateId"] == "screen-mockup-rfx--review-002")
+        self.assertEqual(task["technicalRequirements"]["timingRequirement"]["exactTaskAudioSpan"]["durationSeconds"], 3.1)
+        self.assertEqual(candidate["timingObservation"]["taskAudioDurationSeconds"], 3.1)
+        self.assertEqual(candidate["timingObservation"]["nativeCompositionDurationSeconds"], 8.008008008008009)
+        self.assertTrue(candidate["timingObservation"]["nativeDurationCoversUnmodifiedTask"])
+        self.assertNotIn("fit", candidate["verdict"])
+
+    def test_split_task_timing_remains_unresolved_in_candidate_comparison(self):
+        result = subject.build_comparison()
+        task = next(row for row in result["tasks"] if row["taskId"] == "28-28.overlap")
+        self.assertIsNone(task["technicalRequirements"]["timingRequirement"]["exactTaskAudioSpan"])
+        self.assertTrue(all("timingObservation" not in row for row in task["candidateComparisons"]))
+
+    def test_zero_verified_slots_remain_partial_not_a_false_conflict(self):
         result = subject.build_comparison()
         row = next(row for row in result["tasks"] if row["taskId"] == "02-02b.currensy_catalog")
         dropoff = next(
@@ -74,7 +99,7 @@ class VisualTaskAESpecComparison(unittest.TestCase):
             if candidate["candidateId"].startswith("archive3-dropoff-carousels")
         )
         self.assertEqual(dropoff["projectId"], "project")
-        self.assertEqual(dropoff["verdict"], "exact_capacity_unknown")
+        self.assertEqual(dropoff["verdict"], "exact_technical_evidence_partial")
 
     def test_bad_crosswalk_project_fails_closed(self):
         links = json.loads((ROOT / "grammar" / "ae-template-spec-links.json").read_text())

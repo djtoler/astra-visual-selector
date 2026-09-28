@@ -23,6 +23,7 @@ DEFAULT_CATALOG = ROOT / "astra-selector-design" / "approved_media" / "approved-
 DEFAULT_LINKS = ROOT / "grammar" / "ae-template-spec-links.json"
 DEFAULT_INDEX = ROOT / "grammar" / "ae-template-technical-index.json"
 DEFAULT_SCENE_MAPPINGS = ROOT / "grammar" / "ae-scene-composition-mappings.json"
+DEFAULT_TASK_REQUIREMENTS = ROOT / "grammar" / "visual-task-technical-requirements.json"
 DEFAULT_OUTPUT = ROOT / "reports" / "visualtask-ae-spec-comparison.json"
 DEFAULT_BASELINE_ENTITIES = ROOT / "grammar" / "beat-entities.json"
 PROTECTED_LIVE_ARTIFACTS = (
@@ -35,10 +36,13 @@ PROTECTED_LIVE_ARTIFACTS = (
 MISSING_FOR_FILLABLE_NOW = [
     "exact_scene_to_native_composition_mapping",
     "task_required_data_fields",
+    "task_required_media_slot_count",
     "media_kind_constraints",
     "single_person_group_eligibility",
+    "treatment_required_text_fields",
     "text_character_and_line_limits",
-    "exact_task_audio_span_and_timing_fit",
+    "exact_task_audio_span",
+    "duration_adjustment_policy_and_timing_fit",
     "media_asset_availability",
 ]
 
@@ -370,6 +374,7 @@ def build_comparison(
     links_path: Path = DEFAULT_LINKS,
     index_path: Path = DEFAULT_INDEX,
     scene_mappings_path: Path = DEFAULT_SCENE_MAPPINGS,
+    task_requirements_path: Path = DEFAULT_TASK_REQUIREMENTS,
     baseline_entities_path: Path = DEFAULT_BASELINE_ENTITIES,
 ) -> dict[str, Any]:
     paths = {
@@ -379,6 +384,7 @@ def build_comparison(
         "specLinks": Path(links_path),
         "technicalIndex": Path(index_path),
         "sceneMappings": Path(scene_mappings_path),
+        "taskRequirements": Path(task_requirements_path),
         "baselineEntities": Path(baseline_entities_path),
     }
     tasks_artifact = _read(paths["visualTasks"])
@@ -409,6 +415,14 @@ def build_comparison(
     scene_mappings_artifact = _read(paths["sceneMappings"])
     mapping_counts = validate_scene_mappings(scene_mappings_artifact, technical, expected_scene_projects)
     scene_mappings = {row["sceneId"]: row for row in scene_mappings_artifact["mappings"]}
+    from . import visualtask_requirements
+
+    requirements_artifact = _read(paths["taskRequirements"])
+    visualtask_requirements.validate_requirements(requirements_artifact)
+    requirement_rows = requirements_artifact.get("tasks") or []
+    requirements = {row["taskId"]: row for row in requirement_rows}
+    if set(requirements) != {row["id"] for row in tasks}:
+        raise ValueError("VisualTask technical requirement scope mismatch")
 
     rows = []
     verdict_counts: Counter[str] = Counter()
@@ -421,6 +435,8 @@ def build_comparison(
         baseline = slate[source_id]
         display_entities = task["entities"]["displayEligible"]
         display_demand = len(display_entities)
+        task_requirements = requirements[task["id"]]
+        exact_task_span = task_requirements["timingRequirement"]["exactTaskAudioSpan"]
         comparisons = []
         for option in baseline.get("options") or []:
             candidate_count += 1
@@ -430,12 +446,15 @@ def build_comparison(
             link = links.get(family_id) if family_id else None
             if not link:
                 verdict = "technical_spec_unmapped"
+                missing = list(MISSING_FOR_FILLABLE_NOW)
+                if exact_task_span:
+                    missing.remove("exact_task_audio_span")
                 comparisons.append({
                     "candidateId": scene_id,
                     "familyId": family_id,
                     "verdict": verdict,
                     "reason": "No explicit reviewed link connects this candidate family to a measured AE project.",
-                    "missingForFillableNow": list(MISSING_FOR_FILLABLE_NOW),
+                    "missingForFillableNow": missing,
                 })
                 verdict_counts[verdict] += 1
                 continue
@@ -448,34 +467,17 @@ def build_comparison(
                     row for row in project["compositions"]
                     if row["id"] == mapping["compositionId"]
                 )
-            maximum = (
-                exact_comp["maxSimultaneouslyEnabledRecursiveVisualInputs"]
-                if exact_comp else project["capacityEnvelope"]["maxSimultaneouslyEnabledRecursiveVisualInputs"]
+            verdict = "exact_technical_evidence_partial" if exact_comp else "project_technical_evidence_partial"
+            reason = (
+                f"{'Exact composition measurements are' if exact_comp else 'A project-wide measurement envelope is'} available, "
+                "but the task has no reviewed treatment-specific media-slot, media-kind, text-field, or typed-data requirement. "
+                "Display identities are not assumed to equal media slots."
             )
-            unresolved_slots = int(project["projectSummary"].get("unresolvedFileFootageCandidates") or 0)
-            verified_slots = int(project["projectSummary"].get("verifiedIndependentVisualMediaInputs") or 0)
-            if display_demand > maximum and (maximum == 0 or verified_slots == 0 or unresolved_slots > 0):
-                verdict = "exact_capacity_unknown" if exact_comp else "project_capacity_unknown"
-                reason = (
-                    f"The scene is {'exactly mapped' if exact_comp else 'family-linked'}, but the inspector verified "
-                    f"{verified_slots} project media slots and retained {unresolved_slots} unresolved footage candidates; zero or a lower bound is "
-                    "not treated as proof that the preview scene cannot hold the task."
-                )
-            elif display_demand > maximum:
-                verdict = "exact_capacity_conflict" if exact_comp else "project_capacity_conflict"
-                reason = (
-                    f"Task needs {display_demand} display-eligible identities, exceeding the measured "
-                    f"{'exact-composition' if exact_comp else 'project-wide'} simultaneous visual-input maximum of {maximum}."
-                )
-            else:
-                verdict = "exact_capacity_possible" if exact_comp else "project_capacity_possible"
-                reason = (
-                    f"{'Exact composition' if exact_comp else 'Project-wide'} simultaneous capacity {maximum} "
-                    f"does not rule out display demand {display_demand}; remaining matching fields still block fillability."
-                )
             missing = list(MISSING_FOR_FILLABLE_NOW)
             if exact_comp:
                 missing.remove("exact_scene_to_native_composition_mapping")
+            if exact_task_span:
+                missing.remove("exact_task_audio_span")
             comparison = {
                 "candidateId": scene_id,
                 "familyId": family_id,
@@ -502,6 +504,17 @@ def build_comparison(
                     ],
                     "mappingEvidence": mapping["evidence"],
                 }
+                if exact_task_span:
+                    native_duration = exact_comp["durationSeconds"]
+                    task_duration = exact_task_span["durationSeconds"]
+                    comparison["timingObservation"] = {
+                        "taskAudioDurationSeconds": task_duration,
+                        "nativeCompositionDurationSeconds": native_duration,
+                        "nativeMinusTaskSeconds": native_duration - task_duration,
+                        "nativeDurationCoversUnmodifiedTask": native_duration >= task_duration,
+                        "status": "observation_only_not_timing_fit",
+                        "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+                    }
             else:
                 comparison["mappingUnresolved"] = {
                     "reason": mapping["reason"],
@@ -520,6 +533,7 @@ def build_comparison(
             "displayEligibleIdentities": display_entities,
             "displayIdentityDemand": display_demand,
             "unresolvedIdentities": task["entities"]["unresolved"],
+            "technicalRequirements": task_requirements,
             "baselineCandidateCount": len(baseline.get("options") or []),
             "candidateComparisons": comparisons,
         })
@@ -541,22 +555,22 @@ def build_comparison(
             "baselineCandidates": candidate_count,
             "mappedCandidates": mapped_candidates,
             "unmappedCandidates": candidate_count - mapped_candidates,
-            "projectCapacityPossible": verdict_counts["project_capacity_possible"],
-            "projectCapacityConflicts": verdict_counts["project_capacity_conflict"],
-            "projectCapacityUnknown": verdict_counts["project_capacity_unknown"],
-            "exactCapacityPossible": verdict_counts["exact_capacity_possible"],
-            "exactCapacityConflicts": verdict_counts["exact_capacity_conflict"],
-            "exactCapacityUnknown": verdict_counts["exact_capacity_unknown"],
+            "projectTechnicalEvidencePartial": verdict_counts["project_technical_evidence_partial"],
+            "exactTechnicalEvidencePartial": verdict_counts["exact_technical_evidence_partial"],
+            "exactTaskAudioSpans": requirements_artifact["counts"]["exactTaskAudioSpans"],
+            "unresolvedTaskAudioSpans": requirements_artifact["counts"]["unresolvedTaskAudioSpans"],
+            "exactTimingObservations": sum("timingObservation" in row for task_row in rows for row in task_row["candidateComparisons"]),
             "verifiedUniqueSceneMappings": mapping_counts["verified"],
             "unresolvedUniqueSceneMappings": mapping_counts["unresolved"],
         },
         "evidenceBoundary": {
             "canDecide": [
-                "whether display-identity demand exceeds every composition's measured simultaneous visual-input capacity in a linked project whose replacement-slot inventory is complete",
+                "the exact native technical capacity of a verified scene/composition mapping",
+                "whether an exact native composition's unmodified duration covers a source-bound task audio span, as an observation rather than a timing-fit verdict",
                 "whether a baseline candidate family lacks an explicit measured-project link",
             ],
             "cannotYetDecide": list(MISSING_FOR_FILLABLE_NOW),
-            "fillableNowStatus": "not_computable_from_current_fields",
+            "fillableNowStatus": "not_computable_until_treatment_requirements_are_reviewed",
         },
         "tasks": rows,
     }
@@ -573,7 +587,7 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
         raise ValueError("comparison must remain review-only")
     if artifact.get("selectionAuthorized") is not False or artifact.get("renderingAuthorized") is not False:
         raise ValueError("comparison cannot authorize selection or rendering")
-    if artifact.get("evidenceBoundary", {}).get("fillableNowStatus") != "not_computable_from_current_fields":
+    if artifact.get("evidenceBoundary", {}).get("fillableNowStatus") != "not_computable_until_treatment_requirements_are_reviewed":
         raise ValueError("comparison overclaims fillability")
     tasks = artifact.get("tasks") or []
     ids = [row.get("taskId") for row in tasks]
@@ -589,12 +603,17 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
         "baselineCandidates": len(comparisons),
         "mappedCandidates": sum(row.get("projectId") is not None for row in comparisons),
         "unmappedCandidates": verdicts["technical_spec_unmapped"],
-        "projectCapacityPossible": verdicts["project_capacity_possible"],
-        "projectCapacityConflicts": verdicts["project_capacity_conflict"],
-        "projectCapacityUnknown": verdicts["project_capacity_unknown"],
-        "exactCapacityPossible": verdicts["exact_capacity_possible"],
-        "exactCapacityConflicts": verdicts["exact_capacity_conflict"],
-        "exactCapacityUnknown": verdicts["exact_capacity_unknown"],
+        "projectTechnicalEvidencePartial": verdicts["project_technical_evidence_partial"],
+        "exactTechnicalEvidencePartial": verdicts["exact_technical_evidence_partial"],
+        "exactTaskAudioSpans": sum(
+            (row.get("technicalRequirements") or {}).get("timingRequirement", {}).get("exactTaskAudioSpan") is not None
+            for row in tasks
+        ),
+        "unresolvedTaskAudioSpans": sum(
+            (row.get("technicalRequirements") or {}).get("timingRequirement", {}).get("exactTaskAudioSpan") is None
+            for row in tasks
+        ),
+        "exactTimingObservations": sum("timingObservation" in row for row in comparisons),
         "verifiedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("exactComposition")}),
         "unresolvedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("mappingUnresolved")}),
     }
@@ -602,12 +621,8 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
         raise ValueError(f"comparison counts are stale: {counts}")
     allowed = {
         "technical_spec_unmapped",
-        "project_capacity_possible",
-        "project_capacity_conflict",
-        "project_capacity_unknown",
-        "exact_capacity_possible",
-        "exact_capacity_conflict",
-        "exact_capacity_unknown",
+        "project_technical_evidence_partial",
+        "exact_technical_evidence_partial",
     }
     if any(row.get("verdict") not in allowed for row in comparisons):
         raise ValueError("comparison contains an unauthorized verdict")
@@ -629,6 +644,7 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
             links_path=ROOT / artifact["sources"]["specLinks"]["path"],
             index_path=ROOT / artifact["sources"]["technicalIndex"]["path"],
             scene_mappings_path=ROOT / artifact["sources"]["sceneMappings"]["path"],
+            task_requirements_path=ROOT / artifact["sources"]["taskRequirements"]["path"],
             baseline_entities_path=ROOT / artifact["sources"]["baselineEntities"]["path"],
         )
         if dumps(replay) != dumps(artifact):

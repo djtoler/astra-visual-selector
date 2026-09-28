@@ -30,13 +30,13 @@ Every path is relative to `~/timeline` unless marked `[codex]` (read-only, Codex
 - **Runs** — `python3 -m pipeline.visual_tasks build`; `python3 -m pipeline.visual_tasks validate`
 - **Consumer** — the validator currently consumes this artifact. Slate, media, and pairing stages do **not** read it yet, so this pilot cannot silently change live choices before review.
 
-### 1c · Compare VisualTasks with measured AE capacity — review-only test
+### 1c · Compare VisualTasks with measured AE requirements — review-only test
 
-- **In** — `grammar/visual-tasks.json`, the unchanged capacity slate, approved scene catalog, explicit `grammar/ae-template-spec-links.json`, and portable `grammar/ae-template-technical-index.json`
-- **Does** — attaches measured media, timing, slot, and exact recursive text-field evidence to existing candidates; uses `grammar/ae-scene-composition-mappings.json` for 20 source-evidenced exact scene mappings and preserves four ambiguous scenes as unresolved
+- **In** — `grammar/visual-tasks.json`, `grammar/visual-task-technical-requirements.json`, the unchanged capacity slate, approved scene catalog, explicit `grammar/ae-template-spec-links.json`, and portable `grammar/ae-template-technical-index.json`
+- **Does** — attaches measured media, timing, slot, and exact recursive text-field evidence to existing candidates; uses `grammar/ae-scene-composition-mappings.json` for 20 source-evidenced exact scene mappings and preserves four ambiguous scenes as unresolved. It records exact saved audio spans for 39 tasks and keeps both split beat-28 tasks unresolved. It does not equate display identities with media slots.
 - **Out** → `reports/visualtask-ae-spec-comparison.json` (41 tasks, 257 existing candidates; no live ranking or selection change)
-- **Runs** — `python3 -m pipeline.visualtask_ae_spec_comparison build`; `python3 -m pipeline.visualtask_ae_spec_comparison validate`
-- **Boundary** — cannot emit `fillable_now`; four exact composition mappings plus task-required fields, media-kind constraints, person/group eligibility, text limits, exact task timing, and media availability remain required.
+- **Runs** — `python3 -m pipeline.visualtask_requirements build`; `python3 -m pipeline.visualtask_requirements validate`; `python3 -m pipeline.visualtask_ae_spec_comparison build`; `python3 -m pipeline.visualtask_ae_spec_comparison validate`
+- **Boundary** — cannot emit `fillable_now`; four scene mappings, two split-task audio spans, treatment-specific media-slot counts and kinds, person/group eligibility, typed data fields, required on-screen text and limits, duration-adjustment policy, and media availability remain unresolved.
 
 ## 2 · Load the template pool
 

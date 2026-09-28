@@ -6358,6 +6358,13 @@ VERIFIED    The imported index reconciles 32 projects, 3,926 compositions and
 STATUS      done — read-only comparison test; exact scene/native composition
             mapping and the remaining plan-line-107 fields are the next gate.
 
+CORRECTION  2026-09-28: the possible/conflict/unknown capacity verdicts above
+            compared display-identity count with media-slot capacity. That is not
+            a valid requirement mapping: an identity may be represented by media,
+            text, a chart mark or a grouped asset. Entry 0133 removes those verdicts.
+            The 57 measured links remain valid technical evidence; the claimed
+            fillability direction does not.
+
 ================================================================================
 [0132] 2026-09-27  Exact native compositions replace project-wide guesses for 20 scenes
 
@@ -6400,3 +6407,56 @@ VERIFIED    Focused mapping/comparison tests: 18 passing; VisualTask regressions
 
 STATUS      done — exact for 20 of 24 in-scope scenes; four ambiguities and the
             remaining task/media/text/timing fields stay explicit next gates.
+
+CORRECTION  2026-09-28: the 36 capacity-possible and 11 capacity-unknown labels
+            above inherited the invalid identity-count-to-slot-count comparison.
+            Entry 0133 replaces them with 47 exact-technical-evidence-partial
+            observations. The exact composition identities and native measurements
+            remain verified and unchanged.
+
+================================================================================
+[0133] 2026-09-28  Task requirements stop identities from masquerading as media slots
+
+PROBLEM     The read-only comparison treated a task's display-eligible identity
+            count as its required media-slot count. For example, 93 chart identities
+            became a demand for 93 replacement-media slots even though those people
+            can be represented by chart marks or labels. This produced possible,
+            conflict and unknown verdicts without a reviewed treatment assignment.
+
+WHY REAL    Matching must compare like with like. Native AE media-slot capacity is
+            exact technical evidence, while a VisualTask identity count is a semantic
+            requirement. Conflating them can reject a valid chart or call a carousel
+            possible without proving which identities need media, text or data marks.
+
+CHANGE      `pipeline/visualtask_requirements.py` creates a source-bound requirements
+            artifact for all 41 VisualTasks. It preserves exact saved source-beat
+            timing for 39 unsplit tasks and leaves both split beat-28 task spans
+            unresolved. It preserves identities, encoding categories and semantic
+            constraints while explicitly leaving treatment-specific media slots,
+            media kinds, person/group rules, text fields and typed data fields null.
+            The comparison consumes this artifact, removes identity-to-slot verdicts,
+            and reports exact native duration coverage only as a non-authorizing
+            observation. Of 47 exact-composition placements, 41 native durations
+            cover the unmodified task span and six are shorter; no timing-fit verdict
+            is made without an approved adjustment policy.
+
+TEST        `VisualTaskTechnicalRequirements`, 8 tests. It first failed because the
+            requirements consumer did not exist. New comparison tests then failed
+            until the identity/slot shortcut was removed. Tests cover all 41 tasks,
+            39/2 timing coverage, split-task abstention, null slot/text/typed-data
+            requirements, stale inputs, deterministic replay, exact duration
+            observations and removal of capacity verdicts.
+
+VERIFIED    Focused requirements, comparison and exact-mapping suites: 29 passing.
+            VisualTask regression tests add 15 passing; the AE pass-reconciliation
+            suite adds two passing. The full repository suite ran 484 tests: 470
+            passed, 13 skipped, and the same pre-existing Cloudflare-credentials
+            test failed because preflight stops before its expected `--confirm`
+            message.
+            The rebuilt comparison retains 41 VisualTasks, 257 unchanged candidate
+            placements, 57 measured links, 20 exact scene mappings and four unresolved
+            mappings. The 47 exact placements and 10 project-envelope placements are
+            labeled technical-evidence-partial. No candidate is called `fillable_now`.
+
+STATUS      done — task requirements are honest but incomplete; treatment-specific
+            slot/media/text/data assignments are the next matching-layer gate.

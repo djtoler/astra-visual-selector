@@ -48,23 +48,27 @@ remaining visually withheld; a semantic item count is not automatically a person
 The slate, media, and pairing stages do not consume this artifact yet; activation requires a
 separate reviewed migration with before/after output.
 
-### 2c. VisualTask / measured AE comparison — `PARTIAL`, review-only · deterministic
+### 2c. VisualTask / measured AE requirements comparison — `PARTIAL`, review-only · deterministic
 `pipeline/visualtask_ae_spec_comparison.py` imports the frozen AE measurements into a
 portable exact-data index, links only explicitly reviewed scene families to measured
-projects, and compares task-scoped display-identity demand with the unchanged current
-slate. A separate mapping sidecar resolves 20 of the 24 in-scope preview scenes to exact
+projects, and attaches them to the unchanged current slate. A separate mapping sidecar
+resolves 20 of the 24 in-scope preview scenes to exact
 native compositions from native master-timeline intervals or unique composition-name and
 structure evidence; four ambiguous mappings remain explicit. It emits 41 task rows without
-ranking, selecting, pairing, or rendering.
-**Out:** `grammar/ae-template-technical-index.json` and
+ranking, selecting, pairing, or rendering. `pipeline/visualtask_requirements.py` separately
+preserves source-supported task constraints and exact saved audio spans for 39 tasks; the
+two split beat-28 tasks remain unresolved.
+**Out:** `grammar/visual-task-technical-requirements.json`,
+`grammar/ae-template-technical-index.json` and
 `reports/visualtask-ae-spec-comparison.json`.
-**Believes:** project-wide technical capacity can rule a demand out only when the slot
-inventory is complete; a project-family link cannot prove which native composition backs
-an individual preview scene.
-**Known incomplete:** four exact scene-to-composition mappings, required task data fields,
-media-kind constraints, single/group eligibility, text limits, exact task timing, and media
-availability are not yet encoded. The 20 exact mappings expose their native dimensions,
-duration, simultaneous/total media inputs and recursive text-field identities. Even so,
+**Believes:** a display identity is a semantic requirement, not automatically one media
+slot. A project-family link cannot prove which native composition backs an individual
+preview scene. Native duration coverage is an observation, not timing-fit approval.
+**Known incomplete:** four scene-to-composition mappings, two split-task audio spans,
+treatment-specific slot counts and media kinds, single/group eligibility, typed data fields,
+required on-screen text and limits, duration-adjustment policy, and media availability are
+not yet encoded. The 20 exact mappings expose their native dimensions, duration,
+simultaneous/total media inputs and recursive text-field identities. Even so,
 `fillable_now` is deliberately not computable, and this comparison is not connected to the
 live slate.
 

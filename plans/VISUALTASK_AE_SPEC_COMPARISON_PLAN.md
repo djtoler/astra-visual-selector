@@ -1,5 +1,7 @@
 # Read-only VisualTask / AE technical-spec comparison
 
+> Correction, 2026-09-28: the capacity verdicts below were a test hypothesis, not a valid final rule. A display-identity count is not necessarily a media-slot count. `plans/VISUALTASK_TECHNICAL_REQUIREMENTS_PLAN.md` supersedes that comparison method and preserves the measured slot values only as template evidence until treatment-specific slot requirements are reviewed.
+
 Date: 2026-09-27
 Branch: `codex/visualtask-ae-spec-comparison`
 
