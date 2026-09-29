@@ -1,0 +1,2261 @@
+{
+  "activationState": "calibration_review_only",
+  "decision": {
+    "bulkMappingTrusted": false,
+    "nextSafeBatchSize": 0,
+    "reason": "No evidence class passed the zero-error replay and prospective gates; bulk mapping remains proposal-only.",
+    "trustedEvidenceClasses": []
+  },
+  "guardrails": {
+    "minimumProspectiveTimelineLabelsPerClass": 3,
+    "minimumReplayFamiliesPerClass": 2,
+    "minimumReplayPredictionsPerClass": 3,
+    "precisionRequired": 1.0,
+    "predictionsCanEmitVerified": false,
+    "predictorReadsVerifiedMappings": false
+  },
+  "promoteMappings": false,
+  "prospective": {
+    "byEvidenceClass": {
+      "ordinal_terminal_unique": {
+        "correct": 0,
+        "errors": [
+          "screen-mockup-rfx--review-008"
+        ],
+        "labeled": 1,
+        "precisionOnTimelineLabeledSubset": 0.0,
+        "predictions": 10,
+        "trusted": false
+      },
+      "semantic_path_unique": {
+        "correct": 0,
+        "errors": [
+          "screen-mockup-rfx--review-007"
+        ],
+        "labeled": 1,
+        "precisionOnTimelineLabeledSubset": 0.0,
+        "predictions": 2,
+        "trusted": false
+      }
+    },
+    "categoryCounts": {
+      "carousel": 7,
+      "documentary_multi_scene": 6,
+      "screen_contact": 5,
+      "slideshow_photo": 6,
+      "text_data": 6
+    },
+    "predictionLockSha256": "67d53e1a892d73628cf79bc02b4485be5e0f105f7c98129e5ed417f6f8654c88",
+    "predictions": [
+      {
+        "alternatives": [],
+        "candidateCount": 16,
+        "category": "carousel",
+        "clipId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-003",
+        "evidence": {
+          "clipOrdinal": 3
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-01/raw-static/carousel-flow-loops.json",
+            "sha256": "5970b5a7b0b825aca229e493443d0b1a7f790a46a6757b9f972a22a1e3f8459d"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "carousel-flow-loops",
+        "proposedComposition": {
+          "id": 39077,
+          "path": "03. Other/Carousel CTRL/Carousel 03"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 583,
+            "path": "01 edit/Scene/Scene 01"
+          },
+          {
+            "id": 614,
+            "path": "01 edit/Scene/Scene 02"
+          },
+          {
+            "id": 734,
+            "path": "01 edit/Scene/Scene 03"
+          },
+          {
+            "id": 1162,
+            "path": "01 edit/Scene/Scene 04"
+          },
+          {
+            "id": 1492,
+            "path": "01 edit/Scene/Scene 05"
+          },
+          {
+            "id": 1870,
+            "path": "01 edit/Scene/Scene 06"
+          },
+          {
+            "id": 2023,
+            "path": "01 edit/Scene/Scene 07"
+          },
+          {
+            "id": 2426,
+            "path": "01 edit/Scene/Scene 08"
+          }
+        ],
+        "candidateCount": 31,
+        "category": "documentary_multi_scene",
+        "clipId": "02-documentary-promo--scene-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "02-documentary-promo",
+        "nativeTimelineEvaluation": {
+          "reason": "source_timestamps_missing",
+          "status": "unresolved"
+        },
+        "projectId": "documentary-promo",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 12356,
+            "path": "Comparison List 1/!Comparison List 1 - Final"
+          },
+          {
+            "id": 12376,
+            "path": "Comparison List 1/List Items/Comparison List 1 - Item 1/Comparison List 1 - Item 1"
+          },
+          {
+            "id": 25588,
+            "path": "Comparison List 1/List Items/Comparison List 1 - Item 2/Comparison List 1 - Item 2"
+          },
+          {
+            "id": 25629,
+            "path": "Comparison List 1/List Items/Comparison List 1 - Item 3/Comparison List 1 - Item 3"
+          },
+          {
+            "id": 25670,
+            "path": "Comparison List 1/List Items/Comparison List 1 - Item 4/Comparison List 1 - Item 4"
+          },
+          {
+            "id": 315,
+            "path": "Comparison List 2/!Comparison List 2 - Final"
+          },
+          {
+            "id": 365,
+            "path": "Comparison List 2/List Items/Comparison List 2 - Item 1/Comparison List 2 - Item 1"
+          },
+          {
+            "id": 25880,
+            "path": "Comparison List 2/List Items/Comparison List 2 - Item 3/Comparison List 2 - Item 3"
+          }
+        ],
+        "candidateCount": 41,
+        "category": "text_data",
+        "clipId": "archive3-comparison-pack-ae--review-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-comparison-pack-ae",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/comparison-pack.json",
+            "sha256": "f0a56e8dace42e911b43e7caeabd9c8aacad1cdc00638dc69955d46bb5e44192"
+          },
+          "reason": "multiple_native_master_timelines",
+          "status": "unresolved"
+        },
+        "projectId": "comparison-pack",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 15,
+        "category": "screen_contact",
+        "clipId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v2-004",
+        "evidence": {
+          "clipOrdinal": 4
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
+        "nativeTimelineEvaluation": {
+          "activeSourceIds": [
+            32985,
+            32999,
+            33013,
+            33027,
+            33041,
+            33055,
+            33069,
+            33083,
+            33097,
+            33111,
+            35150
+          ],
+          "masterComposition": {
+            "id": 34352,
+            "path": "03. Other/Other/Grid Preview"
+          },
+          "midpointSeconds": 17.375,
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/moving-contact-sheets.json",
+            "sha256": "30374947662d5ebd56d7e8aac1dfce2eab420bd58c1350ba5caccc5a8f1163ad"
+          },
+          "reason": "native_timeline_not_unique_at_clip_midpoint",
+          "status": "unresolved"
+        },
+        "projectId": "moving-contact-sheets",
+        "proposedComposition": {
+          "id": 34990,
+          "path": "03. Other/Scenes/SCENE 04"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 12356,
+            "path": "Comparison List 1/!Comparison List 1 - Final"
+          },
+          {
+            "id": 12376,
+            "path": "Comparison List 1/List Items/Comparison List 1 - Item 1/Comparison List 1 - Item 1"
+          },
+          {
+            "id": 25588,
+            "path": "Comparison List 1/List Items/Comparison List 1 - Item 2/Comparison List 1 - Item 2"
+          },
+          {
+            "id": 25629,
+            "path": "Comparison List 1/List Items/Comparison List 1 - Item 3/Comparison List 1 - Item 3"
+          },
+          {
+            "id": 25670,
+            "path": "Comparison List 1/List Items/Comparison List 1 - Item 4/Comparison List 1 - Item 4"
+          },
+          {
+            "id": 315,
+            "path": "Comparison List 2/!Comparison List 2 - Final"
+          },
+          {
+            "id": 365,
+            "path": "Comparison List 2/List Items/Comparison List 2 - Item 1/Comparison List 2 - Item 1"
+          },
+          {
+            "id": 25880,
+            "path": "Comparison List 2/List Items/Comparison List 2 - Item 3/Comparison List 2 - Item 3"
+          }
+        ],
+        "candidateCount": 41,
+        "category": "slideshow_photo",
+        "clipId": "archive3-comparison-pack-ae--review-005",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-comparison-pack-ae",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/comparison-pack.json",
+            "sha256": "f0a56e8dace42e911b43e7caeabd9c8aacad1cdc00638dc69955d46bb5e44192"
+          },
+          "reason": "multiple_native_master_timelines",
+          "status": "unresolved"
+        },
+        "projectId": "comparison-pack",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 16,
+        "category": "carousel",
+        "clipId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-005",
+        "evidence": {
+          "overlappingTokens": [
+            "flip",
+            "wide"
+          ]
+        },
+        "evidenceClass": "semantic_path_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-01/raw-static/carousel-flow-loops.json",
+            "sha256": "5970b5a7b0b825aca229e493443d0b1a7f790a46a6757b9f972a22a1e3f8459d"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "carousel-flow-loops",
+        "proposedComposition": {
+          "id": 35723,
+          "path": "02. Final/Carousel Wide Flip"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 31,
+        "category": "documentary_multi_scene",
+        "clipId": "02-documentary-promo--scene-005",
+        "evidence": {
+          "clipOrdinal": 5
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "02-documentary-promo",
+        "nativeTimelineEvaluation": {
+          "reason": "source_timestamps_missing",
+          "status": "unresolved"
+        },
+        "projectId": "documentary-promo",
+        "proposedComposition": {
+          "id": 1492,
+          "path": "01 edit/Scene/Scene 05"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 8,
+        "category": "text_data",
+        "clipId": "archive3-glow-edge-titles-2026-09-13-15-34-22-utc--review-001",
+        "evidence": {
+          "clipOrdinal": 1
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-glow-edge-titles-2026-09-13-15-34-22-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/glow-edge-titles.json",
+            "sha256": "4dd976adaa9a9f4e6fe8b6cd771518f1356b557780746ac89107f08083c7fd50"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "glow-edge-titles",
+        "proposedComposition": {
+          "id": 937,
+          "path": "02. Final Comp/GE Title 01"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 36083,
+            "path": "01. Edit/Text/Final Text 01"
+          },
+          {
+            "id": 36098,
+            "path": "01. Edit/Text/Final Text 02"
+          },
+          {
+            "id": 36289,
+            "path": "01. Edit/Text/Final Text 03"
+          },
+          {
+            "id": 35326,
+            "path": "01. Edit/Text/Main Text 01"
+          },
+          {
+            "id": 35341,
+            "path": "01. Edit/Text/Main Text 02"
+          },
+          {
+            "id": 31013,
+            "path": "02. Render/Final"
+          },
+          {
+            "id": 37041,
+            "path": "03. Other/Other/Final Comp"
+          },
+          {
+            "id": 36063,
+            "path": "03. Other/Other/Final Text"
+          }
+        ],
+        "candidateCount": 15,
+        "category": "screen_contact",
+        "clipId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003b",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
+        "nativeTimelineEvaluation": {
+          "activeSourceIds": [
+            32985,
+            32999,
+            33013,
+            33027,
+            33041,
+            33055,
+            33069,
+            33083,
+            33097,
+            33111,
+            35150
+          ],
+          "masterComposition": {
+            "id": 34352,
+            "path": "03. Other/Other/Grid Preview"
+          },
+          "midpointSeconds": 14.25,
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/moving-contact-sheets.json",
+            "sha256": "30374947662d5ebd56d7e8aac1dfce2eab420bd58c1350ba5caccc5a8f1163ad"
+          },
+          "reason": "native_timeline_not_unique_at_clip_midpoint",
+          "status": "unresolved"
+        },
+        "projectId": "moving-contact-sheets",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 16,
+        "category": "slideshow_photo",
+        "clipId": "archive3-photo-slideshow-final--review-002",
+        "evidence": {
+          "clipOrdinal": 2
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-photo-slideshow-final",
+        "nativeTimelineEvaluation": {
+          "activeSourceIds": [
+            1,
+            1773,
+            10649
+          ],
+          "masterComposition": {
+            "id": 10516,
+            "path": "03.Render Comp/Render_Comp"
+          },
+          "midpointSeconds": 14.75,
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw/photo-slideshow-23-x.json",
+            "sha256": "1ffffdf99995dfa6c3abf768184f62075f1f509cdc48d6e9d78305538626f9ab"
+          },
+          "reason": "native_timeline_not_unique_at_clip_midpoint",
+          "status": "unresolved"
+        },
+        "projectId": "photo-slideshow-23-x",
+        "proposedComposition": {
+          "id": 1,
+          "path": "02.Edit Scene/Scene 02/Scene_02"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 1930,
+            "path": "02 FINAL/FINAL"
+          },
+          {
+            "id": 217,
+            "path": "03 OTHER/pre/main"
+          }
+        ],
+        "candidateCount": 2,
+        "category": "carousel",
+        "clipId": "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-01/raw-static/carousel-photo-logo-reveal.json",
+            "sha256": "50965ad7bad911fbc693ef790294f42c3f5b76691a96ce9299046fa513f03de4"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "carousel-photo-logo-reveal",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 12,
+        "category": "documentary_multi_scene",
+        "clipId": "03-history-documentary-10-slides--scene-001",
+        "evidence": {
+          "clipOrdinal": 1
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "03-history-documentary-10-slides",
+        "nativeTimelineEvaluation": {
+          "reason": "source_timestamps_missing",
+          "status": "unresolved"
+        },
+        "projectId": "history-and-documentary-10-slides-project",
+        "proposedComposition": {
+          "id": 3741551,
+          "path": "Works/Scenes/Scene 1/Scene 1"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 8,
+        "category": "text_data",
+        "clipId": "archive3-glow-edge-titles-2026-09-13-15-34-22-utc--review-002",
+        "evidence": {
+          "clipOrdinal": 2
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-glow-edge-titles-2026-09-13-15-34-22-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/glow-edge-titles.json",
+            "sha256": "4dd976adaa9a9f4e6fe8b6cd771518f1356b557780746ac89107f08083c7fd50"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "glow-edge-titles",
+        "proposedComposition": {
+          "id": 950,
+          "path": "02. Final Comp/GE Title 02"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 9,
+        "category": "screen_contact",
+        "clipId": "screen-mockup-rfx--review-007",
+        "evidence": {
+          "overlappingTokens": [
+            "mockup",
+            "screen"
+          ]
+        },
+        "evidenceClass": "semantic_path_unique",
+        "exactMatchWhenLabeled": false,
+        "familyId": "screen-mockup-rfx",
+        "nativeTimelineEvaluation": {
+          "composition": {
+            "id": 604,
+            "path": "03 Others/Final Scenes/Scene_06"
+          },
+          "masterComposition": {
+            "id": 445,
+            "path": "02 Render Comp/Screen_Mockup_HD"
+          },
+          "midpointSeconds": 23.0335,
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/screen-mockup.json",
+            "sha256": "7fba98c47fad5694ec026aa88486bb05bb00369db88d3b7f6b603bafcb030837"
+          },
+          "status": "timeline_label"
+        },
+        "projectId": "screen-mockup",
+        "proposedComposition": {
+          "id": 445,
+          "path": "02 Render Comp/Screen_Mockup_HD"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 16,
+        "category": "slideshow_photo",
+        "clipId": "archive3-photo-slideshow-final--review-003",
+        "evidence": {
+          "clipOrdinal": 3
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-photo-slideshow-final",
+        "nativeTimelineEvaluation": {
+          "activeSourceIds": [
+            1773,
+            10649,
+            10968
+          ],
+          "masterComposition": {
+            "id": 10516,
+            "path": "03.Render Comp/Render_Comp"
+          },
+          "midpointSeconds": 20.75,
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw/photo-slideshow-23-x.json",
+            "sha256": "1ffffdf99995dfa6c3abf768184f62075f1f509cdc48d6e9d78305538626f9ab"
+          },
+          "reason": "native_timeline_not_unique_at_clip_midpoint",
+          "status": "unresolved"
+        },
+        "projectId": "photo-slideshow-23-x",
+        "proposedComposition": {
+          "id": 10649,
+          "path": "02.Edit Scene/Scene 03/Scene_03"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 3,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_01"
+          },
+          {
+            "id": 17,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_02"
+          },
+          {
+            "id": 31,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_03"
+          },
+          {
+            "id": 45,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_04"
+          },
+          {
+            "id": 59,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_05"
+          },
+          {
+            "id": 73,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_06"
+          },
+          {
+            "id": 87,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_07"
+          },
+          {
+            "id": 101,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_08"
+          }
+        ],
+        "candidateCount": 392,
+        "category": "carousel",
+        "clipId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/project.json",
+            "sha256": "b159ec4329e600378c2b5438c27cf42f0a4284256d22781e5ee2fa3746378c0c"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "project",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 3777803,
+            "path": "FINAL"
+          },
+          {
+            "id": 3741551,
+            "path": "Works/Scenes/Scene 1/Scene 1"
+          },
+          {
+            "id": 3779609,
+            "path": "Works/Scenes/Scene 10/Plceholder 10 2"
+          },
+          {
+            "id": 3779504,
+            "path": "Works/Scenes/Scene 10/Scene 10"
+          },
+          {
+            "id": 3741336,
+            "path": "Works/Scenes/Scene 2/Scene 2"
+          },
+          {
+            "id": 3777636,
+            "path": "Works/Scenes/Scene 3/Scene 3"
+          },
+          {
+            "id": 3778475,
+            "path": "Works/Scenes/Scene 4/Scene 4"
+          },
+          {
+            "id": 3778626,
+            "path": "Works/Scenes/Scene 5/Scene 5"
+          }
+        ],
+        "candidateCount": 12,
+        "category": "documentary_multi_scene",
+        "clipId": "03-history-documentary-10-slides--scene-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "03-history-documentary-10-slides",
+        "nativeTimelineEvaluation": {
+          "reason": "source_timestamps_missing",
+          "status": "unresolved"
+        },
+        "projectId": "history-and-documentary-10-slides-project",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 0,
+        "category": "text_data",
+        "clipId": "archive3-grunge-lyric-video-template--review-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-grunge-lyric-video-template",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/grunge.json",
+            "sha256": "c01c79dd638f8ac8d994250a97dfe342ed05c828c4794c46ca4010cc9d272b5b"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "grunge",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 9,
+        "category": "screen_contact",
+        "clipId": "screen-mockup-rfx--review-008",
+        "evidence": {
+          "clipOrdinal": 8
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": false,
+        "familyId": "screen-mockup-rfx",
+        "nativeTimelineEvaluation": {
+          "composition": {
+            "id": 669,
+            "path": "03 Others/Final Scenes/Scene_07"
+          },
+          "masterComposition": {
+            "id": 445,
+            "path": "02 Render Comp/Screen_Mockup_HD"
+          },
+          "midpointSeconds": 26.700000000000003,
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/screen-mockup.json",
+            "sha256": "7fba98c47fad5694ec026aa88486bb05bb00369db88d3b7f6b603bafcb030837"
+          },
+          "status": "timeline_label"
+        },
+        "projectId": "screen-mockup",
+        "proposedComposition": {
+          "id": 1005,
+          "path": "03 Others/Final Scenes/Scene_08"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 48,
+            "path": "Main_comp/Main"
+          },
+          {
+            "id": 1137,
+            "path": "Render_IT"
+          }
+        ],
+        "candidateCount": 2,
+        "category": "slideshow_photo",
+        "clipId": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-01/raw/vertical-cinematic-24.json",
+            "sha256": "feb0264eba064687028813297c8035218ca24df31c83cf336183f6c90ce4d4b8"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "vertical-cinematic-24",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 3,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_01"
+          },
+          {
+            "id": 17,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_02"
+          },
+          {
+            "id": 31,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_03"
+          },
+          {
+            "id": 45,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_04"
+          },
+          {
+            "id": 59,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_05"
+          },
+          {
+            "id": 73,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_06"
+          },
+          {
+            "id": 87,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_07"
+          },
+          {
+            "id": 101,
+            "path": "Horizontal/carousel 01/assets/MEDIA_OVERLAY_08"
+          }
+        ],
+        "candidateCount": 392,
+        "category": "carousel",
+        "clipId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/project.json",
+            "sha256": "b159ec4329e600378c2b5438c27cf42f0a4284256d22781e5ee2fa3746378c0c"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "project",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 3777803,
+            "path": "FINAL"
+          },
+          {
+            "id": 3741551,
+            "path": "Works/Scenes/Scene 1/Scene 1"
+          },
+          {
+            "id": 3779907,
+            "path": "Works/Scenes/Scene 10/Paceholder 10 2"
+          },
+          {
+            "id": 3779791,
+            "path": "Works/Scenes/Scene 10/Scene 10"
+          },
+          {
+            "id": 3779978,
+            "path": "Works/Scenes/Scene 11/Scene 11"
+          },
+          {
+            "id": 3780138,
+            "path": "Works/Scenes/Scene 12/Scene 12"
+          },
+          {
+            "id": 3780290,
+            "path": "Works/Scenes/Scene 13/Scene 13"
+          },
+          {
+            "id": 3780449,
+            "path": "Works/Scenes/Scene 14/Scene 14"
+          }
+        ],
+        "candidateCount": 23,
+        "category": "documentary_multi_scene",
+        "clipId": "04-history-documentary-20-slides--scene-010",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "04-history-documentary-20-slides",
+        "nativeTimelineEvaluation": {
+          "reason": "source_timestamps_missing",
+          "status": "unresolved"
+        },
+        "projectId": "history-and-documentary-20-slides-project",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 0,
+        "category": "text_data",
+        "clipId": "archive3-grunge-lyric-video-template--review-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-grunge-lyric-video-template",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/grunge.json",
+            "sha256": "c01c79dd638f8ac8d994250a97dfe342ed05c828c4794c46ca4010cc9d272b5b"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "grunge",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 2128068042,
+            "path": "Scrolling_Screen_4K/Scrolling_Screen_4K_Backwards_1"
+          },
+          {
+            "id": 2128068094,
+            "path": "Scrolling_Screen_4K/Scrolling_Screen_4K_Backwards_2"
+          },
+          {
+            "id": 2128068144,
+            "path": "Scrolling_Screen_4K/Scrolling_Screen_4K_Backwards_3"
+          },
+          {
+            "id": 2128068195,
+            "path": "Scrolling_Screen_4K/Scrolling_Screen_4K_Backwards_4"
+          },
+          {
+            "id": 2128068246,
+            "path": "Scrolling_Screen_4K/Scrolling_Screen_4K_Backwards_5"
+          },
+          {
+            "id": 2128068297,
+            "path": "Scrolling_Screen_4K/Scrolling_Screen_4K_Backwards_6"
+          },
+          {
+            "id": 2128068348,
+            "path": "Scrolling_Screen_4K/Scrolling_Screen_4K_Backwards_7"
+          },
+          {
+            "id": 2128068399,
+            "path": "Scrolling_Screen_4K/Scrolling_Screen_4K_Backwards_8"
+          }
+        ],
+        "candidateCount": 34,
+        "category": "screen_contact",
+        "clipId": "scrolling-screen--review-003",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "scrolling-screen",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw/scrolling-screen-animations.json",
+            "sha256": "84b96f8b1f564fb702f870806f51ef1308a9edac8bf3887aa0403e240aca40e7"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "scrolling-screen-animations",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 48,
+            "path": "Main_comp/Main"
+          },
+          {
+            "id": 1137,
+            "path": "Render_IT"
+          }
+        ],
+        "candidateCount": 2,
+        "category": "slideshow_photo",
+        "clipId": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-01/raw/vertical-cinematic-24.json",
+            "sha256": "feb0264eba064687028813297c8035218ca24df31c83cf336183f6c90ce4d4b8"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "vertical-cinematic-24",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 13275,
+            "path": "02. Final Comp/Gallery Pro - Flow"
+          },
+          {
+            "id": 11805,
+            "path": "02. Final Comp/Gallery Pro - Focus"
+          },
+          {
+            "id": 11667,
+            "path": "02. Final Comp/Gallery Pro - Orbit"
+          },
+          {
+            "id": 12073,
+            "path": "02. Final Comp/Gallery Pro - Showcase"
+          }
+        ],
+        "candidateCount": 4,
+        "category": "carousel",
+        "clipId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003a",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-01/raw/gallery-pro-carousel.json",
+            "sha256": "8d7f80286b3f42c73a0ec59ec02192c40de49098ded0a6452a776c5d2f6171e6"
+          },
+          "reason": "multiple_native_master_timelines",
+          "status": "unresolved"
+        },
+        "projectId": "gallery-pro-carousel",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 23,
+        "category": "documentary_multi_scene",
+        "clipId": "04-history-documentary-20-slides--scene-011",
+        "evidence": {
+          "clipOrdinal": 11
+        },
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatchWhenLabeled": null,
+        "familyId": "04-history-documentary-20-slides",
+        "nativeTimelineEvaluation": {
+          "reason": "source_timestamps_missing",
+          "status": "unresolved"
+        },
+        "projectId": "history-and-documentary-20-slides-project",
+        "proposedComposition": {
+          "id": 3779978,
+          "path": "Works/Scenes/Scene 11/Scene 11"
+        },
+        "status": "proposed"
+      },
+      {
+        "alternatives": [],
+        "candidateCount": 0,
+        "category": "text_data",
+        "clipId": "archive3-horizontal-music-players-with-lyric-vol-2--review-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-horizontal-music-players-with-lyric-vol-2",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/horizontal-music-players-with-lyrics-vol-2.json",
+            "sha256": "c2a4aec627d95a79b9bc506db4509ec6fa8a8eb06f8a23f0f4cf5eb878ba2099"
+          },
+          "reason": "native_master_timeline_missing",
+          "status": "unresolved"
+        },
+        "projectId": "horizontal-music-players-with-lyrics-vol-2",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 86879,
+            "path": "All Materials/simple scenes/simple scene 1 - child comp"
+          },
+          {
+            "id": 91257,
+            "path": "All Materials/simple scenes/simple scene 10a - child comp"
+          },
+          {
+            "id": 91277,
+            "path": "All Materials/simple scenes/simple scene 10b - child comp"
+          },
+          {
+            "id": 91296,
+            "path": "All Materials/simple scenes/simple scene 10c - child comp"
+          },
+          {
+            "id": 91718,
+            "path": "All Materials/simple scenes/simple scene 11a - child comp"
+          },
+          {
+            "id": 91737,
+            "path": "All Materials/simple scenes/simple scene 11b - child comp"
+          },
+          {
+            "id": 91756,
+            "path": "All Materials/simple scenes/simple scene 11c - child comp "
+          },
+          {
+            "id": 91775,
+            "path": "All Materials/simple scenes/simple scene 11d - child comp"
+          }
+        ],
+        "candidateCount": 176,
+        "category": "slideshow_photo",
+        "clipId": "intro-slideshow-full-720p--scene-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "intro-slideshow-full-720p",
+        "nativeTimelineEvaluation": {
+          "reason": "source_timestamps_missing",
+          "status": "unresolved"
+        },
+        "projectId": "intro-slideshow",
+        "proposedComposition": null,
+        "status": "abstain"
+      },
+      {
+        "alternatives": [
+          {
+            "id": 13275,
+            "path": "02. Final Comp/Gallery Pro - Flow"
+          },
+          {
+            "id": 11805,
+            "path": "02. Final Comp/Gallery Pro - Focus"
+          },
+          {
+            "id": 11667,
+            "path": "02. Final Comp/Gallery Pro - Orbit"
+          },
+          {
+            "id": 12073,
+            "path": "02. Final Comp/Gallery Pro - Showcase"
+          }
+        ],
+        "candidateCount": 4,
+        "category": "carousel",
+        "clipId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatchWhenLabeled": null,
+        "familyId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc",
+        "nativeTimelineEvaluation": {
+          "rawReport": {
+            "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-01/raw/gallery-pro-carousel.json",
+            "sha256": "8d7f80286b3f42c73a0ec59ec02192c40de49098ded0a6452a776c5d2f6171e6"
+          },
+          "reason": "multiple_native_master_timelines",
+          "status": "unresolved"
+        },
+        "projectId": "gallery-pro-carousel",
+        "proposedComposition": null,
+        "status": "abstain"
+      }
+    ],
+    "sampleIds": [
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-003",
+      "02-documentary-promo--scene-002",
+      "archive3-comparison-pack-ae--review-001",
+      "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v2-004",
+      "archive3-comparison-pack-ae--review-005",
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-005",
+      "02-documentary-promo--scene-005",
+      "archive3-glow-edge-titles-2026-09-13-15-34-22-utc--review-001",
+      "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003b",
+      "archive3-photo-slideshow-final--review-002",
+      "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-002",
+      "03-history-documentary-10-slides--scene-001",
+      "archive3-glow-edge-titles-2026-09-13-15-34-22-utc--review-002",
+      "screen-mockup-rfx--review-007",
+      "archive3-photo-slideshow-final--review-003",
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-001",
+      "03-history-documentary-10-slides--scene-002",
+      "archive3-grunge-lyric-video-template--review-001",
+      "screen-mockup-rfx--review-008",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-001",
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003",
+      "04-history-documentary-20-slides--scene-010",
+      "archive3-grunge-lyric-video-template--review-002",
+      "scrolling-screen--review-003",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-002",
+      "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003a",
+      "04-history-documentary-20-slides--scene-011",
+      "archive3-horizontal-music-players-with-lyric-vol-2--review-001",
+      "intro-slideshow-full-720p--scene-002",
+      "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b"
+    ],
+    "sampleSize": 30
+  },
+  "renderingAuthorized": false,
+  "replay": {
+    "abstained": 40,
+    "byEvidenceClass": {
+      "no_safe_structural_candidate": {
+        "correct": 0,
+        "eligibleAfterReplay": false,
+        "errors": [],
+        "families": [],
+        "precision": null,
+        "predictions": 0
+      },
+      "ordinal_terminal_unique": {
+        "correct": 15,
+        "eligibleAfterReplay": false,
+        "errors": [
+          "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001",
+          "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-002",
+          "carousel--review-011",
+          "08-documentary-slideshow--scene-004",
+          "08-documentary-slideshow--scene-005",
+          "08-documentary-slideshow--scene-006",
+          "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004"
+        ],
+        "families": [
+          "04-history-documentary-20-slides",
+          "08-documentary-slideshow",
+          "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc",
+          "archive3-infographic-bar-charts",
+          "archive3-number-count-pack-2026-09-13-15-09-11-utc",
+          "carousel",
+          "counters-envato",
+          "photo-slideshow-memories-envato",
+          "screen-mockup-rfx"
+        ],
+        "precision": 0.6818181818181818,
+        "predictions": 22
+      },
+      "semantic_path_unique": {
+        "correct": 1,
+        "eligibleAfterReplay": false,
+        "errors": [
+          "screen-mockup-rfx--review-002"
+        ],
+        "families": [
+          "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc",
+          "screen-mockup-rfx"
+        ],
+        "precision": 0.5,
+        "predictions": 2
+      },
+      "single_output_unique": {
+        "correct": 8,
+        "eligibleAfterReplay": false,
+        "errors": [
+          "story-on-photo-slideshow-envato--scene-001"
+        ],
+        "families": [
+          "archive3-looped-slideshow-background",
+          "minimalism-slideshow",
+          "photo-slideshow-smooth-envato",
+          "story-on-photo-slideshow-envato"
+        ],
+        "precision": 0.8888888888888888,
+        "predictions": 9
+      }
+    },
+    "correct": 24,
+    "coverage": 0.4520547945205479,
+    "errors": 9,
+    "precision": 0.7272727272727273,
+    "proposed": 33,
+    "rows": [
+      {
+        "clipId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": false,
+        "familyId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc",
+        "goldComposition": {
+          "id": 35052,
+          "path": "02. Final/Carousel Arc Flow"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 39019,
+          "path": "03. Other/Carousel CTRL/Carousel 01"
+        }
+      },
+      {
+        "clipId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-002",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": false,
+        "familyId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc",
+        "goldComposition": {
+          "id": 35006,
+          "path": "02. Final/Carousel Vertical Flip"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 39751,
+          "path": "03. Other/Carousel CTRL/Carousel 02"
+        }
+      },
+      {
+        "clipId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-004",
+        "evidenceClass": "semantic_path_unique",
+        "exactMatch": true,
+        "familyId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc",
+        "goldComposition": {
+          "id": 30576,
+          "path": "02. Final/Carousel Diagonal Rail"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 30576,
+          "path": "02. Final/Carousel Diagonal Rail"
+        }
+      },
+      {
+        "clipId": "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc",
+        "goldComposition": {
+          "id": 217,
+          "path": "03 OTHER/pre/main"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc",
+        "goldComposition": {
+          "id": 2355,
+          "path": "Horizontal/carousel 02/carousel 02/Main Comp"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-004",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc",
+        "goldComposition": {
+          "id": 4733,
+          "path": "Horizontal/carousel 04/carousel 04/Main Comp"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc",
+        "goldComposition": {
+          "id": 11805,
+          "path": "02. Final Comp/Gallery Pro - Focus"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc",
+        "goldComposition": {
+          "id": 12073,
+          "path": "02. Final Comp/Gallery Pro - Showcase"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-looped-slideshow-background--review-001",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": true,
+        "familyId": "archive3-looped-slideshow-background",
+        "goldComposition": {
+          "id": 114,
+          "path": "Edit/Main"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 114,
+          "path": "Edit/Main"
+        }
+      },
+      {
+        "clipId": "carousel--review-001",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "carousel",
+        "goldComposition": {
+          "id": 1,
+          "path": "Carousel 01/Carousel 01"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 1,
+          "path": "Carousel 01/Carousel 01"
+        }
+      },
+      {
+        "clipId": "carousel--review-011",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": false,
+        "familyId": "carousel",
+        "goldComposition": {
+          "id": 3076,
+          "path": "Carousel 10/Carousel 10"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 3466,
+          "path": "Carousel 11/Carousel 11"
+        }
+      },
+      {
+        "clipId": "carousel-slideshow--review-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "carousel-slideshow",
+        "goldComposition": {
+          "id": 12018,
+          "path": "2.Final/Render 01"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "carousel-slideshow--review-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "carousel-slideshow",
+        "goldComposition": {
+          "id": 12030,
+          "path": "2.Final/Render 02"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "minimalism-slideshow--review-001",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": true,
+        "familyId": "minimalism-slideshow",
+        "goldComposition": {
+          "id": 1827,
+          "path": "02. Final Comps/Slideshow Final"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 1827,
+          "path": "02. Final Comps/Slideshow Final"
+        }
+      },
+      {
+        "clipId": "minimalism-slideshow--review-008",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": true,
+        "familyId": "minimalism-slideshow",
+        "goldComposition": {
+          "id": 1827,
+          "path": "02. Final Comps/Slideshow Final"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 1827,
+          "path": "02. Final Comps/Slideshow Final"
+        }
+      },
+      {
+        "clipId": "minimalism-slideshow--review-011b",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": true,
+        "familyId": "minimalism-slideshow",
+        "goldComposition": {
+          "id": 1827,
+          "path": "02. Final Comps/Slideshow Final"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 1827,
+          "path": "02. Final Comps/Slideshow Final"
+        }
+      },
+      {
+        "clipId": "photo-slideshow--review-050b",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "photo-slideshow",
+        "goldComposition": {
+          "id": 446,
+          "path": "03. Other/Scenes/Scene 6"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "screen-mockup-rfx--review-002",
+        "evidenceClass": "semantic_path_unique",
+        "exactMatch": false,
+        "familyId": "screen-mockup-rfx",
+        "goldComposition": {
+          "id": 262,
+          "path": "03 Others/Final Scenes/Scene_02"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 445,
+          "path": "02 Render Comp/Screen_Mockup_HD"
+        }
+      },
+      {
+        "clipId": "screen-mockup-rfx--review-003",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "screen-mockup-rfx",
+        "goldComposition": {
+          "id": 326,
+          "path": "03 Others/Final Scenes/Scene_03"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 326,
+          "path": "03 Others/Final Scenes/Scene_03"
+        }
+      },
+      {
+        "clipId": "screen-mockup-rfx--review-004",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "screen-mockup-rfx",
+        "goldComposition": {
+          "id": 398,
+          "path": "03 Others/Final Scenes/Scene_04"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 398,
+          "path": "03 Others/Final Scenes/Scene_04"
+        }
+      },
+      {
+        "clipId": "screen-mockup-rfx--review-005",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "screen-mockup-rfx",
+        "goldComposition": {
+          "id": 484,
+          "path": "03 Others/Final Scenes/Scene_05"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 484,
+          "path": "03 Others/Final Scenes/Scene_05"
+        }
+      },
+      {
+        "clipId": "screen-mockup-rfx--review-006",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "screen-mockup-rfx",
+        "goldComposition": {
+          "id": 604,
+          "path": "03 Others/Final Scenes/Scene_06"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 604,
+          "path": "03 Others/Final Scenes/Scene_06"
+        }
+      },
+      {
+        "clipId": "scrolling-screen--review-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "scrolling-screen",
+        "goldComposition": {
+          "id": 410,
+          "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_1"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "scrolling-screen--review-004",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "scrolling-screen",
+        "goldComposition": {
+          "id": 2128067337,
+          "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "scrolling-screen--review-005",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "scrolling-screen",
+        "goldComposition": {
+          "id": 2128067164,
+          "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "scrolling-screen--review-011",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "scrolling-screen",
+        "goldComposition": {
+          "id": 2128067412,
+          "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "text-list-carousel--review-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "text-list-carousel",
+        "goldComposition": {
+          "id": 4051,
+          "path": "Check list text carousel/Check list text carousel 2/Edit Here/Edit Here 2"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "02-documentary-promo--scene-003",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "02-documentary-promo",
+        "goldComposition": {
+          "id": 734,
+          "path": "01 edit/Scene/Scene 03"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "02-documentary-promo--scene-004",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "02-documentary-promo",
+        "goldComposition": {
+          "id": 1162,
+          "path": "01 edit/Scene/Scene 04"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "04-history-documentary-20-slides--scene-013",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "04-history-documentary-20-slides",
+        "goldComposition": {
+          "id": 3780290,
+          "path": "Works/Scenes/Scene 13/Scene 13"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 3780290,
+          "path": "Works/Scenes/Scene 13/Scene 13"
+        }
+      },
+      {
+        "clipId": "04-history-documentary-20-slides--scene-015",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "04-history-documentary-20-slides",
+        "goldComposition": {
+          "id": 3780647,
+          "path": "Works/Scenes/Scene 15/Scene 15"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 3780647,
+          "path": "Works/Scenes/Scene 15/Scene 15"
+        }
+      },
+      {
+        "clipId": "06-the-history--scene-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "06-the-history",
+        "goldComposition": {
+          "id": 2124204228,
+          "path": "ALL_SEQ/SEQ_1/SEQ_1"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "06-the-history--scene-004",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "06-the-history",
+        "goldComposition": {
+          "id": 2124209960,
+          "path": "ALL_SEQ/SEQ_4/SEQ_4"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "07-history-slideshow--scene-018",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "07-history-slideshow",
+        "goldComposition": {
+          "id": 3779504,
+          "path": "Works/Scenes/Scene 18/Scene 18"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "08-documentary-slideshow--scene-004",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": false,
+        "familyId": "08-documentary-slideshow",
+        "goldComposition": {
+          "id": 265349916,
+          "path": "03. Other/SCENES/Scene 03"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 574,
+          "path": "03. Other/SCENES/Scene 04"
+        }
+      },
+      {
+        "clipId": "08-documentary-slideshow--scene-005",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": false,
+        "familyId": "08-documentary-slideshow",
+        "goldComposition": {
+          "id": 574,
+          "path": "03. Other/SCENES/Scene 04"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2114883995,
+          "path": "03. Other/SCENES/Scene 05"
+        }
+      },
+      {
+        "clipId": "08-documentary-slideshow--scene-006",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": false,
+        "familyId": "08-documentary-slideshow",
+        "goldComposition": {
+          "id": 2114883995,
+          "path": "03. Other/SCENES/Scene 05"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2114884047,
+          "path": "03. Other/SCENES/Scene 06"
+        }
+      },
+      {
+        "clipId": "archive3-comparison-pack-ae--review-003",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-comparison-pack-ae",
+        "goldComposition": {
+          "id": 25223,
+          "path": "Comparison List 3/!Comparison List 3 - Final"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-comparison-pack-ae--review-004",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-comparison-pack-ae",
+        "goldComposition": {
+          "id": 12960,
+          "path": "Comparison List 4/!Comparison List 4 - Final"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-comparison-pack-ae--review-006",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-comparison-pack-ae",
+        "goldComposition": {
+          "id": 11725,
+          "path": "Comparison List 5/!Comparison List 5 - Final"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-infographic-bar-charts--review-001",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "archive3-infographic-bar-charts",
+        "goldComposition": {
+          "id": 1736,
+          "path": "2__Bar Charts/Bar Chart 01"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 1736,
+          "path": "2__Bar Charts/Bar Chart 01"
+        }
+      },
+      {
+        "clipId": "archive3-infographic-bar-charts--review-002",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "archive3-infographic-bar-charts",
+        "goldComposition": {
+          "id": 989,
+          "path": "2__Bar Charts/Bar Chart 02"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 989,
+          "path": "2__Bar Charts/Bar Chart 02"
+        }
+      },
+      {
+        "clipId": "archive3-infographic-bar-charts--review-005",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "archive3-infographic-bar-charts",
+        "goldComposition": {
+          "id": 666,
+          "path": "2__Bar Charts/Bar Chart 05"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 666,
+          "path": "2__Bar Charts/Bar Chart 05"
+        }
+      },
+      {
+        "clipId": "archive3-infographic-bar-charts--review-007",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "archive3-infographic-bar-charts",
+        "goldComposition": {
+          "id": 2707,
+          "path": "2__Bar Charts/Bar Chart 07"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2707,
+          "path": "2__Bar Charts/Bar Chart 07"
+        }
+      },
+      {
+        "clipId": "archive3-infographic-bar-charts--review-008",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "archive3-infographic-bar-charts",
+        "goldComposition": {
+          "id": 2961,
+          "path": "2__Bar Charts/Bar Chart 08"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2961,
+          "path": "2__Bar Charts/Bar Chart 08"
+        }
+      },
+      {
+        "clipId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
+        "goldComposition": {
+          "id": 34842,
+          "path": "03. Other/Scenes/SCENE 01"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
+        "goldComposition": {
+          "id": 34990,
+          "path": "03. Other/Scenes/SCENE 04"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": false,
+        "familyId": "archive3-number-count-pack-2026-09-13-15-09-11-utc",
+        "goldComposition": {
+          "id": 45,
+          "path": "2. To Edit/Number Count 3"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 27,
+          "path": "2. To Edit/Number Count 4"
+        }
+      },
+      {
+        "clipId": "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-v2-006",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "archive3-number-count-pack-2026-09-13-15-09-11-utc",
+        "goldComposition": {
+          "id": 1,
+          "path": "2. To Edit/Number Count 2"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "counters-envato--scene-002",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "counters-envato",
+        "goldComposition": {
+          "id": 17651,
+          "path": "Counters/Counter 02/Counter 02"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "counters-envato--scene-003",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "counters-envato",
+        "goldComposition": {
+          "id": 17662,
+          "path": "Counters/Counter 03/Counter 03"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 17662,
+          "path": "Counters/Counter 03/Counter 03"
+        }
+      },
+      {
+        "clipId": "counters-envato--scene-004",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "counters-envato",
+        "goldComposition": {
+          "id": 17673,
+          "path": "Counters/Counter 04/Counter 04"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 17673,
+          "path": "Counters/Counter 04/Counter 04"
+        }
+      },
+      {
+        "clipId": "intro-slideshow-full-720p--scene-011",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "intro-slideshow-full-720p",
+        "goldComposition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "intro-slideshow-full-720p--scene-020",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "intro-slideshow-full-720p",
+        "goldComposition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "intro-slideshow-full-720p--scene-031",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "intro-slideshow-full-720p",
+        "goldComposition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "intro-slideshow-full-720p--scene-033",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "intro-slideshow-full-720p",
+        "goldComposition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "intro-slideshow-full-720p--scene-034",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "intro-slideshow-full-720p",
+        "goldComposition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "intro-slideshow-full-720p--scene-040",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "intro-slideshow-full-720p",
+        "goldComposition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "intro-slideshow-full-720p--scene-044",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "intro-slideshow-full-720p",
+        "goldComposition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "memories-photo-slideshow-creative-slides-envato--scene-001",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "memories-photo-slideshow-creative-slides-envato",
+        "goldComposition": {
+          "id": 333,
+          "path": "Edit/Scene 1/Scene 1"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "memories-photo-slideshow-creative-slides-envato--scene-006",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "memories-photo-slideshow-creative-slides-envato",
+        "goldComposition": {
+          "id": 3259,
+          "path": "Edit/Scene 2/Scene 2"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "memories-photo-slideshow-creative-slides-envato--scene-007",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "memories-photo-slideshow-creative-slides-envato",
+        "goldComposition": {
+          "id": 3259,
+          "path": "Edit/Scene 2/Scene 2"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "modern-photo-slideshow-envato--scene-016",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "modern-photo-slideshow-envato",
+        "goldComposition": {
+          "id": 4018,
+          "path": "02.Edit Comp/Scene_04/Scene_04"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "photo-slideshow-memories-envato--scene-001",
+        "evidenceClass": "ordinal_terminal_unique",
+        "exactMatch": true,
+        "familyId": "photo-slideshow-memories-envato",
+        "goldComposition": {
+          "id": 2124190908,
+          "path": "02.Edit Comps/Scene 01/Scene 01"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2124190908,
+          "path": "02.Edit Comps/Scene 01/Scene 01"
+        }
+      },
+      {
+        "clipId": "photo-slideshow-memories-envato--scene-003",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "photo-slideshow-memories-envato",
+        "goldComposition": {
+          "id": 2124190091,
+          "path": "02.Edit Comps/Scene 03/Scene 03"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "photo-slideshow-memories-envato--scene-006",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "photo-slideshow-memories-envato",
+        "goldComposition": {
+          "id": 2124189426,
+          "path": "02.Edit Comps/Scene 05/Scene 05"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "photo-slideshow-memories-envato--scene-008",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "photo-slideshow-memories-envato",
+        "goldComposition": {
+          "id": 2124190597,
+          "path": "02.Edit Comps/Scene 07/Scene 07"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "photo-slideshow-memories-envato--scene-010",
+        "evidenceClass": "no_safe_structural_candidate",
+        "exactMatch": false,
+        "familyId": "photo-slideshow-memories-envato",
+        "goldComposition": {
+          "id": 2124177936,
+          "path": "02.Edit Comps/Scene 09/Scene 09"
+        },
+        "predictionStatus": "abstain",
+        "proposedComposition": null
+      },
+      {
+        "clipId": "photo-slideshow-smooth-envato--scene-001",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": true,
+        "familyId": "photo-slideshow-smooth-envato",
+        "goldComposition": {
+          "id": 2124194533,
+          "path": "03.Render/Final Comp"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2124194533,
+          "path": "03.Render/Final Comp"
+        }
+      },
+      {
+        "clipId": "photo-slideshow-smooth-envato--scene-005",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": true,
+        "familyId": "photo-slideshow-smooth-envato",
+        "goldComposition": {
+          "id": 2124194533,
+          "path": "03.Render/Final Comp"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2124194533,
+          "path": "03.Render/Final Comp"
+        }
+      },
+      {
+        "clipId": "photo-slideshow-smooth-envato--scene-006",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": true,
+        "familyId": "photo-slideshow-smooth-envato",
+        "goldComposition": {
+          "id": 2124194533,
+          "path": "03.Render/Final Comp"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2124194533,
+          "path": "03.Render/Final Comp"
+        }
+      },
+      {
+        "clipId": "photo-slideshow-smooth-envato--scene-016",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": true,
+        "familyId": "photo-slideshow-smooth-envato",
+        "goldComposition": {
+          "id": 2124194533,
+          "path": "03.Render/Final Comp"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 2124194533,
+          "path": "03.Render/Final Comp"
+        }
+      },
+      {
+        "clipId": "story-on-photo-slideshow-envato--scene-001",
+        "evidenceClass": "single_output_unique",
+        "exactMatch": false,
+        "familyId": "story-on-photo-slideshow-envato",
+        "goldComposition": {
+          "id": 1,
+          "path": "02 Project Elements/Main Comps/Comp 1"
+        },
+        "predictionStatus": "proposed",
+        "proposedComposition": {
+          "id": 16797,
+          "path": "01 Render This/RENDER COMP"
+        }
+      }
+    ],
+    "total": 73
+  },
+  "schemaVersion": 1,
+  "sourceHashes": {
+    "evaluationSources": {
+      "verifiedMappings": "716c926120301c12e84e23ca20a5766bd4837f2dad7b50862822d0237cdea786"
+    },
+    "predictorSources": {
+      "approvedCatalog": "3729a1b36f2b58ca0a369bef6ac443feaf3a9726d225b24ed1c7dd739d510326",
+      "reviewCatalog": "6c8a770d5c4c5370121eedc2f686eec10341efbd3e3e9e3faaf8be2721c64a32",
+      "technicalFamilyLinks": "bfe4022aa0d0546d9e153586cad10311656fde3945c40347845a7d23f661d726",
+      "technicalIndex": "76eeac54a1139cd36a826e4bd8e839a7583585124b4e6fd6e267a3fde9dabe2b"
+    }
+  }
+}
