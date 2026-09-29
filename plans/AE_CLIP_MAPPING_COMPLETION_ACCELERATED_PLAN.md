@@ -143,3 +143,16 @@ The approved three-clip Screen Mockup batch completed without rendering:
 The evidence combines five consecutive verified anchors, the source-bound eight-layer native master sequence, exact scene order, and same-numbered unique recursive media sources. Each promoted composition measures one absolute media slot, one maximum simultaneously enabled input, zero editable text fields, and 8.008008 seconds.
 
 The registry expanded from 73 to 76 verified mapping records while the existing VisualTask comparison remains a validated 73-record subset. Full-library coverage moved from 333 to 330 `mapping_unverified` clips and from 54 to 57 `mapped_verified` clips. Sixty-two focused tests pass. The full 575-test suite retains only the unrelated known Cloudflare-credentials assertion failure, with 13 skips.
+
+## Execution checkpoint: bulk batch 002
+
+Twenty-four additional clips were verified across four source-bound numbered families:
+
+- five `02-documentary-promo` clips;
+- six `04-history-documentary-20-slides` clips;
+- nine `06-the-history` clips; and
+- four `archive3-infographic-bar-charts` clips.
+
+Eleven existing verified anchors establish the family-specific ordinal rules. Every anchor passed leave-one-out replay, every proposed terminal composition exists in the technical index, and every required composition appears in the bound native master. Chronological families preserve native sequence order; the bar-chart preview contains all nine exact numbered terminal charts. No render was required.
+
+The registry now contains 100 verified mappings. Full-library coverage is 81 `mapped_verified`, 17 `mapped_verified_window`, five approximate-window mappings, 306 `mapping_unverified`, five excluded MOGRT clips, and 14 `project_unlinked` clips. Sixty-eight focused mapping, coverage, calibration, comparison, and matching-accuracy tests pass.

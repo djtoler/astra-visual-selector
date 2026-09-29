@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "batchId": "clip-mapping-batch-002",
+  "activationState": "reviewed_native_mapping_batch",
+  "renderingAuthorized": false,
+  "registryPath": "grammar/ae-scene-composition-mappings.json",
+  "sources": {
+    "reviewCatalog": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/review-catalog.json",
+      "sha256": "6c8a770d5c4c5370121eedc2f686eec10341efbd3e3e9e3faaf8be2721c64a32"
+    },
+    "approvedCatalog": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/catalog.json",
+      "sha256": "3729a1b36f2b58ca0a369bef6ac443feaf3a9726d225b24ed1c7dd739d510326"
+    },
+    "technicalIndex": {
+      "path": "grammar/ae-template-technical-index.json",
+      "sha256": "76eeac54a1139cd36a826e4bd8e839a7583585124b4e6fd6e267a3fde9dabe2b"
+    },
+    "familyLinks": {
+      "path": "grammar/ae-template-spec-links.json",
+      "sha256": "bfe4022aa0d0546d9e153586cad10311656fde3945c40347845a7d23f661d726"
+    },
+    "documentaryNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/documentary-promo.json",
+      "sha256": "7efab2f5bfae59d3e0708650bd54c9812eb726e3156d59246c36140fe9afbb31"
+    },
+    "history20Native": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/history-and-documentary-20-slides-project.json",
+      "sha256": "06428267fdc3c2f8987b48b572cc1f8a9e0ee4e4ae266894d2dc33ad50a7042f"
+    },
+    "theHistoryNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/the-history.json",
+      "sha256": "c90977f888a858df6b4068fdb6c8555f8b681eda2202feabfb0ede8c0ee1eae2"
+    },
+    "barChartsNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/infographic-bar-charts.json",
+      "sha256": "90f515936cb035e0ffea4f232888826c5402e47018cfa4e76158c92286c0d0c0"
+    }
+  },
+  "targetClipIds": [
+    "02-documentary-promo--scene-002",
+    "02-documentary-promo--scene-005",
+    "02-documentary-promo--scene-006",
+    "02-documentary-promo--scene-007",
+    "02-documentary-promo--scene-008",
+    "04-history-documentary-20-slides--scene-010",
+    "04-history-documentary-20-slides--scene-011",
+    "04-history-documentary-20-slides--scene-012",
+    "04-history-documentary-20-slides--scene-014",
+    "04-history-documentary-20-slides--scene-016",
+    "04-history-documentary-20-slides--scene-017",
+    "06-the-history--scene-002",
+    "06-the-history--scene-003",
+    "06-the-history--scene-005",
+    "06-the-history--scene-006",
+    "06-the-history--scene-007",
+    "06-the-history--scene-008",
+    "06-the-history--scene-009",
+    "06-the-history--scene-010",
+    "06-the-history--scene-016",
+    "archive3-infographic-bar-charts--review-003",
+    "archive3-infographic-bar-charts--review-004",
+    "archive3-infographic-bar-charts--review-006",
+    "archive3-infographic-bar-charts--review-009"
+  ],
+  "families": [
+    {
+      "familyId": "02-documentary-promo",
+      "projectId": "documentary-promo",
+      "sourceProjectSha256": "54b98c42a20912fa300636fca9acc5545e6a3606c6471a3397457c994de25d79",
+      "clipIdPattern": "02-documentary-promo--scene-(?P<ordinal>\\d+)",
+      "compositionPathPattern": "01 edit/Scene/Scene (?P<ordinal>\\d+)",
+      "ordinalOffset": 0,
+      "masterCompositionId": 21,
+      "masterCompositionPath": "02 render/Main ",
+      "nativeReportSource": "documentaryNative",
+      "requireChronologicalOrder": true,
+      "anchors": [
+        {
+          "projectId": "documentary-promo",
+          "status": "verified",
+          "compositionId": 734,
+          "compositionPath": "01 edit/Scene/Scene 03",
+          "clipId": "02-documentary-promo--scene-003"
+        },
+        {
+          "projectId": "documentary-promo",
+          "status": "verified",
+          "compositionId": 1162,
+          "compositionPath": "01 edit/Scene/Scene 04",
+          "clipId": "02-documentary-promo--scene-004"
+        }
+      ],
+      "targetClipIds": [
+        "02-documentary-promo--scene-002",
+        "02-documentary-promo--scene-005",
+        "02-documentary-promo--scene-006",
+        "02-documentary-promo--scene-007",
+        "02-documentary-promo--scene-008"
+      ]
+    },
+    {
+      "familyId": "04-history-documentary-20-slides",
+      "projectId": "history-and-documentary-20-slides-project",
+      "sourceProjectSha256": "9459baf2f40bc13605dd24edcfc7d6a9c138e4ae75415714a11ff25ecb7722af",
+      "clipIdPattern": "04-history-documentary-20-slides--scene-(?P<ordinal>\\d+)",
+      "compositionPathPattern": "Works/Scenes/Scene (?P<ordinal>\\d+)/Scene (?P=ordinal)",
+      "ordinalOffset": 0,
+      "masterCompositionId": 3777803,
+      "masterCompositionPath": "FINAL",
+      "nativeReportSource": "history20Native",
+      "requireChronologicalOrder": true,
+      "anchors": [
+        {
+          "projectId": "history-and-documentary-20-slides-project",
+          "status": "verified",
+          "compositionId": 3780290,
+          "compositionPath": "Works/Scenes/Scene 13/Scene 13",
+          "clipId": "04-history-documentary-20-slides--scene-013"
+        },
+        {
+          "projectId": "history-and-documentary-20-slides-project",
+          "status": "verified",
+          "compositionId": 3780647,
+          "compositionPath": "Works/Scenes/Scene 15/Scene 15",
+          "clipId": "04-history-documentary-20-slides--scene-015"
+        }
+      ],
+      "targetClipIds": [
+        "04-history-documentary-20-slides--scene-010",
+        "04-history-documentary-20-slides--scene-011",
+        "04-history-documentary-20-slides--scene-012",
+        "04-history-documentary-20-slides--scene-014",
+        "04-history-documentary-20-slides--scene-016",
+        "04-history-documentary-20-slides--scene-017"
+      ]
+    },
+    {
+      "familyId": "06-the-history",
+      "projectId": "the-history",
+      "sourceProjectSha256": "4595ce034ec1ad1a17430a0ffa7f63aeb50b11e812a20d214f9bdb036b48fa01",
+      "clipIdPattern": "06-the-history--scene-(?P<ordinal>\\d+)",
+      "compositionPathPattern": "ALL_SEQ/SEQ_(?P<ordinal>\\d+)/SEQ_(?P=ordinal)",
+      "ordinalOffset": 0,
+      "masterCompositionId": 2124171736,
+      "masterCompositionPath": "| SEQ_ALL",
+      "nativeReportSource": "theHistoryNative",
+      "requireChronologicalOrder": true,
+      "anchors": [
+        {
+          "projectId": "the-history",
+          "status": "verified",
+          "compositionId": 2124204228,
+          "compositionPath": "ALL_SEQ/SEQ_1/SEQ_1",
+          "clipId": "06-the-history--scene-001"
+        },
+        {
+          "projectId": "the-history",
+          "status": "verified",
+          "compositionId": 2124209960,
+          "compositionPath": "ALL_SEQ/SEQ_4/SEQ_4",
+          "clipId": "06-the-history--scene-004"
+        }
+      ],
+      "targetClipIds": [
+        "06-the-history--scene-002",
+        "06-the-history--scene-003",
+        "06-the-history--scene-005",
+        "06-the-history--scene-006",
+        "06-the-history--scene-007",
+        "06-the-history--scene-008",
+        "06-the-history--scene-009",
+        "06-the-history--scene-010",
+        "06-the-history--scene-016"
+      ]
+    },
+    {
+      "familyId": "archive3-infographic-bar-charts",
+      "projectId": "infographic-bar-charts",
+      "sourceProjectSha256": "e72dbfdf977956916e663cdf9630e6ab33932e5d57892152c0ac78d2652b8730",
+      "clipIdPattern": "archive3-infographic-bar-charts--review-(?P<ordinal>\\d+)",
+      "compositionPathPattern": "2__Bar Charts/Bar Chart (?P<ordinal>\\d+)",
+      "ordinalOffset": 0,
+      "masterCompositionId": 1666,
+      "masterCompositionPath": "1__Preview/Preview",
+      "nativeReportSource": "barChartsNative",
+      "requireChronologicalOrder": false,
+      "anchors": [
+        {
+          "projectId": "infographic-bar-charts",
+          "status": "verified",
+          "compositionId": 1736,
+          "compositionPath": "2__Bar Charts/Bar Chart 01",
+          "clipId": "archive3-infographic-bar-charts--review-001"
+        },
+        {
+          "projectId": "infographic-bar-charts",
+          "status": "verified",
+          "compositionId": 989,
+          "compositionPath": "2__Bar Charts/Bar Chart 02",
+          "clipId": "archive3-infographic-bar-charts--review-002"
+        },
+        {
+          "projectId": "infographic-bar-charts",
+          "status": "verified",
+          "compositionId": 666,
+          "compositionPath": "2__Bar Charts/Bar Chart 05",
+          "clipId": "archive3-infographic-bar-charts--review-005"
+        },
+        {
+          "projectId": "infographic-bar-charts",
+          "status": "verified",
+          "compositionId": 2707,
+          "compositionPath": "2__Bar Charts/Bar Chart 07",
+          "clipId": "archive3-infographic-bar-charts--review-007"
+        },
+        {
+          "projectId": "infographic-bar-charts",
+          "status": "verified",
+          "compositionId": 2961,
+          "compositionPath": "2__Bar Charts/Bar Chart 08",
+          "clipId": "archive3-infographic-bar-charts--review-008"
+        }
+      ],
+      "targetClipIds": [
+        "archive3-infographic-bar-charts--review-003",
+        "archive3-infographic-bar-charts--review-004",
+        "archive3-infographic-bar-charts--review-006",
+        "archive3-infographic-bar-charts--review-009"
+      ]
+    }
+  ]
+}
