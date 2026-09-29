@@ -59,13 +59,66 @@ def source_text(layer) -> tuple[dict | None, dict | None]:
             "fontSize": getattr(document, "font_size", None),
             "boxTextSize": box_size,
         }
-        property_state = {
-            "numKeys": len(getattr(prop, "keyframes", [])),
-            "expression": getattr(prop, "expression", ""),
-            "expressionEnabled": bool(getattr(prop, "expression_enabled", False)),
-        }
-        return field, property_state
+        return field, property_state(prop)
     return None, None
+
+
+def json_value(value):
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
+    if isinstance(value, (list, tuple)):
+        return [json_value(item) for item in value]
+    return str(value)
+
+
+def interpolation_name(value) -> str:
+    return getattr(value, "name", None) or str(value)
+
+
+def property_state(prop, *, capture_keyframes: bool = False) -> dict:
+    keyframes = list(getattr(prop, "keyframes", []))
+    state = {
+        "numKeys": len(keyframes),
+        "expression": getattr(prop, "expression", ""),
+        "expressionEnabled": bool(getattr(prop, "expression_enabled", False)),
+    }
+    if capture_keyframes and keyframes:
+        state["keyframes"] = [
+            {
+                "index": index,
+                "time": keyframe.time,
+                "value": json_value(keyframe.value),
+                "inInterpolationType": interpolation_name(keyframe.in_interpolation_type),
+                "outInterpolationType": interpolation_name(keyframe.out_interpolation_type),
+            }
+            for index, keyframe in enumerate(keyframes, start=1)
+        ]
+    return state
+
+
+def property_by_match_name(properties, match_name):
+    return next(
+        (prop for prop in (properties or []) if getattr(prop, "match_name", None) == match_name),
+        None,
+    )
+
+
+def transform_states(layer) -> dict:
+    transform = getattr(layer, "transform", None)
+    properties = getattr(transform, "properties", []) if transform is not None else []
+    matches = {
+        "anchorPoint": "ADBE Anchor Point",
+        "position": "ADBE Position",
+        "scale": "ADBE Scale",
+        "rotation": "ADBE Rotate Z",
+        "opacity": "ADBE Opacity",
+    }
+    states = {}
+    for field, match_name in matches.items():
+        prop = property_by_match_name(properties, match_name)
+        if prop is not None:
+            states[field] = property_state(prop, capture_keyframes=field == "opacity")
+    return states
 
 
 def inspect(source: Path) -> dict:
@@ -112,11 +165,20 @@ def inspect(source: Path) -> dict:
                 "timeRemapEnabled": bool(getattr(layer, "time_remap_enabled", False)),
                 "sourceId": getattr(source_item, "id", None),
                 "source": getattr(source_item, "name", None),
+                "transform": transform_states(layer),
             }
-            text_field, property_state = source_text(layer)
+            if row["timeRemapEnabled"]:
+                time_remap = property_by_match_name(
+                    getattr(layer, "properties", []), "ADBE Time Remapping"
+                )
+                if time_remap is not None:
+                    row["timeRemap"] = property_state(
+                        time_remap, capture_keyframes=True
+                    )
+            text_field, source_text_state = source_text(layer)
             if text_field is not None:
                 row["textField"] = text_field
-                row["sourceText"] = property_state
+                row["sourceText"] = source_text_state
             effects = []
             for effect in (getattr(layer, "effects", None) or []):
                 effects.append({

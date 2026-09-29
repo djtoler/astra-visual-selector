@@ -22,10 +22,10 @@ class ExactSceneCompositionMappings(unittest.TestCase):
 
     def test_review_states_remain_distinct(self):
         result, _ = self._comparisons()
-        self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 60)
-        self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 52)
-        self.assertEqual(result["counts"]["verifiedWindowMappings"], 8)
-        self.assertEqual(result["counts"]["unresolvedUniqueSceneMappings"], 13)
+        self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 71)
+        self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 54)
+        self.assertEqual(result["counts"]["verifiedWindowMappings"], 17)
+        self.assertEqual(result["counts"]["unresolvedUniqueSceneMappings"], 2)
         self.assertEqual(result["counts"]["unreviewedUniqueSceneMappings"], 0)
 
     def test_exact_flow_scene_uses_native_composition_metrics(self):
@@ -57,23 +57,32 @@ class ExactSceneCompositionMappings(unittest.TestCase):
         self.assertEqual(comp["path"], "03 Others/Final Scenes/Scene_02")
         self.assertAlmostEqual(comp["durationSeconds"], 8.008008008008009)
 
-    def test_ambiguous_carousel_stays_unresolved(self):
+    def test_native_test_resolves_first_carousel_to_carousel_01(self):
         _, rows = self._comparisons()
         row = rows["carousel--review-001"]
-        self.assertNotIn("exactComposition", row)
-        self.assertEqual(row["compositionMappingStatus"], "unresolved")
-        self.assertEqual(len(row["mappingUnresolved"]["candidateCompositionPaths"]), 4)
-        self.assertIn("exact_scene_to_native_composition_mapping", row["missingForFillableNow"])
+        self.assertEqual(row["compositionMappingStatus"], "verified")
+        self.assertEqual(row["exactComposition"]["id"], 1)
+        self.assertEqual(row["exactComposition"]["path"], "Carousel 01/Carousel 01")
+        self.assertEqual(row["exactComposition"]["totalIndependentVisualMediaInputs"], 6)
+        self.assertNotIn("exact_scene_to_native_composition_mapping", row["missingForFillableNow"])
 
-    def test_reviewed_subrange_can_name_one_parent_composition_without_claiming_exact_capacity(self):
+    def test_moving_contact_sheet_uses_exact_clip_window_capacity(self):
         _, rows = self._comparisons()
         row = rows["archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a"]
-        self.assertEqual(row["compositionMappingStatus"], "unresolved")
-        self.assertEqual(
-            row["mappingUnresolved"]["candidateCompositionPaths"],
-            ["03. Other/Scenes/SCENE 01"],
-        )
-        self.assertIn("exact_scene_to_native_composition_mapping", row["missingForFillableNow"])
+        self.assertEqual(row["compositionMappingStatus"], "verified_window")
+        self.assertEqual(row["exactComposition"]["path"], "03. Other/Scenes/SCENE 01")
+        self.assertEqual(row["exactComposition"]["measurementScope"], "clip_window")
+        self.assertEqual(row["exactComposition"]["totalIndependentVisualMediaInputs"], 10)
+        self.assertEqual(row["exactComposition"]["maxSimultaneouslyEnabledRecursiveVisualInputs"], 10)
+        self.assertAlmostEqual(row["exactComposition"]["durationSeconds"], 2.625)
+        self.assertNotIn("exact_scene_to_native_composition_mapping", row["missingForFillableNow"])
+
+    def test_carousel_slideshow_native_pilot_resolves_parent_composition(self):
+        _, rows = self._comparisons()
+        row = rows["carousel-slideshow--review-001"]
+        self.assertEqual(row["compositionMappingStatus"], "verified")
+        self.assertEqual(row["exactComposition"]["path"], "2.Final/Render 01")
+        self.assertEqual(row["exactComposition"]["totalIndependentVisualMediaInputs"], 8)
 
     def test_verified_window_uses_only_clip_window_capacity(self):
         _, rows = self._comparisons()

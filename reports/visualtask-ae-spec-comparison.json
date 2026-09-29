@@ -4,19 +4,19 @@
     "baselineCandidates": 257,
     "conditionalCandidates": 9,
     "exactTaskAudioSpans": 41,
-    "exactTechnicalEvidencePartial": 119,
-    "exactTimingObservations": 119,
+    "exactTechnicalEvidencePartial": 142,
+    "exactTimingObservations": 142,
     "mappedCandidates": 148,
-    "projectTechnicalEvidencePartial": 29,
+    "projectTechnicalEvidencePartial": 6,
     "sourceBeats": 40,
     "splitBeats": 1,
     "unmappedCandidates": 109,
     "unresolvedTaskAudioSpans": 0,
-    "unresolvedUniqueSceneMappings": 13,
+    "unresolvedUniqueSceneMappings": 2,
     "unreviewedUniqueSceneMappings": 0,
-    "verifiedUniqueSceneMappings": 60,
-    "verifiedWholeCompositionMappings": 52,
-    "verifiedWindowMappings": 8,
+    "verifiedUniqueSceneMappings": 71,
+    "verifiedWholeCompositionMappings": 54,
+    "verifiedWindowMappings": 17,
     "visualTasks": 41
   },
   "evidenceBoundary": {
@@ -66,19 +66,19 @@
       "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
     },
     "sceneMappings": {
-      "bytes": 30922,
+      "bytes": 31455,
       "path": "grammar/ae-scene-composition-mappings.json",
-      "sha256": "39ebdf113948f4e6361a263da519e5ea3e3081f392a33822ae8ffa786667a846"
+      "sha256": "52236ef188b0cdeccfff1a14500ddc7ac391f71db477ba8172af03f7538c9d2b"
     },
     "sceneWindowCapacities": {
-      "bytes": 66115,
+      "bytes": 163840,
       "path": "grammar/ae-scene-window-technical-capacities.json",
-      "sha256": "a44bed9d38cef75f0c1f1a03716ef8ba4205c91faf940eaa77c2c9a1a9cba7c3"
+      "sha256": "b36b1466393cbb0a03f2bc682499efb93237842c005197b982aec144cc80e4e5"
     },
     "specLinks": {
-      "bytes": 15241,
+      "bytes": 15373,
       "path": "grammar/ae-template-spec-links.json",
-      "sha256": "a5c2f1c519b7addcf2fb668d2bf05f80fda93380d01e332974abb4ab7186355b"
+      "sha256": "bfe4022aa0d0546d9e153586cad10311656fde3945c40347845a7d23f661d726"
     },
     "taskRequirements": {
       "bytes": 158375,
@@ -86,9 +86,9 @@
       "sha256": "fe96883b2e81f5c0143a5a3b28e932a74f383262a3a81058e91baa7520056f70"
     },
     "technicalIndex": {
-      "bytes": 7814916,
+      "bytes": 8463682,
       "path": "grammar/ae-template-technical-index.json",
-      "sha256": "d1fec668eb1cf2b47dfd74312a3247b2f93b297834153bfac7c1749a6ba886e9"
+      "sha256": "76eeac54a1139cd36a826e4bd8e839a7583585124b4e6fd6e267a3fde9dabe2b"
     },
     "visualTasks": {
       "bytes": 97553,
@@ -3694,17 +3694,99 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-020",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.399999999999999,
+            "frameCount": 110,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 63.68-68.08 seconds, including the native Scene 17-to-18 boundary.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 4,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95689",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17a",
+                "projectItemId": 95689
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95703",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17b",
+                "projectItemId": 95703
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95717",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17c",
+                "projectItemId": 95717
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95731",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17d",
+                "projectItemId": 95731
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96380",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18d",
+                "projectItemId": 96380
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18a",
+                "projectItemId": 96392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18b",
+                "projectItemId": 96404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18c",
+                "projectItemId": 96416
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 8,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.399999999999999,
+              "endSeconds": 68.08,
+              "precision": "exact",
+              "startSeconds": 63.68
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -3715,16 +3797,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.399999999999999,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -7.260000000000002,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 11.66
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002",
@@ -3909,18 +3999,84 @@
         },
         {
           "candidateId": "carousel-slideshow--review-001",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified",
           "displayIdentityDemand": 1,
-          "familyId": "carousel-slideshow",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "2.Final/Render 01",
-              "2.Final/Render 03"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 30.0,
+            "frameCount": 750,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 12018,
+            "mappingEvidence": "The saved Carousel Slideshow native pilot maps this reviewed seven-second portrait clip to Render 01 after decoding and comparing the native render's eight-slot portrait carousel motion. The clip window remains approximate, so this record exposes the verified parent composition's hard capacity rather than claiming exact sub-window slot exposure.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 8,
+            "path": "2.Final/Render 01",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10749",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 01"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10812",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 02"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10838",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 03"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10864",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 04"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10890",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 05"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10916",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 06"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10942",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 07"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10968",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 08"
+              }
             ],
-            "reason": "Two measured no-text portrait carousel finals can produce the reviewed portrait sequence, and the project has no measured preview timeline linking this excerpt to one of them."
+            "totalIndependentVisualMediaInputs": 8,
+            "unresolvedCount": 0,
+            "width": 1920,
+            "workAreaDurationSeconds": 30.0,
+            "workAreaFrameCount": 750,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "carousel-slideshow",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -3938,9 +4094,17 @@
           },
           "projectEvidenceStatus": "two_pass_exact_agreement",
           "projectId": "carousel-slideshow",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 30.0,
+            "nativeDurationCoversUnmodifiedTask": true,
+            "nativeMinusTaskSeconds": 18.34,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 11.66
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "08-documentary-slideshow--scene-005",
@@ -4307,17 +4471,85 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-011",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 93,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 5.800000000000004,
+            "frameCount": 145,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 32.16-37.96 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:94969",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 16/photo placeholder/photo ph simple scene 16f",
+                "projectItemId": 94969
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:94981",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 16/photo placeholder/photo ph simple scene 16e",
+                "projectItemId": 94981
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:94993",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 16/photo placeholder/photo ph simple scene 16a",
+                "projectItemId": 94993
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95005",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 16/photo placeholder/photo ph simple scene 16b",
+                "projectItemId": 95005
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95017",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 16/photo placeholder/photo ph simple scene 16c",
+                "projectItemId": 95017
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95029",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 16/photo placeholder/photo ph simple scene 16d",
+                "projectItemId": 95029
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 6,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 5.800000000000004,
+              "endSeconds": 37.96,
+              "precision": "exact",
+              "startSeconds": 32.16
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -4328,16 +4560,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 5.800000000000004,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -2.7599999999999962,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 8.56
+          },
+          "verdict": "exact_technical_evidence_partial"
         }
       ],
       "displayEligibleIdentities": [
@@ -8230,17 +8470,78 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-034",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 106.48-111.28 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20e",
+                "projectItemId": 97392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20d",
+                "projectItemId": 97404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20c",
+                "projectItemId": 97416
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97428",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20b",
+                "projectItemId": 97428
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97440",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20a",
+                "projectItemId": 97440
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 111.28,
+              "precision": "exact",
+              "startSeconds": 106.48
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -8251,16 +8552,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -8.860000000000003,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 13.66
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "archive3-carousel-galleries-loop-animation-2--review-v2-003",
@@ -11076,17 +11385,78 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-034",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 3,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 106.48-111.28 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20e",
+                "projectItemId": 97392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20d",
+                "projectItemId": 97404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20c",
+                "projectItemId": 97416
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97428",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20b",
+                "projectItemId": 97428
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97440",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20a",
+                "projectItemId": 97440
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 111.28,
+              "precision": "exact",
+              "startSeconds": 106.48
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -11097,16 +11467,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": true,
+            "nativeMinusTaskSeconds": 1.099999999999997,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 3.7
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "photo-slideshow-memories-envato--scene-003",
@@ -14161,17 +14539,113 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-033",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 103.48-108.28 seconds across the native Scene 19-to-20 boundary.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96765",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19e",
+                "projectItemId": 96765
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96777",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19a",
+                "projectItemId": 96777
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96789",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19b",
+                "projectItemId": 96789
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96801",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19c",
+                "projectItemId": 96801
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96813",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19d",
+                "projectItemId": 96813
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20e",
+                "projectItemId": 97392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20d",
+                "projectItemId": 97404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20c",
+                "projectItemId": 97416
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97428",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20b",
+                "projectItemId": 97428
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97440",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20a",
+                "projectItemId": 97440
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 10,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 108.28,
+              "precision": "exact",
+              "startSeconds": 103.48
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -14182,16 +14656,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -0.22000000000000242,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 5.02
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-004",
@@ -18447,17 +18929,78 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-031",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 2,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 96.36-101.16 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96765",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19e",
+                "projectItemId": 96765
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96777",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19a",
+                "projectItemId": 96777
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96789",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19b",
+                "projectItemId": 96789
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96801",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19c",
+                "projectItemId": 96801
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96813",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19d",
+                "projectItemId": 96813
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 101.16,
+              "precision": "exact",
+              "startSeconds": 96.36
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -18468,16 +19011,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -7.600000000000003,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 12.4
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "archive3-infographic-bar-charts--review-002",
@@ -21139,17 +21690,760 @@
         },
         {
           "candidateId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
-          "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "03. Other/Scenes/SCENE 01"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 2.625,
+            "frameCount": 79,
+            "frameRate": 30.0,
+            "height": 2160,
+            "id": 34842,
+            "mappingEvidence": "The source preview is the native Content Sheet timeline. SCENE 01 occupies the opening interval, and its time-remap keys map master 0.000-2.625 seconds directly to local SCENE 01 0.000-2.625 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 43,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 10,
+            "measurementScope": "clip_window",
+            "path": "03. Other/Scenes/SCENE 01",
+            "recursiveEditableTextFields": 43,
+            "recursiveTextFieldIds": [
+              "text:32985:1",
+              "text:32985:2",
+              "text:32985:3",
+              "text:32985:4",
+              "text:32999:1",
+              "text:32999:2",
+              "text:32999:3",
+              "text:32999:4",
+              "text:33013:1",
+              "text:33013:2",
+              "text:33013:3",
+              "text:33013:4",
+              "text:33027:1",
+              "text:33027:2",
+              "text:33027:3",
+              "text:33027:4",
+              "text:33041:1",
+              "text:33041:2",
+              "text:33041:3",
+              "text:33041:4",
+              "text:33055:1",
+              "text:33055:2",
+              "text:33055:3",
+              "text:33055:4",
+              "text:33069:1",
+              "text:33069:2",
+              "text:33069:3",
+              "text:33069:4",
+              "text:33083:1",
+              "text:33083:2",
+              "text:33083:3",
+              "text:33083:4",
+              "text:33097:1",
+              "text:33097:2",
+              "text:33097:3",
+              "text:33097:4",
+              "text:33111:1",
+              "text:33111:2",
+              "text:33111:3",
+              "text:33111:4",
+              "text:33968:1",
+              "text:36195:1",
+              "text:36357:1"
             ],
-            "reason": "This 2.625-second clip is a subrange of the opening contact-sheet move. Native SCENE 01 is nested inside Content Sheet, but whole-composition metrics would overstate the exact subrange without a time-window capacity pass."
+            "recursiveTextFields": [
+              {
+                "compositionId": 32985,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32985:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32985,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32985:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Info Text Right",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32985,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32985:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32985,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32985:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32999,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32999:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32999,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32999:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32999,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32999:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32999,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32999:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33013,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 03",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33013:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33013,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 03",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33013:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33013,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 03",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33013:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33013,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 03",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33013:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33027,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 04",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33027:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33027,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 04",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33027:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33027,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 04",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33027:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33027,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 04",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33027:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33041,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 05",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33041:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33041,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 05",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33041:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33041,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 05",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33041:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33041,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 05",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33041:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33055,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 06",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33055:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33055,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 06",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33055:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33055,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 06",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33055:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33055,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 06",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33055:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33069,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 07",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33069:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33069,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 07",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33069:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33069,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 07",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33069:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33069,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 07",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33069:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33083,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 08",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33083:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33083,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 08",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33083:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33083,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 08",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33083:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33083,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 08",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33083:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33097,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 09",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33097:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33097,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 09",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33097:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33097,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 09",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33097:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33097,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 09",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33097:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33111,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 10",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33111:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33111,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 10",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33111:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33111,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 10",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33111:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33111,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 10",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33111:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33968,
+                "compositionPath": "01. Edit/Text/Technical Label 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33968:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "VISUAL",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 36195,
+                "compositionPath": "01. Edit/Text/Marker Text 01",
+                "enabled": true,
+                "font": "GelPenUprightLight",
+                "fontSize": 150.0,
+                "id": "text:36195:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Keep!",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 36357,
+                "compositionPath": "01. Edit/Text/Technical Label 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:36357:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              }
+            ],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36899",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 01",
+                "projectItemId": 36899
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36911",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 02",
+                "projectItemId": 36911
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36923",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 03",
+                "projectItemId": 36923
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36935",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 04",
+                "projectItemId": 36935
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36947",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 05",
+                "projectItemId": 36947
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36959",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 06",
+                "projectItemId": 36959
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36971",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 07",
+                "projectItemId": 36971
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36983",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 08",
+                "projectItemId": 36983
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36995",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 09",
+                "projectItemId": 36995
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:37007",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 10",
+                "projectItemId": 37007
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 10,
+            "unresolvedCount": 16,
+            "width": 3840,
+            "window": {
+              "durationSeconds": 2.625,
+              "endSeconds": 2.625,
+              "precision": "exact",
+              "startSeconds": 0.0
+            },
+            "workAreaDurationSeconds": 10.0,
+            "workAreaFrameCount": 300,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -21162,14 +22456,22 @@
           "projectCapacityEnvelope": {
             "maxDurationSeconds": 63.166666666666664,
             "maxRecursiveEditableTextFields": 62,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "maxTotalIndependentVisualMediaInputs": 0
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 10,
+            "maxTotalIndependentVisualMediaInputs": 10
           },
           "projectEvidenceStatus": "two_pass_exact_agreement",
           "projectId": "moving-contact-sheets",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 2.625,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -5.195,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 7.82
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "27_rank_context_panel",
@@ -23472,17 +24774,78 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-031",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 11,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 96.36-101.16 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96765",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19e",
+                "projectItemId": 96765
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96777",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19a",
+                "projectItemId": 96777
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96789",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19b",
+                "projectItemId": 96789
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96801",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19c",
+                "projectItemId": 96801
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96813",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19d",
+                "projectItemId": 96813
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 101.16,
+              "precision": "exact",
+              "startSeconds": 96.36
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -23493,30 +24856,766 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -17.540000000000003,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 22.34
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 11,
-          "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "03. Other/Scenes/SCENE 04"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 2.499999999999999,
+            "frameCount": 75,
+            "frameRate": 30.0,
+            "height": 2160,
+            "id": 34990,
+            "mappingEvidence": "SCENE 04 starts on the Content Sheet master at 9.0666667 seconds. Its linear time-remap keys map the reviewed 9.500-12.000 master interval to local SCENE 04 0.4333333-2.9333333 seconds; the posterizeTime(6) expression changes frame sampling, not the set of enabled media/text inputs in this window.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 42,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 10,
+            "measurementScope": "clip_window",
+            "path": "03. Other/Scenes/SCENE 04",
+            "recursiveEditableTextFields": 42,
+            "recursiveTextFieldIds": [
+              "text:32985:1",
+              "text:32985:2",
+              "text:32985:3",
+              "text:32985:4",
+              "text:32999:1",
+              "text:32999:2",
+              "text:32999:3",
+              "text:32999:4",
+              "text:33013:1",
+              "text:33013:2",
+              "text:33013:3",
+              "text:33013:4",
+              "text:33027:1",
+              "text:33027:2",
+              "text:33027:3",
+              "text:33027:4",
+              "text:33041:1",
+              "text:33041:2",
+              "text:33041:3",
+              "text:33041:4",
+              "text:33055:1",
+              "text:33055:2",
+              "text:33055:3",
+              "text:33055:4",
+              "text:33069:1",
+              "text:33069:2",
+              "text:33069:3",
+              "text:33069:4",
+              "text:33083:1",
+              "text:33083:2",
+              "text:33083:3",
+              "text:33083:4",
+              "text:33097:1",
+              "text:33097:2",
+              "text:33097:3",
+              "text:33097:4",
+              "text:33111:1",
+              "text:33111:2",
+              "text:33111:3",
+              "text:33111:4",
+              "text:33968:1",
+              "text:36357:1"
             ],
-            "reason": "This 2.5-second collage overview is a subrange of native SCENE 04 inside the contact-sheet master. Its parent is corrected, but the layer is time-remapped and exact local media exposure still requires opacity/time-remap measurement beyond the current technical pass."
+            "recursiveTextFields": [
+              {
+                "compositionId": 32985,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32985:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32985,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32985:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Info Text Right",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32985,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32985:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32985,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32985:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32999,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32999:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32999,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32999:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32999,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32999:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 32999,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:32999:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33013,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 03",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33013:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33013,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 03",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33013:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33013,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 03",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33013:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33013,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 03",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33013:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33027,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 04",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33027:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33027,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 04",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33027:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33027,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 04",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33027:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33027,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 04",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33027:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33041,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 05",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33041:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33041,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 05",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33041:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33041,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 05",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33041:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33041,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 05",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33041:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33055,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 06",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33055:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33055,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 06",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33055:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33055,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 06",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33055:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33055,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 06",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33055:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33069,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 07",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33069:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33069,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 07",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33069:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33069,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 07",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33069:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33069,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 07",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33069:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33083,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 08",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33083:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33083,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 08",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33083:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33083,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 08",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33083:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33083,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 08",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33083:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33097,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 09",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33097:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33097,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 09",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33097:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33097,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 09",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33097:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33097,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 09",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33097:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33111,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 10",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33111:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Auto Number",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33111,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 10",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33111:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Frame Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33111,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 10",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33111:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "Info Text Left",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33111,
+                "compositionPath": "03. Other/Other/Ignore/01. Edit/Card 10",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33111:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Info Text",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 33968,
+                "compositionPath": "01. Edit/Text/Technical Label 01",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:33968:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "VISUAL",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 36357,
+                "compositionPath": "01. Edit/Text/Technical Label 02",
+                "enabled": true,
+                "font": "ParadroidMono-Light",
+                "fontSize": 100.0,
+                "id": "text:36357:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Frame",
+                "metadataComplete": true,
+                "outPoint": 30.0,
+                "textKind": "point"
+              }
+            ],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36899",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 01",
+                "projectItemId": 36899
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36911",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 02",
+                "projectItemId": 36911
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36923",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 03",
+                "projectItemId": 36923
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36935",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 04",
+                "projectItemId": 36935
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36947",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 05",
+                "projectItemId": 36947
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36959",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 06",
+                "projectItemId": 36959
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36971",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 07",
+                "projectItemId": 36971
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36983",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 08",
+                "projectItemId": 36983
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:36995",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 09",
+                "projectItemId": 36995
+              },
+              {
+                "evidence": "explicit_edit_image_composition",
+                "id": "comp:37007",
+                "kind": "visual",
+                "path": "01. Edit/Image/Image 10",
+                "projectItemId": 37007
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 10,
+            "unresolvedCount": 20,
+            "width": 3840,
+            "window": {
+              "durationSeconds": 2.499999999999999,
+              "endSeconds": 2.9333333333333336,
+              "precision": "exact",
+              "startSeconds": 0.43333333333333446
+            },
+            "workAreaDurationSeconds": 10.0,
+            "workAreaFrameCount": 300,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -23529,14 +25628,22 @@
           "projectCapacityEnvelope": {
             "maxDurationSeconds": 63.166666666666664,
             "maxRecursiveEditableTextFields": 62,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "maxTotalIndependentVisualMediaInputs": 0
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 10,
+            "maxTotalIndependentVisualMediaInputs": 10
           },
           "projectEvidenceStatus": "two_pass_exact_agreement",
           "projectId": "moving-contact-sheets",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 2.499999999999999,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -19.84,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 22.34
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "photo-slideshow-memories-envato--scene-003",
@@ -25028,17 +27135,132 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-040",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 127.48-132.28 seconds across the section-card-to-Scene-21 boundary.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 3,
+            "recursiveTextFieldIds": [
+              "text:113598:1",
+              "text:113598:2",
+              "text:113598:3"
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "recursiveTextFields": [
+              {
+                "compositionId": 113598,
+                "compositionPath": "seperator scenes/seperator 2 scene 6/text placeholder/text ph seperator 2 scene 6",
+                "enabled": true,
+                "font": "JaneAusten",
+                "fontSize": 253.0,
+                "id": "text:113598:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "lrem ipsm",
+                "metadataComplete": true,
+                "outPoint": 6.04,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 113598,
+                "compositionPath": "seperator scenes/seperator 2 scene 6/text placeholder/text ph seperator 2 scene 6",
+                "enabled": true,
+                "font": "DINPro-CondensedBold",
+                "fontSize": 419.0,
+                "id": "text:113598:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "DOLOR SIT AMET",
+                "metadataComplete": true,
+                "outPoint": 6.04,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 113598,
+                "compositionPath": "seperator scenes/seperator 2 scene 6/text placeholder/text ph seperator 2 scene 6",
+                "enabled": true,
+                "font": "DINPro-CondensedBold",
+                "fontSize": 141.0,
+                "id": "text:113598:3",
+                "inPoint": 0.0,
+                "layerIndex": 3,
+                "layerName": "WEDDINGS",
+                "metadataComplete": true,
+                "outPoint": 6.04,
+                "textKind": "point"
+              }
+            ],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:113598",
+                "kind": "visual",
+                "path": "seperator scenes/seperator 2 scene 6/text placeholder/text ph seperator 2 scene 6",
+                "projectItemId": 113598
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98080",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21e",
+                "projectItemId": 98080
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98092",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21d",
+                "projectItemId": 98092
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98104",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21c",
+                "projectItemId": 98104
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98116",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21b",
+                "projectItemId": 98116
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98128",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21a",
+                "projectItemId": 98128
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 6,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 132.28,
+              "precision": "exact",
+              "startSeconds": 127.48
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -25049,16 +27271,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -5.960000000000003,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 10.76
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "screen-mockup-rfx--review-006",
@@ -25885,17 +28115,78 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-044",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 2,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 6.52000000000001,
+            "frameCount": 163,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 139.44-145.96 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98080",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21e",
+                "projectItemId": 98080
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98092",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21d",
+                "projectItemId": 98092
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98104",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21c",
+                "projectItemId": 98104
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98116",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21b",
+                "projectItemId": 98116
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:98128",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 21/photo placeholder/photo ph simple scene 21a",
+                "projectItemId": 98128
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 6.52000000000001,
+              "endSeconds": 145.96,
+              "precision": "exact",
+              "startSeconds": 139.44
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -25906,16 +28197,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 6.52000000000001,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -7.11999999999999,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 13.64
+          },
+          "verdict": "exact_technical_evidence_partial"
         }
       ],
       "displayEligibleIdentities": [
@@ -26355,17 +28654,78 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-031",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 4,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 96.36-101.16 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96765",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19e",
+                "projectItemId": 96765
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96777",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19a",
+                "projectItemId": 96777
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96789",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19b",
+                "projectItemId": 96789
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96801",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19c",
+                "projectItemId": 96801
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96813",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19d",
+                "projectItemId": 96813
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 101.16,
+              "precision": "exact",
+              "startSeconds": 96.36
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -26376,16 +28736,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -18.340000000000003,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 23.14
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "36_four_portrait_cards",
@@ -26873,17 +29241,78 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-031",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 2,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 96.36-101.16 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96765",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19e",
+                "projectItemId": 96765
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96777",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19a",
+                "projectItemId": 96777
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96789",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19b",
+                "projectItemId": 96789
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96801",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19c",
+                "projectItemId": 96801
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96813",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19d",
+                "projectItemId": 96813
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 101.16,
+              "precision": "exact",
+              "startSeconds": 96.36
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -26894,16 +29323,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -3.6800000000000033,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 8.48
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "56_seven_artist_stat_lineup",
@@ -27897,17 +30334,99 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-020",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.399999999999999,
+            "frameCount": 110,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 63.68-68.08 seconds, including the native Scene 17-to-18 boundary.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 4,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95689",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17a",
+                "projectItemId": 95689
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95703",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17b",
+                "projectItemId": 95703
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95717",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17c",
+                "projectItemId": 95717
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95731",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17d",
+                "projectItemId": 95731
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96380",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18d",
+                "projectItemId": 96380
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18a",
+                "projectItemId": 96392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18b",
+                "projectItemId": 96404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18c",
+                "projectItemId": 96416
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 8,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.399999999999999,
+              "endSeconds": 68.08,
+              "precision": "exact",
+              "startSeconds": 63.68
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -27918,16 +30437,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.399999999999999,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -15.620000000000001,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 20.02
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "memories-photo-slideshow-creative-slides-envato--scene-007",
@@ -30888,17 +33415,99 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-020",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.399999999999999,
+            "frameCount": 110,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 63.68-68.08 seconds, including the native Scene 17-to-18 boundary.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 4,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95689",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17a",
+                "projectItemId": 95689
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95703",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17b",
+                "projectItemId": 95703
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95717",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17c",
+                "projectItemId": 95717
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95731",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17d",
+                "projectItemId": 95731
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96380",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18d",
+                "projectItemId": 96380
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18a",
+                "projectItemId": 96392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18b",
+                "projectItemId": 96404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18c",
+                "projectItemId": 96416
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 8,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.399999999999999,
+              "endSeconds": 68.08,
+              "precision": "exact",
+              "startSeconds": 63.68
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -30909,16 +33518,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.399999999999999,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -9.320000000000002,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 13.72
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "memories-photo-slideshow-creative-slides-envato--scene-007",
@@ -33322,17 +35939,78 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-031",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 96.36-101.16 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96765",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19e",
+                "projectItemId": 96765
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96777",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19a",
+                "projectItemId": 96777
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96789",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19b",
+                "projectItemId": 96789
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96801",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19c",
+                "projectItemId": 96801
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96813",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19d",
+                "projectItemId": 96813
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 101.16,
+              "precision": "exact",
+              "startSeconds": 96.36
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -33343,16 +36021,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -1.820000000000003,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 6.62
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "truth-population-field",
@@ -33374,20 +36060,72 @@
         },
         {
           "candidateId": "carousel--review-001",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified",
           "displayIdentityDemand": 1,
-          "familyId": "carousel",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Carousel 01/Carousel 01",
-              "Carousel 02/Carousel 02",
-              "Carousel 03/Carousel 03",
-              "Carousel 04/Carousel 04"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 60.0,
+            "frameCount": 3600,
+            "frameRate": 60.0,
+            "height": 2160,
+            "id": 1,
+            "mappingEvidence": "The saved native-template test for this exact reviewed clip used the original library project and composition Carousel 01/Carousel 01. Its six native media placeholders, rounded landscape cards, blurred flanking cards and right-to-left motion match the reviewed scene; the successful native render is recorded in media_workflows.md under Native carousel overlay test.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "path": "Carousel 01/Carousel 01",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:100",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 02"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:115",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 03"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:14",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 01"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:163",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 04"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:176",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 05"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:189",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 06"
+              }
             ],
-            "reason": "The master preview stacks four native carousel layers over the same 0–10 second interval and the static report does not expose opacity animation, so the first visual excerpt cannot be assigned to one exact composition."
+            "totalIndependentVisualMediaInputs": 6,
+            "unresolvedCount": 0,
+            "width": 3840,
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 3600,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "carousel",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -33405,9 +36143,17 @@
           },
           "projectEvidenceStatus": "two_pass_exact_agreement",
           "projectId": "carousel",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 60.0,
+            "nativeDurationCoversUnmodifiedTask": true,
+            "nativeMinusTaskSeconds": 53.38,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 6.62
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "archive3-infographic-bar-charts--review-002",
@@ -37141,17 +39887,78 @@
       "candidateComparisons": [
         {
           "candidateId": "intro-slideshow-full-720p--scene-034",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 3,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 106.48-111.28 seconds.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20e",
+                "projectItemId": 97392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20d",
+                "projectItemId": 97404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20c",
+                "projectItemId": 97416
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97428",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20b",
+                "projectItemId": 97428
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97440",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20a",
+                "projectItemId": 97440
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 5,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 111.28,
+              "precision": "exact",
+              "startSeconds": 106.48
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -37162,16 +39969,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -0.940000000000003,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 5.74
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "photo-slideshow-memories-envato--scene-003",
@@ -37235,20 +40050,72 @@
         },
         {
           "candidateId": "carousel--review-001",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified",
           "displayIdentityDemand": 3,
-          "familyId": "carousel",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Carousel 01/Carousel 01",
-              "Carousel 02/Carousel 02",
-              "Carousel 03/Carousel 03",
-              "Carousel 04/Carousel 04"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 60.0,
+            "frameCount": 3600,
+            "frameRate": 60.0,
+            "height": 2160,
+            "id": 1,
+            "mappingEvidence": "The saved native-template test for this exact reviewed clip used the original library project and composition Carousel 01/Carousel 01. Its six native media placeholders, rounded landscape cards, blurred flanking cards and right-to-left motion match the reviewed scene; the successful native render is recorded in media_workflows.md under Native carousel overlay test.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "path": "Carousel 01/Carousel 01",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:100",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 02"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:115",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 03"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:14",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 01"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:163",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 04"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:176",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 05"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:189",
+                "kind": "visual",
+                "path": "Carousel 01/Edit/Media Placeholder 06"
+              }
             ],
-            "reason": "The master preview stacks four native carousel layers over the same 0–10 second interval and the static report does not expose opacity animation, so the first visual excerpt cannot be assigned to one exact composition."
+            "totalIndependentVisualMediaInputs": 6,
+            "unresolvedCount": 0,
+            "width": 3840,
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 3600,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "carousel",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -37266,9 +40133,17 @@
           },
           "projectEvidenceStatus": "two_pass_exact_agreement",
           "projectId": "carousel",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 60.0,
+            "nativeDurationCoversUnmodifiedTask": true,
+            "nativeMinusTaskSeconds": 54.26,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 5.74
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "44_three_metric_tables",
@@ -42711,17 +45586,113 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-033",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.799999999999997,
+            "frameCount": 120,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 103.48-108.28 seconds across the native Scene 19-to-20 boundary.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 5,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96765",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19e",
+                "projectItemId": 96765
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96777",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19a",
+                "projectItemId": 96777
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96789",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19b",
+                "projectItemId": 96789
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96801",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19c",
+                "projectItemId": 96801
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96813",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 19/photo placeholder/photo ph simple scene 19d",
+                "projectItemId": 96813
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20e",
+                "projectItemId": 97392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20d",
+                "projectItemId": 97404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20c",
+                "projectItemId": 97416
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97428",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20b",
+                "projectItemId": 97428
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:97440",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 20/photo placeholder/photo ph simple scene 20a",
+                "projectItemId": 97440
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 10,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.799999999999997,
+              "endSeconds": 108.28,
+              "precision": "exact",
+              "startSeconds": 103.48
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -42732,16 +45703,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.799999999999997,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -7.720000000000002,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 12.52
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "02-documentary-promo--scene-004",
@@ -47775,18 +50754,84 @@
         },
         {
           "candidateId": "carousel-slideshow--review-001",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified",
           "displayIdentityDemand": 0,
-          "familyId": "carousel-slideshow",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "2.Final/Render 01",
-              "2.Final/Render 03"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 30.0,
+            "frameCount": 750,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 12018,
+            "mappingEvidence": "The saved Carousel Slideshow native pilot maps this reviewed seven-second portrait clip to Render 01 after decoding and comparing the native render's eight-slot portrait carousel motion. The clip window remains approximate, so this record exposes the verified parent composition's hard capacity rather than claiming exact sub-window slot exposure.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 8,
+            "path": "2.Final/Render 01",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10749",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 01"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10812",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 02"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10838",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 03"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10864",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 04"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10890",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 05"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10916",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 06"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10942",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 07"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:10968",
+                "kind": "visual",
+                "path": "3.Other/Precomps/Carousel 01/Media Placeholder 08"
+              }
             ],
-            "reason": "Two measured no-text portrait carousel finals can produce the reviewed portrait sequence, and the project has no measured preview timeline linking this excerpt to one of them."
+            "totalIndependentVisualMediaInputs": 8,
+            "unresolvedCount": 0,
+            "width": 1920,
+            "workAreaDurationSeconds": 30.0,
+            "workAreaFrameCount": 750,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "carousel-slideshow",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -47804,9 +50849,17 @@
           },
           "projectEvidenceStatus": "two_pass_exact_agreement",
           "projectId": "carousel-slideshow",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 30.0,
+            "nativeDurationCoversUnmodifiedTask": true,
+            "nativeMinusTaskSeconds": 23.56,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 6.44
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "photo-slideshow-smooth-envato--scene-005",
@@ -48129,17 +51182,99 @@
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-020",
-          "compositionMappingStatus": "unresolved",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
-          "familyId": "intro-slideshow-full-720p",
-          "mappingUnresolved": {
-            "candidateCompositionPaths": [
-              "Do not touch/Comps/Main"
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 4.399999999999999,
+            "frameCount": 110,
+            "frameRate": 25.0,
+            "height": 1080,
+            "id": 189207,
+            "mappingEvidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 63.68-68.08 seconds, including the native Scene 17-to-18 boundary.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 0,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 4,
+            "measurementScope": "clip_window",
+            "path": "02:34",
+            "recursiveEditableTextFields": 0,
+            "recursiveTextFieldIds": [],
+            "recursiveTextFields": [],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95689",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17a",
+                "projectItemId": 95689
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95703",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17b",
+                "projectItemId": 95703
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95717",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17c",
+                "projectItemId": 95717
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:95731",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 17/photo placeholder/photo ph simple scene 17d",
+                "projectItemId": 95731
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96380",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18d",
+                "projectItemId": 96380
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96392",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18a",
+                "projectItemId": 96392
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96404",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18b",
+                "projectItemId": 96404
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:96416",
+                "kind": "visual",
+                "path": "simple scenes/simple scene 18/photo placeholder/photo ph simple scene 18c",
+                "projectItemId": 96416
+              }
             ],
-            "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice."
+            "totalIndependentVisualMediaInputs": 8,
+            "unresolvedCount": 2707,
+            "width": 1920,
+            "window": {
+              "durationSeconds": 4.399999999999999,
+              "endSeconds": 68.08,
+              "precision": "exact",
+              "startSeconds": 63.68
+            },
+            "workAreaDurationSeconds": 154.48,
+            "workAreaFrameCount": 3862,
+            "workAreaStartSeconds": 0.0
           },
+          "familyId": "intro-slideshow-full-720p",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -48150,16 +51285,24 @@
             "media_asset_availability"
           ],
           "projectCapacityEnvelope": {
-            "maxDurationSeconds": 90.09009009009009,
-            "maxRecursiveEditableTextFields": 15,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 14,
-            "maxTotalIndependentVisualMediaInputs": 14
+            "maxDurationSeconds": 1200.0,
+            "maxRecursiveEditableTextFields": 59,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxTotalIndependentVisualMediaInputs": 142
           },
-          "projectEvidenceStatus": "two_pass_exact_agreement",
-          "projectId": "slideshow-hd",
-          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
-          "technicalEvidenceVerdict": "project_technical_evidence_partial",
-          "verdict": "project_technical_evidence_partial"
+          "projectEvidenceStatus": "source_bound_static_ast",
+          "projectId": "intro-slideshow",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 4.399999999999999,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -2.040000000000002,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 6.44
+          },
+          "verdict": "exact_technical_evidence_partial"
         }
       ],
       "displayEligibleIdentities": [],

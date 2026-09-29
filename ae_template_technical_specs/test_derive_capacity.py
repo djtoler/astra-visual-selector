@@ -52,6 +52,7 @@ class CapacityDerivationTests(unittest.TestCase):
                 {"id": 5, "name": "your logo", "path": "01 EDIT/2 LOGO/your logo", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
                 {"id": 6, "name": "Image Wide 10", "path": "03. Other/Footage/Image Wide 10", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
                 {"id": 7, "name": "FL_Media_01", "path": "01. Edit Comps/Media/FL_Media/FL_Media_01", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
+                {"id": 8, "name": "Image 01", "path": "01. Edit/Image/Image 01", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
             ],
         }
         result = build_capacity(report)
@@ -61,6 +62,7 @@ class CapacityDerivationTests(unittest.TestCase):
             "01 EDIT/2 LOGO/your logo",
             "03. Other/Footage/Image Wide 10",
             "01. Edit Comps/Media/FL_Media/FL_Media_01",
+            "01. Edit/Image/Image 01",
         })
         final = next(row for row in result["compositions"] if row["compositionPath"] == "02 FINAL/FINAL")
         self.assertEqual(final["totalIndependentVisualMediaInputs"], 1)

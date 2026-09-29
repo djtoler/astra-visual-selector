@@ -75,6 +75,18 @@
         }
         return state;
     }
+    function keyframedPropertyState(p, includeExpression) {
+        var state = propertyState(p, includeExpression), keys = [];
+        if (!p || !state) return state;
+        for (var ki=1;ki<=state.numKeys;ki++) {
+            var key = {index:ki, time:p.keyTime(ki), value:p.keyValue(ki)};
+            try { key.inInterpolationType = String(p.keyInInterpolationType(ki)); } catch (inError) {}
+            try { key.outInterpolationType = String(p.keyOutInterpolationType(ki)); } catch (outError) {}
+            keys.push(key);
+        }
+        if (keys.length) state.keyframes = keys;
+        return state;
+    }
     function transformStates(layer) {
         var group = layer.property('ADBE Transform Group'), rows = {}, names = [
             ['anchorPoint','ADBE Anchor Point'], ['position','ADBE Position'],
@@ -83,7 +95,7 @@
         if (!group) return rows;
         for (var i=0;i<names.length;i++) {
             var p = group.property(names[i][1]);
-            if (p) rows[names[i][0]] = propertyState(p, true);
+            if (p) rows[names[i][0]] = names[i][0] === 'opacity' ? keyframedPropertyState(p, true) : propertyState(p, true);
         }
         return rows;
     }
@@ -150,6 +162,7 @@
                     audioEnabled:safeValue(l,'audioEnabled'), timeRemapEnabled:safeValue(l,'timeRemapEnabled'),
                     transform:transformStates(l)
                 };
+                if (row.timeRemapEnabled) row.timeRemap = keyframedPropertyState(l.property('ADBE Time Remapping'), true);
                 if (l instanceof TextLayer) {
                     var sourceText = l.property('ADBE Text Properties').property('ADBE Text Document');
                     var td = sourceText.value;

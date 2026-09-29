@@ -19,7 +19,7 @@ import re
 
 
 STRONG_SLOT = re.compile(r"(?:^|[\s_\-/])(placeholder|replace)(?:$|[\s_\-/0-9])", re.I)
-EDIT_IMAGE_SLOT = re.compile(r"^image\s+(?:square|vertical|wide)\s+\d+$", re.I)
+EDIT_IMAGE_SLOT = re.compile(r"^image\s+(?:(?:square|vertical|wide)\s+)?\d+$", re.I)
 EDIT_PHOTO_SLOT = re.compile(r"^photo\s+\d+$", re.I)
 EDIT_PREFIXED_MEDIA_SLOT = re.compile(r"^(?:f|fl|or|s)_media_\d+$", re.I)
 EDIT_NUMBERED_MEDIA_SLOT = re.compile(r"^(?:background\s+)?media\s*\d+(?:\.\d+)?$", re.I)
@@ -37,6 +37,7 @@ def explicit_edit_slot_evidence(path: str) -> str | None:
     lowered = normalized.lower()
     if EDIT_IMAGE_SLOT.fullmatch(leaf) and (
         "edit/image/" in lowered
+        or re.search(r"(?:^|/)\d*\.?\s*edit/image/", lowered)
         or "other/footage/" in lowered
     ):
         return "explicit_edit_image_composition"

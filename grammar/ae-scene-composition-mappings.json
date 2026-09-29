@@ -85,14 +85,10 @@
     {
       "sceneId": "carousel--review-001",
       "projectId": "carousel",
-      "status": "unresolved",
-      "reason": "The master preview stacks four native carousel layers over the same 0–10 second interval and the static report does not expose opacity animation, so the first visual excerpt cannot be assigned to one exact composition.",
-      "candidateCompositionPaths": [
-        "Carousel 01/Carousel 01",
-        "Carousel 02/Carousel 02",
-        "Carousel 03/Carousel 03",
-        "Carousel 04/Carousel 04"
-      ]
+      "status": "verified",
+      "compositionId": 1,
+      "compositionPath": "Carousel 01/Carousel 01",
+      "evidence": "The saved native-template test for this exact reviewed clip used the original library project and composition Carousel 01/Carousel 01. Its six native media placeholders, rounded landscape cards, blurred flanking cards and right-to-left motion match the reviewed scene; the successful native render is recorded in media_workflows.md under Native carousel overlay test."
     },
     {
       "sceneId": "carousel--review-011",
@@ -109,12 +105,10 @@
     {
       "sceneId": "carousel-slideshow--review-001",
       "projectId": "carousel-slideshow",
-      "status": "unresolved",
-      "reason": "Two measured no-text portrait carousel finals can produce the reviewed portrait sequence, and the project has no measured preview timeline linking this excerpt to one of them.",
-      "candidateCompositionPaths": [
-        "2.Final/Render 01",
-        "2.Final/Render 03"
-      ]
+      "status": "verified",
+      "compositionId": 12018,
+      "compositionPath": "2.Final/Render 01",
+      "evidence": "The saved Carousel Slideshow native pilot maps this reviewed seven-second portrait clip to Render 01 after decoding and comparing the native render's eight-slot portrait carousel motion. The clip window remains approximate, so this record exposes the verified parent composition's hard capacity rather than claiming exact sub-window slot exposure."
     },
     {
       "sceneId": "carousel-slideshow--review-002",
@@ -383,20 +377,20 @@
     {
       "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a",
       "projectId": "moving-contact-sheets",
-      "status": "unresolved",
-      "reason": "This 2.625-second clip is a subrange of the opening contact-sheet move. Native SCENE 01 is nested inside Content Sheet, but whole-composition metrics would overstate the exact subrange without a time-window capacity pass.",
-      "candidateCompositionPaths": [
-        "03. Other/Scenes/SCENE 01"
-      ]
+      "status": "verified_window",
+      "compositionId": 34842,
+      "compositionPath": "03. Other/Scenes/SCENE 01",
+      "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a",
+      "evidence": "The source preview is the native Content Sheet timeline. SCENE 01 occupies the opening interval, and its time-remap keys map master 0.000-2.625 seconds directly to local SCENE 01 0.000-2.625 seconds."
     },
     {
       "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a",
       "projectId": "moving-contact-sheets",
-      "status": "unresolved",
-      "reason": "This 2.5-second collage overview is a subrange of native SCENE 04 inside the contact-sheet master. Its parent is corrected, but the layer is time-remapped and exact local media exposure still requires opacity/time-remap measurement beyond the current technical pass.",
-      "candidateCompositionPaths": [
-        "03. Other/Scenes/SCENE 04"
-      ]
+      "status": "verified_window",
+      "compositionId": 34990,
+      "compositionPath": "03. Other/Scenes/SCENE 04",
+      "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a",
+      "evidence": "SCENE 04 starts on the Content Sheet master at 9.0666667 seconds. Its linear time-remap keys map the reviewed 9.500-12.000 master interval to local SCENE 04 0.4333333-2.9333333 seconds; the posterizeTime(6) expression changes frame sampling, not the set of enabled media/text inputs in this window."
     },
     {
       "sceneId": "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004",
@@ -440,66 +434,66 @@
     },
     {
       "sceneId": "intro-slideshow-full-720p--scene-011",
-      "projectId": "slideshow-hd",
-      "status": "unresolved",
-      "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice.",
-      "candidateCompositionPaths": [
-        "Do not touch/Comps/Main"
-      ]
+      "projectId": "intro-slideshow",
+      "status": "verified_window",
+      "compositionId": 189207,
+      "compositionPath": "02:34",
+      "windowCapacityId": "intro-slideshow-full-720p--scene-011",
+      "evidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 32.16-37.96 seconds."
     },
     {
       "sceneId": "intro-slideshow-full-720p--scene-020",
-      "projectId": "slideshow-hd",
-      "status": "unresolved",
-      "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice.",
-      "candidateCompositionPaths": [
-        "Do not touch/Comps/Main"
-      ]
+      "projectId": "intro-slideshow",
+      "status": "verified_window",
+      "compositionId": 189207,
+      "compositionPath": "02:34",
+      "windowCapacityId": "intro-slideshow-full-720p--scene-020",
+      "evidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 63.68-68.08 seconds, including the native Scene 17-to-18 boundary."
     },
     {
       "sceneId": "intro-slideshow-full-720p--scene-031",
-      "projectId": "slideshow-hd",
-      "status": "unresolved",
-      "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice.",
-      "candidateCompositionPaths": [
-        "Do not touch/Comps/Main"
-      ]
+      "projectId": "intro-slideshow",
+      "status": "verified_window",
+      "compositionId": 189207,
+      "compositionPath": "02:34",
+      "windowCapacityId": "intro-slideshow-full-720p--scene-031",
+      "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 96.36-101.16 seconds."
     },
     {
       "sceneId": "intro-slideshow-full-720p--scene-033",
-      "projectId": "slideshow-hd",
-      "status": "unresolved",
-      "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice.",
-      "candidateCompositionPaths": [
-        "Do not touch/Comps/Main"
-      ]
+      "projectId": "intro-slideshow",
+      "status": "verified_window",
+      "compositionId": 189207,
+      "compositionPath": "02:34",
+      "windowCapacityId": "intro-slideshow-full-720p--scene-033",
+      "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 103.48-108.28 seconds across the native Scene 19-to-20 boundary."
     },
     {
       "sceneId": "intro-slideshow-full-720p--scene-034",
-      "projectId": "slideshow-hd",
-      "status": "unresolved",
-      "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice.",
-      "candidateCompositionPaths": [
-        "Do not touch/Comps/Main"
-      ]
+      "projectId": "intro-slideshow",
+      "status": "verified_window",
+      "compositionId": 189207,
+      "compositionPath": "02:34",
+      "windowCapacityId": "intro-slideshow-full-720p--scene-034",
+      "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 106.48-111.28 seconds."
     },
     {
       "sceneId": "intro-slideshow-full-720p--scene-040",
-      "projectId": "slideshow-hd",
-      "status": "unresolved",
-      "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice.",
-      "candidateCompositionPaths": [
-        "Do not touch/Comps/Main"
-      ]
+      "projectId": "intro-slideshow",
+      "status": "verified_window",
+      "compositionId": 189207,
+      "compositionPath": "02:34",
+      "windowCapacityId": "intro-slideshow-full-720p--scene-040",
+      "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 127.48-132.28 seconds across the section-card-to-Scene-21 boundary."
     },
     {
       "sceneId": "intro-slideshow-full-720p--scene-044",
-      "projectId": "slideshow-hd",
-      "status": "unresolved",
-      "reason": "The reviewed clip is a time-window cut from the long Main composition, which exposes 14 media placeholders but no native scene subcompositions. Whole-Main capacity is not valid as exact capacity for this slice.",
-      "candidateCompositionPaths": [
-        "Do not touch/Comps/Main"
-      ]
+      "projectId": "intro-slideshow",
+      "status": "verified_window",
+      "compositionId": 189207,
+      "compositionPath": "02:34",
+      "windowCapacityId": "intro-slideshow-full-720p--scene-044",
+      "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 139.44-145.96 seconds."
     },
     {
       "sceneId": "memories-photo-slideshow-creative-slides-envato--scene-001",

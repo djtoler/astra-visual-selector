@@ -16,23 +16,23 @@
     },
     "technicalFamilyLinks": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-template-spec-links.json",
-      "sha256": "a5c2f1c519b7addcf2fb668d2bf05f80fda93380d01e332974abb4ab7186355b"
+      "sha256": "bfe4022aa0d0546d9e153586cad10311656fde3945c40347845a7d23f661d726"
     },
     "sceneCompositionMappings": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-scene-composition-mappings.json",
-      "sha256": "39ebdf113948f4e6361a263da519e5ea3e3081f392a33822ae8ffa786667a846"
+      "sha256": "52236ef188b0cdeccfff1a14500ddc7ac391f71db477ba8172af03f7538c9d2b"
     },
     "sceneWindowCapacities": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-scene-window-technical-capacities.json",
-      "sha256": "a44bed9d38cef75f0c1f1a03716ef8ba4205c91faf940eaa77c2c9a1a9cba7c3"
+      "sha256": "b36b1466393cbb0a03f2bc682499efb93237842c005197b982aec144cc80e4e5"
     },
     "technicalIndex": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-template-technical-index.json",
-      "sha256": "d1fec668eb1cf2b47dfd74312a3247b2f93b297834153bfac7c1749a6ba886e9"
+      "sha256": "76eeac54a1139cd36a826e4bd8e839a7583585124b4e6fd6e267a3fde9dabe2b"
     },
     "carouselSlideshowPilot": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/reports/carousel-slideshow-clip-native-pilot.json",
-      "sha256": "6890486203a4ffa0824ba348434c3a632cdb58c156c4685e03928640edc4e930"
+      "sha256": "d383237ffb6baa9082ac1bde32df20493574b920244ea27febdcc799d3048b77"
     }
   },
   "scope": {
@@ -96,9 +96,9 @@
     },
     "byTechnicalState": {
       "mapped_composition_window_approximate": 5,
-      "mapped_verified": 51,
-      "mapped_verified_window": 8,
-      "mapping_ambiguous": 12,
+      "mapped_verified": 52,
+      "mapped_verified_window": 17,
+      "mapping_ambiguous": 2,
       "mapping_unverified": 333,
       "mogrt_not_aep": 5,
       "project_unlinked": 14
@@ -3660,11 +3660,25 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_ambiguous",
+        "state": "mapped_verified_window",
         "projectId": "moving-contact-sheets",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "composition": {
+          "id": 34842,
+          "path": "03. Other/Scenes/SCENE 01"
+        },
+        "window": {
+          "startSeconds": 0.0,
+          "endSeconds": 2.625,
+          "durationSeconds": 2.625,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 10,
+          "maxSimultaneouslyEnabledInputs": 10,
+          "editableTextFields": 43,
+          "maxSimultaneouslyEnabledTextFields": 43
+        },
+        "evidence": "The source preview is the native Content Sheet timeline. SCENE 01 occupies the opening interval, and its time-remap keys map master 0.000-2.625 seconds directly to local SCENE 01 0.000-2.625 seconds.",
         "projectEvidence": {
           "sourceProjectName": "Moving Contact Sheets.aep",
           "sourceProjectSha256": "a8faa1987da206e06990f95b75951b746b833f8638c626688b37e609db40d0cb",
@@ -3720,11 +3734,25 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_ambiguous",
+        "state": "mapped_verified_window",
         "projectId": "moving-contact-sheets",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "composition": {
+          "id": 34990,
+          "path": "03. Other/Scenes/SCENE 04"
+        },
+        "window": {
+          "startSeconds": 0.43333333333333446,
+          "endSeconds": 2.9333333333333336,
+          "durationSeconds": 2.499999999999999,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 10,
+          "maxSimultaneouslyEnabledInputs": 10,
+          "editableTextFields": 42,
+          "maxSimultaneouslyEnabledTextFields": 42
+        },
+        "evidence": "SCENE 04 starts on the Content Sheet master at 9.0666667 seconds. Its linear time-remap keys map the reviewed 9.500-12.000 master interval to local SCENE 04 0.4333333-2.9333333 seconds; the posterizeTime(6) expression changes frame sampling, not the set of enabled media/text inputs in this window.",
         "projectEvidence": {
           "sourceProjectName": "Moving Contact Sheets.aep",
           "sourceProjectSha256": "a8faa1987da206e06990f95b75951b746b833f8638c626688b37e609db40d0cb",
@@ -5466,11 +5494,14 @@
         "reason": "Description and structured use-case review complete; source layout checked against preview frames. Native controls and narration-specific timing remain separately verified."
       },
       "technical": {
-        "state": "mapping_ambiguous",
+        "state": "mapped_verified",
         "projectId": "carousel",
-        "composition": null,
+        "composition": {
+          "id": 1,
+          "path": "Carousel 01/Carousel 01"
+        },
         "window": null,
-        "evidence": null,
+        "evidence": "The saved native-template test for this exact reviewed clip used the original library project and composition Carousel 01/Carousel 01. Its six native media placeholders, rounded landscape cards, blurred flanking cards and right-to-left motion match the reviewed scene; the successful native render is recorded in media_workflows.md under Native carousel overlay test.",
         "projectEvidence": {
           "sourceProjectName": "Carousel.aep",
           "sourceProjectSha256": "78f519f084504cc307a396fd0082a41c00da2abe22c15b9caffaa5b60d065a85",
@@ -6911,15 +6942,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -6941,15 +6972,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -6971,15 +7002,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7001,15 +7032,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7031,15 +7062,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7061,15 +7092,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7091,15 +7122,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7121,15 +7152,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7151,15 +7182,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7180,16 +7211,30 @@
         "reason": "Present in the approved After Effects catalog."
       },
       "technical": {
-        "state": "mapping_ambiguous",
-        "projectId": "slideshow-hd",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "state": "mapped_verified_window",
+        "projectId": "intro-slideshow",
+        "composition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "window": {
+          "startSeconds": 32.16,
+          "endSeconds": 37.96,
+          "durationSeconds": 5.800000000000004,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 6,
+          "maxSimultaneouslyEnabledInputs": 6,
+          "editableTextFields": 0,
+          "maxSimultaneouslyEnabledTextFields": 0
+        },
+        "evidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 32.16-37.96 seconds.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7211,15 +7256,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7241,15 +7286,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7271,15 +7316,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7301,15 +7346,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7331,15 +7376,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7361,15 +7406,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7391,15 +7436,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7420,16 +7465,30 @@
         "reason": "Present in the approved After Effects catalog."
       },
       "technical": {
-        "state": "mapping_ambiguous",
-        "projectId": "slideshow-hd",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "state": "mapped_verified_window",
+        "projectId": "intro-slideshow",
+        "composition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "window": {
+          "startSeconds": 63.68,
+          "endSeconds": 68.08,
+          "durationSeconds": 4.399999999999999,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 8,
+          "maxSimultaneouslyEnabledInputs": 4,
+          "editableTextFields": 0,
+          "maxSimultaneouslyEnabledTextFields": 0
+        },
+        "evidence": "The saved scene cut and the source-bound 154.48-second native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 63.68-68.08 seconds, including the native Scene 17-to-18 boundary.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7451,15 +7510,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7481,15 +7540,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7511,15 +7570,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7541,15 +7600,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7571,15 +7630,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7601,15 +7660,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7630,16 +7689,30 @@
         "reason": "Present in the approved After Effects catalog."
       },
       "technical": {
-        "state": "mapping_ambiguous",
-        "projectId": "slideshow-hd",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "state": "mapped_verified_window",
+        "projectId": "intro-slideshow",
+        "composition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "window": {
+          "startSeconds": 96.36,
+          "endSeconds": 101.16,
+          "durationSeconds": 4.799999999999997,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 5,
+          "maxSimultaneouslyEnabledInputs": 5,
+          "editableTextFields": 0,
+          "maxSimultaneouslyEnabledTextFields": 0
+        },
+        "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 96.36-101.16 seconds.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7661,15 +7734,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7690,16 +7763,30 @@
         "reason": "Present in the approved After Effects catalog."
       },
       "technical": {
-        "state": "mapping_ambiguous",
-        "projectId": "slideshow-hd",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "state": "mapped_verified_window",
+        "projectId": "intro-slideshow",
+        "composition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "window": {
+          "startSeconds": 103.48,
+          "endSeconds": 108.28,
+          "durationSeconds": 4.799999999999997,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 10,
+          "maxSimultaneouslyEnabledInputs": 5,
+          "editableTextFields": 0,
+          "maxSimultaneouslyEnabledTextFields": 0
+        },
+        "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 103.48-108.28 seconds across the native Scene 19-to-20 boundary.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7720,16 +7807,30 @@
         "reason": "Present in the approved After Effects catalog."
       },
       "technical": {
-        "state": "mapping_ambiguous",
-        "projectId": "slideshow-hd",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "state": "mapped_verified_window",
+        "projectId": "intro-slideshow",
+        "composition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "window": {
+          "startSeconds": 106.48,
+          "endSeconds": 111.28,
+          "durationSeconds": 4.799999999999997,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 5,
+          "maxSimultaneouslyEnabledInputs": 5,
+          "editableTextFields": 0,
+          "maxSimultaneouslyEnabledTextFields": 0
+        },
+        "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 106.48-111.28 seconds.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7751,15 +7852,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7781,15 +7882,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7811,15 +7912,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7841,15 +7942,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7870,16 +7971,30 @@
         "reason": "Present in the approved After Effects catalog."
       },
       "technical": {
-        "state": "mapping_ambiguous",
-        "projectId": "slideshow-hd",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "state": "mapped_verified_window",
+        "projectId": "intro-slideshow",
+        "composition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "window": {
+          "startSeconds": 127.48,
+          "endSeconds": 132.28,
+          "durationSeconds": 4.799999999999997,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 6,
+          "maxSimultaneouslyEnabledInputs": 5,
+          "editableTextFields": 3,
+          "maxSimultaneouslyEnabledTextFields": 3
+        },
+        "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 127.48-132.28 seconds across the section-card-to-Scene-21 boundary.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7901,15 +8016,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7931,15 +8046,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7961,15 +8076,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -7990,16 +8105,30 @@
         "reason": "Present in the approved After Effects catalog."
       },
       "technical": {
-        "state": "mapping_ambiguous",
-        "projectId": "slideshow-hd",
-        "composition": null,
-        "window": null,
-        "evidence": null,
+        "state": "mapped_verified_window",
+        "projectId": "intro-slideshow",
+        "composition": {
+          "id": 189207,
+          "path": "02:34"
+        },
+        "window": {
+          "startSeconds": 139.44,
+          "endSeconds": 145.96,
+          "durationSeconds": 6.52000000000001,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 5,
+          "maxSimultaneouslyEnabledInputs": 5,
+          "editableTextFields": 0,
+          "maxSimultaneouslyEnabledTextFields": 0
+        },
+        "evidence": "The saved scene cut and native 02:34 composition share the same 25 fps timeline; exact interval propagation measures 139.44-145.96 seconds.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
@@ -8021,15 +8150,15 @@
       },
       "technical": {
         "state": "mapping_unverified",
-        "projectId": "slideshow-hd",
+        "projectId": "intro-slideshow",
         "composition": null,
         "window": null,
-        "evidence": "The saved family source path and SHA-256 exactly match the frozen two-pass Slideshow HD inspection.",
+        "evidence": "The approved family profile identifies the 154.48-second Intro Slideshow render. The source-bound AST inspection of Project-1.aep measures the matching 154.48-second 02:34 composition at 25 fps; its source hash is retained here.",
         "projectEvidence": {
-          "sourceProjectName": "Slideshow HD.aep",
-          "sourceProjectSha256": "e2d7b9fec07f328ad7f56e730dfc8e73f36120e7f314edd0b051549b11f90207",
+          "sourceProjectName": "Project-1.aep",
+          "sourceProjectSha256": "6c366c3563cb76914882abba433c0383d1e23bc6474285f7b9ca87b4465a6928",
           "evidenceStatus": "source_bound_static_py_aep",
-          "resultStatus": "two_pass_exact_agreement"
+          "resultStatus": "source_bound_static_ast"
         }
       }
     },
