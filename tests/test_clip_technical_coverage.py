@@ -30,9 +30,9 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
-            "mapped_verified": 78,
-            "mapped_verified_window": 73,
-            "mapping_unverified": 253,
+            "mapped_verified": 74,
+            "mapped_verified_window": 105,
+            "mapping_unverified": 225,
             "mogrt_not_aep": 5,
             "project_unlinked": 14,
         })

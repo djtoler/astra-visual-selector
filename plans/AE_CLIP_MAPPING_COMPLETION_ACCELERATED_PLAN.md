@@ -168,3 +168,15 @@ Sixty-seven exact clip windows were measured across three source-bound single-fi
 Fourteen existing verified anchors establish parent-composition identity and timeline alignment. All boundary sources and native reports are hash-bound. End overshoots are permitted only inside a 0.02-second encode tolerance and are clamped to the measured native end. Exact recursive media/text capacity is recalculated inside every window; whole-composition capacity is not substituted.
 
 The registry now contains 153 verified mappings and 73 exact window-capacity records. Three earlier Minimalism whole-composition records were corrected to exact-window mappings. Full-library coverage is 78 `mapped_verified`, 73 `mapped_verified_window`, five approximate-window mappings, 253 `mapping_unverified`, five excluded MOGRT clips, and 14 `project_unlinked` clips. Seventy-nine focused tests pass.
+
+## Execution checkpoint: bulk batch 004
+
+Thirty-two exact clip windows were measured across three families whose scene-library clips came from completed native AE renders:
+
+- nine `03-history-documentary-10-slides` scenes;
+- eighteen `07-history-slideshow` scenes; and
+- five `08-documentary-slideshow` scenes.
+
+This batch introduces a stricter native-render-receipt evidence route for families without two existing final-composition anchors. Each receipt binds the build script, build report, completed render report, rendered video, native report, scene boundaries, and technical index by SHA-256. The build script must select the claimed native final composition and place that composition as the sole source layer in the transparent 720p review wrapper. The scene-library source must be marked `Our render` and byte-identical to the completed render output. Wrong composition names, wrong videos, changed sources, and unlisted supersession of an earlier mapping all fail tests.
+
+Four earlier child-composition mappings were corrected to exact windows on the rendered native final timelines. The registry now contains 181 verified mappings and 105 exact window-capacity records. Full-library coverage is 74 `mapped_verified`, 105 `mapped_verified_window`, five approximate-window mappings, 225 `mapping_unverified`, five excluded MOGRT clips, and 14 `project_unlinked` clips. Sixty focused tests pass. The 593-test full suite retains only the pre-existing unrelated Cloudflare-credentials assertion failure, with 13 skips. No new rendering or After Effects session was required.

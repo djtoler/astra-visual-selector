@@ -15,8 +15,8 @@
     "unresolvedUniqueSceneMappings": 0,
     "unreviewedUniqueSceneMappings": 0,
     "verifiedUniqueSceneMappings": 73,
-    "verifiedWholeCompositionMappings": 53,
-    "verifiedWindowMappings": 20,
+    "verifiedWholeCompositionMappings": 49,
+    "verifiedWindowMappings": 24,
     "visualTasks": 41
   },
   "evidenceBoundary": {
@@ -66,14 +66,14 @@
       "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
     },
     "sceneMappings": {
-      "bytes": 74115,
+      "bytes": 89007,
       "path": "grammar/ae-scene-composition-mappings.json",
-      "sha256": "0f9b6cb1bc85b782b3c17e7b059e7875616acc76d21c85b6eb36bf8416715a0c"
+      "sha256": "f8e7820968d350ceab803b337820e688ea21d016237be921ef7276e58130aea8"
     },
     "sceneWindowCapacities": {
-      "bytes": 436964,
+      "bytes": 1183604,
       "path": "grammar/ae-scene-window-technical-capacities.json",
-      "sha256": "7b482208cd6fcedfe04e9666d97a28036297752c68da7c9012a231ce50824c8a"
+      "sha256": "fdc569046d4f41d4249eb95024a1f9748b14c525ac048aa1b158635e23fa6286"
     },
     "specLinks": {
       "bytes": 15373,
@@ -895,28 +895,33 @@
         },
         {
           "candidateId": "08-documentary-slideshow--scene-006",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
-            "directVisualMediaInputs": 13,
-            "durationSeconds": 12.012012012012011,
-            "frameCount": 360,
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 12.68,
+            "frameCount": 380,
             "frameRate": 29.970001220703125,
             "height": 1080,
-            "id": 2114883995,
-            "mappingEvidence": "The approved catalog names this clip Scene 05; the clip ID is offset by the intro and maps to the native Scene 05 composition.",
-            "maxSimultaneouslyEnabledDirectInputs": 13,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 6,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 13,
-            "path": "03. Other/SCENES/Scene 05",
-            "recursiveEditableTextFields": 6,
+            "id": 2,
+            "mappingEvidence": "The reviewed 48.28–60.96 second boundary is byte-hash bound to a completed native AE render of this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-004.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 7,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 17,
+            "measurementScope": "clip_window",
+            "path": "02. Final Comp/Final Comp",
+            "recursiveEditableTextFields": 10,
             "recursiveTextFieldIds": [
               "text:2114883541:1",
+              "text:2114883941:1",
+              "text:2114883955:1",
+              "text:2114883969:1",
               "text:2114884095:1",
               "text:2114884109:1",
               "text:2114884123:1",
+              "text:2114884137:1",
               "text:675:1",
               "text:690:1"
             ],
@@ -934,6 +939,48 @@
                 "metadataComplete": true,
                 "outPoint": 12.045378712045379,
                 "textKind": "paragraph"
+              },
+              {
+                "compositionId": 2114883941,
+                "compositionPath": "01. Edit Here/TEXT/Text 10",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883941:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883955,
+                "compositionPath": "01. Edit Here/TEXT/Text 11",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 56.0,
+                "id": "text:2114883955:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "After Effects Temp",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883969,
+                "compositionPath": "01. Edit Here/TEXT/Text 12",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 63.0,
+                "id": "text:2114883969:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Videos or Photos",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
               },
               {
                 "compositionId": 2114884095,
@@ -978,6 +1025,20 @@
                 "textKind": "point"
               },
               {
+                "compositionId": 2114884137,
+                "compositionPath": "01. Edit Here/TEXT/Text 16",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114884137:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Easy to Edit 002",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
                 "compositionId": 675,
                 "compositionPath": "03. Other/Placeholder FX/Placeholder FX 10",
                 "enabled": true,
@@ -1011,86 +1072,133 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:131",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 07"
+                "path": "03. Other/Placeholder FX/Placeholder FX 07",
+                "projectItemId": 131
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:171",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 08",
+                "projectItemId": 171
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:261",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 05"
+                "path": "03. Other/Placeholder FX/Placeholder FX 05",
+                "projectItemId": 261
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:265347980",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 17",
+                "projectItemId": 265347980
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:265347996",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 18",
+                "projectItemId": 265347996
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265349964",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 14"
+                "path": "03. Other/Placeholder FX/Placeholder FX 14",
+                "projectItemId": 265349964
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265350300",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX blank"
+                "path": "03. Other/Placeholder FX/Placeholder FX blank",
+                "projectItemId": 265350300
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:278",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 04"
+                "path": "03. Other/Placeholder FX/Placeholder FX 04",
+                "projectItemId": 278
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:327",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 03"
+                "path": "03. Other/Placeholder FX/Placeholder FX 03",
+                "projectItemId": 327
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:661",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 09"
+                "path": "03. Other/Placeholder FX/Placeholder FX 09",
+                "projectItemId": 661
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:675",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 10"
+                "path": "03. Other/Placeholder FX/Placeholder FX 10",
+                "projectItemId": 675
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:690",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 11"
+                "path": "03. Other/Placeholder FX/Placeholder FX 11",
+                "projectItemId": 690
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:708",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 12",
+                "projectItemId": 708
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:725",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 13"
+                "path": "03. Other/Placeholder FX/Placeholder FX 13",
+                "projectItemId": 725
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:757",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 15"
+                "path": "03. Other/Placeholder FX/Placeholder FX 15",
+                "projectItemId": 757
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:773",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder Fx 16"
+                "path": "03. Other/Placeholder FX/Placeholder Fx 16",
+                "projectItemId": 773
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:89",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 02"
+                "path": "03. Other/Placeholder FX/Placeholder FX 02",
+                "projectItemId": 89
               }
             ],
-            "totalIndependentVisualMediaInputs": 13,
-            "unresolvedCount": 63,
+            "totalIndependentVisualMediaInputs": 17,
+            "unresolvedCount": 358,
             "width": 1920,
-            "workAreaDurationSeconds": 12.012012012012011,
-            "workAreaFrameCount": 360,
+            "window": {
+              "durationSeconds": 12.68,
+              "endSeconds": 60.96,
+              "precision": "exact",
+              "startSeconds": 48.28
+            },
+            "workAreaDurationSeconds": 76.64330997664331,
+            "workAreaFrameCount": 2297,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "08-documentary-slideshow",
@@ -1115,9 +1223,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 12.012012012012011,
+            "nativeCompositionDurationSeconds": 12.68,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 8.912012012012012,
+            "nativeMinusTaskSeconds": 9.58,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 3.1
@@ -4108,28 +4216,33 @@
         },
         {
           "candidateId": "08-documentary-slideshow--scene-005",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
-            "directVisualMediaInputs": 11,
-            "durationSeconds": 12.012012012012011,
-            "frameCount": 360,
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 12.68,
+            "frameCount": 380,
             "frameRate": 29.970001220703125,
             "height": 1080,
-            "id": 574,
-            "mappingEvidence": "The approved catalog names this clip Scene 04; the clip ID is offset by the intro and maps to the native Scene 04 composition.",
-            "maxSimultaneouslyEnabledDirectInputs": 11,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 6,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 11,
-            "path": "03. Other/SCENES/Scene 04",
-            "recursiveEditableTextFields": 6,
+            "id": 2,
+            "mappingEvidence": "The reviewed 36.90–49.58 second boundary is byte-hash bound to a completed native AE render of this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-004.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 7,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 15,
+            "measurementScope": "clip_window",
+            "path": "02. Final Comp/Final Comp",
+            "recursiveEditableTextFields": 10,
             "recursiveTextFieldIds": [
               "text:2114883541:1",
+              "text:2114883899:1",
+              "text:2114883913:1",
+              "text:2114883927:1",
               "text:2114883941:1",
               "text:2114883955:1",
               "text:2114883969:1",
+              "text:2114884095:1",
               "text:675:1",
               "text:690:1"
             ],
@@ -4147,6 +4260,48 @@
                 "metadataComplete": true,
                 "outPoint": 12.045378712045379,
                 "textKind": "paragraph"
+              },
+              {
+                "compositionId": 2114883899,
+                "compositionPath": "01. Edit Here/TEXT/Text 07",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883899:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883913,
+                "compositionPath": "01. Edit Here/TEXT/Text 08",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 56.0,
+                "id": "text:2114883913:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "After Effects Temp",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883927,
+                "compositionPath": "01. Edit Here/TEXT/Text 09",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 56.0,
+                "id": "text:2114883927:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "After Effects Temp",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
               },
               {
                 "compositionId": 2114883941,
@@ -4191,6 +4346,20 @@
                 "textKind": "point"
               },
               {
+                "compositionId": 2114884095,
+                "compositionPath": "01. Edit Here/TEXT/Text 13",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114884095:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
                 "compositionId": 675,
                 "compositionPath": "03. Other/Placeholder FX/Placeholder FX 10",
                 "enabled": true,
@@ -4224,74 +4393,126 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:131",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 07"
+                "path": "03. Other/Placeholder FX/Placeholder FX 07",
+                "projectItemId": 131
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:171",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 08",
+                "projectItemId": 171
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:261",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 05"
+                "path": "03. Other/Placeholder FX/Placeholder FX 05",
+                "projectItemId": 261
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265347980",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 17"
+                "path": "03. Other/Placeholder FX/Placeholder FX 17",
+                "projectItemId": 265347980
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:265349964",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 14",
+                "projectItemId": 265349964
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265350300",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX blank"
+                "path": "03. Other/Placeholder FX/Placeholder FX blank",
+                "projectItemId": 265350300
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:278",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 04",
+                "projectItemId": 278
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:327",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 03"
+                "path": "03. Other/Placeholder FX/Placeholder FX 03",
+                "projectItemId": 327
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:661",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 09"
+                "path": "03. Other/Placeholder FX/Placeholder FX 09",
+                "projectItemId": 661
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:675",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 10"
+                "path": "03. Other/Placeholder FX/Placeholder FX 10",
+                "projectItemId": 675
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:690",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 11"
+                "path": "03. Other/Placeholder FX/Placeholder FX 11",
+                "projectItemId": 690
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:708",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 12"
+                "path": "03. Other/Placeholder FX/Placeholder FX 12",
+                "projectItemId": 708
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:725",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 13"
+                "path": "03. Other/Placeholder FX/Placeholder FX 13",
+                "projectItemId": 725
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:757",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 15",
+                "projectItemId": 757
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:773",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder Fx 16",
+                "projectItemId": 773
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:89",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 02"
+                "path": "03. Other/Placeholder FX/Placeholder FX 02",
+                "projectItemId": 89
               }
             ],
-            "totalIndependentVisualMediaInputs": 11,
-            "unresolvedCount": 47,
+            "totalIndependentVisualMediaInputs": 16,
+            "unresolvedCount": 358,
             "width": 1920,
-            "workAreaDurationSeconds": 12.012012012012011,
-            "workAreaFrameCount": 360,
+            "window": {
+              "durationSeconds": 12.68,
+              "endSeconds": 49.58,
+              "precision": "exact",
+              "startSeconds": 36.9
+            },
+            "workAreaDurationSeconds": 76.64330997664331,
+            "workAreaFrameCount": 2297,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "08-documentary-slideshow",
@@ -4316,9 +4537,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 12.012012012012011,
+            "nativeCompositionDurationSeconds": 12.68,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 0.35201201201201116,
+            "nativeMinusTaskSeconds": 1.0199999999999996,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 11.66
@@ -5325,27 +5546,36 @@
       "candidateComparisons": [
         {
           "candidateId": "07-history-slideshow--scene-018",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
-            "directVisualMediaInputs": 1,
-            "durationSeconds": 15.0,
-            "frameCount": 450,
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 13.799999999999983,
+            "frameCount": 414,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 3779504,
-            "mappingEvidence": "The approved closing clip and the native composition both identify Scene 18, with matching closing-title structure.",
-            "maxSimultaneouslyEnabledDirectInputs": 1,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 2,
+            "id": 3777803,
+            "mappingEvidence": "The reviewed 134.33–148.13 second boundary is byte-hash bound to a completed native AE render of this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-004.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 9,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Works/Scenes/Scene 18/Scene 18",
-            "recursiveEditableTextFields": 3,
+            "measurementScope": "clip_window",
+            "path": "FINAL",
+            "recursiveEditableTextFields": 11,
             "recursiveTextFieldIds": [
               "text:3779592:1",
               "text:3779698:4",
-              "text:3779698:5"
+              "text:3781010:2",
+              "text:3781033:1",
+              "text:3782294:5",
+              "text:4445:1",
+              "text:4445:2",
+              "text:4460:1",
+              "text:4460:2",
+              "text:4475:1",
+              "text:4475:2"
             ],
             "recursiveTextFields": [
               {
@@ -5377,18 +5607,130 @@
                 "textKind": "point"
               },
               {
-                "compositionId": 3779698,
-                "compositionPath": "Edit Titles/Edit Titles 18",
-                "enabled": false,
-                "font": "NexaSlabBoldFREE",
-                "fontSize": 43.0,
-                "id": "text:3779698:5",
+                "compositionId": 3781010,
+                "compositionPath": "Edit Titles/Edit Titles 17",
+                "enabled": true,
+                "font": "BebasNeue",
+                "fontSize": 50.0,
+                "id": "text:3781010:2",
                 "inPoint": 0.0,
-                "layerIndex": 5,
-                "layerName": "History",
+                "layerIndex": 2,
+                "layerName": "this is your story",
                 "metadataComplete": true,
-                "outPoint": 16.666666666666668,
+                "outPoint": 11.0,
                 "textKind": "point"
+              },
+              {
+                "compositionId": 3781033,
+                "compositionPath": "Edit Images/Edit Image 17",
+                "enabled": true,
+                "font": "NexaSlabBoldFREE",
+                "fontSize": 75.0,
+                "id": "text:3781033:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Edit Image 17",
+                "metadataComplete": true,
+                "outPoint": 15.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 3782294,
+                "compositionPath": "Edit Dates/Edit Date 17",
+                "enabled": true,
+                "font": "BebasNeueBold",
+                "fontSize": 130.0,
+                "id": "text:3782294:5",
+                "inPoint": -0.72,
+                "layerIndex": 5,
+                "layerName": "1959",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 4445,
+                "compositionPath": "Works/Text Print 1",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4445:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "The word history comes from historía (Ancient Greek: ἱστορία, romanized: historíā, lit. 'inquiry, knowledge from inquiry, or judge'[17]). It was in that sense that Aristotle used the word in his History of Animals.[18] The ancestor word ἵστωρ is attested early on in Homeric Hymns, Heraclitus, the Athenian ephebes' oath, and in Boeotic inscriptions (in a legal sense, either \"judge\" or \"witness\", or similar). The Greek word was borrowed into Classical Latin as historia, meaning \"investigation, inquiry, research, account, description, written account of past events, writing of history, historical narrative, recorded knowledge of past events, story, narrative\". History was borrowed from Latin (possibly via Old Irish or Old Welsh) into Old English as stær (\"history, narrative, story\"), but this word fell out of use in the late Old English period.[19] Meanwhile, as Latin became Old French (and Anglo-Norman), historia developed into forms such as istorie, estoire, and historie, with new ",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4445,
+                "compositionPath": "Works/Text Print 1",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4445:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "It was from Anglo-Norman that history was borrowed into Middle English, and this time the loan stuck. It appears in the 13th-century Ancrene Wisse, but seems to have become a common word in the late 14th century, with an early attestation appearing in John Gower's Confessio Amantis of the 1390s (VI.1383): \"I finde in a bok compiled | To this matiere an old histoire, | The which comth nou to mi memoire\". In Middle English, the meaning of history was \"story\" in general. The restriction to the meaning \"the branch of knowledge that deals with past events; the formal record or study of past events, esp. human affairs\" arose in the mid-15th century.[19] With the Renaissance, older senses of the word were revived, and it was in the Greek sense that Francis Bacon used the term in the late 16th century, when he wrote about natural history. For him, historia was \"the knowledge of objects determined by space and time\", that sort of knowledge provided by memory (while science was provided by reason, and poetry was provided by fantasy).",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4460,
+                "compositionPath": "Works/Text Print 2",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4460:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "In an expression of the linguistic synthetic vs. analytic/isolating dichotomy, English like Chinese (史 vs. 诌) now designates separate words for human history and storytelling in general. In modern German, French, and most Germanic and Romance languages, which are solidly synthetic and highly inflected, the same word is still used to mean both \"history\" and \"story\". Historian in the sense of a \"researcher of history\" is attested from 1531. In all European languages, the substantive history is still used to mean both \"what happened with men\", and \"the scholarly study of the happened\", the latter sense sometimes distinguished with a capital letter, or the word   historiography.[18][further explanation needed] The adjective historical is attested from 1661, and historic from 1669.  Historians write in the context of their own time, and with due regard to the current dominant ideas of how to interpret the past, and sometimes write to provide lessons for their own society. ",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4460,
+                "compositionPath": "Works/Text Print 2",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4460:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "All events that are remembered and preserved in some authentic form constitute the historical record.[23] The task of historical discourse is to identify the sources which can most usefully contribute to the production of accurate accounts of past. Therefore, the constitution of the historian's archive is a result of circumscribing a more general archive by invalidating the usage of certain texts and documents (by falsifying their claims to represent the \"true past\"). Part of the historian's role is to skillfully and objectively use the vast amount of sources from the past, most often found in the archives. The process of creating a narrative inevitably generates a silence as historians remember or emphasize different events of the past.  Traditionally, historians have recorded events of the past, either in writing or by passing on an oral tradition, and have attempted to answer historical questions through the study of written documents and oral accounts. ",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4475,
+                "compositionPath": "Works/Text Print 3",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4475:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "History (derived from Ancient Greek ἱστορία (historía) 'inquiry; knowledge acquired by investigation')[1] is the systematic study and documentation of human activity.[2][3] The time period of events before the invention of writing systems is considered prehistory.[4] \"History\" is an umbrella term comprising past events as well as the memory, discovery, collection, organization, presentation, and interpretation of these events. Historians seek knowledge of the past using historical sources such as written documents, oral accounts, art and material artifacts, and ecological markers.[5] History is not complete and still has debatable mysteries. History is also an academic discipline which uses narrative to describe, examine, question, and analyze past events, and investigate their patterns of cause and effect.[6][7] Historians often debate which narrative best explains an event, as well as the significance of different causes and effects. Historians also debate the nature of history as an end in itself, as well as its usefulness to give perspective on the problems of the present.",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4475,
+                "compositionPath": "Works/Text Print 3",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4475:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Stories common to a particular culture, but not supported by external sources (such as the tales surrounding King Arthur), are usually classified as cultural heritage or legends.[11][12] History differs from myth in that it is supported by verifiable evidence. However, ancient cultural influences have helped spawn variant interpretations of the nature of history which have evolved over the centuries and continue to change today. The modern study of history is wide-ranging, and includes the study of specific regions and the study of certain topical or thematic elements of historical investigation. History is often taught as a part of primary and secondary education, and the academic study of history is a major discipline in university studies. Herodotus, a 5th-century BC Greek historian, is often considered the \"father of history\" (as he was one of the first historians) in the Western tradition,[13] although he has also been criticized as the \"father of lies\".[14][15] Along with his contemporary Thucydides, he helped form the foundations for the modern study of past events and societies.[16] Their works continue to be read today, and the gap between the culture-focused Herodotus and the military-focused Thucydides remains a point of contention or approach in modern historical writing. In East Asia, a state chronicle, the Spring and Autumn Annals, was reputed to date from as early as 722 BC, although only 2nd-century BC texts have survived.",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
               }
             ],
             "recursiveVisualMediaInputs": [
@@ -5396,14 +5738,28 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:3779648",
                 "kind": "visual",
-                "path": "Works/Scenes/Scene 18/Placeholder 18"
+                "path": "Works/Scenes/Scene 18/Placeholder 18",
+                "projectItemId": 3779648
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:3781091",
+                "kind": "visual",
+                "path": "Works/Scenes/Scene 17/Placeholder 17",
+                "projectItemId": 3781091
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 19,
+            "totalIndependentVisualMediaInputs": 2,
+            "unresolvedCount": 465,
             "width": 1920,
-            "workAreaDurationSeconds": 15.0,
-            "workAreaFrameCount": 450,
+            "window": {
+              "durationSeconds": 13.799999999999983,
+              "endSeconds": 148.13,
+              "precision": "exact",
+              "startSeconds": 134.33
+            },
+            "workAreaDurationSeconds": 148.1,
+            "workAreaFrameCount": 4443,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "07-history-slideshow",
@@ -5428,9 +5784,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 15.0,
+            "nativeCompositionDurationSeconds": 13.799999999999983,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 12.17,
+            "nativeMinusTaskSeconds": 10.969999999999983,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 2.83
@@ -10431,28 +10787,34 @@
         },
         {
           "candidateId": "08-documentary-slideshow--scene-004",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
-            "directVisualMediaInputs": 9,
-            "durationSeconds": 12.012012012012011,
-            "frameCount": 360,
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 12.670000000000002,
+            "frameCount": 380,
             "frameRate": 29.970001220703125,
             "height": 1080,
-            "id": 265349916,
-            "mappingEvidence": "The approved catalog names this clip Scene 03; the clip ID is offset by the intro and maps to the native Scene 03 composition.",
-            "maxSimultaneouslyEnabledDirectInputs": 9,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 5,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 9,
-            "path": "03. Other/SCENES/Scene 03",
-            "recursiveEditableTextFields": 5,
+            "id": 2,
+            "mappingEvidence": "The reviewed 25.33–38.00 second boundary is byte-hash bound to a completed native AE render of this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-004.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 7,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 12,
+            "measurementScope": "clip_window",
+            "path": "02. Final Comp/Final Comp",
+            "recursiveEditableTextFields": 10,
             "recursiveTextFieldIds": [
               "text:2114883541:1",
+              "text:2114883857:1",
+              "text:2114883871:1",
+              "text:2114883885:1",
               "text:2114883899:1",
               "text:2114883913:1",
               "text:2114883927:1",
+              "text:2114883941:1",
+              "text:675:1",
               "text:690:1"
             ],
             "recursiveTextFields": [
@@ -10469,6 +10831,48 @@
                 "metadataComplete": true,
                 "outPoint": 12.045378712045379,
                 "textKind": "paragraph"
+              },
+              {
+                "compositionId": 2114883857,
+                "compositionPath": "01. Edit Here/TEXT/Text 04",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883857:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Easy to Edit 002",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883871,
+                "compositionPath": "01. Edit Here/TEXT/Text 05",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 56.0,
+                "id": "text:2114883871:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "After Effects Temp",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883885,
+                "compositionPath": "01. Edit Here/TEXT/Text 06",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883885:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
               },
               {
                 "compositionId": 2114883899,
@@ -10513,6 +10917,34 @@
                 "textKind": "point"
               },
               {
+                "compositionId": 2114883941,
+                "compositionPath": "01. Edit Here/TEXT/Text 10",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883941:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 675,
+                "compositionPath": "03. Other/Placeholder FX/Placeholder FX 10",
+                "enabled": true,
+                "font": "AnotherTypewriter",
+                "fontSize": 60.0,
+                "id": "text:675:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Modular Structure",
+                "metadataComplete": true,
+                "outPoint": 12.512512512512512,
+                "textKind": "point"
+              },
+              {
                 "compositionId": 690,
                 "compositionPath": "03. Other/Placeholder FX/Placeholder FX 11",
                 "enabled": true,
@@ -10532,62 +10964,112 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:131",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 07"
+                "path": "03. Other/Placeholder FX/Placeholder FX 07",
+                "projectItemId": 131
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:171",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 08"
+                "path": "03. Other/Placeholder FX/Placeholder FX 08",
+                "projectItemId": 171
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2114883809",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 06",
+                "projectItemId": 2114883809
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:261",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 05"
+                "path": "03. Other/Placeholder FX/Placeholder FX 05",
+                "projectItemId": 261
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:265347980",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 17",
+                "projectItemId": 265347980
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265350300",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX blank"
+                "path": "03. Other/Placeholder FX/Placeholder FX blank",
+                "projectItemId": 265350300
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:278",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 04",
+                "projectItemId": 278
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:327",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 03"
+                "path": "03. Other/Placeholder FX/Placeholder FX 03",
+                "projectItemId": 327
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:661",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 09"
+                "path": "03. Other/Placeholder FX/Placeholder FX 09",
+                "projectItemId": 661
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:675",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 10",
+                "projectItemId": 675
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:690",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 11"
+                "path": "03. Other/Placeholder FX/Placeholder FX 11",
+                "projectItemId": 690
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:708",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 12"
+                "path": "03. Other/Placeholder FX/Placeholder FX 12",
+                "projectItemId": 708
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:725",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 13"
+                "path": "03. Other/Placeholder FX/Placeholder FX 13",
+                "projectItemId": 725
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:89",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 02",
+                "projectItemId": 89
               }
             ],
-            "totalIndependentVisualMediaInputs": 9,
-            "unresolvedCount": 56,
+            "totalIndependentVisualMediaInputs": 14,
+            "unresolvedCount": 358,
             "width": 1920,
-            "workAreaDurationSeconds": 12.012012012012011,
-            "workAreaFrameCount": 360,
+            "window": {
+              "durationSeconds": 12.670000000000002,
+              "endSeconds": 38.0,
+              "precision": "exact",
+              "startSeconds": 25.33
+            },
+            "workAreaDurationSeconds": 76.64330997664331,
+            "workAreaFrameCount": 2297,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "08-documentary-slideshow",
@@ -10612,9 +11094,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 12.012012012012011,
+            "nativeCompositionDurationSeconds": 12.670000000000002,
             "nativeDurationCoversUnmodifiedTask": false,
-            "nativeMinusTaskSeconds": -1.6479879879879888,
+            "nativeMinusTaskSeconds": -0.9899999999999984,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 13.66
@@ -14438,27 +14920,36 @@
         },
         {
           "candidateId": "07-history-slideshow--scene-018",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
-            "directVisualMediaInputs": 1,
-            "durationSeconds": 15.0,
-            "frameCount": 450,
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 13.799999999999983,
+            "frameCount": 414,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 3779504,
-            "mappingEvidence": "The approved closing clip and the native composition both identify Scene 18, with matching closing-title structure.",
-            "maxSimultaneouslyEnabledDirectInputs": 1,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 2,
+            "id": 3777803,
+            "mappingEvidence": "The reviewed 134.33–148.13 second boundary is byte-hash bound to a completed native AE render of this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-004.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 9,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Works/Scenes/Scene 18/Scene 18",
-            "recursiveEditableTextFields": 3,
+            "measurementScope": "clip_window",
+            "path": "FINAL",
+            "recursiveEditableTextFields": 11,
             "recursiveTextFieldIds": [
               "text:3779592:1",
               "text:3779698:4",
-              "text:3779698:5"
+              "text:3781010:2",
+              "text:3781033:1",
+              "text:3782294:5",
+              "text:4445:1",
+              "text:4445:2",
+              "text:4460:1",
+              "text:4460:2",
+              "text:4475:1",
+              "text:4475:2"
             ],
             "recursiveTextFields": [
               {
@@ -14490,18 +14981,130 @@
                 "textKind": "point"
               },
               {
-                "compositionId": 3779698,
-                "compositionPath": "Edit Titles/Edit Titles 18",
-                "enabled": false,
-                "font": "NexaSlabBoldFREE",
-                "fontSize": 43.0,
-                "id": "text:3779698:5",
+                "compositionId": 3781010,
+                "compositionPath": "Edit Titles/Edit Titles 17",
+                "enabled": true,
+                "font": "BebasNeue",
+                "fontSize": 50.0,
+                "id": "text:3781010:2",
                 "inPoint": 0.0,
-                "layerIndex": 5,
-                "layerName": "History",
+                "layerIndex": 2,
+                "layerName": "this is your story",
                 "metadataComplete": true,
-                "outPoint": 16.666666666666668,
+                "outPoint": 11.0,
                 "textKind": "point"
+              },
+              {
+                "compositionId": 3781033,
+                "compositionPath": "Edit Images/Edit Image 17",
+                "enabled": true,
+                "font": "NexaSlabBoldFREE",
+                "fontSize": 75.0,
+                "id": "text:3781033:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Edit Image 17",
+                "metadataComplete": true,
+                "outPoint": 15.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 3782294,
+                "compositionPath": "Edit Dates/Edit Date 17",
+                "enabled": true,
+                "font": "BebasNeueBold",
+                "fontSize": 130.0,
+                "id": "text:3782294:5",
+                "inPoint": -0.72,
+                "layerIndex": 5,
+                "layerName": "1959",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 4445,
+                "compositionPath": "Works/Text Print 1",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4445:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "The word history comes from historía (Ancient Greek: ἱστορία, romanized: historíā, lit. 'inquiry, knowledge from inquiry, or judge'[17]). It was in that sense that Aristotle used the word in his History of Animals.[18] The ancestor word ἵστωρ is attested early on in Homeric Hymns, Heraclitus, the Athenian ephebes' oath, and in Boeotic inscriptions (in a legal sense, either \"judge\" or \"witness\", or similar). The Greek word was borrowed into Classical Latin as historia, meaning \"investigation, inquiry, research, account, description, written account of past events, writing of history, historical narrative, recorded knowledge of past events, story, narrative\". History was borrowed from Latin (possibly via Old Irish or Old Welsh) into Old English as stær (\"history, narrative, story\"), but this word fell out of use in the late Old English period.[19] Meanwhile, as Latin became Old French (and Anglo-Norman), historia developed into forms such as istorie, estoire, and historie, with new ",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4445,
+                "compositionPath": "Works/Text Print 1",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4445:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "It was from Anglo-Norman that history was borrowed into Middle English, and this time the loan stuck. It appears in the 13th-century Ancrene Wisse, but seems to have become a common word in the late 14th century, with an early attestation appearing in John Gower's Confessio Amantis of the 1390s (VI.1383): \"I finde in a bok compiled | To this matiere an old histoire, | The which comth nou to mi memoire\". In Middle English, the meaning of history was \"story\" in general. The restriction to the meaning \"the branch of knowledge that deals with past events; the formal record or study of past events, esp. human affairs\" arose in the mid-15th century.[19] With the Renaissance, older senses of the word were revived, and it was in the Greek sense that Francis Bacon used the term in the late 16th century, when he wrote about natural history. For him, historia was \"the knowledge of objects determined by space and time\", that sort of knowledge provided by memory (while science was provided by reason, and poetry was provided by fantasy).",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4460,
+                "compositionPath": "Works/Text Print 2",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4460:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "In an expression of the linguistic synthetic vs. analytic/isolating dichotomy, English like Chinese (史 vs. 诌) now designates separate words for human history and storytelling in general. In modern German, French, and most Germanic and Romance languages, which are solidly synthetic and highly inflected, the same word is still used to mean both \"history\" and \"story\". Historian in the sense of a \"researcher of history\" is attested from 1531. In all European languages, the substantive history is still used to mean both \"what happened with men\", and \"the scholarly study of the happened\", the latter sense sometimes distinguished with a capital letter, or the word   historiography.[18][further explanation needed] The adjective historical is attested from 1661, and historic from 1669.  Historians write in the context of their own time, and with due regard to the current dominant ideas of how to interpret the past, and sometimes write to provide lessons for their own society. ",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4460,
+                "compositionPath": "Works/Text Print 2",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4460:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "All events that are remembered and preserved in some authentic form constitute the historical record.[23] The task of historical discourse is to identify the sources which can most usefully contribute to the production of accurate accounts of past. Therefore, the constitution of the historian's archive is a result of circumscribing a more general archive by invalidating the usage of certain texts and documents (by falsifying their claims to represent the \"true past\"). Part of the historian's role is to skillfully and objectively use the vast amount of sources from the past, most often found in the archives. The process of creating a narrative inevitably generates a silence as historians remember or emphasize different events of the past.  Traditionally, historians have recorded events of the past, either in writing or by passing on an oral tradition, and have attempted to answer historical questions through the study of written documents and oral accounts. ",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4475,
+                "compositionPath": "Works/Text Print 3",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4475:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "History (derived from Ancient Greek ἱστορία (historía) 'inquiry; knowledge acquired by investigation')[1] is the systematic study and documentation of human activity.[2][3] The time period of events before the invention of writing systems is considered prehistory.[4] \"History\" is an umbrella term comprising past events as well as the memory, discovery, collection, organization, presentation, and interpretation of these events. Historians seek knowledge of the past using historical sources such as written documents, oral accounts, art and material artifacts, and ecological markers.[5] History is not complete and still has debatable mysteries. History is also an academic discipline which uses narrative to describe, examine, question, and analyze past events, and investigate their patterns of cause and effect.[6][7] Historians often debate which narrative best explains an event, as well as the significance of different causes and effects. Historians also debate the nature of history as an end in itself, as well as its usefulness to give perspective on the problems of the present.",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
+              },
+              {
+                "compositionId": 4475,
+                "compositionPath": "Works/Text Print 3",
+                "enabled": true,
+                "font": "ArialMT",
+                "fontSize": 40.0,
+                "id": "text:4475:2",
+                "inPoint": 0.0,
+                "layerIndex": 2,
+                "layerName": "Stories common to a particular culture, but not supported by external sources (such as the tales surrounding King Arthur), are usually classified as cultural heritage or legends.[11][12] History differs from myth in that it is supported by verifiable evidence. However, ancient cultural influences have helped spawn variant interpretations of the nature of history which have evolved over the centuries and continue to change today. The modern study of history is wide-ranging, and includes the study of specific regions and the study of certain topical or thematic elements of historical investigation. History is often taught as a part of primary and secondary education, and the academic study of history is a major discipline in university studies. Herodotus, a 5th-century BC Greek historian, is often considered the \"father of history\" (as he was one of the first historians) in the Western tradition,[13] although he has also been criticized as the \"father of lies\".[14][15] Along with his contemporary Thucydides, he helped form the foundations for the modern study of past events and societies.[16] Their works continue to be read today, and the gap between the culture-focused Herodotus and the military-focused Thucydides remains a point of contention or approach in modern historical writing. In East Asia, a state chronicle, the Spring and Autumn Annals, was reputed to date from as early as 722 BC, although only 2nd-century BC texts have survived.",
+                "metadataComplete": true,
+                "outPoint": 10.0,
+                "textKind": "paragraph"
               }
             ],
             "recursiveVisualMediaInputs": [
@@ -14509,14 +15112,28 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:3779648",
                 "kind": "visual",
-                "path": "Works/Scenes/Scene 18/Placeholder 18"
+                "path": "Works/Scenes/Scene 18/Placeholder 18",
+                "projectItemId": 3779648
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:3781091",
+                "kind": "visual",
+                "path": "Works/Scenes/Scene 17/Placeholder 17",
+                "projectItemId": 3781091
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 19,
+            "totalIndependentVisualMediaInputs": 2,
+            "unresolvedCount": 465,
             "width": 1920,
-            "workAreaDurationSeconds": 15.0,
-            "workAreaFrameCount": 450,
+            "window": {
+              "durationSeconds": 13.799999999999983,
+              "endSeconds": 148.13,
+              "precision": "exact",
+              "startSeconds": 134.33
+            },
+            "workAreaDurationSeconds": 148.1,
+            "workAreaFrameCount": 4443,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "07-history-slideshow",
@@ -14541,9 +15158,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 15.0,
+            "nativeCompositionDurationSeconds": 13.799999999999983,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 9.98,
+            "nativeMinusTaskSeconds": 8.779999999999983,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 5.02
@@ -23632,28 +24249,33 @@
         },
         {
           "candidateId": "08-documentary-slideshow--scene-006",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
-            "directVisualMediaInputs": 13,
-            "durationSeconds": 12.012012012012011,
-            "frameCount": 360,
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 12.68,
+            "frameCount": 380,
             "frameRate": 29.970001220703125,
             "height": 1080,
-            "id": 2114883995,
-            "mappingEvidence": "The approved catalog names this clip Scene 05; the clip ID is offset by the intro and maps to the native Scene 05 composition.",
-            "maxSimultaneouslyEnabledDirectInputs": 13,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 6,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 13,
-            "path": "03. Other/SCENES/Scene 05",
-            "recursiveEditableTextFields": 6,
+            "id": 2,
+            "mappingEvidence": "The reviewed 48.28–60.96 second boundary is byte-hash bound to a completed native AE render of this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-004.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 7,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 17,
+            "measurementScope": "clip_window",
+            "path": "02. Final Comp/Final Comp",
+            "recursiveEditableTextFields": 10,
             "recursiveTextFieldIds": [
               "text:2114883541:1",
+              "text:2114883941:1",
+              "text:2114883955:1",
+              "text:2114883969:1",
               "text:2114884095:1",
               "text:2114884109:1",
               "text:2114884123:1",
+              "text:2114884137:1",
               "text:675:1",
               "text:690:1"
             ],
@@ -23671,6 +24293,48 @@
                 "metadataComplete": true,
                 "outPoint": 12.045378712045379,
                 "textKind": "paragraph"
+              },
+              {
+                "compositionId": 2114883941,
+                "compositionPath": "01. Edit Here/TEXT/Text 10",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883941:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883955,
+                "compositionPath": "01. Edit Here/TEXT/Text 11",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 56.0,
+                "id": "text:2114883955:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "After Effects Temp",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883969,
+                "compositionPath": "01. Edit Here/TEXT/Text 12",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 63.0,
+                "id": "text:2114883969:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Videos or Photos",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
               },
               {
                 "compositionId": 2114884095,
@@ -23715,6 +24379,20 @@
                 "textKind": "point"
               },
               {
+                "compositionId": 2114884137,
+                "compositionPath": "01. Edit Here/TEXT/Text 16",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114884137:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Easy to Edit 002",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
                 "compositionId": 675,
                 "compositionPath": "03. Other/Placeholder FX/Placeholder FX 10",
                 "enabled": true,
@@ -23748,86 +24426,133 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:131",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 07"
+                "path": "03. Other/Placeholder FX/Placeholder FX 07",
+                "projectItemId": 131
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:171",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 08",
+                "projectItemId": 171
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:261",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 05"
+                "path": "03. Other/Placeholder FX/Placeholder FX 05",
+                "projectItemId": 261
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:265347980",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 17",
+                "projectItemId": 265347980
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:265347996",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 18",
+                "projectItemId": 265347996
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265349964",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 14"
+                "path": "03. Other/Placeholder FX/Placeholder FX 14",
+                "projectItemId": 265349964
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265350300",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX blank"
+                "path": "03. Other/Placeholder FX/Placeholder FX blank",
+                "projectItemId": 265350300
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:278",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 04"
+                "path": "03. Other/Placeholder FX/Placeholder FX 04",
+                "projectItemId": 278
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:327",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 03"
+                "path": "03. Other/Placeholder FX/Placeholder FX 03",
+                "projectItemId": 327
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:661",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 09"
+                "path": "03. Other/Placeholder FX/Placeholder FX 09",
+                "projectItemId": 661
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:675",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 10"
+                "path": "03. Other/Placeholder FX/Placeholder FX 10",
+                "projectItemId": 675
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:690",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 11"
+                "path": "03. Other/Placeholder FX/Placeholder FX 11",
+                "projectItemId": 690
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:708",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 12",
+                "projectItemId": 708
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:725",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 13"
+                "path": "03. Other/Placeholder FX/Placeholder FX 13",
+                "projectItemId": 725
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:757",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 15"
+                "path": "03. Other/Placeholder FX/Placeholder FX 15",
+                "projectItemId": 757
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:773",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder Fx 16"
+                "path": "03. Other/Placeholder FX/Placeholder Fx 16",
+                "projectItemId": 773
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:89",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 02"
+                "path": "03. Other/Placeholder FX/Placeholder FX 02",
+                "projectItemId": 89
               }
             ],
-            "totalIndependentVisualMediaInputs": 13,
-            "unresolvedCount": 63,
+            "totalIndependentVisualMediaInputs": 17,
+            "unresolvedCount": 358,
             "width": 1920,
-            "workAreaDurationSeconds": 12.012012012012011,
-            "workAreaFrameCount": 360,
+            "window": {
+              "durationSeconds": 12.68,
+              "endSeconds": 60.96,
+              "precision": "exact",
+              "startSeconds": 48.28
+            },
+            "workAreaDurationSeconds": 76.64330997664331,
+            "workAreaFrameCount": 2297,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "08-documentary-slideshow",
@@ -23857,9 +24582,9 @@
           "reason": "Required media is known to be missing; measured template capacity cannot make the treatment fillable until that media is supplied.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 12.012012012012011,
+            "nativeCompositionDurationSeconds": 12.68,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 6.152012012012011,
+            "nativeMinusTaskSeconds": 6.819999999999999,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 5.86
@@ -32148,28 +32873,34 @@
         },
         {
           "candidateId": "08-documentary-slideshow--scene-004",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
-            "directVisualMediaInputs": 9,
-            "durationSeconds": 12.012012012012011,
-            "frameCount": 360,
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 12.670000000000002,
+            "frameCount": 380,
             "frameRate": 29.970001220703125,
             "height": 1080,
-            "id": 265349916,
-            "mappingEvidence": "The approved catalog names this clip Scene 03; the clip ID is offset by the intro and maps to the native Scene 03 composition.",
-            "maxSimultaneouslyEnabledDirectInputs": 9,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 5,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 9,
-            "path": "03. Other/SCENES/Scene 03",
-            "recursiveEditableTextFields": 5,
+            "id": 2,
+            "mappingEvidence": "The reviewed 25.33–38.00 second boundary is byte-hash bound to a completed native AE render of this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-004.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 7,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 12,
+            "measurementScope": "clip_window",
+            "path": "02. Final Comp/Final Comp",
+            "recursiveEditableTextFields": 10,
             "recursiveTextFieldIds": [
               "text:2114883541:1",
+              "text:2114883857:1",
+              "text:2114883871:1",
+              "text:2114883885:1",
               "text:2114883899:1",
               "text:2114883913:1",
               "text:2114883927:1",
+              "text:2114883941:1",
+              "text:675:1",
               "text:690:1"
             ],
             "recursiveTextFields": [
@@ -32186,6 +32917,48 @@
                 "metadataComplete": true,
                 "outPoint": 12.045378712045379,
                 "textKind": "paragraph"
+              },
+              {
+                "compositionId": 2114883857,
+                "compositionPath": "01. Edit Here/TEXT/Text 04",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883857:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Easy to Edit 002",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883871,
+                "compositionPath": "01. Edit Here/TEXT/Text 05",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 56.0,
+                "id": "text:2114883871:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "After Effects Temp",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883885,
+                "compositionPath": "01. Edit Here/TEXT/Text 06",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883885:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
               },
               {
                 "compositionId": 2114883899,
@@ -32230,6 +33003,34 @@
                 "textKind": "point"
               },
               {
+                "compositionId": 2114883941,
+                "compositionPath": "01. Edit Here/TEXT/Text 10",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883941:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 675,
+                "compositionPath": "03. Other/Placeholder FX/Placeholder FX 10",
+                "enabled": true,
+                "font": "AnotherTypewriter",
+                "fontSize": 60.0,
+                "id": "text:675:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Modular Structure",
+                "metadataComplete": true,
+                "outPoint": 12.512512512512512,
+                "textKind": "point"
+              },
+              {
                 "compositionId": 690,
                 "compositionPath": "03. Other/Placeholder FX/Placeholder FX 11",
                 "enabled": true,
@@ -32249,62 +33050,112 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:131",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 07"
+                "path": "03. Other/Placeholder FX/Placeholder FX 07",
+                "projectItemId": 131
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:171",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 08"
+                "path": "03. Other/Placeholder FX/Placeholder FX 08",
+                "projectItemId": 171
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2114883809",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 06",
+                "projectItemId": 2114883809
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:261",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 05"
+                "path": "03. Other/Placeholder FX/Placeholder FX 05",
+                "projectItemId": 261
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:265347980",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 17",
+                "projectItemId": 265347980
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265350300",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX blank"
+                "path": "03. Other/Placeholder FX/Placeholder FX blank",
+                "projectItemId": 265350300
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:278",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 04",
+                "projectItemId": 278
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:327",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 03"
+                "path": "03. Other/Placeholder FX/Placeholder FX 03",
+                "projectItemId": 327
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:661",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 09"
+                "path": "03. Other/Placeholder FX/Placeholder FX 09",
+                "projectItemId": 661
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:675",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 10",
+                "projectItemId": 675
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:690",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 11"
+                "path": "03. Other/Placeholder FX/Placeholder FX 11",
+                "projectItemId": 690
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:708",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 12"
+                "path": "03. Other/Placeholder FX/Placeholder FX 12",
+                "projectItemId": 708
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:725",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 13"
+                "path": "03. Other/Placeholder FX/Placeholder FX 13",
+                "projectItemId": 725
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:89",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 02",
+                "projectItemId": 89
               }
             ],
-            "totalIndependentVisualMediaInputs": 9,
-            "unresolvedCount": 56,
+            "totalIndependentVisualMediaInputs": 14,
+            "unresolvedCount": 358,
             "width": 1920,
-            "workAreaDurationSeconds": 12.012012012012011,
-            "workAreaFrameCount": 360,
+            "window": {
+              "durationSeconds": 12.670000000000002,
+              "endSeconds": 38.0,
+              "precision": "exact",
+              "startSeconds": 25.33
+            },
+            "workAreaDurationSeconds": 76.64330997664331,
+            "workAreaFrameCount": 2297,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "08-documentary-slideshow",
@@ -32329,9 +33180,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 12.012012012012011,
+            "nativeCompositionDurationSeconds": 12.670000000000002,
             "nativeDurationCoversUnmodifiedTask": false,
-            "nativeMinusTaskSeconds": -8.007987987987988,
+            "nativeMinusTaskSeconds": -7.349999999999998,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 20.02
@@ -44199,28 +45050,34 @@
         },
         {
           "candidateId": "08-documentary-slideshow--scene-004",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
-            "directVisualMediaInputs": 9,
-            "durationSeconds": 12.012012012012011,
-            "frameCount": 360,
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 12.670000000000002,
+            "frameCount": 380,
             "frameRate": 29.970001220703125,
             "height": 1080,
-            "id": 265349916,
-            "mappingEvidence": "The approved catalog names this clip Scene 03; the clip ID is offset by the intro and maps to the native Scene 03 composition.",
-            "maxSimultaneouslyEnabledDirectInputs": 9,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 5,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 9,
-            "path": "03. Other/SCENES/Scene 03",
-            "recursiveEditableTextFields": 5,
+            "id": 2,
+            "mappingEvidence": "The reviewed 25.33–38.00 second boundary is byte-hash bound to a completed native AE render of this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-004.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 7,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 12,
+            "measurementScope": "clip_window",
+            "path": "02. Final Comp/Final Comp",
+            "recursiveEditableTextFields": 10,
             "recursiveTextFieldIds": [
               "text:2114883541:1",
+              "text:2114883857:1",
+              "text:2114883871:1",
+              "text:2114883885:1",
               "text:2114883899:1",
               "text:2114883913:1",
               "text:2114883927:1",
+              "text:2114883941:1",
+              "text:675:1",
               "text:690:1"
             ],
             "recursiveTextFields": [
@@ -44237,6 +45094,48 @@
                 "metadataComplete": true,
                 "outPoint": 12.045378712045379,
                 "textKind": "paragraph"
+              },
+              {
+                "compositionId": 2114883857,
+                "compositionPath": "01. Edit Here/TEXT/Text 04",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883857:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Easy to Edit 002",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883871,
+                "compositionPath": "01. Edit Here/TEXT/Text 05",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 56.0,
+                "id": "text:2114883871:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "After Effects Temp",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2114883885,
+                "compositionPath": "01. Edit Here/TEXT/Text 06",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883885:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
               },
               {
                 "compositionId": 2114883899,
@@ -44281,6 +45180,34 @@
                 "textKind": "point"
               },
               {
+                "compositionId": 2114883941,
+                "compositionPath": "01. Edit Here/TEXT/Text 10",
+                "enabled": true,
+                "font": "HeadlineCrack",
+                "fontSize": 61.0,
+                "id": "text:2114883941:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Ae Motion Design",
+                "metadataComplete": true,
+                "outPoint": 12.012012012012011,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 675,
+                "compositionPath": "03. Other/Placeholder FX/Placeholder FX 10",
+                "enabled": true,
+                "font": "AnotherTypewriter",
+                "fontSize": 60.0,
+                "id": "text:675:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Modular Structure",
+                "metadataComplete": true,
+                "outPoint": 12.512512512512512,
+                "textKind": "point"
+              },
+              {
                 "compositionId": 690,
                 "compositionPath": "03. Other/Placeholder FX/Placeholder FX 11",
                 "enabled": true,
@@ -44300,62 +45227,112 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:131",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 07"
+                "path": "03. Other/Placeholder FX/Placeholder FX 07",
+                "projectItemId": 131
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:171",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 08"
+                "path": "03. Other/Placeholder FX/Placeholder FX 08",
+                "projectItemId": 171
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2114883809",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 06",
+                "projectItemId": 2114883809
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:261",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 05"
+                "path": "03. Other/Placeholder FX/Placeholder FX 05",
+                "projectItemId": 261
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:265347980",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 17",
+                "projectItemId": 265347980
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:265350300",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX blank"
+                "path": "03. Other/Placeholder FX/Placeholder FX blank",
+                "projectItemId": 265350300
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:278",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 04",
+                "projectItemId": 278
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:327",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 03"
+                "path": "03. Other/Placeholder FX/Placeholder FX 03",
+                "projectItemId": 327
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:661",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 09"
+                "path": "03. Other/Placeholder FX/Placeholder FX 09",
+                "projectItemId": 661
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:675",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 10",
+                "projectItemId": 675
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:690",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 11"
+                "path": "03. Other/Placeholder FX/Placeholder FX 11",
+                "projectItemId": 690
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:708",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 12"
+                "path": "03. Other/Placeholder FX/Placeholder FX 12",
+                "projectItemId": 708
               },
               {
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:725",
                 "kind": "visual",
-                "path": "03. Other/Placeholder FX/Placeholder FX 13"
+                "path": "03. Other/Placeholder FX/Placeholder FX 13",
+                "projectItemId": 725
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:89",
+                "kind": "visual",
+                "path": "03. Other/Placeholder FX/Placeholder FX 02",
+                "projectItemId": 89
               }
             ],
-            "totalIndependentVisualMediaInputs": 9,
-            "unresolvedCount": 56,
+            "totalIndependentVisualMediaInputs": 14,
+            "unresolvedCount": 358,
             "width": 1920,
-            "workAreaDurationSeconds": 12.012012012012011,
-            "workAreaFrameCount": 360,
+            "window": {
+              "durationSeconds": 12.670000000000002,
+              "endSeconds": 38.0,
+              "precision": "exact",
+              "startSeconds": 25.33
+            },
+            "workAreaDurationSeconds": 76.64330997664331,
+            "workAreaFrameCount": 2297,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "08-documentary-slideshow",
@@ -44380,9 +45357,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 12.012012012012011,
+            "nativeCompositionDurationSeconds": 12.670000000000002,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 3.6720120120120114,
+            "nativeMinusTaskSeconds": 4.330000000000002,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 8.34
