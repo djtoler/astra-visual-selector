@@ -30,9 +30,9 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
-            "mapped_verified": 54,
+            "mapped_verified": 57,
             "mapped_verified_window": 17,
-            "mapping_unverified": 333,
+            "mapping_unverified": 330,
             "mogrt_not_aep": 5,
             "project_unlinked": 14,
         })
@@ -56,6 +56,18 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertEqual(row["technical"]["state"], "mapped_verified_window")
         self.assertEqual(row["technical"]["windowCapacity"]["absoluteMediaSlots"], 10)
         self.assertEqual(row["technical"]["windowCapacity"]["maxSimultaneouslyEnabledInputs"], 9)
+
+    def test_quick_batch_screen_mockup_scenes_have_exact_native_capacity(self):
+        rows = {row["clipId"]: row for row in self.ledger["clips"]}
+        expected = {
+            "screen-mockup-rfx--review-001": (66, "03 Others/Final Scenes/Scene_01"),
+            "screen-mockup-rfx--review-007": (669, "03 Others/Final Scenes/Scene_07"),
+            "screen-mockup-rfx--review-008": (1005, "03 Others/Final Scenes/Scene_08"),
+        }
+        for clip_id, (composition_id, path) in expected.items():
+            technical = rows[clip_id]["technical"]
+            self.assertEqual(technical["state"], "mapped_verified")
+            self.assertEqual(technical["composition"], {"id": composition_id, "path": path})
 
     def test_unmapped_family_never_inherits_project_capacity(self):
         rows = [

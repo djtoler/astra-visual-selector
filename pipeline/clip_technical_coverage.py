@@ -143,6 +143,9 @@ def build_coverage(
         mapping = mappings.get(row["clipId"])
         pilot_row = pilots.get(row["clipId"])
 
+        if mapping and link and mapping.get("projectId") != link.get("projectId"):
+            raise ValueError(f"clip mapping uses wrong linked project: {row['clipId']}")
+
         if family_id == "archive3-carousel-galleries-loop-animation-2":
             technical = {
                 "state": "mogrt_not_aep",

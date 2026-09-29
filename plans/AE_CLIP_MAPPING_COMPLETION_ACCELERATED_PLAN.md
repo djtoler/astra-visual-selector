@@ -131,3 +131,15 @@ No input is needed during the non-AE evidence stages. During native verification
 ## Commit policy
 
 After execution approval, completed and tested batches will be committed and pushed continuously to `codex/treatment-requirements-review` without pausing for separate push permission. No merge to `main` is authorized.
+
+## Execution checkpoint: quick batch 001
+
+The approved three-clip Screen Mockup batch completed without rendering:
+
+- `screen-mockup-rfx--review-001` → native `Scene_01`
+- `screen-mockup-rfx--review-007` → native `Scene_07`
+- `screen-mockup-rfx--review-008` → native `Scene_08`
+
+The evidence combines five consecutive verified anchors, the source-bound eight-layer native master sequence, exact scene order, and same-numbered unique recursive media sources. Each promoted composition measures one absolute media slot, one maximum simultaneously enabled input, zero editable text fields, and 8.008008 seconds.
+
+The registry expanded from 73 to 76 verified mapping records while the existing VisualTask comparison remains a validated 73-record subset. Full-library coverage moved from 333 to 330 `mapping_unverified` clips and from 54 to 57 `mapped_verified` clips. Sixty-two focused tests pass. The full 575-test suite retains only the unrelated known Cloudflare-credentials assertion failure, with 13 skips.

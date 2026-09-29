@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "activationState": "reviewed_native_mapping_evidence",
+  "familyId": "screen-mockup-rfx",
+  "projectId": "screen-mockup",
+  "sourceProjectSha256": "b42c6b6388592208bf0eabc04b73e04fd5c0ed78ad1229c30d3f8110035411dc",
+  "sources": {
+    "nativeReport": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/screen-mockup.json",
+      "sha256": "7fba98c47fad5694ec026aa88486bb05bb00369db88d3b7f6b603bafcb030837"
+    },
+    "reviewCatalog": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/review-catalog.json",
+      "sha256": "6c8a770d5c4c5370121eedc2f686eec10341efbd3e3e9e3faaf8be2721c64a32"
+    },
+    "technicalIndex": {
+      "path": "grammar/ae-template-technical-index.json",
+      "sha256": "76eeac54a1139cd36a826e4bd8e839a7583585124b4e6fd6e267a3fde9dabe2b"
+    },
+    "familyLinks": {
+      "path": "grammar/ae-template-spec-links.json",
+      "sha256": "bfe4022aa0d0546d9e153586cad10311656fde3945c40347845a7d23f661d726"
+    }
+  },
+  "method": {
+    "proposalRule": "family_specific_consecutive_sequence",
+    "independentEvidence": [
+      "The source-bound native master contains exactly eight enabled, numbered final-scene layers in Scene_01 through Scene_08 order.",
+      "Five previously verified consecutive anchors bind reviewed clips 002 through 006 to native Scene_02 through Scene_06.",
+      "The three unresolved reviewed clips are the opening, seventh, and final members of the same uninterrupted eight-clip preview sequence.",
+      "Each native final scene recursively resolves to its same-numbered unique Placeholder_0N.jpg media source."
+    ],
+    "renderRequired": false,
+    "reasonNoRenderRequired": "Native ordering, five consecutive anchors, exact scene count, and unique same-numbered recursive media sources jointly resolve the three remaining positions without a visual ambiguity."
+  },
+  "verifiedAnchors": [
+    {"clipId": "screen-mockup-rfx--review-002", "compositionId": 262, "compositionPath": "03 Others/Final Scenes/Scene_02"},
+    {"clipId": "screen-mockup-rfx--review-003", "compositionId": 326, "compositionPath": "03 Others/Final Scenes/Scene_03"},
+    {"clipId": "screen-mockup-rfx--review-004", "compositionId": 398, "compositionPath": "03 Others/Final Scenes/Scene_04"},
+    {"clipId": "screen-mockup-rfx--review-005", "compositionId": 484, "compositionPath": "03 Others/Final Scenes/Scene_05"},
+    {"clipId": "screen-mockup-rfx--review-006", "compositionId": 604, "compositionPath": "03 Others/Final Scenes/Scene_06"}
+  ],
+  "nativeMaster": {
+    "compositionId": 445,
+    "compositionPath": "02 Render Comp/Screen_Mockup_HD",
+    "durationSeconds": 32.032032032032035,
+    "orderedSceneLayers": [
+      {"ordinal": 1, "compositionId": 66, "compositionPath": "03 Others/Final Scenes/Scene_01", "startSeconds": 0.0},
+      {"ordinal": 2, "compositionId": 262, "compositionPath": "03 Others/Final Scenes/Scene_02", "startSeconds": 4.008715382048716},
+      {"ordinal": 3, "compositionId": 326, "compositionPath": "03 Others/Final Scenes/Scene_03", "startSeconds": 7.995849182515849},
+      {"ordinal": 4, "compositionId": 398, "compositionPath": "03 Others/Final Scenes/Scene_04", "startSeconds": 12.00786119452786},
+      {"ordinal": 5, "compositionId": 484, "compositionPath": "03 Others/Final Scenes/Scene_05", "startSeconds": 16.01201201201201},
+      {"ordinal": 6, "compositionId": 604, "compositionPath": "03 Others/Final Scenes/Scene_06", "startSeconds": 20.003857190523856},
+      {"ordinal": 7, "compositionId": 669, "compositionPath": "03 Others/Final Scenes/Scene_07", "startSeconds": 24.016016016016017},
+      {"ordinal": 8, "compositionId": 1005, "compositionPath": "03 Others/Final Scenes/Scene_08", "startSeconds": 28.02802802802803}
+    ]
+  },
+  "promotedMappings": [
+    {
+      "clipId": "screen-mockup-rfx--review-001",
+      "previewWindowSeconds": [0.0, 3.667],
+      "compositionId": 66,
+      "compositionPath": "03 Others/Final Scenes/Scene_01",
+      "nativeDurationSeconds": 8.008008008008009,
+      "absoluteMediaSlots": 1,
+      "maxSimultaneouslyEnabledInputs": 1,
+      "editableTextFields": 0
+    },
+    {
+      "clipId": "screen-mockup-rfx--review-007",
+      "previewWindowSeconds": [21.2, 24.867],
+      "compositionId": 669,
+      "compositionPath": "03 Others/Final Scenes/Scene_07",
+      "nativeDurationSeconds": 8.008008008008009,
+      "absoluteMediaSlots": 1,
+      "maxSimultaneouslyEnabledInputs": 1,
+      "editableTextFields": 0
+    },
+    {
+      "clipId": "screen-mockup-rfx--review-008",
+      "previewWindowSeconds": [24.867, 28.533],
+      "compositionId": 1005,
+      "compositionPath": "03 Others/Final Scenes/Scene_08",
+      "nativeDurationSeconds": 8.008008008008009,
+      "absoluteMediaSlots": 1,
+      "maxSimultaneouslyEnabledInputs": 1,
+      "editableTextFields": 0
+    }
+  ],
+  "result": {
+    "verified": 3,
+    "errors": 0,
+    "abstained": 0,
+    "familyMappingComplete": true
+  }
+}

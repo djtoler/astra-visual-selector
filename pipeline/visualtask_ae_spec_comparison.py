@@ -318,11 +318,10 @@ def validate_scene_mappings(
     ids = [row.get("sceneId") for row in rows]
     if len(ids) != len(set(ids)):
         raise ValueError("duplicate scene-composition mapping")
-    if set(ids) != set(expected_scene_projects):
+    if not set(expected_scene_projects).issubset(ids):
         missing = sorted(set(expected_scene_projects) - set(ids))
-        extra = sorted(set(ids) - set(expected_scene_projects))
-        raise ValueError(f"scene-composition mapping scope mismatch: missing={missing}, extra={extra}")
-    if (artifact.get("scope") or {}).get("uniqueScenes") != len(expected_scene_projects):
+        raise ValueError(f"scene-composition mapping scope mismatch: missing={missing}")
+    if (artifact.get("scope") or {}).get("uniqueScenes") != len(rows):
         raise ValueError("scene-composition mapping scope count is stale")
     verified = 0
     verified_window = 0
@@ -331,7 +330,8 @@ def validate_scene_mappings(
     for row in rows:
         scene_id = row["sceneId"]
         project_id = row.get("projectId")
-        if project_id != expected_scene_projects[scene_id]:
+        in_comparison_scope = scene_id in expected_scene_projects
+        if in_comparison_scope and project_id != expected_scene_projects[scene_id]:
             raise ValueError(f"mapping uses wrong measured project: {scene_id}")
         if project_id not in projects:
             raise ValueError(f"mapping uses unknown measured project: {project_id}")
@@ -339,7 +339,7 @@ def validate_scene_mappings(
         paths = {comp["path"] for comp in compositions.values()}
         status = row.get("status")
         if status in {"verified", "verified_window"}:
-            verified += 1
+            verified += int(in_comparison_scope)
             comp_id = row.get("compositionId")
             comp = compositions.get(comp_id)
             if not comp or comp["path"] != row.get("compositionPath"):
@@ -349,7 +349,7 @@ def validate_scene_mappings(
             if row.get("reason") or row.get("candidateCompositionPaths"):
                 raise ValueError(f"verified mapping contains unresolved fields: {scene_id}")
             if status == "verified_window":
-                verified_window += 1
+                verified_window += int(in_comparison_scope)
                 windows = {
                     item["sceneId"]: item
                     for item in (window_capacities or {}).get("windows", [])
@@ -366,7 +366,7 @@ def validate_scene_mappings(
             elif row.get("windowCapacityId") is not None:
                 raise ValueError(f"whole-composition mapping claims window capacity: {scene_id}")
         elif status == "unresolved":
-            unresolved += 1
+            unresolved += int(in_comparison_scope)
             candidates = row.get("candidateCompositionPaths") or []
             if not isinstance(row.get("reason"), str) or not row["reason"].strip():
                 raise ValueError(f"unresolved mapping lacks reason: {scene_id}")
@@ -375,7 +375,7 @@ def validate_scene_mappings(
             if row.get("compositionId") is not None or row.get("compositionPath") is not None:
                 raise ValueError(f"unresolved mapping claims an exact composition: {scene_id}")
         elif status == "unreviewed":
-            unreviewed += 1
+            unreviewed += int(in_comparison_scope)
             if not isinstance(row.get("reason"), str) or not row["reason"].strip():
                 raise ValueError(f"unreviewed mapping lacks reason: {scene_id}")
             if row.get("candidateCompositionPaths"):
@@ -385,7 +385,7 @@ def validate_scene_mappings(
         else:
             raise ValueError(f"invalid scene-composition mapping status: {scene_id}")
     return {
-        "scenes": len(rows),
+        "scenes": len(expected_scene_projects),
         "verified": verified,
         "verifiedWindow": verified_window,
         "verifiedWholeComposition": verified - verified_window,

@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "purpose": "Reviewed native-composition mapping states for the 73 unique measured AE preview scenes in the read-only VisualTask comparison. Unresolved records are retained rather than guessed.",
+  "purpose": "Reviewed native-composition mappings for the clip-level AE registry. The VisualTask comparison consumes its required subset; unresolved records are retained rather than guessed.",
   "scope": {
     "comparisonPath": "reports/visualtask-ae-spec-comparison.json",
     "comparisonCommit": "6b3215c",
     "comparisonSha256": "884c9432ede0dadaf5aded3e860e6e04b2b869ec662db90314b9bdf6c1eef581",
-    "uniqueScenes": 73
+    "uniqueScenes": 76
   },
   "mappings": [
     {
@@ -145,6 +145,14 @@
       "evidence": "The reviewed excerpt begins at 197.667 seconds. The source-bound final timeline starts native Scene 6 at 197.625 seconds; the preceding Scene 5 ends at 198.750 only for the transition overlap."
     },
     {
+      "sceneId": "screen-mockup-rfx--review-001",
+      "projectId": "screen-mockup",
+      "status": "verified",
+      "compositionId": 66,
+      "compositionPath": "03 Others/Final Scenes/Scene_01",
+      "evidence": "The source-bound native master sequences Scene_01 through Scene_08 in exact order. Five independently verified consecutive anchors map reviewed clips 002–006 to native scenes 02–06; the reviewed opening clip precedes them and corresponds to native Scene_01. The master places Scene_01 first at 0.000 seconds and its recursive media source is Placeholder_01.jpg. Evidence is frozen in reports/clip-mapping-quick-batch-screen-mockup.json."
+    },
+    {
       "sceneId": "screen-mockup-rfx--review-002",
       "projectId": "screen-mockup",
       "status": "verified",
@@ -183,6 +191,22 @@
       "compositionId": 604,
       "compositionPath": "03 Others/Final Scenes/Scene_06",
       "evidence": "The measured render master sequences eight numbered native scenes in order; the reviewed sixth excerpt corresponds to Scene_06."
+    },
+    {
+      "sceneId": "screen-mockup-rfx--review-007",
+      "projectId": "screen-mockup",
+      "status": "verified",
+      "compositionId": 669,
+      "compositionPath": "03 Others/Final Scenes/Scene_07",
+      "evidence": "The source-bound native master sequences Scene_01 through Scene_08 in exact order. Five independently verified consecutive anchors map reviewed clips 002–006 to native scenes 02–06; the next reviewed clip corresponds to native Scene_07. The master places Scene_07 seventh at 24.016 seconds and its recursive media source is Placeholder_07.jpg. Evidence is frozen in reports/clip-mapping-quick-batch-screen-mockup.json."
+    },
+    {
+      "sceneId": "screen-mockup-rfx--review-008",
+      "projectId": "screen-mockup",
+      "status": "verified",
+      "compositionId": 1005,
+      "compositionPath": "03 Others/Final Scenes/Scene_08",
+      "evidence": "The source-bound native master sequences Scene_01 through Scene_08 in exact order. Five independently verified consecutive anchors map reviewed clips 002–006 to native scenes 02–06; the final reviewed clip corresponds to native Scene_08. The master places Scene_08 eighth at 28.028 seconds and its recursive media source is Placeholder_08.jpg. Evidence is frozen in reports/clip-mapping-quick-batch-screen-mockup.json."
     },
     {
       "sceneId": "scrolling-screen--review-001",

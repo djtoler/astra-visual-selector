@@ -117,12 +117,23 @@ class ExactSceneCompositionMappings(unittest.TestCase):
 
     def test_missing_scene_mapping_fails_closed(self):
         mappings = json.loads((ROOT / "grammar" / "ae-scene-composition-mappings.json").read_text())
-        mappings["mappings"] = copy.deepcopy(mappings["mappings"][:-1])
+        mappings["mappings"] = [
+            copy.deepcopy(row)
+            for row in mappings["mappings"]
+            if row["sceneId"] != "screen-mockup-rfx--review-002"
+        ]
+        mappings["scope"]["uniqueScenes"] -= 1
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "mappings.json"
             path.write_text(json.dumps(mappings))
             with self.assertRaisesRegex(ValueError, "scope mismatch"):
                 subject.build_comparison(scene_mappings_path=path)
+
+    def test_registry_can_expand_beyond_current_comparison_scope(self):
+        mappings = json.loads((ROOT / "grammar" / "ae-scene-composition-mappings.json").read_text())
+        self.assertEqual(mappings["scope"]["uniqueScenes"], 76)
+        result, _ = self._comparisons()
+        self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 73)
 
 
 if __name__ == "__main__":
