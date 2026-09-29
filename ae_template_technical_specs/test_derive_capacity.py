@@ -54,6 +54,8 @@ class CapacityDerivationTests(unittest.TestCase):
                 {"id": 7, "name": "FL_Media_01", "path": "01. Edit Comps/Media/FL_Media/FL_Media_01", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
                 {"id": 8, "name": "Image 01", "path": "01. Edit/Image/Image 01", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
                 {"id": 9, "name": "Photo 10", "path": "02. Edit/Scene 1/Photo 10", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
+                {"id": 10, "name": "Photo_11", "path": "02.Edit Scene/Scene 2/Photo_11", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
+                {"id": 11, "name": "Background_Photo_02", "path": "02.Edit Scene/Scene 2/Background_Photo_02", "width": 100, "height": 100, "duration": 10, "fps": 25, "workAreaStart": 0, "workAreaDuration": 10, "layers": []},
             ],
         }
         result = build_capacity(report)
@@ -65,6 +67,8 @@ class CapacityDerivationTests(unittest.TestCase):
             "01. Edit Comps/Media/FL_Media/FL_Media_01",
             "01. Edit/Image/Image 01",
             "02. Edit/Scene 1/Photo 10",
+            "02.Edit Scene/Scene 2/Photo_11",
+            "02.Edit Scene/Scene 2/Background_Photo_02",
         })
         final = next(row for row in result["compositions"] if row["compositionPath"] == "02 FINAL/FINAL")
         self.assertEqual(final["totalIndependentVisualMediaInputs"], 1)

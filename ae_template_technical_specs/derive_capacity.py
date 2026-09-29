@@ -20,7 +20,7 @@ import re
 
 STRONG_SLOT = re.compile(r"(?:^|[\s_\-/])(placeholder|replace)(?:$|[\s_\-/0-9])", re.I)
 EDIT_IMAGE_SLOT = re.compile(r"^image\s+(?:(?:square|vertical|wide)\s+)?\d+$", re.I)
-EDIT_PHOTO_SLOT = re.compile(r"^photo\s+\d+$", re.I)
+EDIT_PHOTO_SLOT = re.compile(r"^(?:background[\s_]+)?photo[\s_]+\d+$", re.I)
 EDIT_PREFIXED_MEDIA_SLOT = re.compile(r"^(?:f|fl|or|s)_media_\d+$", re.I)
 EDIT_NUMBERED_MEDIA_SLOT = re.compile(r"^(?:background\s+)?media\s*\d+(?:\.\d+)?$", re.I)
 AUDIO_HINT = re.compile(r"audio|music|sound|song|beat|sfx|voice", re.I)
@@ -41,9 +41,14 @@ def explicit_edit_slot_evidence(path: str) -> str | None:
         or "other/footage/" in lowered
     ):
         return "explicit_edit_image_composition"
-    if EDIT_PHOTO_SLOT.fullmatch(leaf) and "edit/" in lowered and (
+    if EDIT_PHOTO_SLOT.fullmatch(leaf) and (
+        "edit/" in lowered or "edit scene/" in lowered
+    ) and (
         "photo/" in lowered
-        or re.search(r"(?:^|/)\d*\.?\s*edit/scene\s+\d+/photo\s+\d+$", lowered)
+        or re.search(
+            r"(?:^|/)\d*\.?\s*edit(?:\s+scene)?/scene\s+\d+/(?:background[\s_]+)?photo[\s_]+\d+$",
+            lowered,
+        )
     ):
         return "explicit_edit_photo_composition"
     if EDIT_PREFIXED_MEDIA_SLOT.fullmatch(leaf) and "edit comps/media/" in lowered:

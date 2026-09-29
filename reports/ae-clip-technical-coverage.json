@@ -20,19 +20,19 @@
     },
     "sceneCompositionMappings": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-scene-composition-mappings.json",
-      "sha256": "9cbd135ec1560b682e4868327aa920775e294b73086658b2c46b4a380d2e4d28"
+      "sha256": "86590486588cf225d5f08515185d8cd3cab1695236c056b48a490f7ae415eb73"
     },
     "sceneWindowCapacities": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-scene-window-technical-capacities.json",
-      "sha256": "6a8c27788d82a5a27319ef0c35975778ff734dc91aa9492ebc725b26faa2ac25"
+      "sha256": "1f271ce3e592d3ba4d205f81c415632dfe682066251ca32dfddc4c36f4be3eaf"
     },
     "technicalIndex": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-template-technical-index.json",
-      "sha256": "fa0cae8de8e33a93dfb50d93c5124ec28742bc65ea96800aef2a994ee559bb98"
+      "sha256": "c47f658b4c8a999721c36a31d562964138fbc06e6999b60849be57d5f4ebfc72"
     },
     "carouselSlideshowPilot": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/reports/carousel-slideshow-clip-native-pilot.json",
-      "sha256": "e16f7382bde1bbc2f980480e2adc877325c5141c8b7afc3d45b25fd10b39e268"
+      "sha256": "152867ffcf0406d7cb2c499b596910139cb374b976128cb966f08f506aacf914"
     }
   },
   "scope": {
@@ -97,8 +97,8 @@
     "byTechnicalState": {
       "mapped_composition_window_approximate": 5,
       "mapped_verified": 73,
-      "mapped_verified_window": 162,
-      "mapping_unverified": 169,
+      "mapped_verified_window": 176,
+      "mapping_unverified": 155,
       "mogrt_not_aep": 5,
       "project_unlinked": 14
     }
@@ -4564,15 +4564,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 5.75,
+          "endSeconds": 11.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 5,
+          "maxSimultaneouslyEnabledInputs": 5,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 5.75–11.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4594,15 +4608,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 11.75,
+          "endSeconds": 17.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 9,
+          "maxSimultaneouslyEnabledInputs": 9,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 11.75–17.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4624,15 +4652,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 17.75,
+          "endSeconds": 23.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 10,
+          "maxSimultaneouslyEnabledInputs": 10,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 17.75–23.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4654,15 +4696,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 23.75,
+          "endSeconds": 29.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 9,
+          "maxSimultaneouslyEnabledInputs": 9,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 23.75–29.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4684,15 +4740,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 29.75,
+          "endSeconds": 35.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 9,
+          "maxSimultaneouslyEnabledInputs": 9,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 29.75–35.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4714,15 +4784,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 35.75,
+          "endSeconds": 41.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 10,
+          "maxSimultaneouslyEnabledInputs": 10,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 35.75–41.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4744,15 +4828,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 41.75,
+          "endSeconds": 47.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 9,
+          "maxSimultaneouslyEnabledInputs": 9,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 41.75–47.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4774,15 +4872,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 47.75,
+          "endSeconds": 53.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 10,
+          "maxSimultaneouslyEnabledInputs": 10,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 47.75–53.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4804,15 +4916,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 53.75,
+          "endSeconds": 59.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 11,
+          "maxSimultaneouslyEnabledInputs": 11,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 53.75–59.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4834,15 +4960,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 59.75,
+          "endSeconds": 65.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 9,
+          "maxSimultaneouslyEnabledInputs": 9,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 59.75–65.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4864,15 +5004,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 65.75,
+          "endSeconds": 71.75,
+          "durationSeconds": 6.0,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 9,
+          "maxSimultaneouslyEnabledInputs": 9,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 65.75–71.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4894,15 +5048,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 71.75,
+          "endSeconds": 77.88,
+          "durationSeconds": 6.1299999999999955,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 14,
+          "maxSimultaneouslyEnabledInputs": 10,
+          "editableTextFields": 3,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 71.75–77.88 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4924,15 +5092,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 77.88,
+          "endSeconds": 83.75,
+          "durationSeconds": 5.8700000000000045,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 9,
+          "maxSimultaneouslyEnabledInputs": 9,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 77.88–83.75 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }
@@ -4954,15 +5136,29 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_unverified",
+        "state": "mapped_verified_window",
         "projectId": "photo-slideshow-23-x",
-        "composition": null,
-        "window": null,
-        "evidence": "Measured AE23-compatible project is the exact two-pass source-bound copy of the approved Archive 3 Photo Slideshow Final package; the sibling default file requires AE26.",
+        "composition": {
+          "id": 10516,
+          "path": "03.Render Comp/Render_Comp"
+        },
+        "window": {
+          "startSeconds": 83.75,
+          "endSeconds": 92.0,
+          "durationSeconds": 8.25,
+          "precision": "exact"
+        },
+        "windowCapacity": {
+          "absoluteMediaSlots": 9,
+          "maxSimultaneouslyEnabledInputs": 9,
+          "editableTextFields": 2,
+          "maxSimultaneouslyEnabledTextFields": 2
+        },
+        "evidence": "The reviewed 83.75–92.00 second boundary is bound to editor-verified native/preview checkpoints spanning this final composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-006.json.",
         "projectEvidence": {
           "sourceProjectName": "Photo Slideshow 23.x.aep",
           "sourceProjectSha256": "01eeb980095fbbe8ef63f9d1d2d3de04fc41d15b4876e2ce5c4b8e76e558b771",
-          "evidenceStatus": "source_bound_static_py_aep",
+          "evidenceStatus": "two_pass_rederived_explicit_edit_photo_slots",
           "resultStatus": "two_pass_exact_agreement"
         }
       }

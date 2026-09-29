@@ -131,7 +131,7 @@ class ExactSceneCompositionMappings(unittest.TestCase):
 
     def test_registry_can_expand_beyond_current_comparison_scope(self):
         mappings = json.loads((ROOT / "grammar" / "ae-scene-composition-mappings.json").read_text())
-        self.assertEqual(mappings["scope"]["uniqueScenes"], 237)
+        self.assertEqual(mappings["scope"]["uniqueScenes"], 251)
         result, _ = self._comparisons()
         self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 73)
 

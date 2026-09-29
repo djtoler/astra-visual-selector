@@ -31,8 +31,8 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
             "mapped_verified": 73,
-            "mapped_verified_window": 162,
-            "mapping_unverified": 169,
+            "mapped_verified_window": 176,
+            "mapping_unverified": 155,
             "mogrt_not_aep": 5,
             "project_unlinked": 14,
         })
@@ -66,6 +66,18 @@ class ClipTechnicalCoverage(unittest.TestCase):
             {row["technical"]["windowCapacity"]["absoluteMediaSlots"] for row in rows},
             {10, 20},
         )
+
+    def test_archive3_photo_slideshow_family_is_fully_window_verified(self):
+        rows = [
+            row for row in self.ledger["clips"]
+            if row["familyId"] == "archive3-photo-slideshow-final"
+        ]
+        self.assertEqual(len(rows), 14)
+        self.assertEqual({row["technical"]["state"] for row in rows}, {"mapped_verified_window"})
+        capacities = {row["clipId"]: row["technical"]["windowCapacity"] for row in rows}
+        self.assertEqual(capacities["archive3-photo-slideshow-final--review-001"]["absoluteMediaSlots"], 5)
+        self.assertEqual(capacities["archive3-photo-slideshow-final--review-012"]["absoluteMediaSlots"], 14)
+        self.assertEqual(capacities["archive3-photo-slideshow-final--review-012"]["maxSimultaneouslyEnabledInputs"], 10)
 
     def test_quick_batch_screen_mockup_scenes_have_exact_native_capacity(self):
         rows = {row["clipId"]: row for row in self.ledger["clips"]}
