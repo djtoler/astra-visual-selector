@@ -30,9 +30,9 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
-            "mapped_verified": 74,
-            "mapped_verified_window": 105,
-            "mapping_unverified": 225,
+            "mapped_verified": 73,
+            "mapped_verified_window": 162,
+            "mapping_unverified": 169,
             "mogrt_not_aep": 5,
             "project_unlinked": 14,
         })
@@ -56,6 +56,16 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertEqual(row["technical"]["state"], "mapped_verified_window")
         self.assertEqual(row["technical"]["windowCapacity"]["absoluteMediaSlots"], 10)
         self.assertEqual(row["technical"]["windowCapacity"]["maxSimultaneouslyEnabledInputs"], 9)
+
+    def test_long_photo_slideshow_family_is_fully_window_verified(self):
+        rows = [row for row in self.ledger["clips"] if row["familyId"] == "photo-slideshow"]
+        self.assertEqual(len(rows), 57)
+        self.assertEqual({row["technical"]["state"] for row in rows}, {"mapped_verified_window"})
+        self.assertEqual({row["technical"]["windowCapacity"]["editableTextFields"] for row in rows}, {0})
+        self.assertEqual(
+            {row["technical"]["windowCapacity"]["absoluteMediaSlots"] for row in rows},
+            {10, 20},
+        )
 
     def test_quick_batch_screen_mockup_scenes_have_exact_native_capacity(self):
         rows = {row["clipId"]: row for row in self.ledger["clips"]}

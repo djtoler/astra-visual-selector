@@ -87,6 +87,43 @@ def _validate_native_render_receipt(
     }
 
 
+def _validate_editor_checkpoints(
+    family: dict[str, Any],
+    paths: dict[str, Path],
+    composition: dict[str, Any],
+) -> dict[str, Any]:
+    evidence = family["alignmentEvidence"]
+    record = read(paths[evidence["checkpointSource"]])
+    if (
+        record.get("familyId") != family["familyId"]
+        or record.get("projectId") != family["projectId"]
+        or record.get("sourceProjectSha256") != family["sourceProjectSha256"]
+        or record.get("compositionId") != family["compositionId"]
+        or record.get("compositionPath") != family["compositionPath"]
+        or record.get("evaluation") != "exact_match"
+        or record.get("evaluatorRole") != "editor"
+    ):
+        raise ValueError(f"editor checkpoint identity mismatch: {family['familyId']}")
+    checkpoints = record.get("checkpoints", [])
+    times = [float(row["seconds"]) for row in checkpoints if row.get("result") == "exact_match"]
+    duration = float(composition["durationSeconds"])
+    if (
+        len(times) < 2
+        or len(times) != len(checkpoints)
+        or times != sorted(set(times))
+        or times[0] > duration * 0.25
+        or times[-1] < duration * 0.75
+        or any(value < 0 or value > duration for value in times)
+    ):
+        raise ValueError(f"editor checkpoints do not span timeline: {family['familyId']}")
+    return {
+        "mode": "editor_verified_checkpoints",
+        "checkpointCount": len(times),
+        "firstCheckpointSeconds": times[0],
+        "lastCheckpointSeconds": times[-1],
+    }
+
+
 def build_report(request: dict[str, Any]) -> dict[str, Any]:
     if request.get("activationState") != "reviewed_exact_window_batch":
         raise ValueError("window batch lacks reviewed exact-timeline evidence")
@@ -145,6 +182,8 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
             alignment_result = {"mode": "verified_anchors", "anchorCount": len(anchors)}
         elif alignment["mode"] == "native_render_receipt":
             alignment_result = _validate_native_render_receipt(family, paths, composition)
+        elif alignment["mode"] == "editor_verified_checkpoints":
+            alignment_result = _validate_editor_checkpoints(family, paths, composition)
         else:
             raise ValueError(f"unsupported alignment evidence: {family_id}")
 
@@ -216,7 +255,7 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
                     and current.get("status") in {"verified", "verified_window"}
                 )
                 allowed_supersession = (
-                    alignment["mode"] == "native_render_receipt"
+                    alignment["mode"] in {"native_render_receipt", "editor_verified_checkpoints"}
                     and clip_id in family.get("supersedeClipIds", [])
                     and current.get("projectId") == project_id
                     and current.get("status") in {"verified", "verified_window"}
@@ -252,6 +291,12 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
     )
     if native_render_receipts:
         summary["nativeRenderReceipts"] = native_render_receipts
+    editor_checkpoint_families = sum(
+        row.get("alignmentEvidence", {}).get("mode") == "editor_verified_checkpoints"
+        for row in request["families"]
+    )
+    if editor_checkpoint_families:
+        summary["editorVerifiedCheckpointFamilies"] = editor_checkpoint_families
     return {
         "schemaVersion": 1,
         "batchId": request["batchId"],
@@ -285,14 +330,28 @@ def activate_report(
     window_order = [row["sceneId"] for row in windows_doc["windows"]]
     mappings = {row["sceneId"]: row for row in mappings_doc["mappings"]}
     windows = {row["sceneId"]: row for row in windows_doc["windows"]}
+    raw_overrides = windows_doc.setdefault("rawReportOverrides", {})
+    for family in request["families"]:
+        source_key = family["nativeReportSource"]
+        raw_overrides[family["projectId"]] = str(resolve(request["sources"][source_key]["path"]))
     batch_id = report["batchId"]
+    alignment_modes = {
+        row["familyId"]: row.get("alignmentEvidence", {}).get("mode")
+        for row in report["families"]
+    }
     for proposal in report["proposals"]:
         clip_id = proposal["clipId"]
         window = proposal["window"]
+        if alignment_modes[proposal["familyId"]] == "native_render_receipt":
+            alignment_text = "byte-hash bound to a completed native AE render of this final composition"
+        elif alignment_modes[proposal["familyId"]] == "editor_verified_checkpoints":
+            alignment_text = "bound to editor-verified native/preview checkpoints spanning this final composition"
+        else:
+            alignment_text = "bound to previously verified native timeline anchors"
         evidence = (
             f"The reviewed {window['startSeconds']:.2f}–{window['endSeconds']:.2f} second boundary "
-            "is byte-hash bound to a completed native AE render of this final composition; "
-            f"exact window capacity and receipts are frozen in reports/{batch_id}.json."
+            f"is {alignment_text}; exact window capacity and receipts are frozen in "
+            f"reports/{batch_id}.json."
         )
         mappings[clip_id] = {
             "sceneId": clip_id,

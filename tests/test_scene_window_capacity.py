@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class SceneWindowCapacityTests(unittest.TestCase):
     def test_builds_source_bound_windows_without_rendering(self):
         artifact = subject.build_window_capacities()
-        self.assertEqual(artifact["counts"], {"windows": 105})
+        self.assertEqual(artifact["counts"], {"windows": 162})
         self.assertFalse(artifact["renderingPerformed"])
 
     def test_smooth_three_photo_window_reports_window_capacity(self):
@@ -28,9 +28,18 @@ class SceneWindowCapacityTests(unittest.TestCase):
         self.assertEqual(capacity["compositionPath"], "02.Edit Comps/Scene 05/Scene 05")
         self.assertEqual(capacity["totalIndependentVisualMediaInputs"], 6)
 
+    def test_same_native_report_alias_does_not_cross_contaminate_projects(self):
+        rows = {row["sceneId"]: row for row in subject.build_window_capacities()["windows"]}
+        memories = rows["photo-slideshow-memories-envato--scene-006"]["capacity"]
+        long_slideshow = rows["photo-slideshow--review-001"]["capacity"]
+        self.assertEqual(memories["compositionId"], 2124189426)
+        self.assertEqual(long_slideshow["compositionId"], 104)
+        self.assertEqual(long_slideshow["totalIndependentVisualMediaInputs"], 10)
+        self.assertEqual(len(long_slideshow["recursiveEditableTextFields"]), 0)
+
     def test_saved_artifact_matches_native_reports(self):
         saved = json.loads((ROOT / "grammar/ae-scene-window-technical-capacities.json").read_text())
-        self.assertEqual(subject.validate_window_capacities(saved, verify_native_reports=True), {"windows": 105})
+        self.assertEqual(subject.validate_window_capacities(saved, verify_native_reports=True), {"windows": 162})
 
     def test_mutation_fails_closed(self):
         artifact = subject.build_window_capacities()

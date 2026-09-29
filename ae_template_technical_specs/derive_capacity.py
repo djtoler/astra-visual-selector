@@ -41,7 +41,10 @@ def explicit_edit_slot_evidence(path: str) -> str | None:
         or "other/footage/" in lowered
     ):
         return "explicit_edit_image_composition"
-    if EDIT_PHOTO_SLOT.fullmatch(leaf) and "edit/" in lowered and "photo/" in lowered:
+    if EDIT_PHOTO_SLOT.fullmatch(leaf) and "edit/" in lowered and (
+        "photo/" in lowered
+        or re.search(r"(?:^|/)\d*\.?\s*edit/scene\s+\d+/photo\s+\d+$", lowered)
+    ):
         return "explicit_edit_photo_composition"
     if EDIT_PREFIXED_MEDIA_SLOT.fullmatch(leaf) and "edit comps/media/" in lowered:
         return "explicit_edit_media_composition"

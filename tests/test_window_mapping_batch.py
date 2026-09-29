@@ -125,5 +125,102 @@ class NativeRenderReceiptWindowBatch(unittest.TestCase):
                 subject.build_report(broken)
 
 
+class EditorCheckpointEvidence(unittest.TestCase):
+    def test_checkpoints_must_span_the_native_timeline(self):
+        family = {
+            "familyId": "photo-slideshow",
+            "projectId": "photo-slideshow",
+            "sourceProjectSha256": "a" * 64,
+            "compositionId": 104,
+            "compositionPath": "03. Final/Final",
+            "alignmentEvidence": {"checkpointSource": "checkpoints"},
+        }
+        record = {
+            "familyId": "photo-slideshow",
+            "projectId": "photo-slideshow",
+            "sourceProjectSha256": "a" * 64,
+            "compositionId": 104,
+            "compositionPath": "03. Final/Final",
+            "evaluation": "exact_match",
+            "evaluatorRole": "editor",
+            "checkpoints": [
+                {"seconds": 20, "result": "exact_match"},
+                {"seconds": 210, "result": "exact_match"},
+            ],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            evidence = Path(directory) / "checkpoints.json"
+            evidence.write_text(json.dumps(record))
+            result = subject._validate_editor_checkpoints(
+                family,
+                {"checkpoints": evidence},
+                {"durationSeconds": 237.58333333333334},
+            )
+        self.assertEqual(result["checkpointCount"], 2)
+
+    def test_checkpoints_confined_to_one_section_fail(self):
+        family = {
+            "familyId": "photo-slideshow",
+            "projectId": "photo-slideshow",
+            "sourceProjectSha256": "a" * 64,
+            "compositionId": 104,
+            "compositionPath": "03. Final/Final",
+            "alignmentEvidence": {"checkpointSource": "checkpoints"},
+        }
+        record = {
+            "familyId": "photo-slideshow",
+            "projectId": "photo-slideshow",
+            "sourceProjectSha256": "a" * 64,
+            "compositionId": 104,
+            "compositionPath": "03. Final/Final",
+            "evaluation": "exact_match",
+            "evaluatorRole": "editor",
+            "checkpoints": [
+                {"seconds": 20, "result": "exact_match"},
+                {"seconds": 40, "result": "exact_match"},
+            ],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            evidence = Path(directory) / "checkpoints.json"
+            evidence.write_text(json.dumps(record))
+            with self.assertRaisesRegex(ValueError, "do not span timeline"):
+                subject._validate_editor_checkpoints(
+                    family,
+                    {"checkpoints": evidence},
+                    {"durationSeconds": 237.58333333333334},
+                )
+
+
+class EditorCheckpointWindowBatch(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.request_path = ROOT / "clip-mapping-batches" / "batch-005" / "request.json"
+        cls.report_path = ROOT / "reports" / "clip-mapping-batch-005.json"
+        cls.request = json.loads(cls.request_path.read_text())
+        cls.report = subject.build_report(cls.request)
+
+    def test_photo_slideshow_has_57_exact_windows(self):
+        self.assertEqual(self.report["summary"], {
+            "families": 1,
+            "anchors": 0,
+            "exactWindows": 57,
+            "errors": 0,
+            "editorVerifiedCheckpointFamilies": 1,
+        })
+
+    def test_recovered_native_capacity_is_applied_per_window(self):
+        media_counts = {row["nativeFacts"]["absoluteMediaSlots"] for row in self.report["proposals"]}
+        simultaneous = {row["nativeFacts"]["maxSimultaneouslyEnabledInputs"] for row in self.report["proposals"]}
+        text_counts = {row["nativeFacts"]["editableTextFields"] for row in self.report["proposals"]}
+        self.assertEqual(media_counts, {10, 20})
+        self.assertEqual(simultaneous, {10, 20})
+        self.assertEqual(text_counts, {0})
+
+    def test_saved_report_is_deterministic(self):
+        saved = json.loads(self.report_path.read_text())
+        self.assertEqual(subject.validate_report(saved, self.request), self.report["summary"])
+        self.assertEqual(self.report_path.read_text(), subject.dumps(subject.build_report(self.request)))
+
+
 if __name__ == "__main__":
     unittest.main()

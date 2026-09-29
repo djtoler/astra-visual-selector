@@ -71,14 +71,15 @@ def build_window_capacities(
         raw_path = Path(override) if override else raw_dir / f"{raw_project_id}.json"
         if not raw_path.is_absolute():
             raw_path = ROOT / raw_path
-        if raw_project_id not in capacity_cache:
+        cache_key = str(raw_path.resolve())
+        if cache_key not in capacity_cache:
             raw = _read(raw_path)
             if raw.get("sourceSha256") != projects[project_id]["sourceProjectSha256"]:
                 raise ValueError(f"native report source hash mismatch: {scene_id}")
-            capacity_cache[raw_project_id] = build_capacity(raw)
-            raw_sources[raw_project_id] = _source(raw_path)
+            capacity_cache[cache_key] = build_capacity(raw)
+            raw_sources[project_id] = _source(raw_path)
         measured = measure_composition_window(
-            capacity_cache[raw_project_id],
+            capacity_cache[cache_key],
             composition_id=definition["compositionId"],
             start_seconds=definition["startSeconds"],
             end_seconds=definition["endSeconds"],
