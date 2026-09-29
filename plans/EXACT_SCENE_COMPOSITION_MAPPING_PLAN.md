@@ -52,3 +52,13 @@ Executed in order on 2026-09-27:
 | 5. Test and report | Focused mapping/comparison suite passes 18 tests, VisualTask regressions pass 15, and AE technical-spec regressions pass 13. The full suite ran 473 tests: 459 passed, 13 skipped, and the same pre-existing Cloudflare credentials test failed because preflight stops before its expected `--confirm` message. The rebuilt report still denies selection, rendering and `fillable_now`. | Passed with one pre-existing environment-dependent failure |
 
 No required stage was skipped or reordered. No AE application, render, paid call, source-template edit, approved-catalog mutation, live ranking, pairing or selection change occurred.
+
+## 2026-09-29 completion addendum
+
+The mapping program later expanded to all 73 unique measured AE preview scenes. Static source-bound inspection resolved 71. The last two ambiguous records were tested through the gated `native_template_test` route with short, low-resolution renders of the original library compositions and their original sample media.
+
+- `carousel--review-011` is verified as `Carousel 10/Carousel 10` (composition 3076).
+- `archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001` is verified as `02. Final Comp/Gallery Pro - Focus` (composition 11805).
+- The same complete Gallery Pro comparison corrected review 002 from the earlier name-based Focus inference to `Gallery Pro - Showcase` (composition 12073).
+
+The final state is 73 of 73 verified scene mappings: 56 whole-composition mappings and 17 clip-window mappings, with zero unresolved mappings. Hash-bound comparison evidence is saved in `reports/final-two-native-composition-comparison.json`. These were inspection tests, not final scene selections; no replacement media, text edits, custom work, or source-template mutation occurred.

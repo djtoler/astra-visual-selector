@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-29",
+  "purpose": "Native visual evidence resolving the last two ambiguous preview-to-composition mappings and correcting one earlier name-based Gallery Pro mapping.",
+  "classification": "native_template_test_not_final",
+  "constraints": {
+    "originalTemplateDesignPreserved": true,
+    "replacementMediaUsed": false,
+    "textEdited": false,
+    "customWork": false,
+    "finalSelectionAuthorized": false
+  },
+  "comparisons": [
+    {
+      "sceneId": "carousel--review-011",
+      "sourcePreview": {
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/carousel/clips/carousel--review-011.mp4",
+        "sha256": "59a762dfc01ceb5a2d5be23c4866a6026a9aa71d2a30af42093d72b55825b879"
+      },
+      "testedCandidates": [
+        {
+          "compositionId": 2871,
+          "compositionPath": "Carousel 09/Carousel 09",
+          "renderSha256": "9926a9055380f9bf3b1abcfad6768651f8e5eaad261f28606ef54abc80056a26",
+          "verdict": "excluded",
+          "reason": "Vertical stacking around the focal card does not match the straight horizontal preview row."
+        },
+        {
+          "compositionId": 3076,
+          "compositionPath": "Carousel 10/Carousel 10",
+          "renderSha256": "cf95a9dce90c6e8c4bbab888355018b42bfebc95413f6985f03c101e479ce58a",
+          "verdict": "verified_match",
+          "reason": "Unique match for the wide landscape center card flanked by narrow vertical cards in a straight horizontal row."
+        },
+        {
+          "compositionId": 3466,
+          "compositionPath": "Carousel 11/Carousel 11",
+          "renderSha256": "e4c2577b60c0eaefbbc0c5fc6538bb391900760cefb771603e820634a62f30df",
+          "verdict": "excluded",
+          "reason": "Its side cards remain horizontal rather than the preview's narrow vertical crops."
+        },
+        {
+          "compositionId": 3826,
+          "compositionPath": "Carousel 12/Carousel 12",
+          "renderSha256": "44d01e997821573b69bb1ed60b9509478bb9394e81cf7a827ea8eed50165f9c0",
+          "verdict": "excluded",
+          "reason": "Vertical column geometry does not match the preview."
+        }
+      ],
+      "result": {
+        "status": "verified",
+        "compositionId": 3076,
+        "compositionPath": "Carousel 10/Carousel 10"
+      }
+    },
+    {
+      "sceneId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001",
+      "sourcePreview": {
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc/clips/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001.mp4",
+        "sha256": "629ed36959adf0ab4dbfbee50c43bbb1e9267caac13e754fe6871b15fc83b8b7"
+      },
+      "testedCandidates": [
+        {
+          "compositionId": 11805,
+          "compositionPath": "02. Final Comp/Gallery Pro - Focus",
+          "renderSha256": "e2a1a7d11227dc9aa3a876b306bbd0c8ffc7323797406800e4fcf365ebe66668",
+          "verdict": "verified_match",
+          "reason": "Unique match for the dark depth layout with a dominant portrait focal card and smaller perspective flanking cards."
+        },
+        {
+          "compositionId": 13275,
+          "compositionPath": "02. Final Comp/Gallery Pro - Flow",
+          "renderSha256": "b2bb816720a197d46142d4f563535dc52b627920c47d2eac8b24fea366088eee",
+          "verdict": "excluded",
+          "reason": "Light straight card line does not match the dark focal-depth preview."
+        },
+        {
+          "compositionId": 11667,
+          "compositionPath": "02. Final Comp/Gallery Pro - Orbit",
+          "renderSha256": "5110d67ade4bb13fd539533a18f8fd39d492b52503a5eb93076d5b8fc90975d8",
+          "verdict": "excluded",
+          "reason": "Circular ring with an empty center does not match the preview."
+        },
+        {
+          "compositionId": 12073,
+          "compositionPath": "02. Final Comp/Gallery Pro - Showcase",
+          "renderSha256": "b216c206a595ba1c0f3e412ebe1b56f8f5d07ceb978913e9586725bc0f35af63",
+          "verdict": "excluded_for_this_scene",
+          "reason": "Light rising arc does not match the dark focal-depth preview."
+        }
+      ],
+      "result": {
+        "status": "verified",
+        "compositionId": 11805,
+        "compositionPath": "02. Final Comp/Gallery Pro - Focus"
+      }
+    },
+    {
+      "sceneId": "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002",
+      "sourcePreview": {
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc/clips/archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002.mp4",
+        "sha256": "69f642410169139068eb05cf91cfbf364d35893f5ce96a0f073c88e7400f5fe6"
+      },
+      "result": {
+        "status": "corrected_verified_mapping",
+        "compositionId": 12073,
+        "compositionPath": "02. Final Comp/Gallery Pro - Showcase",
+        "reason": "The white-background rising arc of portrait cards matches Showcase exactly and disproves the earlier name-based Focus inference."
+      }
+    }
+  ]
+}

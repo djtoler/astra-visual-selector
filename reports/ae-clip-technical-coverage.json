@@ -20,7 +20,7 @@
     },
     "sceneCompositionMappings": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-scene-composition-mappings.json",
-      "sha256": "52236ef188b0cdeccfff1a14500ddc7ac391f71db477ba8172af03f7538c9d2b"
+      "sha256": "716c926120301c12e84e23ca20a5766bd4837f2dad7b50862822d0237cdea786"
     },
     "sceneWindowCapacities": {
       "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/ae-scene-window-technical-capacities.json",
@@ -96,9 +96,8 @@
     },
     "byTechnicalState": {
       "mapped_composition_window_approximate": 5,
-      "mapped_verified": 52,
+      "mapped_verified": 54,
       "mapped_verified_window": 17,
-      "mapping_ambiguous": 2,
       "mapping_unverified": 333,
       "mogrt_not_aep": 5,
       "project_unlinked": 14
@@ -2709,11 +2708,14 @@
         "reason": "Human review accepted this scene for the candidate library."
       },
       "technical": {
-        "state": "mapping_ambiguous",
+        "state": "mapped_verified",
         "projectId": "gallery-pro-carousel",
-        "composition": null,
+        "composition": {
+          "id": 11805,
+          "path": "02. Final Comp/Gallery Pro - Focus"
+        },
         "window": null,
-        "evidence": null,
+        "evidence": "Gated native renders of all four Gallery Pro final compositions establish Focus as the unique match for the reviewed dark depth carousel: a dominant central portrait card with smaller perspective flanking cards. Flow is a straight light card line, Orbit is a circular dark ring, and Showcase is a light arc. Evidence is recorded in reports/final-two-native-composition-comparison.json.",
         "projectEvidence": {
           "sourceProjectName": "Gallery_Pro_Carousel.aep",
           "sourceProjectSha256": "d8fb5fe3ebf6dc12ddaf7e96b95cb551e63d9912a78d9a7708a63e8e88e56af5",
@@ -2742,11 +2744,11 @@
         "state": "mapped_verified",
         "projectId": "gallery-pro-carousel",
         "composition": {
-          "id": 11805,
-          "path": "02. Final Comp/Gallery Pro - Focus"
+          "id": 12073,
+          "path": "02. Final Comp/Gallery Pro - Showcase"
         },
         "window": null,
-        "evidence": "The reviewed scene centers and scales one focal card with flanking cards; Focus is the unique measured final composition named for that operation.",
+        "evidence": "The reviewed white-background rising arc of portrait cards visually matches the gated native Showcase render. The same comparison excludes Focus, Flow, and Orbit. This corrects the earlier name-based Focus inference with native visual evidence recorded in reports/final-two-native-composition-comparison.json.",
         "projectEvidence": {
           "sourceProjectName": "Gallery_Pro_Carousel.aep",
           "sourceProjectSha256": "d8fb5fe3ebf6dc12ddaf7e96b95cb551e63d9912a78d9a7708a63e8e88e56af5",
@@ -5797,11 +5799,14 @@
         "reason": "Description and structured use-case review complete; source layout checked against preview frames. Native controls and narration-specific timing remain separately verified."
       },
       "technical": {
-        "state": "mapping_ambiguous",
+        "state": "mapped_verified",
         "projectId": "carousel",
-        "composition": null,
+        "composition": {
+          "id": 3076,
+          "path": "Carousel 10/Carousel 10"
+        },
         "window": null,
-        "evidence": null,
+        "evidence": "Gated native renders of Carousel 09–12 establish Carousel 10 as the unique match for the reviewed straight horizontal row: one wide landscape center card flanked by narrow vertical cards. Carousel 09 stacks vertically, Carousel 11 uses horizontal side cards, and Carousel 12 is a vertical column. Evidence is recorded in reports/final-two-native-composition-comparison.json.",
         "projectEvidence": {
           "sourceProjectName": "Carousel.aep",
           "sourceProjectSha256": "78f519f084504cc307a396fd0082a41c00da2abe22c15b9caffaa5b60d065a85",

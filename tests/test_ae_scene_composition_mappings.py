@@ -22,10 +22,10 @@ class ExactSceneCompositionMappings(unittest.TestCase):
 
     def test_review_states_remain_distinct(self):
         result, _ = self._comparisons()
-        self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 71)
-        self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 54)
+        self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 73)
+        self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 56)
         self.assertEqual(result["counts"]["verifiedWindowMappings"], 17)
-        self.assertEqual(result["counts"]["unresolvedUniqueSceneMappings"], 2)
+        self.assertEqual(result["counts"]["unresolvedUniqueSceneMappings"], 0)
         self.assertEqual(result["counts"]["unreviewedUniqueSceneMappings"], 0)
 
     def test_exact_flow_scene_uses_native_composition_metrics(self):
@@ -65,6 +65,16 @@ class ExactSceneCompositionMappings(unittest.TestCase):
         self.assertEqual(row["exactComposition"]["path"], "Carousel 01/Carousel 01")
         self.assertEqual(row["exactComposition"]["totalIndependentVisualMediaInputs"], 6)
         self.assertNotIn("exact_scene_to_native_composition_mapping", row["missingForFillableNow"])
+
+    def test_native_comparison_resolves_last_carousel_and_gallery_scenes(self):
+        _, rows = self._comparisons()
+        carousel = rows["carousel--review-011"]
+        gallery_dark = rows["archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001"]
+        gallery_light = rows["archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002"]
+        self.assertEqual(carousel["exactComposition"]["path"], "Carousel 10/Carousel 10")
+        self.assertEqual(carousel["exactComposition"]["totalIndependentVisualMediaInputs"], 5)
+        self.assertEqual(gallery_dark["exactComposition"]["path"], "02. Final Comp/Gallery Pro - Focus")
+        self.assertEqual(gallery_light["exactComposition"]["path"], "02. Final Comp/Gallery Pro - Showcase")
 
     def test_moving_contact_sheet_uses_exact_clip_window_capacity(self):
         _, rows = self._comparisons()
