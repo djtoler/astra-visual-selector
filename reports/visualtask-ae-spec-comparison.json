@@ -15,8 +15,8 @@
     "unresolvedUniqueSceneMappings": 0,
     "unreviewedUniqueSceneMappings": 0,
     "verifiedUniqueSceneMappings": 73,
-    "verifiedWholeCompositionMappings": 56,
-    "verifiedWindowMappings": 17,
+    "verifiedWholeCompositionMappings": 53,
+    "verifiedWindowMappings": 20,
     "visualTasks": 41
   },
   "evidenceBoundary": {
@@ -66,14 +66,14 @@
       "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
     },
     "sceneMappings": {
-      "bytes": 47418,
+      "bytes": 74115,
       "path": "grammar/ae-scene-composition-mappings.json",
-      "sha256": "555cf3636f512958a29fb18d6a1581c48375219ffa805d3958f1f5365d4ae1d8"
+      "sha256": "0f9b6cb1bc85b782b3c17e7b059e7875616acc76d21c85b6eb36bf8416715a0c"
     },
     "sceneWindowCapacities": {
-      "bytes": 163840,
+      "bytes": 436964,
       "path": "grammar/ae-scene-window-technical-capacities.json",
-      "sha256": "b36b1466393cbb0a03f2bc682499efb93237842c005197b982aec144cc80e4e5"
+      "sha256": "7b482208cd6fcedfe04e9666d97a28036297752c68da7c9012a231ce50824c8a"
     },
     "specLinks": {
       "bytes": 15373,
@@ -6752,36 +6752,26 @@
         },
         {
           "candidateId": "minimalism-slideshow--review-001",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 60.0,
-            "frameCount": 1800,
+            "durationSeconds": 5.0,
+            "frameCount": 150,
             "frameRate": 30.0,
             "height": 2160,
             "id": 1827,
-            "mappingEvidence": "The catalog preview and measured AEP are from the same hash-verified Slideshow package. The measured project has one 60-second final composition, and the reviewed clip is its 0-5 second opening slice.",
+            "mappingEvidence": "The reviewed 0–5 second intake boundary is directly aligned to the source-bound 60-second native final timeline; exact window capacity is frozen in reports/clip-mapping-batch-003.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 1,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
+            "measurementScope": "clip_window",
             "path": "02. Final Comps/Slideshow Final",
-            "recursiveEditableTextFields": 12,
+            "recursiveEditableTextFields": 1,
             "recursiveTextFieldIds": [
-              "text:304:1",
-              "text:592:1",
-              "text:605:1",
-              "text:618:1",
-              "text:631:1",
-              "text:644:1",
-              "text:657:1",
-              "text:670:1",
-              "text:683:1",
-              "text:696:1",
-              "text:709:1",
-              "text:722:1"
+              "text:304:1"
             ],
             "recursiveTextFields": [
               {
@@ -6797,160 +6787,6 @@
                 "metadataComplete": true,
                 "outPoint": 60.0,
                 "textKind": "point"
-              },
-              {
-                "compositionId": 592,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 02",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:592:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 605,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 03",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:605:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 618,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 04",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:618:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 631,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 05",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:631:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 644,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 06",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:644:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 657,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 07",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:657:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 670,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 08",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:670:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 683,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 09",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:683:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 696,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 10",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:696:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 709,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 11",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:709:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 722,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 12",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:722:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
@@ -6958,78 +6794,19 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:15",
                 "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 1"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1628",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 2"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1643",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 3"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1658",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 4"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1673",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 5"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1688",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 6"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1703",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 7"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1718",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 8"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1733",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 9"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1748",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 10"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1763",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 11"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1778",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 12"
+                "path": "01. Edit Comps/Images/Image Placeholder 1",
+                "projectItemId": 15
               }
             ],
-            "totalIndependentVisualMediaInputs": 12,
+            "totalIndependentVisualMediaInputs": 1,
             "unresolvedCount": 0,
             "width": 3840,
+            "window": {
+              "durationSeconds": 5.0,
+              "endSeconds": 5.0,
+              "precision": "exact",
+              "startSeconds": 0.0
+            },
             "workAreaDurationSeconds": 60.0,
             "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
@@ -7056,9 +6833,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 60.0,
-            "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 53.8,
+            "nativeCompositionDurationSeconds": 5.0,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -1.2000000000000002,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 6.2
@@ -18701,192 +18478,28 @@
         },
         {
           "candidateId": "minimalism-slideshow--review-011b",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 3,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 60.0,
-            "frameCount": 1800,
+            "durationSeconds": 5.0,
+            "frameCount": 150,
             "frameRate": 30.0,
             "height": 2160,
             "id": 1827,
-            "mappingEvidence": "The catalog preview and measured AEP are from the same hash-verified Slideshow package. The measured project has one 60-second final composition, and the reviewed clip is the final 55-60 second slice; the preview container's 0.011-second overrun is not treated as native duration.",
+            "mappingEvidence": "The reviewed 55–60.011 second intake boundary is directly aligned to the source-bound native final timeline and clamped to its exact 60-second end; exact window capacity is frozen in reports/clip-mapping-batch-003.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 1,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
+            "measurementScope": "clip_window",
             "path": "02. Final Comps/Slideshow Final",
-            "recursiveEditableTextFields": 12,
+            "recursiveEditableTextFields": 1,
             "recursiveTextFieldIds": [
-              "text:304:1",
-              "text:592:1",
-              "text:605:1",
-              "text:618:1",
-              "text:631:1",
-              "text:644:1",
-              "text:657:1",
-              "text:670:1",
-              "text:683:1",
-              "text:696:1",
-              "text:709:1",
               "text:722:1"
             ],
             "recursiveTextFields": [
-              {
-                "compositionId": 304,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 01",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:304:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 592,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 02",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:592:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 605,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 03",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:605:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 618,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 04",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:618:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 631,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 05",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:631:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 644,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 06",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:644:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 657,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 07",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:657:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 670,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 08",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:670:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 683,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 09",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:683:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 696,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 10",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:696:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 709,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 11",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:709:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
               {
                 "compositionId": 722,
                 "compositionPath": "01. Edit Comps/Text/Headline Text 12",
@@ -18905,80 +18518,21 @@
             "recursiveVisualMediaInputs": [
               {
                 "evidence": "explicit_placeholder_composition",
-                "id": "comp:15",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 1"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1628",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 2"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1643",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 3"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1658",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 4"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1673",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 5"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1688",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 6"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1703",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 7"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1718",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 8"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1733",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 9"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1748",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 10"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1763",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 11"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
                 "id": "comp:1778",
                 "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 12"
+                "path": "01. Edit Comps/Images/Image Placeholder 12",
+                "projectItemId": 1778
               }
             ],
-            "totalIndependentVisualMediaInputs": 12,
+            "totalIndependentVisualMediaInputs": 1,
             "unresolvedCount": 0,
             "width": 3840,
+            "window": {
+              "durationSeconds": 5.0,
+              "endSeconds": 60.0,
+              "precision": "exact",
+              "startSeconds": 55.0
+            },
             "workAreaDurationSeconds": 60.0,
             "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
@@ -19005,9 +18559,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 60.0,
-            "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 54.74,
+            "nativeCompositionDurationSeconds": 5.0,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -0.2599999999999998,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 5.26
@@ -24337,136 +23891,28 @@
         },
         {
           "candidateId": "minimalism-slideshow--review-008",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 60.0,
-            "frameCount": 1800,
+            "durationSeconds": 5.0,
+            "frameCount": 150,
             "frameRate": 30.0,
             "height": 2160,
             "id": 1827,
-            "mappingEvidence": "The catalog preview and measured AEP are from the same hash-verified Slideshow package. The measured project has one 60-second final composition, and the reviewed clip is its 35-40 second slice.",
+            "mappingEvidence": "The reviewed 35–40 second intake boundary is directly aligned to the source-bound 60-second native final timeline; exact window capacity is frozen in reports/clip-mapping-batch-003.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 1,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
+            "measurementScope": "clip_window",
             "path": "02. Final Comps/Slideshow Final",
-            "recursiveEditableTextFields": 12,
+            "recursiveEditableTextFields": 1,
             "recursiveTextFieldIds": [
-              "text:304:1",
-              "text:592:1",
-              "text:605:1",
-              "text:618:1",
-              "text:631:1",
-              "text:644:1",
-              "text:657:1",
-              "text:670:1",
-              "text:683:1",
-              "text:696:1",
-              "text:709:1",
-              "text:722:1"
+              "text:670:1"
             ],
             "recursiveTextFields": [
-              {
-                "compositionId": 304,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 01",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:304:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 592,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 02",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:592:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 605,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 03",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:605:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 618,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 04",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:618:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 631,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 05",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:631:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 644,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 06",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:644:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 657,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 07",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:657:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
               {
                 "compositionId": 670,
                 "compositionPath": "01. Edit Comps/Text/Headline Text 08",
@@ -24480,141 +23926,26 @@
                 "metadataComplete": true,
                 "outPoint": 60.0,
                 "textKind": "point"
-              },
-              {
-                "compositionId": 683,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 09",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:683:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 696,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 10",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:696:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 709,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 11",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:709:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 722,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 12",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:722:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
               {
                 "evidence": "explicit_placeholder_composition",
-                "id": "comp:15",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 1"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1628",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 2"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1643",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 3"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1658",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 4"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1673",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 5"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1688",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 6"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1703",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 7"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
                 "id": "comp:1718",
                 "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 8"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1733",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 9"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1748",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 10"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1763",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 11"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1778",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 12"
+                "path": "01. Edit Comps/Images/Image Placeholder 8",
+                "projectItemId": 1718
               }
             ],
-            "totalIndependentVisualMediaInputs": 12,
+            "totalIndependentVisualMediaInputs": 1,
             "unresolvedCount": 0,
             "width": 3840,
+            "window": {
+              "durationSeconds": 5.0,
+              "endSeconds": 40.0,
+              "precision": "exact",
+              "startSeconds": 35.0
+            },
             "workAreaDurationSeconds": 60.0,
             "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
@@ -24646,9 +23977,9 @@
           "reason": "Required media is known to be missing; measured template capacity cannot make the treatment fillable until that media is supplied.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 60.0,
-            "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 54.14,
+            "nativeCompositionDurationSeconds": 5.0,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -0.8600000000000003,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 5.86
@@ -27721,36 +27052,26 @@
         },
         {
           "candidateId": "minimalism-slideshow--review-001",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 60.0,
-            "frameCount": 1800,
+            "durationSeconds": 5.0,
+            "frameCount": 150,
             "frameRate": 30.0,
             "height": 2160,
             "id": 1827,
-            "mappingEvidence": "The catalog preview and measured AEP are from the same hash-verified Slideshow package. The measured project has one 60-second final composition, and the reviewed clip is its 0-5 second opening slice.",
+            "mappingEvidence": "The reviewed 0–5 second intake boundary is directly aligned to the source-bound 60-second native final timeline; exact window capacity is frozen in reports/clip-mapping-batch-003.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 1,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
+            "measurementScope": "clip_window",
             "path": "02. Final Comps/Slideshow Final",
-            "recursiveEditableTextFields": 12,
+            "recursiveEditableTextFields": 1,
             "recursiveTextFieldIds": [
-              "text:304:1",
-              "text:592:1",
-              "text:605:1",
-              "text:618:1",
-              "text:631:1",
-              "text:644:1",
-              "text:657:1",
-              "text:670:1",
-              "text:683:1",
-              "text:696:1",
-              "text:709:1",
-              "text:722:1"
+              "text:304:1"
             ],
             "recursiveTextFields": [
               {
@@ -27766,160 +27087,6 @@
                 "metadataComplete": true,
                 "outPoint": 60.0,
                 "textKind": "point"
-              },
-              {
-                "compositionId": 592,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 02",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:592:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 605,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 03",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:605:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 618,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 04",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:618:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 631,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 05",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:631:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 644,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 06",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:644:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 657,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 07",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:657:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 670,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 08",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:670:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 683,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 09",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:683:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 696,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 10",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:696:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 709,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 11",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:709:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 722,
-                "compositionPath": "01. Edit Comps/Text/Headline Text 12",
-                "enabled": true,
-                "font": "PlayfairDisplay-MediumItalic",
-                "fontSize": 405.0,
-                "id": "text:722:1",
-                "inPoint": 0.0,
-                "layerIndex": 1,
-                "layerName": "Headline",
-                "metadataComplete": true,
-                "outPoint": 60.0,
-                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
@@ -27927,78 +27094,19 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:15",
                 "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 1"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1628",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 2"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1643",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 3"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1658",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 4"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1673",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 5"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1688",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 6"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1703",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 7"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1718",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 8"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1733",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 9"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1748",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 10"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1763",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 11"
-              },
-              {
-                "evidence": "explicit_placeholder_composition",
-                "id": "comp:1778",
-                "kind": "visual",
-                "path": "01. Edit Comps/Images/Image Placeholder 12"
+                "path": "01. Edit Comps/Images/Image Placeholder 1",
+                "projectItemId": 15
               }
             ],
-            "totalIndependentVisualMediaInputs": 12,
+            "totalIndependentVisualMediaInputs": 1,
             "unresolvedCount": 0,
             "width": 3840,
+            "window": {
+              "durationSeconds": 5.0,
+              "endSeconds": 5.0,
+              "precision": "exact",
+              "startSeconds": 0.0
+            },
             "workAreaDurationSeconds": 60.0,
             "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
@@ -28025,9 +27133,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 60.0,
-            "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 49.24,
+            "nativeCompositionDurationSeconds": 5.0,
+            "nativeDurationCoversUnmodifiedTask": false,
+            "nativeMinusTaskSeconds": -5.76,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 10.76

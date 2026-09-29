@@ -30,9 +30,9 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
-            "mapped_verified": 81,
-            "mapped_verified_window": 17,
-            "mapping_unverified": 306,
+            "mapped_verified": 78,
+            "mapped_verified_window": 73,
+            "mapping_unverified": 253,
             "mogrt_not_aep": 5,
             "project_unlinked": 14,
         })
@@ -90,7 +90,7 @@ class ClipTechnicalCoverage(unittest.TestCase):
         minimalism = rows["minimalism-slideshow--review-001"]
         comparison = rows["archive3-comparison-pack-ae--review-001"]
         self.assertEqual(minimalism["technical"]["projectId"], "slideshow")
-        self.assertEqual(minimalism["technical"]["state"], "mapped_verified")
+        self.assertEqual(minimalism["technical"]["state"], "mapped_verified_window")
         self.assertEqual(
             minimalism["technical"]["projectEvidence"]["sourceProjectSha256"],
             "1da67cfa7485305b45de0be92026b7c02253c684880b8be277dfe7a55f43ab26",

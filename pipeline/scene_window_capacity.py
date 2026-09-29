@@ -57,6 +57,7 @@ def build_window_capacities(
     capacity_cache: dict[str, dict] = {}
     raw_sources: dict[str, dict] = {}
     records = []
+    raw_report_overrides = definitions.get("rawReportOverrides") or {}
     for definition in definitions.get("windows") or []:
         scene_id = definition["sceneId"]
         if scene_id in seen:
@@ -66,7 +67,10 @@ def build_window_capacities(
         if project_id not in projects:
             raise ValueError(f"unknown measured project: {project_id}")
         raw_project_id = definition.get("nativeReportProjectId", project_id)
-        raw_path = raw_dir / f"{raw_project_id}.json"
+        override = raw_report_overrides.get(project_id)
+        raw_path = Path(override) if override else raw_dir / f"{raw_project_id}.json"
+        if not raw_path.is_absolute():
+            raw_path = ROOT / raw_path
         if raw_project_id not in capacity_cache:
             raw = _read(raw_path)
             if raw.get("sourceSha256") != projects[project_id]["sourceProjectSha256"]:

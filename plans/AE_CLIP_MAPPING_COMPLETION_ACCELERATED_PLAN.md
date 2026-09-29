@@ -156,3 +156,15 @@ Twenty-four additional clips were verified across four source-bound numbered fam
 Eleven existing verified anchors establish the family-specific ordinal rules. Every anchor passed leave-one-out replay, every proposed terminal composition exists in the technical index, and every required composition appears in the bound native master. Chronological families preserve native sequence order; the bar-chart preview contains all nine exact numbered terminal charts. No render was required.
 
 The registry now contains 100 verified mappings. Full-library coverage is 81 `mapped_verified`, 17 `mapped_verified_window`, five approximate-window mappings, 306 `mapping_unverified`, five excluded MOGRT clips, and 14 `project_unlinked` clips. Sixty-eight focused mapping, coverage, calibration, comparison, and matching-accuracy tests pass.
+
+## Execution checkpoint: bulk batch 003
+
+Sixty-seven exact clip windows were measured across three source-bound single-final-composition families:
+
+- 38 approved Intro Slideshow scenes from the saved native render timeline;
+- 16 Smooth Photo Slideshow scenes from its directly aligned 72-second preview/native timeline; and
+- 13 Minimalism Slideshow intake scenes from its directly aligned 60-second preview/native timeline.
+
+Fourteen existing verified anchors establish parent-composition identity and timeline alignment. All boundary sources and native reports are hash-bound. End overshoots are permitted only inside a 0.02-second encode tolerance and are clamped to the measured native end. Exact recursive media/text capacity is recalculated inside every window; whole-composition capacity is not substituted.
+
+The registry now contains 153 verified mappings and 73 exact window-capacity records. Three earlier Minimalism whole-composition records were corrected to exact-window mappings. Full-library coverage is 78 `mapped_verified`, 73 `mapped_verified_window`, five approximate-window mappings, 253 `mapping_unverified`, five excluded MOGRT clips, and 14 `project_unlinked` clips. Seventy-nine focused tests pass.
