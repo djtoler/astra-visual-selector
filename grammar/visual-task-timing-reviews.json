@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Editor-reviewed exact audio spans for split VisualTasks",
+  "activationState": "review_only_not_connected",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "reviews": [
+    {
+      "sourceBeatId": "28-28",
+      "boundary": {
+        "afterPhrase": "Twenty billion on everyone else's.",
+        "beforePhrase": "Five clear the left floor.",
+        "seconds": 626.66
+      },
+      "measurementEvidence": {
+        "path": "astra-selector-design/prototype/out/passage-28.json",
+        "sha256": "c9ceb4d362082ed06976e9bf30412a524558fb4c31ccc74d528761cab8ce861d",
+        "eventId": "E2",
+        "triggerPhrase": "Five clear the left floor. Seven clear the right",
+        "measuredStartSeconds": 626.66,
+        "matchConfidence": 1.0,
+        "toleranceSeconds": 0.25
+      },
+      "editorReview": {
+        "status": "approved",
+        "approvedAt": "2026-09-28",
+        "decision": "Use the sentence break immediately after ‘Twenty billion on everyone else’s’ as the timing boundary.",
+        "source": "User reply: ok"
+      },
+      "taskSpans": [
+        {
+          "taskId": "28-28.setup",
+          "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+          "startSeconds": 614.42,
+          "endSeconds": 626.66,
+          "durationSeconds": 12.24
+        },
+        {
+          "taskId": "28-28.overlap",
+          "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+          "startSeconds": 626.66,
+          "endSeconds": 635.92,
+          "durationSeconds": 9.26
+        }
+      ]
+    }
+  ]
+}

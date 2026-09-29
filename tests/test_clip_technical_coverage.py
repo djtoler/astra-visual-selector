@@ -1,0 +1,81 @@
+import copy
+import json
+from pathlib import Path
+import unittest
+
+from pipeline import clip_technical_coverage as subject
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class ClipTechnicalCoverage(unittest.TestCase):
+    def setUp(self):
+        self.ledger = subject.build_coverage()
+
+    def test_union_covers_both_current_ae_catalogs(self):
+        self.assertEqual(self.ledger["counts"]["clips"], 428)
+        self.assertEqual(self.ledger["counts"]["families"], 40)
+        self.assertEqual(
+            self.ledger["counts"]["bySemanticCatalog"],
+            {"approved_catalog": 185, "review_catalog": 243},
+        )
+
+    def test_every_clip_has_one_explicit_technical_state(self):
+        self.assertEqual(
+            sum(self.ledger["counts"]["byTechnicalState"].values()),
+            self.ledger["counts"]["clips"],
+        )
+        self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
+
+    def test_375_capability_pass_is_not_mistaken_for_catalog_scope(self):
+        self.assertNotEqual(self.ledger["counts"]["clips"], 375)
+        ids = {row["clipId"] for row in self.ledger["clips"]}
+        self.assertIn("intro-slideshow-full-720p--scene-002", ids)
+        self.assertIn("memories-photo-slideshow-creative-slides-envato--scene-001", ids)
+
+    def test_pilot_rows_preserve_exact_composition_and_approximate_window(self):
+        rows = {row["clipId"]: row for row in self.ledger["clips"]}
+        row = rows["carousel-slideshow--review-005"]
+        self.assertEqual(row["technical"]["state"], "mapped_composition_window_approximate")
+        self.assertEqual(row["technical"]["composition"]["path"], "2.Final/Render 02")
+        self.assertEqual(row["technical"]["window"]["startSeconds"], 24.02)
+
+    def test_unmapped_family_never_inherits_project_capacity(self):
+        rows = [
+            row for row in self.ledger["clips"]
+            if row["technical"]["state"] in {"mapping_unverified", "project_unlinked"}
+        ]
+        self.assertTrue(rows)
+        self.assertTrue(all(row["technical"]["composition"] is None for row in rows))
+
+    def test_linked_clips_carry_hash_backed_project_status_without_capacity(self):
+        rows = {row["clipId"]: row for row in self.ledger["clips"]}
+        row = rows["scrolling-screen--review-002"]
+        self.assertEqual(row["technical"]["state"], "mapping_unverified")
+        self.assertEqual(row["technical"]["projectId"], "scrolling-screen-animations")
+        self.assertEqual(len(row["technical"]["projectEvidence"]["sourceProjectSha256"]), 64)
+        self.assertIsNone(row["technical"]["composition"])
+
+    def test_mogrt_is_preserved_but_not_treated_as_aep(self):
+        rows = [
+            row for row in self.ledger["clips"]
+            if row["familyId"] == "archive3-carousel-galleries-loop-animation-2"
+        ]
+        self.assertTrue(rows)
+        self.assertTrue(all(row["technical"]["state"] == "mogrt_not_aep" for row in rows))
+        self.assertTrue(all(row["availability"]["status"] == "excluded" for row in rows))
+
+    def test_saved_report_matches_deterministic_build(self):
+        saved = json.loads((ROOT / "reports/ae-clip-technical-coverage.json").read_text())
+        self.assertEqual(subject.validate_coverage(saved), saved["counts"])
+
+    def test_mutated_report_is_stale(self):
+        broken = copy.deepcopy(self.ledger)
+        broken["clips"][0]["semantic"]["description"] = "mutated"
+        with self.assertRaisesRegex(ValueError, "stale|differs"):
+            subject.validate_coverage(broken)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -72,16 +72,41 @@
       ]
     },
     "28-28": {
+      "splitReview": {
+        "status": "approved",
+        "approvedAt": "2026-09-28",
+        "source": "User approved the boundary after ‘Twenty billion on everyone else’s’ and required separate template and media candidate matching per visual task."
+      },
       "tasks": [
         {
           "suffix": "setup",
           "taskRole": "setup_text",
+          "matchingJob": "define_terms",
           "identityCount": 0,
-          "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's."
+          "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+          "mustBeTrue": [
+            "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
+            "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
+          ],
+          "mustBePerceptible": [
+            "The two thresholds must be visibly established before any names enter."
+          ],
+          "wouldBeALie": [
+            "Implying the round-number thresholds were picked after the fact to engineer Drake and Travis Scott as the answer would misrepresent the setup."
+          ],
+          "unstated": []
         },
         {
           "suffix": "overlap",
           "taskRole": "spatial_comparison",
+          "matchingJob": "intersection_of_sets",
+          "templateAdmissions": [
+            {
+              "id": "two-floors",
+              "source": "user",
+              "reason": "This existing scene was built and previously named for beat 28's two-threshold overlap treatment."
+            }
+          ],
           "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
           "entityCount": 10,
           "identityCount": 10,

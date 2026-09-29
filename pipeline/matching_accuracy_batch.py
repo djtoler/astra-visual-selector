@@ -80,6 +80,7 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
     validate_request(request, root=root)
     visual_tasks = _read(root / request["sources"]["visualTasks"]["path"])["tasks"]
     comparison = _read(root / request["sources"]["technicalComparison"]["path"])["tasks"]
+    task_matching = _read(root / request["sources"]["taskMatching"]["path"])["tasks"]
     shots = _read(root / request["sources"]["currentSlate"]["path"])
     review = _read(root / request["sources"]["reviewExport"]["path"])["beats"]
     issues = _read(root / request["sources"]["matchingIssues"]["path"])["issues"]
@@ -131,20 +132,41 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
         ),
     })
 
-    # 2. The split beat must remain two source-bound tasks and retain unknown timing.
+    # 2. The split beat must retain reviewed timing and actual task-level matching.
     case = cases["split_beat_visual_tasks"]
     split = [_one(visual_tasks, "id", task_id) for task_id in case["taskIds"]]
     split_comparison = [_one(comparison, "taskId", task_id) for task_id in case["taskIds"]]
+    split_matching = [_one(task_matching, "taskId", task_id) for task_id in case["taskIds"]]
     roles = [row.get("taskRole") for row in split]
     timing_states = [
         (row.get("technicalRequirements") or {}).get("timingRequirement", {}).get("status")
         for row in split_comparison
     ]
+    exact_spans = [
+        (row.get("technicalRequirements") or {}).get("timingRequirement", {}).get("exactTaskAudioSpan")
+        for row in split_comparison
+    ]
+    candidate_ids = [[candidate.get("candidateId") for candidate in row.get("templateCandidates") or []] for row in split_matching]
+    candidate_provenance = [
+        [candidate.get("candidateMatchingProvenance") for candidate in row.get("templateCandidates") or []]
+        for row in split_matching
+    ]
+    independently_matched = all(
+        candidates and all(isinstance(provenance, dict) and provenance.get("scope") == "visual_task" and provenance.get("taskId") == row["taskId"] for provenance in candidates)
+        and (row.get("mediaCandidates") or {}).get("candidateMatchingProvenance", {}).get("scope") == "visual_task"
+        for row, candidates in zip(split_matching, candidate_provenance)
+    )
     passed = (
         len({row["id"] for row in split}) == 2
         and len({row["quote"] for row in split}) == 2
         and roles == ["setup_text", "spatial_comparison"]
-        and timing_states == ["unresolved_split_task_span", "unresolved_split_task_span"]
+        and timing_states == ["exact_reviewed_split_task_span", "exact_reviewed_split_task_span"]
+        and [row["startSeconds"] for row in exact_spans] == [614.42, 626.66]
+        and exact_spans[0]["endSeconds"] == exact_spans[1]["startSeconds"]
+        and independently_matched
+        and candidate_ids[0] != candidate_ids[1]
+        and split_matching[0]["mediaCandidates"]["status"] == "no_entity_media_demand"
+        and len(split_matching[1]["mediaCandidates"]["entities"]) == 10
     )
     results.append({
         "id": case["id"],
@@ -155,12 +177,18 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
             "taskRoles": roles,
             "quotesAreDistinct": len({row["quote"] for row in split}) == 2,
             "timingStates": timing_states,
+            "exactTaskAudioSpans": exact_spans,
             "continuityGroups": [row.get("continuityGroup") for row in split],
+            "candidateIdsByTask": dict(zip(case["taskIds"], candidate_ids)),
+            "candidateMatchingProvenance": candidate_provenance,
+            "taskLevelCandidateMatchingEvidence": independently_matched,
+            "mediaStatusByTask": {row["taskId"]: row["mediaCandidates"]["status"] for row in split_matching},
+            "mediaEntityCountByTask": {row["taskId"]: len(row["mediaCandidates"]["entities"]) for row in split_matching},
         },
         "reason": (
-            "The VisualTask layer preserves the two communication jobs and correctly refuses to invent per-task timing."
+            "The reviewed split is preserved and each task has evidence of independent task-level candidate matching."
             if passed else
-            "The split task or its unresolved timing boundary was collapsed."
+            "The reviewed split is incomplete or template/media candidates were not independently matched per VisualTask."
         ),
     })
 

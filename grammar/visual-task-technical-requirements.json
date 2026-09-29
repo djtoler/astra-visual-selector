@@ -1,12 +1,14 @@
 {
   "activationState": "review_only_not_connected",
   "counts": {
-    "exactTaskAudioSpans": 39,
+    "exactTaskAudioSpans": 41,
+    "knownMediaKindRequirements": 2,
     "knownMediaSlotRequirements": 0,
     "knownTextFieldRequirements": 0,
     "knownTypedDataRequirements": 0,
+    "missingMediaBriefs": 1,
     "sourceBeats": 40,
-    "unresolvedTaskAudioSpans": 2,
+    "unresolvedTaskAudioSpans": 0,
     "visualTasks": 41
   },
   "evidenceBoundary": {
@@ -14,15 +16,16 @@
       "visual intent and semantic constraints",
       "display-eligible identities without assuming one media slot per identity",
       "source-beat encoding categories for unsplit tasks",
-      "exact saved audio spans for unsplit tasks"
+      "exact saved audio spans for unsplit tasks",
+      "editor-reviewed, measurement-bound audio spans for reviewed split tasks"
     ],
     "unresolved": [
       "treatment-specific media-slot count",
-      "task-required media kinds",
+      "task-required media kinds when no typed editor/treatment requirement is bound",
       "single-person versus group eligibility",
       "treatment-specific editable text fields and exact strings",
       "typed data field names and values",
-      "exact audio spans for split VisualTasks"
+      "exact audio spans for split VisualTasks without an editor-approved measured boundary"
     ]
   },
   "purpose": "Source-bound VisualTask technical requirements for read-only AE matching tests",
@@ -35,10 +38,20 @@
       "path": "pipeline/shotlist.capacity.json",
       "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
     },
+    "mediaRequirements": {
+      "bytes": 1866,
+      "path": "grammar/visual-task-media-requirements.json",
+      "sha256": "cf3f72b122c79cd6d341d1c84ad9601ac6753b427727d718c56bf4d07d21b2cb"
+    },
+    "timingReviews": {
+      "bytes": 1750,
+      "path": "grammar/visual-task-timing-reviews.json",
+      "sha256": "a1b2ddc244998ac97fdb28911f796d6db1193524b97d7dd71553de81ef90c89b"
+    },
     "visualTasks": {
-      "bytes": 94856,
+      "bytes": 97553,
       "path": "grammar/visual-tasks.json",
-      "sha256": "0dcc1de301d5ddf124b3a62d3811ecfb3ae6c08bd4c09f80fdfd85797ab1b442"
+      "sha256": "e253880ec6e8b44450a937110b063091cdd6640484aa2ae6d6390973889a64ad"
     }
   },
   "tasks": [
@@ -79,11 +92,27 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
-        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
-        "requiredMediaKinds": null,
+        "availabilityStatus": "unknown",
+        "contentConstraints": [
+          "Drake performance footage"
+        ],
+        "evidence": {
+          "kind": "editor_direction",
+          "quote": "drake b-roll performance footage needed",
+          "reference": "grammar/issues_matching_layer.json PI-12"
+        },
+        "missingMediaBrief": null,
+        "reason": "A typed editor/treatment media requirement is bound to this exact VisualTask.",
+        "requiredEntities": [
+          "Drake"
+        ],
+        "requiredMediaKinds": [
+          "footage"
+        ],
         "requiredSlotCount": null,
+        "reviewStatus": "approved",
         "singlePersonGroupEligibility": null,
-        "status": "unresolved_treatment_dependent"
+        "status": "required"
       },
       "sourceBeatId": "01-01",
       "taskId": "01-01.subject",
@@ -145,9 +174,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -222,9 +257,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -389,9 +430,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -474,9 +521,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -547,9 +600,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -614,9 +673,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -685,9 +750,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -751,9 +822,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -829,9 +906,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -909,9 +992,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -978,9 +1067,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1061,9 +1156,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1141,9 +1242,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1224,9 +1331,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1311,9 +1424,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1393,9 +1512,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1469,9 +1594,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1551,9 +1682,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1623,11 +1760,32 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
-        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
-        "requiredMediaKinds": null,
+        "availabilityStatus": "missing",
+        "contentConstraints": [
+          "Authentic event-specific b-roll establishing the 2010 XXL offer and Drake's refusal"
+        ],
+        "evidence": {
+          "kind": "editor_availability_review",
+          "quote": "no available broll",
+          "reference": "grammar/beat-review-export-2026-09-27.json beat 15-15"
+        },
+        "missingMediaBrief": {
+          "artifactOrEvent": "2010 XXL Freshman offer and refusal",
+          "entity": "Drake",
+          "mediaKind": "footage",
+          "status": "missing"
+        },
+        "reason": "A typed editor/treatment media requirement is bound to this exact VisualTask.",
+        "requiredEntities": [
+          "Drake"
+        ],
+        "requiredMediaKinds": [
+          "footage"
+        ],
         "requiredSlotCount": null,
+        "reviewStatus": "proposed",
         "singlePersonGroupEligibility": null,
-        "status": "unresolved_treatment_dependent"
+        "status": "missing_required_media"
       },
       "sourceBeatId": "15-15",
       "taskId": "15-15.main",
@@ -1712,9 +1870,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1779,9 +1943,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1860,9 +2030,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -1938,9 +2114,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2025,9 +2207,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2101,9 +2289,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2176,9 +2370,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2255,9 +2455,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2324,9 +2530,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2399,9 +2611,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2472,9 +2690,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2550,9 +2774,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2622,9 +2852,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2707,9 +2943,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2749,20 +2991,15 @@
       "contentRequirements": {
         "displayEligibleIdentities": [],
         "displayIdentityCount": 0,
-        "explicitlyUnstated": [
-          "The identities of the other three in the 30B group and the other five in the 20B group are not given."
-        ],
+        "explicitlyUnstated": [],
         "perceptibilityConstraints": [
-          "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists."
+          "The two thresholds must be visibly established before any names enter."
         ],
         "prohibitedImplications": [
-          "Implying the round-number thresholds were picked after the fact to engineer Drake and Travis Scott as the answer would misrepresent the setup.",
-          "Showing Drake and Travis Scott as simply the top two on a single combined ranking, rather than the only ones clearing two separate bars, would misstate the claim."
+          "Implying the round-number thresholds were picked after the fact to engineer Drake and Travis Scott as the answer would misrepresent the setup."
         ],
         "truthConstraints": [
           "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
-          "Five (unnamed) rappers clear the first threshold and seven (unnamed) clear the second — these are two separate groups, not the same people counted twice.",
-          "Drake and Travis Scott are members of both groups; they are the only overlap.",
           "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
         ]
       },
@@ -2772,8 +3009,6 @@
         "requiredTypedFields": null,
         "semanticConstraints": [
           "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
-          "Five (unnamed) rappers clear the first threshold and seven (unnamed) clear the second — these are two separate groups, not the same people counted twice.",
-          "Drake and Travis Scott are members of both groups; they are the only overlap.",
           "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
         ],
         "sourceBeatRequiredEncodings": [
@@ -2782,9 +3017,15 @@
         "status": "source_beat_only_not_task_allocated"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2798,18 +3039,43 @@
         "status": "unresolved_treatment_dependent"
       },
       "timingRequirement": {
-        "exactTaskAudioSpan": null,
-        "reason": "More than one VisualTask shares this source beat and no exact per-task audio split is saved.",
+        "exactTaskAudioSpan": {
+          "durationSeconds": 12.24,
+          "editorReview": {
+            "approvedAt": "2026-09-28",
+            "decision": "Use the sentence break immediately after ‘Twenty billion on everyone else’s’ as the timing boundary.",
+            "source": "User reply: ok",
+            "status": "approved"
+          },
+          "endSeconds": 626.66,
+          "evidence": "Editor-approved phrase boundary bound to measured narration alignment.",
+          "measurementEvidence": {
+            "eventId": "E2",
+            "matchConfidence": 1.0,
+            "measuredStartSeconds": 626.66,
+            "path": "astra-selector-design/prototype/out/passage-28.json",
+            "sha256": "c9ceb4d362082ed06976e9bf30412a524558fb4c31ccc74d528761cab8ce861d",
+            "toleranceSeconds": 0.25,
+            "triggerPhrase": "Five clear the left floor. Seven clear the right"
+          },
+          "reviewedBoundary": {
+            "afterPhrase": "Twenty billion on everyone else's.",
+            "beforePhrase": "Five clear the left floor.",
+            "seconds": 626.66
+          },
+          "startSeconds": 614.42
+        },
+        "reason": null,
         "sourceBeatSpan": {
           "durationSeconds": 21.5,
           "endSeconds": 635.92,
           "startSeconds": 614.42
         },
-        "status": "unresolved_split_task_span"
+        "status": "exact_reviewed_split_task_span"
       },
       "visualIntent": {
         "continuityGroup": null,
-        "job": "intersection_of_sets",
+        "job": "define_terms",
         "takeaway": "Two separate thresholds — 30B on own records, 20B as a guest — each admit their own group (five and seven); only two rappers, Drake and Travis Scott, clear both at once.",
         "taskRole": "setup_text"
       }
@@ -2862,9 +3128,15 @@
         "status": "source_beat_only_not_task_allocated"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -2878,14 +3150,39 @@
         "status": "unresolved_treatment_dependent"
       },
       "timingRequirement": {
-        "exactTaskAudioSpan": null,
-        "reason": "More than one VisualTask shares this source beat and no exact per-task audio split is saved.",
+        "exactTaskAudioSpan": {
+          "durationSeconds": 9.26,
+          "editorReview": {
+            "approvedAt": "2026-09-28",
+            "decision": "Use the sentence break immediately after ‘Twenty billion on everyone else’s’ as the timing boundary.",
+            "source": "User reply: ok",
+            "status": "approved"
+          },
+          "endSeconds": 635.92,
+          "evidence": "Editor-approved phrase boundary bound to measured narration alignment.",
+          "measurementEvidence": {
+            "eventId": "E2",
+            "matchConfidence": 1.0,
+            "measuredStartSeconds": 626.66,
+            "path": "astra-selector-design/prototype/out/passage-28.json",
+            "sha256": "c9ceb4d362082ed06976e9bf30412a524558fb4c31ccc74d528761cab8ce861d",
+            "toleranceSeconds": 0.25,
+            "triggerPhrase": "Five clear the left floor. Seven clear the right"
+          },
+          "reviewedBoundary": {
+            "afterPhrase": "Twenty billion on everyone else's.",
+            "beforePhrase": "Five clear the left floor.",
+            "seconds": 626.66
+          },
+          "startSeconds": 626.66
+        },
+        "reason": null,
         "sourceBeatSpan": {
           "durationSeconds": 21.5,
           "endSeconds": 635.92,
           "startSeconds": 614.42
         },
-        "status": "unresolved_split_task_span"
+        "status": "exact_reviewed_split_task_span"
       },
       "visualIntent": {
         "continuityGroup": "28-two-floors",
@@ -2933,9 +3230,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -3003,9 +3306,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -3065,9 +3374,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -3139,9 +3454,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },
@@ -3201,9 +3522,15 @@
         "status": "exact_source_beat_encodings"
       },
       "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
         "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
         "requiredMediaKinds": null,
         "requiredSlotCount": null,
+        "reviewStatus": null,
         "singlePersonGroupEligibility": null,
         "status": "unresolved_treatment_dependent"
       },

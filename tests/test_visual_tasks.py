@@ -65,10 +65,16 @@ class VisualTaskPilot(unittest.TestCase):
         overlap = self.task("28-28.overlap")
         self.assertEqual("setup_text", setup["taskRole"])
         self.assertEqual("spatial_comparison", overlap["taskRole"])
+        self.assertEqual("define_terms", setup["job"])
+        self.assertEqual("intersection_of_sets", overlap["job"])
         self.assertEqual([], setup["entities"]["displayEligible"])
         self.assertEqual(10, len(overlap["entities"]["displayEligible"]))
         self.assertTrue(setup["quote"].endswith("everyone else's."))
         self.assertTrue(overlap["quote"].startswith("Five clear the left floor."))
+        self.assertEqual(
+            ["The two thresholds must be visibly established before any names enter."],
+            setup["mustBePerceptible"],
+        )
 
     def test_unknown_override_entity_fails_closed(self):
         overrides = json.loads((ROOT / "grammar" / "visual-task-overrides.json").read_text())

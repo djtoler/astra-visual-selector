@@ -75,6 +75,33 @@ class VisualTaskAESpecComparison(unittest.TestCase):
         self.assertFalse(any("capacity_possible" in row["verdict"] for row in comparisons))
         self.assertFalse(any("capacity_conflict" in row["verdict"] for row in comparisons))
 
+    def test_typed_footage_requirement_replaces_unknown_media_kind(self):
+        result = subject.build_comparison()
+        task = next(row for row in result["tasks"] if row["taskId"] == "01-01.subject")
+        media = task["technicalRequirements"]["mediaRequirements"]
+        self.assertEqual(media["requiredMediaKinds"], ["footage"])
+        self.assertTrue(task["candidateComparisons"])
+        self.assertTrue(all(
+            "media_kind_constraints" not in candidate["missingForFillableNow"]
+            for candidate in task["candidateComparisons"]
+        ))
+
+    def test_missing_required_media_makes_candidates_conditional(self):
+        result = subject.build_comparison()
+        task = next(row for row in result["tasks"] if row["taskId"] == "15-15.main")
+        candidate = next(
+            row for row in task["candidateComparisons"]
+            if row["candidateId"] == "screen-mockup-rfx--review-002"
+        )
+        self.assertEqual(candidate["verdict"], "conditional")
+        self.assertEqual(candidate["missingMediaBrief"]["status"], "missing")
+        self.assertEqual(candidate["missingMediaBrief"]["mediaKind"], "footage")
+        self.assertIn(candidate["technicalEvidenceVerdict"], {
+            "technical_spec_unmapped",
+            "project_technical_evidence_partial",
+            "exact_technical_evidence_partial",
+        })
+
     def test_exact_task_and_composition_produce_duration_observation_not_fit(self):
         result = subject.build_comparison()
         task = next(row for row in result["tasks"] if row["taskId"] == "02-02a.main")
@@ -85,11 +112,13 @@ class VisualTaskAESpecComparison(unittest.TestCase):
         self.assertTrue(candidate["timingObservation"]["nativeDurationCoversUnmodifiedTask"])
         self.assertNotIn("fit", candidate["verdict"])
 
-    def test_split_task_timing_remains_unresolved_in_candidate_comparison(self):
+    def test_split_task_timing_uses_reviewed_span_in_candidate_comparison(self):
         result = subject.build_comparison()
         task = next(row for row in result["tasks"] if row["taskId"] == "28-28.overlap")
-        self.assertIsNone(task["technicalRequirements"]["timingRequirement"]["exactTaskAudioSpan"])
-        self.assertTrue(all("timingObservation" not in row for row in task["candidateComparisons"]))
+        self.assertEqual(
+            task["technicalRequirements"]["timingRequirement"]["exactTaskAudioSpan"]["startSeconds"],
+            626.66,
+        )
 
     def test_zero_verified_slots_remain_partial_not_a_false_conflict(self):
         result = subject.build_comparison()

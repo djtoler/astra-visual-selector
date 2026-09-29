@@ -30,13 +30,22 @@ Every path is relative to `~/timeline` unless marked `[codex]` (read-only, Codex
 - **Runs** — `python3 -m pipeline.visual_tasks build`; `python3 -m pipeline.visual_tasks validate`
 - **Consumer** — the validator currently consumes this artifact. Slate, media, and pairing stages do **not** read it yet, so this pilot cannot silently change live choices before review.
 
+### 1b.1 · Propose semantic VisualTask splits — human-review pilot
+
+- **In** — all 40 source beats, saved editor review notes, and `prompts/PROMPT-visual-task-splits.md`
+- **Does** — assesses every source beat once; proposes an exact-span split only when one developing treatment cannot carry the complete visual job; preserves beat 28 as the approved reference split
+- **Out** → `visual-task-splits/review-001/draft.json` (33 keep-single assessments, five new unreviewed split proposals, one existing approved split, and one source/review mismatch)
+- **Runs** — `python3 -m pipeline.visualtask_split_proposals validate`
+- **Issue reconciliation** — the request binds `issues_matching_layer.json` plus the four matching-plan documents; every PI-05 beat must receive an explicit disposition, and stale reviewed text that is absent from the current narration is blocked as `source_mismatch`
+- **Boundary** — no proposal can enter VisualTasks, matching, selection, or rendering until the editor approves or edits it; punctuation, duration, people count and template capacity are not split rules
+
 ### 1c · Compare VisualTasks with measured AE requirements — review-only test
 
 - **In** — `grammar/visual-tasks.json`, `grammar/visual-task-technical-requirements.json`, the unchanged capacity slate, approved scene catalog, explicit `grammar/ae-template-spec-links.json`, and portable `grammar/ae-template-technical-index.json`
-- **Does** — attaches measured media, timing, slot, and exact recursive text-field evidence to existing candidates; uses `grammar/ae-scene-composition-mappings.json` for 20 source-evidenced exact scene mappings and preserves four ambiguous scenes as unresolved. It records exact saved audio spans for 39 tasks and keeps both split beat-28 tasks unresolved. It does not equate display identities with media slots.
+- **Does** — attaches measured media, timing, slot, and exact recursive text-field evidence to existing candidates; uses `grammar/ae-scene-composition-mappings.json` for 20 source-evidenced exact scene mappings and preserves four ambiguous scenes as unresolved. It records exact saved audio spans for 39 unsplit tasks plus the two editor-reviewed, phrase-aligned beat-28 task spans. It does not equate display identities with media slots.
 - **Out** → `reports/visualtask-ae-spec-comparison.json` (41 tasks, 257 existing candidates; no live ranking or selection change)
 - **Runs** — `python3 -m pipeline.visualtask_requirements build`; `python3 -m pipeline.visualtask_requirements validate`; `python3 -m pipeline.visualtask_ae_spec_comparison build`; `python3 -m pipeline.visualtask_ae_spec_comparison validate`
-- **Boundary** — cannot emit `fillable_now`; four scene mappings, two split-task audio spans, treatment-specific media-slot counts and kinds, person/group eligibility, typed data fields, required on-screen text and limits, duration-adjustment policy, and media availability remain unresolved.
+- **Boundary** — cannot emit `fillable_now`; four scene mappings, treatment-specific media-slot counts and kinds, person/group eligibility, typed data fields, required on-screen text and limits, duration-adjustment policy, media availability, and actual task-level candidate retrieval remain unresolved. Beat 28's reviewed timing does not prove that its inherited source-beat candidates were independently matched to each task.
 
 ### 1d · Draft treatment requirements — human-review pilot
 

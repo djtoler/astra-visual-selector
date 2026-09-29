@@ -1,0 +1,540 @@
+{
+  "activationState": "review_only_not_connected",
+  "purpose": "Review-only independent template and media matching per VisualTask",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sourceBeatId": "28-28",
+  "sources": {
+    "bindings": {
+      "bytes": 465805,
+      "path": "grammar/bindings.json",
+      "sha256": "7a07459e56983404bf8c0afb8f4c5c6b106fb604f067690009f3ca7970972fd8"
+    },
+    "visualTasks": {
+      "bytes": 97553,
+      "path": "grammar/visual-tasks.json",
+      "sha256": "e253880ec6e8b44450a937110b063091cdd6640484aa2ae6d6390973889a64ad"
+    }
+  },
+  "tasks": [
+    {
+      "continuityGroup": null,
+      "matchingJob": "define_terms",
+      "mediaCandidates": {
+        "candidateMatchingProvenance": {
+          "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+          "reason": "No display-eligible identities; sibling media is not inherited.",
+          "scope": "visual_task",
+          "taskId": "28-28.setup"
+        },
+        "entities": [],
+        "gaps": [],
+        "groupCandidateIds": [],
+        "individualCandidateIds": {},
+        "status": "no_entity_media_demand"
+      },
+      "ordinal": 1,
+      "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+      "sourceBeatId": "28-28",
+      "taskId": "28-28.setup",
+      "taskRole": "setup_text",
+      "templateCandidates": [
+        {
+          "bindingProvenance": {
+            "evidence": "a multi-line statement on a translucent overlay card",
+            "mechanism": "overlay states a rule",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260922T0247",
+            "source": "pipeline",
+            "verdict": "clear"
+          },
+          "candidateId": "glass-lower-thirds--scene-001",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": null,
+          "name": "Displays a multi-line statement on a translucent overlay card across full-frame media without comparison."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "Minimalist text opener on black background.",
+            "mechanism": "stated rule text",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "history-slideshow-envato--scene-001",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": "text states a rule, weighting, or period rather than a title",
+          "name": "Minimalist text opener on black background."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "ENCODING: title",
+            "mechanism": "title overlay states rule",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "memories-photo-slideshow-creative-slides-envato--scene-001",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": "when the title text states a rule, weighting, or period",
+          "name": "Title card opener, centered typography over blurred portrait photo with dark vignette"
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "across 7 media well(s) and 3 text field(s)",
+            "mechanism": "multiple text fields over image",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "photo-slideshow-memories-envato--scene-010",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": "the three text fields are used to state a rule or period rather than thanks",
+          "name": "Closing card, central framed landscape photo over scattered cards, slow zoom-out, centered title and thank-you text overlay."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "Text presentation, grunge style.",
+            "mechanism": "text states a rule",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "02-documentary-promo--scene-003",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": "the text content defines a rule, weighting, or period",
+          "name": "Text presentation, grunge style."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "animated lower-third headline",
+            "mechanism": "headline states a rule",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260922T0247",
+            "source": "pipeline",
+            "verdict": "clear"
+          },
+          "candidateId": "grunge-lower-thirds--scene-002",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": null,
+          "name": "Displays a single media slot with an animated lower-third headline and text block overlay."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "large date",
+            "mechanism": "date frames a period",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "06-the-history--scene-001",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": "the date/label is used to mark a period or rule rather than a single happening",
+          "name": "Cutout with background cutout, large date, pullback, centered label overlay."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "revealing article copy, sidebar elements, and embedded media",
+            "mechanism": "revealed article body text",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "screen-mockup-rfx--review-003",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": "the article copy states the rule or definition",
+          "name": "Blog article scroll mockup, high-angle downward pan, article text and imagery."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "The six criteria are captions, not six separate numeric inputs.",
+            "mechanism": "criteria captions state method",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "46_similarity_criteria_table",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": "when captions describe the rule rather than a score",
+          "name": "A ranking table beside a prominent reference person explains a supplied assessment."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "Side-by-side comparison of two options across four distinct criteria or steps.",
+            "mechanism": "numbered criteria rows",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "archive3-comparison-pack-ae--review-001",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 0,
+            "matchingJob": "define_terms",
+            "perceptibilityConstraints": [
+              "The two thresholds must be visibly established before any names enter."
+            ],
+            "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+            "scope": "visual_task",
+            "taskId": "28-28.setup",
+            "taskRole": "setup_text"
+          },
+          "condition": "when the rows state a rule or weighting rather than a scored comparison",
+          "name": "Two-column comparison overlay, four animated stacked rows, centered numbered badges, top title."
+        }
+      ]
+    },
+    {
+      "continuityGroup": "28-two-floors",
+      "matchingJob": "intersection_of_sets",
+      "mediaCandidates": {
+        "candidateMatchingProvenance": {
+          "identitySource": "VisualTask displayEligible identities",
+          "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+          "resolver": "existing Production Ready media_candidates.resolve",
+          "scope": "visual_task",
+          "taskId": "28-28.overlap"
+        },
+        "entities": [
+          "Drake",
+          "Travis Scott",
+          "21 Savage",
+          "Future",
+          "Kendrick Lamar",
+          "Nicki Minaj",
+          "Post Malone",
+          "Ty Dolla $ign",
+          "XXXTentacion",
+          "Young Thug"
+        ],
+        "gaps": [],
+        "groupCandidateIds": [],
+        "individualCandidateIds": {
+          "21 Savage": [
+            "bbb8f567c6c424b39d8754be",
+            "7a1359aa882fbca6b0f73daf",
+            "d733be2f8b903d076b4c9185",
+            "3be2e22e3d87bc26f57fec4c",
+            "7b600d7de59c0f66326f87ff"
+          ],
+          "Drake": [
+            "0340c3b25abd3e9d5cef6bd7",
+            "085d1a8e792d7af98b9ed205",
+            "268836e8df86b2924a1d2a2e",
+            "3bd5203a95dfe9f0a50adc0a",
+            "424c5b49944cf62b1f2510b5",
+            "43a74ac79b1864186611be46",
+            "5d9735eebe6c924c577c2175",
+            "601d8df0de329c7dd784aa35"
+          ],
+          "Future": [
+            "01da47a9bb643e9500d74e8c",
+            "09a09edbf82b0bc4b6ab8e77",
+            "14e5bce24d257a33cd863ce2",
+            "1ad35e134ce2ecf11e1bb3e5",
+            "38fabb30088b61cfbae35271",
+            "3c65b06a1e2223b0fbca5a68",
+            "4f9eceb08f1919f971dc4992",
+            "5742ac8a23c5429a51a541bb"
+          ],
+          "Kendrick Lamar": [
+            "37f3e66451ef35d7f72af18b",
+            "40d40b713ea5972a8c129f50",
+            "5f97d3945ec39754f30dd59a",
+            "13564ff12372da314ad3c6d4",
+            "1767a496111018b7ff131d2c",
+            "22631e3d628163637eb36e7a",
+            "2aa8f83ec1fcd66d49680bfc",
+            "702692cde6c501fcc2fc76c8"
+          ],
+          "Nicki Minaj": [
+            "2fad290bd62e4c2fdeaa7eed",
+            "f2b1dd416a43c149de1d3728",
+            "042fe8ec41377d1a28c04630",
+            "105029a367d6c6af0d708354",
+            "1aa7b1f2c4d377d8f81cebc2",
+            "29414497d9435e17b5ea7e31",
+            "5ae195f368e81d28c33f4638",
+            "702c7650615e7519d6dddb19"
+          ],
+          "Post Malone": [
+            "2d27aa258aaccdaff10de38f",
+            "311ea331d60ecf41055150af",
+            "3a3bfb6e75d26a220730b5e6",
+            "c6cd7f48d3a6c2d03ba61a51"
+          ],
+          "Travis Scott": [
+            "1685ac030081d438031c2419",
+            "40227f96ee1614d571e88f63",
+            "62bf43b58ddba8e167ae26db",
+            "7ffae320bbc3e8ea21fe34d3",
+            "a9c1fc4c9fe22f0bde7af834",
+            "70a960824d9d53e13a7e5c91",
+            "7c37a7e3c0e13e847ef9406e",
+            "a90bda82a3b74716186b4194"
+          ],
+          "Ty Dolla $ign": [
+            "bfd33024cb101eaafed81052",
+            "f6f19f043cc1150eb0885a06"
+          ],
+          "XXXTentacion": [
+            "3fa8a6868aa9fce710602166",
+            "4661c4b337bedd35733ad996",
+            "4906fea2cd2bd2035098b02e",
+            "7804f5a43fa868eb625646df",
+            "908b8277f0ded05cb517b32c",
+            "c0718aa0f35e438ace4b4ea3",
+            "ec1b0ef5abd3d50348232d15",
+            "ffc421147e0ab54116c4d626"
+          ],
+          "Young Thug": [
+            "12d228dc6143b5fcbcc30456",
+            "2432aa25c2e15b82d2fc2799",
+            "25f306ce82aefb4321430262",
+            "36d0302b6d66bfb8453a35c5",
+            "453ba21b6bfd8396146b0e71",
+            "65fb9e8dd9903a243c7909bf",
+            "734b5c991d0a8d050fde8fbd",
+            "13a2d657e3f3d57d5257b3dc"
+          ]
+        },
+        "status": "resolved"
+      },
+      "ordinal": 2,
+      "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+      "sourceBeatId": "28-28",
+      "taskId": "28-28.overlap",
+      "taskRole": "spatial_comparison",
+      "templateCandidates": [
+        {
+          "bindingProvenance": {
+            "namedAt": "2026-09-18",
+            "source": "user"
+          },
+          "candidateId": "truth-cohort-attrition",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 10,
+            "matchingJob": "intersection_of_sets",
+            "perceptibilityConstraints": [
+              "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists."
+            ],
+            "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+            "scope": "visual_task",
+            "taskId": "28-28.overlap",
+            "taskRole": "spatial_comparison"
+          },
+          "condition": null,
+          "name": "Downward motion encodes the disclosed chart-streak exit year. Remaining height and highlight identify the two narration-defined 18-year survivors. Horizontal and depth position only separate the cohort."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "Plots multiple items across a three-dimensional coordinate space before isolating selected points.",
+            "mechanism": "isolated points meeting axes",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260922T0247",
+            "source": "pipeline",
+            "verdict": "clear"
+          },
+          "candidateId": "two-floors",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 10,
+            "matchingJob": "intersection_of_sets",
+            "perceptibilityConstraints": [
+              "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists."
+            ],
+            "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+            "scope": "visual_task",
+            "taskId": "28-28.overlap",
+            "taskRole": "spatial_comparison"
+          },
+          "condition": null,
+          "name": "Plots multiple items across a three-dimensional coordinate space before isolating selected points."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "Native bounds are x 25–50 and y 50–66.",
+            "mechanism": "dual-axis threshold crossing",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "07_labeled_outlier_scatter",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 10,
+            "matchingJob": "intersection_of_sets",
+            "perceptibilityConstraints": [
+              "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists."
+            ],
+            "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+            "scope": "visual_task",
+            "taskId": "28-28.overlap",
+            "taskRole": "spatial_comparison"
+          },
+          "condition": "when reference lines mark two qualifying thresholds on the axes",
+          "name": "Position on two numeric axes shows association; callouts focus attention on selected points."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "Native bounds are x 0–1600 and y 32–60.",
+            "mechanism": "quadrant threshold crossing",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "23_portrait_scatter",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 10,
+            "matchingJob": "intersection_of_sets",
+            "perceptibilityConstraints": [
+              "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists."
+            ],
+            "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+            "scope": "visual_task",
+            "taskId": "28-28.overlap",
+            "taskRole": "spatial_comparison"
+          },
+          "condition": "the two axes must each represent a qualifying threshold",
+          "name": "Portrait position on two axes communicates a relationship."
+        },
+        {
+          "bindingProvenance": {
+            "evidence": "Both coordinates are mapped against 0–100.",
+            "mechanism": "quadrant threshold crossing",
+            "model": "claude-sonnet-5",
+            "promptSha": "50337c792883",
+            "runId": "bind-20260920T1144",
+            "source": "pipeline",
+            "verdict": "conditional"
+          },
+          "candidateId": "31_greatest_team_scatter",
+          "candidateMatchingProvenance": {
+            "displayIdentityCount": 10,
+            "matchingJob": "intersection_of_sets",
+            "perceptibilityConstraints": [
+              "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists."
+            ],
+            "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+            "scope": "visual_task",
+            "taskId": "28-28.overlap",
+            "taskRole": "spatial_comparison"
+          },
+          "condition": "axes must represent two qualifying thresholds",
+          "name": "Text summaries accompany an eight-point scatter; summary rows are not additional points."
+        }
+      ]
+    }
+  ]
+}

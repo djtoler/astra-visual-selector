@@ -45,14 +45,17 @@ class MatchingAccuracyBatch01(unittest.TestCase):
             case["observed"]["spatialOrInfographicSatisfiesThisBatchTreatment"]
         )
 
-    def test_split_beat_remains_two_tasks_with_unknown_task_timing(self):
+    def test_split_beat_matches_templates_and_media_independently_per_task(self):
         case = self.cases["split_beat_visual_tasks"]
         self.assertEqual(case["status"], "pass")
         self.assertEqual(case["observed"]["taskIds"], ["28-28.setup", "28-28.overlap"])
         self.assertEqual(case["observed"]["taskRoles"], ["setup_text", "spatial_comparison"])
         self.assertEqual(case["observed"]["timingStates"], [
-            "unresolved_split_task_span", "unresolved_split_task_span"
+            "exact_reviewed_split_task_span", "exact_reviewed_split_task_span"
         ])
+        self.assertTrue(case["observed"]["taskLevelCandidateMatchingEvidence"])
+        self.assertNotEqual(case["observed"]["candidateIdsByTask"]["28-28.setup"], case["observed"]["candidateIdsByTask"]["28-28.overlap"])
+        self.assertEqual(case["observed"]["mediaEntityCountByTask"], {"28-28.setup": 0, "28-28.overlap": 10})
 
     def test_text_candidate_is_not_promoted_without_native_field_evidence(self):
         case = self.cases["text_heavy_document"]
@@ -62,18 +65,19 @@ class MatchingAccuracyBatch01(unittest.TestCase):
         self.assertEqual(case["observed"]["technicalVerdict"], "technical_spec_unmapped")
         self.assertIn("editor_approved_treatment", case["missingRequirements"])
 
-    def test_saved_footage_requirement_is_not_encoded_yet(self):
+    def test_saved_footage_requirement_is_encoded(self):
         case = self.cases["actual_footage_required"]
-        self.assertEqual(case["status"], "fail")
+        self.assertEqual(case["status"], "pass")
         self.assertTrue(case["observed"]["reviewDirectionFound"])
-        self.assertIsNone(case["observed"]["encodedRequiredMediaKinds"])
-        self.assertIn("required_media_kind:footage", case["missingRequirements"])
+        self.assertEqual(case["observed"]["encodedRequiredMediaKinds"], ["footage"])
+        self.assertEqual(case["missingRequirements"], [])
 
-    def test_missing_media_does_not_yet_emit_typed_conditional(self):
+    def test_missing_media_emits_typed_conditional(self):
         case = self.cases["missing_media_conditional"]
-        self.assertEqual(case["status"], "fail")
+        self.assertEqual(case["status"], "pass")
         self.assertEqual(case["observed"]["savedReviewNote"], "no available broll")
-        self.assertFalse(case["observed"]["typedMissingMediaBriefPresent"])
+        self.assertTrue(case["observed"]["typedMissingMediaBriefPresent"])
+        self.assertEqual(case["observed"]["currentTechnicalVerdict"], "conditional")
         self.assertEqual(case["expectedMissingMediaBrief"]["status"], "missing")
 
 

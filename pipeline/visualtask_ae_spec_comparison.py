@@ -426,6 +426,7 @@ def build_comparison(
 
     rows = []
     verdict_counts: Counter[str] = Counter()
+    technical_evidence_counts: Counter[str] = Counter()
     mapped_candidates = 0
     candidate_count = 0
     for task in tasks:
@@ -437,6 +438,9 @@ def build_comparison(
         display_demand = len(display_entities)
         task_requirements = requirements[task["id"]]
         exact_task_span = task_requirements["timingRequirement"]["exactTaskAudioSpan"]
+        media_requirement = task_requirements["mediaRequirements"]
+        required_media_kinds = media_requirement.get("requiredMediaKinds")
+        missing_media_brief = media_requirement.get("missingMediaBrief")
         comparisons = []
         for option in baseline.get("options") or []:
             candidate_count += 1
@@ -445,18 +449,30 @@ def build_comparison(
             family_id = scene.get("familyId") if scene else None
             link = links.get(family_id) if family_id else None
             if not link:
-                verdict = "technical_spec_unmapped"
+                technical_verdict = "technical_spec_unmapped"
+                verdict = "conditional" if missing_media_brief else technical_verdict
                 missing = list(MISSING_FOR_FILLABLE_NOW)
                 if exact_task_span:
                     missing.remove("exact_task_audio_span")
-                comparisons.append({
+                if required_media_kinds:
+                    missing.remove("media_kind_constraints")
+                comparison = {
                     "candidateId": scene_id,
                     "familyId": family_id,
                     "verdict": verdict,
-                    "reason": "No explicit reviewed link connects this candidate family to a measured AE project.",
+                    "technicalEvidenceVerdict": technical_verdict,
+                    "reason": (
+                        "Required media is known to be missing; this candidate remains conditional even though no explicit reviewed link connects its family to a measured AE project."
+                        if missing_media_brief else
+                        "No explicit reviewed link connects this candidate family to a measured AE project."
+                    ),
                     "missingForFillableNow": missing,
-                })
+                }
+                if missing_media_brief:
+                    comparison["missingMediaBrief"] = missing_media_brief
+                comparisons.append(comparison)
                 verdict_counts[verdict] += 1
+                technical_evidence_counts[technical_verdict] += 1
                 continue
             mapped_candidates += 1
             project = projects[link["projectId"]]
@@ -467,10 +483,13 @@ def build_comparison(
                     row for row in project["compositions"]
                     if row["id"] == mapping["compositionId"]
                 )
-            verdict = "exact_technical_evidence_partial" if exact_comp else "project_technical_evidence_partial"
+            technical_verdict = "exact_technical_evidence_partial" if exact_comp else "project_technical_evidence_partial"
+            verdict = "conditional" if missing_media_brief else technical_verdict
             reason = (
+                "Required media is known to be missing; measured template capacity cannot make the treatment fillable until that media is supplied."
+                if missing_media_brief else
                 f"{'Exact composition measurements are' if exact_comp else 'A project-wide measurement envelope is'} available, "
-                "but the task has no reviewed treatment-specific media-slot, media-kind, text-field, or typed-data requirement. "
+                "but unresolved treatment-specific requirements still prevent a fillable-now decision. "
                 "Display identities are not assumed to equal media slots."
             )
             missing = list(MISSING_FOR_FILLABLE_NOW)
@@ -478,6 +497,8 @@ def build_comparison(
                 missing.remove("exact_scene_to_native_composition_mapping")
             if exact_task_span:
                 missing.remove("exact_task_audio_span")
+            if required_media_kinds:
+                missing.remove("media_kind_constraints")
             comparison = {
                 "candidateId": scene_id,
                 "familyId": family_id,
@@ -487,9 +508,12 @@ def build_comparison(
                 "displayIdentityDemand": display_demand,
                 "projectCapacityEnvelope": project["capacityEnvelope"],
                 "verdict": verdict,
+                "technicalEvidenceVerdict": technical_verdict,
                 "reason": reason,
                 "missingForFillableNow": missing,
             }
+            if missing_media_brief:
+                comparison["missingMediaBrief"] = missing_media_brief
             if exact_comp:
                 text_fields_by_id = {field["id"]: field for field in project["textFields"]}
                 comparison["exactComposition"] = {
@@ -522,6 +546,7 @@ def build_comparison(
                 }
             comparisons.append(comparison)
             verdict_counts[verdict] += 1
+            technical_evidence_counts[technical_verdict] += 1
         rows.append({
             "taskId": task["id"],
             "sourceBeatId": source_id,
@@ -555,8 +580,9 @@ def build_comparison(
             "baselineCandidates": candidate_count,
             "mappedCandidates": mapped_candidates,
             "unmappedCandidates": candidate_count - mapped_candidates,
-            "projectTechnicalEvidencePartial": verdict_counts["project_technical_evidence_partial"],
-            "exactTechnicalEvidencePartial": verdict_counts["exact_technical_evidence_partial"],
+            "projectTechnicalEvidencePartial": technical_evidence_counts["project_technical_evidence_partial"],
+            "exactTechnicalEvidencePartial": technical_evidence_counts["exact_technical_evidence_partial"],
+            "conditionalCandidates": verdict_counts["conditional"],
             "exactTaskAudioSpans": requirements_artifact["counts"]["exactTaskAudioSpans"],
             "unresolvedTaskAudioSpans": requirements_artifact["counts"]["unresolvedTaskAudioSpans"],
             "exactTimingObservations": sum("timingObservation" in row for task_row in rows for row in task_row["candidateComparisons"]),
@@ -596,15 +622,17 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
     counts_by_source = Counter(row.get("sourceBeatId") for row in tasks)
     comparisons = [candidate for row in tasks for candidate in row.get("candidateComparisons") or []]
     verdicts = Counter(row.get("verdict") for row in comparisons)
+    technical_verdicts = Counter(row.get("technicalEvidenceVerdict") for row in comparisons)
     counts = {
         "sourceBeats": len(counts_by_source),
         "visualTasks": len(tasks),
         "splitBeats": sum(count > 1 for count in counts_by_source.values()),
         "baselineCandidates": len(comparisons),
         "mappedCandidates": sum(row.get("projectId") is not None for row in comparisons),
-        "unmappedCandidates": verdicts["technical_spec_unmapped"],
-        "projectTechnicalEvidencePartial": verdicts["project_technical_evidence_partial"],
-        "exactTechnicalEvidencePartial": verdicts["exact_technical_evidence_partial"],
+        "unmappedCandidates": sum(row.get("projectId") is None for row in comparisons),
+        "projectTechnicalEvidencePartial": technical_verdicts["project_technical_evidence_partial"],
+        "exactTechnicalEvidencePartial": technical_verdicts["exact_technical_evidence_partial"],
+        "conditionalCandidates": verdicts["conditional"],
         "exactTaskAudioSpans": sum(
             (row.get("technicalRequirements") or {}).get("timingRequirement", {}).get("exactTaskAudioSpan") is not None
             for row in tasks
@@ -623,11 +651,31 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
         "technical_spec_unmapped",
         "project_technical_evidence_partial",
         "exact_technical_evidence_partial",
+        "conditional",
     }
     if any(row.get("verdict") not in allowed for row in comparisons):
         raise ValueError("comparison contains an unauthorized verdict")
     if any("fillable_now" in json.dumps(row) for row in comparisons):
         raise ValueError("candidate comparison must not claim fillable_now")
+    technical_allowed = allowed - {"conditional"}
+    if any(row.get("technicalEvidenceVerdict") not in technical_allowed for row in comparisons):
+        raise ValueError("comparison contains an invalid technical-evidence verdict")
+    requirements_by_task = {
+        row["taskId"]: (row.get("technicalRequirements") or {}).get("mediaRequirements") or {}
+        for row in tasks
+    }
+    for task in tasks:
+        requirement = requirements_by_task[task["taskId"]]
+        for candidate in task.get("candidateComparisons") or []:
+            if candidate.get("verdict") == "conditional":
+                brief = candidate.get("missingMediaBrief") or {}
+                if (
+                    requirement.get("availabilityStatus") != "missing"
+                    or requirement.get("missingMediaBrief") != brief
+                    or brief.get("status") != "missing"
+                    or brief.get("mediaKind") not in (requirement.get("requiredMediaKinds") or [])
+                ):
+                    raise ValueError("conditional candidate lacks a matching typed missing-media brief")
     if verify_sources:
         for name, source in (artifact.get("sources") or {}).items():
             path = ROOT / source["path"]

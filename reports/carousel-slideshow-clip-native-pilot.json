@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "activationState": "pilot_review_only",
+  "purpose": "Pilot the clipId-level join between reviewed Envato preview slices and exact native AE composition capacity without treating a preview clip as a whole rendered composition.",
+  "sources": {
+    "technicalIndex": {
+      "path": "grammar/ae-template-technical-index.json",
+      "sha256": "5c71ce9ad5a958510a8fb8c828d044011dd0fb87bac84c44f656994a9abaeb5b"
+    },
+    "semanticDescriptions": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/scene-descriptions.json",
+      "sha256": "3c7898a711ce498af3dd611d03a7ed267daa813ccafc7b83208742ab61e55d6e"
+    },
+    "sourceProject": {
+      "path": "/Volumes/onn. Drive/AE Templates/Carousels & Slideshows/Carousel Slideshow/Project/Carousel Slideshow.aep",
+      "sha256": "47c28b3878df16bdd5b0fe5bdd1d20f4351c1bd454a710238407bbd27df63ec3"
+    },
+    "sourcePreview": "/Volumes/onn. Drive/AE Templates/Carousels & Slideshows/Carousel Slideshow/preview_540p_crf22_higher_quality.mp4",
+    "nativeRenderEvidence": [
+      {
+        "compositionPath": "2.Final/Render 01",
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/output/carousel-slideshow-clip-map-render-01-20260928/video.mp4",
+        "sha256": "4f12f80b5408f30fe90915cf1a59466ea3127d462f57a7b6b90e37d2ad3be56e",
+        "width": 480,
+        "height": 270,
+        "fps": 25,
+        "frames": 750,
+        "durationSeconds": 30.0,
+        "renderSeconds": 203.173,
+        "decodeVerified": true
+      },
+      {
+        "compositionPath": "2.Final/Render 02",
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/output/carousel-slideshow-clip-map-render-02-20260928-v4/video.mp4",
+        "sha256": "a868632b6ac56a07dea35922df19f79575de9997d997743c281f1fa06640eeda",
+        "width": 480,
+        "height": 270,
+        "fps": 25,
+        "frames": 950,
+        "durationSeconds": 38.0,
+        "renderSeconds": 2638.666,
+        "decodeVerified": true
+      },
+      {
+        "compositionPath": "2.Final/Render 03",
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/output/carousel-slideshow-clip-map-render-03-20260928/video.mp4",
+        "sha256": "be1cd19a6d1b37348e35fa0e0717c65e677f1d0009313a6a97673cc8e4e7c1bc",
+        "width": 480,
+        "height": 270,
+        "fps": 25,
+        "frames": 750,
+        "durationSeconds": 30.0,
+        "renderSeconds": 516.155,
+        "decodeVerified": true
+      }
+    ]
+  },
+  "scope": {
+    "templateFamily": "carousel-slideshow",
+    "expectedClipIds": [
+      "carousel-slideshow--review-001",
+      "carousel-slideshow--review-002",
+      "carousel-slideshow--review-003",
+      "carousel-slideshow--review-004",
+      "carousel-slideshow--review-005"
+    ]
+  },
+  "counts": {
+    "clips": 5,
+    "compositionVerified": 5,
+    "approximateWindows": 5,
+    "windowSlotExposureUnresolved": 5,
+    "nativeRenders": 3
+  },
+  "clips": [
+    {
+      "clipId": "carousel-slideshow--review-001",
+      "mappingStatus": "composition_verified_window_approximate",
+      "semantic": {
+        "previewDurationSeconds": 7.0,
+        "mediaOrientation": "portrait",
+        "observedFocalPresentations": 6,
+        "textPresence": "none"
+      },
+      "native": {
+        "projectId": "carousel-slideshow",
+        "composition": {"id": 12018, "path": "2.Final/Render 01"},
+        "window": {"startSeconds": 0.0, "endSeconds": 7.0, "precision": "approximate"}
+      },
+      "technicalCapacity": {
+        "compositionDurationSeconds": 30.0,
+        "absoluteMediaSlots": 8,
+        "maxSimultaneouslyEnabledInputs": 8,
+        "editableTextFields": 0
+      },
+      "windowSlotExposureStatus": "unresolved",
+      "evidence": "Portrait geometry and the decoded native Render 01 motion match the first eight-slot carousel design. The project contains placeholders rather than Envato sample photos, so the zero-second window remains an approximate editorial reconstruction."
+    },
+    {
+      "clipId": "carousel-slideshow--review-002",
+      "mappingStatus": "composition_verified_window_approximate",
+      "semantic": {
+        "previewDurationSeconds": 4.866667,
+        "mediaOrientation": "landscape",
+        "observedFocalPresentations": 5,
+        "textPresence": "lower-right script caption"
+      },
+      "native": {
+        "projectId": "carousel-slideshow",
+        "composition": {"id": 12030, "path": "2.Final/Render 02"},
+        "window": {"startSeconds": 0.0, "endSeconds": 4.866667, "precision": "approximate"}
+      },
+      "technicalCapacity": {
+        "compositionDurationSeconds": 38.0,
+        "absoluteMediaSlots": 6,
+        "maxSimultaneouslyEnabledInputs": 6,
+        "editableTextFields": 6
+      },
+      "windowSlotExposureStatus": "unresolved",
+      "evidence": "Render 02 is the only landscape final and the only final with six timed script-caption fields. Its decoded native render confirms that the first caption enters during this opening interval. The zero-second anchor is still inferred from preview order and duration."
+    },
+    {
+      "clipId": "carousel-slideshow--review-003",
+      "mappingStatus": "composition_verified_window_approximate",
+      "semantic": {
+        "previewDurationSeconds": 9.933333,
+        "mediaOrientation": "portrait",
+        "observedFocalPresentations": 7,
+        "textPresence": "none"
+      },
+      "native": {
+        "projectId": "carousel-slideshow",
+        "composition": {"id": 12042, "path": "2.Final/Render 03"},
+        "window": {"startSeconds": 0.0, "endSeconds": 9.933333, "precision": "approximate"}
+      },
+      "technicalCapacity": {
+        "compositionDurationSeconds": 30.0,
+        "absoluteMediaSlots": 12,
+        "maxSimultaneouslyEnabledInputs": 12,
+        "editableTextFields": 0
+      },
+      "windowSlotExposureStatus": "unresolved",
+      "evidence": "The two consecutive wide/close portrait clips form the twelve-slot Render 03 design, whose decoded native render confirms the wide portrait-card motion. This first sub-window is inferred from their continuous preview order."
+    },
+    {
+      "clipId": "carousel-slideshow--review-004",
+      "mappingStatus": "composition_verified_window_approximate",
+      "semantic": {
+        "previewDurationSeconds": 10.2,
+        "mediaOrientation": "portrait",
+        "observedFocalPresentations": 7,
+        "textPresence": "none"
+      },
+      "native": {
+        "projectId": "carousel-slideshow",
+        "composition": {"id": 12042, "path": "2.Final/Render 03"},
+        "window": {"startSeconds": 9.933333, "endSeconds": 20.133333, "precision": "approximate"}
+      },
+      "technicalCapacity": {
+        "compositionDurationSeconds": 30.0,
+        "absoluteMediaSlots": 12,
+        "maxSimultaneouslyEnabledInputs": 12,
+        "editableTextFields": 0
+      },
+      "windowSlotExposureStatus": "unresolved",
+      "evidence": "This clip directly follows clip 003 without a family/design reset and continues the twelve-slot Render 03 portrait motion confirmed by the decoded native render. Its internal start is the prior clip duration and remains approximate."
+    },
+    {
+      "clipId": "carousel-slideshow--review-005",
+      "mappingStatus": "composition_verified_window_approximate",
+      "semantic": {
+        "previewDurationSeconds": 6.5,
+        "mediaOrientation": "landscape",
+        "observedFocalPresentations": 4,
+        "textPresence": "lower-right script caption"
+      },
+      "native": {
+        "projectId": "carousel-slideshow",
+        "composition": {"id": 12030, "path": "2.Final/Render 02"},
+        "window": {"startSeconds": 24.02, "endSeconds": 30.52, "precision": "approximate"}
+      },
+      "technicalCapacity": {
+        "compositionDurationSeconds": 38.0,
+        "absoluteMediaSlots": 6,
+        "maxSimultaneouslyEnabledInputs": 6,
+        "editableTextFields": 6
+      },
+      "windowSlotExposureStatus": "unresolved",
+      "evidence": "Render 02 uniquely matches the landscape cards and captions. Its technical report places the native logo layer at 30.52 seconds, and the decoded native render visually confirms that transition. Subtracting the reviewed 6.5-second pre-logo slice gives an approximate 24.02-second start."
+    }
+  ],
+  "limitations": [
+    "Composition-level slot counts are hard technical capacity; they do not prove that every slot becomes focal or readable inside the preview slice.",
+    "The AEP contains gray placeholder media instead of Envato's sample photos, so pixel-identical frame alignment is unavailable.",
+    "All five native windows remain approximate pending motion/geometry review; none may be promoted silently to exact.",
+    "The missing LindseySignature font is flagged for visual review and does not change the measured text-field count."
+  ]
+}

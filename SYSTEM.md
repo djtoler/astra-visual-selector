@@ -45,8 +45,10 @@ global `_subject` declaration and does not guess an unresolved subject as Drake.
 **Believes:** a task is the matching unit; an entity may be resolved for continuity while
 remaining visually withheld; a semantic item count is not automatically a person count.
 **Known incomplete:** only the first source-bound overrides and two cohorts are encoded.
-The slate, media, and pairing stages do not consume this artifact yet; activation requires a
-separate reviewed migration with before/after output.
+The live slate, media review, and pairing stages do not consume this artifact yet. The
+review-only `pipeline/visualtask_matching.py` pilot now consumes it to produce independent
+template and Production Ready media candidates for each task in split beat 28; live
+activation still requires a separate reviewed migration with before/after output.
 
 ### 2c. VisualTask / measured AE requirements comparison — `PARTIAL`, review-only · deterministic
 `pipeline/visualtask_ae_spec_comparison.py` imports the frozen AE measurements into a
@@ -56,16 +58,15 @@ resolves 20 of the 24 in-scope preview scenes to exact
 native compositions from native master-timeline intervals or unique composition-name and
 structure evidence; four ambiguous mappings remain explicit. It emits 41 task rows without
 ranking, selecting, pairing, or rendering. `pipeline/visualtask_requirements.py` separately
-preserves source-supported task constraints and exact saved audio spans for 39 tasks; the
-two split beat-28 tasks remain unresolved.
+preserves source-supported task constraints and exact saved audio spans for 39 unsplit tasks
+plus the two editor-reviewed, phrase-aligned beat-28 task spans.
 **Out:** `grammar/visual-task-technical-requirements.json`,
 `grammar/ae-template-technical-index.json` and
 `reports/visualtask-ae-spec-comparison.json`.
 **Believes:** a display identity is a semantic requirement, not automatically one media
 slot. A project-family link cannot prove which native composition backs an individual
 preview scene. Native duration coverage is an observation, not timing-fit approval.
-**Known incomplete:** four scene-to-composition mappings, two split-task audio spans,
-treatment-specific slot counts and media kinds, single/group eligibility, typed data fields,
+**Known incomplete:** four scene-to-composition mappings, treatment-specific slot counts and media kinds, single/group eligibility, typed data fields,
 required on-screen text and limits, duration-adjustment policy, and media availability are
 not yet encoded. The 20 exact mappings expose their native dimensions, duration,
 simultaneous/total media inputs and recursive text-field identities. Even so,

@@ -25,6 +25,15 @@ DEFAULT_ROSTER = ROOT / "grammar" / "entity-roster.json"
 DEFAULT_OVERRIDES = ROOT / "grammar" / "visual-task-overrides.json"
 DEFAULT_COHORTS = ROOT / "grammar" / "cohorts.json"
 DEFAULT_OUTPUT = ROOT / "grammar" / "visual-tasks.json"
+JOBS = {
+    "one_vs_aggregate", "one_vs_many_individually", "entity_vs_benchmark",
+    "proportion_of_cohort", "parallel_instances", "change_across_set",
+    "members_then_total", "category_breakdown", "inversion",
+    "intersection_of_sets", "streak_over_time", "equivalence_restatement",
+    "derived_quantity", "locate_in_distribution", "explain_the_encoding",
+    "pose_a_question", "enumerate", "define_terms", "narrate_an_event",
+    "assert_without_data", "unclassified",
+}
 
 
 def _read(path: Path) -> Any:
@@ -130,6 +139,9 @@ def _task(
     span = _exact_span(beat["quote"], quote, source_id)
     suffix = spec.get("suffix", "main")
     task_id = f"{source_id}.{suffix}"
+    matching_job = spec.get("matchingJob", beat["job"])
+    if matching_job not in JOBS:
+        raise ValueError(f"invalid matching job in {task_id}: {matching_job}")
     extracted = entity_extractor.extract(quote + " " + (beat.get("entity_kind") or ""), roster_names)
     explicit = list(extracted["entities"])
 
@@ -195,16 +207,18 @@ def _task(
         "taskRole": spec.get("taskRole", "main"),
         "quote": quote,
         "sourceSpan": span,
-        "job": beat["job"],
+        "job": matching_job,
+        "sourceBeatJob": beat["job"],
         "entityCount": entity_count,
         "identityCount": identity_count,
         "entityKind": beat.get("entity_kind"),
         "takeaway": beat.get("takeaway"),
-        "mustBeTrue": beat.get("must_be_true", []),
-        "mustBePerceptible": beat.get("must_be_perceptible", []),
-        "wouldBeALie": beat.get("would_be_a_lie", []),
-        "unstated": beat.get("unstated", []),
+        "mustBeTrue": spec.get("mustBeTrue", beat.get("must_be_true", [])),
+        "mustBePerceptible": spec.get("mustBePerceptible", beat.get("must_be_perceptible", [])),
+        "wouldBeALie": spec.get("wouldBeALie", beat.get("would_be_a_lie", [])),
+        "unstated": spec.get("unstated", beat.get("unstated", [])),
         "continuityGroup": spec.get("continuityGroup"),
+        "templateAdmissions": list(spec.get("templateAdmissions") or []),
         "timing": {
             "status": "passage_bounds_only",
             "passageStartSeconds": passage_timing["startSeconds"],
@@ -266,6 +280,12 @@ def build_visual_tasks(
         specs = (overrides.get(source_id) or {}).get("tasks") or [{}]
         if not specs:
             raise ValueError(f"empty task override: {source_id}")
+        if len(specs) > 1:
+            review = (overrides.get(source_id) or {}).get("splitReview") or {}
+            if review.get("status") != "approved" or not review.get("source"):
+                raise ValueError(f"split task override lacks editor approval: {source_id}")
+            if any(not spec.get("matchingJob") for spec in specs):
+                raise ValueError(f"split task override lacks a per-task matching job: {source_id}")
         beat_tasks = [
             _task(
                 passage_id=passage_id,
