@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Freeze and classify the matching-layer branch delta before integration.",
+  "comparison": {
+    "baseRef": "origin/main",
+    "mergeBase": "78b71455c783f1894f3c23ddedd5022bccc976ae",
+    "branchHeadBeforeCurrentWork": "c22baf72cd12538c86d9750cc00fdacc361b7070",
+    "classificationIncludesCurrentWorkingTree": true
+  },
+  "counts": {
+    "classifiedPaths": 79,
+    "productionCode": 10,
+    "reusableSchemaOrData": 6,
+    "regressionFixture": 22,
+    "generatedReportOrOutput": 5,
+    "test": 17,
+    "planOrDocumentation": 19
+  },
+  "classifications": {
+    "productionCode": [
+      "ae_template_technical_specs/build_master_summary.py",
+      "ae_template_technical_specs/derive_capacity.py",
+      "ae_template_technical_specs/derive_native_batch.py",
+      "ae_template_technical_specs/reconcile_passes.py",
+      "match-trial/candidates.py",
+      "pipeline/clip_technical_coverage.py",
+      "pipeline/clip_technical_registry.py",
+      "pipeline/preview_comp_alignment.py",
+      "pipeline/scene_window_capacity.py",
+      "pipeline/visualtask_ae_spec_comparison.py"
+    ],
+    "reusableSchemaOrData": [
+      "grammar/ae-scene-composition-mappings.json",
+      "grammar/ae-scene-window-definitions.json",
+      "grammar/ae-scene-window-technical-capacities.json",
+      "grammar/ae-template-spec-links.json",
+      "grammar/ae-template-technical-index.json",
+      "grammar/treatment-requirements.schema.json"
+    ],
+    "regressionFixture": [
+      "grammar/visual-task-media-requirements.json",
+      "grammar/visual-task-overrides.json",
+      "grammar/visual-task-technical-requirements.json",
+      "grammar/visual-task-timing-reviews.json",
+      "grammar/visual-tasks.json",
+      "matching-accuracy/batch-001/request.json",
+      "matching-accuracy/batch-001/workflow-review-carousel-correction.json",
+      "matching-accuracy/batch-001/workflow-review-decisions.json",
+      "pipeline/matching_accuracy_batch.py",
+      "pipeline/shotlist.py",
+      "pipeline/treatment_requirements.py",
+      "pipeline/visual_tasks.py",
+      "pipeline/visualtask_matching.py",
+      "pipeline/visualtask_requirements.py",
+      "pipeline/visualtask_split_proposals.py",
+      "treatment-requirements/pilot-001/REVIEW.md",
+      "treatment-requirements/pilot-001/capacity-comparison.json",
+      "treatment-requirements/pilot-001/draft.json",
+      "treatment-requirements/pilot-001/request.json",
+      "treatment-requirements/pilot-001/review-001.json",
+      "visual-task-splits/review-001/draft.json",
+      "visual-task-splits/review-001/request.json"
+    ],
+    "generatedReportOrOutput": [
+      "matching-accuracy/batch-001/report.json",
+      "reports/ae-clip-technical-coverage.json",
+      "reports/carousel-slideshow-clip-native-pilot.json",
+      "reports/visualtask-ae-spec-comparison.json",
+      "reports/visualtask-match-pilot-28-28.json"
+    ],
+    "test": [
+      "ae_template_technical_specs/test_build_master_summary.py",
+      "ae_template_technical_specs/test_derive_capacity.py",
+      "ae_template_technical_specs/test_reconcile_passes.py",
+      "tests/test_ae_scene_composition_mappings.py",
+      "tests/test_clip_technical_coverage.py",
+      "tests/test_clip_technical_registry.py",
+      "tests/test_long_carousel_route.py",
+      "tests/test_matching_accuracy_batch.py",
+      "tests/test_pipeline.py",
+      "tests/test_preview_comp_alignment.py",
+      "tests/test_scene_window_capacity.py",
+      "tests/test_treatment_requirements.py",
+      "tests/test_visual_tasks.py",
+      "tests/test_visualtask_ae_spec_comparison.py",
+      "tests/test_visualtask_matching.py",
+      "tests/test_visualtask_split_proposals.py",
+      "tests/test_visualtask_technical_requirements.py"
+    ],
+    "planOrDocumentation": [
+      "STEPS.md",
+      "SYSTEM.md",
+      "no-drifting/LOG.txt",
+      "plans/BRANCH_CLASSIFICATION_AND_SCENE_MAPPING_PLAN.md",
+      "plans/CLIP_LEVEL_DUAL_PASS_REGISTRY_PLAN.md",
+      "plans/EXACT_SCENE_COMPOSITION_MAPPING_PLAN.md",
+      "plans/MATCHING_ACCURACY_BATCH_01_PLAN.md",
+      "plans/SPLIT_BEAT_28_ACCURACY_TEST.md",
+      "plans/SYSTEM_REALIGNMENT_AUDIT_2026-09-28.md",
+      "plans/SCENE_WINDOW_TECHNICAL_CAPACITY_PLAN.md",
+      "plans/TREATMENT_REQUIREMENTS_REVIEW_PLAN.md",
+      "plans/VISUALTASK_AE_SPEC_COMPARISON_PLAN.md",
+      "plans/VISUALTASK_TECHNICAL_REQUIREMENTS_PLAN.md",
+      "plans/VISUAL_TASK_SPLIT_AND_MATCH_PLAN.md",
+      "prompts/PROMPT-treatment-requirements.md",
+      "prompts/PROMPT-visual-task-splits.md",
+      "reports/branch-classification-2026-09-28.json",
+      "reports/carousel-slideshow-semantic-technical-crosswalk.md",
+      "grammar/review-summary-2026-09-28.md"
+    ]
+  },
+  "fixtureCouplingAudit": [
+    {
+      "path": "pipeline/visualtask_split_proposals.py",
+      "disposition": "regression_fixture",
+      "reason": "Binds the September review/issues artifacts and pilot beat identifiers directly."
+    },
+    {
+      "path": "pipeline/matching_accuracy_batch.py",
+      "disposition": "regression_fixture",
+      "reason": "Contains batch-001 and reviewed-case behavior, including case-specific handling."
+    },
+    {
+      "path": "pipeline/visual_tasks.py",
+      "disposition": "regression_fixture",
+      "reason": "Defaults to the Year Seventeen narration and documentary-specific override artifacts."
+    },
+    {
+      "path": "pipeline/treatment_requirements.py",
+      "disposition": "regression_fixture",
+      "reason": "Reusable helpers are present, but the executable defaults, fixed pilot pair, and output location bind pilot-001."
+    },
+    {
+      "path": "pipeline/visualtask_matching.py",
+      "disposition": "regression_fixture",
+      "reason": "The executable defaults target pilot beat 28 and require the current source-beat fixture."
+    },
+    {
+      "path": "pipeline/visualtask_requirements.py",
+      "disposition": "regression_fixture",
+      "reason": "Reusable validation exists, but defaults bind the current VisualTasks, slate, timing, and media-requirement files."
+    },
+    {
+      "path": "pipeline/shotlist.py",
+      "disposition": "regression_fixture",
+      "reason": "Legacy documentary pipeline with Year Seventeen narration paths embedded in its defaults."
+    }
+  ],
+  "excludedUntrackedUserFile": {
+    "path": "treatment-requirements/pilot-001/replacement-selection.json",
+    "reason": "Pre-existing user-owned untracked work; intentionally not classified, edited, staged, or included."
+  }
+}

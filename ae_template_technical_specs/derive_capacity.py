@@ -22,6 +22,7 @@ STRONG_SLOT = re.compile(r"(?:^|[\s_\-/])(placeholder|replace)(?:$|[\s_\-/0-9])"
 EDIT_IMAGE_SLOT = re.compile(r"^image\s+(?:square|vertical|wide)\s+\d+$", re.I)
 EDIT_PHOTO_SLOT = re.compile(r"^photo\s+\d+$", re.I)
 EDIT_PREFIXED_MEDIA_SLOT = re.compile(r"^(?:f|fl|or|s)_media_\d+$", re.I)
+EDIT_NUMBERED_MEDIA_SLOT = re.compile(r"^(?:background\s+)?media\s*\d+(?:\.\d+)?$", re.I)
 AUDIO_HINT = re.compile(r"audio|music|sound|song|beat|sfx|voice", re.I)
 
 
@@ -43,6 +44,12 @@ def explicit_edit_slot_evidence(path: str) -> str | None:
         return "explicit_edit_photo_composition"
     if EDIT_PREFIXED_MEDIA_SLOT.fullmatch(leaf) and "edit comps/media/" in lowered:
         return "explicit_edit_media_composition"
+    if EDIT_NUMBERED_MEDIA_SLOT.fullmatch(leaf) and (
+        "/edit media/" in lowered
+        or re.search(r"(?:^|/)edit/scene\s+\d+/edit/media\s+", lowered)
+        or re.search(r"(?:^|/)\d*\.?edit comps/scene\s+\d+/media\s+", lowered)
+    ):
+        return "explicit_legacy_edit_media_composition"
     if leaf.lower() == "your logo" and "edit/" in lowered and "logo/" in lowered:
         return "explicit_edit_logo_composition"
     return None
@@ -89,6 +96,83 @@ def max_active(intervals_by_id: dict[str, list[tuple[float, float]]]) -> int:
         active = sum(any(a <= instant < b for a, b in intervals) for intervals in intervals_by_id.values())
         maximum = max(maximum, active)
     return maximum
+
+
+def _clip_intervals(
+    intervals_by_id: dict[str, list[tuple[float, float]]],
+    start: float,
+    end: float,
+) -> dict[str, list[tuple[float, float]]]:
+    clipped: dict[str, list[tuple[float, float]]] = {}
+    for item_id, intervals in intervals_by_id.items():
+        rows = []
+        for interval_start, interval_end in intervals:
+            clipped_start = max(float(interval_start), start)
+            clipped_end = min(float(interval_end), end)
+            if clipped_end > clipped_start:
+                rows.append((clipped_start, clipped_end))
+        if rows:
+            clipped[item_id] = rows
+    return clipped
+
+
+def measure_composition_window(
+    capacity: dict,
+    *,
+    composition_id: int,
+    start_seconds: float,
+    end_seconds: float,
+) -> dict:
+    """Measure media and text exposure inside one exact native-comp window."""
+    matches = [
+        row for row in capacity.get("compositions", [])
+        if int(row["compositionId"]) == int(composition_id)
+    ]
+    if len(matches) != 1:
+        raise ValueError(f"expected one measured composition: {composition_id}")
+    comp = matches[0]
+    start = float(start_seconds)
+    end = float(end_seconds)
+    duration = float(comp["durationSeconds"])
+    if start < 0 or end <= start or end > duration + 1e-8:
+        raise ValueError("window is outside the measured composition")
+
+    slot_intervals = {
+        row["id"]: [tuple(interval) for interval in row.get("activationIntervals", [])]
+        for row in comp.get("recursiveVisualMediaInputs", [])
+    }
+    text_intervals = {
+        row["id"]: [tuple(interval) for interval in row.get("activationIntervals", [])]
+        for row in comp.get("recursiveEditableTextFields", [])
+    }
+    clipped_slots = _clip_intervals(slot_intervals, start, end)
+    clipped_texts = _clip_intervals(text_intervals, start, end)
+    slots_by_id = {row["id"]: row for row in comp.get("recursiveVisualMediaInputs", [])}
+    texts_by_id = {row["id"]: row for row in comp.get("recursiveEditableTextFields", [])}
+
+    def without_intervals(row: dict) -> dict:
+        return {key: value for key, value in row.items() if key != "activationIntervals"}
+
+    return {
+        "compositionId": int(comp["compositionId"]),
+        "compositionPath": comp["compositionPath"],
+        "window": {
+            "startSeconds": start,
+            "endSeconds": end,
+            "durationSeconds": end - start,
+            "precision": "exact",
+        },
+        "totalIndependentVisualMediaInputs": len(clipped_slots),
+        "maxSimultaneouslyEnabledRecursiveVisualInputs": max_active(clipped_slots),
+        "recursiveVisualMediaInputs": [
+            without_intervals(slots_by_id[item_id]) for item_id in sorted(clipped_slots)
+        ],
+        "recursiveEditableTextFields": [
+            without_intervals(texts_by_id[item_id]) for item_id in sorted(clipped_texts)
+        ],
+        "maxSimultaneouslyEnabledRecursiveTextFields": max_active(clipped_texts),
+        "unresolvedCount": len(comp.get("unresolved", [])),
+    }
 
 
 def build_capacity(report: dict) -> dict:
@@ -302,10 +386,22 @@ def build_capacity(report: dict) -> dict:
             "workAreaStartSeconds": comp["workAreaStart"],
             "workAreaDurationSeconds": comp["workAreaDuration"],
             "workAreaFrameCount": int(round(work_duration * fps)),
-            "directEditableTextFields": [text_fields[field_id] for field_id in resolved["directTexts"]],
-            "recursiveEditableTextFields": [text_fields[field_id] for field_id in sorted(resolved["texts"])],
-            "directVisualMediaInputs": [slots[slot_id] for slot_id in direct_visual],
-            "recursiveVisualMediaInputs": [slots[slot_id] for slot_id in visual_slots],
+            "directEditableTextFields": [
+                {**text_fields[field_id], "activationIntervals": resolved["texts"].get(field_id, [])}
+                for field_id in resolved["directTexts"]
+            ],
+            "recursiveEditableTextFields": [
+                {**text_fields[field_id], "activationIntervals": resolved["texts"].get(field_id, [])}
+                for field_id in sorted(resolved["texts"])
+            ],
+            "directVisualMediaInputs": [
+                {**slots[slot_id], "activationIntervals": resolved["slots"].get(slot_id, [])}
+                for slot_id in direct_visual
+            ],
+            "recursiveVisualMediaInputs": [
+                {**slots[slot_id], "activationIntervals": resolved["slots"].get(slot_id, [])}
+                for slot_id in visual_slots
+            ],
             "recursiveAudioOrOtherMediaInputs": [slots[slot_id] for slot_id in audio_slots],
             "totalIndependentVisualMediaInputs": len(visual_slots),
             "maxSimultaneouslyEnabledDirectInputs": max_active(direct_all_intervals),

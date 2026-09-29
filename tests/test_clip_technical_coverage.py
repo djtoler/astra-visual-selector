@@ -30,9 +30,9 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
-            "mapped_verified": 22,
-            "mapping_ambiguous": 3,
-            "mapping_unreviewed": 46,
+            "mapped_verified": 51,
+            "mapped_verified_window": 8,
+            "mapping_ambiguous": 12,
             "mapping_unverified": 333,
             "mogrt_not_aep": 5,
             "project_unlinked": 14,
@@ -50,6 +50,13 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertEqual(row["technical"]["state"], "mapped_composition_window_approximate")
         self.assertEqual(row["technical"]["composition"]["path"], "2.Final/Render 02")
         self.assertEqual(row["technical"]["window"]["startSeconds"], 24.02)
+
+    def test_exact_window_rows_carry_clip_level_capacity(self):
+        rows = {row["clipId"]: row for row in self.ledger["clips"]}
+        row = rows["photo-slideshow-smooth-envato--scene-005"]
+        self.assertEqual(row["technical"]["state"], "mapped_verified_window")
+        self.assertEqual(row["technical"]["windowCapacity"]["absoluteMediaSlots"], 10)
+        self.assertEqual(row["technical"]["windowCapacity"]["maxSimultaneouslyEnabledInputs"], 9)
 
     def test_unmapped_family_never_inherits_project_capacity(self):
         rows = [

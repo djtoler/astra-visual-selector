@@ -23,6 +23,7 @@ DEFAULT_CATALOG = ROOT / "astra-selector-design" / "approved_media" / "approved-
 DEFAULT_LINKS = ROOT / "grammar" / "ae-template-spec-links.json"
 DEFAULT_INDEX = ROOT / "grammar" / "ae-template-technical-index.json"
 DEFAULT_SCENE_MAPPINGS = ROOT / "grammar" / "ae-scene-composition-mappings.json"
+DEFAULT_WINDOW_CAPACITIES = ROOT / "grammar" / "ae-scene-window-technical-capacities.json"
 DEFAULT_TASK_REQUIREMENTS = ROOT / "grammar" / "visual-task-technical-requirements.json"
 DEFAULT_OUTPUT = ROOT / "reports" / "visualtask-ae-spec-comparison.json"
 DEFAULT_BASELINE_ENTITIES = ROOT / "grammar" / "beat-entities.json"
@@ -307,6 +308,7 @@ def validate_scene_mappings(
     artifact: dict[str, Any],
     technical: dict[str, Any],
     expected_scene_projects: dict[str, str],
+    window_capacities: dict[str, Any] | None = None,
 ) -> dict[str, int]:
     """Validate exact mappings against both the comparison scope and measured index."""
     if artifact.get("schemaVersion") != 1:
@@ -323,6 +325,7 @@ def validate_scene_mappings(
     if (artifact.get("scope") or {}).get("uniqueScenes") != len(expected_scene_projects):
         raise ValueError("scene-composition mapping scope count is stale")
     verified = 0
+    verified_window = 0
     unresolved = 0
     unreviewed = 0
     for row in rows:
@@ -335,7 +338,7 @@ def validate_scene_mappings(
         compositions = {comp["id"]: comp for comp in projects[project_id]["compositions"]}
         paths = {comp["path"] for comp in compositions.values()}
         status = row.get("status")
-        if status == "verified":
+        if status in {"verified", "verified_window"}:
             verified += 1
             comp_id = row.get("compositionId")
             comp = compositions.get(comp_id)
@@ -345,12 +348,29 @@ def validate_scene_mappings(
                 raise ValueError(f"verified mapping lacks evidence: {scene_id}")
             if row.get("reason") or row.get("candidateCompositionPaths"):
                 raise ValueError(f"verified mapping contains unresolved fields: {scene_id}")
+            if status == "verified_window":
+                verified_window += 1
+                windows = {
+                    item["sceneId"]: item
+                    for item in (window_capacities or {}).get("windows", [])
+                }
+                window = windows.get(row.get("windowCapacityId"))
+                if not window or row.get("windowCapacityId") != scene_id:
+                    raise ValueError(f"verified window mapping lacks capacity: {scene_id}")
+                capacity = window["capacity"]
+                if window["projectId"] != project_id or (
+                    capacity["compositionId"] != comp_id
+                    or capacity["compositionPath"] != row.get("compositionPath")
+                ):
+                    raise ValueError(f"verified window capacity mismatch: {scene_id}")
+            elif row.get("windowCapacityId") is not None:
+                raise ValueError(f"whole-composition mapping claims window capacity: {scene_id}")
         elif status == "unresolved":
             unresolved += 1
             candidates = row.get("candidateCompositionPaths") or []
             if not isinstance(row.get("reason"), str) or not row["reason"].strip():
                 raise ValueError(f"unresolved mapping lacks reason: {scene_id}")
-            if len(candidates) < 2 or any(path not in paths for path in candidates):
+            if len(candidates) < 1 or any(path not in paths for path in candidates):
                 raise ValueError(f"unresolved mapping has invalid candidates: {scene_id}")
             if row.get("compositionId") is not None or row.get("compositionPath") is not None:
                 raise ValueError(f"unresolved mapping claims an exact composition: {scene_id}")
@@ -367,6 +387,8 @@ def validate_scene_mappings(
     return {
         "scenes": len(rows),
         "verified": verified,
+        "verifiedWindow": verified_window,
+        "verifiedWholeComposition": verified - verified_window,
         "unresolved": unresolved,
         "unreviewed": unreviewed,
     }
@@ -390,6 +412,7 @@ def build_comparison(
     links_path: Path = DEFAULT_LINKS,
     index_path: Path = DEFAULT_INDEX,
     scene_mappings_path: Path = DEFAULT_SCENE_MAPPINGS,
+    window_capacities_path: Path = DEFAULT_WINDOW_CAPACITIES,
     task_requirements_path: Path = DEFAULT_TASK_REQUIREMENTS,
     baseline_entities_path: Path = DEFAULT_BASELINE_ENTITIES,
 ) -> dict[str, Any]:
@@ -400,6 +423,7 @@ def build_comparison(
         "specLinks": Path(links_path),
         "technicalIndex": Path(index_path),
         "sceneMappings": Path(scene_mappings_path),
+        "sceneWindowCapacities": Path(window_capacities_path),
         "taskRequirements": Path(task_requirements_path),
         "baselineEntities": Path(baseline_entities_path),
     }
@@ -429,8 +453,17 @@ def build_comparison(
                 if previous != link["projectId"]:
                     raise ValueError(f"scene links to multiple measured projects: {option['id']}")
     scene_mappings_artifact = _read(paths["sceneMappings"])
-    mapping_counts = validate_scene_mappings(scene_mappings_artifact, technical, expected_scene_projects)
+    window_capacities_artifact = _read(paths["sceneWindowCapacities"])
+    from . import scene_window_capacity
+    scene_window_capacity.validate_window_capacities(window_capacities_artifact)
+    mapping_counts = validate_scene_mappings(
+        scene_mappings_artifact,
+        technical,
+        expected_scene_projects,
+        window_capacities_artifact,
+    )
     scene_mappings = {row["sceneId"]: row for row in scene_mappings_artifact["mappings"]}
+    scene_windows = {row["sceneId"]: row for row in window_capacities_artifact["windows"]}
     from . import visualtask_requirements
 
     requirements_artifact = _read(paths["taskRequirements"])
@@ -499,6 +532,25 @@ def build_comparison(
                     row for row in project["compositions"]
                     if row["id"] == mapping["compositionId"]
                 )
+            elif mapping["status"] == "verified_window":
+                parent = next(
+                    row for row in project["compositions"]
+                    if row["id"] == mapping["compositionId"]
+                )
+                capacity = scene_windows[scene_id]["capacity"]
+                exact_comp = {
+                    **parent,
+                    "durationSeconds": capacity["window"]["durationSeconds"],
+                    "frameCount": round(capacity["window"]["durationSeconds"] * parent["frameRate"]),
+                    "totalIndependentVisualMediaInputs": capacity["totalIndependentVisualMediaInputs"],
+                    "maxSimultaneouslyEnabledRecursiveVisualInputs": capacity["maxSimultaneouslyEnabledRecursiveVisualInputs"],
+                    "recursiveEditableTextFields": len(capacity["recursiveEditableTextFields"]),
+                    "maxSimultaneouslyEnabledRecursiveTextFields": capacity["maxSimultaneouslyEnabledRecursiveTextFields"],
+                    "recursiveTextFieldIds": [row["id"] for row in capacity["recursiveEditableTextFields"]],
+                    "recursiveVisualMediaInputs": capacity["recursiveVisualMediaInputs"],
+                    "measurementScope": "clip_window",
+                    "window": capacity["window"],
+                }
             technical_verdict = "exact_technical_evidence_partial" if exact_comp else "project_technical_evidence_partial"
             verdict = "conditional" if missing_media_brief else technical_verdict
             reason = (
@@ -604,6 +656,8 @@ def build_comparison(
             "unresolvedTaskAudioSpans": requirements_artifact["counts"]["unresolvedTaskAudioSpans"],
             "exactTimingObservations": sum("timingObservation" in row for task_row in rows for row in task_row["candidateComparisons"]),
             "verifiedUniqueSceneMappings": mapping_counts["verified"],
+            "verifiedWholeCompositionMappings": mapping_counts["verifiedWholeComposition"],
+            "verifiedWindowMappings": mapping_counts["verifiedWindow"],
             "unresolvedUniqueSceneMappings": mapping_counts["unresolved"],
             "unreviewedUniqueSceneMappings": mapping_counts["unreviewed"],
         },
@@ -661,6 +715,14 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
         ),
         "exactTimingObservations": sum("timingObservation" in row for row in comparisons),
         "verifiedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("exactComposition")}),
+        "verifiedWholeCompositionMappings": len({
+            row["candidateId"] for row in comparisons
+            if row.get("exactComposition") and row["exactComposition"].get("measurementScope") != "clip_window"
+        }),
+        "verifiedWindowMappings": len({
+            row["candidateId"] for row in comparisons
+            if row.get("exactComposition", {}).get("measurementScope") == "clip_window"
+        }),
         "unresolvedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("mappingUnresolved")}),
         "unreviewedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("mappingUnreviewed")}),
     }

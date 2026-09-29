@@ -19,6 +19,7 @@ APPROVED_CATALOG = POLISH_ROOT / "ae-template-automation/scene-library/approved/
 APPROVED_POLICY = POLISH_ROOT / "ae-template-automation/scene-library/approved-catalog-policy.json"
 SPEC_LINKS = ROOT / "grammar/ae-template-spec-links.json"
 SCENE_MAPPINGS = ROOT / "grammar/ae-scene-composition-mappings.json"
+WINDOW_CAPACITIES = ROOT / "grammar/ae-scene-window-technical-capacities.json"
 TECHNICAL_INDEX = ROOT / "grammar/ae-template-technical-index.json"
 PILOT = ROOT / "reports/carousel-slideshow-clip-native-pilot.json"
 OUTPUT = ROOT / "reports/ae-clip-technical-coverage.json"
@@ -89,6 +90,7 @@ def build_coverage(
     approved_policy_path: Path = APPROVED_POLICY,
     spec_links_path: Path = SPEC_LINKS,
     scene_mappings_path: Path = SCENE_MAPPINGS,
+    window_capacities_path: Path = WINDOW_CAPACITIES,
     technical_index_path: Path = TECHNICAL_INDEX,
     pilot_path: Path = PILOT,
 ) -> dict:
@@ -98,10 +100,13 @@ def build_coverage(
         Path(approved_policy_path),
         Path(spec_links_path),
         Path(scene_mappings_path),
+        Path(window_capacities_path),
         Path(technical_index_path),
         Path(pilot_path),
     ]
-    review, approved, policy, links_doc, mappings_doc, technical_index, pilot = map(_load, paths)
+    review, approved, policy, links_doc, mappings_doc, windows_doc, technical_index, pilot = map(_load, paths)
+    from . import scene_window_capacity
+    scene_window_capacity.validate_window_capacities(windows_doc)
 
     rows = _semantic_rows(review, approved)
     clip_ids = [row["clipId"] for row in rows]
@@ -121,6 +126,7 @@ def build_coverage(
         if link.get("sourceProjectSha256") != project.get("sourceProjectSha256"):
             raise ValueError(f"family link source hash mismatch: {family_id}")
     mappings = {row["sceneId"]: row for row in mappings_doc["mappings"]}
+    windows = {row["sceneId"]: row for row in windows_doc["windows"]}
     if len(mappings) != len(mappings_doc["mappings"]):
         raise ValueError("duplicate scene mappings")
     pilots = {row["clipId"]: row for row in pilot["clips"]}
@@ -162,6 +168,25 @@ def build_coverage(
                     "path": mapping["compositionPath"],
                 },
                 "window": None,
+                "evidence": mapping.get("evidence"),
+            }
+        elif mapping and mapping["status"] == "verified_window":
+            measured = windows[mapping["windowCapacityId"]]
+            capacity = measured["capacity"]
+            technical = {
+                "state": "mapped_verified_window",
+                "projectId": mapping["projectId"],
+                "composition": {
+                    "id": mapping["compositionId"],
+                    "path": mapping["compositionPath"],
+                },
+                "window": capacity["window"],
+                "windowCapacity": {
+                    "absoluteMediaSlots": capacity["totalIndependentVisualMediaInputs"],
+                    "maxSimultaneouslyEnabledInputs": capacity["maxSimultaneouslyEnabledRecursiveVisualInputs"],
+                    "editableTextFields": len(capacity["recursiveEditableTextFields"]),
+                    "maxSimultaneouslyEnabledTextFields": capacity["maxSimultaneouslyEnabledRecursiveTextFields"],
+                },
                 "evidence": mapping.get("evidence"),
             }
         elif mapping and mapping["status"] == "unreviewed":
@@ -234,8 +259,9 @@ def build_coverage(
             "approvedCatalogPolicy": _source(paths[2]),
             "technicalFamilyLinks": _source(paths[3]),
             "sceneCompositionMappings": _source(paths[4]),
-            "technicalIndex": _source(paths[5]),
-            "carouselSlideshowPilot": _source(paths[6]),
+            "sceneWindowCapacities": _source(paths[5]),
+            "technicalIndex": _source(paths[6]),
+            "carouselSlideshowPilot": _source(paths[7]),
         },
         "scope": {
             "definition": "Union of every After Effects scene in the current approved catalog and every scene in the current intake review catalog, including explicit exclusions.",
@@ -267,6 +293,7 @@ def validate_coverage(ledger: dict) -> dict:
         raise ValueError("coverage ledger must be sorted by clip id")
     allowed_states = {
         "mapped_verified",
+        "mapped_verified_window",
         "mapped_composition_window_approximate",
         "mapping_ambiguous",
         "mapping_unreviewed",

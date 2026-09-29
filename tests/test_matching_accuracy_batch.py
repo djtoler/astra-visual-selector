@@ -57,12 +57,14 @@ class MatchingAccuracyBatch01(unittest.TestCase):
         self.assertNotEqual(case["observed"]["candidateIdsByTask"]["28-28.setup"], case["observed"]["candidateIdsByTask"]["28-28.overlap"])
         self.assertEqual(case["observed"]["mediaEntityCountByTask"], {"28-28.setup": 0, "28-28.overlap": 10})
 
-    def test_text_candidate_is_not_promoted_without_native_field_evidence(self):
+    def test_text_candidate_is_not_promoted_when_treatment_exceeds_native_fields(self):
         case = self.cases["text_heavy_document"]
         self.assertEqual(case["status"], "pass")
         self.assertTrue(case["observed"]["candidateOnSlate"])
-        self.assertFalse(case["observed"]["exactCompositionMapped"])
-        self.assertEqual(case["observed"]["technicalVerdict"], "project_technical_evidence_partial")
+        self.assertTrue(case["observed"]["exactCompositionMapped"])
+        self.assertEqual(case["observed"]["measuredEditableTextFields"], 3)
+        self.assertEqual(case["observed"]["requiredTextItems"], 5)
+        self.assertEqual(case["observed"]["technicalVerdict"], "exact_technical_evidence_partial")
         self.assertIn("editor_approved_treatment", case["missingRequirements"])
 
     def test_saved_footage_requirement_is_encoded(self):

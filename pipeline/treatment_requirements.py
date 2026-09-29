@@ -21,6 +21,8 @@ DEFAULT_SLATE = ROOT / "pipeline" / "shotlist.capacity.json"
 DEFAULT_PROMPT = ROOT / "prompts" / "PROMPT-treatment-requirements.md"
 DEFAULT_SCHEMA = ROOT / "grammar" / "treatment-requirements.schema.json"
 DEFAULT_OUTPUT = ROOT / "treatment-requirements" / "pilot-001" / "request.json"
+PILOT_TASK_ID = "02-02a.main"
+PILOT_CANDIDATE_ID = "screen-mockup-rfx--review-002"
 MEDIA_KINDS = {"person", "footage", "document", "artwork", "graphic", "composite"}
 
 
@@ -85,21 +87,26 @@ def build_pilot_request(
     comparison = _read(paths["comparison"])
     if comparison.get("activationState") != "review_only_not_connected":
         raise ValueError("comparison is not review-only")
-    chosen_task = None
-    chosen_candidate = None
-    for task in comparison.get("tasks") or []:
-        exact_span = (task.get("technicalRequirements") or {}).get("timingRequirement", {}).get("exactTaskAudioSpan")
-        if not exact_span:
-            continue
-        for candidate in task.get("candidateComparisons") or []:
-            if candidate.get("exactComposition"):
-                chosen_task = task
-                chosen_candidate = candidate
-                break
-        if chosen_task:
-            break
-    if not chosen_task or not chosen_candidate:
-        raise ValueError("no exact-mapped pilot pairing with exact task timing")
+    chosen_task = next(
+        (task for task in comparison.get("tasks") or [] if task.get("taskId") == PILOT_TASK_ID),
+        None,
+    )
+    chosen_candidate = next(
+        (
+            candidate
+            for candidate in (chosen_task or {}).get("candidateComparisons") or []
+            if candidate.get("candidateId") == PILOT_CANDIDATE_ID
+            and candidate.get("exactComposition")
+        ),
+        None,
+    )
+    exact_span = (
+        ((chosen_task or {}).get("technicalRequirements") or {})
+        .get("timingRequirement", {})
+        .get("exactTaskAudioSpan")
+    )
+    if not chosen_task or not chosen_candidate or not exact_span:
+        raise ValueError("configured pilot pair lacks exact mapping or exact task timing")
 
     scene = _scene(_read(paths["catalog"]), chosen_candidate["candidateId"])
     option = _baseline_option(_read(paths["baselineSlate"]), chosen_task["sourceBeatId"], chosen_candidate["candidateId"])

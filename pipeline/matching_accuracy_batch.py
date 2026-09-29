@@ -192,7 +192,7 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
         ),
     })
 
-    # 3. Text-heavy document treatment must remain unresolved without exact fields.
+    # 3. Exact native text evidence must not bypass treatment-field fit or editor review.
     case = cases["text_heavy_document"]
     comp_task = _one(comparison, "taskId", case["taskIds"][0])
     candidate = _one(comp_task.get("candidateComparisons") or [], "candidateId", case["candidateId"])
@@ -202,7 +202,15 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
     )
     exact = candidate.get("exactComposition")
     verdict = candidate.get("verdict")
-    passed = on_slate and exact is None and verdict != "fillable_now"
+    measured_text_fields = exact.get("recursiveEditableTextFields") if exact else None
+    required_text_items = len(case["treatmentProposal"]["requiredOnScreenText"])
+    passed = (
+        on_slate
+        and exact is not None
+        and measured_text_fields is not None
+        and measured_text_fields < required_text_items
+        and verdict != "fillable_now"
+    )
     results.append({
         "id": case["id"],
         "status": "pass" if passed else "fail",
@@ -212,18 +220,20 @@ def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
             "candidateOnSlate": on_slate,
             "technicalVerdict": verdict,
             "exactCompositionMapped": exact is not None,
+            "measuredEditableTextFields": measured_text_fields,
+            "requiredTextItems": required_text_items,
             "requiredOnScreenText": case["treatmentProposal"]["requiredOnScreenText"],
             "treatmentReviewState": case["treatmentProposal"]["status"],
         },
         "missingRequirements": [
-            "exact_scene_to_native_composition_mapping",
-            "exact_editable_text_fields_and_limits",
+            "treatment_to_native_text_field_assignment",
+            "text_character_and_line_limits",
             "editor_approved_treatment",
         ],
         "reason": (
-            "The existing document candidate is retained, but the system does not overclaim its unmeasured text capacity."
+            "The native scene exposes three editable text fields for five proposed text items, so the candidate remains unapproved pending an explicit field assignment or a different treatment."
             if passed else
-            "The text-heavy proposal was lost or promoted without exact text evidence."
+            "The text-heavy proposal was lost, lacks native text evidence, or was promoted without proving that its text fits."
         ),
     })
 

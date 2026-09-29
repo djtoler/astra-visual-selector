@@ -1,6 +1,6 @@
 import unittest
 
-from derive_capacity import build_capacity, max_active
+from derive_capacity import build_capacity, max_active, measure_composition_window
 
 
 class CapacityDerivationTests(unittest.TestCase):
@@ -80,6 +80,45 @@ class CapacityDerivationTests(unittest.TestCase):
         main = next(row for row in result["compositions"] if row["compositionPath"] == "Main")
         self.assertEqual(len(main["recursiveEditableTextFields"]), 1)
         self.assertEqual(main["maxSimultaneouslyEnabledRecursiveTextFields"], 0)
+
+    def test_legacy_numbered_media_requires_explicit_edit_structure(self):
+        report = {
+            "ok": True,
+            "items": [],
+            "compositions": [
+                {"id": 1, "name": "Final", "path": "Final", "width": 100, "height": 100, "duration": 4, "fps": 10, "workAreaStart": 0, "workAreaDuration": 4,
+                 "layers": [
+                     {"index": 1, "name": "Good", "sourceId": 2, "enabled": True, "inPoint": 0, "outPoint": 2, "startTime": 0, "stretch": 100},
+                     {"index": 2, "name": "Not edit evidence", "sourceId": 3, "enabled": True, "inPoint": 2, "outPoint": 4, "startTime": 2, "stretch": 100},
+                 ]},
+                {"id": 2, "name": "Media 01", "path": "02.Edit Comp/Edit Media/Media 01", "width": 100, "height": 100, "duration": 2, "fps": 10, "workAreaStart": 0, "workAreaDuration": 2, "layers": []},
+                {"id": 3, "name": "Media 02", "path": "03 Other/Media 02", "width": 100, "height": 100, "duration": 2, "fps": 10, "workAreaStart": 0, "workAreaDuration": 2, "layers": []},
+            ],
+        }
+        result = build_capacity(report)
+        self.assertEqual([row["path"] for row in result["mediaSlots"]], ["02.Edit Comp/Edit Media/Media 01"])
+
+    def test_window_measurement_clips_media_and_text_activation(self):
+        report = {
+            "ok": True,
+            "items": [],
+            "compositions": [
+                {"id": 1, "name": "Final", "path": "Final", "width": 100, "height": 100, "duration": 6, "fps": 10, "workAreaStart": 0, "workAreaDuration": 6,
+                 "layers": [
+                     {"index": 1, "name": "First", "sourceId": 2, "enabled": True, "inPoint": 0, "outPoint": 3, "startTime": 0, "stretch": 100},
+                     {"index": 2, "name": "Second", "sourceId": 3, "enabled": True, "inPoint": 2, "outPoint": 6, "startTime": 2, "stretch": 100},
+                     {"index": 3, "name": "Title", "enabled": True, "inPoint": 3, "outPoint": 5, "text": "Title"},
+                 ]},
+                {"id": 2, "name": "Media 01", "path": "02.Edit Comp/Edit Media/Media 01", "width": 100, "height": 100, "duration": 3, "fps": 10, "workAreaStart": 0, "workAreaDuration": 3, "layers": []},
+                {"id": 3, "name": "Media 02", "path": "02.Edit Comp/Edit Media/Media 02", "width": 100, "height": 100, "duration": 4, "fps": 10, "workAreaStart": 0, "workAreaDuration": 4, "layers": []},
+            ],
+        }
+        capacity = build_capacity(report)
+        measured = measure_composition_window(capacity, composition_id=1, start_seconds=2.5, end_seconds=4)
+        self.assertEqual(measured["totalIndependentVisualMediaInputs"], 2)
+        self.assertEqual(measured["maxSimultaneouslyEnabledRecursiveVisualInputs"], 2)
+        self.assertEqual(len(measured["recursiveEditableTextFields"]), 1)
+        self.assertEqual(measured["maxSimultaneouslyEnabledRecursiveTextFields"], 1)
 
 
 if __name__ == "__main__":

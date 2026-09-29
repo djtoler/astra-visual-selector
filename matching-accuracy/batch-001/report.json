@@ -311,17 +311,18 @@
       "status": "pass"
     },
     {
-      "expected": "unresolved_pending_exact_text_mapping_and_editor_review",
+      "expected": "exact_native_fields_still_require_treatment_assignment_and_editor_review",
       "id": "text_heavy_document",
       "missingRequirements": [
-        "exact_scene_to_native_composition_mapping",
-        "exact_editable_text_fields_and_limits",
+        "treatment_to_native_text_field_assignment",
+        "text_character_and_line_limits",
         "editor_approved_treatment"
       ],
       "observed": {
         "candidateId": "02-documentary-promo--scene-003",
         "candidateOnSlate": true,
-        "exactCompositionMapped": false,
+        "exactCompositionMapped": true,
+        "measuredEditableTextFields": 3,
         "requiredOnScreenText": [
           "ONE RULE FOR EVERYBODY",
           "FULL CREDIT",
@@ -329,10 +330,11 @@
           "HALF CREDIT",
           "Feature or remix verse"
         ],
-        "technicalVerdict": "project_technical_evidence_partial",
+        "requiredTextItems": 5,
+        "technicalVerdict": "exact_technical_evidence_partial",
         "treatmentReviewState": "unreviewed"
       },
-      "reason": "The existing document candidate is retained, but the system does not overclaim its unmeasured text capacity.",
+      "reason": "The native scene exposes three editable text fields for five proposed text items, so the candidate remains unapproved pending an explicit field assignment or a different treatment.",
       "status": "pass"
     },
     {
@@ -387,7 +389,7 @@
     "matchingIssues": "2cea7c5a268321076b493f91bc12392a374f31e3795f462e73ebe2e8d070ad3c",
     "reviewExport": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d",
     "taskMatching": "07694e2b876bb1f36a4d816a871693bacf1e55e145a8341dfd38c25397998414",
-    "technicalComparison": "05d3b18ee9235a0bb6372bd3cc0df8d9eed63b272ef78faa0c6f23bd04dbad56",
+    "technicalComparison": "e1b58d9a93d2c71858e7b3b2b4b6eef463563f1cd3368670577ebaa7ebe38994",
     "visualTasks": "e253880ec6e8b44450a937110b063091cdd6640484aa2ae6d6390973889a64ad"
   },
   "summary": {
