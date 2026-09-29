@@ -1,9 +1,18 @@
 import unittest
 
-from derive_capacity import build_capacity
+from derive_capacity import build_capacity, max_active
 
 
 class CapacityDerivationTests(unittest.TestCase):
+    def test_sub_frame_floating_point_gap_does_not_create_false_overlap_peak(self):
+        intervals = {
+            "ending": [(0.0, 24.03333333333333)],
+            "starting": [(24.033333333333335, 30.0)],
+            "continuous": [(0.0, 30.0)],
+        }
+
+        self.assertEqual(max_active(intervals), 2)
+
     def test_nested_placeholder_overlap_and_text(self):
         report = {
             "ok": True,

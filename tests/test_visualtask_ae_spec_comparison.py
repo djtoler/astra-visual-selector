@@ -18,7 +18,7 @@ class VisualTaskAESpecComparison(unittest.TestCase):
         index = json.loads((ROOT / "grammar" / "ae-template-technical-index.json").read_text())
         self.assertEqual(
             subject.validate_technical_index(index),
-            {"projects": 32, "compositions": 3926, "textFields": 3078},
+            {"projects": 56, "compositions": 5408, "textFields": 4029},
         )
         vertical = next(row for row in index["projects"] if row["id"] == "vertical-cinematic-24")
         self.assertEqual(vertical["projectSummary"]["verifiedIndependentVisualMediaInputs"], 11)

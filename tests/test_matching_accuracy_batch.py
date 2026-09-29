@@ -62,7 +62,7 @@ class MatchingAccuracyBatch01(unittest.TestCase):
         self.assertEqual(case["status"], "pass")
         self.assertTrue(case["observed"]["candidateOnSlate"])
         self.assertFalse(case["observed"]["exactCompositionMapped"])
-        self.assertEqual(case["observed"]["technicalVerdict"], "technical_spec_unmapped")
+        self.assertEqual(case["observed"]["technicalVerdict"], "project_technical_evidence_partial")
         self.assertIn("editor_approved_treatment", case["missingRequirements"])
 
     def test_saved_footage_requirement_is_encoded(self):

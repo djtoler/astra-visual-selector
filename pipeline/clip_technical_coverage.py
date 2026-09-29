@@ -116,6 +116,10 @@ def build_coverage(
     )
     if unknown_projects:
         raise ValueError(f"family links refer to unknown technical projects: {unknown_projects}")
+    for family_id, link in links.items():
+        project = projects[link["projectId"]]
+        if link.get("sourceProjectSha256") != project.get("sourceProjectSha256"):
+            raise ValueError(f"family link source hash mismatch: {family_id}")
     mappings = {row["sceneId"]: row for row in mappings_doc["mappings"]}
     if len(mappings) != len(mappings_doc["mappings"]):
         raise ValueError("duplicate scene mappings")
@@ -159,6 +163,14 @@ def build_coverage(
                 },
                 "window": None,
                 "evidence": mapping.get("evidence"),
+            }
+        elif mapping and mapping["status"] == "unreviewed":
+            technical = {
+                "state": "mapping_unreviewed",
+                "projectId": mapping.get("projectId") or (link or {}).get("projectId"),
+                "composition": None,
+                "window": None,
+                "evidence": mapping.get("reason"),
             }
         elif mapping:
             technical = {
@@ -257,6 +269,7 @@ def validate_coverage(ledger: dict) -> dict:
         "mapped_verified",
         "mapped_composition_window_approximate",
         "mapping_ambiguous",
+        "mapping_unreviewed",
         "mapping_unverified",
         "project_unlinked",
         "mogrt_not_aep",
@@ -268,7 +281,7 @@ def validate_coverage(ledger: dict) -> dict:
         composition = row["technical"].get("composition")
         if state.startswith("mapped_") and not composition:
             raise ValueError(f"mapped clip lacks a composition: {row['clipId']}")
-        if state in {"mapping_unverified", "project_unlinked", "mogrt_not_aep"} and composition:
+        if state in {"mapping_unverified", "mapping_unreviewed", "project_unlinked", "mogrt_not_aep"} and composition:
             raise ValueError(f"unverified clip carries composition capacity: {row['clipId']}")
     expected = build_coverage()
     if ledger != expected:

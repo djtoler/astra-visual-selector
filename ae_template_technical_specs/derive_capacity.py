@@ -71,7 +71,14 @@ def transform_interval(interval: tuple[float, float], layer: dict, duration: flo
 
 
 def max_active(intervals_by_id: dict[str, list[tuple[float, float]]]) -> int:
-    boundaries = sorted({point for intervals in intervals_by_id.values() for interval in intervals for point in interval})
+    raw_boundaries = sorted(
+        {point for intervals in intervals_by_id.values() for interval in intervals for point in interval}
+    )
+    boundaries: list[float] = []
+    for point in raw_boundaries:
+        if boundaries and math.isclose(point, boundaries[-1], rel_tol=1e-10, abs_tol=1e-10):
+            continue
+        boundaries.append(point)
     if len(boundaries) < 2:
         return 0
     maximum = 0

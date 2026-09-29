@@ -16,8 +16,8 @@ Current measured baseline (corrected 2026-09-28):
 - 32 technically inspected source projects.
 - 3,926 measured native compositions.
 - 3,078 indexed native text fields.
-- 13 catalog families currently linked to measured projects, covering 148 clips.
-- 24 clips currently included in the exact composition-mapping artifact: 20 verified and four unresolved.
+- 14 catalog families currently linked to measured projects, covering 161 clips.
+- 27 clips currently included in the exact composition-mapping artifact: 23 verified and four unresolved.
 
 ## Required stages and acceptance checks
 
@@ -123,3 +123,15 @@ The five-clip Carousel Slideshow pilot is implemented in `reports/carousel-slide
 Three gated native placeholder renders verified the distinct composition mechanics and passed complete decoding. The Render 02 full pass took 2,638.666 seconds and established that full-composition rendering is an inefficient default for mapping. The plan now requires timeline/frame arithmetic first and only the shortest targeted native probe needed for remaining visual ambiguity.
 
 The clip-level validator rejects missing clips, duplicate IDs, stale technical-index bindings, composition ID/path mismatches, project-envelope substitution, invalid window durations, missing exposure status, incomplete native-render evidence and inconsistent frame math. The pilot/alignment/existing mapping and comparison suites pass 30 tests. This pilot remains review-only and does not activate matching or authorize production rendering.
+
+## Existing-inspection family reconciliation checkpoint
+
+The 27 previously unlinked families were checked against all 32 frozen technical projects using source AEP SHA-256 as the authorization boundary. `minimalism-slideshow` is an exact match to the measured `slideshow` project (`1da67cfa…4ab26`), so its 13 clips now carry project evidence; the three clips currently used by the comparison slate map to the project's sole 60-second final composition. The similarly named Archive 3 Comparison Pack was not linked: its current `Comparison Pack.aep` hash differs from the measured `Comparisons 01.aep`, so name and visual resemblance are insufficient evidence. No other unlinked review-catalog source AEP matched any frozen technical-project hash. This checkpoint required no AE launch or render.
+
+## Registry-gap technical inspection and linking checkpoint
+
+The remaining source-bound registry gap was processed through the existing dual-pass capacity lab without rendering. Twenty-four exact source AEPs completed static parsing and native AE inspection with exact agreement after two evidence-preserving fixes: AE folder-segment whitespace is normalized only for reconciliation, and sub-frame floating-point boundary noise is excluded from simultaneous-activation peaks. The frozen batch covers 1,482 compositions and 951 editable text fields; all source hashes remained unchanged.
+
+The portable technical index now contains 56 distinct source projects, 5,408 compositions and 4,029 editable text fields. A cross-batch filename collision between two different `Photo Slideshow.aep` sources is preserved with the deterministic project ID `photo-slideshow-17f1e9a2`; neither source overwrites the other. Twenty-four catalog families are now bound by exact source SHA-256. The 46 newly linked scenes present in the current VisualTask comparison are explicitly `unreviewed` at the clip-to-composition stage, distinct from four reviewed-but-ambiguous mappings and 23 verified mappings. Project envelopes remain evidence only and cannot authorize fillability.
+
+`history-slideshow-envato` remains the sole project-unlinked family (14 clips) because the saved intake note labels its relationship to `07-history-slideshow` as probable but unconfirmed. No name-based or preview-based substitution was made. The five-case matching accuracy batch still passes after rebuilding its source-bound report.

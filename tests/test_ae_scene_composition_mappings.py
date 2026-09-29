@@ -20,10 +20,11 @@ class ExactSceneCompositionMappings(unittest.TestCase):
         rows = [candidate for task in result["tasks"] for candidate in task["candidateComparisons"]]
         return result, {row["candidateId"]: row for row in rows}
 
-    def test_twenty_scenes_are_exact_and_four_remain_unresolved(self):
+    def test_review_states_remain_distinct(self):
         result, _ = self._comparisons()
-        self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 20)
+        self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 23)
         self.assertEqual(result["counts"]["unresolvedUniqueSceneMappings"], 4)
+        self.assertEqual(result["counts"]["unreviewedUniqueSceneMappings"], 46)
 
     def test_exact_flow_scene_uses_native_composition_metrics(self):
         _, rows = self._comparisons()

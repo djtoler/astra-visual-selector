@@ -35,9 +35,38 @@ def same(left, right) -> bool:
     return left == right
 
 
+def normalized_composition_path(value: str) -> str:
+    """Match paths when AE drops edge whitespace from folder-name segments.
+
+    The final segment is a composition name and remains byte-for-byte distinct;
+    projects can legitimately contain both ``Texture`` and ``Texture `` comps.
+    """
+    segments = value.split("/")
+    if len(segments) == 1:
+        return value
+    return "/".join([*(segment.strip() for segment in segments[:-1]), segments[-1]])
+
+
+def indexed_compositions(rows: list[dict], evidence_name: str) -> dict[str, dict]:
+    indexed: dict[str, dict] = {}
+    originals: dict[str, str] = {}
+    for row in rows:
+        original = row["compositionPath"]
+        normalized = normalized_composition_path(original)
+        if normalized in indexed and originals[normalized] != original:
+            raise ValueError(
+                f"{evidence_name} composition paths collide after edge-whitespace "
+                f"normalization: {originals[normalized]!r} and {original!r}"
+            )
+        indexed[normalized] = row
+        originals[normalized] = original
+    return indexed
+
+
 def text_identity(row: dict) -> tuple:
     return (
-        row["compositionPath"], row["layerIndex"], row["layerName"],
+        normalized_composition_path(row["compositionPath"]),
+        row["layerIndex"], row["layerName"],
         row["enabled"],
     )
 
@@ -47,8 +76,8 @@ def normalized_text(value):
 
 
 def reconcile(static: dict, native: dict) -> dict:
-    static_comps = {row["compositionPath"]: row for row in static["compositions"]}
-    native_comps = {row["compositionPath"]: row for row in native["compositions"]}
+    static_comps = indexed_compositions(static["compositions"], "static")
+    native_comps = indexed_compositions(native["compositions"], "native")
     static_paths = set(static_comps)
     native_paths = set(native_comps)
     shared = sorted(static_paths & native_paths)
@@ -71,8 +100,8 @@ def reconcile(static: dict, native: dict) -> dict:
                 "static": static_text_count,
                 "native": native_text_count,
             })
-    static_slots = sorted(row["path"] for row in static["mediaSlots"])
-    native_slots = sorted(row["path"] for row in native["mediaSlots"])
+    static_slots = sorted(normalized_composition_path(row["path"]) for row in static["mediaSlots"])
+    native_slots = sorted(normalized_composition_path(row["path"]) for row in native["mediaSlots"])
     static_texts = sorted(text_identity(row) for row in static["textFields"])
     native_texts = sorted(text_identity(row) for row in native["textFields"])
     static_text_values = {text_identity(row): normalized_text(row.get("text")) for row in static["textFields"]}

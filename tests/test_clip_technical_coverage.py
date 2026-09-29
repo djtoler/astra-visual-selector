@@ -1,6 +1,7 @@
 import copy
 import json
 from pathlib import Path
+import tempfile
 import unittest
 
 from pipeline import clip_technical_coverage as subject
@@ -27,6 +28,15 @@ class ClipTechnicalCoverage(unittest.TestCase):
             self.ledger["counts"]["clips"],
         )
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
+        self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
+            "mapped_composition_window_approximate": 5,
+            "mapped_verified": 22,
+            "mapping_ambiguous": 3,
+            "mapping_unreviewed": 46,
+            "mapping_unverified": 333,
+            "mogrt_not_aep": 5,
+            "project_unlinked": 14,
+        })
 
     def test_375_capability_pass_is_not_mistaken_for_catalog_scope(self):
         self.assertNotEqual(self.ledger["counts"]["clips"], 375)
@@ -56,6 +66,32 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertEqual(row["technical"]["projectId"], "scrolling-screen-animations")
         self.assertEqual(len(row["technical"]["projectEvidence"]["sourceProjectSha256"]), 64)
         self.assertIsNone(row["technical"]["composition"])
+
+    def test_exact_hash_reconciliation_links_minimalism_and_current_comparison_pack(self):
+        rows = {row["clipId"]: row for row in self.ledger["clips"]}
+        minimalism = rows["minimalism-slideshow--review-001"]
+        comparison = rows["archive3-comparison-pack-ae--review-001"]
+        self.assertEqual(minimalism["technical"]["projectId"], "slideshow")
+        self.assertEqual(minimalism["technical"]["state"], "mapped_verified")
+        self.assertEqual(
+            minimalism["technical"]["projectEvidence"]["sourceProjectSha256"],
+            "1da67cfa7485305b45de0be92026b7c02253c684880b8be277dfe7a55f43ab26",
+        )
+        self.assertEqual(comparison["technical"]["state"], "mapping_unverified")
+        self.assertEqual(comparison["technical"]["projectId"], "comparison-pack")
+        self.assertEqual(
+            comparison["technical"]["projectEvidence"]["sourceProjectSha256"],
+            "069b35bcf3611f52ca10b92728d0170ba079e2a03a948c102420cfc49c90f01f",
+        )
+
+    def test_family_link_with_wrong_project_hash_fails_closed(self):
+        links = json.loads((ROOT / "grammar" / "ae-template-spec-links.json").read_text())
+        links["links"][0]["sourceProjectSha256"] = "0" * 64
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "links.json"
+            path.write_text(json.dumps(links))
+            with self.assertRaisesRegex(ValueError, "source hash mismatch"):
+                subject.build_coverage(spec_links_path=path)
 
     def test_mogrt_is_preserved_but_not_treated_as_aep(self):
         rows = [

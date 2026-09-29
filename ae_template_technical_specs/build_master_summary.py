@@ -18,7 +18,21 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def combine_csv(paths: list[tuple[str, Path]], output: Path) -> int:
+def unique_project_id(project_id: str, source_sha256: str, used: set[str]) -> str:
+    candidate = project_id
+    if candidate in used:
+        candidate = f"{project_id}-{source_sha256[:8]}"
+    if candidate in used:
+        raise ValueError(f"project id still collides after source-hash suffix: {candidate}")
+    used.add(candidate)
+    return candidate
+
+
+def combine_csv(
+    paths: list[tuple[str, Path]],
+    output: Path,
+    project_aliases: dict[tuple[str, str], str],
+) -> int:
     rows = []
     fields = None
     for batch_id, path in paths:
@@ -27,6 +41,7 @@ def combine_csv(paths: list[tuple[str, Path]], output: Path) -> int:
             if fields is None:
                 fields = ["batch_id"] + list(reader.fieldnames or [])
             for row in reader:
+                row["project_id"] = project_aliases[(batch_id, row["project_id"])]
                 rows.append({"batch_id": batch_id, **row})
     with output.open("w", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields or ["batch_id"])
@@ -44,6 +59,8 @@ def main() -> None:
     output.mkdir(parents=True, exist_ok=True)
     projects = []
     batch_rows = []
+    project_aliases: dict[tuple[str, str], str] = {}
+    used_project_ids: set[str] = set()
     for batch_path in args.batches:
         batch = batch_path.resolve()
         if not (batch / "measurement-freeze.json").is_file():
@@ -52,15 +69,27 @@ def main() -> None:
         batch_id = batch.name
         batch_rows.append((batch_id, batch, summary))
         for project in summary["projects"]:
-            projects.append({"batchId": batch_id, **project})
+            original_id = project["id"]
+            project_id = unique_project_id(
+                original_id,
+                project["expectedSourceSha256"],
+                used_project_ids,
+            )
+            project_aliases[(batch_id, original_id)] = project_id
+            combined = {"batchId": batch_id, **project, "id": project_id}
+            if project_id != original_id:
+                combined["sourceBatchProjectId"] = original_id
+            projects.append(combined)
 
     composition_count = combine_csv(
         [(batch_id, batch / "all-compositions.csv") for batch_id, batch, _ in batch_rows],
         output / "all-template-compositions.csv",
+        project_aliases,
     )
     text_count = combine_csv(
         [(batch_id, batch / "text-fields.csv") for batch_id, batch, _ in batch_rows],
         output / "all-template-text-fields.csv",
+        project_aliases,
     )
     counts = {
         "sourceProjects": len(projects),

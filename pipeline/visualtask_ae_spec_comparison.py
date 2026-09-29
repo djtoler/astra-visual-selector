@@ -295,6 +295,8 @@ def _link_index(links: dict[str, Any], projects: dict[str, dict[str, Any]]) -> d
             raise ValueError(f"missing or duplicate scene family link: {family_id}")
         if project_id not in projects:
             raise ValueError(f"scene family links unknown measured project: {project_id}")
+        if row.get("sourceProjectSha256") != projects[project_id].get("sourceProjectSha256"):
+            raise ValueError(f"scene family link source hash mismatch: {family_id}")
         if row.get("compositionMappingStatus") not in {"verified", "unverified"}:
             raise ValueError(f"invalid composition mapping status: {family_id}")
         out[family_id] = row
@@ -322,6 +324,7 @@ def validate_scene_mappings(
         raise ValueError("scene-composition mapping scope count is stale")
     verified = 0
     unresolved = 0
+    unreviewed = 0
     for row in rows:
         scene_id = row["sceneId"]
         project_id = row.get("projectId")
@@ -351,9 +354,22 @@ def validate_scene_mappings(
                 raise ValueError(f"unresolved mapping has invalid candidates: {scene_id}")
             if row.get("compositionId") is not None or row.get("compositionPath") is not None:
                 raise ValueError(f"unresolved mapping claims an exact composition: {scene_id}")
+        elif status == "unreviewed":
+            unreviewed += 1
+            if not isinstance(row.get("reason"), str) or not row["reason"].strip():
+                raise ValueError(f"unreviewed mapping lacks reason: {scene_id}")
+            if row.get("candidateCompositionPaths"):
+                raise ValueError(f"unreviewed mapping claims reviewed candidates: {scene_id}")
+            if row.get("compositionId") is not None or row.get("compositionPath") is not None:
+                raise ValueError(f"unreviewed mapping claims an exact composition: {scene_id}")
         else:
             raise ValueError(f"invalid scene-composition mapping status: {scene_id}")
-    return {"scenes": len(rows), "verified": verified, "unresolved": unresolved}
+    return {
+        "scenes": len(rows),
+        "verified": verified,
+        "unresolved": unresolved,
+        "unreviewed": unreviewed,
+    }
 
 
 def _slate_index(slate: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
@@ -540,9 +556,10 @@ def build_comparison(
                         "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
                     }
             else:
-                comparison["mappingUnresolved"] = {
+                mapping_key = "mappingUnreviewed" if mapping["status"] == "unreviewed" else "mappingUnresolved"
+                comparison[mapping_key] = {
                     "reason": mapping["reason"],
-                    "candidateCompositionPaths": mapping["candidateCompositionPaths"],
+                    "candidateCompositionPaths": mapping.get("candidateCompositionPaths", []),
                 }
             comparisons.append(comparison)
             verdict_counts[verdict] += 1
@@ -588,6 +605,7 @@ def build_comparison(
             "exactTimingObservations": sum("timingObservation" in row for task_row in rows for row in task_row["candidateComparisons"]),
             "verifiedUniqueSceneMappings": mapping_counts["verified"],
             "unresolvedUniqueSceneMappings": mapping_counts["unresolved"],
+            "unreviewedUniqueSceneMappings": mapping_counts["unreviewed"],
         },
         "evidenceBoundary": {
             "canDecide": [
@@ -644,6 +662,7 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
         "exactTimingObservations": sum("timingObservation" in row for row in comparisons),
         "verifiedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("exactComposition")}),
         "unresolvedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("mappingUnresolved")}),
+        "unreviewedUniqueSceneMappings": len({row["candidateId"] for row in comparisons if row.get("mappingUnreviewed")}),
     }
     if counts != artifact.get("counts"):
         raise ValueError(f"comparison counts are stale: {counts}")

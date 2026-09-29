@@ -63,7 +63,7 @@ Completed on 2026-09-28 with no deviation from the saved stage order.
 - Five-case evaluation: completed; all 5 now pass against the corrected matching rules.
 - Review boundary: passed; the report remains `review_only_not_connected`, with selection and rendering authorization false.
 - Focused and related verification: 50 VisualTask, technical-requirement, AE-spec and matching-accuracy tests passed, plus 5 live media-backed VisualTask matching tests passed with normal database access.
-- Repeatability: two evaluator runs and the saved report were byte-identical (`sha256: 2a161a583bbbc785322e4069cba76d08b887401a1592b87dd98fdb6781602b7c`).
+- Repeatability: two evaluator runs and the saved report were byte-identical after the family-link reconciliation (`sha256: d8b5fff2364fb8cd46fa7b07f5d22530faa10b71cbc46304be3ed8a3b3429ddb`).
 - Published result: `matching-accuracy/batch-001/report.json`.
 
 The original 10+ spatial expectation was corrected after editor review: this case uses a capacity-qualified long-carousel After Effects template only as its specific test treatment. It does not establish a global long-carousel threshold. The separate matching rule automatically includes every available spatial scene at 20+ people while preserving other valid options.
