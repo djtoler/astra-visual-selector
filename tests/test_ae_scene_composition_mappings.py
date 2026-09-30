@@ -23,8 +23,8 @@ class ExactSceneCompositionMappings(unittest.TestCase):
     def test_review_states_remain_distinct(self):
         result, _ = self._comparisons()
         self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 73)
-        self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 40)
-        self.assertEqual(result["counts"]["verifiedWindowMappings"], 33)
+        self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 39)
+        self.assertEqual(result["counts"]["verifiedWindowMappings"], 34)
         self.assertEqual(result["counts"]["unresolvedUniqueSceneMappings"], 0)
         self.assertEqual(result["counts"]["unreviewedUniqueSceneMappings"], 2)
 
@@ -131,7 +131,7 @@ class ExactSceneCompositionMappings(unittest.TestCase):
 
     def test_registry_can_expand_beyond_current_comparison_scope(self):
         mappings = json.loads((ROOT / "grammar" / "ae-scene-composition-mappings.json").read_text())
-        self.assertEqual(mappings["scope"]["uniqueScenes"], 300)
+        self.assertEqual(mappings["scope"]["uniqueScenes"], 397)
         result, _ = self._comparisons()
         self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 73)
 

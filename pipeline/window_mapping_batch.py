@@ -306,6 +306,181 @@ def _validate_mixed_master_timeline_anchors(
     }
 
 
+def _validate_editor_authorized_family_master_windows(
+    family: dict[str, Any],
+    paths: dict[str, Path],
+    registry: dict[str, dict[str, Any]],
+    semantic_family_ids: set[str],
+    scene_boundaries: dict[str, dict[str, Any]],
+    raw: dict[str, Any],
+) -> dict[str, Any]:
+    """Validate the editor-approved one-anchor family-batching exception."""
+    evidence = family["alignmentEvidence"]
+    family_id = family["familyId"]
+    targets = set(family["targetClipIds"])
+    if targets != semantic_family_ids:
+        raise ValueError(f"editor family batch does not cover complete semantic family: {family_id}")
+
+    authorization = read(paths[evidence["authorizationSource"]])
+    if (
+        authorization.get("evaluatorRole") != "editor"
+        or authorization.get("decision") != "approved_family_batching_with_deferred_anomaly_review"
+        or authorization.get("familyId") != family_id
+        or authorization.get("projectId") != family["projectId"]
+        or authorization.get("sourceProjectSha256") != family["sourceProjectSha256"]
+        or authorization.get("compositionId") != family["compositionId"]
+        or authorization.get("compositionPath") != family["compositionPath"]
+        or set(authorization.get("targetClipIds", [])) != targets
+        or authorization.get("renderingAuthorized") is not False
+        or not authorization.get("quote")
+    ):
+        raise ValueError(f"editor family batching authorization mismatch: {family_id}")
+
+    preview_path = paths[evidence["previewVideoSource"]]
+    preview_duration = float(evidence["previewDurationSeconds"])
+    native_duration = float(family["nativeDurationSeconds"])
+    tolerance = float(evidence.get("durationToleranceSeconds", 0.03))
+    if abs(preview_duration - native_duration) > tolerance:
+        raise ValueError(f"editor family batch preview duration mismatch: {family_id}")
+
+    raw_compositions = {row["id"]: row for row in raw["compositions"]}
+    master = raw_compositions.get(family["compositionId"])
+    if not master or master.get("path") != family["compositionPath"]:
+        raise ValueError(f"editor family batch native master missing: {family_id}")
+    bindings = evidence.get("masterChildTimelineBindings", [])
+    if len(bindings) < 2:
+        raise ValueError(f"editor family batch child timeline incomplete: {family_id}")
+    enabled_layers = [row for row in master.get("layers", []) if row.get("enabled", True)]
+    intervals = []
+    for binding in bindings:
+        child = raw_compositions.get(binding["compositionId"])
+        if not child or child.get("path") != binding["compositionPath"]:
+            raise ValueError(f"editor family batch child composition missing: {family_id}")
+        matches = [
+            row for row in enabled_layers
+            if row.get("sourceId") == binding["compositionId"]
+            and row.get("sourcePath") == binding["compositionPath"]
+        ]
+        if len(matches) != 1:
+            raise ValueError(f"editor family batch child layer mismatch: {family_id}")
+        layer = matches[0]
+        for key in ("inPoint", "outPoint", "startTime"):
+            if abs(float(layer[key]) - float(binding[key])) > 1e-9:
+                raise ValueError(f"editor family batch child timing changed: {family_id}")
+        if layer.get("timeRemapEnabled") or abs(float(layer.get("stretch", 100)) - 100) > 1e-9:
+            raise ValueError(f"editor family batch child transform unsupported: {family_id}")
+        intervals.append((float(layer["inPoint"]), float(layer["outPoint"])))
+    intervals.sort()
+    if intervals[0][0] > tolerance or intervals[-1][1] < native_duration - tolerance:
+        raise ValueError(f"editor family batch child timeline does not span master: {family_id}")
+    if any(right[0] > left[1] + tolerance for left, right in zip(intervals, intervals[1:])):
+        raise ValueError(f"editor family batch child timeline has gap: {family_id}")
+
+    clip_windows = {row["clipId"]: row for row in evidence.get("clipLevelWindows", [])}
+    if set(clip_windows) != targets:
+        raise ValueError(f"editor family batch clip windows incomplete: {family_id}")
+
+    anchor = evidence["exactAnchor"]
+    anchor_id = anchor["clipId"]
+    current = registry.get(anchor_id)
+    clip_window = next(
+        (row for row in evidence["clipLevelWindows"] if row["clipId"] == anchor_id),
+        None,
+    )
+    original_anchor_active = (
+        anchor_id not in targets
+        or not current
+        or current.get("projectId") != family["projectId"]
+        or current.get("status") != "verified_window"
+        or current.get("compositionId") != anchor["compositionId"]
+        or current.get("compositionPath") != anchor["compositionPath"]
+        or current.get("windowCapacityId") != anchor_id
+    ) is False
+    batch_anchor_active = bool(
+        clip_window
+        and current
+        and current.get("projectId") == family["projectId"]
+        and current.get("status") == "verified_window"
+        and current.get("compositionId") == family["compositionId"]
+        and current.get("compositionPath") == family["compositionPath"]
+        and current.get("windowCapacityId") == anchor_id
+    )
+    if not original_anchor_active and not batch_anchor_active:
+        raise ValueError(f"editor family batch exact anchor missing: {family_id}")
+    frozen_anchor = read(paths[evidence["exactAnchorEvidenceSource"]])
+    if (
+        frozen_anchor.get("sceneId") != anchor_id
+        or frozen_anchor.get("projectId") != family["projectId"]
+        or frozen_anchor.get("compositionId") != anchor["compositionId"]
+        or frozen_anchor.get("compositionPath") != anchor["compositionPath"]
+        or abs(float(frozen_anchor["startSeconds"]) - float(anchor["localStartSeconds"])) > 1e-9
+        or abs(float(frozen_anchor["endSeconds"]) - float(anchor["localEndSeconds"])) > 1e-9
+    ):
+        raise ValueError(f"editor family batch exact anchor missing: {family_id}")
+    live_windows_path = resolve(family.get("windowDefinitionsPath", str(DEFAULT_WINDOWS)))
+    windows = {row["sceneId"]: row for row in read(live_windows_path)["windows"]}
+    anchor_window = windows.get(anchor_id)
+    original_anchor_window_active = (
+        not anchor_window
+        or anchor_window.get("projectId") != family["projectId"]
+        or anchor_window.get("compositionId") != anchor["compositionId"]
+        or anchor_window.get("compositionPath") != anchor["compositionPath"]
+        or abs(float(anchor_window["startSeconds"]) - float(anchor["localStartSeconds"])) > 1e-9
+        or abs(float(anchor_window["endSeconds"]) - float(anchor["localEndSeconds"])) > 1e-9
+    ) is False
+    batch_anchor_window_active = bool(
+        clip_window
+        and anchor_window
+        and anchor_window.get("projectId") == family["projectId"]
+        and anchor_window.get("compositionId") == family["compositionId"]
+        and anchor_window.get("compositionPath") == family["compositionPath"]
+        and abs(float(anchor_window["startSeconds"]) - float(clip_window["startSeconds"])) <= 1e-9
+        and abs(float(anchor_window["endSeconds"]) - float(clip_window["endSeconds"])) <= 1e-9
+    )
+    if not original_anchor_window_active and not batch_anchor_window_active:
+        raise ValueError(f"editor family batch exact anchor window changed: {family_id}")
+    anchor_layers = [
+        row for row in enabled_layers
+        if row.get("sourceId") == anchor["compositionId"]
+        and row.get("sourcePath") == anchor["compositionPath"]
+    ]
+    if len(anchor_layers) != 1:
+        raise ValueError(f"editor family batch anchor child layer mismatch: {family_id}")
+    anchor_boundary = scene_boundaries.get(anchor_id)
+    if not anchor_boundary:
+        raise ValueError(f"editor family batch anchor boundary missing: {anchor_id}")
+    anchor_layer = anchor_layers[0]
+    global_start = float(anchor["localStartSeconds"]) + float(anchor_layer["startTime"])
+    global_end = float(anchor["localEndSeconds"]) + float(anchor_layer["startTime"])
+    if (
+        abs(global_start - round(float(anchor_boundary["start"]), 2)) > tolerance
+        or abs(global_end - round(float(anchor_boundary["end"]), 2)) > tolerance
+    ):
+        raise ValueError(f"editor family batch exact anchor does not bind preview: {family_id}")
+
+    for clip_id, window in clip_windows.items():
+        boundary = scene_boundaries.get(clip_id)
+        if not boundary or Path(boundary.get("source", "")) != preview_path:
+            raise ValueError(f"editor family batch preview boundary mismatch: {clip_id}")
+        expected_start = round(float(boundary["start"]), 2)
+        expected_end = min(round(float(boundary["end"]), 2), native_duration)
+        if (
+            abs(float(window["startSeconds"]) - expected_start) > 1e-9
+            or abs(float(window["endSeconds"]) - expected_end) > 1e-9
+            or expected_end <= expected_start
+        ):
+            raise ValueError(f"editor family batch clip window changed: {clip_id}")
+    return {
+        "mode": "editor_authorized_family_master_windows",
+        "authorizationDecision": authorization["decision"],
+        "exactAnchorClipId": anchor_id,
+        "masterChildCount": len(bindings),
+        "clipWindowCount": len(clip_windows),
+        "previewDurationSeconds": preview_duration,
+        "durationToleranceSeconds": tolerance,
+    }
+
+
 def build_report(request: dict[str, Any]) -> dict[str, Any]:
     if request.get("activationState") != "reviewed_exact_window_batch":
         raise ValueError("window batch lacks reviewed exact-timeline evidence")
@@ -395,6 +570,20 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
                 mixed_boundaries,
                 raw,
             )
+        elif alignment["mode"] == "editor_authorized_family_master_windows":
+            semantic_family_ids = {
+                clip_id for clip_id, row in semantic.items() if row["familyId"] == family_id
+            }
+            if family["boundarySource"] != "scene_library":
+                raise ValueError(f"editor family batch requires scene-library boundaries: {family_id}")
+            alignment_result = _validate_editor_authorized_family_master_windows(
+                family,
+                paths,
+                registry,
+                semantic_family_ids,
+                scene_boundaries,
+                raw,
+            )
         else:
             raise ValueError(f"unsupported alignment evidence: {family_id}")
 
@@ -419,8 +608,15 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
                         or sha(source_video) != sha(rendered_video)
                     ):
                         raise ValueError(f"scene boundary is not bound to native render: {clip_id}")
-                start = round(float(boundary["start"]), 2)
-                end = round(float(boundary["end"]), 2)
+                if alignment["mode"] == "editor_authorized_family_master_windows":
+                    clip_windows = {
+                        row["clipId"]: row for row in alignment["clipLevelWindows"]
+                    }
+                    start = float(clip_windows[clip_id]["startSeconds"])
+                    end = float(clip_windows[clip_id]["endSeconds"])
+                else:
+                    start = round(float(boundary["start"]), 2)
+                    end = round(float(boundary["end"]), 2)
             elif family["boundarySource"] == "review_catalog":
                 boundary = review_boundaries.get(clip_id)
                 if not boundary:
@@ -475,6 +671,7 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
                         "editor_verified_checkpoints",
                         "verified_master_child_anchors",
                         "verified_mixed_master_timeline_anchors",
+                        "editor_authorized_family_master_windows",
                     }
                     and clip_id in family.get("supersedeClipIds", [])
                     and current.get("projectId") == project_id
@@ -517,6 +714,12 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
     )
     if editor_checkpoint_families:
         summary["editorVerifiedCheckpointFamilies"] = editor_checkpoint_families
+    editor_family_batching_families = sum(
+        row.get("alignmentEvidence", {}).get("mode") == "editor_authorized_family_master_windows"
+        for row in request["families"]
+    )
+    if editor_family_batching_families:
+        summary["editorAuthorizedFamilyBatchingFamilies"] = editor_family_batching_families
     return {
         "schemaVersion": 1,
         "batchId": request["batchId"],
@@ -570,6 +773,8 @@ def activate_report(
             alignment_text = "bound by a constant preview offset to verified native child layers spanning this master composition"
         elif alignment_modes[proposal["familyId"]] == "verified_mixed_master_timeline_anchors":
             alignment_text = "bound to one exact native master-window anchor plus verified child layers spanning this master timeline"
+        elif alignment_modes[proposal["familyId"]] == "editor_authorized_family_master_windows":
+            alignment_text = "bound through the editor-authorized family batching route to an exact native anchor and verified master child timeline"
         else:
             alignment_text = "bound to previously verified native timeline anchors"
         evidence = (

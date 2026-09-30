@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 class SceneWindowCapacityTests(unittest.TestCase):
     def test_builds_source_bound_windows_without_rendering(self):
         artifact = subject.build_window_capacities()
-        self.assertEqual(artifact["counts"], {"windows": 202})
+        self.assertEqual(artifact["counts"], {"windows": 244})
         self.assertFalse(artifact["renderingPerformed"])
 
     def test_smooth_three_photo_window_reports_window_capacity(self):
@@ -39,7 +39,7 @@ class SceneWindowCapacityTests(unittest.TestCase):
 
     def test_saved_artifact_matches_native_reports(self):
         saved = json.loads((ROOT / "grammar/ae-scene-window-technical-capacities.json").read_text())
-        self.assertEqual(subject.validate_window_capacities(saved, verify_native_reports=True), {"windows": 202})
+        self.assertEqual(subject.validate_window_capacities(saved, verify_native_reports=True), {"windows": 244})
 
     def test_mutation_fails_closed(self):
         artifact = subject.build_window_capacities()

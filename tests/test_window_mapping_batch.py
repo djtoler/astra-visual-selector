@@ -361,5 +361,127 @@ class TruncatedPrefixMasterWindowBatch(unittest.TestCase):
             subject.build_report(broken)
 
 
+class MemoriesMixedMasterTimelineWindowBatch(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.request_path = ROOT / "clip-mapping-batches" / "batch-012" / "request.json"
+        cls.report_path = ROOT / "reports" / "clip-mapping-batch-012.json"
+        cls.request = json.loads(cls.request_path.read_text())
+        cls.report = subject.build_report(cls.request)
+
+    def test_memories_has_15_exact_master_windows(self):
+        self.assertEqual(self.report["summary"], {
+            "families": 1,
+            "anchors": 3,
+            "exactWindows": 15,
+            "errors": 0,
+        })
+        evidence = self.report["families"][0]["alignmentEvidence"]
+        self.assertEqual(evidence["mode"], "verified_mixed_master_timeline_anchors")
+        self.assertEqual(evidence["masterWindowAnchorCount"], 2)
+        self.assertEqual(evidence["childAnchorCount"], 1)
+        self.assertGreaterEqual(evidence["minimumObservedChildOverlapRatio"], 0.7)
+
+    def test_encoded_end_is_clamped_to_native_timeline(self):
+        proposal = next(
+            row for row in self.report["proposals"]
+            if row["clipId"] == "memories-photo-slideshow-creative-slides-envato--scene-015"
+        )
+        self.assertEqual(proposal["window"]["endSeconds"], 90.04)
+
+    def test_saved_report_is_deterministic(self):
+        saved = json.loads(self.report_path.read_text())
+        self.assertEqual(subject.validate_report(saved, self.request), self.report["summary"])
+        self.assertEqual(self.report_path.read_text(), subject.dumps(subject.build_report(self.request)))
+
+    def test_changed_master_window_anchor_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["masterWindowAnchorBindings"][0]["localStartSeconds"] = 21.0
+        with self.assertRaisesRegex(ValueError, "exact window mismatch"):
+            subject.build_report(broken)
+
+    def test_incomplete_semantic_family_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["targetClipIds"].pop()
+        with self.assertRaisesRegex(ValueError, "complete semantic family"):
+            subject.build_report(broken)
+
+
+class EditorAuthorizedFamilyMasterWindowBatch(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.request_path = ROOT / "clip-mapping-batches" / "batch-015" / "request.json"
+        cls.report_path = ROOT / "reports" / "clip-mapping-batch-015.json"
+        cls.request = json.loads(cls.request_path.read_text())
+        cls.report = subject.build_report(cls.request)
+
+    def test_modern_slideshow_has_16_exact_master_windows(self):
+        self.assertEqual(self.report["summary"], {
+            "families": 1,
+            "anchors": 1,
+            "exactWindows": 16,
+            "errors": 0,
+            "editorAuthorizedFamilyBatchingFamilies": 1,
+        })
+        evidence = self.report["families"][0]["alignmentEvidence"]
+        self.assertEqual(evidence["mode"], "editor_authorized_family_master_windows")
+        self.assertEqual(evidence["exactAnchorClipId"], "modern-photo-slideshow-envato--scene-016")
+        self.assertEqual(evidence["masterChildCount"], 4)
+        self.assertEqual(evidence["clipWindowCount"], 16)
+
+    def test_master_windows_include_crossfade_boundaries_and_clamp_end(self):
+        proposals = {row["clipId"]: row for row in self.report["proposals"]}
+        self.assertEqual(proposals["modern-photo-slideshow-envato--scene-007"]["window"], {
+            "startSeconds": 30.17,
+            "endSeconds": 39.07,
+            "durationSeconds": 8.899999999999999,
+            "precision": "exact",
+        })
+        self.assertEqual(proposals["modern-photo-slideshow-envato--scene-016"]["window"]["endSeconds"], 87.0)
+
+    def test_saved_report_is_deterministic(self):
+        saved = json.loads(self.report_path.read_text())
+        self.assertEqual(subject.validate_report(saved, self.request), self.report["summary"])
+        self.assertEqual(self.report_path.read_text(), subject.dumps(subject.build_report(self.request)))
+
+    def test_missing_exact_anchor_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["exactAnchor"]["clipId"] = (
+            "modern-photo-slideshow-envato--scene-015"
+        )
+        with self.assertRaisesRegex(ValueError, "exact anchor missing"):
+            subject.build_report(broken)
+
+    def test_changed_child_timeline_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["masterChildTimelineBindings"][1]["startTime"] = 5.1
+        with self.assertRaisesRegex(ValueError, "child timing changed"):
+            subject.build_report(broken)
+
+    def test_missing_clip_window_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["clipLevelWindows"].pop()
+        with self.assertRaisesRegex(ValueError, "clip windows incomplete"):
+            subject.build_report(broken)
+
+    def test_incomplete_semantic_family_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["targetClipIds"].pop()
+        with self.assertRaisesRegex(ValueError, "complete semantic family"):
+            subject.build_report(broken)
+
+    def test_duration_drift_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["previewDurationSeconds"] = 86.0
+        with self.assertRaisesRegex(ValueError, "preview duration mismatch"):
+            subject.build_report(broken)
+
+    def test_changed_authorization_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["authorizationSource"] = "exactAnchorEvidence"
+        with self.assertRaisesRegex(ValueError, "authorization mismatch"):
+            subject.build_report(broken)
+
+
 if __name__ == "__main__":
     unittest.main()

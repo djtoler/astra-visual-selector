@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "batchId": "clip-mapping-batch-017-diagnostic",
+  "activationState": "diagnostic_only",
+  "renderingAuthorized": false,
+  "globalActivationAuthorized": false,
+  "summary": {
+    "families": 4,
+    "targetClips": 26,
+    "newExactActivatable": 0,
+    "newApproximateActivatable": 1,
+    "existingApproximatePreserved": 5,
+    "blockedOrProvisional": 20
+  },
+  "maximumSafeActivatableSubset": {
+    "exactClipIds": [],
+    "approximateClipIds": [
+      "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-002"
+    ],
+    "conditions": [
+      "Activation, if later chosen, must retain mapped_composition_window_approximate status.",
+      "The excluded catalog disposition remains unchanged.",
+      "No clip in this diagnostic may become mapped_verified or mapped_verified_window from family batching alone."
+    ]
+  },
+  "families": [
+    {
+      "familyId": "carousel",
+      "sourceProject": {
+        "path": "/Volumes/onn. Drive/AE Templates/Carousels & Slideshows/carousel-2026-09-11-17-43-58-utc/Carousel.aep",
+        "sha256": "78f519f084504cc307a396fd0082a41c00da2abe22c15b9caffaa5b60d065a85"
+      },
+      "targetCount": 19,
+      "result": "blocked_clip_to_composition_alignment",
+      "safeActivatableCount": 0,
+      "nativeFacts": {
+        "terminalCarouselCompositions": 20,
+        "previewCompositionId": 4324,
+        "previewCompositionPath": "Preview Composition",
+        "previewDurationSeconds": 50.0,
+        "verifiedAnchors": [
+          "carousel--review-001 -> Carousel 01/Carousel 01 (id 1)",
+          "carousel--review-011 -> Carousel 10/Carousel 10 (id 3076)"
+        ]
+      },
+      "blockers": [
+        "Twenty native carousel compositions are combined four-at-a-time in five ten-second Preview Composition intervals; the reviewed source is a roughly thirty-second edit, not a one-composition-per-cut master.",
+        "The anchors do not establish a constant ordinal offset: review 001 maps to Carousel 01, while review 011 maps to Carousel 10.",
+        "Review 012 was later divided into 012a and 012b, so the semantic family contains more reviewed clip records than native terminal compositions.",
+        "Static hierarchy proves the candidate set but not which layered native composition supplies each reviewed visual interval."
+      ],
+      "targetClipIds": [
+        "carousel--review-002",
+        "carousel--review-003",
+        "carousel--review-004",
+        "carousel--review-005",
+        "carousel--review-006",
+        "carousel--review-007",
+        "carousel--review-008",
+        "carousel--review-009",
+        "carousel--review-010",
+        "carousel--review-012",
+        "carousel--review-012a",
+        "carousel--review-012b",
+        "carousel--review-013",
+        "carousel--review-014",
+        "carousel--review-015",
+        "carousel--review-016",
+        "carousel--review-017",
+        "carousel--review-018",
+        "carousel--review-019"
+      ]
+    },
+    {
+      "familyId": "carousel-slideshow",
+      "sourceProject": {
+        "path": "/Volumes/onn. Drive/AE Templates/Carousels & Slideshows/Carousel Slideshow/Project/Carousel Slideshow.aep",
+        "sha256": "47c28b3878df16bdd5b0fe5bdd1d20f4351c1bd454a710238407bbd27df63ec3"
+      },
+      "targetCount": 5,
+      "result": "retain_existing_approximate_windows",
+      "safeActivatableCount": 0,
+      "existingApproximateCount": 5,
+      "clips": [
+        {
+          "clipId": "carousel-slideshow--review-001",
+          "compositionId": 12018,
+          "compositionPath": "2.Final/Render 01",
+          "window": {"startSeconds": 0.0, "endSeconds": 7.0, "precision": "approximate"}
+        },
+        {
+          "clipId": "carousel-slideshow--review-002",
+          "compositionId": 12030,
+          "compositionPath": "2.Final/Render 02",
+          "window": {"startSeconds": 0.0, "endSeconds": 4.866667, "precision": "approximate"}
+        },
+        {
+          "clipId": "carousel-slideshow--review-003",
+          "compositionId": 12042,
+          "compositionPath": "2.Final/Render 03",
+          "window": {"startSeconds": 0.0, "endSeconds": 9.933333, "precision": "approximate"}
+        },
+        {
+          "clipId": "carousel-slideshow--review-004",
+          "compositionId": 12042,
+          "compositionPath": "2.Final/Render 03",
+          "window": {"startSeconds": 9.933333, "endSeconds": 20.133333, "precision": "approximate"}
+        },
+        {
+          "clipId": "carousel-slideshow--review-005",
+          "compositionId": 12030,
+          "compositionPath": "2.Final/Render 02",
+          "window": {"startSeconds": 24.02, "endSeconds": 30.52, "precision": "approximate"}
+        }
+      ],
+      "blockers": [
+        "The source-bound native pilot explicitly reports that the distributed AEP uses gray placeholders instead of the publisher sample media, preventing pixel-identical alignment.",
+        "The three native final compositions are verified, but their five sub-windows remain editorial reconstructions."
+      ]
+    },
+    {
+      "familyId": "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc",
+      "sourceProject": {
+        "path": "/Volumes/onn. Drive/AE Templates/Archive 3/carousel-photo-logo-reveal-2026-09-13-12-24-28-utc/after effect/Carousel Photo Logo Reveal.aep",
+        "sha256": "330f6be562fb34fa10bf1d4c401ce9bee6b44af8876f058462a917f0f7bd92bc"
+      },
+      "targetCount": 1,
+      "result": "provisional_master_window",
+      "safeActivatableCount": 1,
+      "proposal": {
+        "clipId": "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-002",
+        "status": "proposed_mapped_composition_window_approximate",
+        "compositionId": 580,
+        "compositionPath": "01 EDIT/4 color/color control",
+        "window": {"startSeconds": 8.25, "endSeconds": 13.04637971304638, "precision": "approximate"},
+        "nativeTransitionLayer": {
+          "compositionId": 1901,
+          "compositionPath": "03 OTHER/pre/transform",
+          "inPointSeconds": 8.372238905572239
+        },
+        "reason": "The native master contains the verified photo-carousel branch through 10.0767 seconds and the verified logo/text transform branch beginning at 8.3722 seconds. The reviewed clip begins at 8.25 seconds and therefore crosses their native overlap; only a master window can preserve that transition."
+      },
+      "blockers": [
+        "The reviewed boundary begins about 0.122 seconds before the native logo/text branch.",
+        "The publisher preview ends at 12.959 seconds while the native master ends at 13.04638 seconds.",
+        "Those boundary differences prevent an exact-window claim."
+      ]
+    },
+    {
+      "familyId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc",
+      "sourceProject": {
+        "path": "/Volumes/onn. Drive/AE Templates/Archive 3/dropoff-carousels-2026-09-15-17-30-59-utc/project.aep",
+        "sha256": "760ce79b7366c167e7c06179ad2922e0047384663166f26b496812bb1ed3ba9b"
+      },
+      "targetCount": 1,
+      "result": "blocked_multi_composition_montage",
+      "safeActivatableCount": 0,
+      "clipId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-001",
+      "candidateCompositionSet": [
+        {"compositionId": 1166, "compositionPath": "Horizontal/carousel 01/carousel 01/Main Comp"},
+        {"compositionId": 2355, "compositionPath": "Horizontal/carousel 02/carousel 02/Main Comp"},
+        {"compositionId": 3544, "compositionPath": "Horizontal/carousel 03/carousel 03/Main Comp"},
+        {"compositionId": 4733, "compositionPath": "Horizontal/carousel 04/carousel 04/Main Comp"}
+      ],
+      "blockers": [
+        "The reviewed clip is a four-column showcase montage, not the first native carousel variation.",
+        "The registry supports one composition or one composition window per clip and cannot represent this four-composition montage as an exact native binding.",
+        "Batch 007's diagnostic review-001 -> Carousel 01 proposal must not be activated."
+      ]
+    }
+  ]
+}

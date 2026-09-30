@@ -137,5 +137,101 @@ class ExplicitTerminalSetRules(unittest.TestCase):
             subject.build_report(broken)
 
 
+class PreparedExactTerminalBindingRules(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.request_path = ROOT / "clip-mapping-batches" / "batch-013" / "request.json"
+        cls.report_path = ROOT / "reports" / "clip-mapping-batch-013.json"
+        cls.request = json.loads(cls.request_path.read_text())
+        cls.report = subject.build_report(cls.request)
+
+    def test_batch_is_complete_and_family_batching_is_authorized(self):
+        self.assertIs(self.request["preparationOnly"], False)
+        self.assertEqual(
+            self.request["familyBatchingAuthorization"],
+            "editor_approved_family_batching_2026-09-30",
+        )
+        self.assertEqual(self.report["summary"], {
+            "families": 5,
+            "anchors": 0,
+            "proposals": 33,
+            "leaveOneOutErrors": 0,
+            "nativeStructureErrors": 0,
+        })
+        self.assertEqual(
+            {row["rule"]["nativeEvidence"]["mode"] for row in self.report["families"]},
+            {"prepared_exact_terminal_bindings"},
+        )
+        self.assertEqual({row["status"] for row in self.report["proposals"]}, {"proposed_verified"})
+
+    def test_saved_prepared_report_is_deterministic(self):
+        saved = json.loads(self.report_path.read_text())
+        self.assertEqual(subject.validate_report(saved, self.request), self.report["summary"])
+        self.assertEqual(self.report_path.read_text(), subject.dumps(self.report))
+
+    def test_glow_binding_uses_corrected_visible_text_permutation(self):
+        glow = [
+            row for row in self.report["proposals"]
+            if row["familyId"] == "archive3-glow-edge-titles-2026-09-13-15-34-22-utc"
+        ]
+        self.assertEqual(
+            [(row["clipId"].rsplit("-", 1)[-1], row["compositionId"]) for row in glow],
+            [("001", 963), ("002", 937), ("003", 1002), ("004", 976),
+             ("005", 1015), ("006", 1028), ("007", 989), ("008", 950)],
+        )
+        self.assertEqual({row["bindingEvidenceType"] for row in glow}, {"visible_sample_text"})
+
+    def test_missing_clip_or_terminal_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["targetClipIds"].pop()
+        with self.assertRaisesRegex(ValueError, "semantic scope is incomplete"):
+            subject.build_report(broken)
+
+    def test_changed_semantic_evidence_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][1]["terminalBindings"][0]["semanticEvidence"]["description"] = "changed"
+        with self.assertRaisesRegex(ValueError, "semantic evidence changed"):
+            subject.build_report(broken)
+
+    def test_changed_glow_text_or_ordinal_fails_closed(self):
+        broken_text = copy.deepcopy(self.request)
+        broken_text["families"][4]["terminalBindings"][0]["nativeText"] = "wrong"
+        with self.assertRaisesRegex(ValueError, "visible text mismatch"):
+            subject.build_report(broken_text)
+        broken_ordinal = copy.deepcopy(self.request)
+        broken_ordinal["families"][2]["terminalBindings"][0]["compositionId"] = 2141356712
+        broken_ordinal["families"][2]["terminalBindings"][0]["compositionPath"] = (
+            "Horizontal Music Player - L2/Horizontal Music Player - L2"
+        )
+        with self.assertRaisesRegex(ValueError, "duplicate prepared exact terminal binding"):
+            subject.build_report(broken_ordinal)
+
+    def test_family_batching_authorization_is_required(self):
+        broken = copy.deepcopy(self.request)
+        broken.pop("familyBatchingAuthorization")
+        with self.assertRaisesRegex(ValueError, "not authorized"):
+            subject.build_report(broken)
+
+    def test_family_batch_can_activate_into_an_isolated_registry(self):
+        import tempfile
+        source = ROOT / self.request["registryPath"]
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "mappings.json"
+            target.write_bytes(source.read_bytes())
+            result = subject.activate_report(
+                self.report,
+                self.request,
+                mappings_path=target,
+            )
+            activated = {
+                row["sceneId"]: row
+                for row in json.loads(target.read_text())["mappings"]
+                if row["sceneId"] in self.request["targetClipIds"]
+            }
+        self.assertEqual(result["activated"], 33)
+        self.assertEqual(set(activated), set(self.request["targetClipIds"]))
+        self.assertEqual({row["status"] for row in activated.values()}, {"verified"})
+
+
 if __name__ == "__main__":
     unittest.main()

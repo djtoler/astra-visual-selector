@@ -30,10 +30,10 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
-            "mapped_verified": 82,
-            "mapped_verified_window": 202,
+            "mapped_verified": 137,
+            "mapped_verified_window": 244,
             "mapping_unreviewed": 14,
-            "mapping_unverified": 120,
+            "mapping_unverified": 23,
             "mogrt_not_aep": 5,
         })
 
@@ -151,13 +151,17 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertTrue(rows)
         self.assertTrue(all(row["technical"]["composition"] is None for row in rows))
 
-    def test_linked_clips_carry_hash_backed_project_status_without_capacity(self):
+    def test_title_family_clips_carry_exact_window_capacity(self):
         rows = {row["clipId"]: row for row in self.ledger["clips"]}
-        row = rows["text-list-carousel--review-001"]
-        self.assertEqual(row["technical"]["state"], "mapping_unverified")
-        self.assertEqual(row["technical"]["projectId"], "text-list-carousel")
+        row = rows["archive3-variable-text-animation--review-001"]
+        self.assertEqual(row["technical"]["state"], "mapped_verified_window")
+        self.assertEqual(row["technical"]["projectId"], "variable-text-animation-2024")
         self.assertEqual(len(row["technical"]["projectEvidence"]["sourceProjectSha256"]), 64)
-        self.assertIsNone(row["technical"]["composition"])
+        self.assertEqual(
+            row["technical"]["composition"]["path"],
+            "1. Text & Element Comps/2. Text Pre-comps/Video Preview Pre-comp (You may need it)",
+        )
+        self.assertEqual(row["technical"]["window"]["startSeconds"], 0.0)
 
     def test_every_ae_family_is_linked_to_a_source_project_or_typed_exclusion(self):
         self.assertNotIn("project_unlinked", self.ledger["counts"]["byTechnicalState"])

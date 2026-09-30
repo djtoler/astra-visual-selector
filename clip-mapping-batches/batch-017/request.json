@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "batchId": "clip-mapping-batch-017-diagnostic",
+  "activationState": "diagnostic_only",
+  "renderingAuthorized": false,
+  "globalActivationAuthorized": false,
+  "purpose": "Source-bound family-batch diagnostic for structurally ambiguous carousel clips. Preserve verified composition identities and approximate windows without promoting absent alignment evidence to exact mappings.",
+  "editorDecision": {
+    "quote": "Let's do it that way. If something comes up when using it later, we'll flag and address then.",
+    "interpretation": "Reuse family-level source evidence and process clips together, while retaining clip-level status and flagging anomalies. This does not convert approximate or structurally mixed alignment into exact evidence."
+  },
+  "sources": {
+    "reviewCatalog": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/review-catalog.json",
+      "sha256": "6c8a770d5c4c5370121eedc2f686eec10341efbd3e3e9e3faaf8be2721c64a32"
+    },
+    "carouselNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/carousel.json",
+      "sha256": "d3802ad004e54e58f17b41c24291430122f133c64fe383d0ae6ff7a3a0744aef"
+    },
+    "carouselSlideshowNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/carousel-slideshow.json",
+      "sha256": "961aaade3d7e426f114f5f7877525b1263cee3ba114eaeaf2e4839b6155081d7"
+    },
+    "carouselSlideshowPilot": {
+      "path": "reports/carousel-slideshow-clip-native-pilot.json",
+      "sha256": "152867ffcf0406d7cb2c499b596910139cb374b976128cb966f08f506aacf914"
+    },
+    "carouselPhotoLogoNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-01/raw-static/carousel-photo-logo-reveal.json",
+      "sha256": "50965ad7bad911fbc693ef790294f42c3f5b76691a96ce9299046fa513f03de4"
+    },
+    "dropoffNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/project.json",
+      "sha256": "b159ec4329e600378c2b5438c27cf42f0a4284256d22781e5ee2fa3746378c0c"
+    },
+    "dropoffBatch007Request": {
+      "path": "clip-mapping-batches/batch-007/request.json",
+      "sha256": "eab611972057d4b3c04355a45548762c349f53e65c8794d412e3fedf9d2c373a"
+    },
+    "dropoffBatch007Report": {
+      "path": "reports/clip-mapping-batch-007.json",
+      "sha256": "0cc9ff3a4802c4b509b2b6d905a4bd002c8cb990e9d1204847ad7621d5c01da6"
+    }
+  },
+  "families": [
+    {
+      "familyId": "carousel",
+      "projectId": "carousel",
+      "sourceProjectSha256": "78f519f084504cc307a396fd0082a41c00da2abe22c15b9caffaa5b60d065a85",
+      "nativeReportSource": "carouselNative",
+      "evidenceMode": "diagnostic_mixed_preview_sequence",
+      "verifiedAnchors": [
+        {
+          "clipId": "carousel--review-001",
+          "compositionId": 1,
+          "compositionPath": "Carousel 01/Carousel 01"
+        },
+        {
+          "clipId": "carousel--review-011",
+          "compositionId": 3076,
+          "compositionPath": "Carousel 10/Carousel 10"
+        }
+      ],
+      "targetClipIds": [
+        "carousel--review-002",
+        "carousel--review-003",
+        "carousel--review-004",
+        "carousel--review-005",
+        "carousel--review-006",
+        "carousel--review-007",
+        "carousel--review-008",
+        "carousel--review-009",
+        "carousel--review-010",
+        "carousel--review-012",
+        "carousel--review-012a",
+        "carousel--review-012b",
+        "carousel--review-013",
+        "carousel--review-014",
+        "carousel--review-015",
+        "carousel--review-016",
+        "carousel--review-017",
+        "carousel--review-018",
+        "carousel--review-019"
+      ]
+    },
+    {
+      "familyId": "carousel-slideshow",
+      "projectId": "carousel-slideshow",
+      "sourceProjectSha256": "47c28b3878df16bdd5b0fe5bdd1d20f4351c1bd454a710238407bbd27df63ec3",
+      "nativeReportSource": "carouselSlideshowNative",
+      "pilotSource": "carouselSlideshowPilot",
+      "evidenceMode": "retain_verified_composition_approximate_window",
+      "targetClipIds": [
+        "carousel-slideshow--review-001",
+        "carousel-slideshow--review-002",
+        "carousel-slideshow--review-003",
+        "carousel-slideshow--review-004",
+        "carousel-slideshow--review-005"
+      ]
+    },
+    {
+      "familyId": "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc",
+      "projectId": "carousel-photo-logo-reveal",
+      "sourceProjectSha256": "330f6be562fb34fa10bf1d4c401ce9bee6b44af8876f058462a917f0f7bd92bc",
+      "nativeReportSource": "carouselPhotoLogoNative",
+      "evidenceMode": "provisional_master_transition_window",
+      "targetClipIds": [
+        "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-002"
+      ]
+    },
+    {
+      "familyId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc",
+      "projectId": "project",
+      "sourceProjectSha256": "760ce79b7366c167e7c06179ad2922e0047384663166f26b496812bb1ed3ba9b",
+      "nativeReportSource": "dropoffNative",
+      "evidenceMode": "diagnostic_multi_composition_montage",
+      "targetClipIds": [
+        "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-001"
+      ]
+    }
+  ]
+}
