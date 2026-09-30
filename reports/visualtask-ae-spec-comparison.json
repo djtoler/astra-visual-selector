@@ -15,8 +15,8 @@
     "unresolvedUniqueSceneMappings": 0,
     "unreviewedUniqueSceneMappings": 2,
     "verifiedUniqueSceneMappings": 73,
-    "verifiedWholeCompositionMappings": 48,
-    "verifiedWindowMappings": 25,
+    "verifiedWholeCompositionMappings": 40,
+    "verifiedWindowMappings": 33,
     "visualTasks": 41
   },
   "evidenceBoundary": {
@@ -66,14 +66,14 @@
       "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
     },
     "sceneMappings": {
-      "bytes": 138393,
+      "bytes": 150145,
       "path": "grammar/ae-scene-composition-mappings.json",
-      "sha256": "c146e38e0837756f6f0b91198b2f1bf9da6c9007bc69275070544b6f1b0aaba0"
+      "sha256": "69316ea90f7ae08eb151218871ec2c6ec093c2b6da5f38c095d1417c9083a01e"
     },
     "sceneWindowCapacities": {
-      "bytes": 1460319,
+      "bytes": 1774490,
       "path": "grammar/ae-scene-window-technical-capacities.json",
-      "sha256": "1f271ce3e592d3ba4d205f81c415632dfe682066251ca32dfddc4c36f4be3eaf"
+      "sha256": "faa4f4dba61b8399b09ab7825c85d60e34eab6c73b972d52939293baa2307f71"
     },
     "specLinks": {
       "bytes": 15895,
@@ -318,37 +318,23 @@
       "candidateComparisons": [
         {
           "candidateId": "photo-slideshow-memories-envato--scene-010",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
-            "directEditableTextFields": 1,
-            "directTextFields": [
-              {
-                "compositionId": 2124177936,
-                "compositionPath": "02.Edit Comps/Scene 09/Scene 09",
-                "enabled": true,
-                "font": "adelia",
-                "fontSize": 140.0,
-                "id": "text:2124177936:5",
-                "inPoint": 0.5,
-                "layerIndex": 5,
-                "layerName": "Beautiful Photo Slideshow Thank You",
-                "metadataComplete": true,
-                "outPoint": 8.5,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 8.0,
-            "frameCount": 240,
+            "durationSeconds": 7.93,
+            "frameCount": 238,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2124177936,
-            "mappingEvidence": "The closing title clip aligns to native Scene 09, the final scene in the native Final timeline, with matching closing-card structure.",
+            "id": 2124175420,
+            "mappingEvidence": "The reviewed 52.07–60.00 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 1,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "path": "02.Edit Comps/Scene 09/Scene 09",
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 11,
+            "measurementScope": "clip_window",
+            "path": "03.Render/Final",
             "recursiveEditableTextFields": 1,
             "recursiveTextFieldIds": [
               "text:2124177936:5"
@@ -369,12 +355,96 @@
                 "textKind": "point"
               }
             ],
-            "recursiveVisualMediaInputs": [],
-            "totalIndependentVisualMediaInputs": 0,
-            "unresolvedCount": 16,
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184590",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 09/Media 02",
+                "projectItemId": 2124184590
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184631",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 09/Media 01",
+                "projectItemId": 2124184631
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190623",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 01",
+                "projectItemId": 2124190623
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190637",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 02",
+                "projectItemId": 2124190637
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190651",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 03",
+                "projectItemId": 2124190651
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190665",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 09",
+                "projectItemId": 2124190665
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192213",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 08",
+                "projectItemId": 2124192213
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192227",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 07",
+                "projectItemId": 2124192227
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192301",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 04",
+                "projectItemId": 2124192301
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192314",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 05",
+                "projectItemId": 2124192314
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192327",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 06",
+                "projectItemId": 2124192327
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 11,
+            "unresolvedCount": 231,
             "width": 1920,
-            "workAreaDurationSeconds": 8.0,
-            "workAreaFrameCount": 240,
+            "window": {
+              "durationSeconds": 7.93,
+              "endSeconds": 60.0,
+              "precision": "exact",
+              "startSeconds": 52.07
+            },
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "photo-slideshow-memories-envato",
@@ -399,9 +469,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 8.0,
+            "nativeCompositionDurationSeconds": 7.93,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 4.9,
+            "nativeMinusTaskSeconds": 4.83,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 3.1
@@ -1270,55 +1340,30 @@
         },
         {
           "candidateId": "scrolling-screen--review-005",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
-            "directEditableTextFields": 2,
-            "directTextFields": [
-              {
-                "compositionId": 2128067164,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2",
-                "enabled": true,
-                "font": "BebasNeuePro-Light",
-                "fontSize": 100.0,
-                "id": "text:2128067164:4",
-                "inPoint": 0.0,
-                "layerIndex": 4,
-                "layerName": "Text_1",
-                "metadataComplete": true,
-                "outPoint": 20.3,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067164,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067164:5",
-                "inPoint": 0.16666666666666666,
-                "layerIndex": 5,
-                "layerName": "Text_2",
-                "metadataComplete": true,
-                "outPoint": 20.46666666666667,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 20.0,
-            "frameCount": 600,
+            "durationSeconds": 9.969999999999999,
+            "frameCount": 299,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2128067164,
-            "mappingEvidence": "The measured HD master places Forward_2 at 40.067–50.033 seconds, matching the reviewed 40.733–50.700 source window.",
+            "id": 2128066992,
+            "mappingEvidence": "The reviewed 40.06–50.03 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 2,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2",
-            "recursiveEditableTextFields": 2,
+            "measurementScope": "clip_window",
+            "path": "Scrolling_Screen_Animations_HD",
+            "recursiveEditableTextFields": 5,
             "recursiveTextFieldIds": [
               "text:2128067164:4",
-              "text:2128067164:5"
+              "text:2128067164:5",
+              "text:2128067337:4",
+              "text:2128067337:5",
+              "text:2128067337:6"
             ],
             "recursiveTextFields": [
               {
@@ -1348,6 +1393,48 @@
                 "metadataComplete": true,
                 "outPoint": 20.46666666666667,
                 "textKind": "point"
+              },
+              {
+                "compositionId": 2128067337,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067337:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067337,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
+                "enabled": true,
+                "font": "BebasNeuePro-Bold",
+                "fontSize": 200.0,
+                "id": "text:2128067337:5",
+                "inPoint": 0.16666666666666666,
+                "layerIndex": 5,
+                "layerName": "Text_2",
+                "metadataComplete": true,
+                "outPoint": 20.46666666666667,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067337,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
+                "enabled": true,
+                "font": "BebasNeuePro-Bold",
+                "fontSize": 200.0,
+                "id": "text:2128067337:6",
+                "inPoint": 0.33333333333333337,
+                "layerIndex": 6,
+                "layerName": "Text_3",
+                "metadataComplete": true,
+                "outPoint": 20.633333333333333,
+                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
@@ -1355,14 +1442,28 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:2128067774",
                 "kind": "visual",
-                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_2_Placeholder"
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_2_Placeholder",
+                "projectItemId": 2128067774
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067822",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_5_Placeholder",
+                "projectItemId": 2128067822
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 5,
+            "totalIndependentVisualMediaInputs": 2,
+            "unresolvedCount": 60,
             "width": 1920,
-            "workAreaDurationSeconds": 20.0,
-            "workAreaFrameCount": 600,
+            "window": {
+              "durationSeconds": 9.969999999999999,
+              "endSeconds": 50.03,
+              "precision": "exact",
+              "startSeconds": 40.06
+            },
+            "workAreaDurationSeconds": 135.4,
+            "workAreaFrameCount": 4062,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "scrolling-screen",
@@ -1387,9 +1488,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 20.0,
+            "nativeCompositionDurationSeconds": 9.969999999999999,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 16.9,
+            "nativeMinusTaskSeconds": 6.869999999999999,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 3.1
@@ -6393,18 +6494,39 @@
         },
         {
           "candidateId": "scrolling-screen--review-004",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
-            "directEditableTextFields": 3,
-            "directTextFields": [
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 10.030000000000001,
+            "frameCount": 301,
+            "frameRate": 30.0,
+            "height": 1080,
+            "id": 2128066992,
+            "mappingEvidence": "The reviewed 30.03–40.06 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
+            "measurementScope": "clip_window",
+            "path": "Scrolling_Screen_Animations_HD",
+            "recursiveEditableTextFields": 5,
+            "recursiveTextFieldIds": [
+              "text:2128067188:4",
+              "text:2128067188:5",
+              "text:2128067337:4",
+              "text:2128067337:5",
+              "text:2128067337:6"
+            ],
+            "recursiveTextFields": [
               {
-                "compositionId": 2128067337,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
+                "compositionId": 2128067188,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_2",
                 "enabled": true,
                 "font": "BebasNeuePro-Light",
                 "fontSize": 100.0,
-                "id": "text:2128067337:4",
+                "id": "text:2128067188:4",
                 "inPoint": 0.0,
                 "layerIndex": 4,
                 "layerName": "Text_1",
@@ -6413,12 +6535,12 @@
                 "textKind": "point"
               },
               {
-                "compositionId": 2128067337,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
+                "compositionId": 2128067188,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_2",
                 "enabled": true,
                 "font": "BebasNeuePro-Bold",
                 "fontSize": 200.0,
-                "id": "text:2128067337:5",
+                "id": "text:2128067188:5",
                 "inPoint": 0.16666666666666666,
                 "layerIndex": 5,
                 "layerName": "Text_2",
@@ -6426,39 +6548,6 @@
                 "outPoint": 20.46666666666667,
                 "textKind": "point"
               },
-              {
-                "compositionId": 2128067337,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067337:6",
-                "inPoint": 0.33333333333333337,
-                "layerIndex": 6,
-                "layerName": "Text_3",
-                "metadataComplete": true,
-                "outPoint": 20.633333333333333,
-                "textKind": "point"
-              }
-            ],
-            "directVisualMediaInputs": 0,
-            "durationSeconds": 20.0,
-            "frameCount": 600,
-            "frameRate": 30.0,
-            "height": 1080,
-            "id": 2128067337,
-            "mappingEvidence": "The measured HD master places Forward_5 at 30.033–40.067 seconds, matching the reviewed 30.700–40.733 source window.",
-            "maxSimultaneouslyEnabledDirectInputs": 0,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
-            "recursiveEditableTextFields": 3,
-            "recursiveTextFieldIds": [
-              "text:2128067337:4",
-              "text:2128067337:5",
-              "text:2128067337:6"
-            ],
-            "recursiveTextFields": [
               {
                 "compositionId": 2128067337,
                 "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
@@ -6507,14 +6596,28 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:2128067822",
                 "kind": "visual",
-                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_5_Placeholder"
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_5_Placeholder",
+                "projectItemId": 2128067822
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067918",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_2_Placeholder",
+                "projectItemId": 2128067918
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 5,
+            "totalIndependentVisualMediaInputs": 2,
+            "unresolvedCount": 60,
             "width": 1920,
-            "workAreaDurationSeconds": 20.0,
-            "workAreaFrameCount": 600,
+            "window": {
+              "durationSeconds": 10.030000000000001,
+              "endSeconds": 40.06,
+              "precision": "exact",
+              "startSeconds": 30.03
+            },
+            "workAreaDurationSeconds": 135.4,
+            "workAreaFrameCount": 4062,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "scrolling-screen",
@@ -6539,9 +6642,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 20.0,
+            "nativeCompositionDurationSeconds": 10.030000000000001,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 17.17,
+            "nativeMinusTaskSeconds": 7.200000000000001,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 2.83
@@ -12001,31 +12104,144 @@
         },
         {
           "candidateId": "photo-slideshow-memories-envato--scene-003",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 3,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 8.0,
-            "frameCount": 240,
+            "durationSeconds": 7.859999999999999,
+            "frameCount": 236,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2124190091,
-            "mappingEvidence": "The third reviewed clip is the three-photo row and matches native Scene 03 in both sequence position and three-photo presentation.",
+            "id": 2124175420,
+            "mappingEvidence": "The reviewed 11.07–18.93 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 0,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "path": "02.Edit Comps/Scene 03/Scene 03",
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 12,
+            "measurementScope": "clip_window",
+            "path": "03.Render/Final",
             "recursiveEditableTextFields": 0,
             "recursiveTextFieldIds": [],
             "recursiveTextFields": [],
-            "recursiveVisualMediaInputs": [],
-            "totalIndependentVisualMediaInputs": 0,
-            "unresolvedCount": 19,
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184497",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 06",
+                "projectItemId": 2124184497
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184549",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 03",
+                "projectItemId": 2124184549
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184564",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 02",
+                "projectItemId": 2124184564
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184577",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 01",
+                "projectItemId": 2124184577
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184813",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 02",
+                "projectItemId": 2124184813
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184826",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 01",
+                "projectItemId": 2124184826
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190032",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 05",
+                "projectItemId": 2124190032
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190114",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 01",
+                "projectItemId": 2124190114
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190143",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 02",
+                "projectItemId": 2124190143
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190172",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 03",
+                "projectItemId": 2124190172
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190228",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 04",
+                "projectItemId": 2124190228
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191736",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 07",
+                "projectItemId": 2124191736
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191783",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 04",
+                "projectItemId": 2124191783
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191796",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 05",
+                "projectItemId": 2124191796
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192374",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 03",
+                "projectItemId": 2124192374
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 15,
+            "unresolvedCount": 231,
             "width": 1920,
-            "workAreaDurationSeconds": 8.0,
-            "workAreaFrameCount": 240,
+            "window": {
+              "durationSeconds": 7.859999999999999,
+              "endSeconds": 18.93,
+              "precision": "exact",
+              "startSeconds": 11.07
+            },
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "photo-slideshow-memories-envato",
@@ -12050,9 +12266,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 8.0,
+            "nativeCompositionDurationSeconds": 7.859999999999999,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 4.3,
+            "nativeMinusTaskSeconds": 4.159999999999999,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 3.7
@@ -19197,31 +19413,151 @@
         },
         {
           "candidateId": "photo-slideshow-memories-envato--scene-008",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 3,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 8.0,
-            "frameCount": 240,
+            "durationSeconds": 8.400000000000006,
+            "frameCount": 252,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2124190597,
-            "mappingEvidence": "The eighth reviewed clip follows the two-part Scene 05 cut and therefore aligns to native Scene 07; its three-photo structure agrees with the native composition.",
+            "id": 2124175420,
+            "mappingEvidence": "The reviewed 40.30–48.70 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 0,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "path": "02.Edit Comps/Scene 07/Scene 07",
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 13,
+            "measurementScope": "clip_window",
+            "path": "03.Render/Final",
             "recursiveEditableTextFields": 0,
             "recursiveTextFieldIds": [],
             "recursiveTextFields": [],
-            "recursiveVisualMediaInputs": [],
-            "totalIndependentVisualMediaInputs": 0,
-            "unresolvedCount": 25,
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190366",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 06/Media 01",
+                "projectItemId": 2124190366
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190381",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 06/Media 02",
+                "projectItemId": 2124190381
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190395",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 06/Media 03",
+                "projectItemId": 2124190395
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190480",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 07/Media 01",
+                "projectItemId": 2124190480
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190494",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 07/Media 02",
+                "projectItemId": 2124190494
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190508",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 07/Media 03",
+                "projectItemId": 2124190508
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190523",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 07/Media 04",
+                "projectItemId": 2124190523
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190623",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 01",
+                "projectItemId": 2124190623
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190637",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 02",
+                "projectItemId": 2124190637
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190651",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 03",
+                "projectItemId": 2124190651
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190665",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 09",
+                "projectItemId": 2124190665
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192213",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 08",
+                "projectItemId": 2124192213
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192227",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 07",
+                "projectItemId": 2124192227
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192301",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 04",
+                "projectItemId": 2124192301
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192314",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 05",
+                "projectItemId": 2124192314
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192327",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 08/Media 06",
+                "projectItemId": 2124192327
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 16,
+            "unresolvedCount": 231,
             "width": 1920,
-            "workAreaDurationSeconds": 8.0,
-            "workAreaFrameCount": 240,
+            "window": {
+              "durationSeconds": 8.400000000000006,
+              "endSeconds": 48.7,
+              "precision": "exact",
+              "startSeconds": 40.3
+            },
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "photo-slideshow-memories-envato",
@@ -19246,9 +19582,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 8.0,
+            "nativeCompositionDurationSeconds": 8.400000000000006,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 2.74,
+            "nativeMinusTaskSeconds": 3.140000000000006,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 5.26
@@ -22337,17 +22673,17 @@
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 2.625,
+            "durationSeconds": 2.62,
             "frameCount": 79,
             "frameRate": 30.0,
             "height": 2160,
-            "id": 34842,
-            "mappingEvidence": "The source preview is the native Content Sheet timeline. SCENE 01 occupies the opening interval, and its time-remap keys map master 0.000-2.625 seconds directly to local SCENE 01 0.000-2.625 seconds.",
+            "id": 34305,
+            "mappingEvidence": "The reviewed 0.00–2.62 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 43,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 10,
             "measurementScope": "clip_window",
-            "path": "03. Other/Scenes/SCENE 01",
+            "path": "03. Other/Other/Content Sheet",
             "recursiveEditableTextFields": 43,
             "recursiveTextFieldIds": [
               "text:32985:1",
@@ -23071,16 +23407,16 @@
               }
             ],
             "totalIndependentVisualMediaInputs": 10,
-            "unresolvedCount": 16,
+            "unresolvedCount": 145,
             "width": 3840,
             "window": {
-              "durationSeconds": 2.625,
-              "endSeconds": 2.625,
+              "durationSeconds": 2.62,
+              "endSeconds": 2.62,
               "precision": "exact",
               "startSeconds": 0.0
             },
-            "workAreaDurationSeconds": 10.0,
-            "workAreaFrameCount": 300,
+            "workAreaDurationSeconds": 25.033333333333335,
+            "workAreaFrameCount": 751,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
@@ -23105,9 +23441,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 2.625,
+            "nativeCompositionDurationSeconds": 2.62,
             "nativeDurationCoversUnmodifiedTask": false,
-            "nativeMinusTaskSeconds": -5.195,
+            "nativeMinusTaskSeconds": -5.2,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 7.82
@@ -24898,55 +25234,30 @@
         },
         {
           "candidateId": "scrolling-screen--review-005",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
-            "directEditableTextFields": 2,
-            "directTextFields": [
-              {
-                "compositionId": 2128067164,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2",
-                "enabled": true,
-                "font": "BebasNeuePro-Light",
-                "fontSize": 100.0,
-                "id": "text:2128067164:4",
-                "inPoint": 0.0,
-                "layerIndex": 4,
-                "layerName": "Text_1",
-                "metadataComplete": true,
-                "outPoint": 20.3,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067164,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067164:5",
-                "inPoint": 0.16666666666666666,
-                "layerIndex": 5,
-                "layerName": "Text_2",
-                "metadataComplete": true,
-                "outPoint": 20.46666666666667,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 20.0,
-            "frameCount": 600,
+            "durationSeconds": 9.969999999999999,
+            "frameCount": 299,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2128067164,
-            "mappingEvidence": "The measured HD master places Forward_2 at 40.067–50.033 seconds, matching the reviewed 40.733–50.700 source window.",
+            "id": 2128066992,
+            "mappingEvidence": "The reviewed 40.06–50.03 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 2,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2",
-            "recursiveEditableTextFields": 2,
+            "measurementScope": "clip_window",
+            "path": "Scrolling_Screen_Animations_HD",
+            "recursiveEditableTextFields": 5,
             "recursiveTextFieldIds": [
               "text:2128067164:4",
-              "text:2128067164:5"
+              "text:2128067164:5",
+              "text:2128067337:4",
+              "text:2128067337:5",
+              "text:2128067337:6"
             ],
             "recursiveTextFields": [
               {
@@ -24976,6 +25287,48 @@
                 "metadataComplete": true,
                 "outPoint": 20.46666666666667,
                 "textKind": "point"
+              },
+              {
+                "compositionId": 2128067337,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067337:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067337,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
+                "enabled": true,
+                "font": "BebasNeuePro-Bold",
+                "fontSize": 200.0,
+                "id": "text:2128067337:5",
+                "inPoint": 0.16666666666666666,
+                "layerIndex": 5,
+                "layerName": "Text_2",
+                "metadataComplete": true,
+                "outPoint": 20.46666666666667,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067337,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
+                "enabled": true,
+                "font": "BebasNeuePro-Bold",
+                "fontSize": 200.0,
+                "id": "text:2128067337:6",
+                "inPoint": 0.33333333333333337,
+                "layerIndex": 6,
+                "layerName": "Text_3",
+                "metadataComplete": true,
+                "outPoint": 20.633333333333333,
+                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
@@ -24983,14 +25336,28 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:2128067774",
                 "kind": "visual",
-                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_2_Placeholder"
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_2_Placeholder",
+                "projectItemId": 2128067774
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067822",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_5_Placeholder",
+                "projectItemId": 2128067822
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 5,
+            "totalIndependentVisualMediaInputs": 2,
+            "unresolvedCount": 60,
             "width": 1920,
-            "workAreaDurationSeconds": 20.0,
-            "workAreaFrameCount": 600,
+            "window": {
+              "durationSeconds": 9.969999999999999,
+              "endSeconds": 50.03,
+              "precision": "exact",
+              "startSeconds": 40.06
+            },
+            "workAreaDurationSeconds": 135.4,
+            "workAreaFrameCount": 4062,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "scrolling-screen",
@@ -25020,9 +25387,9 @@
           "reason": "Required media is known to be missing; measured template capacity cannot make the treatment fillable until that media is supplied.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 20.0,
+            "nativeCompositionDurationSeconds": 9.969999999999999,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 14.14,
+            "nativeMinusTaskSeconds": 4.1099999999999985,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 5.86
@@ -25143,65 +25510,23 @@
       "candidateComparisons": [
         {
           "candidateId": "scrolling-screen--review-001",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 11,
           "exactComposition": {
-            "directEditableTextFields": 3,
-            "directTextFields": [
-              {
-                "compositionId": 410,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_1",
-                "enabled": true,
-                "font": "BebasNeuePro-Light",
-                "fontSize": 100.0,
-                "id": "text:410:4",
-                "inPoint": 0.0,
-                "layerIndex": 4,
-                "layerName": "Text_1",
-                "metadataComplete": true,
-                "outPoint": 20.3,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 410,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_1",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:410:5",
-                "inPoint": 0.16666666666666666,
-                "layerIndex": 5,
-                "layerName": "Text_2",
-                "metadataComplete": true,
-                "outPoint": 20.46666666666667,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 410,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_1",
-                "enabled": true,
-                "font": "BebasNeuePro-Light",
-                "fontSize": 100.0,
-                "id": "text:410:6",
-                "inPoint": 0.5,
-                "layerIndex": 6,
-                "layerName": "Text_3",
-                "metadataComplete": true,
-                "outPoint": 20.8,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 20.0,
-            "frameCount": 600,
+            "durationSeconds": 9.07,
+            "frameCount": 272,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 410,
-            "mappingEvidence": "The measured HD master places Forward_1 at 0.000–10.000 seconds, matching the first reviewed screen movement beginning after the preview intro.",
+            "id": 2128066992,
+            "mappingEvidence": "The reviewed 0.93–10.00 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 3,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_1",
+            "measurementScope": "clip_window",
+            "path": "Scrolling_Screen_Animations_HD",
             "recursiveEditableTextFields": 3,
             "recursiveTextFieldIds": [
               "text:410:4",
@@ -25257,14 +25582,21 @@
                 "evidence": "explicit_placeholder_composition",
                 "id": "comp:2128064941",
                 "kind": "visual",
-                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_1_Placeholder"
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_1_Placeholder",
+                "projectItemId": 2128064941
               }
             ],
             "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 5,
+            "unresolvedCount": 60,
             "width": 1920,
-            "workAreaDurationSeconds": 20.0,
-            "workAreaFrameCount": 600,
+            "window": {
+              "durationSeconds": 9.07,
+              "endSeconds": 10.0,
+              "precision": "exact",
+              "startSeconds": 0.93
+            },
+            "workAreaDurationSeconds": 135.4,
+            "workAreaFrameCount": 4062,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "scrolling-screen",
@@ -25289,9 +25621,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 20.0,
+            "nativeCompositionDurationSeconds": 9.07,
             "nativeDurationCoversUnmodifiedTask": false,
-            "nativeMinusTaskSeconds": -2.34,
+            "nativeMinusTaskSeconds": -13.27,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 22.34
@@ -25409,17 +25741,17 @@
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 2.499999999999999,
+            "durationSeconds": 2.5,
             "frameCount": 75,
             "frameRate": 30.0,
             "height": 2160,
-            "id": 34990,
-            "mappingEvidence": "SCENE 04 starts on the Content Sheet master at 9.0666667 seconds. Its linear time-remap keys map the reviewed 9.500-12.000 master interval to local SCENE 04 0.4333333-2.9333333 seconds; the posterizeTime(6) expression changes frame sampling, not the set of enabled media/text inputs in this window.",
+            "id": 34305,
+            "mappingEvidence": "The reviewed 9.50–12.00 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 42,
             "maxSimultaneouslyEnabledRecursiveVisualInputs": 10,
             "measurementScope": "clip_window",
-            "path": "03. Other/Scenes/SCENE 04",
+            "path": "03. Other/Other/Content Sheet",
             "recursiveEditableTextFields": 42,
             "recursiveTextFieldIds": [
               "text:32985:1",
@@ -26128,16 +26460,16 @@
               }
             ],
             "totalIndependentVisualMediaInputs": 10,
-            "unresolvedCount": 20,
+            "unresolvedCount": 145,
             "width": 3840,
             "window": {
-              "durationSeconds": 2.499999999999999,
-              "endSeconds": 2.9333333333333336,
+              "durationSeconds": 2.5,
+              "endSeconds": 12.0,
               "precision": "exact",
-              "startSeconds": 0.43333333333333446
+              "startSeconds": 9.5
             },
-            "workAreaDurationSeconds": 10.0,
-            "workAreaFrameCount": 300,
+            "workAreaDurationSeconds": 25.033333333333335,
+            "workAreaFrameCount": 751,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc",
@@ -26162,7 +26494,7 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 2.499999999999999,
+            "nativeCompositionDurationSeconds": 2.5,
             "nativeDurationCoversUnmodifiedTask": false,
             "nativeMinusTaskSeconds": -19.84,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
@@ -26173,31 +26505,144 @@
         },
         {
           "candidateId": "photo-slideshow-memories-envato--scene-003",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 11,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 8.0,
-            "frameCount": 240,
+            "durationSeconds": 7.859999999999999,
+            "frameCount": 236,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2124190091,
-            "mappingEvidence": "The third reviewed clip is the three-photo row and matches native Scene 03 in both sequence position and three-photo presentation.",
+            "id": 2124175420,
+            "mappingEvidence": "The reviewed 11.07–18.93 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 0,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "path": "02.Edit Comps/Scene 03/Scene 03",
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 12,
+            "measurementScope": "clip_window",
+            "path": "03.Render/Final",
             "recursiveEditableTextFields": 0,
             "recursiveTextFieldIds": [],
             "recursiveTextFields": [],
-            "recursiveVisualMediaInputs": [],
-            "totalIndependentVisualMediaInputs": 0,
-            "unresolvedCount": 19,
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184497",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 06",
+                "projectItemId": 2124184497
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184549",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 03",
+                "projectItemId": 2124184549
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184564",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 02",
+                "projectItemId": 2124184564
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184577",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 01",
+                "projectItemId": 2124184577
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184813",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 02",
+                "projectItemId": 2124184813
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184826",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 01",
+                "projectItemId": 2124184826
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190032",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 05",
+                "projectItemId": 2124190032
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190114",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 01",
+                "projectItemId": 2124190114
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190143",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 02",
+                "projectItemId": 2124190143
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190172",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 03",
+                "projectItemId": 2124190172
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190228",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 04",
+                "projectItemId": 2124190228
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191736",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 07",
+                "projectItemId": 2124191736
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191783",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 04",
+                "projectItemId": 2124191783
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191796",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 05",
+                "projectItemId": 2124191796
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192374",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 03",
+                "projectItemId": 2124192374
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 15,
+            "unresolvedCount": 231,
             "width": 1920,
-            "workAreaDurationSeconds": 8.0,
-            "workAreaFrameCount": 240,
+            "window": {
+              "durationSeconds": 7.859999999999999,
+              "endSeconds": 18.93,
+              "precision": "exact",
+              "startSeconds": 11.07
+            },
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "photo-slideshow-memories-envato",
@@ -26222,9 +26667,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 8.0,
+            "nativeCompositionDurationSeconds": 7.859999999999999,
             "nativeDurationCoversUnmodifiedTask": false,
-            "nativeMinusTaskSeconds": -14.34,
+            "nativeMinusTaskSeconds": -14.48,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 22.34
@@ -29150,37 +29595,23 @@
         },
         {
           "candidateId": "photo-slideshow-memories-envato--scene-001",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 4,
           "exactComposition": {
-            "directEditableTextFields": 1,
-            "directTextFields": [
-              {
-                "compositionId": 2124190908,
-                "compositionPath": "02.Edit Comps/Scene 01/Scene 01",
-                "enabled": true,
-                "font": "adelia",
-                "fontSize": 140.0,
-                "id": "text:2124190908:4",
-                "inPoint": 2.0,
-                "layerIndex": 4,
-                "layerName": "MemorieS Photo Slideshow From Beehivee ",
-                "metadataComplete": true,
-                "outPoint": 8.033333333333333,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 8.0,
-            "frameCount": 240,
+            "durationSeconds": 6.83,
+            "frameCount": 205,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2124190908,
-            "mappingEvidence": "The opening title clip matches native Scene 01, which occupies the first interval of the native Final timeline.",
+            "id": 2124175420,
+            "mappingEvidence": "The reviewed 0.00–6.83 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 1,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "path": "02.Edit Comps/Scene 01/Scene 01",
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 8,
+            "measurementScope": "clip_window",
+            "path": "03.Render/Final",
             "recursiveEditableTextFields": 1,
             "recursiveTextFieldIds": [
               "text:2124190908:4"
@@ -29201,12 +29632,75 @@
                 "textKind": "point"
               }
             ],
-            "recursiveVisualMediaInputs": [],
-            "totalIndependentVisualMediaInputs": 0,
-            "unresolvedCount": 19,
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184813",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 02",
+                "projectItemId": 2124184813
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184826",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 01",
+                "projectItemId": 2124184826
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190763",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 01/Media 01",
+                "projectItemId": 2124190763
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190777",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 01/Media 02",
+                "projectItemId": 2124190777
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190805",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 01/Media 04",
+                "projectItemId": 2124190805
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190819",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 01/Media 05",
+                "projectItemId": 2124190819
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192374",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 03",
+                "projectItemId": 2124192374
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124193205",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 01/Media 03",
+                "projectItemId": 2124193205
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 8,
+            "unresolvedCount": 231,
             "width": 1920,
-            "workAreaDurationSeconds": 8.0,
-            "workAreaFrameCount": 240,
+            "window": {
+              "durationSeconds": 6.83,
+              "endSeconds": 6.83,
+              "precision": "exact",
+              "startSeconds": 0.0
+            },
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "photo-slideshow-memories-envato",
@@ -29231,9 +29725,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 8.0,
+            "nativeCompositionDurationSeconds": 6.83,
             "nativeDurationCoversUnmodifiedTask": false,
-            "nativeMinusTaskSeconds": -15.14,
+            "nativeMinusTaskSeconds": -16.310000000000002,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 23.14
@@ -31136,70 +31630,32 @@
         },
         {
           "candidateId": "scrolling-screen--review-011",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
-            "directEditableTextFields": 3,
-            "directTextFields": [
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Light",
-                "fontSize": 100.0,
-                "id": "text:2128067412:4",
-                "inPoint": 0.0,
-                "layerIndex": 4,
-                "layerName": "Text_1",
-                "metadataComplete": true,
-                "outPoint": 20.3,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067412:5",
-                "inPoint": 0.16666666666666666,
-                "layerIndex": 5,
-                "layerName": "Text_2",
-                "metadataComplete": true,
-                "outPoint": 20.46666666666667,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067412:6",
-                "inPoint": 0.33333333333333337,
-                "layerIndex": 6,
-                "layerName": "Text_3",
-                "metadataComplete": true,
-                "outPoint": 20.633333333333333,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 20.0,
-            "frameCount": 600,
+            "durationSeconds": 15.469999999999999,
+            "frameCount": 464,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2128067412,
-            "mappingEvidence": "The measured HD master places Backwards_5 at 100.067–115.600 seconds, matching the reviewed social-profile source window beginning at 100.733 seconds.",
+            "id": 2128066992,
+            "mappingEvidence": "The reviewed 100.06–115.53 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-            "recursiveEditableTextFields": 3,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 4,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 2,
+            "measurementScope": "clip_window",
+            "path": "Scrolling_Screen_Animations_HD",
+            "recursiveEditableTextFields": 7,
             "recursiveTextFieldIds": [
               "text:2128067412:4",
               "text:2128067412:5",
-              "text:2128067412:6"
+              "text:2128067412:6",
+              "text:2128067478:4",
+              "text:2128067503:4",
+              "text:2128067503:5",
+              "text:2128067503:6"
             ],
             "recursiveTextFields": [
               {
@@ -31243,21 +31699,98 @@
                 "metadataComplete": true,
                 "outPoint": 20.633333333333333,
                 "textKind": "point"
+              },
+              {
+                "compositionId": 2128067478,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_7",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067478:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067503:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Bold",
+                "fontSize": 200.0,
+                "id": "text:2128067503:5",
+                "inPoint": 0.16666666666666666,
+                "layerIndex": 5,
+                "layerName": "Text_2",
+                "metadataComplete": true,
+                "outPoint": 20.46666666666667,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067503:6",
+                "inPoint": 0.5,
+                "layerIndex": 6,
+                "layerName": "Text_3",
+                "metadataComplete": true,
+                "outPoint": 20.8,
+                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
               {
                 "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067854",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_7_Placeholder",
+                "projectItemId": 2128067854
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067870",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_8_Placeholder",
+                "projectItemId": 2128067870
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
                 "id": "comp:2128067966",
                 "kind": "visual",
-                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_5_Placeholder"
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_5_Placeholder",
+                "projectItemId": 2128067966
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 5,
+            "totalIndependentVisualMediaInputs": 3,
+            "unresolvedCount": 60,
             "width": 1920,
-            "workAreaDurationSeconds": 20.0,
-            "workAreaFrameCount": 600,
+            "window": {
+              "durationSeconds": 15.469999999999999,
+              "endSeconds": 115.53,
+              "precision": "exact",
+              "startSeconds": 100.06
+            },
+            "workAreaDurationSeconds": 135.4,
+            "workAreaFrameCount": 4062,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "scrolling-screen",
@@ -31282,9 +31815,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 20.0,
+            "nativeCompositionDurationSeconds": 15.469999999999999,
             "nativeDurationCoversUnmodifiedTask": false,
-            "nativeMinusTaskSeconds": -0.019999999999999574,
+            "nativeMinusTaskSeconds": -4.550000000000001,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 20.02
@@ -36458,17 +36991,17 @@
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 7.27,
+            "durationSeconds": 7.270000000000003,
             "frameCount": 218,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2124189426,
-            "mappingEvidence": "Native interval propagation measures the reviewed card-peel clip's exact local Scene 05 window; see the source-bound window-capacity artifact.",
+            "id": 2124175420,
+            "mappingEvidence": "The reviewed 28.93–36.20 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 0,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 6,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 9,
             "measurementScope": "clip_window",
-            "path": "02.Edit Comps/Scene 05/Scene 05",
+            "path": "03.Render/Final",
             "recursiveEditableTextFields": 0,
             "recursiveTextFieldIds": [],
             "recursiveTextFields": [],
@@ -36514,19 +37047,40 @@
                 "kind": "visual",
                 "path": "02.Edit Comps/Scene 05/Media 06",
                 "projectItemId": 2124189708
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190366",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 06/Media 01",
+                "projectItemId": 2124190366
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190381",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 06/Media 02",
+                "projectItemId": 2124190381
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190395",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 06/Media 03",
+                "projectItemId": 2124190395
               }
             ],
-            "totalIndependentVisualMediaInputs": 6,
-            "unresolvedCount": 20,
+            "totalIndependentVisualMediaInputs": 9,
+            "unresolvedCount": 231,
             "width": 1920,
             "window": {
-              "durationSeconds": 7.27,
-              "endSeconds": 12.2,
+              "durationSeconds": 7.270000000000003,
+              "endSeconds": 36.2,
               "precision": "exact",
-              "startSeconds": 4.93
+              "startSeconds": 28.93
             },
-            "workAreaDurationSeconds": 11.566666666666666,
-            "workAreaFrameCount": 347,
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "photo-slideshow-memories-envato",
@@ -36551,9 +37105,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 7.27,
+            "nativeCompositionDurationSeconds": 7.270000000000003,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 1.9699999999999998,
+            "nativeMinusTaskSeconds": 1.9700000000000033,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 5.3
@@ -36656,31 +37210,144 @@
       "candidateComparisons": [
         {
           "candidateId": "photo-slideshow-memories-envato--scene-003",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 8.0,
-            "frameCount": 240,
+            "durationSeconds": 7.859999999999999,
+            "frameCount": 236,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2124190091,
-            "mappingEvidence": "The third reviewed clip is the three-photo row and matches native Scene 03 in both sequence position and three-photo presentation.",
+            "id": 2124175420,
+            "mappingEvidence": "The reviewed 11.07–18.93 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 0,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "path": "02.Edit Comps/Scene 03/Scene 03",
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 12,
+            "measurementScope": "clip_window",
+            "path": "03.Render/Final",
             "recursiveEditableTextFields": 0,
             "recursiveTextFieldIds": [],
             "recursiveTextFields": [],
-            "recursiveVisualMediaInputs": [],
-            "totalIndependentVisualMediaInputs": 0,
-            "unresolvedCount": 19,
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184497",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 06",
+                "projectItemId": 2124184497
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184549",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 03",
+                "projectItemId": 2124184549
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184564",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 02",
+                "projectItemId": 2124184564
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184577",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 01",
+                "projectItemId": 2124184577
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184813",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 02",
+                "projectItemId": 2124184813
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184826",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 01",
+                "projectItemId": 2124184826
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190032",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 05",
+                "projectItemId": 2124190032
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190114",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 01",
+                "projectItemId": 2124190114
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190143",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 02",
+                "projectItemId": 2124190143
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190172",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 03",
+                "projectItemId": 2124190172
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190228",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 04",
+                "projectItemId": 2124190228
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191736",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 07",
+                "projectItemId": 2124191736
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191783",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 04",
+                "projectItemId": 2124191783
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191796",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 05",
+                "projectItemId": 2124191796
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192374",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 03",
+                "projectItemId": 2124192374
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 15,
+            "unresolvedCount": 231,
             "width": 1920,
-            "workAreaDurationSeconds": 8.0,
-            "workAreaFrameCount": 240,
+            "window": {
+              "durationSeconds": 7.859999999999999,
+              "endSeconds": 18.93,
+              "precision": "exact",
+              "startSeconds": 11.07
+            },
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "photo-slideshow-memories-envato",
@@ -36705,9 +37372,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 8.0,
+            "nativeCompositionDurationSeconds": 7.859999999999999,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 1.38,
+            "nativeMinusTaskSeconds": 1.2399999999999993,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 6.62
@@ -40767,31 +41434,144 @@
         },
         {
           "candidateId": "photo-slideshow-memories-envato--scene-003",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 3,
           "exactComposition": {
             "directEditableTextFields": 0,
             "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 8.0,
-            "frameCount": 240,
+            "durationSeconds": 7.859999999999999,
+            "frameCount": 236,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2124190091,
-            "mappingEvidence": "The third reviewed clip is the three-photo row and matches native Scene 03 in both sequence position and three-photo presentation.",
+            "id": 2124175420,
+            "mappingEvidence": "The reviewed 11.07–18.93 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
             "maxSimultaneouslyEnabledRecursiveTextFields": 0,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 0,
-            "path": "02.Edit Comps/Scene 03/Scene 03",
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 12,
+            "measurementScope": "clip_window",
+            "path": "03.Render/Final",
             "recursiveEditableTextFields": 0,
             "recursiveTextFieldIds": [],
             "recursiveTextFields": [],
-            "recursiveVisualMediaInputs": [],
-            "totalIndependentVisualMediaInputs": 0,
-            "unresolvedCount": 19,
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184497",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 06",
+                "projectItemId": 2124184497
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184549",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 03",
+                "projectItemId": 2124184549
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184564",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 02",
+                "projectItemId": 2124184564
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184577",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 01",
+                "projectItemId": 2124184577
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184813",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 02",
+                "projectItemId": 2124184813
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124184826",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 01",
+                "projectItemId": 2124184826
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190032",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 05",
+                "projectItemId": 2124190032
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190114",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 01",
+                "projectItemId": 2124190114
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190143",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 02",
+                "projectItemId": 2124190143
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190172",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 03",
+                "projectItemId": 2124190172
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124190228",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 03/Media 04",
+                "projectItemId": 2124190228
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191736",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 07",
+                "projectItemId": 2124191736
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191783",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 04",
+                "projectItemId": 2124191783
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124191796",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 04/Media 05",
+                "projectItemId": 2124191796
+              },
+              {
+                "evidence": "explicit_legacy_edit_media_composition",
+                "id": "comp:2124192374",
+                "kind": "visual",
+                "path": "02.Edit Comps/Scene 02/Media 03",
+                "projectItemId": 2124192374
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 15,
+            "unresolvedCount": 231,
             "width": 1920,
-            "workAreaDurationSeconds": 8.0,
-            "workAreaFrameCount": 240,
+            "window": {
+              "durationSeconds": 7.859999999999999,
+              "endSeconds": 18.93,
+              "precision": "exact",
+              "startSeconds": 11.07
+            },
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 1800,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "photo-slideshow-memories-envato",
@@ -40816,9 +41596,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 8.0,
+            "nativeCompositionDurationSeconds": 7.859999999999999,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 2.26,
+            "nativeMinusTaskSeconds": 2.119999999999999,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 5.74
@@ -43461,70 +44241,32 @@
         },
         {
           "candidateId": "scrolling-screen--review-011",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
-            "directEditableTextFields": 3,
-            "directTextFields": [
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Light",
-                "fontSize": 100.0,
-                "id": "text:2128067412:4",
-                "inPoint": 0.0,
-                "layerIndex": 4,
-                "layerName": "Text_1",
-                "metadataComplete": true,
-                "outPoint": 20.3,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067412:5",
-                "inPoint": 0.16666666666666666,
-                "layerIndex": 5,
-                "layerName": "Text_2",
-                "metadataComplete": true,
-                "outPoint": 20.46666666666667,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067412:6",
-                "inPoint": 0.33333333333333337,
-                "layerIndex": 6,
-                "layerName": "Text_3",
-                "metadataComplete": true,
-                "outPoint": 20.633333333333333,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 20.0,
-            "frameCount": 600,
+            "durationSeconds": 15.469999999999999,
+            "frameCount": 464,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2128067412,
-            "mappingEvidence": "The measured HD master places Backwards_5 at 100.067–115.600 seconds, matching the reviewed social-profile source window beginning at 100.733 seconds.",
+            "id": 2128066992,
+            "mappingEvidence": "The reviewed 100.06–115.53 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-            "recursiveEditableTextFields": 3,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 4,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 2,
+            "measurementScope": "clip_window",
+            "path": "Scrolling_Screen_Animations_HD",
+            "recursiveEditableTextFields": 7,
             "recursiveTextFieldIds": [
               "text:2128067412:4",
               "text:2128067412:5",
-              "text:2128067412:6"
+              "text:2128067412:6",
+              "text:2128067478:4",
+              "text:2128067503:4",
+              "text:2128067503:5",
+              "text:2128067503:6"
             ],
             "recursiveTextFields": [
               {
@@ -43568,21 +44310,98 @@
                 "metadataComplete": true,
                 "outPoint": 20.633333333333333,
                 "textKind": "point"
+              },
+              {
+                "compositionId": 2128067478,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_7",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067478:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067503:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Bold",
+                "fontSize": 200.0,
+                "id": "text:2128067503:5",
+                "inPoint": 0.16666666666666666,
+                "layerIndex": 5,
+                "layerName": "Text_2",
+                "metadataComplete": true,
+                "outPoint": 20.46666666666667,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067503:6",
+                "inPoint": 0.5,
+                "layerIndex": 6,
+                "layerName": "Text_3",
+                "metadataComplete": true,
+                "outPoint": 20.8,
+                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
               {
                 "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067854",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_7_Placeholder",
+                "projectItemId": 2128067854
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067870",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_8_Placeholder",
+                "projectItemId": 2128067870
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
                 "id": "comp:2128067966",
                 "kind": "visual",
-                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_5_Placeholder"
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_5_Placeholder",
+                "projectItemId": 2128067966
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 5,
+            "totalIndependentVisualMediaInputs": 3,
+            "unresolvedCount": 60,
             "width": 1920,
-            "workAreaDurationSeconds": 20.0,
-            "workAreaFrameCount": 600,
+            "window": {
+              "durationSeconds": 15.469999999999999,
+              "endSeconds": 115.53,
+              "precision": "exact",
+              "startSeconds": 100.06
+            },
+            "workAreaDurationSeconds": 135.4,
+            "workAreaFrameCount": 4062,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "scrolling-screen",
@@ -43607,9 +44426,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 20.0,
+            "nativeCompositionDurationSeconds": 15.469999999999999,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 11.66,
+            "nativeMinusTaskSeconds": 7.129999999999999,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 8.34
@@ -47100,70 +47919,32 @@
         },
         {
           "candidateId": "scrolling-screen--review-011",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 1,
           "exactComposition": {
-            "directEditableTextFields": 3,
-            "directTextFields": [
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Light",
-                "fontSize": 100.0,
-                "id": "text:2128067412:4",
-                "inPoint": 0.0,
-                "layerIndex": 4,
-                "layerName": "Text_1",
-                "metadataComplete": true,
-                "outPoint": 20.3,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067412:5",
-                "inPoint": 0.16666666666666666,
-                "layerIndex": 5,
-                "layerName": "Text_2",
-                "metadataComplete": true,
-                "outPoint": 20.46666666666667,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067412:6",
-                "inPoint": 0.33333333333333337,
-                "layerIndex": 6,
-                "layerName": "Text_3",
-                "metadataComplete": true,
-                "outPoint": 20.633333333333333,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 20.0,
-            "frameCount": 600,
+            "durationSeconds": 15.469999999999999,
+            "frameCount": 464,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2128067412,
-            "mappingEvidence": "The measured HD master places Backwards_5 at 100.067–115.600 seconds, matching the reviewed social-profile source window beginning at 100.733 seconds.",
+            "id": 2128066992,
+            "mappingEvidence": "The reviewed 100.06–115.53 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-            "recursiveEditableTextFields": 3,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 4,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 2,
+            "measurementScope": "clip_window",
+            "path": "Scrolling_Screen_Animations_HD",
+            "recursiveEditableTextFields": 7,
             "recursiveTextFieldIds": [
               "text:2128067412:4",
               "text:2128067412:5",
-              "text:2128067412:6"
+              "text:2128067412:6",
+              "text:2128067478:4",
+              "text:2128067503:4",
+              "text:2128067503:5",
+              "text:2128067503:6"
             ],
             "recursiveTextFields": [
               {
@@ -47207,21 +47988,98 @@
                 "metadataComplete": true,
                 "outPoint": 20.633333333333333,
                 "textKind": "point"
+              },
+              {
+                "compositionId": 2128067478,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_7",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067478:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067503:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Bold",
+                "fontSize": 200.0,
+                "id": "text:2128067503:5",
+                "inPoint": 0.16666666666666666,
+                "layerIndex": 5,
+                "layerName": "Text_2",
+                "metadataComplete": true,
+                "outPoint": 20.46666666666667,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067503:6",
+                "inPoint": 0.5,
+                "layerIndex": 6,
+                "layerName": "Text_3",
+                "metadataComplete": true,
+                "outPoint": 20.8,
+                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
               {
                 "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067854",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_7_Placeholder",
+                "projectItemId": 2128067854
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067870",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_8_Placeholder",
+                "projectItemId": 2128067870
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
                 "id": "comp:2128067966",
                 "kind": "visual",
-                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_5_Placeholder"
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_5_Placeholder",
+                "projectItemId": 2128067966
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 5,
+            "totalIndependentVisualMediaInputs": 3,
+            "unresolvedCount": 60,
             "width": 1920,
-            "workAreaDurationSeconds": 20.0,
-            "workAreaFrameCount": 600,
+            "window": {
+              "durationSeconds": 15.469999999999999,
+              "endSeconds": 115.53,
+              "precision": "exact",
+              "startSeconds": 100.06
+            },
+            "workAreaDurationSeconds": 135.4,
+            "workAreaFrameCount": 4062,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "scrolling-screen",
@@ -47246,9 +48104,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 20.0,
+            "nativeCompositionDurationSeconds": 15.469999999999999,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 7.48,
+            "nativeMinusTaskSeconds": 2.9499999999999993,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 12.52
@@ -49573,70 +50431,32 @@
         },
         {
           "candidateId": "scrolling-screen--review-011",
-          "compositionMappingStatus": "verified",
+          "compositionMappingStatus": "verified_window",
           "displayIdentityDemand": 0,
           "exactComposition": {
-            "directEditableTextFields": 3,
-            "directTextFields": [
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Light",
-                "fontSize": 100.0,
-                "id": "text:2128067412:4",
-                "inPoint": 0.0,
-                "layerIndex": 4,
-                "layerName": "Text_1",
-                "metadataComplete": true,
-                "outPoint": 20.3,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067412:5",
-                "inPoint": 0.16666666666666666,
-                "layerIndex": 5,
-                "layerName": "Text_2",
-                "metadataComplete": true,
-                "outPoint": 20.46666666666667,
-                "textKind": "point"
-              },
-              {
-                "compositionId": 2128067412,
-                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-                "enabled": true,
-                "font": "BebasNeuePro-Bold",
-                "fontSize": 200.0,
-                "id": "text:2128067412:6",
-                "inPoint": 0.33333333333333337,
-                "layerIndex": 6,
-                "layerName": "Text_3",
-                "metadataComplete": true,
-                "outPoint": 20.633333333333333,
-                "textKind": "point"
-              }
-            ],
+            "directEditableTextFields": 0,
+            "directTextFields": [],
             "directVisualMediaInputs": 0,
-            "durationSeconds": 20.0,
-            "frameCount": 600,
+            "durationSeconds": 15.469999999999999,
+            "frameCount": 464,
             "frameRate": 30.0,
             "height": 1080,
-            "id": 2128067412,
-            "mappingEvidence": "The measured HD master places Backwards_5 at 100.067–115.600 seconds, matching the reviewed social-profile source window beginning at 100.733 seconds.",
+            "id": 2128066992,
+            "mappingEvidence": "The reviewed 100.06–115.53 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json.",
             "maxSimultaneouslyEnabledDirectInputs": 0,
-            "maxSimultaneouslyEnabledRecursiveTextFields": 3,
-            "maxSimultaneouslyEnabledRecursiveVisualInputs": 1,
-            "path": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-            "recursiveEditableTextFields": 3,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 4,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 2,
+            "measurementScope": "clip_window",
+            "path": "Scrolling_Screen_Animations_HD",
+            "recursiveEditableTextFields": 7,
             "recursiveTextFieldIds": [
               "text:2128067412:4",
               "text:2128067412:5",
-              "text:2128067412:6"
+              "text:2128067412:6",
+              "text:2128067478:4",
+              "text:2128067503:4",
+              "text:2128067503:5",
+              "text:2128067503:6"
             ],
             "recursiveTextFields": [
               {
@@ -49680,21 +50500,98 @@
                 "metadataComplete": true,
                 "outPoint": 20.633333333333333,
                 "textKind": "point"
+              },
+              {
+                "compositionId": 2128067478,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_7",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067478:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067503:4",
+                "inPoint": 0.0,
+                "layerIndex": 4,
+                "layerName": "Text_1",
+                "metadataComplete": true,
+                "outPoint": 20.3,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Bold",
+                "fontSize": 200.0,
+                "id": "text:2128067503:5",
+                "inPoint": 0.16666666666666666,
+                "layerIndex": 5,
+                "layerName": "Text_2",
+                "metadataComplete": true,
+                "outPoint": 20.46666666666667,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2128067503,
+                "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_8",
+                "enabled": true,
+                "font": "BebasNeuePro-Light",
+                "fontSize": 100.0,
+                "id": "text:2128067503:6",
+                "inPoint": 0.5,
+                "layerIndex": 6,
+                "layerName": "Text_3",
+                "metadataComplete": true,
+                "outPoint": 20.8,
+                "textKind": "point"
               }
             ],
             "recursiveVisualMediaInputs": [
               {
                 "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067854",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_7_Placeholder",
+                "projectItemId": 2128067854
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2128067870",
+                "kind": "visual",
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Forward_8_Placeholder",
+                "projectItemId": 2128067870
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
                 "id": "comp:2128067966",
                 "kind": "visual",
-                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_5_Placeholder"
+                "path": "Scrolling_Screen_HD/Placeholders/Scrolling_Screen_HD_Backwards_5_Placeholder",
+                "projectItemId": 2128067966
               }
             ],
-            "totalIndependentVisualMediaInputs": 1,
-            "unresolvedCount": 5,
+            "totalIndependentVisualMediaInputs": 3,
+            "unresolvedCount": 60,
             "width": 1920,
-            "workAreaDurationSeconds": 20.0,
-            "workAreaFrameCount": 600,
+            "window": {
+              "durationSeconds": 15.469999999999999,
+              "endSeconds": 115.53,
+              "precision": "exact",
+              "startSeconds": 100.06
+            },
+            "workAreaDurationSeconds": 135.4,
+            "workAreaFrameCount": 4062,
             "workAreaStartSeconds": 0.0
           },
           "familyId": "scrolling-screen",
@@ -49719,9 +50616,9 @@
           "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
           "technicalEvidenceVerdict": "exact_technical_evidence_partial",
           "timingObservation": {
-            "nativeCompositionDurationSeconds": 20.0,
+            "nativeCompositionDurationSeconds": 15.469999999999999,
             "nativeDurationCoversUnmodifiedTask": true,
-            "nativeMinusTaskSeconds": 13.559999999999999,
+            "nativeMinusTaskSeconds": 9.029999999999998,
             "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
             "status": "observation_only_not_timing_fit",
             "taskAudioDurationSeconds": 6.44

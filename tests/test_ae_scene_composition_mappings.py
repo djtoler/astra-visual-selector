@@ -23,8 +23,8 @@ class ExactSceneCompositionMappings(unittest.TestCase):
     def test_review_states_remain_distinct(self):
         result, _ = self._comparisons()
         self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 73)
-        self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 48)
-        self.assertEqual(result["counts"]["verifiedWindowMappings"], 25)
+        self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 40)
+        self.assertEqual(result["counts"]["verifiedWindowMappings"], 33)
         self.assertEqual(result["counts"]["unresolvedUniqueSceneMappings"], 0)
         self.assertEqual(result["counts"]["unreviewedUniqueSceneMappings"], 2)
 
@@ -80,11 +80,11 @@ class ExactSceneCompositionMappings(unittest.TestCase):
         _, rows = self._comparisons()
         row = rows["archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a"]
         self.assertEqual(row["compositionMappingStatus"], "verified_window")
-        self.assertEqual(row["exactComposition"]["path"], "03. Other/Scenes/SCENE 01")
+        self.assertEqual(row["exactComposition"]["path"], "03. Other/Other/Content Sheet")
         self.assertEqual(row["exactComposition"]["measurementScope"], "clip_window")
         self.assertEqual(row["exactComposition"]["totalIndependentVisualMediaInputs"], 10)
         self.assertEqual(row["exactComposition"]["maxSimultaneouslyEnabledRecursiveVisualInputs"], 10)
-        self.assertAlmostEqual(row["exactComposition"]["durationSeconds"], 2.625)
+        self.assertAlmostEqual(row["exactComposition"]["durationSeconds"], 2.62)
         self.assertNotIn("exact_scene_to_native_composition_mapping", row["missingForFillableNow"])
 
     def test_carousel_slideshow_native_pilot_resolves_parent_composition(self):
@@ -131,7 +131,7 @@ class ExactSceneCompositionMappings(unittest.TestCase):
 
     def test_registry_can_expand_beyond_current_comparison_scope(self):
         mappings = json.loads((ROOT / "grammar" / "ae-scene-composition-mappings.json").read_text())
-        self.assertEqual(mappings["scope"]["uniqueScenes"], 282)
+        self.assertEqual(mappings["scope"]["uniqueScenes"], 300)
         result, _ = self._comparisons()
         self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 73)
 

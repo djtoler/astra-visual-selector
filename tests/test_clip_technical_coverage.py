@@ -30,10 +30,10 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
-            "mapped_verified": 90,
-            "mapped_verified_window": 176,
+            "mapped_verified": 82,
+            "mapped_verified_window": 202,
             "mapping_unreviewed": 14,
-            "mapping_unverified": 138,
+            "mapping_unverified": 120,
             "mogrt_not_aep": 5,
         })
 
@@ -110,6 +110,39 @@ class ClipTechnicalCoverage(unittest.TestCase):
             self.assertEqual(len(rows), count)
             self.assertEqual({row["technical"]["state"] for row in rows}, {"mapped_verified"})
 
+    def test_scrolling_screen_family_is_fully_window_verified(self):
+        rows = [row for row in self.ledger["clips"] if row["familyId"] == "scrolling-screen"]
+        self.assertEqual(len(rows), 11)
+        self.assertEqual({row["technical"]["state"] for row in rows}, {"mapped_verified_window"})
+        self.assertEqual(
+            {row["technical"]["composition"]["path"] for row in rows},
+            {"Scrolling_Screen_Animations_HD"},
+        )
+
+    def test_photo_memories_family_is_fully_window_verified(self):
+        rows = [
+            row for row in self.ledger["clips"]
+            if row["familyId"] == "photo-slideshow-memories-envato"
+        ]
+        self.assertEqual(len(rows), 10)
+        self.assertEqual({row["technical"]["state"] for row in rows}, {"mapped_verified_window"})
+        self.assertEqual(
+            {row["technical"]["composition"]["path"] for row in rows},
+            {"03.Render/Final"},
+        )
+
+    def test_moving_contact_sheet_family_is_fully_window_verified(self):
+        rows = [
+            row for row in self.ledger["clips"]
+            if row["familyId"] == "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc"
+        ]
+        self.assertEqual(len(rows), 8)
+        self.assertEqual({row["technical"]["state"] for row in rows}, {"mapped_verified_window"})
+        self.assertEqual(
+            {row["technical"]["composition"]["path"] for row in rows},
+            {"03. Other/Other/Content Sheet"},
+        )
+
     def test_unmapped_family_never_inherits_project_capacity(self):
         rows = [
             row for row in self.ledger["clips"]
@@ -120,9 +153,9 @@ class ClipTechnicalCoverage(unittest.TestCase):
 
     def test_linked_clips_carry_hash_backed_project_status_without_capacity(self):
         rows = {row["clipId"]: row for row in self.ledger["clips"]}
-        row = rows["scrolling-screen--review-002"]
+        row = rows["text-list-carousel--review-001"]
         self.assertEqual(row["technical"]["state"], "mapping_unverified")
-        self.assertEqual(row["technical"]["projectId"], "scrolling-screen-animations")
+        self.assertEqual(row["technical"]["projectId"], "text-list-carousel")
         self.assertEqual(len(row["technical"]["projectEvidence"]["sourceProjectSha256"]), 64)
         self.assertIsNone(row["technical"]["composition"])
 

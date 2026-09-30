@@ -5,7 +5,7 @@
     "comparisonPath": "reports/visualtask-ae-spec-comparison.json",
     "comparisonCommit": "6b3215c",
     "comparisonSha256": "884c9432ede0dadaf5aded3e860e6e04b2b869ec662db90314b9bdf6c1eef581",
-    "uniqueScenes": 282
+    "uniqueScenes": 300
   },
   "mappings": [
     {
@@ -215,34 +215,38 @@
     {
       "sceneId": "scrolling-screen--review-001",
       "projectId": "scrolling-screen-animations",
-      "status": "verified",
-      "compositionId": 410,
-      "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_1",
-      "evidence": "The measured HD master places Forward_1 at 0.000–10.000 seconds, matching the first reviewed screen movement beginning after the preview intro."
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-001",
+      "evidence": "The reviewed 0.93–10.00 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
     },
     {
       "sceneId": "scrolling-screen--review-004",
       "projectId": "scrolling-screen-animations",
-      "status": "verified",
-      "compositionId": 2128067337,
-      "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5",
-      "evidence": "The measured HD master places Forward_5 at 30.033–40.067 seconds, matching the reviewed 30.700–40.733 source window."
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-004",
+      "evidence": "The reviewed 30.03–40.06 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
     },
     {
       "sceneId": "scrolling-screen--review-005",
       "projectId": "scrolling-screen-animations",
-      "status": "verified",
-      "compositionId": 2128067164,
-      "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2",
-      "evidence": "The measured HD master places Forward_2 at 40.067–50.033 seconds, matching the reviewed 40.733–50.700 source window."
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-005",
+      "evidence": "The reviewed 40.06–50.03 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
     },
     {
       "sceneId": "scrolling-screen--review-011",
       "projectId": "scrolling-screen-animations",
-      "status": "verified",
-      "compositionId": 2128067412,
-      "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5",
-      "evidence": "The measured HD master places Backwards_5 at 100.067–115.600 seconds, matching the reviewed social-profile source window beginning at 100.733 seconds."
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-011",
+      "evidence": "The reviewed 100.06–115.53 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
     },
     {
       "sceneId": "text-list-carousel--review-002",
@@ -404,19 +408,19 @@
       "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a",
       "projectId": "moving-contact-sheets",
       "status": "verified_window",
-      "compositionId": 34842,
-      "compositionPath": "03. Other/Scenes/SCENE 01",
+      "compositionId": 34305,
+      "compositionPath": "03. Other/Other/Content Sheet",
       "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a",
-      "evidence": "The source preview is the native Content Sheet timeline. SCENE 01 occupies the opening interval, and its time-remap keys map master 0.000-2.625 seconds directly to local SCENE 01 0.000-2.625 seconds."
+      "evidence": "The reviewed 0.00–2.62 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json."
     },
     {
       "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a",
       "projectId": "moving-contact-sheets",
       "status": "verified_window",
-      "compositionId": 34990,
-      "compositionPath": "03. Other/Scenes/SCENE 04",
+      "compositionId": 34305,
+      "compositionPath": "03. Other/Other/Content Sheet",
       "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a",
-      "evidence": "SCENE 04 starts on the Content Sheet master at 9.0666667 seconds. Its linear time-remap keys map the reviewed 9.500-12.000 master interval to local SCENE 04 0.4333333-2.9333333 seconds; the posterizeTime(6) expression changes frame sampling, not the set of enabled media/text inputs in this window."
+      "evidence": "The reviewed 9.50–12.00 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json."
     },
     {
       "sceneId": "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004",
@@ -559,43 +563,47 @@
     {
       "sceneId": "photo-slideshow-memories-envato--scene-001",
       "projectId": "photo-slideshow-17f1e9a2",
-      "status": "verified",
-      "compositionId": 2124190908,
-      "compositionPath": "02.Edit Comps/Scene 01/Scene 01",
-      "evidence": "The opening title clip matches native Scene 01, which occupies the first interval of the native Final timeline."
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-001",
+      "evidence": "The reviewed 0.00–6.83 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
     },
     {
       "sceneId": "photo-slideshow-memories-envato--scene-003",
       "projectId": "photo-slideshow-17f1e9a2",
-      "status": "verified",
-      "compositionId": 2124190091,
-      "compositionPath": "02.Edit Comps/Scene 03/Scene 03",
-      "evidence": "The third reviewed clip is the three-photo row and matches native Scene 03 in both sequence position and three-photo presentation."
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-003",
+      "evidence": "The reviewed 11.07–18.93 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
     },
     {
       "sceneId": "photo-slideshow-memories-envato--scene-006",
       "projectId": "photo-slideshow-17f1e9a2",
       "status": "verified_window",
-      "compositionId": 2124189426,
-      "compositionPath": "02.Edit Comps/Scene 05/Scene 05",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
       "windowCapacityId": "photo-slideshow-memories-envato--scene-006",
-      "evidence": "Native interval propagation measures the reviewed card-peel clip's exact local Scene 05 window; see the source-bound window-capacity artifact."
+      "evidence": "The reviewed 28.93–36.20 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
     },
     {
       "sceneId": "photo-slideshow-memories-envato--scene-008",
       "projectId": "photo-slideshow-17f1e9a2",
-      "status": "verified",
-      "compositionId": 2124190597,
-      "compositionPath": "02.Edit Comps/Scene 07/Scene 07",
-      "evidence": "The eighth reviewed clip follows the two-part Scene 05 cut and therefore aligns to native Scene 07; its three-photo structure agrees with the native composition."
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-008",
+      "evidence": "The reviewed 40.30–48.70 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
     },
     {
       "sceneId": "photo-slideshow-memories-envato--scene-010",
       "projectId": "photo-slideshow-17f1e9a2",
-      "status": "verified",
-      "compositionId": 2124177936,
-      "compositionPath": "02.Edit Comps/Scene 09/Scene 09",
-      "evidence": "The closing title clip aligns to native Scene 09, the final scene in the native Final timeline, with matching closing-card structure."
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-010",
+      "evidence": "The reviewed 52.07–60.00 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
     },
     {
       "sceneId": "photo-slideshow-smooth-envato--scene-001",
@@ -2411,6 +2419,168 @@
       "projectId": "history-slideshow",
       "status": "unreviewed",
       "reason": "The approved catalog binds this Envato preview to the inspected History Slideshow source project, but the shortened publisher preview does not have a verified native composition/window alignment. No capacity is inherited until that alignment is reviewed."
+    },
+    {
+      "sceneId": "scrolling-screen--review-002",
+      "projectId": "scrolling-screen-animations",
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-002",
+      "evidence": "The reviewed 10.00–20.03 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
+    },
+    {
+      "sceneId": "scrolling-screen--review-003",
+      "projectId": "scrolling-screen-animations",
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-003",
+      "evidence": "The reviewed 20.03–30.03 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
+    },
+    {
+      "sceneId": "scrolling-screen--review-006",
+      "projectId": "scrolling-screen-animations",
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-006",
+      "evidence": "The reviewed 50.03–60.03 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
+    },
+    {
+      "sceneId": "scrolling-screen--review-007",
+      "projectId": "scrolling-screen-animations",
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-007",
+      "evidence": "The reviewed 60.03–70.03 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
+    },
+    {
+      "sceneId": "scrolling-screen--review-008",
+      "projectId": "scrolling-screen-animations",
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-008",
+      "evidence": "The reviewed 70.03–80.06 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
+    },
+    {
+      "sceneId": "scrolling-screen--review-009",
+      "projectId": "scrolling-screen-animations",
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-009",
+      "evidence": "The reviewed 80.06–90.06 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
+    },
+    {
+      "sceneId": "scrolling-screen--review-010",
+      "projectId": "scrolling-screen-animations",
+      "status": "verified_window",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "windowCapacityId": "scrolling-screen--review-010",
+      "evidence": "The reviewed 90.06–100.06 second boundary is bound by a constant preview offset to verified native child layers spanning this master composition; exact window capacity and receipts are frozen in reports/clip-mapping-batch-009.json."
+    },
+    {
+      "sceneId": "photo-slideshow-memories-envato--scene-002",
+      "projectId": "photo-slideshow-17f1e9a2",
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-002",
+      "evidence": "The reviewed 4.93–12.93 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
+    },
+    {
+      "sceneId": "photo-slideshow-memories-envato--scene-004",
+      "projectId": "photo-slideshow-17f1e9a2",
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-004",
+      "evidence": "The reviewed 17.07–24.70 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
+    },
+    {
+      "sceneId": "photo-slideshow-memories-envato--scene-005",
+      "projectId": "photo-slideshow-17f1e9a2",
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-005",
+      "evidence": "The reviewed 22.80–30.83 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
+    },
+    {
+      "sceneId": "photo-slideshow-memories-envato--scene-007",
+      "projectId": "photo-slideshow-17f1e9a2",
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-007",
+      "evidence": "The reviewed 34.30–42.20 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
+    },
+    {
+      "sceneId": "photo-slideshow-memories-envato--scene-009",
+      "projectId": "photo-slideshow-17f1e9a2",
+      "status": "verified_window",
+      "compositionId": 2124175420,
+      "compositionPath": "03.Render/Final",
+      "windowCapacityId": "photo-slideshow-memories-envato--scene-009",
+      "evidence": "The reviewed 46.80–53.93 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-010.json."
+    },
+    {
+      "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001b",
+      "projectId": "moving-contact-sheets",
+      "status": "verified_window",
+      "compositionId": 34305,
+      "compositionPath": "03. Other/Other/Content Sheet",
+      "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001b",
+      "evidence": "The reviewed 2.62–6.00 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json."
+    },
+    {
+      "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v2-002",
+      "projectId": "moving-contact-sheets",
+      "status": "verified_window",
+      "compositionId": 34305,
+      "compositionPath": "03. Other/Other/Content Sheet",
+      "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v2-002",
+      "evidence": "The reviewed 6.00–9.50 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json."
+    },
+    {
+      "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003b",
+      "projectId": "moving-contact-sheets",
+      "status": "verified_window",
+      "compositionId": 34305,
+      "compositionPath": "03. Other/Other/Content Sheet",
+      "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003b",
+      "evidence": "The reviewed 12.00–16.50 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json."
+    },
+    {
+      "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v2-004",
+      "projectId": "moving-contact-sheets",
+      "status": "verified_window",
+      "compositionId": 34305,
+      "compositionPath": "03. Other/Other/Content Sheet",
+      "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v2-004",
+      "evidence": "The reviewed 16.50–18.25 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json."
+    },
+    {
+      "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-005a",
+      "projectId": "moving-contact-sheets",
+      "status": "verified_window",
+      "compositionId": 34305,
+      "compositionPath": "03. Other/Other/Content Sheet",
+      "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-005a",
+      "evidence": "The reviewed 18.25–19.75 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json."
+    },
+    {
+      "sceneId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-005b",
+      "projectId": "moving-contact-sheets",
+      "status": "verified_window",
+      "compositionId": 34305,
+      "compositionPath": "03. Other/Other/Content Sheet",
+      "windowCapacityId": "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-005b",
+      "evidence": "The reviewed 19.75–21.40 second boundary is bound to one exact native master-window anchor plus verified child layers spanning this master timeline; exact window capacity and receipts are frozen in reports/clip-mapping-batch-011.json."
     }
   ]
 }

@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "batchId": "clip-mapping-batch-009",
+  "activationState": "reviewed_exact_window_batch",
+  "renderingAuthorized": false,
+  "registryPath": "grammar/ae-scene-composition-mappings.json",
+  "sources": {
+    "reviewCatalog": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/review-catalog.json",
+      "sha256": "6c8a770d5c4c5370121eedc2f686eec10341efbd3e3e9e3faaf8be2721c64a32"
+    },
+    "approvedCatalog": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/catalog.json",
+      "sha256": "94025f7e023bc6b1fcfb15dc80200e410ebcd04ac622e4d6b440d3d9b8965494"
+    },
+    "sceneLibraryScenes": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/scenes.json",
+      "sha256": "368c300502e0cb0d54687f3ca89613db52204c4baec82f6f4b23a979bc02102e"
+    },
+    "technicalIndex": {
+      "path": "grammar/ae-template-technical-index.json",
+      "sha256": "c47f658b4c8a999721c36a31d562964138fbc06e6999b60849be57d5f4ebfc72"
+    },
+    "familyLinks": {
+      "path": "grammar/ae-template-spec-links.json",
+      "sha256": "8e19813ecbee775ea3b748810ec791042ce252043534021dc2a990cb2d2e16df"
+    },
+    "scrollingNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw/scrolling-screen-animations.json",
+      "sha256": "84b96f8b1f564fb702f870806f51ef1308a9edac8bf3887aa0403e240aca40e7"
+    }
+  },
+  "targetClipIds": [
+    "scrolling-screen--review-001",
+    "scrolling-screen--review-002",
+    "scrolling-screen--review-003",
+    "scrolling-screen--review-004",
+    "scrolling-screen--review-005",
+    "scrolling-screen--review-006",
+    "scrolling-screen--review-007",
+    "scrolling-screen--review-008",
+    "scrolling-screen--review-009",
+    "scrolling-screen--review-010",
+    "scrolling-screen--review-011"
+  ],
+  "families": [
+    {
+      "familyId": "scrolling-screen",
+      "projectId": "scrolling-screen-animations",
+      "sourceProjectSha256": "1054d82e0eb4b42cd74e04538db713e5b7abb698621f354d2c0ffa9962fed22d",
+      "compositionId": 2128066992,
+      "compositionPath": "Scrolling_Screen_Animations_HD",
+      "nativeDurationSeconds": 135.4,
+      "nativeReportSource": "scrollingNative",
+      "boundarySource": "review_catalog",
+      "endClampToleranceSeconds": 0.02,
+      "anchors": [
+        "scrolling-screen--review-001",
+        "scrolling-screen--review-004",
+        "scrolling-screen--review-005",
+        "scrolling-screen--review-011"
+      ],
+      "alignmentEvidence": {
+        "mode": "verified_master_child_anchors",
+        "previewToNativeOffsetSeconds": 0.6666666666666666,
+        "boundaryToleranceSeconds": 0.02,
+        "anchorChildBindings": [
+          {
+            "clipId": "scrolling-screen--review-001",
+            "compositionId": 410,
+            "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_1"
+          },
+          {
+            "clipId": "scrolling-screen--review-004",
+            "compositionId": 2128067337,
+            "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_5"
+          },
+          {
+            "clipId": "scrolling-screen--review-005",
+            "compositionId": 2128067164,
+            "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Forward_2"
+          },
+          {
+            "clipId": "scrolling-screen--review-011",
+            "compositionId": 2128067412,
+            "compositionPath": "Scrolling_Screen_HD/Scrolling_Screen_HD_Backwards_5"
+          }
+        ]
+      },
+      "supersedeClipIds": [
+        "scrolling-screen--review-001",
+        "scrolling-screen--review-004",
+        "scrolling-screen--review-005",
+        "scrolling-screen--review-011"
+      ],
+      "targetClipIds": [
+        "scrolling-screen--review-001",
+        "scrolling-screen--review-002",
+        "scrolling-screen--review-003",
+        "scrolling-screen--review-004",
+        "scrolling-screen--review-005",
+        "scrolling-screen--review-006",
+        "scrolling-screen--review-007",
+        "scrolling-screen--review-008",
+        "scrolling-screen--review-009",
+        "scrolling-screen--review-010",
+        "scrolling-screen--review-011"
+      ]
+    }
+  ]
+}

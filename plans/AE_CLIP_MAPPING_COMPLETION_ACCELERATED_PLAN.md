@@ -199,3 +199,15 @@ The explicit named-terminal route requires a one-to-one match between every sema
 All 14 History Slideshow publisher clips are now linked to the hash-bound inspected source project, eliminating `project_unlinked`, but remain explicitly `mapping_unreviewed` with no inherited capacity because the shortened preview has not been aligned to native compositions/windows.
 
 Current full-library coverage is 90 `mapped_verified`, 176 `mapped_verified_window`, five approximate-window mappings, 138 `mapping_unverified`, 14 `mapping_unreviewed`, and five excluded MOGRT clips. That is 266 exact verified composition/window mappings out of 428 clips. Seventy-one focused fail-closed mapping, coverage, calibration, comparison, and window tests pass. No new rendering or After Effects session was required.
+
+## Execution checkpoint: aligned-master batches 009–011
+
+Eighteen additional unresolved clips were promoted through three complete source-bound master-timeline families:
+
+- seven remaining Scrolling Screen clips, producing eleven exact windows on the native HD master after four verified child anchors established a constant 0.6667-second publisher-preview offset;
+- five remaining Photo Slideshow Memories clips, producing ten exact windows on the native 60-second Final composition from one existing exact master-window anchor plus four verified child-scene anchors spanning the timeline; and
+- six remaining Moving Contact Sheets clips, producing eight exact windows on the native Content Sheet master from two exact linear time-remap anchors in its verified 21.4-second publisher-preview prefix.
+
+The new validators fail closed on changed source hashes, wrong master or child composition identity, insufficient anchors, stale promoted-anchor identity, unsupported time remapping, insufficient child overlap, inconsistent preview/native duration, excessive unreviewed tail, incomplete family scope, or changed saved reports. Existing child mappings were superseded only where explicitly listed, and every clip now receives capacity measured inside its exact master window rather than inheriting whole-composition or child-composition capacity.
+
+Current full-library coverage is 82 `mapped_verified`, 202 `mapped_verified_window`, five approximate-window mappings, 120 `mapping_unverified`, 14 `mapping_unreviewed`, and five excluded MOGRT clips. That is 284 exact verified composition/window mappings out of 428 clips. No new rendering or After Effects session was required.

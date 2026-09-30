@@ -222,5 +222,144 @@ class EditorCheckpointWindowBatch(unittest.TestCase):
         self.assertEqual(self.report_path.read_text(), subject.dumps(subject.build_report(self.request)))
 
 
+class MasterChildAnchorWindowBatch(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.request_path = ROOT / "clip-mapping-batches" / "batch-009" / "request.json"
+        cls.report_path = ROOT / "reports" / "clip-mapping-batch-009.json"
+        cls.request = json.loads(cls.request_path.read_text())
+        cls.report = subject.build_report(cls.request)
+
+    def test_scrolling_screen_has_11_exact_master_windows(self):
+        self.assertEqual(self.report["summary"], {
+            "families": 1,
+            "anchors": 4,
+            "exactWindows": 11,
+            "errors": 0,
+        })
+        evidence = self.report["families"][0]["alignmentEvidence"]
+        self.assertEqual(evidence["mode"], "verified_master_child_anchors")
+        self.assertEqual(evidence["anchorCount"], 4)
+        self.assertGreaterEqual(evidence["matchedBoundaryEdges"], 4)
+
+    def test_offset_places_known_windows_on_native_master(self):
+        proposals = {row["clipId"]: row for row in self.report["proposals"]}
+        self.assertAlmostEqual(proposals["scrolling-screen--review-004"]["window"]["startSeconds"], 30.03)
+        self.assertAlmostEqual(proposals["scrolling-screen--review-005"]["window"]["endSeconds"], 50.03)
+        self.assertEqual(
+            {row["nativeFacts"]["absoluteMediaSlots"] for row in proposals.values()},
+            {1, 2, 3},
+        )
+
+    def test_saved_report_is_deterministic(self):
+        saved = json.loads(self.report_path.read_text())
+        self.assertEqual(subject.validate_report(saved, self.request), self.report["summary"])
+        self.assertEqual(self.report_path.read_text(), subject.dumps(subject.build_report(self.request)))
+
+    def test_changed_preview_offset_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["previewToNativeOffsetSeconds"] = 0.5
+        with self.assertRaisesRegex(ValueError, "boundary mismatch|does not prove preview offset"):
+            subject.build_report(broken)
+
+    def test_too_few_master_child_anchors_fail_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["anchors"] = broken["families"][0]["anchors"][:2]
+        with self.assertRaisesRegex(ValueError, "at least three anchors"):
+            subject.build_report(broken)
+
+
+class MixedMasterTimelineWindowBatch(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.request_path = ROOT / "clip-mapping-batches" / "batch-010" / "request.json"
+        cls.report_path = ROOT / "reports" / "clip-mapping-batch-010.json"
+        cls.request = json.loads(cls.request_path.read_text())
+        cls.report = subject.build_report(cls.request)
+
+    def test_photo_memories_has_10_exact_master_windows(self):
+        self.assertEqual(self.report["summary"], {
+            "families": 1,
+            "anchors": 5,
+            "exactWindows": 10,
+            "errors": 0,
+        })
+        evidence = self.report["families"][0]["alignmentEvidence"]
+        self.assertEqual(evidence["mode"], "verified_mixed_master_timeline_anchors")
+        self.assertEqual(evidence["masterWindowAnchorCount"], 1)
+        self.assertEqual(evidence["childAnchorCount"], 4)
+        self.assertGreaterEqual(evidence["minimumObservedChildOverlapRatio"], 0.7)
+
+    def test_encoded_end_is_clamped_to_native_timeline(self):
+        proposal = next(
+            row for row in self.report["proposals"]
+            if row["clipId"] == "photo-slideshow-memories-envato--scene-010"
+        )
+        self.assertEqual(proposal["window"]["endSeconds"], 60.0)
+
+    def test_saved_report_is_deterministic(self):
+        saved = json.loads(self.report_path.read_text())
+        self.assertEqual(subject.validate_report(saved, self.request), self.report["summary"])
+        self.assertEqual(self.report_path.read_text(), subject.dumps(subject.build_report(self.request)))
+
+    def test_changed_preview_duration_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["previewDurationSeconds"] = 59.0
+        with self.assertRaisesRegex(ValueError, "preview duration mismatch"):
+            subject.build_report(broken)
+
+    def test_incomplete_semantic_family_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["targetClipIds"].pop()
+        with self.assertRaisesRegex(ValueError, "complete semantic family"):
+            subject.build_report(broken)
+
+
+class TruncatedPrefixMasterWindowBatch(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.request_path = ROOT / "clip-mapping-batches" / "batch-011" / "request.json"
+        cls.report_path = ROOT / "reports" / "clip-mapping-batch-011.json"
+        cls.request = json.loads(cls.request_path.read_text())
+        cls.report = subject.build_report(cls.request)
+
+    def test_contact_sheet_has_8_exact_prefix_windows(self):
+        self.assertEqual(self.report["summary"], {
+            "families": 1,
+            "anchors": 2,
+            "exactWindows": 8,
+            "errors": 0,
+        })
+        evidence = self.report["families"][0]["alignmentEvidence"]
+        self.assertEqual(evidence["mode"], "verified_mixed_master_timeline_anchors")
+        self.assertEqual(evidence["previewCoverageMode"], "truncated_prefix")
+        self.assertEqual(evidence["masterWindowAnchorCount"], 2)
+        self.assertIsNone(evidence["minimumObservedChildOverlapRatio"])
+
+    def test_prefix_windows_stop_before_native_master_end(self):
+        ends = [row["window"]["endSeconds"] for row in self.report["proposals"]]
+        self.assertEqual(max(ends), 21.4)
+        self.assertLess(max(ends), self.report["families"][0]["nativeDurationSeconds"])
+
+    def test_saved_report_is_deterministic(self):
+        saved = json.loads(self.report_path.read_text())
+        self.assertEqual(subject.validate_report(saved, self.request), self.report["summary"])
+        self.assertEqual(self.report_path.read_text(), subject.dumps(subject.build_report(self.request)))
+
+    def test_excessive_unreviewed_tail_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["families"][0]["alignmentEvidence"]["maximumTruncatedTailSeconds"] = 3.0
+        with self.assertRaisesRegex(ValueError, "truncated preview mismatch"):
+            subject.build_report(broken)
+
+    def test_one_prefix_anchor_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        family = broken["families"][0]
+        family["anchors"] = family["anchors"][:1]
+        family["alignmentEvidence"]["masterWindowAnchorBindings"] = family["alignmentEvidence"]["masterWindowAnchorBindings"][:1]
+        with self.assertRaisesRegex(ValueError, "anchor bindings incomplete"):
+            subject.build_report(broken)
+
+
 if __name__ == "__main__":
     unittest.main()
