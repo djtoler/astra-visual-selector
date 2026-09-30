@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "batchId": "clip-mapping-batch-007",
+  "activationState": "reviewed_native_mapping_batch",
+  "renderingAuthorized": false,
+  "registryPath": "grammar/ae-scene-composition-mappings.json",
+  "sources": {
+    "reviewCatalog": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/selector-prototype/intake/review-catalog.json",
+      "sha256": "6c8a770d5c4c5370121eedc2f686eec10341efbd3e3e9e3faaf8be2721c64a32"
+    },
+    "approvedCatalog": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/catalog.json",
+      "sha256": "94025f7e023bc6b1fcfb15dc80200e410ebcd04ac622e4d6b440d3d9b8965494"
+    },
+    "technicalIndex": {
+      "path": "grammar/ae-template-technical-index.json",
+      "sha256": "c47f658b4c8a999721c36a31d562964138fbc06e6999b60849be57d5f4ebfc72"
+    },
+    "familyLinks": {
+      "path": "grammar/ae-template-spec-links.json",
+      "sha256": "8e19813ecbee775ea3b748810ec791042ce252043534021dc2a990cb2d2e16df"
+    },
+    "counterNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-29-registry-gap-v1/native-batch/raw/counters.json",
+      "sha256": "11eccc2f91847e2e37912090f344c4dd31951559304ed1f92e8da54fdfc2215d"
+    },
+    "dropoffNative": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-capacity-lab/runs/2026-09-27-local-capacity-v1/batch-03-remaining-native/raw-static/project.json",
+      "sha256": "b159ec4329e600378c2b5438c27cf42f0a4284256d22781e5ee2fa3746378c0c"
+    }
+  },
+  "families": [
+    {
+      "familyId": "counters-envato",
+      "projectId": "counters",
+      "sourceProjectSha256": "9c609914363651a29402da557baa526e62e40c171d5e06dba7c1409e2d96061e",
+      "clipIdPattern": "^counters-envato--scene-(?P<ordinal>\\d{3})$",
+      "compositionPathPattern": "^Counters/Counter (?P<ordinal>\\d{2})/Counter \\d{2}$",
+      "ordinalOffset": 0,
+      "nativeReportSource": "counterNative",
+      "nativeEvidenceMode": "exact_terminal_set",
+      "expectedTerminalOrdinals": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "anchors": [
+        {
+          "clipId": "counters-envato--scene-002",
+          "projectId": "counters",
+          "status": "verified",
+          "compositionId": 17651,
+          "compositionPath": "Counters/Counter 02/Counter 02"
+        },
+        {
+          "clipId": "counters-envato--scene-003",
+          "projectId": "counters",
+          "status": "verified",
+          "compositionId": 17662,
+          "compositionPath": "Counters/Counter 03/Counter 03"
+        },
+        {
+          "clipId": "counters-envato--scene-004",
+          "projectId": "counters",
+          "status": "verified",
+          "compositionId": 17673,
+          "compositionPath": "Counters/Counter 04/Counter 04"
+        }
+      ],
+      "targetClipIds": [
+        "counters-envato--scene-001",
+        "counters-envato--scene-005",
+        "counters-envato--scene-006",
+        "counters-envato--scene-007",
+        "counters-envato--scene-008",
+        "counters-envato--scene-009"
+      ]
+    },
+    {
+      "familyId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc",
+      "projectId": "project",
+      "sourceProjectSha256": "760ce79b7366c167e7c06179ad2922e0047384663166f26b496812bb1ed3ba9b",
+      "clipIdPattern": "^archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-(?P<ordinal>\\d{3})$",
+      "compositionPathPattern": "^Horizontal/carousel (?P<ordinal>\\d{2})/carousel \\d{2}/Main Comp$",
+      "ordinalOffset": 0,
+      "nativeReportSource": "dropoffNative",
+      "nativeEvidenceMode": "exact_terminal_set",
+      "expectedTerminalOrdinals": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "anchors": [
+        {
+          "clipId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-002",
+          "projectId": "project",
+          "status": "verified",
+          "compositionId": 2355,
+          "compositionPath": "Horizontal/carousel 02/carousel 02/Main Comp"
+        },
+        {
+          "clipId": "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-004",
+          "projectId": "project",
+          "status": "verified",
+          "compositionId": 4733,
+          "compositionPath": "Horizontal/carousel 04/carousel 04/Main Comp"
+        }
+      ],
+      "targetClipIds": [
+        "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-001",
+        "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003"
+      ]
+    }
+  ],
+  "targetClipIds": [
+    "counters-envato--scene-001",
+    "counters-envato--scene-005",
+    "counters-envato--scene-006",
+    "counters-envato--scene-007",
+    "counters-envato--scene-008",
+    "counters-envato--scene-009",
+    "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-001",
+    "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003"
+  ]
+}

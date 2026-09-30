@@ -6,14 +6,14 @@
     "exactTaskAudioSpans": 41,
     "exactTechnicalEvidencePartial": 148,
     "exactTimingObservations": 148,
-    "mappedCandidates": 148,
-    "projectTechnicalEvidencePartial": 0,
+    "mappedCandidates": 150,
+    "projectTechnicalEvidencePartial": 2,
     "sourceBeats": 40,
     "splitBeats": 1,
-    "unmappedCandidates": 109,
+    "unmappedCandidates": 107,
     "unresolvedTaskAudioSpans": 0,
     "unresolvedUniqueSceneMappings": 0,
-    "unreviewedUniqueSceneMappings": 0,
+    "unreviewedUniqueSceneMappings": 2,
     "verifiedUniqueSceneMappings": 73,
     "verifiedWholeCompositionMappings": 48,
     "verifiedWindowMappings": 25,
@@ -66,9 +66,9 @@
       "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
     },
     "sceneMappings": {
-      "bytes": 124818,
+      "bytes": 138393,
       "path": "grammar/ae-scene-composition-mappings.json",
-      "sha256": "86590486588cf225d5f08515185d8cd3cab1695236c056b48a490f7ae415eb73"
+      "sha256": "c146e38e0837756f6f0b91198b2f1bf9da6c9007bc69275070544b6f1b0aaba0"
     },
     "sceneWindowCapacities": {
       "bytes": 1460319,
@@ -76,9 +76,9 @@
       "sha256": "1f271ce3e592d3ba4d205f81c415632dfe682066251ca32dfddc4c36f4be3eaf"
     },
     "specLinks": {
-      "bytes": 15373,
+      "bytes": 15895,
       "path": "grammar/ae-template-spec-links.json",
-      "sha256": "bfe4022aa0d0546d9e153586cad10311656fde3945c40347845a7d23f661d726"
+      "sha256": "8e19813ecbee775ea3b748810ec791042ce252043534021dc2a990cb2d2e16df"
     },
     "taskRequirements": {
       "bytes": 158375,
@@ -15169,7 +15169,13 @@
         },
         {
           "candidateId": "history-slideshow-envato--scene-001",
+          "compositionMappingStatus": "unreviewed",
+          "displayIdentityDemand": 1,
           "familyId": "history-slideshow-envato",
+          "mappingUnreviewed": {
+            "candidateCompositionPaths": [],
+            "reason": "The approved catalog binds this Envato preview to the inspected History Slideshow source project, but the shortened publisher preview does not have a verified native composition/window alignment. No capacity is inherited until that alignment is reviewed."
+          },
           "missingForFillableNow": [
             "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
@@ -15181,9 +15187,17 @@
             "duration_adjustment_policy_and_timing_fit",
             "media_asset_availability"
           ],
-          "reason": "No explicit reviewed link connects this candidate family to a measured AE project.",
-          "technicalEvidenceVerdict": "technical_spec_unmapped",
-          "verdict": "technical_spec_unmapped"
+          "projectCapacityEnvelope": {
+            "maxDurationSeconds": 180.0,
+            "maxRecursiveEditableTextFields": 55,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 2,
+            "maxTotalIndependentVisualMediaInputs": 18
+          },
+          "projectEvidenceStatus": "two_pass_exact_agreement",
+          "projectId": "history-slideshow",
+          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "project_technical_evidence_partial",
+          "verdict": "project_technical_evidence_partial"
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-033",
@@ -46457,7 +46471,13 @@
         },
         {
           "candidateId": "history-slideshow-envato--scene-014",
+          "compositionMappingStatus": "unreviewed",
+          "displayIdentityDemand": 1,
           "familyId": "history-slideshow-envato",
+          "mappingUnreviewed": {
+            "candidateCompositionPaths": [],
+            "reason": "The approved catalog binds this Envato preview to the inspected History Slideshow source project, but the shortened publisher preview does not have a verified native composition/window alignment. No capacity is inherited until that alignment is reviewed."
+          },
           "missingForFillableNow": [
             "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
@@ -46469,9 +46489,17 @@
             "duration_adjustment_policy_and_timing_fit",
             "media_asset_availability"
           ],
-          "reason": "No explicit reviewed link connects this candidate family to a measured AE project.",
-          "technicalEvidenceVerdict": "technical_spec_unmapped",
-          "verdict": "technical_spec_unmapped"
+          "projectCapacityEnvelope": {
+            "maxDurationSeconds": 180.0,
+            "maxRecursiveEditableTextFields": 55,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 2,
+            "maxTotalIndependentVisualMediaInputs": 18
+          },
+          "projectEvidenceStatus": "two_pass_exact_agreement",
+          "projectId": "history-slideshow",
+          "reason": "A project-wide measurement envelope is available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "project_technical_evidence_partial",
+          "verdict": "project_technical_evidence_partial"
         },
         {
           "candidateId": "intro-slideshow-full-720p--scene-033",

@@ -30,11 +30,11 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertNotIn(None, [row["technical"]["state"] for row in self.ledger["clips"]])
         self.assertEqual(self.ledger["counts"]["byTechnicalState"], {
             "mapped_composition_window_approximate": 5,
-            "mapped_verified": 73,
+            "mapped_verified": 90,
             "mapped_verified_window": 176,
-            "mapping_unverified": 155,
+            "mapping_unreviewed": 14,
+            "mapping_unverified": 138,
             "mogrt_not_aep": 5,
-            "project_unlinked": 14,
         })
 
     def test_375_capability_pass_is_not_mistaken_for_catalog_scope(self):
@@ -91,6 +91,25 @@ class ClipTechnicalCoverage(unittest.TestCase):
             self.assertEqual(technical["state"], "mapped_verified")
             self.assertEqual(technical["composition"], {"id": composition_id, "path": path})
 
+    def test_counter_family_is_fully_exact_mapped(self):
+        rows = [row for row in self.ledger["clips"] if row["familyId"] == "counters-envato"]
+        self.assertEqual(len(rows), 9)
+        self.assertEqual({row["technical"]["state"] for row in rows}, {"mapped_verified"})
+        self.assertEqual(
+            {row["technical"]["composition"]["path"] for row in rows},
+            {f"Counters/Counter {ordinal:02d}/Counter {ordinal:02d}" for ordinal in range(1, 10)},
+        )
+
+    def test_explicit_carousel_terminal_families_are_fully_exact_mapped(self):
+        for family_id, count in {
+            "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc": 8,
+            "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc": 4,
+            "archive3-comparison-pack-ae": 7,
+        }.items():
+            rows = [row for row in self.ledger["clips"] if row["familyId"] == family_id]
+            self.assertEqual(len(rows), count)
+            self.assertEqual({row["technical"]["state"] for row in rows}, {"mapped_verified"})
+
     def test_unmapped_family_never_inherits_project_capacity(self):
         rows = [
             row for row in self.ledger["clips"]
@@ -107,6 +126,9 @@ class ClipTechnicalCoverage(unittest.TestCase):
         self.assertEqual(len(row["technical"]["projectEvidence"]["sourceProjectSha256"]), 64)
         self.assertIsNone(row["technical"]["composition"])
 
+    def test_every_ae_family_is_linked_to_a_source_project_or_typed_exclusion(self):
+        self.assertNotIn("project_unlinked", self.ledger["counts"]["byTechnicalState"])
+
     def test_exact_hash_reconciliation_links_minimalism_and_current_comparison_pack(self):
         rows = {row["clipId"]: row for row in self.ledger["clips"]}
         minimalism = rows["minimalism-slideshow--review-001"]
@@ -117,7 +139,7 @@ class ClipTechnicalCoverage(unittest.TestCase):
             minimalism["technical"]["projectEvidence"]["sourceProjectSha256"],
             "1da67cfa7485305b45de0be92026b7c02253c684880b8be277dfe7a55f43ab26",
         )
-        self.assertEqual(comparison["technical"]["state"], "mapping_unverified")
+        self.assertEqual(comparison["technical"]["state"], "mapped_verified")
         self.assertEqual(comparison["technical"]["projectId"], "comparison-pack")
         self.assertEqual(
             comparison["technical"]["projectEvidence"]["sourceProjectSha256"],

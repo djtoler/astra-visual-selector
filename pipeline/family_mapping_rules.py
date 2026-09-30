@@ -51,6 +51,128 @@ def _ordinal(pattern: str, value: str, label: str) -> int:
     return int(match.group("ordinal"))
 
 
+def _build_explicit_terminal_family(
+    *,
+    family: dict[str, Any],
+    project: dict[str, Any],
+    raw: dict[str, Any],
+    semantic: dict[str, dict[str, Any]],
+    registry: dict[str, dict[str, Any]],
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    """Validate a complete one-to-one terminal set with explicit semantic bindings."""
+    family_id = family["familyId"]
+    project_id = family["projectId"]
+    anchors = family["anchors"]
+    targets = family["targetClipIds"]
+    bindings = family.get("terminalBindings", [])
+    if len(anchors) < 2:
+        raise ValueError(f"family needs at least two anchors: {family_id}")
+    if not bindings:
+        raise ValueError(f"explicit terminal bindings missing: {family_id}")
+
+    binding_by_clip: dict[str, dict[str, Any]] = {}
+    binding_by_composition: dict[tuple[int, str], dict[str, Any]] = {}
+    for binding in bindings:
+        clip_id = binding["clipId"]
+        composition_key = (binding["compositionId"], binding["compositionPath"])
+        if clip_id in binding_by_clip or composition_key in binding_by_composition:
+            raise ValueError(f"duplicate explicit terminal binding: {family_id}")
+        if not str(binding.get("bindingEvidence", "")).strip():
+            raise ValueError(f"explicit binding lacks evidence: {clip_id}")
+        binding_by_clip[clip_id] = binding
+        binding_by_composition[composition_key] = binding
+
+    semantic_family_ids = {
+        clip_id for clip_id, row in semantic.items() if row["familyId"] == family_id
+    }
+    anchor_ids = {row["clipId"] for row in anchors}
+    requested_ids = anchor_ids | set(targets)
+    if (
+        set(binding_by_clip) != semantic_family_ids
+        or requested_ids != semantic_family_ids
+        or anchor_ids & set(targets)
+    ):
+        raise ValueError(f"batch does not cover exact semantic terminal set: {family_id}")
+
+    pattern = family["terminalCompositionPathPattern"]
+    technical_terminals = {
+        (row["id"], row["path"]): row
+        for row in project["compositions"]
+        if re.fullmatch(pattern, row["path"])
+    }
+    if set(binding_by_composition) != set(technical_terminals):
+        raise ValueError(f"technical index explicit terminal set changed: {family_id}")
+    raw_compositions = {row["id"]: row for row in raw["compositions"]}
+    for composition_id, composition_path in technical_terminals:
+        raw_composition = raw_compositions.get(composition_id)
+        if not raw_composition or raw_composition.get("path") != composition_path:
+            raise ValueError(f"native report explicit terminal mismatch: {family_id}:{composition_id}")
+
+    anchor_replay_errors = 0
+    for anchor in anchors:
+        clip_id = anchor["clipId"]
+        binding = binding_by_clip.get(clip_id)
+        current = registry.get(clip_id)
+        expected = {
+            "projectId": project_id,
+            "status": anchor["status"],
+            "compositionId": binding["compositionId"] if binding else None,
+            "compositionPath": binding["compositionPath"] if binding else None,
+        }
+        if not binding or not current or any(current.get(key) != value for key, value in expected.items()):
+            anchor_replay_errors += 1
+    if anchor_replay_errors:
+        raise ValueError(f"explicit terminal anchor replay failed: {family_id}")
+
+    proposals = []
+    for clip_id in targets:
+        clip = semantic.get(clip_id)
+        binding = binding_by_clip[clip_id]
+        if not clip or clip["familyId"] != family_id:
+            raise ValueError(f"target absent from family semantic catalog: {clip_id}")
+        composition = technical_terminals[(binding["compositionId"], binding["compositionPath"])]
+        proposal = {
+            "clipId": clip_id,
+            "familyId": family_id,
+            "projectId": project_id,
+            "status": "proposed_verified",
+            "compositionId": composition["id"],
+            "compositionPath": composition["path"],
+            "bindingEvidence": binding["bindingEvidence"],
+            "nativeFacts": {
+                "durationSeconds": composition["durationSeconds"],
+                "absoluteMediaSlots": composition["totalIndependentVisualMediaInputs"],
+                "maxSimultaneouslyEnabledInputs": composition["maxSimultaneouslyEnabledRecursiveVisualInputs"],
+                "editableTextFields": composition["recursiveEditableTextFields"],
+            },
+        }
+        current = registry.get(clip_id)
+        if current and (
+            current.get("status") != "verified"
+            or current.get("projectId") != project_id
+            or current.get("compositionId") != composition["id"]
+            or current.get("compositionPath") != composition["path"]
+        ):
+            raise ValueError(f"target conflicts with registry: {clip_id}")
+        proposals.append(proposal)
+
+    return ({
+        "familyId": family_id,
+        "projectId": project_id,
+        "rule": {
+            "nativeEvidence": {
+                "mode": "explicit_terminal_set",
+                "terminalCompositionCount": len(technical_terminals),
+            },
+            "anchorCount": len(anchors),
+            "anchorReplayErrors": anchor_replay_errors,
+            "bindingCount": len(bindings),
+        },
+        "proposalCount": len(proposals),
+        "proposals": proposals,
+    }, proposals)
+
+
 def build_report(request: dict[str, Any]) -> dict[str, Any]:
     if request.get("activationState") != "reviewed_native_mapping_batch":
         raise ValueError("mapping batch lacks reviewed native evidence")
@@ -86,6 +208,26 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
             raise ValueError(f"family/project source hash mismatch: {family_id}")
         if family["sourceProjectSha256"] != project["sourceProjectSha256"]:
             raise ValueError(f"request project source hash mismatch: {family_id}")
+
+        evidence_mode = family.get("nativeEvidenceMode", "master_timeline")
+        if evidence_mode == "explicit_terminal_set":
+            raw = read(source_paths[family["nativeReportSource"]])
+            if raw.get("sourceSha256") != project["sourceProjectSha256"]:
+                raise ValueError(f"native report source mismatch: {family_id}")
+            result, proposals = _build_explicit_terminal_family(
+                family=family,
+                project=project,
+                raw=raw,
+                semantic=semantic,
+                registry=registry,
+            )
+            for proposal in proposals:
+                if proposal["clipId"] in seen_targets:
+                    raise ValueError(f"duplicate target clip: {proposal['clipId']}")
+                seen_targets.add(proposal["clipId"])
+            family_results.append(result)
+            all_proposals.extend(proposals)
+            continue
 
         composition_by_ordinal = {}
         for composition in project["compositions"]:
@@ -136,18 +278,6 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
         if raw.get("sourceSha256") != project["sourceProjectSha256"]:
             raise ValueError(f"native report source mismatch: {family_id}")
         raw_compositions = {row["id"]: row for row in raw["compositions"]}
-        master = raw_compositions.get(family["masterCompositionId"])
-        if not master or master.get("path") != family["masterCompositionPath"]:
-            raise ValueError(f"native master missing: {family_id}")
-        candidate_ids = {row["id"] for row in composition_by_ordinal.values()}
-        master_layers = [
-            layer for layer in master.get("layers", [])
-            if layer.get("enabled", True) and layer.get("sourceId") in candidate_ids
-        ]
-        master_ordinals = []
-        for layer in sorted(master_layers, key=lambda row: (row.get("inPoint", 0), row.get("index", 0))):
-            path = raw_compositions[layer["sourceId"]]["path"]
-            master_ordinals.append(_ordinal(family["compositionPathPattern"], path, "master child"))
         required_ordinals = sorted({
             _ordinal(family["clipIdPattern"], clip_id, "target clip") + family["ordinalOffset"]
             for clip_id in family["targetClipIds"]
@@ -155,12 +285,46 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
             _ordinal(family["clipIdPattern"], row["clipId"], "anchor clip") + family["ordinalOffset"]
             for row in anchors
         })
-        if not set(required_ordinals).issubset(master_ordinals):
-            raise ValueError(f"native master lacks required terminal compositions: {family_id}")
-        if family.get("requireChronologicalOrder"):
-            filtered = [ordinal for ordinal in master_ordinals if ordinal in required_ordinals]
-            if filtered != sorted(filtered):
-                raise ValueError(f"native master order contradicts rule: {family_id}")
+        native_evidence = {"mode": evidence_mode}
+        if evidence_mode == "master_timeline":
+            master = raw_compositions.get(family["masterCompositionId"])
+            if not master or master.get("path") != family["masterCompositionPath"]:
+                raise ValueError(f"native master missing: {family_id}")
+            candidate_ids = {row["id"] for row in composition_by_ordinal.values()}
+            master_layers = [
+                layer for layer in master.get("layers", [])
+                if layer.get("enabled", True) and layer.get("sourceId") in candidate_ids
+            ]
+            master_ordinals = []
+            for layer in sorted(master_layers, key=lambda row: (row.get("inPoint", 0), row.get("index", 0))):
+                path = raw_compositions[layer["sourceId"]]["path"]
+                master_ordinals.append(_ordinal(family["compositionPathPattern"], path, "master child"))
+            if not set(required_ordinals).issubset(master_ordinals):
+                raise ValueError(f"native master lacks required terminal compositions: {family_id}")
+            if family.get("requireChronologicalOrder"):
+                filtered = [ordinal for ordinal in master_ordinals if ordinal in required_ordinals]
+                if filtered != sorted(filtered):
+                    raise ValueError(f"native master order contradicts rule: {family_id}")
+            native_evidence.update({
+                "masterCompositionId": family["masterCompositionId"],
+                "masterCompositionPath": family["masterCompositionPath"],
+                "masterOrdinals": master_ordinals,
+            })
+        elif evidence_mode == "exact_terminal_set":
+            expected = family.get("expectedTerminalOrdinals")
+            if expected != sorted(set(expected or [])) or not expected:
+                raise ValueError(f"invalid exact terminal ordinal set: {family_id}")
+            if sorted(composition_by_ordinal) != expected:
+                raise ValueError(f"technical index terminal set changed: {family_id}")
+            if required_ordinals != expected:
+                raise ValueError(f"batch does not cover exact terminal set: {family_id}")
+            for ordinal, composition in composition_by_ordinal.items():
+                raw_composition = raw_compositions.get(composition["id"])
+                if not raw_composition or raw_composition.get("path") != composition["path"]:
+                    raise ValueError(f"native report terminal mismatch: {family_id}:{ordinal}")
+            native_evidence["terminalOrdinals"] = expected
+        else:
+            raise ValueError(f"unsupported native evidence mode: {family_id}:{evidence_mode}")
 
         proposals = []
         for clip_id in family["targetClipIds"]:
@@ -199,19 +363,25 @@ def build_report(request: dict[str, Any]) -> dict[str, Any]:
                 raise ValueError(f"target conflicts with registry: {clip_id}")
             proposals.append(proposal)
             all_proposals.append(proposal)
+        rule = {
+            "ordinalOffset": family["ordinalOffset"],
+            "anchorCount": len(anchors),
+            "anchorOffsets": anchor_offsets,
+            "leaveOneOutErrors": leave_one_out_errors,
+            "requiredOrdinals": required_ordinals,
+        }
+        if evidence_mode == "master_timeline":
+            rule.update({
+                "nativeMasterCompositionId": family["masterCompositionId"],
+                "nativeMasterCompositionPath": family["masterCompositionPath"],
+                "masterOrdinals": native_evidence["masterOrdinals"],
+            })
+        else:
+            rule["nativeEvidence"] = native_evidence
         family_results.append({
             "familyId": family_id,
             "projectId": project_id,
-            "rule": {
-                "ordinalOffset": family["ordinalOffset"],
-                "anchorCount": len(anchors),
-                "anchorOffsets": anchor_offsets,
-                "leaveOneOutErrors": leave_one_out_errors,
-                "nativeMasterCompositionId": family["masterCompositionId"],
-                "nativeMasterCompositionPath": family["masterCompositionPath"],
-                "requiredOrdinals": required_ordinals,
-                "masterOrdinals": master_ordinals,
-            },
+            "rule": rule,
             "proposalCount": len(proposals),
             "proposals": proposals,
         })

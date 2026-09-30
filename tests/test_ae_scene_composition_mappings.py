@@ -26,7 +26,7 @@ class ExactSceneCompositionMappings(unittest.TestCase):
         self.assertEqual(result["counts"]["verifiedWholeCompositionMappings"], 48)
         self.assertEqual(result["counts"]["verifiedWindowMappings"], 25)
         self.assertEqual(result["counts"]["unresolvedUniqueSceneMappings"], 0)
-        self.assertEqual(result["counts"]["unreviewedUniqueSceneMappings"], 0)
+        self.assertEqual(result["counts"]["unreviewedUniqueSceneMappings"], 2)
 
     def test_exact_flow_scene_uses_native_composition_metrics(self):
         _, rows = self._comparisons()
@@ -131,7 +131,7 @@ class ExactSceneCompositionMappings(unittest.TestCase):
 
     def test_registry_can_expand_beyond_current_comparison_scope(self):
         mappings = json.loads((ROOT / "grammar" / "ae-scene-composition-mappings.json").read_text())
-        self.assertEqual(mappings["scope"]["uniqueScenes"], 251)
+        self.assertEqual(mappings["scope"]["uniqueScenes"], 282)
         result, _ = self._comparisons()
         self.assertEqual(result["counts"]["verifiedUniqueSceneMappings"], 73)
 

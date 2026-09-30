@@ -2,7 +2,11 @@
 
 Date: 2026-09-29
 Branch: `codex/treatment-requirements-review`
-Status: proposed; execution requires explicit user approval
+Status: approved and active
+
+Execution authorization: on 2026-09-30 the user directed Codex to begin knocking out the matching-layer tasks immediately, continue without repeated go-ahead requests, and ask only when user input is actually required. This activates the existing stages and acceptance checks; it does not authorize rendering, guessed mappings, custom visuals, or weakening any evidence gate.
+
+Current resumed baseline: 428 clips total; 73 `mapped_verified`, 176 `mapped_verified_window`, 5 `mapped_composition_window_approximate`, 155 `mapping_unverified`, 5 `mogrt_not_aep`, and 14 `project_unlinked`.
 
 ## Objective
 
@@ -180,3 +184,18 @@ Thirty-two exact clip windows were measured across three families whose scene-li
 This batch introduces a stricter native-render-receipt evidence route for families without two existing final-composition anchors. Each receipt binds the build script, build report, completed render report, rendered video, native report, scene boundaries, and technical index by SHA-256. The build script must select the claimed native final composition and place that composition as the sole source layer in the transparent 720p review wrapper. The scene-library source must be marked `Our render` and byte-identical to the completed render output. Wrong composition names, wrong videos, changed sources, and unlisted supersession of an earlier mapping all fail tests.
 
 Four earlier child-composition mappings were corrected to exact windows on the rendered native final timelines. The registry now contains 181 verified mappings and 105 exact window-capacity records. Full-library coverage is 74 `mapped_verified`, 105 `mapped_verified_window`, five approximate-window mappings, 225 `mapping_unverified`, five excluded MOGRT clips, and 14 `project_unlinked` clips. Sixty focused tests pass. The 593-test full suite retains only the pre-existing unrelated Cloudflare-credentials assertion failure, with 13 skips. No new rendering or After Effects session was required.
+
+## Execution checkpoint: exact-terminal batches 007–008
+
+Seventeen proposals were generated across source-bound complete terminal sets. Fifteen were promoted as exact mappings:
+
+- six remaining Counter scenes, completing native Counter 01–09;
+- five remaining Carousel Flow scenes, completing all eight named native terminals;
+- two remaining Gallery Pro scenes, completing Focus, Showcase, Orbit, and Flow; and
+- four remaining Comparison Pack scenes, completing all seven native comparison terminals.
+
+The explicit named-terminal route requires a one-to-one match between every semantic clip and every native terminal composition, at least two unchanged verified anchors, a source-bound native report, an unchanged technical-index terminal set, and written evidence for every binding. Missing clips, duplicate bindings, changed native terminals, stale anchors, or source changes fail closed. Two additional Dropoff Carousel proposals were generated but deliberately not promoted because the current native extractor reports zero media slots for their composition-based placeholders; that technical-capacity gap remains explicit.
+
+All 14 History Slideshow publisher clips are now linked to the hash-bound inspected source project, eliminating `project_unlinked`, but remain explicitly `mapping_unreviewed` with no inherited capacity because the shortened preview has not been aligned to native compositions/windows.
+
+Current full-library coverage is 90 `mapped_verified`, 176 `mapped_verified_window`, five approximate-window mappings, 138 `mapping_unverified`, 14 `mapping_unreviewed`, and five excluded MOGRT clips. That is 266 exact verified composition/window mappings out of 428 clips. Seventy-one focused fail-closed mapping, coverage, calibration, comparison, and window tests pass. No new rendering or After Effects session was required.
