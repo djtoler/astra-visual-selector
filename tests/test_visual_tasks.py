@@ -50,6 +50,12 @@ class VisualTaskPilot(unittest.TestCase):
         self.assertNotIn("Drake", task["entities"]["resolved"])
         self.assertEqual("other_catalog_identity_withheld", task["entities"]["unresolved"][0]["kind"])
 
+    def test_explicit_entities_carry_shared_registry_ids(self):
+        ref = self.task("02-02a.main")["entities"]["explicitRefs"][0]
+        self.assertEqual("Curren$y", ref["canonicalName"])
+        self.assertEqual("person:curren-y", ref["entityId"])
+        self.assertEqual("person", ref["entityType"])
+
     def test_opening_chart_uses_versioned_93_member_cohort(self):
         task = self.task("03-03.opening_chart")
         cohort = task["entities"]["cohorts"][0]

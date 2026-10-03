@@ -36,8 +36,12 @@
       "sha256": "c4891eddb02339e865a340a930d8ede3599dbf82e6395b4316ebbaa346340cf9"
     },
     "roster": {
-      "path": "grammar/entity-roster.json",
-      "sha256": "7b6a38a747fc3159e74abc1c5b0f5f10568790e8245875c8c5dfbd3c164b9905"
+      "commit": "284c483ab9c909194ad6cc8221a9c4a28e489a6b",
+      "path": "../entity_roster/entity-roster.json",
+      "registryId": "registry:hiphop-research-engine-csv-v1",
+      "registryVersion": "11",
+      "repo": "djtoler/entity_roster",
+      "sha256": "4de151ade3490fc650cd8490a76871601e235f45d1ef05a01cacd510c7eb2f27"
     },
     "timing": {
       "path": "narration/year-seventeen-narration-timing.json",
@@ -52,6 +56,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [
           {
             "displayPolicy": "withheld",
@@ -126,6 +131,16 @@
         "explicit": [
           "Curren$y"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Curren$y",
+            "entityId": "person:curren-y",
+            "entityType": "person",
+            "surfaces": [
+              "Curren$y"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "Curren$y"
@@ -183,6 +198,7 @@
           "Curren$y"
         ],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [
           {
             "displayPolicy": "eligible",
@@ -357,7 +373,7 @@
           "Iann Dior",
           "Drake",
           "Nicki Minaj",
-          "ASAP Rocky",
+          "A$AP Rocky",
           "Tory Lanez",
           "Young Thug",
           "Post Malone",
@@ -369,6 +385,7 @@
           "Lil Skies"
         ],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [
           "Wale",
@@ -454,7 +471,7 @@
           "Iann Dior",
           "Drake",
           "Nicki Minaj",
-          "ASAP Rocky",
+          "A$AP Rocky",
           "Tory Lanez",
           "Young Thug",
           "Post Malone",
@@ -517,6 +534,24 @@
           "Future",
           "Travis Scott"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Future",
+            "entityId": "person:future",
+            "entityType": "person",
+            "surfaces": [
+              "Future"
+            ]
+          },
+          {
+            "canonicalName": "Travis Scott",
+            "entityId": "person:travis-scott",
+            "entityType": "person",
+            "surfaces": [
+              "Travis Scott"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "Future",
@@ -572,6 +607,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -619,6 +655,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -668,6 +705,16 @@
         ],
         "explicit": [
           "Drake"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Drake",
+            "entityId": "person:drake",
+            "entityType": "person",
+            "surfaces": [
+              "Drake"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -733,17 +780,33 @@
       "entities": {
         "ambiguous": [],
         "cohorts": [],
-        "displayEligible": [],
-        "explicit": [],
+        "displayEligible": [
+          "Kanye West"
+        ],
+        "explicit": [
+          "Kanye West"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Kanye West",
+            "entityId": "person:kanye-west",
+            "entityType": "person",
+            "surfaces": [
+              "Ye"
+            ]
+          }
+        ],
         "implied": [],
-        "resolved": [],
+        "resolved": [
+          "Kanye West"
+        ],
         "unknownNames": [],
         "unresolved": []
       },
       "entityCount": 3,
       "entityKind": "hypothetical late-career rap milestones (anniversary tour, deluxe reissue, festival undercard slot)",
       "id": "07-07.main",
-      "identityCount": 0,
+      "identityCount": 1,
       "job": "enumerate",
       "mustBePerceptible": [],
       "mustBeTrue": [
@@ -780,7 +843,10 @@
         "ambiguous": [
           {
             "candidates": [
-              "Big Punisher",
+              "Big Daddy Kane",
+              "Big K.R.I.T.",
+              "Big L",
+              "Big Pun",
               "Big Scarr",
               "Big Sean"
             ],
@@ -793,6 +859,16 @@
         ],
         "explicit": [
           "Drake"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Drake",
+            "entityId": "person:drake",
+            "entityType": "person",
+            "surfaces": [
+              "Drake"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -846,40 +922,68 @@
         "cohorts": [],
         "displayEligible": [
           "Ab-Soul",
+          "Biz Markie",
           "Jay Rock",
           "Latto"
         ],
         "explicit": [
           "Ab-Soul",
+          "Biz Markie",
           "Jay Rock",
           "Latto"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Ab-Soul",
+            "entityId": "person:ab-soul",
+            "entityType": "person",
+            "surfaces": [
+              "Ab-Soul",
+              "Ab-Soul"
+            ]
+          },
+          {
+            "canonicalName": "Biz Markie",
+            "entityId": "person:biz-markie",
+            "entityType": "person",
+            "surfaces": [
+              "Biz Markie",
+              "Biz Markie"
+            ]
+          },
+          {
+            "canonicalName": "Jay Rock",
+            "entityId": "person:jay-rock",
+            "entityType": "person",
+            "surfaces": [
+              "Jay Rock",
+              "Jay Rock"
+            ]
+          },
+          {
+            "canonicalName": "Latto",
+            "entityId": "person:latto",
+            "entityType": "person",
+            "surfaces": [
+              "Latto",
+              "Latto"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
           "Ab-Soul",
+          "Biz Markie",
           "Jay Rock",
           "Latto"
         ],
-        "unknownNames": [
-          {
-            "at": 120,
-            "text": "Markie"
-          },
-          {
-            "at": 185,
-            "text": "Biz"
-          },
-          {
-            "at": 189,
-            "text": "Markie"
-          }
-        ],
+        "unknownNames": [],
         "unresolved": []
       },
       "entityCount": 4,
       "entityKind": "musical artists (Latto, Jay Rock, Ab-Soul, Biz Markie)",
       "id": "09-09.main",
-      "identityCount": 3,
+      "identityCount": 4,
       "job": "parallel_instances",
       "mustBePerceptible": [
         "The four percentages must be distinguishable as separate, escalating values (50, 52, 71, 79), each anchored to its own artist."
@@ -923,6 +1027,17 @@
         ],
         "explicit": [
           "Drake"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Drake",
+            "entityId": "person:drake",
+            "entityType": "person",
+            "surfaces": [
+              "Drake",
+              "Drake"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -975,6 +1090,16 @@
         ],
         "explicit": [
           "Drake"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Drake",
+            "entityId": "person:drake",
+            "entityType": "person",
+            "surfaces": [
+              "Drake"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -1032,6 +1157,17 @@
         ],
         "explicit": [
           "Future"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Future",
+            "entityId": "person:future",
+            "entityType": "person",
+            "surfaces": [
+              "Future",
+              "Future"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -1092,6 +1228,32 @@
           "Ab-Soul",
           "Jay Rock",
           "Latto"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Ab-Soul",
+            "entityId": "person:ab-soul",
+            "entityType": "person",
+            "surfaces": [
+              "Ab-Soul"
+            ]
+          },
+          {
+            "canonicalName": "Jay Rock",
+            "entityId": "person:jay-rock",
+            "entityType": "person",
+            "surfaces": [
+              "Jay Rock"
+            ]
+          },
+          {
+            "canonicalName": "Latto",
+            "entityId": "person:latto",
+            "entityType": "person",
+            "surfaces": [
+              "Latto"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -1154,6 +1316,24 @@
           "Drake",
           "Macklemore"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Drake",
+            "entityId": "person:drake",
+            "entityType": "person",
+            "surfaces": [
+              "Drake"
+            ]
+          },
+          {
+            "canonicalName": "Macklemore",
+            "entityId": "person:macklemore",
+            "entityType": "person",
+            "surfaces": [
+              "Macklemore"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "Drake",
@@ -1210,6 +1390,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -1262,6 +1443,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -1312,6 +1494,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -1368,6 +1551,16 @@
         ],
         "explicit": [
           "Drake"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Drake",
+            "entityId": "person:drake",
+            "entityType": "person",
+            "surfaces": [
+              "Drake"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -1452,6 +1645,96 @@
           "Wale",
           "Wiz Khalifa"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "B.o.B",
+            "entityId": "person:b-o-b",
+            "entityType": "person",
+            "surfaces": [
+              "B.o.B"
+            ]
+          },
+          {
+            "canonicalName": "Big Sean",
+            "entityId": "person:big-sean",
+            "entityType": "person",
+            "surfaces": [
+              "Big Sean"
+            ]
+          },
+          {
+            "canonicalName": "Curren$y",
+            "entityId": "person:curren-y",
+            "entityType": "person",
+            "surfaces": [
+              "Curren$y"
+            ]
+          },
+          {
+            "canonicalName": "Freddie Gibbs",
+            "entityId": "person:freddie-gibbs",
+            "entityType": "person",
+            "surfaces": [
+              "Freddie Gibbs"
+            ]
+          },
+          {
+            "canonicalName": "J. Cole",
+            "entityId": "person:j-cole",
+            "entityType": "person",
+            "surfaces": [
+              "J. Cole"
+            ]
+          },
+          {
+            "canonicalName": "Jay Rock",
+            "entityId": "person:jay-rock",
+            "entityType": "person",
+            "surfaces": [
+              "Jay Rock"
+            ]
+          },
+          {
+            "canonicalName": "Kid Cudi",
+            "entityId": "person:kid-cudi",
+            "entityType": "person",
+            "surfaces": [
+              "Kid Cudi"
+            ]
+          },
+          {
+            "canonicalName": "Nicki Minaj",
+            "entityId": "person:nicki-minaj",
+            "entityType": "person",
+            "surfaces": [
+              "Nicki Minaj"
+            ]
+          },
+          {
+            "canonicalName": "Nipsey Hussle",
+            "entityId": "person:nipsey-hussle",
+            "entityType": "person",
+            "surfaces": [
+              "Nipsey Hussle"
+            ]
+          },
+          {
+            "canonicalName": "Wale",
+            "entityId": "person:wale",
+            "entityType": "person",
+            "surfaces": [
+              "Wale"
+            ]
+          },
+          {
+            "canonicalName": "Wiz Khalifa",
+            "entityId": "person:wiz-khalifa",
+            "entityType": "person",
+            "surfaces": [
+              "Wiz Khalifa"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "B.o.B",
@@ -1514,6 +1797,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -1564,6 +1848,24 @@
         "explicit": [
           "J. Cole",
           "Nicki Minaj"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "J. Cole",
+            "entityId": "person:j-cole",
+            "entityType": "person",
+            "surfaces": [
+              "Cole"
+            ]
+          },
+          {
+            "canonicalName": "Nicki Minaj",
+            "entityId": "person:nicki-minaj",
+            "entityType": "person",
+            "surfaces": [
+              "Nicki"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -1618,6 +1920,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -1678,6 +1981,40 @@
           "Kendrick Lamar",
           "Post Malone",
           "Travis Scott"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Future",
+            "entityId": "person:future",
+            "entityType": "person",
+            "surfaces": [
+              "Future"
+            ]
+          },
+          {
+            "canonicalName": "Kendrick Lamar",
+            "entityId": "person:kendrick-lamar",
+            "entityType": "person",
+            "surfaces": [
+              "Kendrick"
+            ]
+          },
+          {
+            "canonicalName": "Post Malone",
+            "entityId": "person:post-malone",
+            "entityType": "person",
+            "surfaces": [
+              "Post Malone"
+            ]
+          },
+          {
+            "canonicalName": "Travis Scott",
+            "entityId": "person:travis-scott",
+            "entityType": "person",
+            "surfaces": [
+              "Travis Scott"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -1743,6 +2080,24 @@
           "Future",
           "Young Thug"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Future",
+            "entityId": "person:future",
+            "entityType": "person",
+            "surfaces": [
+              "Future"
+            ]
+          },
+          {
+            "canonicalName": "Young Thug",
+            "entityId": "person:young-thug",
+            "entityType": "person",
+            "surfaces": [
+              "Young Thug"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "Future",
@@ -1794,6 +2149,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -1843,6 +2199,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -1890,10 +2247,19 @@
     {
       "continuityGroup": null,
       "entities": {
-        "ambiguous": [],
+        "ambiguous": [
+          {
+            "candidates": [
+              "C+C Music Factory",
+              "Universal Music Group"
+            ],
+            "token": "Music"
+          }
+        ],
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [
@@ -1946,6 +2312,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [
@@ -2004,6 +2371,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -2055,6 +2423,16 @@
         ],
         "explicit": [
           "J. Cole"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "J. Cole",
+            "entityId": "person:j-cole",
+            "entityType": "person",
+            "surfaces": [
+              "J. Cole"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -2108,6 +2486,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -2169,6 +2548,56 @@
           "XXXTentacion",
           "Young Thug"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "21 Savage",
+            "entityId": "person:21-savage",
+            "entityType": "person",
+            "surfaces": [
+              "Savage"
+            ]
+          },
+          {
+            "canonicalName": "Kendrick Lamar",
+            "entityId": "person:kendrick-lamar",
+            "entityType": "person",
+            "surfaces": [
+              "Kendrick"
+            ]
+          },
+          {
+            "canonicalName": "Post Malone",
+            "entityId": "person:post-malone",
+            "entityType": "person",
+            "surfaces": [
+              "Post Malone"
+            ]
+          },
+          {
+            "canonicalName": "Ty Dolla $ign",
+            "entityId": "person:ty-dolla-ign",
+            "entityType": "person",
+            "surfaces": [
+              "Ty Dolla $ign"
+            ]
+          },
+          {
+            "canonicalName": "XXXTentacion",
+            "entityId": "person:xxxtentacion",
+            "entityType": "person",
+            "surfaces": [
+              "XXXTentacion"
+            ]
+          },
+          {
+            "canonicalName": "Young Thug",
+            "entityId": "person:young-thug",
+            "entityType": "person",
+            "surfaces": [
+              "Young Thug"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "21 Savage",
@@ -2226,6 +2655,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -2303,6 +2733,24 @@
           "Drake",
           "Travis Scott"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Drake",
+            "entityId": "person:drake",
+            "entityType": "person",
+            "surfaces": [
+              "Drake"
+            ]
+          },
+          {
+            "canonicalName": "Travis Scott",
+            "entityId": "person:travis-scott",
+            "entityType": "person",
+            "surfaces": [
+              "Travis Scott"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "Drake",
@@ -2370,6 +2818,24 @@
           "Drake",
           "Lil Baby"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Drake",
+            "entityId": "person:drake",
+            "entityType": "person",
+            "surfaces": [
+              "Drake"
+            ]
+          },
+          {
+            "canonicalName": "Lil Baby",
+            "entityId": "person:lil-baby",
+            "entityType": "person",
+            "surfaces": [
+              "Lil Baby"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "Drake",
@@ -2429,6 +2895,32 @@
           "Post Malone",
           "Travis Scott"
         ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Kendrick Lamar",
+            "entityId": "person:kendrick-lamar",
+            "entityType": "person",
+            "surfaces": [
+              "Kendrick"
+            ]
+          },
+          {
+            "canonicalName": "Post Malone",
+            "entityId": "person:post-malone",
+            "entityType": "person",
+            "surfaces": [
+              "Post Malone"
+            ]
+          },
+          {
+            "canonicalName": "Travis Scott",
+            "entityId": "person:travis-scott",
+            "entityType": "person",
+            "surfaces": [
+              "Travis Scott"
+            ]
+          }
+        ],
         "implied": [],
         "resolved": [
           "Kendrick Lamar",
@@ -2479,6 +2971,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [],
@@ -2524,6 +3017,16 @@
         ],
         "explicit": [
           "Jay-Z"
+        ],
+        "explicitRefs": [
+          {
+            "canonicalName": "Jay-Z",
+            "entityId": "person:jay-z",
+            "entityType": "person",
+            "surfaces": [
+              "Jay-Z"
+            ]
+          }
         ],
         "implied": [],
         "resolved": [
@@ -2574,6 +3077,7 @@
         "cohorts": [],
         "displayEligible": [],
         "explicit": [],
+        "explicitRefs": [],
         "implied": [],
         "resolved": [],
         "unknownNames": [

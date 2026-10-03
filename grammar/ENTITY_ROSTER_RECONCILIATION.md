@@ -1,16 +1,20 @@
-# Entity roster reconciliation
+# Shared entity roster migration
 
-The Matching roster and Data entity-context registry are intentionally different contracts. `entity-roster.json` remains the compact Matching gazetteer. The Data registry remains authoritative for stable entity IDs, types, reviewed alias state, evidence and story bindings.
+Matching no longer owns a separate artist gazetteer. Its only live roster
+configuration is `entity-roster-source.json`, which pins the exact commit,
+digest, registry ID and registry version of the canonical document in
+`djtoler/entity_roster`.
 
-`entity-roster-reconciliation.json` is the deterministic bridge evidence. It was produced by `tools/reconcile_entity_rosters.py` from the exact pinned branches and commits recorded inside the report.
+`entity-roster-reconciliation.json` is retained as historical migration
+evidence for the 2026-10-03 comparison. It is not a runtime registry and must
+not be used to recognize, resolve or mint entities. The canonical repository's
+`migration-receipt-20261003.json` records the completed v10 + Matching merge.
 
-Current result:
+At runtime, set `SHARED_ENTITY_ROSTER_PATH` to a checkout of
+`entity_roster/entity-roster.json`, or keep the repositories as siblings under
+the Polish workspace. `pipeline.entities.roster()` verifies the source manifest
+before exposing canonical names, aliases, stable IDs and entity types.
 
-- 309 Data entities and 308 Matching names were inspected.
-- 164 identities align: 163 by normalized canonical name and Big Pun through the explicit `Big Pun -> Big Punisher` Matching alias.
-- 145 Data entities require Matching-scope review; organizations remain Data context unless a VisualTask requires them.
-- 144 Matching names require Data entity-resolution review.
-- 11 aligned identities use different canonical display spelling.
-- No normalized-key collision, invalid Matching alias or Data alias collision was found.
-
-The bridge does not automatically modify either roster. Promotions require the owning layer to publish a reviewed update and a new version/receipt.
+Unknown narration surfaces remain typed gaps. Matching recognition never mints
+an entity ID; additions and alias-state changes must be reviewed and published
+through the canonical registry repository.

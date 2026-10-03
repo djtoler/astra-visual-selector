@@ -3717,19 +3717,16 @@ class GazetteerEntityExtraction(unittest.TestCase):
         """The inverse of the bug this class exists to fix, and worse.
 
         Beat 30-30a says "There's no daily meter for Jay-Z's year seventeen."
-        Jay-Z is NOT in the roster. Tokenising on whitespace alone took "Jay",
-        found it unique to "Jay Rock", and returned the wrong artist — with no
-        signal that anything had gone wrong. A gazetteer's failure mode is
-        silence, which is worse than a miss.
+        This fixture deliberately omits Jay-Z. Tokenising on whitespace alone
+        must never take "Jay" and silently return Jay Rock.
         """
         r = self.ex("There's no daily meter for Jay-Z's year seventeen.")
         self.assertNotIn("Jay Rock", r["entities"])
 
     def test_a_name_the_roster_lacks_is_REPORTED(self):
-        # the roster covers 109 streaming-era artists; the narration discusses
-        # others. Unknown must be visible, never silent.
-        r = self.ex("There's no daily meter for Jay-Z's year seventeen.")
-        self.assertIn("Jay-Z", [u["text"] for u in r["unknown"]])
+        # Unknown must be visible, never silent.
+        r = self.ex("The set also featured Testperson Neverindexed.")
+        self.assertIn("Neverindexed", [u["text"] for u in r["unknown"]])
 
     def test_an_article_is_never_an_entity_token(self):
         # "the" belongs to Chance the Rapper and Ski Mask the Slump God, so it
@@ -3738,29 +3735,35 @@ class GazetteerEntityExtraction(unittest.TestCase):
         self.assertEqual(r["ambiguous"], [])
 
     def test_the_live_roster_is_a_dated_snapshot(self):
-        # a gazetteer that goes stale silently is worse than none
-        d = json.load(open(ROOT / "grammar" / "entity-roster.json"))
-        self.assertTrue(d.get("_snapshotAt"), "no snapshot date")
-        self.assertEqual(len(d["names"]), d["_count"])
-        # the roster now merges THREE files; every one must be traceable or a
-        # name in here has no accountable origin
-        self.assertTrue(d.get("_sources"), "no sources recorded")
-        for src in d["_sources"]:
-            self.assertTrue(src.get("sha256_16"), f"{src.get('path')}: no sha")
-            self.assertTrue(src.get("path"), "a source with no path")
-        self.assertEqual(len(d["provenance"]), d["_count"],
-                         "a name with no recorded source")
+        # a shared registry that drifts silently is worse than none
+        import entities as E
+        names, meta = E.roster()
+        self.assertTrue(meta.get("_snapshotAt"), "no snapshot date")
+        self.assertEqual(len(names), meta["_count"])
+        self.assertEqual(meta["_registryId"], "registry:hiphop-research-engine-csv-v1")
+        self.assertEqual(meta["_registryVersion"], "11")
+        self.assertEqual(meta["_source"]["authority"], "djtoler/entity_roster")
 
     def test_names_are_deduped_on_a_normalised_key(self):
         # JAY-Z / Jay-Z / jay z must be ONE entry, or a brief asks for the same
         # person twice and the slate splits.
+        import entities as E
         import media_candidates as M
-        d = json.load(open(ROOT / "grammar" / "entity-roster.json"))
+        names, _ = E.roster()
         seen = {}
-        for n in d["names"]:
+        for n in names:
             k = M.norm(n)
             self.assertNotIn(k, seen, f"{n!r} and {seen.get(k)!r} are one name")
             seen[k] = n
+
+    def test_stale_shared_roster_digest_fails_closed(self):
+        import entities as E
+        source = E.roster_path()
+        with tempfile.TemporaryDirectory() as td:
+            changed = pathlib.Path(td) / "entity-roster.json"
+            changed.write_bytes(source.read_bytes() + b"\n")
+            with self.assertRaisesRegex(ValueError, "digest mismatch"):
+                E.roster(changed)
 
 
 class ReviewShowsTheProcessedDerivative(unittest.TestCase):

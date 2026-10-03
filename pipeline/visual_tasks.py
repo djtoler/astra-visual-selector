@@ -21,7 +21,7 @@ from . import entities as entity_extractor
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_BEATS = ROOT / "pipeline" / "beats-all.json"
 DEFAULT_TIMING = ROOT / "narration" / "year-seventeen-narration-timing.json"
-DEFAULT_ROSTER = ROOT / "grammar" / "entity-roster.json"
+DEFAULT_ROSTER = None
 DEFAULT_OVERRIDES = ROOT / "grammar" / "visual-task-overrides.json"
 DEFAULT_COHORTS = ROOT / "grammar" / "cohorts.json"
 DEFAULT_OUTPUT = ROOT / "grammar" / "visual-tasks.json"
@@ -61,7 +61,15 @@ def _source_beats(raw: dict[str, list[dict[str, Any]]]) -> list[tuple[str, str, 
     return out
 
 
-def _cohort_index(raw: dict[str, Any], roster: set[str]) -> dict[tuple[str, str], dict[str, Any]]:
+def _canonical_entity(value: str, roster: set[str], aliases: dict[str, str]) -> str | None:
+    if value in roster:
+        return value
+    return aliases.get(value.casefold())
+
+
+def _cohort_index(
+    raw: dict[str, Any], roster: set[str], aliases: dict[str, str]
+) -> dict[tuple[str, str], dict[str, Any]]:
     if raw.get("schemaVersion") != 1:
         raise ValueError("unsupported cohort schema")
     out: dict[tuple[str, str], dict[str, Any]] = {}
@@ -69,13 +77,17 @@ def _cohort_index(raw: dict[str, Any], roster: set[str]) -> dict[tuple[str, str]
         key = (row.get("id"), row.get("version"))
         if not all(key) or key in out:
             raise ValueError(f"invalid or duplicate cohort version: {key}")
-        members = row.get("members") or []
+        authored_members = row.get("members") or []
+        members = [
+            _canonical_entity(member, roster, aliases) or member
+            for member in authored_members
+        ]
         if len(members) != len(set(members)):
             raise ValueError(f"duplicate cohort member: {key}")
         unknown = sorted(set(members) - roster)
         if unknown:
             raise ValueError(f"unknown roster entity in cohort {key}: {unknown}")
-        out[key] = row
+        out[key] = {**row, "members": members}
     return out
 
 
@@ -122,6 +134,9 @@ def _task(
     beat: dict[str, Any],
     spec: dict[str, Any],
     roster_names: list[str],
+    roster_aliases: dict[str, str],
+    roster_entity_ids: dict[str, str],
+    roster_entity_types: dict[str, str],
     roster: set[str],
     cohorts: dict[tuple[str, str], dict[str, Any]],
     passage_timing: dict[str, Any],
@@ -130,19 +145,26 @@ def _task(
     span = _exact_span(beat["quote"], quote, source_id)
     suffix = spec.get("suffix", "main")
     task_id = f"{source_id}.{suffix}"
-    extracted = entity_extractor.extract(quote + " " + (beat.get("entity_kind") or ""), roster_names)
+    extracted = entity_extractor.extract(
+        quote + " " + (beat.get("entity_kind") or ""),
+        roster_names,
+        aliases=roster_aliases,
+        entity_ids=roster_entity_ids,
+        entity_types=roster_entity_types,
+    )
     explicit = list(extracted["entities"])
 
     implied: list[dict[str, Any]] = []
     for row in spec.get("impliedEntities", []):
         entity = row.get("entity")
+        entity = _canonical_entity(entity, roster, roster_aliases)
         if entity not in roster:
             raise ValueError(f"unknown roster entity in {task_id}: {entity}")
         if row.get("displayPolicy") not in {"eligible", "withheld"}:
             raise ValueError(f"invalid implied-entity display policy in {task_id}")
         if not (row.get("evidence") or {}).get("reference"):
             raise ValueError(f"implied entity lacks evidence in {task_id}")
-        implied.append(row)
+        implied.append({**row, "entity": entity})
 
     cohort_rows: list[dict[str, Any]] = []
     cohort_members: list[str] = []
@@ -213,6 +235,7 @@ def _task(
         },
         "entities": {
             "explicit": explicit,
+            "explicitRefs": extracted["entityRefs"],
             "implied": implied,
             "cohorts": cohort_rows,
             "resolved": resolved,
@@ -228,25 +251,24 @@ def build_visual_tasks(
     *,
     beats_path: Path = DEFAULT_BEATS,
     timing_path: Path = DEFAULT_TIMING,
-    roster_path: Path = DEFAULT_ROSTER,
+    roster_path: Path | None = DEFAULT_ROSTER,
     overrides_path: Path = DEFAULT_OVERRIDES,
     cohorts_path: Path = DEFAULT_COHORTS,
 ) -> dict[str, Any]:
     paths = {
         "beats": Path(beats_path),
         "timing": Path(timing_path),
-        "roster": Path(roster_path),
+        "roster": Path(roster_path) if roster_path else entity_extractor.roster_path(),
         "overrides": Path(overrides_path),
         "cohorts": Path(cohorts_path),
     }
     beats_raw = _read(paths["beats"])
     timing_raw = _read(paths["timing"])
-    roster_raw = _read(paths["roster"])
     overrides_raw = _read(paths["overrides"])
     cohorts_raw = _read(paths["cohorts"])
-    roster_names = list(roster_raw["names"])
+    roster_names, roster_meta = entity_extractor.roster(paths["roster"])
     roster = set(roster_names)
-    cohorts = _cohort_index(cohorts_raw, roster)
+    cohorts = _cohort_index(cohorts_raw, roster, roster_meta["_aliases"])
     _verify_cohort_sources(cohorts)
     if overrides_raw.get("schemaVersion") != 1:
         raise ValueError("unsupported override schema")
@@ -273,6 +295,9 @@ def build_visual_tasks(
                 beat=beat,
                 spec=spec,
                 roster_names=roster_names,
+                roster_aliases=roster_meta["_aliases"],
+                roster_entity_ids=roster_meta["_entityIds"],
+                roster_entity_types=roster_meta["_entityTypes"],
                 roster=roster,
                 cohorts=cohorts,
                 passage_timing=timing[passage_id],
@@ -297,8 +322,18 @@ def build_visual_tasks(
         "purpose": "Derived VisualTask pilot; not yet consumed by slate, media or pairing stages",
         "activationState": "review_only_not_connected",
         "sources": {
-            name: {"path": _logical(path), "sha256": _sha(path)}
-            for name, path in paths.items()
+            **{
+                name: {"path": _logical(path), "sha256": _sha(path)}
+                for name, path in paths.items() if name != "roster"
+            },
+            "roster": {
+                "repo": roster_meta["_source"]["authority"],
+                "commit": roster_meta["_source"]["commit"],
+                "path": "../entity_roster/entity-roster.json",
+                "sha256": _sha(paths["roster"]),
+                "registryId": roster_meta["_registryId"],
+                "registryVersion": roster_meta["_registryVersion"],
+            },
         },
         "counts": {
             "sourceBeats": len(source_rows),
@@ -316,6 +351,8 @@ def build_visual_tasks(
 
 
 def _resolve_source_path(value: str) -> Path:
+    if value == "../entity_roster/entity-roster.json":
+        return entity_extractor.roster_path()
     path = Path(value)
     return path if path.is_absolute() else ROOT / path
 
