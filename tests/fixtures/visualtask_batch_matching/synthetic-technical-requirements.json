@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "activationState": "review_only_not_connected",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "tasks": [
+    {
+      "taskId": "museum-opening.rule",
+      "timingRequirement": {"status": "exact", "exactTaskAudioSpan": {"startSeconds": 0.0, "endSeconds": 2.0, "durationSeconds": 2.0}, "reason": null},
+      "mediaRequirements": {"status": "not_required", "requiredSlotCount": 0, "requiredMediaKinds": [], "requiredEntities": [], "availabilityStatus": "not_required", "missingMediaBrief": null, "reason": null},
+      "textRequirements": {"status": "required", "requiredFieldCount": 1, "requiredExactStrings": ["FREE BEFORE NOON"], "characterAndLineLimits": [{"fieldIndex": 0, "maxCharacters": 20, "maxLines": 2}], "reason": null},
+      "dataRequirements": {"status": "not_required", "requiredTypedFields": [], "reason": null}
+    },
+    {
+      "taskId": "museum-opening.host",
+      "timingRequirement": {"status": "exact", "exactTaskAudioSpan": {"startSeconds": 2.0, "endSeconds": 5.0, "durationSeconds": 3.0}, "reason": null},
+      "mediaRequirements": {"status": "required", "requiredSlotCount": 1, "requiredMediaKinds": ["person"], "requiredEntities": ["Snoop Dogg"], "availabilityStatus": "unknown", "missingMediaBrief": null, "reason": null},
+      "textRequirements": {"status": "not_required", "requiredFieldCount": 0, "requiredExactStrings": [], "characterAndLineLimits": [], "reason": null},
+      "dataRequirements": {"status": "not_required", "requiredTypedFields": [], "reason": null}
+    }
+  ]
+}

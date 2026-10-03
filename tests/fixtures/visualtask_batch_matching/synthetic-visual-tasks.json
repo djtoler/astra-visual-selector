@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "activationState": "review_only_not_connected",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "tasks": [
+    {
+      "id": "museum-opening.rule",
+      "sourceBeatId": "museum-opening-01",
+      "ordinal": 1,
+      "taskRole": "setup_text",
+      "job": "define_terms",
+      "quote": "Admission is free before noon.",
+      "continuityGroup": "museum-opening",
+      "entityCount": 0,
+      "mustBePerceptible": ["the time limit must be legible"],
+      "templateAdmissions": [],
+      "entities": {"displayEligible": []}
+    },
+    {
+      "id": "museum-opening.host",
+      "sourceBeatId": "museum-opening-02",
+      "ordinal": 2,
+      "taskRole": "host_portrait",
+      "job": "define_terms",
+      "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+      "continuityGroup": "museum-opening",
+      "entityCount": 1,
+      "mustBePerceptible": ["the host identity must be clear"],
+      "templateAdmissions": [],
+      "entities": {"displayEligible": ["Snoop Dogg"]}
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+ "_note": "What FRAMING a template's media slots want. This is a property of the TEMPLATE, not of the beat — the same entity needs a tight crop for a spatial node and a wide shot for a hero billboard. Declared, not inferred: nothing in the capability measurement says how close a slot crops, so guessing would put full-body shots on marker nodes forever.",
+ "_rule": "RANKS, never excludes. A wrong-framing asset sorts last and stays reachable — a crop is an editing decision and 436 of 506 assets carry no framing tag at all. An UNTAGGED asset is never punished; ranking it last would hide most of the library behind a tag nobody has applied.",
+ "_scale": [
+  "headshot",
+  "quarter",
+  "half",
+  "three_quarter",
+  "full"
+ ],
+ "_scaleNote": "tightest to widest. `quarter` is head-and-chest, TIGHTER than `half`; media_candidates previously mapped it to three_quarter, which is wider than half and the opposite end of the scale.",
+ "byKind": {
+  "cinematic_3d": {
+   "wants": [
+    "headshot",
+    "quarter"
+   ],
+   "why": "User 2026-09-22 on brief 28-28: \"image tags need a way to match template capability. it should only be quarter, headshot or no no size specified images all but out, available here. spatial needs only those for the noes.\" A marker on a stem is a small node; a full-body shot inside one is unreadable."
+  },
+  "layered_scene": {
+   "wants": [
+    "half",
+    "three_quarter",
+    "full"
+   ],
+   "why": "User 2026-09-22: \"hero asks for halfbody or full or 3quarter body.\" The hero billboard gives a subject the frame, so a tight crop wastes it."
+  }
+ },
+ "byId": {
+  "06-the-history--scene-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "06-the-history--scene-004": {
+   "wants": [
+    "three_quarter",
+    "full"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "06_historical_winners_table": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "07-history-slideshow--scene-018": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "32_record_height_bars": {
+   "wants": [
+    "half",
+    "three_quarter",
+    "full"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "34_superteam_bar_compare": {
+   "wants": [
+    "headshot",
+    "quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "36_four_portrait_cards": {
+   "wants": [
+    "headshot",
+    "quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "44_three_metric_tables": {
+   "wants": [
+    "three_quarter",
+    "full"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "45_two_metric_tables": {
+   "wants": [
+    "three_quarter",
+    "full"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "46_similarity_criteria_table": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "full"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "52_rookie_record_columns": {
+   "wants": [
+    "three_quarter",
+    "full"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "53_lineup_rotation_columns": {
+   "wants": [
+    "three_quarter",
+    "full"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "56_seven_artist_stat_lineup": {
+   "wants": [
+    "half",
+    "three_quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "57_three_playoff_run_cards": {
+   "wants": [
+    "quarter",
+    "half",
+    "three_quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "ai-flowchart--scene-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half",
+    "three_quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half",
+    "three_quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half",
+    "three_quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "archive3-comparison-pack-ae--review-006": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "archive3-looped-slideshow-background--review-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half",
+    "three_quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "carousel--review-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half",
+    "three_quarter"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "carousel--review-011": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "history-slideshow-envato--scene-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "intro-slideshow-full-720p--scene-031": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "intro-slideshow-full-720p--scene-033": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "intro-slideshow-full-720p--scene-034": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "memories-photo-slideshow-creative-slides-envato--scene-006": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "photo-slideshow-memories-envato--scene-003": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "photo-slideshow-memories-envato--scene-010": {
+   "wants": [],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  },
+  "story-on-photo-slideshow-envato--scene-001": {
+   "wants": [
+    "headshot",
+    "quarter",
+    "half"
+   ],
+   "decided": true,
+   "why": "User 2026-09-23, watching the template's own clip in pipeline/ui6-framing. `wants: []` means ANY — they looked and there is no preference, which is not the same as undecided."
+  }
+ },
+ "_byIdNote": "Per-template, from the user watching each clip. `wants: []` is ANY — decided, no preference. A template ABSENT from here is UNDECIDED and ranks every asset equally; the two behave alike today and mean different things, so the distinction is kept in the data.",
+ "_unspecified": "A template with no rule wants ANY framing, and every asset ranks on the other signals alone. Silence here means no preference, never 'reject everything'.",
+ "notApplicable": {
+  "_why": "User 2026-09-23: \"the undone 3 are for documents, screenshots and videos.\" FRAMING IS A PROPERTY OF PERSON MEDIA. A slot holding a screenshot, a document or a piece of footage has no headshot/quarter/half/three_quarter/full — the scale does not describe it. These are DECIDED as not-applicable, not left undecided, and they want a different axis (what KIND of media the slot takes) which does not exist yet.",
+  "_date": "2026-09-23",
+  "templates": [
+   "screen-mockup-rfx--review-002",
+   "screen-mockup-rfx--review-003",
+   "scrolling-screen--review-001"
+  ]
+ }
+}

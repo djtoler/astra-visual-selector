@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Source-bound pilot overrides for task splitting, implied subjects and versioned cohorts. They refine the derived representation without changing source beats.",
+  "source": "User approved the VisualTask/entity-resolution implementation plan on 2026-09-27.",
+  "beats": {
+    "01-01": {
+      "tasks": [
+        {
+          "suffix": "subject",
+          "taskRole": "derived_scale",
+          "identityCount": 1,
+          "quote": "Seven hundred times a second. That's how often one rapper's catalog gets played on Spotify, and by the time the day closes out it comes to fifty-nine million.",
+          "impliedEntities": [
+            {
+              "entity": "Drake",
+              "role": "documentary_subject",
+              "displayPolicy": "withheld",
+              "evidence": {
+                "kind": "user_approved_plan",
+                "reference": "VisualTask pilot acceptance case, 2026-09-27",
+                "reason": "Resolve the unnamed subject for continuity without revealing the identity before the script does."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "02-02b": {
+      "tasks": [
+        {
+          "suffix": "currensy_catalog",
+          "taskRole": "catalog_equivalence",
+          "identityCount": 1,
+          "quote": "and every song he has ever put on the platform — the mixtapes, the Jet Life run, the features, all of it stacked end to end — adds up to what this one catalog moves in twenty-four days.",
+          "impliedEntities": [
+            {
+              "entity": "Curren$y",
+              "role": "catalog_owner",
+              "displayPolicy": "eligible",
+              "evidence": {
+                "kind": "user_review",
+                "reference": "grammar/issues_matching_layer.json PI-01, beat 02-02b",
+                "reason": "The user specified that this beat is about Curren$y's songs and albums and rejected Drake media here."
+              }
+            }
+          ],
+          "unresolved": [
+            {
+              "kind": "other_catalog_identity_withheld",
+              "reference": "this one catalog",
+              "reason": "The comparison catalog remains deliberately unnamed in this task's visual media demand."
+            }
+          ]
+        }
+      ]
+    },
+    "03-03": {
+      "tasks": [
+        {
+          "suffix": "opening_chart",
+          "taskRole": "population_encoding",
+          "identityCount": 93,
+          "quote": "Ninety-three rappers, one dot each. Higher dot, more plays per day. Start at the bottom.",
+          "cohortRefs": [
+            {
+              "id": "spotify-opening-chart",
+              "version": "2026-08-28-status-ok",
+              "displayPolicy": "eligible"
+            }
+          ]
+        }
+      ]
+    },
+    "28-28": {
+      "splitReview": {
+        "status": "approved",
+        "approvedAt": "2026-09-28",
+        "source": "User approved the boundary after ‘Twenty billion on everyone else’s’ and required separate template and media candidate matching per visual task."
+      },
+      "tasks": [
+        {
+          "suffix": "setup",
+          "taskRole": "setup_text",
+          "matchingJob": "define_terms",
+          "identityCount": 0,
+          "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+          "mustBeTrue": [
+            "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
+            "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
+          ],
+          "mustBePerceptible": [
+            "The two thresholds must be visibly established before any names enter."
+          ],
+          "wouldBeALie": [
+            "Implying the round-number thresholds were picked after the fact to engineer Drake and Travis Scott as the answer would misrepresent the setup."
+          ],
+          "unstated": []
+        },
+        {
+          "suffix": "overlap",
+          "taskRole": "spatial_comparison",
+          "matchingJob": "intersection_of_sets",
+          "templateAdmissions": [
+            {
+              "id": "two-floors",
+              "source": "user",
+              "reason": "This existing scene was built and previously named for beat 28's two-threshold overlap treatment."
+            }
+          ],
+          "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+          "entityCount": 10,
+          "identityCount": 10,
+          "cohortRefs": [
+            {
+              "id": "two-floors-qualifiers",
+              "version": "2026-09-26-thresholds-v1",
+              "displayPolicy": "eligible"
+            }
+          ],
+          "continuityGroup": "28-two-floors"
+        }
+      ]
+    }
+  }
+}

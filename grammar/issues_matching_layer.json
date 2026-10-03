@@ -1,0 +1,405 @@
+{
+ "_label": "issues_matching_layer",
+ "_what": "Twelve problems drawn from the 31-beat review of 2026-09-26/27, each with what was measured, the user's own words where they named it, and what solving it unblocks or blocks.",
+ "_status": "PLAUSIBLE, NOT VERIFIED.",
+ "_whyPlausible": "Written by Claude from the export, the pool and the bindings. CLAUDE.md: \"Claude's own reading is not evidence. Where a judgment is needed, it comes from a versioned prompt through the pipeline.\" Nothing here has been through one. The MEASUREMENTS are reproducible and the USER WORDS are verbatim; the problem statements, the ranking and the impact claims are analysis and may be wrong.",
+ "_author": "claude-code",
+ "_date": "2026-09-27",
+ "_basis": {
+  "reviewRecords": 31,
+  "source": "grammar/beat-review-export-2026-09-27.json",
+  "pool": "445 records from approved-list.json",
+  "bindings": "grammar/bindings.json",
+  "gazetteer": "grammar/entity-roster.json, 297 names, word-boundary matching"
+ },
+ "_withdrawn": [
+  {
+   "claim": "0 of 40 beats name an artist with no media candidate",
+   "why": "The first pass built its name list from assets that already had media, so it could only ever return zero. Redone against the real gazetteer: 2 of 40, both Curren$y.",
+   "corrected": "2 of 40"
+  }
+ ],
+ "_dependencyOrder": [
+  "PI-04 and PI-05 before PI-06",
+  "PI-02 before PI-03"
+ ],
+ "issues": [
+  {
+   "id": "PI-01",
+   "rank": 1,
+   "title": "Drake is added to every beat, whether the beat is about him or not",
+   "beatsAffected": 36,
+   "beats": [
+    "01-01",
+    "02-02b",
+    "03-03",
+    "05-05a",
+    "05-05b",
+    "06-06",
+    "07-07",
+    "08-08",
+    "09-09",
+    "11-11a",
+    "11-11b",
+    "12-12a"
+   ],
+   "measured": [
+    "36 of 40 beats carry Drake in their entity list while the beat's own sentences never name him.",
+    "On those 36 beats, 367 of 708 media candidates are Drake.",
+    "On 13 beats every candidate is Drake.",
+    "Origin: the single field `_subject: Drake` in grammar/beat-entities.json, merged into all 40 beats."
+   ],
+   "userWords": [
+    {
+     "beat": "02-02b",
+     "words": "drake has no place in the beat. this beat is about currensys songs/albums. currency album covers and songs artwork should be whats available to select from"
+    },
+    {
+     "beat": "07-07",
+     "words": "templates are correct. drake being here is not"
+    },
+    {
+     "beat": "03-03",
+     "words": "drake is only 1 of 93 artists that need to be in this scene"
+    }
+   ],
+   "unblocks": "Slate space on 36 beats at once: ten Drake portraits stop crowding out the entities a beat is actually about. Cheapest of the twelve — one field, no model run.",
+   "blocks": "Cannot be a blind removal. Drake is the unnamed subject of much of the script; on 01-01 (\"one rapper's catalog\") he is correct and unnamed. Removing the subject everywhere empties those beats. The open question is when a subject is implied versus absent, which the pipeline never decides today."
+  },
+  {
+   "id": "PI-02",
+   "rank": 2,
+   "title": "A beat that names a group resolves to nobody",
+   "beatsAffected": 11,
+   "beats": [
+    "03-03",
+    "13-13a",
+    "13-13b",
+    "14-14",
+    "16-16",
+    "18-18",
+    "19-19",
+    "20-20",
+    "21-21a",
+    "22-22",
+    "27-27"
+   ],
+   "measured": [
+    "11 of 40 beats refer to people by count or label rather than by name: 'ninety-three rappers', 'the 2010 class', 'the 2009 class', 'seven rappers', 'the next five artists', 'eighty-one of the ninety-three', 'eleven rappers under the rule'.",
+    "6 of those 11 resolve to exactly one entity (Drake) with 10 candidates, all Drake: 03-03, 13-13a, 13-13b, 14-14, 19-19, 22-22.",
+    "18-18 says 'stack all seven end to end' and resolves 3 of 7 — Drake, J. Cole, Nicki Minaj. Candidates: Drake 10, J. Cole 9, Nicki Minaj 12. The other four of the 2010 class have none.",
+    "The gazetteer is not at fault: only 2 of 40 beats name a roster artist with no media candidate, both Curren$y (01-01, 02-02b), measured against the 297-name grammar/entity-roster.json with word-boundary matching."
+   ],
+   "userWords": [
+    {
+     "beat": "19-19",
+     "words": "good template selections but need all the other contextual artists in this beat to be represented in media candidates too... where are they in the media selection and why aren't they here."
+    },
+    {
+     "beat": "03-03",
+     "words": "only drake images available. system should ask for images of the 93 rappers."
+    },
+    {
+     "beat": "13-13a",
+     "words": "can't pair he second sentence, doesn't show the other artists images as available for selection. haven't been sourceed."
+    }
+   ],
+   "unblocks": "Eleven beats become pairable instead of impossible; six of them currently offer nothing usable. It is also the precondition for sourcing — a cohort nobody has enumerated cannot be requested.",
+   "blocks": "Gates PI-03. A spatial scene holds one marker per person, so offering it on a beat whose cohort is unresolved yields a template with nothing to fill it."
+  },
+  {
+   "id": "PI-03",
+   "rank": 3,
+   "title": "Spatial scenes are gated by job binding, not by how many things the beat names",
+   "beatsAffected": 7,
+   "beats": [
+    "03-03",
+    "16-16",
+    "18-18",
+    "19-19",
+    "20-20",
+    "21-21a",
+    "27-27"
+   ],
+   "measured": [
+    "4 spatial/scatter templates are bound to any job. Three — 07_labeled_outlier_scatter, 23_portrait_scatter, 31_greatest_team_scatter — are bound ONLY to intersection_of_sets and locate_in_distribution.",
+    "Beat 03-03 is explain_the_encoding and names ninety-three rappers; it was offered 2 templates total, 1 of them spatial.",
+    "16-16, 18-18, 19-19, 20-20, 21-21a and 27-27 were offered zero spatial options despite all referring to cohorts.",
+    "CLAUDE.md already states a beat naming more than SPATIAL_MAX_SLOTS (20) things routes to spatial scenes only. That routing cannot fire for a job the spatial scenes are not bound to."
+   ],
+   "userWords": [
+    {
+     "beat": "03-03",
+     "words": "all spatial templates should be shown as options. period. make 20+ entities and any type of comparative / contrasting intentions be the condition to always show all spatial scenes as options"
+    }
+   ],
+   "unblocks": "The only template family that can hold ninety-three things becomes reachable on the beats that need it. Cheapest fix to the cohort beats' template side — the templates exist and are already bound, just to the wrong jobs.",
+   "blocks": "Worth little before PI-02. A 93-slot field holding ten Drake photos is not progress."
+  },
+  {
+   "id": "PI-04",
+   "rank": 4,
+   "title": "Seventy-five pool records are bound to no job, including the template the user asked for twice",
+   "beatsAffected": 2,
+   "beats": [
+    "27-27",
+    "30-30a"
+   ],
+   "measured": [
+    "75 of 445 pool records are bound to zero jobs, so they can never reach any slate — 17% of the library.",
+    "51 of those 75 match carousel, rail or slideshow language in their id or description.",
+    "All 11 archive3-vertical-cinematic-slideshow records are unbound. Their descriptions read 'Single portrait reveal, part N of 11, slow forward zoom' — a vertical carousel."
+   ],
+   "userWords": [
+    {
+     "beat": "27-27",
+     "words": "none of the templates are good. a vertical carousel would be perfect. b-roll would be perfect too. this is the first time b-roll has be requested and available. The media selections are perfect. all artists show up and are available. The current pairing is not a good match, it's an error. no selected media because I can't pair it to a template"
+    },
+    {
+     "beat": "30-30a",
+     "words": "or any other carousel of multiple cards would be good for this beat, because it's needing multiples rappers from the past"
+    }
+   ],
+   "unblocks": "27-27 and 30-30a directly, and a sixth of the library becomes available to every beat. On 27-27 the media is already correct by the user's own verdict; the template is the only thing missing.",
+   "blocks": "Blocks nothing, but changes PI-06. Re-binding before these 75 are in the pool binds against a library missing a sixth of itself, and has to be redone."
+  },
+  {
+   "id": "PI-05",
+   "rank": 5,
+   "title": "A beat carries more than one communication job, and the system allows one",
+   "beatsAffected": 8,
+   "beats": [
+    "13-13a",
+    "13-13b",
+    "14-14",
+    "21-21b",
+    "23-23",
+    "24-24",
+    "25-25a",
+    "28-28"
+   ],
+   "measured": [
+    "On 8 beats the user wrote out by hand which sentence needs which template.",
+    "Each of those beats carries exactly one job and therefore one bound template set.",
+    "Already recorded as a pending item before this review: making `job` a list is a paid re-classification."
+   ],
+   "userWords": [
+    {
+     "beat": "28-28",
+     "words": "\"The test uses two floors that are fixed before the names are revealed...\" should be separate and matched to a text template that I have to source. \"Plots multiple items across a three-dimensional coordinate space before isolating selected points.\" is the right choice for \"Watch this one and count how many artists clear both floors...\""
+    },
+    {
+     "beat": "21-21b",
+     "words": "needs separate media and template to depict the 240 million per verse"
+    },
+    {
+     "beat": "23-23",
+     "words": "1st selected pair goes for: \"A song from 2015 streams in 2026 without the artist lifting a finger.\" \"Single landscape card, part 6 of 7...\" is for \"So the top of the daily chart in year seventeen could be a very large archive on autoplay...\""
+    }
+   ],
+   "unblocks": "One pairing per claim instead of one per beat. Removes the forced choice producing 'the current pairing is not a good match, it's an error' on beats where both halves were individually answerable.",
+   "blocks": "A paid re-classification: beat extraction and job classification both change shape. Gates PI-06 — re-binding one job per beat where several are needed means re-binding again."
+  },
+  {
+   "id": "PI-06",
+   "rank": 6,
+   "title": "Template supply is exhausted on sixteen beats",
+   "beatsAffected": 16,
+   "beats": [
+    "02-02b",
+    "04-04",
+    "28-28",
+    "08-08",
+    "11-11b",
+    "26-26",
+    "03-03",
+    "11-11a",
+    "14-14",
+    "18-18",
+    "19-19",
+    "22-22",
+    "25-25a",
+    "29-29a",
+    "24-24",
+    "27-27"
+   ],
+   "measured": [
+    "446 rejections across the review. After them, 16 beats have six or fewer bound templates left.",
+    "Three are down to two: 02-02b, 04-04, 28-28. Three have three: 08-08, 11-11b, 26-26.",
+    "18-18 was offered 2 and rejected 2 — nothing survived its slate."
+   ],
+   "userWords": [
+    {
+     "beat": "18-18",
+     "words": "no  good templates to choose from, Nicki, Cole plus 7 other artists need to be shown collectively to represent the 97 billion"
+    },
+    {
+     "beat": "27-27",
+     "words": "none of the templates are good"
+    }
+   ],
+   "unblocks": "The sixteen thinnest beats get real choices again rather than a shortlist already rejected.",
+   "blocks": "Should be last. Re-binding is a paid run and depends on PI-04 and PI-05; run now it binds against a library missing 75 records with one job per beat, and has to be run twice."
+  },
+  {
+   "id": "PI-07",
+   "rank": 7,
+   "title": "A template can be offered that no available media can fill",
+   "beatsAffected": 2,
+   "beats": [
+    "07-07",
+    "24-24"
+   ],
+   "measured": [
+    "Nothing records what a template needs from its media beyond framing and kind — not era spread, not count, not subject type.",
+    "On 07-07 the beat needs deluxe reissues, a festival slot and a 7:40 set time; all 10 of 10 candidates are Drake portraits."
+   ],
+   "userWords": [
+    {
+     "beat": "24-24",
+     "words": "that timeline within the context of the beat, is asking for either 8 albums or 8 portraits from different years/eras. needs to be sourced and overall template to media requirements needs tightening."
+    },
+    {
+     "beat": "07-07",
+     "words": "no media thats available can satisfy what this beat needs to communicate"
+    }
+   ],
+   "unblocks": "The slate stops offering treatments that cannot be filled, and each unfillable one becomes an explicit, specific sourcing request instead of a beat that stalls.",
+   "blocks": "Nothing. Independent of the rest, and it makes the sourcing list concrete."
+  },
+  {
+   "id": "PI-08",
+   "rank": 8,
+   "title": "Media eligibility has no per-template rules, so group photos reach spatial slots",
+   "beatsAffected": 1,
+   "beats": [
+    "04-04"
+   ],
+   "measured": [
+    "A spatial node is one marker per person; a photograph containing several people cannot be one marker, and nothing excludes it.",
+    "Eligibility today is framing and kind. Neither describes how many people are in the frame."
+   ],
+   "userWords": [
+    {
+     "beat": "04-04",
+     "words": "perfect except drake shows up in single images with others. group photos are ineligible for spatial scenes"
+    }
+   ],
+   "unblocks": "Spatial beats can trust their candidate lists. 04-04 was otherwise the cleanest result in the review — the user's word was 'perfect except'.",
+   "blocks": "Nothing. Narrow and self-contained."
+  },
+  {
+   "id": "PI-09",
+   "rank": 9,
+   "title": "Nothing carries a treatment across consecutive beats",
+   "beatsAffected": 4,
+   "beats": [
+    "05-05a",
+    "10-10",
+    "12-12b",
+    "29-29c"
+   ],
+   "measured": [
+    "Selection treats all 40 beats independently. There is no run, no inheritance, and no way to mark a template mandatory for a stretch of beats.",
+    "Asked for unprompted on 4 beats."
+   ],
+   "userWords": [
+    {
+     "beat": "05-05a",
+     "words": "the media asset and the template from last beat carries into this one."
+    },
+    {
+     "beat": "10-10",
+     "words": "The past few beats seem to need the same template the way the script reads"
+    },
+    {
+     "beat": "12-12b",
+     "words": "needs the same downward template from the previous beat. the one thats paired could work but for visual consistency, they should be the same"
+    },
+    {
+     "beat": "29-29c",
+     "words": "beat is asking for a specific chart from the beginning so that template should be the same one marked as mandatory here with explicit decision to go against it."
+    }
+   ],
+   "unblocks": "Visual consistency inside a cycle, raised four times unprompted. Also reduces work: a run of three beats becomes one decision, which matters at ~20 videos/day.",
+   "blocks": "Nothing, though it argues against rotation pressure, which currently pushes the other way."
+  },
+  {
+   "id": "PI-10",
+   "rank": 10,
+   "title": "A media verdict cannot be recorded without a template to attach it to",
+   "beatsAffected": 1,
+   "beats": [
+    "27-27"
+   ],
+   "measured": [
+    "Pairing requires a template plus at least one asset, so on a beat whose template gap is the problem the media judgement has nowhere to go.",
+    "27-27 records zero selected media while its note says the media was perfect."
+   ],
+   "userWords": [
+    {
+     "beat": "27-27",
+     "words": "The media selections are perfect. all artists show up and are available... no selected media because I can't pair it to a template"
+    }
+   ],
+   "unblocks": "Media work proceeds independently of template gaps, and 'the media is right here' becomes a record the pipeline can read rather than prose only a person can interpret.",
+   "blocks": "Nothing, but note the export already understates itself: a beat can read as unreviewed when it was reviewed and found unpairable."
+  },
+  {
+   "id": "PI-11",
+   "rank": 11,
+   "title": "There is no numeric baseline, because the rating was never the tool the user used",
+   "beatsAffected": 40,
+   "beats": [],
+   "measured": [
+    "0 of 31 review records carry a 1-5 rating. 28 of 31 carry prose notes.",
+    "The rating existed to answer the user's own framing on 2026-09-26: 'current state, we need to use this as how much we need to improve and where.' That measurement does not exist.",
+    "The notes carry more than a score would: the template wanted, the sentence it belongs to, and the missing media."
+   ],
+   "userWords": [],
+   "unblocks": "A before-and-after for every change in this list. Improvement can currently be argued but not shown, which the project's own measured-or-estimated rule refuses to accept.",
+   "blocks": "Do not solve it by asking for scores. 31 beats were reviewed in prose and the buttons skipped on all 31 — that is evidence about the instrument, not about compliance."
+  },
+  {
+   "id": "PI-12",
+   "rank": 12,
+   "title": "Six beats have no eligible b-roll, and one should be b-roll only",
+   "beatsAffected": 6,
+   "beats": [
+    "01-01",
+    "02-02a",
+    "05-05b",
+    "24-24",
+    "25-25a",
+    "30-30b"
+   ],
+   "measured": [
+    "Six beats marked no eligible b-roll, each with 5 clips on offer and all five rejected.",
+    "15-15 recorded 'no available broll' in prose before the button existed.",
+    "27-27 is the inverse: b-roll was wanted and available, and unusable for want of a template."
+   ],
+   "userWords": [
+    {
+     "beat": "30-30b",
+     "words": "this should be b-roll"
+    },
+    {
+     "beat": "01-01",
+     "words": "drake b-roll performance footage needed"
+    },
+    {
+     "beat": "15-15",
+     "words": "no available broll"
+    },
+    {
+     "beat": "24-24",
+     "words": "broll for this -> If he had gone quiet, there is one place it would show up first. New records either chart or they don't,"
+    }
+   ],
+   "unblocks": "Beats where no still can do the job. 30-30b and 01-01 both name footage rather than a photograph.",
+   "blocks": "The user's call. They stated on 2026-09-26 that they would raise supply shortages, so this is recorded rather than diagnosed."
+  }
+ ],
+ "_layer": "matching",
+ "_scope": "Issues in the matching layer: entity resolution, candidate eligibility, template availability and binding, and pairing. Other layers (render, timing, delivery) get their own file."
+}

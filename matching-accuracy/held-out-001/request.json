@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 2,
+  "batchId": "matching-accuracy-held-out-001",
+  "purpose": "Source-bound held-out split and full-VisualTask matching evaluation",
+  "activationState": "review_only_not_connected",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "sources": {
+    "storyPackage": {"path": "matching-accuracy/held-out-001/story-package.json", "sha256": "398ac151b5a0cfb13b31010029bd71077b22f76644adac5a748c6abb2b2f4bb8"},
+    "semanticSplitOutput": {"path": "matching-accuracy/held-out-001/semantic-split-output.json", "sha256": "d86ae8f9e1851b39b10260d49a5c91eaf86002e92ba481b4744fc16fed374673"},
+    "templateFitOutput": {"path": "matching-accuracy/held-out-001/template-fit-output.json", "sha256": "5825848c08e1b8deff59a9b6d99788c2ef524b358067f8a46411437be57d1328"},
+    "evaluationEvidence": {"path": "matching-accuracy/held-out-001/evaluation-evidence.json", "sha256": "8a803779a28b27b9ce954d7e6d42698643083c6102dd49eb898fc67d9c552e96"},
+    "humanApprovalReceipt": {"path": "matching-accuracy/held-out-001/human-approval-receipt.json", "required": false}
+  },
+  "cases": [
+    {
+      "id": "heldout-split-accuracy",
+      "expected": "complete exact nonoverlapping coverage for every held-out beat",
+      "requiresSources": ["storyPackage", "semanticSplitOutput", "evaluationEvidence"],
+      "record": {"source": "evaluationEvidence", "path": ["split"]},
+      "assertions": [
+        {"id": "validator-pass", "path": ["automatedValidation"], "operator": "equals", "expected": "pass"},
+        {"id": "complete", "path": ["completeCoverage"], "operator": "truthy"},
+        {"id": "no-overlap", "path": ["overlapCount"], "operator": "equals", "expected": 0},
+        {"id": "no-loss", "path": ["lostSpanCount"], "operator": "equals", "expected": 0},
+        {"id": "three-tasks", "path": ["proposedTasks"], "operator": "equals", "expected": 3}
+      ]
+    },
+    {
+      "id": "heldout-requirement-preservation",
+      "expected": "truth, prohibition, data, entity and perceptibility requirements survive conversion",
+      "record": {"source": "evaluationEvidence", "path": ["requirements"]},
+      "assertions": [
+        {"id": "status", "path": ["status"], "operator": "equals", "expected": "pass"},
+        {"id": "no-lost-references", "path": ["lostReferenceCount"], "operator": "equals", "expected": 0},
+        {"id": "same-reference-counts", "path": ["preservedReferenceCounts"], "operator": "equals", "expected": {"data": 2, "entities": 2, "perceptibility": 1, "prohibitions": 1, "truth": 2}}
+      ]
+    },
+    {
+      "id": "heldout-template-fit",
+      "expected": "every held-out VisualTask receives an independent template-fit verdict",
+      "requiresSources": ["templateFitOutput", "evaluationEvidence"],
+      "record": {"source": "evaluationEvidence", "path": ["templateFit"]},
+      "assertions": [
+        {"id": "status", "path": ["status"], "operator": "equals", "expected": "pass"},
+        {"id": "tasks", "path": ["visualTasks"], "operator": "equals", "expected": 3},
+        {"id": "verdicts", "path": ["tasksWithVerdict"], "operator": "equals", "expected": 3}
+      ]
+    },
+    {
+      "id": "heldout-media-availability",
+      "expected": "every held-out VisualTask receives an independent media-availability verdict",
+      "requiresSources": ["templateFitOutput", "evaluationEvidence"],
+      "record": {"source": "evaluationEvidence", "path": ["mediaAvailability"]},
+      "assertions": [
+        {"id": "status", "path": ["status"], "operator": "equals", "expected": "pass"},
+        {"id": "tasks", "path": ["visualTasks"], "operator": "equals", "expected": 3},
+        {"id": "verdicts", "path": ["tasksWithVerdict"], "operator": "equals", "expected": 3}
+      ]
+    },
+    {
+      "id": "heldout-conditional-gap-accuracy",
+      "expected": "conditional-gap accuracy is reported without inventing missing-media review evidence",
+      "record": {"source": "evaluationEvidence", "path": ["conditionalGap"]},
+      "assertions": [
+        {"id": "no-reviewed-briefs", "path": ["reviewedMissingMediaBriefs"], "operator": "equals", "expected": 0},
+        {"id": "not-applicable", "path": ["status"], "operator": "equals", "expected": "not_applicable_no_reviewed_missing_media_briefs"}
+      ]
+    },
+    {
+      "id": "heldout-human-approval",
+      "expected": "editor approval before semantic split activation",
+      "requiresSources": ["humanApprovalReceipt"],
+      "pendingReason": "Automated validation passed, but activating the semantic split still requires a real editor approval receipt.",
+      "record": {"source": "humanApprovalReceipt", "path": []},
+      "assertions": [
+        {"id": "approved", "path": ["status"], "operator": "equals", "expected": "approved"}
+      ]
+    }
+  ],
+  "nextBoundary": "Five automated held-out categories are scored. Only editor approval remains pending; selection and rendering remain unauthorized."
+}

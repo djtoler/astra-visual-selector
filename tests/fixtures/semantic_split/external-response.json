@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "requestId": "fixture.wetland-restoration:wetland-restoration:semantic-split:v1",
+  "requestSha256": "8f9e9b24dbf63c9931c7054ad35999e676fad64a746631cdd0ac9d1fc51e02e0",
+  "reviewState": "external_proposal_unreviewed",
+  "activationState": "review_only_not_connected",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "humanApproval": {"status": "pending", "reviewer": null, "reviewedAt": null},
+  "beatProposals": [
+    {
+      "sourceBeatId": "restoration-progress",
+      "sourceTextSha256": "224ce06e77ec84839a991cfa5c2418259997f0150bc7db781941dc19bce08b74",
+      "recommendation": "split",
+      "rationale": "The loss and current restoration are distinct visual jobs that must remain legible.",
+      "tasks": [
+        {
+          "taskKey": "restoration-progress.loss",
+          "span": {"start": 0, "end": 30},
+          "quote": "The wetland lost forty acres. ",
+          "visualJob": "change_across_set",
+          "taskRole": "historical_loss",
+          "takeaway": "The wetland previously lost forty acres.",
+          "reason": "Establish the baseline loss before showing the partial return.",
+          "entityRefs": ["wetland-north"],
+          "cohortRefs": [],
+          "truthConstraintRefs": ["truth-loss"],
+          "prohibitionRefs": [],
+          "dataRequirementRefs": ["data-loss"],
+          "editorContextRefs": ["editor-story-tone"],
+          "requiredMediaKinds": ["location", "numeric_data"],
+          "perceptibilityConstraints": []
+        },
+        {
+          "taskKey": "restoration-progress.return",
+          "span": {"start": 30, "end": 68},
+          "quote": "Restoration returned twelve this year.",
+          "visualJob": "change_across_set",
+          "taskRole": "restoration_progress",
+          "takeaway": "Twelve acres returned this year, which is only partial recovery.",
+          "reason": "The current result needs a separate visual state and explicit qualifier.",
+          "entityRefs": ["wetland-north"],
+          "cohortRefs": [],
+          "truthConstraintRefs": ["truth-return"],
+          "prohibitionRefs": ["prohibit-full-recovery"],
+          "dataRequirementRefs": ["data-return"],
+          "editorContextRefs": ["editor-restoration-order"],
+          "requiredMediaKinds": ["location", "numeric_data"],
+          "perceptibilityConstraints": ["Loss and restored acreage must remain visually distinct."]
+        }
+      ]
+    },
+    {
+      "sourceBeatId": "public-tour",
+      "sourceTextSha256": "e2ab4ba2d9305c13bd2288c30ad86334577462f53b612ec3eba3111ad0c83ec5",
+      "recommendation": "keep_single",
+      "rationale": "The sentence has one event and one visual job.",
+      "tasks": [
+        {
+          "taskKey": "public-tour.event",
+          "span": {"start": 0, "end": 38},
+          "quote": "Aisha Patel will lead the public tour.",
+          "visualJob": "narrate_an_event",
+          "taskRole": "tour_announcement",
+          "takeaway": "Aisha Patel is leading the public tour.",
+          "reason": "One portrait/event treatment can communicate the entire beat.",
+          "entityRefs": ["aisha-patel"],
+          "cohortRefs": [],
+          "truthConstraintRefs": [],
+          "prohibitionRefs": [],
+          "dataRequirementRefs": [],
+          "editorContextRefs": ["editor-story-tone"],
+          "requiredMediaKinds": ["person"],
+          "perceptibilityConstraints": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,419 @@
+{
+  "schemaVersion": 1,
+  "planId": "storypackage-02-matching-integration",
+  "objective": "Accept a validated StoryPackage 0.2, produce reviewable VisualTask proposals through one generic path, and make the matching harness fail closed until the complete story handoff is accepted.",
+  "authority": {
+    "repo": "djtoler/patterns",
+    "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+    "supportedCommits": [
+      "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "a9c6299a639d2bc775ca377ab09e152763ac44f5",
+      "66992e7bf61483838cfb3609c56076059ee8d4e8",
+      "b8dc0dbbe182bebacbabb366d66e89498d37db4b",
+      "545922cdce4f4ae29b7a4fae548040da5d1ccd58"
+    ],
+    "specPath": "architecture/storypackage/SPEC-0.2.md",
+    "schemaPath": "architecture/storypackage/storypackage-0.2.schema.json",
+    "checkerPath": "architecture/storypackage/tools/check.py",
+    "handoffCheckerPath": "architecture/storypackage/tools/check_handoff.py"
+  },
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "tasks": [
+    {
+      "id": "SP02-01",
+      "name": "Pin and verify the authoritative StoryPackage 0.2 source",
+      "status": "passed",
+      "receipt": {
+        "verifiedAt": "2026-10-01",
+        "commit": "66992e7bf61483838cfb3609c56076059ee8d4e8",
+        "checkerResult": "package baseline plus 17 negative mutations and matching-handoff baseline plus 26 negative mutations passed",
+        "unrelatedFixtureResult": "Apollo package passed with one typed cohort_incomplete gap"
+      },
+      "acceptance": [
+        "The exact upstream commit and contract paths are recorded",
+        "The supplied checker rejects its negative fixtures",
+        "No local replacement schema or validator is introduced"
+      ],
+      "consumer": "StoryPackage adapter preflight"
+    },
+    {
+      "id": "SP02-02",
+      "name": "Build the generic StoryPackage 0.2 adapter",
+      "status": "passed",
+      "receipt": {
+        "artifact": "reports/storypackage-02-apollo-adapter.json",
+        "tests": "StoryPackageAdapterTests: 3 passed",
+        "packageId": "apollo-collins-sample@1",
+        "typedGaps": 1
+      },
+      "acceptance": [
+        "The adapter invokes the authoritative checker before consuming a package",
+        "Claims, lanes, entity/display roles, cohorts, obligations, provenance, continuity and timing survive normalization",
+        "The adapter emits typed gaps and never authorizes selection or rendering"
+      ],
+      "consumer": "Semantic VisualTask splitter"
+    },
+    {
+      "id": "SP02-03",
+      "name": "Connect the provider-independent semantic VisualTask splitter",
+      "status": "passed",
+      "receipt": {
+        "artifact": "reports/storypackage-02-apollo-task-proposals.json",
+        "tests": "StoryPackageSplitterTests: 4 passed",
+        "taskProposals": 5,
+        "oneClaimManyTasks": "a1 -> pa1-1, pa1-2",
+        "manyClaimsOneTask": "a4+a5 -> pa4"
+      },
+      "acceptance": [
+        "One claim can produce multiple task proposals",
+        "Multiple claims can produce one continuous task proposal",
+        "Exact non-overlapping spans and provenance are retained",
+        "Proposals remain review-only until editor activation"
+      ],
+      "consumer": "Matching harness story_handoff stage"
+    },
+    {
+      "id": "SP02-04",
+      "name": "Run both supplied packages through the same adapter and splitter",
+      "status": "passed",
+      "receipt": {
+        "test": "StoryPackageCrossStoryAcceptanceTests: 1 passed",
+        "apolloArtifact": "reports/storypackage-02-apollo-task-proposals.json",
+        "yearSeventeenArtifact": "reports/storypackage-02-year-seventeen-task-proposals.json",
+        "sameCodePath": true
+      },
+      "acceptance": [
+        "Year Seventeen excerpt passes without source-specific code",
+        "Apollo sample passes through the identical path",
+        "Apollo's incomplete cohort remains a typed gap"
+      ],
+      "consumer": "Cross-story acceptance report"
+    },
+    {
+      "id": "SP02-05",
+      "name": "Ingest a complete Year Seventeen StoryPackage 0.2",
+      "status": "passed",
+      "receipt": {
+        "packageId": "year-seventeen@7",
+        "adapterArtifact": "reports/storypackage-02-year-seventeen-full-adapter.json",
+        "splitterArtifact": "reports/storypackage-02-year-seventeen-full-task-proposals.json",
+        "beats": 72,
+        "claims": 150,
+        "taskProposals": 116,
+        "reviewKeysCovered": 40,
+        "uncoveredClaims": 0,
+        "typedGaps": 0
+      },
+      "acceptance": [
+        "Every narration beat needed by the current 41 VisualTasks is represented",
+        "Claim, registry, cohort and source references validate without fabricated IDs or receipts",
+        "Any unresolved upstream evidence remains a typed story gap"
+      ],
+      "consumer": "Matching harness story_handoff stage"
+    },
+    {
+      "id": "SP02-06",
+      "name": "Bind StoryPackage receipts and VisualTask proposals into the harness",
+      "status": "passed",
+      "receipt": {
+        "harnessArtifact": "reports/matching-harness-audit.json",
+        "packageId": "year-seventeen@7",
+        "requiredReviewKeys": 40,
+        "coveredReviewKeys": 40,
+        "taskProposals": 116,
+        "blockingStoryGaps": 0,
+        "deferredStoryGaps": 3
+      },
+      "acceptance": [
+        "The harness reads this task plan and reports its next unfinished task",
+        "story_handoff passes only with fresh checker and splitter receipts",
+        "Missing, stale or reordered receipts fail closed"
+      ],
+      "consumer": "data_handoff stage"
+    },
+    {
+      "id": "SP02-07",
+      "name": "Advance to typed data handoff",
+      "status": "passed",
+      "receipt": {
+        "artifact": "reports/storypackage-02-data-handoff-queue.json",
+        "currentVisualTasks": 41,
+        "dataBearingAssignments": 28,
+        "nonDataTasksExcluded": 13,
+        "awaitingDataLayer": 28
+      },
+      "acceptance": [
+        "Only tasks carrying data obligations enter typed field assignment",
+        "Story gaps cannot be masked by template review"
+      ],
+      "consumer": "template_media_feasibility stage"
+    },
+    {
+      "id": "SP02-08",
+      "name": "Consume the Revision 7 matching handoff in full-task feasibility",
+      "status": "passed",
+      "receipt": {
+        "packageId": "year-seventeen@7",
+        "artifact": "reports/storypackage-02-year-seventeen-matching-handoff.json",
+        "visualTasks": 41,
+        "storyMediaRequired": 11,
+        "textFields": 106,
+        "dataValues": 89,
+        "typedUnresolved": 3,
+        "batchArtifact": "reports/full-visualtask-batch-matching-current.json",
+        "harnessArtifact": "reports/matching-harness-audit.json"
+      },
+      "acceptance": [
+        "The authoritative handoff checker runs before normalization",
+        "Every current VisualTask receives exactly one story requirement record",
+        "Media, text and data-presentation requirements reach the existing matcher without rewriting source grammar",
+        "Typed unknowns remain visible and selection, treatment approval, rendering and production remain false"
+      ],
+      "consumer": "template_media_feasibility and matching harness"
+    },
+    {
+      "id": "SP02-09",
+      "name": "Resolve family-first template and media feasibility semantics",
+      "status": "passed",
+      "receipt": {
+        "artifact": "reports/full-visualtask-batch-matching-current.json",
+        "visualTasks": 41,
+        "conditionalTemplateTasks": 41,
+        "conditionalCandidates": 307,
+        "incompatibleCandidates": 50,
+        "unresolvedCandidates": 4,
+        "tasksBelowSixConditionalChoices": 7,
+        "mediaTasksNeedingResolution": 5,
+        "harnessArtifact": "reports/matching-harness-audit.json"
+      },
+      "acceptance": [
+        "Family capability can establish conditional feasibility but never native fit or selection",
+        "Story identities without a required media kind do not create false Media Library demand",
+        "Versioned cohorts expand from StoryPackage membership before media coverage is measured",
+        "Source-specific non-entity media uses existing Production Ready metadata and remains typed when absent",
+        "The harness reports actual candidate shortages and media blockers from the downstream batch"
+      ],
+      "consumer": "matching harness and sequence planning"
+    },
+    {
+      "id": "SP02-10",
+      "name": "Reconcile every bound template family before shortage reporting",
+      "status": "passed",
+      "receipt": {
+        "artifact": "reports/full-visualtask-batch-matching-current.json",
+        "visualTasks": 41,
+        "conditionalCandidates": 553,
+        "incompatibleCandidates": 70,
+        "unresolvedCandidates": 12,
+        "tasksBelowSixConditionalChoices": 5,
+        "previousTasksBelowSixConditionalChoices": 7,
+        "harnessArtifact": "reports/matching-harness-audit.json"
+      },
+      "acceptance": [
+        "The compact review slate keeps its existing ten-card and slideshow-cap behavior",
+        "Full feasibility assesses one representative from every bound existing-template family",
+        "A shortage is reported only after every bound family has a fit assessment",
+        "Incompatible and unresolved families do not count toward six",
+        "Selection, rendering and production remain false"
+      ],
+      "consumer": "matching harness and production-gap planning"
+    },
+    {
+      "id": "SP02-11",
+      "name": "Apply the editor's two Story-owned media rulings",
+      "status": "passed",
+      "receipt": {
+        "packageId": "year-seventeen@7",
+        "handoffId": "year-seventeen@7/matching-handoff-2",
+        "artifact": "reports/storypackage-02-year-seventeen-matching-handoff.json",
+        "batchArtifact": "reports/full-visualtask-batch-matching-current.json",
+        "harnessArtifact": "reports/matching-harness-audit.json",
+        "mediaVerdicts": {
+          "available": 7,
+          "conditional": 1,
+          "not_required": 30,
+          "unavailable": 3
+        },
+        "mediaTasksNeedingResolution": 4
+      },
+      "acceptance": [
+        "27-27 permits footage or a vertical still-image carousel without Matching inventing the alternative",
+        "All six named 27-27 artists resolve through the Production Ready lifecycle",
+        "30-30b carries the exact early-to-mid-2000s hip-hop b-roll target",
+        "Absent 30-30b source media is reported as unavailable rather than editorially unresolved",
+        "Selection, rendering and production remain false"
+      ],
+      "consumer": "matching harness and production-gap planning"
+    },
+    {
+      "id": "SP02-12",
+      "name": "Carry prior editor selections into full-task matching without an API pass",
+      "status": "passed",
+      "receipt": {
+        "plan": "plans/PRIOR_REVIEW_TO_BATCH_MATCHING_PLAN_20261001.md",
+        "priorReviewArtifact": "reports/prior-editor-review-reconciliation.json",
+        "batchArtifact": "reports/full-visualtask-batch-matching-current.json",
+        "harnessArtifact": "reports/matching-harness-audit.json",
+        "conditionalCandidates": 556,
+        "previousConditionalCandidates": 553,
+        "tasksBelowSixConditionalChoices": 5,
+        "02-02bConditionalChoices": 4
+      },
+      "acceptance": [
+        "Only prior_selected rows for an exact unsplit task become task-scoped admissions",
+        "Dismissed, none-acceptable, not-shown, unavailable and split-task rows remain excluded",
+        "Prior selection preserves discovery but does not bypass current technical fit assessment",
+        "The rebuilt batch and harness remain review-only with selection and rendering false"
+      ],
+      "consumer": "matching harness and local shortage audit"
+    },
+    {
+      "id": "SP02-13",
+      "name": "Validate Future Volksgeist as a genuinely independent StoryPackage",
+      "status": "passed",
+      "receipt": {
+        "packageId": "future-volksgeist@2",
+        "authorityCommit": "b8dc0dbbe182bebacbabb366d66e89498d37db4b",
+        "packageSha256": "3e0c681d00a24bb6ad35c2bc8d0dc27d8085f7b7f9c12bd754354ec1dc54f6a7",
+        "adapterArtifact": "reports/storypackage-02-future-volksgeist-adapter.json",
+        "checkerGaps": 6,
+        "priorStoryChoicesImported": 0
+      },
+      "acceptance": [
+        "future-volksgeist@2 passes the authoritative checker at its pinned package commit",
+        "The adapter accepts an explicitly supported authority commit without weakening the existing Year Seventeen pin",
+        "Every beat speaker object survives normalization unchanged",
+        "No Year Seventeen editor choice is imported into the new story"
+      ],
+      "consumer": "StoryPackage adapter and cross-story acceptance"
+    },
+    {
+      "id": "SP02-14",
+      "name": "Produce speaker-aware review-only VisualTask proposals",
+      "status": "passed",
+      "receipt": {
+        "artifact": "reports/storypackage-02-future-volksgeist-task-proposals.json",
+        "sourceJobProposals": 20,
+        "speakerDerivedQuoteProposals": 3,
+        "sourceClipRoutes": 36,
+        "uncoveredNarratorClaims": 328,
+        "selectionAuthorized": false,
+        "renderingAuthorized": false
+      },
+      "acceptance": [
+        "Explicit source job proposals retain exact claims, spans and provenance",
+        "Clip beats are identified as source-footage obligations rather than template illustration jobs",
+        "Quote beats are identified as narrator-read attributed-quote obligations",
+        "Narrator claims without source job proposals remain typed gaps instead of receiving guessed jobs",
+        "Source timestamps are not treated as narration duration or clip end timing"
+      ],
+      "consumer": "Story agent return packet and matching intake"
+    },
+    {
+      "id": "SP02-15",
+      "name": "Return actionable acceptance findings to the Story agent",
+      "status": "passed",
+      "receipt": {
+        "artifact": "reports/future-volksgeist-consumer-response-20261003.md",
+        "typedGaps": {
+          "job_proposal_missing": 328,
+          "quote_attribution_source_missing": 1,
+          "source_clip_end_timing_missing": 36,
+          "speaker_unidentified": 6
+        }
+      },
+      "acceptance": [
+        "The generated artifact lists all produced task proposals and speaker handling",
+        "Missing narrator job proposals and unresolved speaker identities are counted and identified",
+        "Missing structured source media and end timing are reported without parsing prose as durable data",
+        "The response clearly separates accepted package structure from blockers to full template matching"
+      ],
+      "consumer": "Future Volksgeist StoryPackage revision"
+    },
+    {
+      "id": "SP02-16",
+      "name": "Run full template matching for Future Volksgeist",
+      "status": "passed",
+      "receipt": {
+        "taskProposals": 310,
+        "narratorClaims": 502,
+        "uncoveredNarratorClaims": 0,
+        "sourceClipRoutes": 36,
+        "artifact": "reports/storypackage-02-future-volksgeist-candidate-gallery.json",
+        "retrievalStages": [
+          "semantic_visual_moment_split",
+          "template_neutral_presentation_contract",
+          "structured_catalog_admission",
+          "local_semantic_ordering",
+          "family_diversification"
+        ],
+        "legacyJobBindingCanAdmit": false,
+        "selectionAuthorized": false,
+        "renderingAuthorized": false
+      },
+      "acceptance": [
+        "All narrator visual jobs required for matching are supplied or explicitly marked no-template/b-roll",
+        "Clip and quote routes remain separate and retain typed source/timing gaps for downstream sequence and release work",
+        "Candidate generation uses reusable template capabilities but no prior story-specific editor choices",
+        "Selection and rendering remain false until the normal review gates are satisfied"
+      ],
+      "consumer": "generic matching harness"
+    },
+    {
+      "id": "SP02-17",
+      "name": "Expose current Future beat-to-template retrieval in the established review UI",
+      "status": "passed",
+      "receipt": {
+        "artifact": "reports/storypackage-02-future-volksgeist-candidate-gallery.json",
+        "ui": "http://127.0.0.1:8787/approved/future-volksgeist-matches.html",
+        "taskProposals": 310,
+        "tasksWithCandidates": 310,
+        "candidateCards": 4896,
+        "uniqueOrderedSlates": 310,
+        "largestRepeatedOrderedSlate": 1,
+        "unboundQuoteTasks": 0,
+        "sourceClipRoutes": 36,
+        "priorStoryChoicesImported": 0,
+        "taskScopedEditorAdmissions": 2,
+        "structuredCompatibilityRequired": true,
+        "legacyJobBindingCanAdmit": false,
+        "localSemanticOrdering": "macOS NaturalLanguage; ordering only",
+        "fitValidated": false
+      },
+      "acceptance": [
+        "Only accepted review-only task proposals enter template retrieval",
+        "Candidate admission uses reusable structured template capabilities and imports no Year Seventeen task-scoped editor choices",
+        "Clip beats are shown as source-footage routes rather than fabricated template candidates",
+        "Unbound quote tasks and uncovered narrator claims remain visibly unresolved",
+        "The UI labels retrieval separately from validated fit, selection and rendering"
+      ],
+      "consumer": "scene-library review UI"
+    },
+    {
+      "id": "SP02-18",
+      "name": "Capture durable candidate acceptability and comments from the Future gallery",
+      "status": "passed",
+      "receipt": {
+        "ui": "http://127.0.0.1:8787/approved/future-volksgeist-matches.html",
+        "decisionArtifact": "reports/storypackage-02-future-volksgeist-candidate-review.json",
+        "candidateRows": 4896,
+        "preservedDecisionRows": 2,
+        "statuses": ["acceptable", "rejected", "unreviewed"],
+        "revisionChecked": true,
+        "backupOnSave": true,
+        "selectionAuthorized": false,
+        "renderingAuthorized": false,
+        "tests": "test_label_storage.py: 13 passed"
+      },
+      "acceptance": [
+        "Every review row is bound to the exact candidate-gallery artifact hash, task ID and candidate ID",
+        "The editor can mark each candidate acceptable, rejected or unreviewed and save a candidate-specific comment",
+        "Saves are durable, revision-checked and recoverable from a backup",
+        "Accepted/rejected evidence remains scoped to this story task until a separate reconciliation promotes reusable system changes",
+        "Review decisions do not authorize selection, rendering or publication"
+      ],
+      "consumer": "matching-system reconciliation"
+    }
+  ]
+}

@@ -1,0 +1,2724 @@
+{
+  "activationState": "review_only_not_connected",
+  "contractEnforcementReceipt": {
+    "contracts": {
+      "entrypoints": {
+        "id": "mandatory-matching-entrypoints-v1",
+        "sha256": "e4dda2a71a98fbb64e97596e4beb5cc348460f5f0a94f1a7ea7cea003b8880bf"
+      },
+      "generalMatching": {
+        "id": "general-storypackage-matching-layer-v1",
+        "sha256": "7b15caaf3df7df6762d7f578d901926dca4eaca29c21f6b5e7cd14eddb408c19"
+      },
+      "stageOrder": {
+        "sha256": "ebcf7723f8ada21e8711ac9aa8198ca5ce90ddbd7250a135b819aaf978401a24"
+      }
+    },
+    "enforced": true,
+    "entrypoint": "visual_tasks.build_visual_tasks",
+    "mode": "review_only",
+    "productionRequiresCompleteHarness": true,
+    "renderingAuthorized": false,
+    "schemaVersion": 1,
+    "selectionAuthorized": false
+  },
+  "counts": {
+    "cohortTasks": 2,
+    "impliedEntityTasks": 2,
+    "sourceBeats": 40,
+    "splitBeats": 1,
+    "unresolvedTasks": 1,
+    "visualTasks": 41
+  },
+  "issues": [
+    {
+      "taskId": "02-02b.currensy_catalog",
+      "unresolved": [
+        {
+          "kind": "other_catalog_identity_withheld",
+          "reason": "The comparison catalog remains deliberately unnamed in this task's visual media demand.",
+          "reference": "this one catalog"
+        }
+      ]
+    }
+  ],
+  "purpose": "Derived VisualTask pilot; not yet consumed by slate, media or pairing stages",
+  "schemaVersion": 1,
+  "sources": {
+    "beats": {
+      "path": "pipeline/beats-all.json",
+      "sha256": "311d2a79b70d1284c17ca749bacd2a713e28e1b320731774c17ac1c6efee82b7"
+    },
+    "cohorts": {
+      "path": "grammar/cohorts.json",
+      "sha256": "abfac9c280d8884d7d0968127d8f1023aaf0c873c21a7979a3bd378a277a35aa"
+    },
+    "overrides": {
+      "path": "grammar/visual-task-overrides.json",
+      "sha256": "b197478678ac38fe8cc342c57d8362e4b94216cd2d970f54dd8b1fff8fe63920"
+    },
+    "roster": {
+      "path": "grammar/entity-roster.json",
+      "sha256": "a654b4bd125b78b22a3d696916d9fa05a62409d0a3f1e004142116e32f1d05c5"
+    },
+    "timing": {
+      "path": "narration/year-seventeen-narration-timing.json",
+      "sha256": "2318939150dde4dbd07a1898810ba7d724808cca919127670edc6bbd2a312018"
+    }
+  },
+  "tasks": [
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [
+          {
+            "displayPolicy": "withheld",
+            "entity": "Drake",
+            "evidence": {
+              "kind": "user_approved_plan",
+              "reason": "Resolve the unnamed subject for continuity without revealing the identity before the script does.",
+              "reference": "VisualTask pilot acceptance case, 2026-09-27"
+            },
+            "role": "documentary_subject"
+          }
+        ],
+        "resolved": [
+          "Drake"
+        ],
+        "unknownNames": [
+          {
+            "at": 83,
+            "text": "Spotify"
+          },
+          {
+            "at": 175,
+            "text": "Spotify"
+          }
+        ],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper catalog (Spotify streams)",
+      "id": "01-01.subject",
+      "identityCount": 1,
+      "job": "derived_quantity",
+      "mustBePerceptible": [
+        "the daily total should read as the per-second rate compounding across a day, not as two disconnected numbers"
+      ],
+      "mustBeTrue": [
+        "700/second and 59 million/day describe the same catalog, with the daily figure built from that rate, not a second independent statistic",
+        "the rapper is deliberately unnamed at this point"
+      ],
+      "ordinal": 1,
+      "passageId": "01",
+      "quote": "Seven hundred times a second. That's how often one rapper's catalog gets played on Spotify, and by the time the day closes out it comes to fifty-nine million.",
+      "sourceBeatId": "01-01",
+      "sourceBeatJob": "derived_quantity",
+      "sourceSpan": {
+        "end": 158,
+        "start": 0
+      },
+      "takeaway": "This one unnamed catalog streams at a rate so high it compounds into tens of millions of plays in a single day.",
+      "taskRole": "derived_scale",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 10.81,
+        "passageStartSeconds": 0.0,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "which rapper this is"
+      ],
+      "wouldBeALie": [
+        "that 59 million is a lifetime/all-time total rather than a single day's plays",
+        "that 700/second is an industry-wide or per-platform average rather than this one catalog's rate"
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Curren$y"
+        ],
+        "explicit": [
+          "Curren$y"
+        ],
+        "implied": [],
+        "resolved": [
+          "Curren$y"
+        ],
+        "unknownNames": [
+          {
+            "at": 25,
+            "text": "XXL"
+          },
+          {
+            "at": 29,
+            "text": "Freshman"
+          }
+        ],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper",
+      "id": "02-02a.main",
+      "identityCount": 1,
+      "job": "narrate_an_event",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "this is a biographical credential from 2009, not a streaming or chart metric"
+      ],
+      "ordinal": 1,
+      "passageId": "02",
+      "quote": "Curren$y was on the 2009 XXL Freshman cover",
+      "sourceBeatId": "02-02a",
+      "sourceBeatJob": "narrate_an_event",
+      "sourceSpan": {
+        "end": 43,
+        "start": 0
+      },
+      "takeaway": "Curren$y is established as a credentialed, recognized artist before he's used as a comparison point.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 27.2,
+        "passageStartSeconds": 10.81,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "who else appeared on that 2009 cover"
+      ],
+      "wouldBeALie": [
+        "that the cover appearance is itself a play-count or ranking figure"
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Curren$y"
+        ],
+        "explicit": [],
+        "implied": [
+          {
+            "displayPolicy": "eligible",
+            "entity": "Curren$y",
+            "evidence": {
+              "kind": "user_review",
+              "reason": "The user specified that this beat is about Curren$y's songs and albums and rejected Drake media here.",
+              "reference": "grammar/issues_matching_layer.json PI-01, beat 02-02b"
+            },
+            "role": "catalog_owner"
+          }
+        ],
+        "resolved": [
+          "Curren$y"
+        ],
+        "unknownNames": [
+          {
+            "at": 67,
+            "text": "Jet"
+          },
+          {
+            "at": 71,
+            "text": "Life"
+          }
+        ],
+        "unresolved": [
+          {
+            "kind": "other_catalog_identity_withheld",
+            "reason": "The comparison catalog remains deliberately unnamed in this task's visual media demand.",
+            "reference": "this one catalog"
+          }
+        ]
+      },
+      "entityCount": 2,
+      "entityKind": "rapper catalogs",
+      "id": "02-02b.currensy_catalog",
+      "identityCount": 1,
+      "job": "equivalence_restatement",
+      "mustBePerceptible": [
+        "Curren$y's whole-career sum and the other catalog's 24-day slice should register as roughly equal in magnitude"
+      ],
+      "mustBeTrue": [
+        "'every song he has ever put on the platform' is Curren$y's full career total (mixtapes, Jet Life run, features) summed into one figure",
+        "that sum equals only a 24-day slice of the other catalog's output, not the other catalog's lifetime total"
+      ],
+      "ordinal": 1,
+      "passageId": "02",
+      "quote": "and every song he has ever put on the platform — the mixtapes, the Jet Life run, the features, all of it stacked end to end — adds up to what this one catalog moves in twenty-four days.",
+      "sourceBeatId": "02-02b",
+      "sourceBeatJob": "equivalence_restatement",
+      "sourceSpan": {
+        "end": 185,
+        "start": 0
+      },
+      "takeaway": "Curren$y's entire career output on the platform is only equal to 24 days of the other catalog's output.",
+      "taskRole": "catalog_equivalence",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 27.2,
+        "passageStartSeconds": 10.81,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Curren$y's actual play count or per-day rate",
+        "how many songs make up 'every song'"
+      ],
+      "wouldBeALie": [
+        "framing Curren$y's catalog as small or unsuccessful in its own right",
+        "that the 24 days belongs to Curren$y rather than the other catalog",
+        "that the comparison is against the other catalog's all-time total rather than 24 days of it"
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [
+          {
+            "displayPolicy": "eligible",
+            "id": "spotify-opening-chart",
+            "label": "Year Seventeen opening-chart Spotify cohort",
+            "memberCount": 93,
+            "source": {
+              "basis": "Measured from the source CSV: 93 of 140 rows have status ok.",
+              "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+              "selectionRule": "status == ok",
+              "sha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501"
+            },
+            "version": "2026-08-28-status-ok"
+          }
+        ],
+        "displayEligible": [
+          "Wale",
+          "B.o.B",
+          "Curren$y",
+          "Kid Cudi",
+          "J. Cole",
+          "Nipsey Hussle",
+          "Wiz Khalifa",
+          "Big Sean",
+          "Freddie Gibbs",
+          "Jay Rock",
+          "Kendrick Lamar",
+          "Meek Mill",
+          "Mac Miller",
+          "YG",
+          "Yelawolf",
+          "Future",
+          "French Montana",
+          "Macklemore",
+          "Kid Ink",
+          "Hopsin",
+          "Iggy Azalea",
+          "Travis Scott",
+          "ScHoolboy Q",
+          "Joey Bada$$",
+          "Chief Keef",
+          "Logic",
+          "Ab-Soul",
+          "Chance the Rapper",
+          "Ty Dolla $ign",
+          "Kevin Gates",
+          "Rich Homie Quan",
+          "Lil Durk",
+          "Isaiah Rashad",
+          "August Alsina",
+          "Fetty Wap",
+          "Vince Staples",
+          "GoldLink",
+          "K Camp",
+          "DeJ Loaf",
+          "Shy Glizzy",
+          "21 Savage",
+          "Kodak Black",
+          "Lil Uzi Vert",
+          "Denzel Curry",
+          "Lil Yachty",
+          "Anderson .Paak",
+          "Desiigner",
+          "G Herbo",
+          "Lil Dicky",
+          "A Boogie Wit da Hoodie",
+          "Playboi Carti",
+          "XXXTentacion",
+          "PnB Rock",
+          "MadeinTYO",
+          "Kyle",
+          "Ski Mask the Slump God",
+          "Lil Pump",
+          "JID",
+          "Trippie Redd",
+          "Smokepurpp",
+          "Stefflon Don",
+          "BlocBoy JB",
+          "YBN Nahmir",
+          "NAV",
+          "6ix9ine",
+          "DaBaby",
+          "Roddy Ricch",
+          "Megan Thee Stallion",
+          "Gunna",
+          "Comethazine",
+          "Lil Mosey",
+          "YBN Cordae",
+          "Blueface",
+          "Polo G",
+          "Jack Harlow",
+          "Lil Tjay",
+          "Fivio Foreign",
+          "Rod Wave",
+          "Latto",
+          "NLE Choppa",
+          "Iann Dior",
+          "Drake",
+          "Nicki Minaj",
+          "ASAP Rocky",
+          "Tory Lanez",
+          "Young Thug",
+          "Post Malone",
+          "Migos",
+          "Rae Sremmurd",
+          "Cardi B",
+          "Young M.A",
+          "Lil Baby",
+          "Lil Skies"
+        ],
+        "explicit": [],
+        "implied": [],
+        "resolved": [
+          "Wale",
+          "B.o.B",
+          "Curren$y",
+          "Kid Cudi",
+          "J. Cole",
+          "Nipsey Hussle",
+          "Wiz Khalifa",
+          "Big Sean",
+          "Freddie Gibbs",
+          "Jay Rock",
+          "Kendrick Lamar",
+          "Meek Mill",
+          "Mac Miller",
+          "YG",
+          "Yelawolf",
+          "Future",
+          "French Montana",
+          "Macklemore",
+          "Kid Ink",
+          "Hopsin",
+          "Iggy Azalea",
+          "Travis Scott",
+          "ScHoolboy Q",
+          "Joey Bada$$",
+          "Chief Keef",
+          "Logic",
+          "Ab-Soul",
+          "Chance the Rapper",
+          "Ty Dolla $ign",
+          "Kevin Gates",
+          "Rich Homie Quan",
+          "Lil Durk",
+          "Isaiah Rashad",
+          "August Alsina",
+          "Fetty Wap",
+          "Vince Staples",
+          "GoldLink",
+          "K Camp",
+          "DeJ Loaf",
+          "Shy Glizzy",
+          "21 Savage",
+          "Kodak Black",
+          "Lil Uzi Vert",
+          "Denzel Curry",
+          "Lil Yachty",
+          "Anderson .Paak",
+          "Desiigner",
+          "G Herbo",
+          "Lil Dicky",
+          "A Boogie Wit da Hoodie",
+          "Playboi Carti",
+          "XXXTentacion",
+          "PnB Rock",
+          "MadeinTYO",
+          "Kyle",
+          "Ski Mask the Slump God",
+          "Lil Pump",
+          "JID",
+          "Trippie Redd",
+          "Smokepurpp",
+          "Stefflon Don",
+          "BlocBoy JB",
+          "YBN Nahmir",
+          "NAV",
+          "6ix9ine",
+          "DaBaby",
+          "Roddy Ricch",
+          "Megan Thee Stallion",
+          "Gunna",
+          "Comethazine",
+          "Lil Mosey",
+          "YBN Cordae",
+          "Blueface",
+          "Polo G",
+          "Jack Harlow",
+          "Lil Tjay",
+          "Fivio Foreign",
+          "Rod Wave",
+          "Latto",
+          "NLE Choppa",
+          "Iann Dior",
+          "Drake",
+          "Nicki Minaj",
+          "ASAP Rocky",
+          "Tory Lanez",
+          "Young Thug",
+          "Post Malone",
+          "Migos",
+          "Rae Sremmurd",
+          "Cardi B",
+          "Young M.A",
+          "Lil Baby",
+          "Lil Skies"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 93,
+      "entityKind": "rappers (dots on a plays-per-day chart)",
+      "id": "03-03.opening_chart",
+      "identityCount": 93,
+      "job": "explain_the_encoding",
+      "mustBePerceptible": [
+        "a visible low-to-high ordering of dots by height, readable starting from the bottom"
+      ],
+      "mustBeTrue": [
+        "93 is the total number of rappers represented, one dot per rapper",
+        "dot height encodes plays per day, and reading proceeds from the bottom (lowest) upward"
+      ],
+      "ordinal": 1,
+      "passageId": "03",
+      "quote": "Ninety-three rappers, one dot each. Higher dot, more plays per day. Start at the bottom.",
+      "sourceBeatId": "03-03",
+      "sourceBeatJob": "explain_the_encoding",
+      "sourceSpan": {
+        "end": 88,
+        "start": 0
+      },
+      "takeaway": "Each dot is one rapper's daily play count; the viewer should read the field from lowest to highest before names appear.",
+      "taskRole": "population_encoding",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 37.31,
+        "passageStartSeconds": 27.2,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "which specific rappers occupy the lower and middle positions"
+      ],
+      "wouldBeALie": [
+        "ordering dots by anything other than plays per day (e.g. alphabetically, by fame, by career length)",
+        "showing more than one dot for any rapper"
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Future",
+          "Travis Scott"
+        ],
+        "explicit": [
+          "Future",
+          "Travis Scott"
+        ],
+        "implied": [],
+        "resolved": [
+          "Future",
+          "Travis Scott"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 3,
+      "entityKind": "rappers (dots on the same 93-dot chart)",
+      "id": "04-04.main",
+      "identityCount": 2,
+      "job": "one_vs_aggregate",
+      "mustBePerceptible": [
+        "a visible gap between the mystery dot and the next-highest dot(s)",
+        "the mystery dot's height clearly exceeding the combined total of Future's and Travis Scott's dots, not just exceeding either one alone"
+      ],
+      "mustBeTrue": [
+        "Future's and Travis Scott's dots sit near the top of the 93-dot field but below the mystery dot",
+        "the mystery dot exceeds the sum of Future's and Travis Scott's daily plays, not merely each individually",
+        "'open air under it' means no other dot is close to the mystery dot's height"
+      ],
+      "ordinal": 1,
+      "passageId": "04",
+      "quote": "Near the top, Future. Travis Scott. Then one dot with open air under it. More than both of them added together.",
+      "sourceBeatId": "04-04",
+      "sourceBeatJob": "one_vs_aggregate",
+      "sourceSpan": {
+        "end": 111,
+        "start": 0
+      },
+      "takeaway": "The mystery catalog doesn't just beat Future or Travis Scott individually — it clears their combined total, and it sits isolated at the very top with clear space beneath it.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 60.64,
+        "passageStartSeconds": 49.12,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Future's and Travis Scott's individual values or which of the two is higher",
+        "by how much the mystery dot exceeds their sum"
+      ],
+      "wouldBeALie": [
+        "showing the mystery dot only slightly ahead of Future or Travis Scott individually",
+        "clustering other dots near the mystery dot's height",
+        "implying Future and Travis Scott are equal to each other"
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper catalog (within the 93-rapper field)",
+      "id": "05-05a.main",
+      "identityCount": 0,
+      "job": "locate_in_distribution",
+      "mustBePerceptible": [
+        "the mystery dot standing as the topmost point across the full 93-dot field"
+      ],
+      "mustBeTrue": [
+        "'that much' refers back to the same daily figure from the opening, not a new number",
+        "'sitting on top of everybody' means this dot is the single highest of all 93",
+        "2026 is the year of this snapshot"
+      ],
+      "ordinal": 1,
+      "passageId": "05",
+      "quote": "A catalog pulling that much every day, in 2026, sitting on top of everybody.",
+      "sourceBeatId": "05-05a",
+      "sourceBeatJob": "locate_in_distribution",
+      "sourceSpan": {
+        "end": 76,
+        "start": 0
+      },
+      "takeaway": "This is the same catalog from the opening, confirmed as the single highest of all 93 rappers on the chart, as of 2026.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 76.33,
+        "passageStartSeconds": 67.08,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [],
+      "wouldBeALie": [
+        "implying this is a different or new number than the opening figure",
+        "implying 'everybody' refers to a subset smaller than the full 93"
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper (career timeline)",
+      "id": "05-05b.main",
+      "identityCount": 0,
+      "job": "pose_a_question",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "'his' keeps the rapper singular and still unnamed",
+        "the question asks for a count of career years, not a calendar year"
+      ],
+      "ordinal": 1,
+      "passageId": "05",
+      "quote": "What year of his career is this? Pick a number.",
+      "sourceBeatId": "05-05b",
+      "sourceBeatJob": "pose_a_question",
+      "sourceSpan": {
+        "end": 47,
+        "start": 0
+      },
+      "takeaway": "The viewer is asked to commit to a guess for how many years into his career this peak falls, before any reveal.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 76.33,
+        "passageStartSeconds": 67.08,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "the actual number of years",
+        "the rapper's identity"
+      ],
+      "wouldBeALie": [
+        "revealing the rapper's identity, debut date, or the actual year-count before the viewer answers"
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Drake"
+        ],
+        "explicit": [
+          "Drake"
+        ],
+        "implied": [],
+        "resolved": [
+          "Drake"
+        ],
+        "unknownNames": [
+          {
+            "at": 3,
+            "text": "Far"
+          },
+          {
+            "at": 7,
+            "text": "Gone"
+          },
+          {
+            "at": 134,
+            "text": "Far"
+          },
+          {
+            "at": 138,
+            "text": "Gone"
+          }
+        ],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "artist career timeline (Drake / So Far Gone release)",
+      "id": "06-06.main",
+      "identityCount": 1,
+      "job": "define_terms",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "So Far Gone was released in 2009.",
+        "The chart covers a one-year period whose end date is the 17th anniversary of that release.",
+        "'Year seventeen' names this specific chart period, not a running cumulative total of 17 years."
+      ],
+      "ordinal": 1,
+      "passageId": "06",
+      "quote": "So Far Gone came out in 2009. This chart covers the year that ends on its seventeenth anniversary.",
+      "sourceBeatId": "06-06",
+      "sourceBeatJob": "define_terms",
+      "sourceSpan": {
+        "end": 98,
+        "start": 0
+      },
+      "takeaway": "The chart's window is pinned to a specific, calculable point: the year ending on the 17th anniversary of So Far Gone's 2009 release — this is the 'year seventeen' the opening question was asking about.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 84.67,
+        "passageStartSeconds": 77.64,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The exact calendar date of the anniversary within 2026."
+      ],
+      "wouldBeALie": [
+        "That the chart aggregates or sums data across all 17 years of Drake's career rather than showing one recent one-year window.",
+        "That the anniversary date is exact to the day/month rather than the approximate year the narration gives."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 3,
+      "entityKind": "hypothetical late-career rap milestones (anniversary tour, deluxe reissue, festival undercard slot)",
+      "id": "07-07.main",
+      "identityCount": 0,
+      "job": "enumerate",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "These three items describe a generic, typical trajectory for a 17-year rap career in general, not a documented fact about Drake's current activity."
+      ],
+      "ordinal": 1,
+      "passageId": "07",
+      "quote": "Year seventeen of a rap career is anniversary-tour territory. Deluxe reissues with three unreleased demos on the back. A festival slot at seven-forty, before the headliner.",
+      "sourceBeatId": "07-07",
+      "sourceBeatJob": "enumerate",
+      "sourceSpan": {
+        "end": 172,
+        "start": 0
+      },
+      "takeaway": "Year seventeen has a stock, diminished-relevance script — this is the generic expectation the rest of the piece is about to contradict.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 99.32,
+        "passageStartSeconds": 84.67,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Whether this pattern is asserted as universal or just illustrative/typical.",
+        "The basis or source for this being the norm at year seventeen."
+      ],
+      "wouldBeALie": [
+        "Depicting the anniversary tour, deluxe reissue, or 7:40 festival slot as things Drake is actually doing right now.",
+        "Presenting this list as data about Drake's catalog rather than a generic stereotype being set up for contrast."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [
+          {
+            "candidates": [
+              "Big L",
+              "Big Punisher",
+              "Big Scarr",
+              "Big Sean"
+            ],
+            "token": "Big"
+          }
+        ],
+        "cohorts": [],
+        "displayEligible": [
+          "Drake"
+        ],
+        "explicit": [
+          "Drake"
+        ],
+        "implied": [],
+        "resolved": [
+          "Drake"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 2,
+      "entityKind": "catalog song categories (Drake's own songs vs. songs where he's a feature/guest)",
+      "id": "08-08.main",
+      "identityCount": 1,
+      "job": "category_breakdown",
+      "mustBePerceptible": [
+        "If the catalog composition is shown visually, the own-songs/other-people's-songs split should read as roughly even, not skewed to one side."
+      ],
+      "mustBeTrue": [
+        "'Half of it is other people's songs' describes the composition of the catalog (own songs vs. features/guest verses), not a share of streams.",
+        "This composition split is distinct from the streaming-concentration metric introduced later (share of total streams from one song).",
+        "'Seventeen years to pile it up' refers to career-long catalog accumulation, not the chart's single-year window defined in passage 06."
+      ],
+      "ordinal": 1,
+      "passageId": "08",
+      "quote": "The explanations write themselves. Big back catalog. Half of it is other people's songs. Seventeen years to pile it up.",
+      "sourceBeatId": "08-08",
+      "sourceBeatJob": "category_breakdown",
+      "sourceSpan": {
+        "end": 119,
+        "start": 0
+      },
+      "takeaway": "The catalog's huge streaming pull has boring, mechanical causes: it's large, roughly half of it is guest features rather than lead songs, and it's had 17 years to accumulate — these are offered as unremarkable, not the interesting part.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 120.11,
+        "passageStartSeconds": 109.46,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The exact percentage of the catalog that is features (only the round figure 'half' is given).",
+        "The absolute size of the back catalog."
+      ],
+      "wouldBeALie": [
+        "Implying the 'half other people's songs' figure measures streaming share rather than catalog composition.",
+        "Presenting these three explanations as a surprising or notable finding rather than the expected, unremarkable story the narration frames them as."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Ab-Soul",
+          "Jay Rock",
+          "Latto"
+        ],
+        "explicit": [
+          "Ab-Soul",
+          "Jay Rock",
+          "Latto"
+        ],
+        "implied": [],
+        "resolved": [
+          "Ab-Soul",
+          "Jay Rock",
+          "Latto"
+        ],
+        "unknownNames": [
+          {
+            "at": 120,
+            "text": "Markie"
+          },
+          {
+            "at": 185,
+            "text": "Biz"
+          },
+          {
+            "at": 189,
+            "text": "Markie"
+          }
+        ],
+        "unresolved": []
+      },
+      "entityCount": 4,
+      "entityKind": "musical artists (Latto, Jay Rock, Ab-Soul, Biz Markie)",
+      "id": "09-09.main",
+      "identityCount": 3,
+      "job": "parallel_instances",
+      "mustBePerceptible": [
+        "The four percentages must be distinguishable as separate, escalating values (50, 52, 71, 79), each anchored to its own artist."
+      ],
+      "mustBeTrue": [
+        "Each percentage is that artist's single biggest song as a share of that same artist's own total streams — each has its own denominator.",
+        "The four figures are independent benchmarks, not parts of one combined total."
+      ],
+      "ordinal": 1,
+      "passageId": "09",
+      "quote": "Latto's biggest is half of everything she's ever streamed. Jay Rock's is fifty-two percent. Ab-Soul's, seventy-one. Biz Markie, seventy-nine.",
+      "sourceBeatId": "09-09",
+      "sourceBeatJob": "parallel_instances",
+      "sourceSpan": {
+        "end": 141,
+        "start": 0
+      },
+      "takeaway": "Across very different artists, it's normal for a single song to account for half or more of everything they've ever streamed — this is the baseline against which Drake's number will be judged.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 152.32,
+        "passageStartSeconds": 141.22,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "How the four artists' absolute total stream counts compare to one another.",
+        "Any overlap between these artists' catalogs or songs."
+      ],
+      "wouldBeALie": [
+        "Implying the four percentages share a common denominator or sum to a combined whole.",
+        "Presenting the four artists as ranked competitors against each other rather than independent examples of the same pattern."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Drake"
+        ],
+        "explicit": [
+          "Drake"
+        ],
+        "implied": [],
+        "resolved": [
+          "Drake"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "musical artist (Drake)",
+      "id": "10-10.main",
+      "identityCount": 1,
+      "job": "pose_a_question",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "The question asks about the same measure just established in passage 09: one song's share of that same artist's own total streams.",
+        "Drake's actual value is not given in this beat — it is withheld pending the viewer's guess."
+      ],
+      "ordinal": 1,
+      "passageId": "10",
+      "quote": "You've got the shape now. Call it. What share of Drake's streams is his single biggest song?",
+      "sourceBeatId": "10-10",
+      "sourceBeatJob": "pose_a_question",
+      "sourceSpan": {
+        "end": 92,
+        "start": 0
+      },
+      "takeaway": "Having just seen that a single song normally makes up half or more of an artist's total streams, the viewer is asked to commit to a guess for Drake before the answer is revealed.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 166.23,
+        "passageStartSeconds": 160.54,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Drake's actual answer (deliberately deferred to the following passage)."
+      ],
+      "wouldBeALie": [
+        "Showing or hinting at Drake's actual percentage before asking the viewer to commit.",
+        "Visually suggesting the answer will fall in the same 50-79% range as the benchmark artists, since that expectation is what gets overturned next."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Drake"
+        ],
+        "explicit": [
+          "Drake"
+        ],
+        "implied": [],
+        "resolved": [
+          "Drake"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 10,
+      "entityKind": "songs (share of Drake's total streams)",
+      "id": "11-11a.main",
+      "identityCount": 1,
+      "job": "one_vs_aggregate",
+      "mustBePerceptible": [
+        "Both shares must read as small slivers of a whole, not as dominant portions.",
+        "The step from the one-song share to the ten-song share must be visible as an increase but still a minority of the whole."
+      ],
+      "mustBeTrue": [
+        "Three percent is the single biggest song's share of Drake's own total streams.",
+        "Fifteen percent is the combined share of his ten biggest songs of that same total.",
+        "Both percentages are measured against Drake's own catalog, not against any other artist or a chart-wide total."
+      ],
+      "ordinal": 1,
+      "passageId": "11",
+      "quote": "Three percent. His ten biggest songs together come to fifteen percent.",
+      "sourceBeatId": "11-11a",
+      "sourceBeatJob": "one_vs_aggregate",
+      "sourceSpan": {
+        "end": 70,
+        "start": 0
+      },
+      "takeaway": "Even Drake's single biggest song and his ten biggest songs combined make up only a small sliver of his total streams — his catalog's success isn't concentrated in a few hits.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 177.17,
+        "passageStartSeconds": 166.23,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "What the actual stream counts behind the percentages are.",
+        "How his 11th-through-Nth biggest songs are distributed."
+      ],
+      "wouldBeALie": [
+        "Showing either percentage as a large or dominant portion of the total.",
+        "Implying the ten-song figure is a different total than the one-song figure is built from (they share the same denominator)."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Future"
+        ],
+        "explicit": [
+          "Future"
+        ],
+        "implied": [],
+        "resolved": [
+          "Future"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper catalog (Future's ten-biggest-songs share)",
+      "id": "11-11b.main",
+      "identityCount": 1,
+      "job": "entity_vs_benchmark",
+      "mustBePerceptible": [
+        "Future's figure must read as clearly higher than Drake's fifteen percent, while still low relative to a typical catalog."
+      ],
+      "mustBeTrue": [
+        "Future's twenty-four percent is the same measure as Drake's fifteen percent (share of his own total from his ten biggest songs).",
+        "Future is the closest rival to Drake's flatness only among catalogs of a similar size, not among all catalogs.",
+        "Drake's fifteen percent remains lower (flatter) than Future's twenty-four."
+      ],
+      "ordinal": 1,
+      "passageId": "11",
+      "quote": "The next-flattest catalog at anything close to this size is Future, at twenty-four.",
+      "sourceBeatId": "11-11b",
+      "sourceBeatJob": "entity_vs_benchmark",
+      "sourceSpan": {
+        "end": 83,
+        "start": 0
+      },
+      "takeaway": "No other catalog of comparable size comes close to Drake's flatness — even the next-closest, Future, has a meaningfully more concentrated top ten.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 177.17,
+        "passageStartSeconds": 166.23,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The ten-biggest-song share for catalogs not close to Drake's size.",
+        "Where Future ranks overall among all catalogs, not just ones near Drake's size."
+      ],
+      "wouldBeALie": [
+        "Showing Future as flatter than or equal to Drake.",
+        "Implying this comparison includes catalogs of any size rather than only ones close to Drake's scale."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Ab-Soul",
+          "Jay Rock",
+          "Latto"
+        ],
+        "explicit": [
+          "Ab-Soul",
+          "Jay Rock",
+          "Latto"
+        ],
+        "implied": [],
+        "resolved": [
+          "Ab-Soul",
+          "Jay Rock",
+          "Latto"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 3,
+      "entityKind": "rappers (rank position on the same chart)",
+      "id": "12-12a.main",
+      "identityCount": 3,
+      "job": "change_across_set",
+      "mustBePerceptible": [
+        "The three drop sizes (28, 13, 12) must be visually distinguishable from each other while all reading as downward movement on one shared scale."
+      ],
+      "mustBeTrue": [
+        "Each number is a count of rank positions dropped, not a stream count or percentage.",
+        "Jay Rock's number also refers to a fall, matching the verb used for Ab-Soul and Latto.",
+        "All three positions are drops on the same shared ranking, not three separate rankings."
+      ],
+      "ordinal": 1,
+      "passageId": "12",
+      "quote": "Ab-Soul falls twenty-eight places. Latto falls thirteen. Jay Rock, twelve.",
+      "sourceBeatId": "12-12a",
+      "sourceBeatJob": "change_across_set",
+      "sourceSpan": {
+        "end": 74,
+        "start": 0
+      },
+      "takeaway": "These three rappers drop noticeably in rank position, each by a different amount, on the same chart.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 211.98,
+        "passageStartSeconds": 191.67,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "What change in the underlying data caused these rank drops.",
+        "The total size of the chart these ranks belong to.",
+        "What percentage of streams, if any, each of these three lost."
+      ],
+      "wouldBeALie": [
+        "Showing any of the three moving up instead of down.",
+        "Implying these numbers measure streams lost rather than rank positions lost."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Drake",
+          "Macklemore"
+        ],
+        "explicit": [
+          "Drake",
+          "Macklemore"
+        ],
+        "implied": [],
+        "resolved": [
+          "Drake",
+          "Macklemore"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 2,
+      "entityKind": "rappers (percent of own streams retained, and rank change)",
+      "id": "12-12b.main",
+      "identityCount": 2,
+      "job": "parallel_instances",
+      "mustBePerceptible": [
+        "Drake's zero rank change must be visible as no movement at all, distinct from Macklemore's three-spot drop.",
+        "Drake's percentage retained (97) must read as higher than Macklemore's (73)."
+      ],
+      "mustBeTrue": [
+        "Seventy-three percent and ninety-seven percent are each a percentage of that artist's own total streams, not of a shared pool.",
+        "Macklemore's rank drop is three spots; Drake's net rank change is zero.",
+        "Drake's four point four billion is an absolute stream count lost, not a percentage.",
+        "Drake and Macklemore are positions on the same chart referenced in the prior beat."
+      ],
+      "ordinal": 1,
+      "passageId": "12",
+      "quote": "Macklemore keeps seventy-three percent of his streams and drops three spots. Drake loses four point four billion streams, keeps ninety-seven percent of his total, and finishes exactly where he started.",
+      "sourceBeatId": "12-12b",
+      "sourceBeatJob": "parallel_instances",
+      "sourceSpan": {
+        "end": 201,
+        "start": 0
+      },
+      "takeaway": "Despite retaining far less of his total streams than Drake, Macklemore only drops three spots — while Drake, who loses billions of streams in absolute terms but keeps the vast majority of his total, doesn't move in rank at all.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 211.98,
+        "passageStartSeconds": 191.67,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "What caused the loss of streams being measured for both artists.",
+        "Where Macklemore's and Drake's ranks sit numerically on the full chart (only the changes are given, not the positions themselves)."
+      ],
+      "wouldBeALie": [
+        "Implying Drake's 4.4 billion lost streams is a small or negligible amount just because his rank didn't change.",
+        "Treating Macklemore's and Drake's retained percentages as shares of one combined pool rather than each artist's own separate total.",
+        "Implying Drake's rank change is anything other than exactly zero."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 93,
+      "entityKind": "rappers (count of songs each with over a billion streams)",
+      "id": "13-13a.main",
+      "identityCount": 0,
+      "job": "locate_in_distribution",
+      "mustBePerceptible": [
+        "Drake's count of thirty must read as far above the rest of the field.",
+        "The thirty-five-rapper zero group must be visible as a large, distinct cluster at the bottom of the same distribution Drake is placed in."
+      ],
+      "mustBeTrue": [
+        "Thirty is Drake's count of individual songs that have each individually passed a billion streams, not his total stream count.",
+        "Ninety-three is the fixed size of the opening chart's population.",
+        "Thirty-five of those ninety-three rappers have exactly zero songs past a billion streams each."
+      ],
+      "ordinal": 1,
+      "passageId": "13",
+      "quote": "He has thirty songs past a billion streams. Thirty-five of the ninety-three rappers on the opening chart have zero.",
+      "sourceBeatId": "13-13a",
+      "sourceBeatJob": "locate_in_distribution",
+      "sourceSpan": {
+        "end": 115,
+        "start": 0
+      },
+      "takeaway": "Drake's thirty songs past a billion streams is an extreme outlier — more than a third of the field he's being measured against has none at all.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 226.56,
+        "passageStartSeconds": 211.98,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "How many billion-plus songs the other fifty-eight rappers (outside Drake and the zero group) have.",
+        "Who specifically makes up the ninety-three-rapper opening chart."
+      ],
+      "wouldBeALie": [
+        "Implying thirty is Drake's total song count rather than his count past the billion-stream mark.",
+        "Implying the thirty-five-rapper group has some songs past a billion rather than none.",
+        "Implying the remaining fifty-eight rappers are clustered near Drake's count."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 93,
+      "entityKind": "rappers (total career streams vs a thirty-billion threshold)",
+      "id": "13-13b.main",
+      "identityCount": 0,
+      "job": "proportion_of_cohort",
+      "mustBePerceptible": [
+        "Eighty-one out of ninety-three must read as the large majority of the field, not a narrow one."
+      ],
+      "mustBeTrue": [
+        "Thirty billion streams is a total across a rapper's entire recorded catalog, not one song or a top-ten grouping.",
+        "Eighty-one of the ninety-three rappers fall short of that total.",
+        "This threshold and count are distinct from the billion-stream-song count in the prior beat."
+      ],
+      "ordinal": 1,
+      "passageId": "13",
+      "quote": "And eighty-one of the ninety-three don't have thirty billion streams across everything they've ever recorded.",
+      "sourceBeatId": "13-13b",
+      "sourceBeatJob": "proportion_of_cohort",
+      "sourceSpan": {
+        "end": 109,
+        "start": 0
+      },
+      "takeaway": "Almost all of this field falls short of thirty billion streams across their entire recorded output.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 226.56,
+        "passageStartSeconds": 211.98,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Drake's own total career stream count.",
+        "Whether the eighty-one-rapper group here overlaps fully, partly, or not at all with the thirty-five-rapper group in the previous beat."
+      ],
+      "wouldBeALie": [
+        "Applying the thirty-billion threshold to a single song or to a top-ten grouping instead of an entire career catalog.",
+        "Assuming the eighty-one-rapper group here is identical to the thirty-five-rapper zero group from the prior beat without stating so."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 6,
+      "entityKind": "rappers/songs (streams in billions)",
+      "id": "14-14.main",
+      "identityCount": 0,
+      "job": "one_vs_aggregate",
+      "mustBePerceptible": [
+        "The two totals (21 vs 15) must read as Drake's side clearly larger.",
+        "The composition difference must stay legible: one side is ten songs from one artist, the other is five songs from five different artists."
+      ],
+      "mustBeTrue": [
+        "Twenty-one billion is the sum of Drake's own ten biggest songs.",
+        "Fifteen billion is the sum of exactly one song each — the single biggest — from five other, distinct artists.",
+        "'Next five artists' refers to a specific five continuing from wherever this chart's ordering places Drake, not an arbitrary or unspecified five.",
+        "Drake's total is the larger of the two."
+      ],
+      "ordinal": 1,
+      "passageId": "14",
+      "quote": "Take his ten biggest. Then take the single biggest song from each of the next five artists and add those five together. His ten win, twenty-one billion to fifteen.",
+      "sourceBeatId": "14-14",
+      "sourceBeatJob": "one_vs_aggregate",
+      "sourceSpan": {
+        "end": 163,
+        "start": 0
+      },
+      "takeaway": "Drake's ten biggest songs combined still beat the combined single biggest hit of each of the next five artists — his depth outweighs their concentrated peaks.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 247.21,
+        "passageStartSeconds": 234.56,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The identity of the five artists being combined.",
+        "The individual size of each of the five artists' single biggest songs."
+      ],
+      "wouldBeALie": [
+        "Merging the two totals so it's unclear which side is Drake's own ten songs and which is the five-artist combination.",
+        "Implying the five-artist side represents those artists' entire catalogs rather than just one song each.",
+        "Showing the gap between 21 and 15 as narrow or ambiguous when the text states Drake's side wins outright."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Drake"
+        ],
+        "explicit": [
+          "Drake"
+        ],
+        "implied": [],
+        "resolved": [
+          "Drake"
+        ],
+        "unknownNames": [
+          {
+            "at": 9,
+            "text": "XXL"
+          },
+          {
+            "at": 39,
+            "text": "Freshman"
+          }
+        ],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper (Drake) / single historical event",
+      "id": "15-15.main",
+      "identityCount": 1,
+      "job": "narrate_an_event",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "The offer came from XXL for its 2010 Freshman cover.",
+        "Drake declined the offer himself; he was not left off or overlooked.",
+        "This is a single dated event, not a recurring or repeated occurrence."
+      ],
+      "ordinal": 1,
+      "passageId": "15",
+      "quote": "In 2010, XXL offered him a spot on the Freshman cover. He turned it down.",
+      "sourceBeatId": "15-15",
+      "sourceBeatJob": "narrate_an_event",
+      "sourceSpan": {
+        "end": 73,
+        "start": 0
+      },
+      "takeaway": "Drake was invited onto a marquee industry list early in his career and chose to decline it himself.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 257.87,
+        "passageStartSeconds": 251.25,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Why he turned the offer down.",
+        "Whether he was offered a spot in any other year."
+      ],
+      "wouldBeALie": [
+        "Implying Drake was excluded or snubbed rather than having refused an offer extended to him.",
+        "Implying this happened in a year other than 2010 or involved a different list."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "B.o.B",
+          "Big Sean",
+          "Curren$y",
+          "Freddie Gibbs",
+          "J. Cole",
+          "Jay Rock",
+          "Kid Cudi",
+          "Nicki Minaj",
+          "Nipsey Hussle",
+          "Wale",
+          "Wiz Khalifa"
+        ],
+        "explicit": [
+          "B.o.B",
+          "Big Sean",
+          "Curren$y",
+          "Freddie Gibbs",
+          "J. Cole",
+          "Jay Rock",
+          "Kid Cudi",
+          "Nicki Minaj",
+          "Nipsey Hussle",
+          "Wale",
+          "Wiz Khalifa"
+        ],
+        "implied": [],
+        "resolved": [
+          "B.o.B",
+          "Big Sean",
+          "Curren$y",
+          "Freddie Gibbs",
+          "J. Cole",
+          "Jay Rock",
+          "Kid Cudi",
+          "Nicki Minaj",
+          "Nipsey Hussle",
+          "Wale",
+          "Wiz Khalifa"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 11,
+      "entityKind": "rappers",
+      "id": "16-16.main",
+      "identityCount": 11,
+      "job": "enumerate",
+      "mustBePerceptible": [
+        "The 2009 group and the 2010 group must read as visually distinct sets, not one undivided list."
+      ],
+      "mustBeTrue": [
+        "2009 and 2010 are two separate named cohorts, not one merged list.",
+        "2009 cohort: Kid Cudi, B.o.B, Wale, Curren$y (4 names).",
+        "2010 cohort: J. Cole, Nicki Minaj, Wiz Khalifa, Big Sean, Nipsey Hussle, Jay Rock, Freddie Gibbs (7 names).",
+        "At this point the eleven are only named, with no quantities or comparison attached."
+      ],
+      "ordinal": 1,
+      "passageId": "16",
+      "quote": "The rappers on that cover, and on the one the year before, came up on the same clock he did. 2009: Kid Cudi, B.o.B, Wale, Curren$y. 2010: J. Cole, Nicki Minaj, Wiz Khalifa, Big Sean, Nipsey Hussle, Jay Rock, Freddie Gibbs.",
+      "sourceBeatId": "16-16",
+      "sourceBeatJob": "enumerate",
+      "sourceSpan": {
+        "end": 222,
+        "start": 0
+      },
+      "takeaway": "These eleven rappers are his era-mates — the peer set later comparisons will be built from, split into two annual cohorts.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 281.02,
+        "passageStartSeconds": 257.87,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Which specific man declined the 2010 cover (that identity comes from the context before, not this passage)."
+      ],
+      "wouldBeALie": [
+        "Implying the eleven names are being ranked or measured against one another here.",
+        "Merging the two years into a single undifferentiated group."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 0,
+      "entityKind": "",
+      "id": "17-17.main",
+      "identityCount": 0,
+      "job": "define_terms",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "The rule applies identically to every artist in the comparisons that follow, not selectively to one.",
+        "Full credit = a record led or equally co-led.",
+        "Half credit = a feature or remix verse."
+      ],
+      "ordinal": 1,
+      "passageId": "17",
+      "quote": "One rule, applied to everybody. A record you lead, or share the lead on equally, counts in full. A feature or a remix verse counts at half.",
+      "sourceBeatId": "17-17",
+      "sourceBeatJob": "define_terms",
+      "sourceSpan": {
+        "end": 139,
+        "start": 0
+      },
+      "takeaway": "One fixed weighting rule governs every comparison that follows, applied the same way to every artist involved.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 295.63,
+        "passageStartSeconds": 284.24,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [],
+      "wouldBeALie": [
+        "Applying the weighting inconsistently between him and others in later beats.",
+        "Implying the rule was calibrated specifically to favor one artist."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "J. Cole",
+          "Nicki Minaj"
+        ],
+        "explicit": [
+          "J. Cole",
+          "Nicki Minaj"
+        ],
+        "implied": [],
+        "resolved": [
+          "J. Cole",
+          "Nicki Minaj"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 7,
+      "entityKind": "rappers",
+      "id": "18-18.main",
+      "identityCount": 2,
+      "job": "members_then_total",
+      "mustBePerceptible": [
+        "The build from individual member values up to one combined total.",
+        "That the total visibly represents all seven members, not only the two named examples."
+      ],
+      "mustBeTrue": [
+        "Nicki Minaj (30B) and J. Cole (29B) are two of the seven members shown individually; the other five are unnamed with values but are part of the stack.",
+        "The 97B total is the sum of all seven members' rule-weighted totals, not just Nicki and Cole.",
+        "'Seven careers' refers to the same seven people named as the 2010 class in passage 16."
+      ],
+      "ordinal": 1,
+      "passageId": "18",
+      "quote": "That's the 2010 class under the rule. Nicki at thirty billion. Cole at twenty-nine. Stack all seven end to end. Ninety-seven billion. Seven careers.",
+      "sourceBeatId": "18-18",
+      "sourceBeatJob": "members_then_total",
+      "sourceSpan": {
+        "end": 148,
+        "start": 0
+      },
+      "takeaway": "The seven 2010-class careers, each counted under the stated rule, stack to a combined total of ninety-seven billion.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 309.88,
+        "passageStartSeconds": 295.63,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The individual totals of the other five members (Wiz Khalifa, Big Sean, Nipsey Hussle, Jay Rock, Freddie Gibbs)."
+      ],
+      "wouldBeALie": [
+        "Implying the 97B total is composed of only Nicki and Cole's figures.",
+        "Implying the total includes anyone outside this seven-person class."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 8,
+      "entityKind": "rappers",
+      "id": "19-19.main",
+      "identityCount": 0,
+      "job": "one_vs_aggregate",
+      "mustBePerceptible": [
+        "The two totals must read as nearly identical in size, with neither clearly dominant."
+      ],
+      "mustBeTrue": [
+        "His figure (96.5B) counts only records where his name carries the lead, excluding features and remix verses from his side entirely.",
+        "The comparison figure for the seven-rapper side is the 97B combined total established in passage 18.",
+        "This is one individual against the summed total of seven people, not against any one of them separately.",
+        "The gap between the two totals (96.5B vs 97B) is small enough to be called a coin flip."
+      ],
+      "ordinal": 1,
+      "passageId": "19",
+      "quote": "Ninety-six and a half billion. His own records, nothing else, are the whole class. Seven rappers with everything they have ever made against one man with only the songs that carry his name first, and it comes down to a coin flip.",
+      "sourceBeatId": "19-19",
+      "sourceBeatJob": "one_vs_aggregate",
+      "sourceSpan": {
+        "end": 229,
+        "start": 0
+      },
+      "takeaway": "Counting only his lead-credited songs, his total comes within half a billion of the combined, fully-weighted total of all seven 2010-class careers — a near-exact tie.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 346.97,
+        "passageStartSeconds": 330.38,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Any numeric definition of 'coin flip' beyond the two stated totals."
+      ],
+      "wouldBeALie": [
+        "Showing his total as clearly smaller or clearly larger than the group's combined total.",
+        "Implying his total includes any feature or remix credit.",
+        "Implying the comparison is against one member of the seven rather than their combined sum."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Future",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Travis Scott"
+        ],
+        "explicit": [
+          "Future",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Travis Scott"
+        ],
+        "implied": [],
+        "resolved": [
+          "Future",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Travis Scott"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 5,
+      "entityKind": "rappers",
+      "id": "20-20.main",
+      "identityCount": 4,
+      "job": "one_vs_many_individually",
+      "mustBePerceptible": [
+        "His value must read as visibly greater than each of the four separate values.",
+        "The four must remain distinct, separate quantities rather than merging into one combined figure."
+      ],
+      "mustBeTrue": [
+        "'The same slice' is his 96.5B figure carried over unchanged from passage 19.",
+        "Travis Scott (67B), Kendrick (57B), Post Malone (56B), and Future (54B) are compared individually, not summed together.",
+        "These four totals are full catalogs counted at full credit, with no half-weighting for features — a more generous count than the rule applied to the 2010 class.",
+        "His total exceeds each of the four individual totals."
+      ],
+      "ordinal": 1,
+      "passageId": "20",
+      "quote": "That's the class. Now put the same slice against the names near the top of the opening chart, full catalogs, everything at full credit. Travis Scott, sixty-seven billion. Kendrick, fifty-seven. Post Malone, fifty-six. Future, fifty-four. The slice clears every one of them.",
+      "sourceBeatId": "20-20",
+      "sourceBeatJob": "one_vs_many_individually",
+      "sourceSpan": {
+        "end": 273,
+        "start": 0
+      },
+      "takeaway": "The same personal total that nearly tied the whole seven-person 2010 class also individually beats each of four major artists' full, fully-credited catalogs.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 370.7,
+        "passageStartSeconds": 346.97,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The full contents of 'the opening chart' beyond these four named artists.",
+        "Whether this full-credit method was applied to any artists not named here."
+      ],
+      "wouldBeALie": [
+        "Summing the four artists into a combined total and comparing his slice to that sum.",
+        "Implying his figure has changed or grown from the 96.5B established in passage 19.",
+        "Implying the four artists' totals are discounted or half-weighted the way features are."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Future",
+          "Young Thug"
+        ],
+        "explicit": [
+          "Future",
+          "Young Thug"
+        ],
+        "implied": [],
+        "resolved": [
+          "Future",
+          "Young Thug"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 3,
+      "entityKind": "rappers (guest-verse/feature counts)",
+      "id": "21-21a.main",
+      "identityCount": 2,
+      "job": "one_vs_many_individually",
+      "mustBePerceptible": [
+        "Drake's count must read as visibly the smallest of the three."
+      ],
+      "mustBeTrue": [
+        "The counts are of guest features/verses specifically, not total songs or albums.",
+        "Drake: 181 features; Future: 232; Young Thug: 302."
+      ],
+      "ordinal": 1,
+      "passageId": "21",
+      "quote": "He gets accused of living on features. He's done a hundred and eighty-one of them. Future has done two hundred thirty-two. Young Thug, three hundred and two.",
+      "sourceBeatId": "21-21a",
+      "sourceBeatJob": "one_vs_many_individually",
+      "sourceSpan": {
+        "end": 157,
+        "start": 0
+      },
+      "takeaway": "Despite being accused of relying on features, Drake's feature count is actually the lowest of the three — both Future and Young Thug have done more.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 419.28,
+        "passageStartSeconds": 398.22,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The time span or career window over which these feature counts were tallied.",
+        "Whether the accusation itself is being judged true or false by this data."
+      ],
+      "wouldBeALie": [
+        "Showing Drake's feature count as equal to or greater than Future's or Young Thug's."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper (streaming total on features)",
+      "id": "21-21b.main",
+      "identityCount": 0,
+      "job": "derived_quantity",
+      "mustBePerceptible": [
+        "The per-verse figure must read as computed from the total and the verse count, not as an independent statistic."
+      ],
+      "mustBeTrue": [
+        "Forty-three billion is the total streams from Drake's 181 features.",
+        "Two hundred forty million per verse is a derived average (43 billion divided by 181), not a separately reported figure.",
+        "\"More streams than anyone\" compares against all other rappers' features, not only Future's or Young Thug's."
+      ],
+      "ordinal": 1,
+      "passageId": "21",
+      "quote": "Fewer verses than either, more streams than anyone: forty-three billion, roughly two hundred forty million a verse.",
+      "sourceBeatId": "21-21b",
+      "sourceBeatJob": "derived_quantity",
+      "sourceSpan": {
+        "end": 115,
+        "start": 0
+      },
+      "takeaway": "Drake's features generate more total streams than anyone else's, and dividing that total by his verse count yields roughly 240 million streams per verse.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 419.28,
+        "passageStartSeconds": 398.22,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Which other artists were checked to support \"more streams than anyone.\""
+      ],
+      "wouldBeALie": [
+        "Presenting the 240 million per-verse figure as a directly measured number rather than one derived from total streams divided by verse count.",
+        "Limiting the \"more than anyone\" comparison visually to just Future and Young Thug."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 12,
+      "entityKind": "rappers (one individual vs. an 11-member combined cohort)",
+      "id": "22-22.main",
+      "identityCount": 0,
+      "job": "one_vs_aggregate",
+      "mustBePerceptible": [
+        "Drake's total and the eleven-rapper combined total must appear nearly equal, with the combined side only slightly ahead.",
+        "The combined side must read as many careers pooled into one total, not one comparably-sized peer."
+      ],
+      "mustBeTrue": [
+        "The eleven rappers are the 2009 and 2010 classes combined, filtered by the same rule used elsewhere in this comparison.",
+        "It takes all eleven summed together to surpass Drake, and only by roughly three percent.",
+        "This is a single aggregate total for the eleven, not eleven separate wins over him."
+      ],
+      "ordinal": 1,
+      "passageId": "22",
+      "quote": "There's one place the comparison turns on him. Add the 2009 class to the 2010 class, eleven rappers under the rule, and together they edge him by about three percent. Eleven careers to one, and it's close.",
+      "sourceBeatId": "22-22",
+      "sourceBeatJob": "one_vs_aggregate",
+      "sourceSpan": {
+        "end": 205,
+        "start": 0
+      },
+      "takeaway": "This is the one matchup Drake doesn't clearly win: only by summing eleven careers from the combined 2009 and 2010 classes does the group barely edge past his total, and only by about three percent.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 442.31,
+        "passageStartSeconds": 426.37,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The specific identities of all eleven rappers in the two classes.",
+        "The exact rule/threshold that qualifies someone as being \"under the rule.\""
+      ],
+      "wouldBeALie": [
+        "Showing the combined eleven-rapper total as dramatically larger than Drake's — the margin is close, about three percent.",
+        "Showing any single one of the eleven rappers individually exceeding Drake's total."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [
+          {
+            "at": 251,
+            "text": "Views"
+          }
+        ],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper (hypothetical scenario about catalog streaming)",
+      "id": "23-23.main",
+      "identityCount": 0,
+      "job": "assert_without_data",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "This is a general mechanism/hypothesis about how streaming works, not a confirmed claim that Drake specifically stopped mattering.",
+        "The scenario is explicitly framed as a possibility (\"could be\"), not an established fact.",
+        "\"Views\" marks a specific point in Drake's timeline referenced as the hypothetical cutoff."
+      ],
+      "ordinal": 1,
+      "passageId": "23",
+      "quote": "A song from 2015 streams in 2026 without the artist lifting a finger. Music has no body that gives out. So the top of the daily chart in year seventeen could be a very large archive on autoplay while the man himself stopped mattering somewhere around Views.",
+      "sourceBeatId": "23-23",
+      "sourceBeatJob": "assert_without_data",
+      "sourceSpan": {
+        "end": 257,
+        "start": 0
+      },
+      "takeaway": "Streaming totals alone can't tell you whether an artist is still active or just still being played — an old catalog can keep climbing charts with no new effort at all.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 478.26,
+        "passageStartSeconds": 457.37,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Whether this hypothesis actually holds true for Drake — that question is left open for the following passages to resolve."
+      ],
+      "wouldBeALie": [
+        "Presenting this hypothesis as a confirmed fact that Drake actually stopped mattering after Views.",
+        "Showing the year-seventeen chart position as proven to be old-catalog-driven rather than posed as a possibility."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [
+          {
+            "at": 121,
+            "text": "Far"
+          },
+          {
+            "at": 125,
+            "text": "Gone"
+          }
+        ],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper (timeline of new-release chart appearances)",
+      "id": "24-24.main",
+      "identityCount": 0,
+      "job": "pose_a_question",
+      "mustBePerceptible": [
+        "The full seventeen-year span must be visible as a sequence without yet showing which year, if any, fails the test."
+      ],
+      "mustBeTrue": [
+        "So Far Gone marks the start of a seventeen-year span leading up to the present.",
+        "The test per year is binary: a new record either charted or it didn't.",
+        "The actual answer is not revealed in this beat — it is a question posed to the viewer."
+      ],
+      "ordinal": 1,
+      "passageId": "24",
+      "quote": "If he'd gone quiet there's one place it shows up first. New records either chart or they don't. Seventeen years since So Far Gone. Pick the year the ticks stop lighting.",
+      "sourceBeatId": "24-24",
+      "sourceBeatJob": "pose_a_question",
+      "sourceSpan": {
+        "end": 169,
+        "start": 0
+      },
+      "takeaway": "Before revealing the answer, the viewer is asked to guess, across the seventeen years since So Far Gone, in which year new Drake releases would have stopped charting if he had actually gone quiet.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 494.89,
+        "passageStartSeconds": 480.7,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Which specific releases or years are being counted toward the test."
+      ],
+      "wouldBeALie": [
+        "Revealing that the streak never breaks within this beat — that reveal belongs to what follows.",
+        "Showing any specific year as having failed to chart."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper (chart-presence streak)",
+      "id": "25-25a.main",
+      "identityCount": 0,
+      "job": "streak_over_time",
+      "mustBePerceptible": [
+        "The eighteen-year streak must read as continuous, with no gap in any year."
+      ],
+      "mustBeTrue": [
+        "The streak is eighteen consecutive years, each with at least one charting entry on a US chart.",
+        "The streak is unbroken across its full span."
+      ],
+      "ordinal": 1,
+      "passageId": "25",
+      "quote": "They don't stop. Eighteen straight years with something on a US chart,",
+      "sourceBeatId": "25-25a",
+      "sourceBeatJob": "streak_over_time",
+      "sourceSpan": {
+        "end": 70,
+        "start": 0
+      },
+      "takeaway": "The answer to the posed question: the streak never breaks — Drake has had something on a US chart for eighteen consecutive years.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 507.95,
+        "passageStartSeconds": 494.89,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Which specific US chart(s) count toward the streak.",
+        "Why this figure is eighteen years while the prior passage measured seventeen years since So Far Gone."
+      ],
+      "wouldBeALie": [
+        "Showing any gap or missed year within the eighteen-year span."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "J. Cole"
+        ],
+        "explicit": [
+          "J. Cole"
+        ],
+        "implied": [],
+        "resolved": [
+          "J. Cole"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 2,
+      "entityKind": "rappers (matching chart-presence streaks)",
+      "id": "25-25b.main",
+      "identityCount": 1,
+      "job": "parallel_instances",
+      "mustBePerceptible": [
+        "Only Drake and J. Cole should stand out as matching on this measure, with the rest of the set reading as not matching."
+      ],
+      "mustBeTrue": [
+        "\"The set\" refers to the same cohort of rappers used throughout this comparison.",
+        "J. Cole is the only other member of that set with a matching eighteen-year streak; the rest of the set falls short.",
+        "\"Off the cover he turned down\" identifies J. Cole by his declined magazine-cover appearance, referenced earlier in this material."
+      ],
+      "ordinal": 1,
+      "passageId": "25",
+      "quote": "and one other rapper in the set has that streak — J. Cole, off the cover he turned down.",
+      "sourceBeatId": "25-25b",
+      "sourceBeatJob": "parallel_instances",
+      "sourceSpan": {
+        "end": 88,
+        "start": 0
+      },
+      "takeaway": "Within the whole cohort under discussion, only one other rapper — J. Cole — can match Drake's eighteen-year charting streak.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 507.95,
+        "passageStartSeconds": 494.89,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The total size of \"the set\" being compared.",
+        "The specific years spanning J. Cole's streak."
+      ],
+      "wouldBeALie": [
+        "Showing more than one other rapper sharing the eighteen-year streak.",
+        "Showing J. Cole's streak as longer or shorter than Drake's rather than equal."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper",
+      "id": "26-26.main",
+      "identityCount": 0,
+      "job": "category_breakdown",
+      "mustBePerceptible": [
+        "The magnitude differences between categories (eleven down to one) must read visually, not only as printed numbers."
+      ],
+      "mustBeTrue": [
+        "All six counts belong to the same single rapper carried over from the prior passage, not six different people.",
+        "The six categories (lead single, album, guest feature, mixtape, joint album, compilation) are independent counts, not cumulative or nested within one another."
+      ],
+      "ordinal": 1,
+      "passageId": "26",
+      "quote": "Number one as a lead single. Eleven times. Number one as an album. Nine. Number one as somebody else's guest. Four. Number one as a mixtape. Three. Number one as a joint album. Two. Number one as a compilation. One.",
+      "sourceBeatId": "26-26",
+      "sourceBeatJob": "category_breakdown",
+      "sourceSpan": {
+        "end": 215,
+        "start": 0
+      },
+      "takeaway": "One rapper's #1 placements break into six independent format categories, each with its own count — not one merged tally.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 532.04,
+        "passageStartSeconds": 510.94,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "Whether these six categories sum to, or overlap with, any other total figure for this rapper is not stated."
+      ],
+      "wouldBeALie": [
+        "Merging the six figures into one combined 'number ones' total would misstate six separate category records as a single record."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "21 Savage",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Ty Dolla $ign",
+          "XXXTentacion",
+          "Young Thug"
+        ],
+        "explicit": [
+          "21 Savage",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Ty Dolla $ign",
+          "XXXTentacion",
+          "Young Thug"
+        ],
+        "implied": [],
+        "resolved": [
+          "21 Savage",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Ty Dolla $ign",
+          "XXXTentacion",
+          "Young Thug"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 6,
+      "entityKind": "rapper",
+      "id": "27-27.main",
+      "identityCount": 6,
+      "job": "inversion",
+      "mustBePerceptible": [
+        "For the first group, 'own' must visibly exceed 'guest'; for the second group, 'guest' must visibly exceed 'own' — the reversal itself must be legible.",
+        "The two groups must read as distinct clusters, not one ranked list."
+      ],
+      "mustBeTrue": [
+        "Each rapper has two values — billions of streams on their own credited songs, and billions as a featured guest.",
+        "Group membership is decided purely by which of the two values is larger for that individual, not by fame, genre, or era.",
+        "The groups are three and three."
+      ],
+      "ordinal": 1,
+      "passageId": "27",
+      "quote": "The ones who carry their own records — Post Malone, forty-nine billion on his own songs against six as a guest. XXXTentacion, thirty-five and six. Kendrick, forty-one and sixteen. And the ones who live on other people's hooks. Ty Dolla $ign, five billion on his own records and twenty-two as a guest. Young Thug, eleven and twenty-one. 21 Savage, sixteen and twenty-three.",
+      "sourceBeatId": "27-27",
+      "sourceBeatJob": "inversion",
+      "sourceSpan": {
+        "end": 372,
+        "start": 0
+      },
+      "takeaway": "Six rappers split into two groups by which of their two numbers is bigger: three whose own-song streams dominate, three whose guest-feature streams dominate.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 603.15,
+        "passageStartSeconds": 567.21,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The unit (streams vs. certified units) and time window for these billions are not specified in this passage."
+      ],
+      "wouldBeALie": [
+        "Ranking all six on one combined-total scale would erase the point, which is about which side of each catalog dominates, not overall size.",
+        "Implying one group outranks the other, or that these six are an exhaustive set of every rapper's type, would misstate it."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 2,
+      "entityKind": "rapper",
+      "id": "28-28.setup",
+      "identityCount": 0,
+      "job": "define_terms",
+      "mustBePerceptible": [
+        "The two thresholds must be visibly established before any names enter."
+      ],
+      "mustBeTrue": [
+        "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
+        "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
+      ],
+      "ordinal": 1,
+      "passageId": "28",
+      "quote": "Two floors, fixed before the names go in. Thirty billion on your own records. Twenty billion on everyone else's.",
+      "sourceBeatId": "28-28",
+      "sourceBeatJob": "intersection_of_sets",
+      "sourceSpan": {
+        "end": 112,
+        "start": 0
+      },
+      "takeaway": "Two separate thresholds — 30B on own records, 20B as a guest — each admit their own group (five and seven); only two rappers, Drake and Travis Scott, clear both at once.",
+      "taskRole": "setup_text",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 636.33,
+        "passageStartSeconds": 613.89,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [],
+      "wouldBeALie": [
+        "Implying the round-number thresholds were picked after the fact to engineer Drake and Travis Scott as the answer would misrepresent the setup."
+      ]
+    },
+    {
+      "continuityGroup": "28-two-floors",
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [
+          {
+            "displayPolicy": "eligible",
+            "id": "two-floors-qualifiers",
+            "label": "Artists clearing either threshold in beat 28",
+            "memberCount": 10,
+            "source": {
+              "basis": "Existing source-bound derivation for beat 28-28; five clear the left threshold, seven clear the right, and Drake plus Travis Scott clear both.",
+              "path": "grammar/beat-entities.json",
+              "selectionRule": "union(streams_lead >= 30B, streams_feature >= 20B)"
+            },
+            "version": "2026-09-26-thresholds-v1"
+          }
+        ],
+        "displayEligible": [
+          "Drake",
+          "Travis Scott",
+          "21 Savage",
+          "Future",
+          "Kendrick Lamar",
+          "Nicki Minaj",
+          "Post Malone",
+          "Ty Dolla $ign",
+          "XXXTentacion",
+          "Young Thug"
+        ],
+        "explicit": [
+          "Drake",
+          "Travis Scott"
+        ],
+        "implied": [],
+        "resolved": [
+          "Drake",
+          "Travis Scott",
+          "21 Savage",
+          "Future",
+          "Kendrick Lamar",
+          "Nicki Minaj",
+          "Post Malone",
+          "Ty Dolla $ign",
+          "XXXTentacion",
+          "Young Thug"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 10,
+      "entityKind": "rapper",
+      "id": "28-28.overlap",
+      "identityCount": 10,
+      "job": "intersection_of_sets",
+      "mustBePerceptible": [
+        "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists."
+      ],
+      "mustBeTrue": [
+        "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
+        "Five (unnamed) rappers clear the first threshold and seven (unnamed) clear the second — these are two separate groups, not the same people counted twice.",
+        "Drake and Travis Scott are members of both groups; they are the only overlap.",
+        "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
+      ],
+      "ordinal": 2,
+      "passageId": "28",
+      "quote": "Five clear the left floor. Seven clear the right. Panels come together and two names are standing in the middle. Drake. And Travis Scott.",
+      "sourceBeatId": "28-28",
+      "sourceBeatJob": "intersection_of_sets",
+      "sourceSpan": {
+        "end": 250,
+        "start": 113
+      },
+      "takeaway": "Two separate thresholds — 30B on own records, 20B as a guest — each admit their own group (five and seven); only two rappers, Drake and Travis Scott, clear both at once.",
+      "taskRole": "spatial_comparison",
+      "templateAdmissions": [
+        {
+          "id": "two-floors",
+          "reason": "This existing scene was built and previously named for beat 28's two-threshold overlap treatment.",
+          "source": "user"
+        }
+      ],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 636.33,
+        "passageStartSeconds": 613.89,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The identities of the other three in the 30B group and the other five in the 20B group are not given."
+      ],
+      "wouldBeALie": [
+        "Implying the round-number thresholds were picked after the fact to engineer Drake and Travis Scott as the answer would misrepresent the setup.",
+        "Showing Drake and Travis Scott as simply the top two on a single combined ranking, rather than the only ones clearing two separate bars, would misstate the claim."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Drake",
+          "Lil Baby"
+        ],
+        "explicit": [
+          "Drake",
+          "Lil Baby"
+        ],
+        "implied": [],
+        "resolved": [
+          "Drake",
+          "Lil Baby"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 2,
+      "entityKind": "rapper",
+      "id": "29-29a.main",
+      "identityCount": 2,
+      "job": "entity_vs_benchmark",
+      "mustBePerceptible": [
+        "Lil Baby's rate must visibly exceed Drake's, even though this says nothing about their respective career-long totals."
+      ],
+      "mustBeTrue": [
+        "Both figures are per-year rates (~22M vs. ~20.5M units/year), not lifetime totals.",
+        "Drake's figure is a whole-career average; Lil Baby's is his current clip.",
+        "This concerns certifications on each artist's own records only."
+      ],
+      "ordinal": 1,
+      "passageId": "29",
+      "quote": "Lil Baby is certifying his own records at a faster yearly clip than Drake has averaged across the whole run — about twenty-two million units a year against twenty and a half.",
+      "sourceBeatId": "29-29a",
+      "sourceBeatJob": "entity_vs_benchmark",
+      "sourceSpan": {
+        "end": 174,
+        "start": 0
+      },
+      "takeaway": "Lil Baby's current per-year certification pace outpaces Drake's career-long average rate.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 723.68,
+        "passageStartSeconds": 689.02,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "The exact time window behind 'faster yearly clip' for Lil Baby (most recent year vs. a trailing average) is not specified."
+      ],
+      "wouldBeALie": [
+        "Implying Lil Baby has surpassed Drake's total career certifications (a lifetime sum) would misstate a rate comparison as a totals comparison."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Kendrick Lamar",
+          "Post Malone",
+          "Travis Scott"
+        ],
+        "explicit": [
+          "Kendrick Lamar",
+          "Post Malone",
+          "Travis Scott"
+        ],
+        "implied": [],
+        "resolved": [
+          "Kendrick Lamar",
+          "Post Malone",
+          "Travis Scott"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 3,
+      "entityKind": "rapper",
+      "id": "29-29b.main",
+      "identityCount": 3,
+      "job": "parallel_instances",
+      "mustBePerceptible": [
+        "The three values must read as equal to one another, not ranked above or below each other."
+      ],
+      "mustBeTrue": [
+        "Each of the three reached five #1 lead singles independently; this is not a combined total of fifteen."
+      ],
+      "ordinal": 1,
+      "passageId": "29",
+      "quote": "Kendrick, Post Malone and Travis Scott have each put five lead singles at number one.",
+      "sourceBeatId": "29-29b",
+      "sourceBeatJob": "parallel_instances",
+      "sourceSpan": {
+        "end": 85,
+        "start": 0
+      },
+      "takeaway": "Three different rappers independently reached the same count — five number-one lead singles each — a tie, not a pooled sum.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 723.68,
+        "passageStartSeconds": 689.02,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "How this count of five relates to the eleven lead-single #1s cited earlier for the other rapper is not stated here."
+      ],
+      "wouldBeALie": [
+        "Summing the three fives into a combined '15' or ranking the three against each other would misstate an exact tie."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 0,
+      "entityKind": "",
+      "id": "29-29c.main",
+      "identityCount": 0,
+      "job": "assert_without_data",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "The chart's stated function is limited to counting plays/chart performance, not subjective artistic judgment."
+      ],
+      "ordinal": 1,
+      "passageId": "29",
+      "quote": "Best rapper alive is an argument, and this chart can't referee it. It counts plays. That's the whole job.",
+      "sourceBeatId": "29-29c",
+      "sourceBeatJob": "assert_without_data",
+      "sourceSpan": {
+        "end": 105,
+        "start": 0
+      },
+      "takeaway": "The chart measures play counts only; it explicitly cannot and does not settle who is the 'best rapper alive.'",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 723.68,
+        "passageStartSeconds": 689.02,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [],
+      "wouldBeALie": [
+        "Any visual that ranks the rappers shown so far as a definitive best-to-worst list, or presents the chart as crowning a 'best rapper alive,' would contradict this stated limitation."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [
+          "Jay-Z"
+        ],
+        "explicit": [
+          "Jay-Z"
+        ],
+        "implied": [],
+        "resolved": [
+          "Jay-Z"
+        ],
+        "unknownNames": [],
+        "unresolved": []
+      },
+      "entityCount": 1,
+      "entityKind": "rapper",
+      "id": "30-30a.main",
+      "identityCount": 1,
+      "job": "assert_without_data",
+      "mustBePerceptible": [
+        "Jay-Z's absence must read as a gap or omission, not as a zero or bottom-ranked position on the same scale."
+      ],
+      "mustBeTrue": [
+        "Jay-Z stands as the named example of a rapper whose relevant year (his 17th) predates streaming measurement.",
+        "This is a data-availability gap, not a measured result — Jay-Z has no value on this chart at all."
+      ],
+      "ordinal": 1,
+      "passageId": "30",
+      "quote": "And the rappers this should really be measured against — the ones whose seventeenth year happened before streaming counted anything — can't go on this chart at all. There's no daily meter for Jay-Z's year seventeen.",
+      "sourceBeatId": "30-30a",
+      "sourceBeatJob": "assert_without_data",
+      "sourceSpan": {
+        "end": 215,
+        "start": 0
+      },
+      "takeaway": "The truest points of comparison predate streaming data entirely, so they're structurally absent from this chart — an absence of data, not a low score.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 804.36,
+        "passageStartSeconds": 784.17,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [
+        "How many other pre-streaming rappers besides Jay-Z would also be excluded is not stated."
+      ],
+      "wouldBeALie": [
+        "Plotting Jay-Z anywhere on the same axis as the streaming-era rappers, even at the bottom, would falsely imply he was measured and fell short."
+      ]
+    },
+    {
+      "continuityGroup": null,
+      "entities": {
+        "ambiguous": [],
+        "cohorts": [],
+        "displayEligible": [],
+        "explicit": [],
+        "implied": [],
+        "resolved": [],
+        "unknownNames": [
+          {
+            "at": 87,
+            "text": "I'm"
+          }
+        ],
+        "unresolved": []
+      },
+      "entityCount": 0,
+      "entityKind": "",
+      "id": "30-30b.main",
+      "identityCount": 0,
+      "job": "define_terms",
+      "mustBePerceptible": [],
+      "mustBeTrue": [
+        "The 'unprecedented' claim used elsewhere in this piece is scoped by the narrator to the streaming era specifically."
+      ],
+      "ordinal": 1,
+      "passageId": "30",
+      "quote": "So *unprecedented* only reaches back as far as the streaming era, and that's as far as I'm taking it.",
+      "sourceBeatId": "30-30b",
+      "sourceBeatJob": "define_terms",
+      "sourceSpan": {
+        "end": 101,
+        "start": 0
+      },
+      "takeaway": "The narrator explicitly limits the claim of 'unprecedented' to the streaming era only, not to hip-hop history as a whole.",
+      "taskRole": "main",
+      "templateAdmissions": [],
+      "timing": {
+        "exactTaskAudioSpan": null,
+        "passageEndSeconds": 804.36,
+        "passageStartSeconds": 784.17,
+        "status": "passage_bounds_only"
+      },
+      "unstated": [],
+      "wouldBeALie": [
+        "Any visual implying the 'unprecedented' claim covers all of hip-hop history, including pre-streaming figures like Jay-Z, would contradict this explicit scoping."
+      ]
+    }
+  ]
+}

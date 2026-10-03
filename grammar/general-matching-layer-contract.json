@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "contractId": "general-storypackage-matching-layer-v1",
+  "productBoundary": "any_validated_supported_storypackage",
+  "runtime": {
+    "storySpecificBranchesAllowed": false,
+    "fixtureIdentifiersAllowed": false,
+    "priorStoryDecisionsCanAdmitCandidates": false,
+    "priorStoryDecisionsCanOrderCandidates": false,
+    "taskFeedbackCanBecomeGlobalWithoutReconciliation": false,
+    "templateNeutralTaskContractRequired": true,
+    "structuredCapabilityAdmissionRequired": true,
+    "brollFallbackAvailable": true
+  },
+  "evidence": {
+    "minimumDistinctPackages": 3,
+    "minimumRegressionPackages": 2,
+    "userSuppliedHeldOutPackageRequired": true,
+    "completeNarrationRoutingRequired": true,
+    "sameRuntimePathRequired": true,
+    "runtimeSourceNeutralityRequired": true
+  },
+  "execution": {
+    "objectiveSource": "plans/general-matching-layer-tasks.json",
+    "taskListReconciliationRequired": true,
+    "objectiveReconciliationRequired": true,
+    "continueUntil": "objective_complete_or_user_input_required",
+    "allowedStopConditions": [
+      "objective_complete",
+      "explicit_user_input_required",
+      "authorization_boundary_requires_user",
+      "external_blocker_requires_user_action"
+    ],
+    "routineTaskCompletionAllowsStop": false,
+    "routineStatusUpdateAllowsStop": false,
+    "currentBlockerRequired": true,
+    "allowedBlockerParties": ["you", "data", "story", "matching", "none"]
+  },
+  "layerOwnership": {
+    "story": [
+      "narration_and_claim_spans",
+      "story_meaning",
+      "entities_and_cohorts",
+      "typed_values",
+      "truth_and_perceptibility_obligations",
+      "continuity"
+    ],
+    "data": [
+      "verified_typed_fields",
+      "metric_methods_and_caveats",
+      "claim_receipts"
+    ],
+    "media": [
+      "production_ready_asset_evidence",
+      "identity_and_format_eligibility",
+      "rights_and_availability"
+    ],
+    "matching": [
+      "semantic_visual_moment_derivation",
+      "template_neutral_presentation_contract",
+      "structured_template_capability_admission",
+      "candidate_ordering",
+      "template_media_pairing",
+      "sequence_routing"
+    ]
+  },
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

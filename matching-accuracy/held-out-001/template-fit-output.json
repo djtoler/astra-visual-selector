@@ -1,0 +1,1401 @@
+{
+  "activationState": "review_only_not_connected",
+  "batchId": "wetland-restoration-held-out-match",
+  "consumerFingerprints": {
+    "productionReadyMediaPool": "7d5a2f6dffc67f1197b090a2a9283a69c5df76db6043bf285a0878e629afff71",
+    "templatePool": "2844ab2dbb584e5556493e014de023a24116ee3cf81d8f064e0cd3823bf14f17"
+  },
+  "counts": {
+    "mediaVerdicts": {
+      "unavailable": 3
+    },
+    "sourceBeats": 2,
+    "templateVerdicts": {
+      "unresolved": 3
+    },
+    "visualTasks": 3
+  },
+  "purpose": "Review-only full-VisualTask template and media matching",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sources": {
+    "bindings": {
+      "bytes": 465805,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/bindings.json",
+      "sha256": "7a07459e56983404bf8c0afb8f4c5c6b106fb604f067690009f3ca7970972fd8"
+    },
+    "request": {
+      "bytes": 1039,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/batch-request.json",
+      "sha256": "223c7ab44a5ca8d88106856050b7ee906369d6911bb46b8d86174d99bc2d5b0a"
+    },
+    "storyPackage": {
+      "bytes": 1872,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/story-package.json",
+      "sha256": "398ac151b5a0cfb13b31010029bd71077b22f76644adac5a748c6abb2b2f4bb8"
+    },
+    "technicalComparison": {
+      "bytes": 226,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/technical-comparison.json",
+      "sha256": "0f1536ebce987bd615fc8f55fe988297bb537114aba127336975ec4039b69579"
+    },
+    "technicalRequirements": {
+      "bytes": 6165,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/technical-requirements.json",
+      "sha256": "0889e304c822660800c617a8824e0777fe2ddf75dd62e93a14db9a51cc7ac6ce"
+    },
+    "timingPlans": {
+      "bytes": 144,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/timing-plans.json",
+      "sha256": "f861532c3958f8e3ed349843c553267c5a4f9383dbf7fc5c3660e71695af5ba3"
+    },
+    "visualTasks": {
+      "bytes": 5382,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/visual-tasks.json",
+      "sha256": "7a984533c46661e877ed99efdd67b37dc50f756efa80cd2f765578a78b2ce18a"
+    }
+  },
+  "storyId": "wetland-restoration",
+  "storyNamespace": "fixture.wetland-restoration",
+  "tasks": [
+    {
+      "continuityGroup": "wetland-change",
+      "matchingJob": "change_across_set",
+      "mediaResult": {
+        "availabilityVerdict": "unavailable",
+        "candidateMatchingProvenance": {
+          "quote": "The wetland lost forty acres. ",
+          "requiredMediaKinds": [
+            "location",
+            "numeric_data"
+          ],
+          "resolver": "existing Production Ready media_candidates.resolve",
+          "scope": "visual_task",
+          "taskId": "fixture.wetland-restoration.restoration-progress.loss"
+        },
+        "entities": [
+          "North Wetland"
+        ],
+        "gaps": [
+          {
+            "mediaKind": "location",
+            "reason": "The typed StoryPackage media kind has no corresponding kind in the current Production Ready consumer vocabulary.",
+            "status": "missing",
+            "type": "production_ready_media_kind"
+          },
+          {
+            "mediaKind": "numeric_data",
+            "reason": "The typed StoryPackage media kind has no corresponding kind in the current Production Ready consumer vocabulary.",
+            "status": "missing",
+            "type": "production_ready_media_kind"
+          }
+        ],
+        "groupCandidateIds": [],
+        "individualCandidateIds": {}
+      },
+      "ordinal": 1,
+      "quote": "The wetland lost forty acres. ",
+      "sourceBeatId": "restoration-progress",
+      "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+      "taskRole": "historical_loss",
+      "templateResult": {
+        "candidateCount": 10,
+        "candidates": [
+          {
+            "bindingProvenance": {
+              "evidence": "Compares paired quantitative values across five categories using segmented vertical columns on a shared scale.",
+              "mechanism": "paired columns per category",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "3dz-charts--scene-002",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "3dz-charts--scene-002",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Compares paired quantitative values across five categories using segmented vertical columns on a shared scale."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Remaining height and highlight identify the two narration-defined 18-year survivors.",
+              "mechanism": "cohort thinning over years",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "truth-cohort-attrition",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": "when rendered at successive years to show the cohort shrinking",
+            "fitAssessment": {
+              "candidateId": "truth-cohort-attrition",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Downward motion encodes the disclosed chart-streak exit year. Remaining height and highlight identify the two narration-defined 18-year survivors. Horizontal and depth position only separate the cohort."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Downward travel is proportional to rank places lost on one fixed linear axis.",
+              "mechanism": "downward travel shows shift",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "truth-rank-fall",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "truth-rank-fall",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Downward travel is proportional to rank places lost on one fixed linear axis. Marker size stays fixed so the movement alone carries the comparison."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "three vertical polaroid frames side-by-side, slow pullback with drift",
+              "mechanism": "three sequential state frames",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "photo-slideshow-memories-envato--scene-003",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": "frames are dressed as three time points of one subject",
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-memories-envato--scene-003",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Three-photo portrait reveal, three vertical polaroid frames side-by-side, slow pullback with drift, no text."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "A full-body hero anchors a compact period-by-period list.",
+              "mechanism": "period-by-period progression list",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "25_career_value_list",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "25_career_value_list",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "A full-body hero anchors a compact period-by-period list."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Two cutouts, one following the other.",
+              "mechanism": "sequential paired cutouts",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "02-documentary-promo--scene-006",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": "the two cutouts depict the same subject at two points in time",
+            "fitAssessment": {
+              "candidateId": "02-documentary-promo--scene-006",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Two cutouts, one following the other."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Two lines per panel; the renderer also computes the mean difference between the two series.",
+              "mechanism": "two lines over ordered steps",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "03_dual_trend_lines",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "03_dual_trend_lines",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Two lines per panel; the renderer also computes the mean difference between the two series."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Highlighting the opening subject of a paired discussion",
+              "mechanism": "paired before card of two",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "minimalism-slideshow--review-011a",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": "when combined with its part-2 counterpart to show a before state",
+            "fitAssessment": {
+              "candidateId": "minimalism-slideshow--review-011a",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Single landscape card reveal with rounded corners, top-left title, part 1 of 2."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Presents two media items symmetrically flanking a central title at equal visual weight.",
+              "mechanism": "two flanking states with title",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "photo-slideshow-smooth-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": "the flanking images are dressed as before/after states",
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-smooth-envato--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Opening title with paired flanking photo cards, slow push-in, blurred background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Comparing before-and-after or two-period metrics across four discrete categories or variables.",
+              "mechanism": "opposing baseline sliders per row",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "archive3-infographic-bar-charts--review-003",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [],
+              "quote": "The wetland lost forty acres. ",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.loss",
+              "taskRole": "historical_loss"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "archive3-infographic-bar-charts--review-003",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Four-row horizontal bidirectional slider bar chart, two-category comparison, centered baseline, top title."
+          }
+        ],
+        "evidenceBoundary": "retrieval_is_candidate_discovery; fit_is_exact_evidence_comparison; neither_is_selection",
+        "fitVerdict": "unresolved",
+        "gaps": [
+          {
+            "reason": "The StoryPackage supplies exact text spans but no reviewed narration-time provider evidence.",
+            "status": "unresolved",
+            "type": "exact_task_audio_span"
+          },
+          {
+            "reason": "Typed media kinds and entities are preserved from the validated semantic-split proposal.",
+            "status": "unresolved",
+            "type": "task_required_media_slot_count"
+          }
+        ]
+      }
+    },
+    {
+      "continuityGroup": "wetland-change",
+      "matchingJob": "change_across_set",
+      "mediaResult": {
+        "availabilityVerdict": "unavailable",
+        "candidateMatchingProvenance": {
+          "quote": "Restoration returned twelve this year.",
+          "requiredMediaKinds": [
+            "location",
+            "numeric_data"
+          ],
+          "resolver": "existing Production Ready media_candidates.resolve",
+          "scope": "visual_task",
+          "taskId": "fixture.wetland-restoration.restoration-progress.return"
+        },
+        "entities": [
+          "North Wetland"
+        ],
+        "gaps": [
+          {
+            "mediaKind": "location",
+            "reason": "The typed StoryPackage media kind has no corresponding kind in the current Production Ready consumer vocabulary.",
+            "status": "missing",
+            "type": "production_ready_media_kind"
+          },
+          {
+            "mediaKind": "numeric_data",
+            "reason": "The typed StoryPackage media kind has no corresponding kind in the current Production Ready consumer vocabulary.",
+            "status": "missing",
+            "type": "production_ready_media_kind"
+          }
+        ],
+        "groupCandidateIds": [],
+        "individualCandidateIds": {}
+      },
+      "ordinal": 2,
+      "quote": "Restoration returned twelve this year.",
+      "sourceBeatId": "restoration-progress",
+      "taskId": "fixture.wetland-restoration.restoration-progress.return",
+      "taskRole": "restoration_progress",
+      "templateResult": {
+        "candidateCount": 10,
+        "candidates": [
+          {
+            "bindingProvenance": {
+              "evidence": "Compares paired quantitative values across five categories using segmented vertical columns on a shared scale.",
+              "mechanism": "paired columns per category",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "3dz-charts--scene-002",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "3dz-charts--scene-002",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Compares paired quantitative values across five categories using segmented vertical columns on a shared scale."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Remaining height and highlight identify the two narration-defined 18-year survivors.",
+              "mechanism": "cohort thinning over years",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "truth-cohort-attrition",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": "when rendered at successive years to show the cohort shrinking",
+            "fitAssessment": {
+              "candidateId": "truth-cohort-attrition",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Downward motion encodes the disclosed chart-streak exit year. Remaining height and highlight identify the two narration-defined 18-year survivors. Horizontal and depth position only separate the cohort."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Downward travel is proportional to rank places lost on one fixed linear axis.",
+              "mechanism": "downward travel shows shift",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "truth-rank-fall",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "truth-rank-fall",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Downward travel is proportional to rank places lost on one fixed linear axis. Marker size stays fixed so the movement alone carries the comparison."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "three vertical polaroid frames side-by-side, slow pullback with drift",
+              "mechanism": "three sequential state frames",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "photo-slideshow-memories-envato--scene-003",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": "frames are dressed as three time points of one subject",
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-memories-envato--scene-003",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Three-photo portrait reveal, three vertical polaroid frames side-by-side, slow pullback with drift, no text."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "A full-body hero anchors a compact period-by-period list.",
+              "mechanism": "period-by-period progression list",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "25_career_value_list",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "25_career_value_list",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "A full-body hero anchors a compact period-by-period list."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Two cutouts, one following the other.",
+              "mechanism": "sequential paired cutouts",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "02-documentary-promo--scene-006",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": "the two cutouts depict the same subject at two points in time",
+            "fitAssessment": {
+              "candidateId": "02-documentary-promo--scene-006",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Two cutouts, one following the other."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Two lines per panel; the renderer also computes the mean difference between the two series.",
+              "mechanism": "two lines over ordered steps",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "03_dual_trend_lines",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "03_dual_trend_lines",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Two lines per panel; the renderer also computes the mean difference between the two series."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Highlighting the opening subject of a paired discussion",
+              "mechanism": "paired before card of two",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "minimalism-slideshow--review-011a",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": "when combined with its part-2 counterpart to show a before state",
+            "fitAssessment": {
+              "candidateId": "minimalism-slideshow--review-011a",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Single landscape card reveal with rounded corners, top-left title, part 1 of 2."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Presents two media items symmetrically flanking a central title at equal visual weight.",
+              "mechanism": "two flanking states with title",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "photo-slideshow-smooth-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": "the flanking images are dressed as before/after states",
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-smooth-envato--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Opening title with paired flanking photo cards, slow push-in, blurred background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Comparing before-and-after or two-period metrics across four discrete categories or variables.",
+              "mechanism": "opposing baseline sliders per row",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "archive3-infographic-bar-charts--review-003",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "change_across_set",
+              "perceptibilityConstraints": [
+                "Loss and restored acreage must remain visually distinct."
+              ],
+              "quote": "Restoration returned twelve this year.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.restoration-progress.return",
+              "taskRole": "restoration_progress"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "archive3-infographic-bar-charts--review-003",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Four-row horizontal bidirectional slider bar chart, two-category comparison, centered baseline, top title."
+          }
+        ],
+        "evidenceBoundary": "retrieval_is_candidate_discovery; fit_is_exact_evidence_comparison; neither_is_selection",
+        "fitVerdict": "unresolved",
+        "gaps": [
+          {
+            "reason": "The StoryPackage supplies exact text spans but no reviewed narration-time provider evidence.",
+            "status": "unresolved",
+            "type": "exact_task_audio_span"
+          },
+          {
+            "reason": "Typed media kinds and entities are preserved from the validated semantic-split proposal.",
+            "status": "unresolved",
+            "type": "task_required_media_slot_count"
+          }
+        ]
+      }
+    },
+    {
+      "continuityGroup": null,
+      "matchingJob": "narrate_an_event",
+      "mediaResult": {
+        "availabilityVerdict": "unavailable",
+        "candidateMatchingProvenance": {
+          "quote": "Aisha Patel will lead the public tour.",
+          "requiredMediaKinds": [
+            "person"
+          ],
+          "resolver": "existing Production Ready media_candidates.resolve",
+          "scope": "visual_task",
+          "taskId": "fixture.wetland-restoration.public-tour.event"
+        },
+        "entities": [
+          "Aisha Patel"
+        ],
+        "gaps": [
+          {
+            "entity": "Aisha Patel",
+            "requiredMediaKinds": [
+              "person"
+            ],
+            "status": "missing",
+            "type": "required_entity_media"
+          }
+        ],
+        "groupCandidateIds": [],
+        "individualCandidateIds": {
+          "Aisha Patel": []
+        },
+        "slotsNeeded": 0
+      },
+      "ordinal": 3,
+      "quote": "Aisha Patel will lead the public tour.",
+      "sourceBeatId": "public-tour",
+      "taskId": "fixture.wetland-restoration.public-tour.event",
+      "taskRole": "tour_announcement",
+      "templateResult": {
+        "candidateCount": 10,
+        "candidates": [
+          {
+            "bindingProvenance": {
+              "evidence": "Traces a multi-step workflow from an initial input through branching connector lines",
+              "mechanism": "sequential staged causation",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "ai-flowchart--scene-001",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": "when the steps are dressed as stages of one occurrence rather than a general process",
+            "fitAssessment": {
+              "candidateId": "ai-flowchart--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Traces a multi-step workflow from an initial input through branching connector lines to multiple derived media cards."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "full-frame media without comparison",
+              "mechanism": "full-frame captioned moment",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "glass-lower-thirds--scene-001",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": "when the media is a single sourced shot of an occurrence and the statement narrates it",
+            "fitAssessment": {
+              "candidateId": "glass-lower-thirds--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Displays a multi-line statement on a translucent overlay card across full-frame media without comparison."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "centered title and thank-you text overlay",
+              "mechanism": "closing summary event",
+              "model": "claude-sonnet-5",
+              "promptSha": "2e441f794dba",
+              "runId": "bind-20260919T2252",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "photo-slideshow-memories-envato--scene-010",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-memories-envato--scene-010",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Closing card, central framed landscape photo over scattered cards, slow zoom-out, centered title and thank-you text overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Full-frame portrait reveal with title and date",
+              "mechanism": "portrait paired with date",
+              "model": "claude-sonnet-5",
+              "promptSha": "2e441f794dba",
+              "runId": "bind-20260919T2252",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "story-on-photo-slideshow-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "story-on-photo-slideshow-envato--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Full-frame portrait reveal with title and date, slow zoom-in, textured vignette, diagonal peel exit, part 1 of 9."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "animated lower-third headline and text block overlay",
+              "mechanism": "captioned single moment overlay",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "grunge-lower-thirds--scene-002",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "grunge-lower-thirds--scene-002",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Displays a single media slot with an animated lower-third headline and text block overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Establish an entity, source or collection using one scrollable page-shaped visual.",
+              "mechanism": "single title-page establishing pan",
+              "model": "claude-sonnet-5",
+              "promptSha": "2e441f794dba",
+              "runId": "bind-20260919T2252",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "scrolling-screen--review-001",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": "used to introduce one specific source as a singular occurrence",
+            "fitAssessment": {
+              "candidateId": "scrolling-screen--review-001",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Angled perspective screen scroll, upward tilt drift, centered title text overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Video player screen mockup, centered 3D display, left text callouts, subtle drift.",
+              "mechanism": "centered video display reveal",
+              "model": "claude-sonnet-5",
+              "promptSha": "2e441f794dba",
+              "runId": "bind-20260919T2252",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "screen-mockup-rfx--review-002",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": "used when the video shown represents one specific release event",
+            "fitAssessment": {
+              "candidateId": "screen-mockup-rfx--review-002",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Video player screen mockup, centered 3D display, left text callouts, subtle drift."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "large date, pullback, centered label overlay",
+              "mechanism": "date paired with labeled cutout",
+              "model": "claude-sonnet-5",
+              "promptSha": "2e441f794dba",
+              "runId": "bind-20260919T2252",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "06-the-history--scene-001",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "06-the-history--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Cutout with background cutout, large date, pullback, centered label overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Date and description, small full-body portrait, grunge style",
+              "mechanism": "dated description with portrait",
+              "model": "claude-sonnet-5",
+              "promptSha": "2e441f794dba",
+              "runId": "bind-20260919T2252",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "02-documentary-promo--scene-007",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "02-documentary-promo--scene-007",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Date and description, small full-body portrait, grunge style."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Full-body presentation, newspaper background, date overlay.",
+              "mechanism": "date-stamped single occurrence",
+              "model": "claude-sonnet-5",
+              "promptSha": "2e441f794dba",
+              "runId": "bind-20260919T2252",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "04-history-documentary-20-slides--scene-012",
+            "candidateMatchingProvenance": {
+              "displayIdentityCount": 1,
+              "matchingJob": "narrate_an_event",
+              "perceptibilityConstraints": [],
+              "quote": "Aisha Patel will lead the public tour.",
+              "scope": "visual_task",
+              "taskId": "fixture.wetland-restoration.public-tour.event",
+              "taskRole": "tour_announcement"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "04-history-documentary-20-slides--scene-012",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "status": "unresolved",
+                  "type": "exact_candidate_technical_comparison"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Full-body presentation, newspaper background, date overlay."
+          }
+        ],
+        "evidenceBoundary": "retrieval_is_candidate_discovery; fit_is_exact_evidence_comparison; neither_is_selection",
+        "fitVerdict": "unresolved",
+        "gaps": [
+          {
+            "reason": "The StoryPackage supplies exact text spans but no reviewed narration-time provider evidence.",
+            "status": "unresolved",
+            "type": "exact_task_audio_span"
+          },
+          {
+            "reason": "Typed media kinds and entities are preserved from the validated semantic-split proposal.",
+            "status": "unresolved",
+            "type": "task_required_media_slot_count"
+          }
+        ]
+      }
+    }
+  ]
+}

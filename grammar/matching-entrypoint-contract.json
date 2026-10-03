@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "contractId": "mandatory-matching-entrypoints-v1",
+  "unknownEntrypointsAllowed": false,
+  "reviewOnlySelectionAuthorized": false,
+  "reviewOnlyRenderingAuthorized": false,
+  "productionRequiresCompleteHarness": true,
+  "entrypoints": [
+    {"id": "storypackage_adapter.build", "module": "pipeline/storypackage_adapter.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "storypackage_splitter.build", "module": "pipeline/storypackage_splitter.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "storypackage_candidate_gallery.build", "module": "pipeline/storypackage_candidate_gallery.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "storypackage_matching_handoff.build", "module": "pipeline/storypackage_matching_handoff.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "storypackage_data_handoff.build", "module": "pipeline/storypackage_data_handoff.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "storypackage_data_assignment.build", "module": "pipeline/storypackage_data_assignment.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "visual_tasks.build_visual_tasks", "module": "pipeline/visual_tasks.py", "callable": "build_visual_tasks", "modes": ["review_only"]},
+    {"id": "visualtask_matching.template_candidates", "module": "pipeline/visualtask_matching.py", "callable": "template_candidates", "modes": ["review_only"]},
+    {"id": "visualtask_batch_matching.build", "module": "pipeline/visualtask_batch_matching.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "ordered_visual_route_plan.build", "module": "pipeline/ordered_visual_route_plan.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "carry_prior_route_choices.build", "module": "pipeline/carry_prior_route_choices.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "render_release_preparation.build", "module": "pipeline/render_release_preparation.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "heldout_matching_integration.build", "module": "pipeline/heldout_matching_integration.py", "callable": "build", "modes": ["review_only"]},
+    {"id": "matching_accuracy_batch.evaluate", "module": "pipeline/matching_accuracy_batch.py", "callable": "evaluate", "modes": ["review_only"]},
+    {"id": "matching_harness.build", "module": "pipeline/matching_harness.py", "callable": "build", "modes": ["review_only", "production"], "buildsHarness": true}
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

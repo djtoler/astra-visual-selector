@@ -1,0 +1,32 @@
+{
+  "id": "9ae0e0ac-3365-4f7f-89f7-487a29d32c69",
+  "createdAt": "2026-10-03T18:51:24.224285+00:00",
+  "checkpoint": "turn-2026-10-03-clean-matching-branch",
+  "workflowHash": "42126ac062199ba66e95da3a57a012b076c4a0eb946ba920ac3e82cea3b51e59",
+  "decisions": [
+    {
+      "decision": "Create a clean single-purpose branch named matching-layer containing only the files used by the current general Matching runtime, contracts, receipts and validation suite.",
+      "source": "User direction in the current turn.",
+      "scope": "djtoler/astra-visual-selector branch organization and active Matching implementation authority; no rendering or template selection.",
+      "outcome": "updated",
+      "sections": ["### Multi-agent ownership and provider variants"],
+      "reason": "The validated implementation was mixed with historical selector, intake, treatment and calibration artifacts. A dependency-derived orphan branch provides one uncluttered authority without deleting prior history."
+    },
+    {
+      "decision": "Use matching-layer as the active Matching workspace and retain codex/general-matching-layer-v12 only as frozen publication provenance.",
+      "source": "User direction to update active memory after branch extraction.",
+      "scope": "Future Matching code, contracts, receipts, tests, task reconciliation and repository monitoring.",
+      "outcome": "updated",
+      "sections": ["### Multi-agent ownership and provider variants"],
+      "reason": "A single explicit implementation authority prevents work from drifting back into the mixed historical branch."
+    },
+    {
+      "decision": "Preserve the user-owned replacement-selection review file and all excluded historical files on their existing branches rather than copying or deleting them.",
+      "source": "Workspace ownership and extraction safety review.",
+      "scope": "Files outside the dependency-derived matching-layer manifest.",
+      "outcome": "already_covered",
+      "sections": ["## Mandatory workflow review gate"],
+      "reason": "The workflow requires preservation of scoped review state and forbids silent substitutions; branch extraction does not authorize deleting historical or user-owned files."
+    }
+  ]
+}

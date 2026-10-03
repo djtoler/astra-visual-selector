@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "authority": {
+    "masterPlan": "../content-project-mgr/final_documentary_system_plan.md",
+    "layerHandoff": "../content-project-mgr/HANDOFF_data_matching_media.md"
+  },
+  "modes": ["evaluation_fixture", "production"],
+  "continuationPolicy": {
+    "objective": "general-storypackage-matching-layer",
+    "taskList": "plans/general-matching-layer-tasks.json",
+    "reconcileBeforeEveryRun": true,
+    "continueUntil": "objective_complete_or_user_input_required",
+    "stopOnlyFor": [
+      "objective_complete",
+      "explicit_user_input_required",
+      "authorization_boundary_requires_user",
+      "external_blocker_requires_user_action"
+    ],
+    "taskCompletionAloneAllowsStop": false,
+    "statusReportingAloneAllowsStop": false,
+    "currentBlockerRequired": true,
+    "allowedBlockerParties": ["you", "data", "story", "matching", "none"]
+  },
+  "stages": [
+    {
+      "id": "general_matching_contract",
+      "order": 0,
+      "owner": "matching",
+      "requires": ["general_matching_layer_contract", "objective_task_reconciliation", "distinct_storypackage_receipts", "runtime_source_neutrality", "scoped_editor_evidence"],
+      "produces": ["general_matching_layer_receipt", "continuation_receipt"]
+    },
+    {
+      "id": "baseline_reconciliation",
+      "order": 1,
+      "owner": "matching",
+      "requires": ["prior_editor_decisions", "template_catalog", "native_mapping_evidence"],
+      "produces": ["reconciled_candidate_dispositions"]
+    },
+    {
+      "id": "story_handoff",
+      "order": 2,
+      "owner": "story",
+      "requires": ["narration_spans", "claim_ids", "visual_intent", "entity_references", "shot_constraints", "continuity_groups"],
+      "produces": ["validated_visual_tasks"]
+    },
+    {
+      "id": "data_handoff",
+      "order": 3,
+      "owner": "data",
+      "requires": ["stable_entity_ids", "cohort_expansion", "claim_receipts", "metric_methods_and_caveats", "typed_data_fields_when_required"],
+      "produces": ["verified_task_data_requirements"]
+    },
+    {
+      "id": "template_media_feasibility",
+      "order": 4,
+      "owner": "matching",
+      "requires": ["validated_visual_tasks", "verified_task_data_requirements", "native_template_specs", "production_ready_media_boundary", "broll_fallback_route"],
+      "produces": ["separate_template_media_pairing_verdicts", "typed_media_briefs", "per_beat_viable_route_receipt"]
+    },
+    {
+      "id": "sequence_planning",
+      "order": 5,
+      "owner": "matching",
+      "requires": ["per_task_treatments", "continuity_groups", "timing_plans", "transition_plans"],
+      "produces": ["ordered_visual_plan"]
+    },
+    {
+      "id": "human_review",
+      "order": 6,
+      "owner": "editor",
+      "requires": ["automated_resolution_exhausted", "true_editorial_conflicts_only", "one_or_more_distinct_valid_existing_choices_when_template_route_is_proposed"],
+      "produces": ["durable_scoped_decisions"]
+    },
+    {
+      "id": "render_release_handoff",
+      "order": 7,
+      "owner": "render_release",
+      "requires": ["locked_script", "locked_visual_plan", "asset_use_rights", "render_gate_receipts", "full_export_human_qc"],
+      "produces": ["publishable_video_receipt"]
+    }
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

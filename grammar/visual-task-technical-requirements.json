@@ -1,0 +1,3581 @@
+{
+  "activationState": "review_only_not_connected",
+  "counts": {
+    "exactTaskAudioSpans": 41,
+    "knownMediaKindRequirements": 3,
+    "knownMediaSlotRequirements": 0,
+    "knownTextFieldRequirements": 0,
+    "knownTypedDataRequirements": 0,
+    "missingMediaBriefs": 1,
+    "sourceBeats": 40,
+    "unresolvedTaskAudioSpans": 0,
+    "visualTasks": 41
+  },
+  "evidenceBoundary": {
+    "known": [
+      "visual intent and semantic constraints",
+      "display-eligible identities without assuming one media slot per identity",
+      "source-beat encoding categories for unsplit tasks",
+      "exact saved audio spans for unsplit tasks",
+      "editor-reviewed, measurement-bound audio spans for reviewed split tasks"
+    ],
+    "unresolved": [
+      "treatment-specific media-slot count",
+      "task-required media kinds when no typed editor/treatment requirement is bound",
+      "single-person versus group eligibility",
+      "treatment-specific editable text fields and exact strings",
+      "typed data field names and values",
+      "exact audio spans for split VisualTasks without an editor-approved measured boundary"
+    ]
+  },
+  "purpose": "Source-bound VisualTask technical requirements for read-only AE matching tests",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sources": {
+    "baselineSlate": {
+      "bytes": 255954,
+      "path": "pipeline/shotlist.capacity.json",
+      "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
+    },
+    "mediaRequirements": {
+      "bytes": 2592,
+      "path": "grammar/visual-task-media-requirements.json",
+      "sha256": "c2a13935702da3f041b1c1711ce08720ea3d481673ee0edc89995d10f9ed7fdd"
+    },
+    "timingReviews": {
+      "bytes": 1750,
+      "path": "grammar/visual-task-timing-reviews.json",
+      "sha256": "a1b2ddc244998ac97fdb28911f796d6db1193524b97d7dd71553de81ef90c89b"
+    },
+    "visualTasks": {
+      "bytes": 98341,
+      "path": "grammar/visual-tasks.json",
+      "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"
+    }
+  },
+  "tasks": [
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "which rapper this is"
+        ],
+        "perceptibilityConstraints": [
+          "the daily total should read as the per-second rate compounding across a day, not as two disconnected numbers"
+        ],
+        "prohibitedImplications": [
+          "that 59 million is a lifetime/all-time total rather than a single day's plays",
+          "that 700/second is an industry-wide or per-platform average rather than this one catalog's rate"
+        ],
+        "truthConstraints": [
+          "700/second and 59 million/day describe the same catalog, with the daily figure built from that rate, not a second independent statistic",
+          "the rapper is deliberately unnamed at this point"
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "change_over_time",
+          "derivation"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "700/second and 59 million/day describe the same catalog, with the daily figure built from that rate, not a second independent statistic",
+          "the rapper is deliberately unnamed at this point"
+        ],
+        "sourceBeatRequiredEncodings": [
+          "change_over_time",
+          "derivation"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": [
+          "Drake performance footage"
+        ],
+        "evidence": {
+          "kind": "editor_direction",
+          "quote": "drake b-roll performance footage needed",
+          "reference": "grammar/issues_matching_layer.json PI-12"
+        },
+        "missingMediaBrief": null,
+        "reason": "A typed editor/treatment media requirement is bound to this exact VisualTask.",
+        "requiredEntities": [
+          "Drake"
+        ],
+        "requiredMediaKinds": [
+          "footage"
+        ],
+        "requiredSlotCount": null,
+        "reviewStatus": "approved",
+        "singlePersonGroupEligibility": null,
+        "status": "required"
+      },
+      "sourceBeatId": "01-01",
+      "taskId": "01-01.subject",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 9.86,
+          "endSeconds": 10.46,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 0.6
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 9.86,
+          "endSeconds": 10.46,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 0.6
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "derived_quantity",
+        "takeaway": "This one unnamed catalog streams at a rate so high it compounds into tens of millions of plays in a single day.",
+        "taskRole": "derived_scale"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Curren$y"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "who else appeared on that 2009 cover"
+        ],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "that the cover appearance is itself a play-count or ranking figure"
+        ],
+        "truthConstraints": [
+          "this is a biographical credential from 2009, not a streaming or chart metric"
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "this is a biographical credential from 2009, not a streaming or chart metric"
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": [
+          "The 2009 XXL Freshman cover; use the referenced cover rather than a generic Curren$y portrait"
+        ],
+        "evidence": {
+          "kind": "editor_direction",
+          "quote": "we have the magazine referenced in the media library somewhere, probably not tagged, that would've been best selection. The right asset is the COVER, not a portrait.",
+          "reference": "grammar/beat-review-export-2026-09-27.json beat 02-02a"
+        },
+        "missingMediaBrief": null,
+        "reason": "A typed editor/treatment media requirement is bound to this exact VisualTask.",
+        "requiredEntities": [
+          "Curren$y"
+        ],
+        "requiredMediaKinds": [
+          "document",
+          "artwork"
+        ],
+        "requiredSlotCount": null,
+        "reviewStatus": "approved",
+        "singlePersonGroupEligibility": null,
+        "status": "required"
+      },
+      "sourceBeatId": "02-02a",
+      "taskId": "02-02a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 3.1,
+          "endSeconds": 14.64,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 11.54
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 3.1,
+          "endSeconds": 14.64,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 11.54
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "narrate_an_event",
+        "takeaway": "Curren$y is established as a credentialed, recognized artist before he's used as a comparison point.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Curren$y"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "Curren$y's actual play count or per-day rate",
+          "how many songs make up 'every song'"
+        ],
+        "perceptibilityConstraints": [
+          "Curren$y's whole-career sum and the other catalog's 24-day slice should register as roughly equal in magnitude"
+        ],
+        "prohibitedImplications": [
+          "framing Curren$y's catalog as small or unsuccessful in its own right",
+          "that the 24 days belongs to Curren$y rather than the other catalog",
+          "that the comparison is against the other catalog's all-time total rather than 24 days of it"
+        ],
+        "truthConstraints": [
+          "'every song he has ever put on the platform' is Curren$y's full career total (mixtapes, Jet Life run, features) summed into one figure",
+          "that sum equals only a 24-day slice of the other catalog's output, not the other catalog's lifetime total"
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "'every song he has ever put on the platform' is Curren$y's full career total (mixtapes, Jet Life run, features) summed into one figure",
+          "that sum equals only a 24-day slice of the other catalog's output, not the other catalog's lifetime total"
+        ],
+        "sourceBeatRequiredEncodings": [
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "02-02b",
+      "taskId": "02-02b.currensy_catalog",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 11.66,
+          "endSeconds": 26.8,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 15.14
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 11.66,
+          "endSeconds": 26.8,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 15.14
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "equivalence_restatement",
+        "takeaway": "Curren$y's entire career output on the platform is only equal to 24 days of the other catalog's output.",
+        "taskRole": "catalog_equivalence"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Wale",
+          "B.o.B",
+          "Curren$y",
+          "Kid Cudi",
+          "J. Cole",
+          "Nipsey Hussle",
+          "Wiz Khalifa",
+          "Big Sean",
+          "Freddie Gibbs",
+          "Jay Rock",
+          "Kendrick Lamar",
+          "Meek Mill",
+          "Mac Miller",
+          "YG",
+          "Yelawolf",
+          "Future",
+          "French Montana",
+          "Macklemore",
+          "Kid Ink",
+          "Hopsin",
+          "Iggy Azalea",
+          "Travis Scott",
+          "ScHoolboy Q",
+          "Joey Bada$$",
+          "Chief Keef",
+          "Logic",
+          "Ab-Soul",
+          "Chance the Rapper",
+          "Ty Dolla $ign",
+          "Kevin Gates",
+          "Rich Homie Quan",
+          "Lil Durk",
+          "Isaiah Rashad",
+          "August Alsina",
+          "Fetty Wap",
+          "Vince Staples",
+          "GoldLink",
+          "K Camp",
+          "DeJ Loaf",
+          "Shy Glizzy",
+          "21 Savage",
+          "Kodak Black",
+          "Lil Uzi Vert",
+          "Denzel Curry",
+          "Lil Yachty",
+          "Anderson .Paak",
+          "Desiigner",
+          "G Herbo",
+          "Lil Dicky",
+          "A Boogie Wit da Hoodie",
+          "Playboi Carti",
+          "XXXTentacion",
+          "PnB Rock",
+          "MadeinTYO",
+          "Kyle",
+          "Ski Mask the Slump God",
+          "Lil Pump",
+          "JID",
+          "Trippie Redd",
+          "Smokepurpp",
+          "Stefflon Don",
+          "BlocBoy JB",
+          "YBN Nahmir",
+          "NAV",
+          "6ix9ine",
+          "DaBaby",
+          "Roddy Ricch",
+          "Megan Thee Stallion",
+          "Gunna",
+          "Comethazine",
+          "Lil Mosey",
+          "YBN Cordae",
+          "Blueface",
+          "Polo G",
+          "Jack Harlow",
+          "Lil Tjay",
+          "Fivio Foreign",
+          "Rod Wave",
+          "Latto",
+          "NLE Choppa",
+          "Iann Dior",
+          "Drake",
+          "Nicki Minaj",
+          "ASAP Rocky",
+          "Tory Lanez",
+          "Young Thug",
+          "Post Malone",
+          "Migos",
+          "Rae Sremmurd",
+          "Cardi B",
+          "Young M.A",
+          "Lil Baby",
+          "Lil Skies"
+        ],
+        "displayIdentityCount": 93,
+        "explicitlyUnstated": [
+          "which specific rappers occupy the lower and middle positions"
+        ],
+        "perceptibilityConstraints": [
+          "a visible low-to-high ordering of dots by height, readable starting from the bottom"
+        ],
+        "prohibitedImplications": [
+          "ordering dots by anything other than plays per day (e.g. alphabetically, by fame, by career length)",
+          "showing more than one dot for any rapper"
+        ],
+        "truthConstraints": [
+          "93 is the total number of rappers represented, one dot per rapper",
+          "dot height encodes plays per day, and reading proceeds from the bottom (lowest) upward"
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "rank"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "93 is the total number of rappers represented, one dot per rapper",
+          "dot height encodes plays per day, and reading proceeds from the bottom (lowest) upward"
+        ],
+        "sourceBeatRequiredEncodings": [
+          "rank"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "03-03",
+      "taskId": "03-03.opening_chart",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 8.56,
+          "endSeconds": 36.86,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 28.3
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 8.56,
+          "endSeconds": 36.86,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 28.3
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "explain_the_encoding",
+        "takeaway": "Each dot is one rapper's daily play count; the viewer should read the field from lowest to highest before names appear.",
+        "taskRole": "population_encoding"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Future",
+          "Travis Scott"
+        ],
+        "displayIdentityCount": 2,
+        "explicitlyUnstated": [
+          "Future's and Travis Scott's individual values or which of the two is higher",
+          "by how much the mystery dot exceeds their sum"
+        ],
+        "perceptibilityConstraints": [
+          "a visible gap between the mystery dot and the next-highest dot(s)",
+          "the mystery dot's height clearly exceeding the combined total of Future's and Travis Scott's dots, not just exceeding either one alone"
+        ],
+        "prohibitedImplications": [
+          "showing the mystery dot only slightly ahead of Future or Travis Scott individually",
+          "clustering other dots near the mystery dot's height",
+          "implying Future and Travis Scott are equal to each other"
+        ],
+        "truthConstraints": [
+          "Future's and Travis Scott's dots sit near the top of the 93-dot field but below the mystery dot",
+          "the mystery dot exceeds the sum of Future's and Travis Scott's daily plays, not merely each individually",
+          "'open air under it' means no other dot is close to the mystery dot's height"
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "aggregate",
+          "difference",
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Future's and Travis Scott's dots sit near the top of the 93-dot field but below the mystery dot",
+          "the mystery dot exceeds the sum of Future's and Travis Scott's daily plays, not merely each individually",
+          "'open air under it' means no other dot is close to the mystery dot's height"
+        ],
+        "sourceBeatRequiredEncodings": [
+          "aggregate",
+          "difference",
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "04-04",
+      "taskId": "04-04.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 11.08,
+          "endSeconds": 60.2,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 49.12
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 11.08,
+          "endSeconds": 60.2,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 49.12
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "one_vs_aggregate",
+        "takeaway": "The mystery catalog doesn't just beat Future or Travis Scott individually — it clears their combined total, and it sits isolated at the very top with clear space beneath it.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [],
+        "perceptibilityConstraints": [
+          "the mystery dot standing as the topmost point across the full 93-dot field"
+        ],
+        "prohibitedImplications": [
+          "implying this is a different or new number than the opening figure",
+          "implying 'everybody' refers to a subset smaller than the full 93"
+        ],
+        "truthConstraints": [
+          "'that much' refers back to the same daily figure from the opening, not a new number",
+          "'sitting on top of everybody' means this dot is the single highest of all 93",
+          "2026 is the year of this snapshot"
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "rank"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "'that much' refers back to the same daily figure from the opening, not a new number",
+          "'sitting on top of everybody' means this dot is the single highest of all 93",
+          "2026 is the year of this snapshot"
+        ],
+        "sourceBeatRequiredEncodings": [
+          "rank"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "05-05a",
+      "taskId": "05-05a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 5.18,
+          "endSeconds": 72.62,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 67.44
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 5.18,
+          "endSeconds": 72.62,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 67.44
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "locate_in_distribution",
+        "takeaway": "This is the same catalog from the opening, confirmed as the single highest of all 93 rappers on the chart, as of 2026.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "the actual number of years",
+          "the rapper's identity"
+        ],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "revealing the rapper's identity, debut date, or the actual year-count before the viewer answers"
+        ],
+        "truthConstraints": [
+          "'his' keeps the rapper singular and still unnamed",
+          "the question asks for a count of career years, not a calendar year"
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "'his' keeps the rapper singular and still unnamed",
+          "the question asks for a count of career years, not a calendar year"
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "05-05b",
+      "taskId": "05-05b.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 2.83,
+          "endSeconds": 76.0,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 73.17
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 2.83,
+          "endSeconds": 76.0,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 73.17
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "pose_a_question",
+        "takeaway": "The viewer is asked to commit to a guess for how many years into his career this peak falls, before any reveal.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Drake"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "The exact calendar date of the anniversary within 2026."
+        ],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "That the chart aggregates or sums data across all 17 years of Drake's career rather than showing one recent one-year window.",
+          "That the anniversary date is exact to the day/month rather than the approximate year the narration gives."
+        ],
+        "truthConstraints": [
+          "So Far Gone was released in 2009.",
+          "The chart covers a one-year period whose end date is the 17th anniversary of that release.",
+          "'Year seventeen' names this specific chart period, not a running cumulative total of 17 years."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "So Far Gone was released in 2009.",
+          "The chart covers a one-year period whose end date is the 17th anniversary of that release.",
+          "'Year seventeen' names this specific chart period, not a running cumulative total of 17 years."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "06-06",
+      "taskId": "06-06.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 6.2,
+          "endSeconds": 84.3,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 78.1
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 6.2,
+          "endSeconds": 84.3,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 78.1
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "define_terms",
+        "takeaway": "The chart's window is pinned to a specific, calculable point: the year ending on the 17th anniversary of So Far Gone's 2009 release — this is the 'year seventeen' the opening question was asking about.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "Whether this pattern is asserted as universal or just illustrative/typical.",
+          "The basis or source for this being the norm at year seventeen."
+        ],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "Depicting the anniversary tour, deluxe reissue, or 7:40 festival slot as things Drake is actually doing right now.",
+          "Presenting this list as data about Drake's catalog rather than a generic stereotype being set up for contrast."
+        ],
+        "truthConstraints": [
+          "These three items describe a generic, typical trajectory for a 17-year rap career in general, not a documented fact about Drake's current activity."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "These three items describe a generic, typical trajectory for a 17-year rap career in general, not a documented fact about Drake's current activity."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "07-07",
+      "taskId": "07-07.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 13.66,
+          "endSeconds": 98.7,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 85.04
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 13.66,
+          "endSeconds": 98.7,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 85.04
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "enumerate",
+        "takeaway": "Year seventeen has a stock, diminished-relevance script — this is the generic expectation the rest of the piece is about to contradict.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Drake"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "The exact percentage of the catalog that is features (only the round figure 'half' is given).",
+          "The absolute size of the back catalog."
+        ],
+        "perceptibilityConstraints": [
+          "If the catalog composition is shown visually, the own-songs/other-people's-songs split should read as roughly even, not skewed to one side."
+        ],
+        "prohibitedImplications": [
+          "Implying the 'half other people's songs' figure measures streaming share rather than catalog composition.",
+          "Presenting these three explanations as a surprising or notable finding rather than the expected, unremarkable story the narration frames them as."
+        ],
+        "truthConstraints": [
+          "'Half of it is other people's songs' describes the composition of the catalog (own songs vs. features/guest verses), not a share of streams.",
+          "This composition split is distinct from the streaming-concentration metric introduced later (share of total streams from one song).",
+          "'Seventeen years to pile it up' refers to career-long catalog accumulation, not the chart's single-year window defined in passage 06."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "share_of_whole"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "'Half of it is other people's songs' describes the composition of the catalog (own songs vs. features/guest verses), not a share of streams.",
+          "This composition split is distinct from the streaming-concentration metric introduced later (share of total streams from one song).",
+          "'Seventeen years to pile it up' refers to career-long catalog accumulation, not the chart's single-year window defined in passage 06."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "share_of_whole"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "08-08",
+      "taskId": "08-08.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 9.88,
+          "endSeconds": 119.76,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 109.88
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 9.88,
+          "endSeconds": 119.76,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 109.88
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "category_breakdown",
+        "takeaway": "The catalog's huge streaming pull has boring, mechanical causes: it's large, roughly half of it is guest features rather than lead songs, and it's had 17 years to accumulate — these are offered as unremarkable, not the interesting part.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Ab-Soul",
+          "Jay Rock",
+          "Latto"
+        ],
+        "displayIdentityCount": 3,
+        "explicitlyUnstated": [
+          "How the four artists' absolute total stream counts compare to one another.",
+          "Any overlap between these artists' catalogs or songs."
+        ],
+        "perceptibilityConstraints": [
+          "The four percentages must be distinguishable as separate, escalating values (50, 52, 71, 79), each anchored to its own artist."
+        ],
+        "prohibitedImplications": [
+          "Implying the four percentages share a common denominator or sum to a combined whole.",
+          "Presenting the four artists as ranked competitors against each other rather than independent examples of the same pattern."
+        ],
+        "truthConstraints": [
+          "Each percentage is that artist's single biggest song as a share of that same artist's own total streams — each has its own denominator.",
+          "The four figures are independent benchmarks, not parts of one combined total."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "identity",
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Each percentage is that artist's single biggest song as a share of that same artist's own total streams — each has its own denominator.",
+          "The four figures are independent benchmarks, not parts of one combined total."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "identity",
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "09-09",
+      "taskId": "09-09.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 3.7,
+          "endSeconds": 145.76,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 142.06
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 3.7,
+          "endSeconds": 145.76,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 142.06
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "parallel_instances",
+        "takeaway": "Across very different artists, it's normal for a single song to account for half or more of everything they've ever streamed — this is the baseline against which Drake's number will be judged.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Drake"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "Drake's actual answer (deliberately deferred to the following passage)."
+        ],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "Showing or hinting at Drake's actual percentage before asking the viewer to commit.",
+          "Visually suggesting the answer will fall in the same 50-79% range as the benchmark artists, since that expectation is what gets overturned next."
+        ],
+        "truthConstraints": [
+          "The question asks about the same measure just established in passage 09: one song's share of that same artist's own total streams.",
+          "Drake's actual value is not given in this beat — it is withheld pending the viewer's guess."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "The question asks about the same measure just established in passage 09: one song's share of that same artist's own total streams.",
+          "Drake's actual value is not given in this beat — it is withheld pending the viewer's guess."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "10-10",
+      "taskId": "10-10.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 5.02,
+          "endSeconds": 165.82,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 160.8
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 5.02,
+          "endSeconds": 165.82,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 160.8
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "pose_a_question",
+        "takeaway": "Having just seen that a single song normally makes up half or more of an artist's total streams, the viewer is asked to commit to a guess for Drake before the answer is revealed.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Drake"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "What the actual stream counts behind the percentages are.",
+          "How his 11th-through-Nth biggest songs are distributed."
+        ],
+        "perceptibilityConstraints": [
+          "Both shares must read as small slivers of a whole, not as dominant portions.",
+          "The step from the one-song share to the ten-song share must be visible as an increase but still a minority of the whole."
+        ],
+        "prohibitedImplications": [
+          "Showing either percentage as a large or dominant portion of the total.",
+          "Implying the ten-song figure is a different total than the one-song figure is built from (they share the same denominator)."
+        ],
+        "truthConstraints": [
+          "Three percent is the single biggest song's share of Drake's own total streams.",
+          "Fifteen percent is the combined share of his ten biggest songs of that same total.",
+          "Both percentages are measured against Drake's own catalog, not against any other artist or a chart-wide total."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "difference",
+          "magnitude",
+          "share_of_whole"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Three percent is the single biggest song's share of Drake's own total streams.",
+          "Fifteen percent is the combined share of his ten biggest songs of that same total.",
+          "Both percentages are measured against Drake's own catalog, not against any other artist or a chart-wide total."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "difference",
+          "magnitude",
+          "share_of_whole"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "11-11a",
+      "taskId": "11-11a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 2.42,
+          "endSeconds": 169.66,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 167.24
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 2.42,
+          "endSeconds": 169.66,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 167.24
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "one_vs_aggregate",
+        "takeaway": "Even Drake's single biggest song and his ten biggest songs combined make up only a small sliver of his total streams — his catalog's success isn't concentrated in a few hits.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Future"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "The ten-biggest-song share for catalogs not close to Drake's size.",
+          "Where Future ranks overall among all catalogs, not just ones near Drake's size."
+        ],
+        "perceptibilityConstraints": [
+          "Future's figure must read as clearly higher than Drake's fifteen percent, while still low relative to a typical catalog."
+        ],
+        "prohibitedImplications": [
+          "Showing Future as flatter than or equal to Drake.",
+          "Implying this comparison includes catalogs of any size rather than only ones close to Drake's scale."
+        ],
+        "truthConstraints": [
+          "Future's twenty-four percent is the same measure as Drake's fifteen percent (share of his own total from his ten biggest songs).",
+          "Future is the closest rival to Drake's flatness only among catalogs of a similar size, not among all catalogs.",
+          "Drake's fifteen percent remains lower (flatter) than Future's twenty-four."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "difference",
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Future's twenty-four percent is the same measure as Drake's fifteen percent (share of his own total from his ten biggest songs).",
+          "Future is the closest rival to Drake's flatness only among catalogs of a similar size, not among all catalogs.",
+          "Drake's fifteen percent remains lower (flatter) than Future's twenty-four."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "difference",
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "11-11b",
+      "taskId": "11-11b.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 5.76,
+          "endSeconds": 176.38,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 170.62
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 5.76,
+          "endSeconds": 176.38,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 170.62
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "entity_vs_benchmark",
+        "takeaway": "No other catalog of comparable size comes close to Drake's flatness — even the next-closest, Future, has a meaningfully more concentrated top ten.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Ab-Soul",
+          "Jay Rock",
+          "Latto"
+        ],
+        "displayIdentityCount": 3,
+        "explicitlyUnstated": [
+          "What change in the underlying data caused these rank drops.",
+          "The total size of the chart these ranks belong to.",
+          "What percentage of streams, if any, each of these three lost."
+        ],
+        "perceptibilityConstraints": [
+          "The three drop sizes (28, 13, 12) must be visually distinguishable from each other while all reading as downward movement on one shared scale."
+        ],
+        "prohibitedImplications": [
+          "Showing any of the three moving up instead of down.",
+          "Implying these numbers measure streams lost rather than rank positions lost."
+        ],
+        "truthConstraints": [
+          "Each number is a count of rank positions dropped, not a stream count or percentage.",
+          "Jay Rock's number also refers to a fall, matching the verb used for Ab-Soul and Latto.",
+          "All three positions are drops on the same shared ranking, not three separate rankings."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "change_over_time",
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Each number is a count of rank positions dropped, not a stream count or percentage.",
+          "Jay Rock's number also refers to a fall, matching the verb used for Ab-Soul and Latto.",
+          "All three positions are drops on the same shared ranking, not three separate rankings."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "change_over_time",
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "12-12a",
+      "taskId": "12-12a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 5.26,
+          "endSeconds": 197.9,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 192.64
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 5.26,
+          "endSeconds": 197.9,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 192.64
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "change_across_set",
+        "takeaway": "These three rappers drop noticeably in rank position, each by a different amount, on the same chart.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Drake",
+          "Macklemore"
+        ],
+        "displayIdentityCount": 2,
+        "explicitlyUnstated": [
+          "What caused the loss of streams being measured for both artists.",
+          "Where Macklemore's and Drake's ranks sit numerically on the full chart (only the changes are given, not the positions themselves)."
+        ],
+        "perceptibilityConstraints": [
+          "Drake's zero rank change must be visible as no movement at all, distinct from Macklemore's three-spot drop.",
+          "Drake's percentage retained (97) must read as higher than Macklemore's (73)."
+        ],
+        "prohibitedImplications": [
+          "Implying Drake's 4.4 billion lost streams is a small or negligible amount just because his rank didn't change.",
+          "Treating Macklemore's and Drake's retained percentages as shares of one combined pool rather than each artist's own separate total.",
+          "Implying Drake's rank change is anything other than exactly zero."
+        ],
+        "truthConstraints": [
+          "Seventy-three percent and ninety-seven percent are each a percentage of that artist's own total streams, not of a shared pool.",
+          "Macklemore's rank drop is three spots; Drake's net rank change is zero.",
+          "Drake's four point four billion is an absolute stream count lost, not a percentage.",
+          "Drake and Macklemore are positions on the same chart referenced in the prior beat."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "change_over_time",
+          "difference",
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Seventy-three percent and ninety-seven percent are each a percentage of that artist's own total streams, not of a shared pool.",
+          "Macklemore's rank drop is three spots; Drake's net rank change is zero.",
+          "Drake's four point four billion is an absolute stream count lost, not a percentage.",
+          "Drake and Macklemore are positions on the same chart referenced in the prior beat."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "change_over_time",
+          "difference",
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "12-12b",
+      "taskId": "12-12b.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 12.4,
+          "endSeconds": 211.6,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 199.2
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 12.4,
+          "endSeconds": 211.6,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 199.2
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "parallel_instances",
+        "takeaway": "Despite retaining far less of his total streams than Drake, Macklemore only drops three spots — while Drake, who loses billions of streams in absolute terms but keeps the vast majority of his total, doesn't move in rank at all.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "How many billion-plus songs the other fifty-eight rappers (outside Drake and the zero group) have.",
+          "Who specifically makes up the ninety-three-rapper opening chart."
+        ],
+        "perceptibilityConstraints": [
+          "Drake's count of thirty must read as far above the rest of the field.",
+          "The thirty-five-rapper zero group must be visible as a large, distinct cluster at the bottom of the same distribution Drake is placed in."
+        ],
+        "prohibitedImplications": [
+          "Implying thirty is Drake's total song count rather than his count past the billion-stream mark.",
+          "Implying the thirty-five-rapper group has some songs past a billion rather than none.",
+          "Implying the remaining fifty-eight rappers are clustered near Drake's count."
+        ],
+        "truthConstraints": [
+          "Thirty is Drake's count of individual songs that have each individually passed a billion streams, not his total stream count.",
+          "Ninety-three is the fixed size of the opening chart's population.",
+          "Thirty-five of those ninety-three rappers have exactly zero songs past a billion streams each."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "aggregate",
+          "magnitude",
+          "rank"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Thirty is Drake's count of individual songs that have each individually passed a billion streams, not his total stream count.",
+          "Ninety-three is the fixed size of the opening chart's population.",
+          "Thirty-five of those ninety-three rappers have exactly zero songs past a billion streams each."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "aggregate",
+          "magnitude",
+          "rank"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "13-13a",
+      "taskId": "13-13a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 7.82,
+          "endSeconds": 220.18,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 212.36
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 7.82,
+          "endSeconds": 220.18,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 212.36
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "locate_in_distribution",
+        "takeaway": "Drake's thirty songs past a billion streams is an extreme outlier — more than a third of the field he's being measured against has none at all.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "Drake's own total career stream count.",
+          "Whether the eighty-one-rapper group here overlaps fully, partly, or not at all with the thirty-five-rapper group in the previous beat."
+        ],
+        "perceptibilityConstraints": [
+          "Eighty-one out of ninety-three must read as the large majority of the field, not a narrow one."
+        ],
+        "prohibitedImplications": [
+          "Applying the thirty-billion threshold to a single song or to a top-ten grouping instead of an entire career catalog.",
+          "Assuming the eighty-one-rapper group here is identical to the thirty-five-rapper zero group from the prior beat without stating so."
+        ],
+        "truthConstraints": [
+          "Thirty billion streams is a total across a rapper's entire recorded catalog, not one song or a top-ten grouping.",
+          "Eighty-one of the ninety-three rappers fall short of that total.",
+          "This threshold and count are distinct from the billion-stream-song count in the prior beat."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "share_of_whole"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Thirty billion streams is a total across a rapper's entire recorded catalog, not one song or a top-ten grouping.",
+          "Eighty-one of the ninety-three rappers fall short of that total.",
+          "This threshold and count are distinct from the billion-stream-song count in the prior beat."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "share_of_whole"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "13-13b",
+      "taskId": "13-13b.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 9.22,
+          "endSeconds": 226.26,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 217.04
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 9.22,
+          "endSeconds": 226.26,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 217.04
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "proportion_of_cohort",
+        "takeaway": "Almost all of this field falls short of thirty billion streams across their entire recorded output.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "The identity of the five artists being combined.",
+          "The individual size of each of the five artists' single biggest songs."
+        ],
+        "perceptibilityConstraints": [
+          "The two totals (21 vs 15) must read as Drake's side clearly larger.",
+          "The composition difference must stay legible: one side is ten songs from one artist, the other is five songs from five different artists."
+        ],
+        "prohibitedImplications": [
+          "Merging the two totals so it's unclear which side is Drake's own ten songs and which is the five-artist combination.",
+          "Implying the five-artist side represents those artists' entire catalogs rather than just one song each.",
+          "Showing the gap between 21 and 15 as narrow or ambiguous when the text states Drake's side wins outright."
+        ],
+        "truthConstraints": [
+          "Twenty-one billion is the sum of Drake's own ten biggest songs.",
+          "Fifteen billion is the sum of exactly one song each — the single biggest — from five other, distinct artists.",
+          "'Next five artists' refers to a specific five continuing from wherever this chart's ordering places Drake, not an arbitrary or unspecified five.",
+          "Drake's total is the larger of the two."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "identity",
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Twenty-one billion is the sum of Drake's own ten biggest songs.",
+          "Fifteen billion is the sum of exactly one song each — the single biggest — from five other, distinct artists.",
+          "'Next five artists' refers to a specific five continuing from wherever this chart's ordering places Drake, not an arbitrary or unspecified five.",
+          "Drake's total is the larger of the two."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "identity",
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "14-14",
+      "taskId": "14-14.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 11.64,
+          "endSeconds": 246.46,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 234.82
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 11.64,
+          "endSeconds": 246.46,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 234.82
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "one_vs_aggregate",
+        "takeaway": "Drake's ten biggest songs combined still beat the combined single biggest hit of each of the next five artists — his depth outweighs their concentrated peaks.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Drake"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "Why he turned the offer down.",
+          "Whether he was offered a spot in any other year."
+        ],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "Implying Drake was excluded or snubbed rather than having refused an offer extended to him.",
+          "Implying this happened in a year other than 2010 or involved a different list."
+        ],
+        "truthConstraints": [
+          "The offer came from XXL for its 2010 Freshman cover.",
+          "Drake declined the offer himself; he was not left off or overlooked.",
+          "This is a single dated event, not a recurring or repeated occurrence."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "The offer came from XXL for its 2010 Freshman cover.",
+          "Drake declined the offer himself; he was not left off or overlooked.",
+          "This is a single dated event, not a recurring or repeated occurrence."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "missing",
+        "contentConstraints": [
+          "Authentic event-specific b-roll establishing the 2010 XXL offer and Drake's refusal"
+        ],
+        "evidence": {
+          "kind": "editor_availability_review",
+          "quote": "no available broll",
+          "reference": "grammar/beat-review-export-2026-09-27.json beat 15-15"
+        },
+        "missingMediaBrief": {
+          "artifactOrEvent": "2010 XXL Freshman offer and refusal",
+          "entity": "Drake",
+          "mediaKind": "footage",
+          "status": "missing"
+        },
+        "reason": "A typed editor/treatment media requirement is bound to this exact VisualTask.",
+        "requiredEntities": [
+          "Drake"
+        ],
+        "requiredMediaKinds": [
+          "footage"
+        ],
+        "requiredSlotCount": null,
+        "reviewStatus": "proposed",
+        "singlePersonGroupEligibility": null,
+        "status": "missing_required_media"
+      },
+      "sourceBeatId": "15-15",
+      "taskId": "15-15.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 5.86,
+          "endSeconds": 257.46,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 251.6
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 5.86,
+          "endSeconds": 257.46,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 251.6
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "narrate_an_event",
+        "takeaway": "Drake was invited onto a marquee industry list early in his career and chose to decline it himself.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "B.o.B",
+          "Big Sean",
+          "Curren$y",
+          "Freddie Gibbs",
+          "J. Cole",
+          "Jay Rock",
+          "Kid Cudi",
+          "Nicki Minaj",
+          "Nipsey Hussle",
+          "Wale",
+          "Wiz Khalifa"
+        ],
+        "displayIdentityCount": 11,
+        "explicitlyUnstated": [
+          "Which specific man declined the 2010 cover (that identity comes from the context before, not this passage)."
+        ],
+        "perceptibilityConstraints": [
+          "The 2009 group and the 2010 group must read as visually distinct sets, not one undivided list."
+        ],
+        "prohibitedImplications": [
+          "Implying the eleven names are being ranked or measured against one another here.",
+          "Merging the two years into a single undifferentiated group."
+        ],
+        "truthConstraints": [
+          "2009 and 2010 are two separate named cohorts, not one merged list.",
+          "2009 cohort: Kid Cudi, B.o.B, Wale, Curren$y (4 names).",
+          "2010 cohort: J. Cole, Nicki Minaj, Wiz Khalifa, Big Sean, Nipsey Hussle, Jay Rock, Freddie Gibbs (7 names).",
+          "At this point the eleven are only named, with no quantities or comparison attached."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "membership"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "2009 and 2010 are two separate named cohorts, not one merged list.",
+          "2009 cohort: Kid Cudi, B.o.B, Wale, Curren$y (4 names).",
+          "2010 cohort: J. Cole, Nicki Minaj, Wiz Khalifa, Big Sean, Nipsey Hussle, Jay Rock, Freddie Gibbs (7 names).",
+          "At this point the eleven are only named, with no quantities or comparison attached."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "membership"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "16-16",
+      "taskId": "16-16.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 22.34,
+          "endSeconds": 280.62,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 258.28
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 22.34,
+          "endSeconds": 280.62,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 258.28
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "enumerate",
+        "takeaway": "These eleven rappers are his era-mates — the peer set later comparisons will be built from, split into two annual cohorts.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "Applying the weighting inconsistently between him and others in later beats.",
+          "Implying the rule was calibrated specifically to favor one artist."
+        ],
+        "truthConstraints": [
+          "The rule applies identically to every artist in the comparisons that follow, not selectively to one.",
+          "Full credit = a record led or equally co-led.",
+          "Half credit = a feature or remix verse."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "The rule applies identically to every artist in the comparisons that follow, not selectively to one.",
+          "Full credit = a record led or equally co-led.",
+          "Half credit = a feature or remix verse."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "17-17",
+      "taskId": "17-17.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 10.76,
+          "endSeconds": 295.38,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 284.62
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 10.76,
+          "endSeconds": 295.38,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 284.62
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "define_terms",
+        "takeaway": "One fixed weighting rule governs every comparison that follows, applied the same way to every artist involved.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "J. Cole",
+          "Nicki Minaj"
+        ],
+        "displayIdentityCount": 2,
+        "explicitlyUnstated": [
+          "The individual totals of the other five members (Wiz Khalifa, Big Sean, Nipsey Hussle, Jay Rock, Freddie Gibbs)."
+        ],
+        "perceptibilityConstraints": [
+          "The build from individual member values up to one combined total.",
+          "That the total visibly represents all seven members, not only the two named examples."
+        ],
+        "prohibitedImplications": [
+          "Implying the 97B total is composed of only Nicki and Cole's figures.",
+          "Implying the total includes anyone outside this seven-person class."
+        ],
+        "truthConstraints": [
+          "Nicki Minaj (30B) and J. Cole (29B) are two of the seven members shown individually; the other five are unnamed with values but are part of the stack.",
+          "The 97B total is the sum of all seven members' rule-weighted totals, not just Nicki and Cole.",
+          "'Seven careers' refers to the same seven people named as the 2010 class in passage 16."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "aggregate",
+          "membership"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Nicki Minaj (30B) and J. Cole (29B) are two of the seven members shown individually; the other five are unnamed with values but are part of the stack.",
+          "The 97B total is the sum of all seven members' rule-weighted totals, not just Nicki and Cole.",
+          "'Seven careers' refers to the same seven people named as the 2010 class in passage 16."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "aggregate",
+          "membership"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "18-18",
+      "taskId": "18-18.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 13.64,
+          "endSeconds": 309.52,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 295.88
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 13.64,
+          "endSeconds": 309.52,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 295.88
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "members_then_total",
+        "takeaway": "The seven 2010-class careers, each counted under the stated rule, stack to a combined total of ninety-seven billion.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "Any numeric definition of 'coin flip' beyond the two stated totals."
+        ],
+        "perceptibilityConstraints": [
+          "The two totals must read as nearly identical in size, with neither clearly dominant."
+        ],
+        "prohibitedImplications": [
+          "Showing his total as clearly smaller or clearly larger than the group's combined total.",
+          "Implying his total includes any feature or remix credit.",
+          "Implying the comparison is against one member of the seven rather than their combined sum."
+        ],
+        "truthConstraints": [
+          "His figure (96.5B) counts only records where his name carries the lead, excluding features and remix verses from his side entirely.",
+          "The comparison figure for the seven-rapper side is the 97B combined total established in passage 18.",
+          "This is one individual against the summed total of seven people, not against any one of them separately.",
+          "The gap between the two totals (96.5B vs 97B) is small enough to be called a coin flip."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "His figure (96.5B) counts only records where his name carries the lead, excluding features and remix verses from his side entirely.",
+          "The comparison figure for the seven-rapper side is the 97B combined total established in passage 18.",
+          "This is one individual against the summed total of seven people, not against any one of them separately.",
+          "The gap between the two totals (96.5B vs 97B) is small enough to be called a coin flip."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "19-19",
+      "taskId": "19-19.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 15.48,
+          "endSeconds": 346.7,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 331.22
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 15.48,
+          "endSeconds": 346.7,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 331.22
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "one_vs_aggregate",
+        "takeaway": "Counting only his lead-credited songs, his total comes within half a billion of the combined, fully-weighted total of all seven 2010-class careers — a near-exact tie.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Future",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Travis Scott"
+        ],
+        "displayIdentityCount": 4,
+        "explicitlyUnstated": [
+          "The full contents of 'the opening chart' beyond these four named artists.",
+          "Whether this full-credit method was applied to any artists not named here."
+        ],
+        "perceptibilityConstraints": [
+          "His value must read as visibly greater than each of the four separate values.",
+          "The four must remain distinct, separate quantities rather than merging into one combined figure."
+        ],
+        "prohibitedImplications": [
+          "Summing the four artists into a combined total and comparing his slice to that sum.",
+          "Implying his figure has changed or grown from the 96.5B established in passage 19.",
+          "Implying the four artists' totals are discounted or half-weighted the way features are."
+        ],
+        "truthConstraints": [
+          "'The same slice' is his 96.5B figure carried over unchanged from passage 19.",
+          "Travis Scott (67B), Kendrick (57B), Post Malone (56B), and Future (54B) are compared individually, not summed together.",
+          "These four totals are full catalogs counted at full credit, with no half-weighting for features — a more generous count than the rule applied to the 2010 class.",
+          "His total exceeds each of the four individual totals."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "identity",
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "'The same slice' is his 96.5B figure carried over unchanged from passage 19.",
+          "Travis Scott (67B), Kendrick (57B), Post Malone (56B), and Future (54B) are compared individually, not summed together.",
+          "These four totals are full catalogs counted at full credit, with no half-weighting for features — a more generous count than the rule applied to the 2010 class.",
+          "His total exceeds each of the four individual totals."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "identity",
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "20-20",
+      "taskId": "20-20.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 23.14,
+          "endSeconds": 370.38,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 347.24
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 23.14,
+          "endSeconds": 370.38,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 347.24
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "one_vs_many_individually",
+        "takeaway": "The same personal total that nearly tied the whole seven-person 2010 class also individually beats each of four major artists' full, fully-credited catalogs.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Future",
+          "Young Thug"
+        ],
+        "displayIdentityCount": 2,
+        "explicitlyUnstated": [
+          "The time span or career window over which these feature counts were tallied.",
+          "Whether the accusation itself is being judged true or false by this data."
+        ],
+        "perceptibilityConstraints": [
+          "Drake's count must read as visibly the smallest of the three."
+        ],
+        "prohibitedImplications": [
+          "Showing Drake's feature count as equal to or greater than Future's or Young Thug's."
+        ],
+        "truthConstraints": [
+          "The counts are of guest features/verses specifically, not total songs or albums.",
+          "Drake: 181 features; Future: 232; Young Thug: 302."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "rank"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "The counts are of guest features/verses specifically, not total songs or albums.",
+          "Drake: 181 features; Future: 232; Young Thug: 302."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "rank"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "21-21a",
+      "taskId": "21-21a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 8.48,
+          "endSeconds": 407.04,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 398.56
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 8.48,
+          "endSeconds": 407.04,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 398.56
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "one_vs_many_individually",
+        "takeaway": "Despite being accused of relying on features, Drake's feature count is actually the lowest of the three — both Future and Young Thug have done more.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "Which other artists were checked to support \"more streams than anyone.\""
+        ],
+        "perceptibilityConstraints": [
+          "The per-verse figure must read as computed from the total and the verse count, not as an independent statistic."
+        ],
+        "prohibitedImplications": [
+          "Presenting the 240 million per-verse figure as a directly measured number rather than one derived from total streams divided by verse count.",
+          "Limiting the \"more than anyone\" comparison visually to just Future and Young Thug."
+        ],
+        "truthConstraints": [
+          "Forty-three billion is the total streams from Drake's 181 features.",
+          "Two hundred forty million per verse is a derived average (43 billion divided by 181), not a separately reported figure.",
+          "\"More streams than anyone\" compares against all other rappers' features, not only Future's or Young Thug's."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "derivation"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Forty-three billion is the total streams from Drake's 181 features.",
+          "Two hundred forty million per verse is a derived average (43 billion divided by 181), not a separately reported figure.",
+          "\"More streams than anyone\" compares against all other rappers' features, not only Future's or Young Thug's."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "derivation"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "21-21b",
+      "taskId": "21-21b.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 9.64,
+          "endSeconds": 418.88,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 409.24
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 9.64,
+          "endSeconds": 418.88,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 409.24
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "derived_quantity",
+        "takeaway": "Drake's features generate more total streams than anyone else's, and dividing that total by his verse count yields roughly 240 million streams per verse.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "The specific identities of all eleven rappers in the two classes.",
+          "The exact rule/threshold that qualifies someone as being \"under the rule.\""
+        ],
+        "perceptibilityConstraints": [
+          "Drake's total and the eleven-rapper combined total must appear nearly equal, with the combined side only slightly ahead.",
+          "The combined side must read as many careers pooled into one total, not one comparably-sized peer."
+        ],
+        "prohibitedImplications": [
+          "Showing the combined eleven-rapper total as dramatically larger than Drake's — the margin is close, about three percent.",
+          "Showing any single one of the eleven rappers individually exceeding Drake's total."
+        ],
+        "truthConstraints": [
+          "The eleven rappers are the 2009 and 2010 classes combined, filtered by the same rule used elsewhere in this comparison.",
+          "It takes all eleven summed together to surpass Drake, and only by roughly three percent.",
+          "This is a single aggregate total for the eleven, not eleven separate wins over him."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "aggregate",
+          "difference"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "The eleven rappers are the 2009 and 2010 classes combined, filtered by the same rule used elsewhere in this comparison.",
+          "It takes all eleven summed together to surpass Drake, and only by roughly three percent.",
+          "This is a single aggregate total for the eleven, not eleven separate wins over him."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "aggregate",
+          "difference"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "22-22",
+      "taskId": "22-22.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 15.22,
+          "endSeconds": 441.78,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 426.56
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 15.22,
+          "endSeconds": 441.78,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 426.56
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "one_vs_aggregate",
+        "takeaway": "This is the one matchup Drake doesn't clearly win: only by summing eleven careers from the combined 2009 and 2010 classes does the group barely edge past his total, and only by about three percent.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "Whether this hypothesis actually holds true for Drake — that question is left open for the following passages to resolve."
+        ],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "Presenting this hypothesis as a confirmed fact that Drake actually stopped mattering after Views.",
+          "Showing the year-seventeen chart position as proven to be old-catalog-driven rather than posed as a possibility."
+        ],
+        "truthConstraints": [
+          "This is a general mechanism/hypothesis about how streaming works, not a confirmed claim that Drake specifically stopped mattering.",
+          "The scenario is explicitly framed as a possibility (\"could be\"), not an established fact.",
+          "\"Views\" marks a specific point in Drake's timeline referenced as the hypothetical cutoff."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "This is a general mechanism/hypothesis about how streaming works, not a confirmed claim that Drake specifically stopped mattering.",
+          "The scenario is explicitly framed as a possibility (\"could be\"), not an established fact.",
+          "\"Views\" marks a specific point in Drake's timeline referenced as the hypothetical cutoff."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "23-23",
+      "taskId": "23-23.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 20.02,
+          "endSeconds": 477.78,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 457.76
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 20.02,
+          "endSeconds": 477.78,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 457.76
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "assert_without_data",
+        "takeaway": "Streaming totals alone can't tell you whether an artist is still active or just still being played — an old catalog can keep climbing charts with no new effort at all.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "Which specific releases or years are being counted toward the test."
+        ],
+        "perceptibilityConstraints": [
+          "The full seventeen-year span must be visible as a sequence without yet showing which year, if any, fails the test."
+        ],
+        "prohibitedImplications": [
+          "Revealing that the streak never breaks within this beat — that reveal belongs to what follows.",
+          "Showing any specific year as having failed to chart."
+        ],
+        "truthConstraints": [
+          "So Far Gone marks the start of a seventeen-year span leading up to the present.",
+          "The test per year is binary: a new record either charted or it didn't.",
+          "The actual answer is not revealed in this beat — it is a question posed to the viewer."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "change_over_time"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "So Far Gone marks the start of a seventeen-year span leading up to the present.",
+          "The test per year is binary: a new record either charted or it didn't.",
+          "The actual answer is not revealed in this beat — it is a question posed to the viewer."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "change_over_time"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "24-24",
+      "taskId": "24-24.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 13.72,
+          "endSeconds": 494.7,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 480.98
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 13.72,
+          "endSeconds": 494.7,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 480.98
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "pose_a_question",
+        "takeaway": "Before revealing the answer, the viewer is asked to guess, across the seventeen years since So Far Gone, in which year new Drake releases would have stopped charting if he had actually gone quiet.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "Which specific US chart(s) count toward the streak.",
+          "Why this figure is eighteen years while the prior passage measured seventeen years since So Far Gone."
+        ],
+        "perceptibilityConstraints": [
+          "The eighteen-year streak must read as continuous, with no gap in any year."
+        ],
+        "prohibitedImplications": [
+          "Showing any gap or missed year within the eighteen-year span."
+        ],
+        "truthConstraints": [
+          "The streak is eighteen consecutive years, each with at least one charting entry on a US chart.",
+          "The streak is unbroken across its full span."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "change_over_time"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "The streak is eighteen consecutive years, each with at least one charting entry on a US chart.",
+          "The streak is unbroken across its full span."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "change_over_time"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "25-25a",
+      "taskId": "25-25a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 5.3,
+          "endSeconds": 500.38,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 495.08
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 5.3,
+          "endSeconds": 500.38,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 495.08
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "streak_over_time",
+        "takeaway": "The answer to the posed question: the streak never breaks — Drake has had something on a US chart for eighteen consecutive years.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "J. Cole"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "The total size of \"the set\" being compared.",
+          "The specific years spanning J. Cole's streak."
+        ],
+        "perceptibilityConstraints": [
+          "Only Drake and J. Cole should stand out as matching on this measure, with the rest of the set reading as not matching."
+        ],
+        "prohibitedImplications": [
+          "Showing more than one other rapper sharing the eighteen-year streak.",
+          "Showing J. Cole's streak as longer or shorter than Drake's rather than equal."
+        ],
+        "truthConstraints": [
+          "\"The set\" refers to the same cohort of rappers used throughout this comparison.",
+          "J. Cole is the only other member of that set with a matching eighteen-year streak; the rest of the set falls short.",
+          "\"Off the cover he turned down\" identifies J. Cole by his declined magazine-cover appearance, referenced earlier in this material."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "membership"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "\"The set\" refers to the same cohort of rappers used throughout this comparison.",
+          "J. Cole is the only other member of that set with a matching eighteen-year streak; the rest of the set falls short.",
+          "\"Off the cover he turned down\" identifies J. Cole by his declined magazine-cover appearance, referenced earlier in this material."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "membership"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "25-25b",
+      "taskId": "25-25b.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 6.62,
+          "endSeconds": 507.66,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 501.04
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 6.62,
+          "endSeconds": 507.66,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 501.04
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "parallel_instances",
+        "takeaway": "Within the whole cohort under discussion, only one other rapper — J. Cole — can match Drake's eighteen-year charting streak.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [
+          "Whether these six categories sum to, or overlap with, any other total figure for this rapper is not stated."
+        ],
+        "perceptibilityConstraints": [
+          "The magnitude differences between categories (eleven down to one) must read visually, not only as printed numbers."
+        ],
+        "prohibitedImplications": [
+          "Merging the six figures into one combined 'number ones' total would misstate six separate category records as a single record."
+        ],
+        "truthConstraints": [
+          "All six counts belong to the same single rapper carried over from the prior passage, not six different people.",
+          "The six categories (lead single, album, guest feature, mixtape, joint album, compilation) are independent counts, not cumulative or nested within one another."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "magnitude"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "All six counts belong to the same single rapper carried over from the prior passage, not six different people.",
+          "The six categories (lead single, album, guest feature, mixtape, joint album, compilation) are independent counts, not cumulative or nested within one another."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "magnitude"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "26-26",
+      "taskId": "26-26.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 20.14,
+          "endSeconds": 531.68,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 511.54
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 20.14,
+          "endSeconds": 531.68,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 511.54
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "category_breakdown",
+        "takeaway": "One rapper's #1 placements break into six independent format categories, each with its own count — not one merged tally.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "21 Savage",
+          "Kendrick Lamar",
+          "Post Malone",
+          "Ty Dolla $ign",
+          "XXXTentacion",
+          "Young Thug"
+        ],
+        "displayIdentityCount": 6,
+        "explicitlyUnstated": [
+          "The unit (streams vs. certified units) and time window for these billions are not specified in this passage."
+        ],
+        "perceptibilityConstraints": [
+          "For the first group, 'own' must visibly exceed 'guest'; for the second group, 'guest' must visibly exceed 'own' — the reversal itself must be legible.",
+          "The two groups must read as distinct clusters, not one ranked list."
+        ],
+        "prohibitedImplications": [
+          "Ranking all six on one combined-total scale would erase the point, which is about which side of each catalog dominates, not overall size.",
+          "Implying one group outranks the other, or that these six are an exhaustive set of every rapper's type, would misstate it."
+        ],
+        "truthConstraints": [
+          "Each rapper has two values — billions of streams on their own credited songs, and billions as a featured guest.",
+          "Group membership is decided purely by which of the two values is larger for that individual, not by fame, genre, or era.",
+          "The groups are three and three."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "difference",
+          "membership"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Each rapper has two values — billions of streams on their own credited songs, and billions as a featured guest.",
+          "Group membership is decided purely by which of the two values is larger for that individual, not by fame, genre, or era.",
+          "The groups are three and three."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "difference",
+          "membership"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "27-27",
+      "taskId": "27-27.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 34.52,
+          "endSeconds": 602.1,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 567.58
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 34.52,
+          "endSeconds": 602.1,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 567.58
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "inversion",
+        "takeaway": "Six rappers split into two groups by which of their two numbers is bigger: three whose own-song streams dominate, three whose guest-feature streams dominate.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [],
+        "perceptibilityConstraints": [
+          "The two thresholds must be visibly established before any names enter."
+        ],
+        "prohibitedImplications": [
+          "Implying the round-number thresholds were picked after the fact to engineer Drake and Travis Scott as the answer would misrepresent the setup."
+        ],
+        "truthConstraints": [
+          "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
+          "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding labels exist only for the unsplit source beat and cannot be allocated between its VisualTasks without a reviewed treatment plan.",
+        "requiredEncodings": null,
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
+          "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "overlap"
+        ],
+        "status": "source_beat_only_not_task_allocated"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "28-28",
+      "taskId": "28-28.setup",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 12.24,
+          "editorReview": {
+            "approvedAt": "2026-09-28",
+            "decision": "Use the sentence break immediately after ‘Twenty billion on everyone else’s’ as the timing boundary.",
+            "source": "User reply: ok",
+            "status": "approved"
+          },
+          "endSeconds": 626.66,
+          "evidence": "Editor-approved phrase boundary bound to measured narration alignment.",
+          "measurementEvidence": {
+            "eventId": "E2",
+            "matchConfidence": 1.0,
+            "measuredStartSeconds": 626.66,
+            "path": "astra-selector-design/prototype/out/passage-28.json",
+            "sha256": "c9ceb4d362082ed06976e9bf30412a524558fb4c31ccc74d528761cab8ce861d",
+            "toleranceSeconds": 0.25,
+            "triggerPhrase": "Five clear the left floor. Seven clear the right"
+          },
+          "reviewedBoundary": {
+            "afterPhrase": "Twenty billion on everyone else's.",
+            "beforePhrase": "Five clear the left floor.",
+            "seconds": 626.66
+          },
+          "startSeconds": 614.42
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 21.5,
+          "endSeconds": 635.92,
+          "startSeconds": 614.42
+        },
+        "status": "exact_reviewed_split_task_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "define_terms",
+        "takeaway": "Two separate thresholds — 30B on own records, 20B as a guest — each admit their own group (five and seven); only two rappers, Drake and Travis Scott, clear both at once.",
+        "taskRole": "setup_text"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Drake",
+          "Travis Scott",
+          "21 Savage",
+          "Future",
+          "Kendrick Lamar",
+          "Nicki Minaj",
+          "Post Malone",
+          "Ty Dolla $ign",
+          "XXXTentacion",
+          "Young Thug"
+        ],
+        "displayIdentityCount": 10,
+        "explicitlyUnstated": [
+          "The identities of the other three in the 30B group and the other five in the 20B group are not given."
+        ],
+        "perceptibilityConstraints": [
+          "The narrowing from two separate groups (five, seven) down to exactly two shared names must read as an overlap, not as two side-by-side lists."
+        ],
+        "prohibitedImplications": [
+          "Implying the round-number thresholds were picked after the fact to engineer Drake and Travis Scott as the answer would misrepresent the setup.",
+          "Showing Drake and Travis Scott as simply the top two on a single combined ranking, rather than the only ones clearing two separate bars, would misstate the claim."
+        ],
+        "truthConstraints": [
+          "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
+          "Five (unnamed) rappers clear the first threshold and seven (unnamed) clear the second — these are two separate groups, not the same people counted twice.",
+          "Drake and Travis Scott are members of both groups; they are the only overlap.",
+          "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding labels exist only for the unsplit source beat and cannot be allocated between its VisualTasks without a reviewed treatment plan.",
+        "requiredEncodings": null,
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Two independent thresholds exist: 30 billion on one's own records, 20 billion as a guest on others' records.",
+          "Five (unnamed) rappers clear the first threshold and seven (unnamed) clear the second — these are two separate groups, not the same people counted twice.",
+          "Drake and Travis Scott are members of both groups; they are the only overlap.",
+          "The thresholds were fixed before checking who qualifies, not chosen afterward to fit the answer."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "overlap"
+        ],
+        "status": "source_beat_only_not_task_allocated"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "28-28",
+      "taskId": "28-28.overlap",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 9.26,
+          "editorReview": {
+            "approvedAt": "2026-09-28",
+            "decision": "Use the sentence break immediately after ‘Twenty billion on everyone else’s’ as the timing boundary.",
+            "source": "User reply: ok",
+            "status": "approved"
+          },
+          "endSeconds": 635.92,
+          "evidence": "Editor-approved phrase boundary bound to measured narration alignment.",
+          "measurementEvidence": {
+            "eventId": "E2",
+            "matchConfidence": 1.0,
+            "measuredStartSeconds": 626.66,
+            "path": "astra-selector-design/prototype/out/passage-28.json",
+            "sha256": "c9ceb4d362082ed06976e9bf30412a524558fb4c31ccc74d528761cab8ce861d",
+            "toleranceSeconds": 0.25,
+            "triggerPhrase": "Five clear the left floor. Seven clear the right"
+          },
+          "reviewedBoundary": {
+            "afterPhrase": "Twenty billion on everyone else's.",
+            "beforePhrase": "Five clear the left floor.",
+            "seconds": 626.66
+          },
+          "startSeconds": 626.66
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 21.5,
+          "endSeconds": 635.92,
+          "startSeconds": 614.42
+        },
+        "status": "exact_reviewed_split_task_span"
+      },
+      "visualIntent": {
+        "continuityGroup": "28-two-floors",
+        "job": "intersection_of_sets",
+        "takeaway": "Two separate thresholds — 30B on own records, 20B as a guest — each admit their own group (five and seven); only two rappers, Drake and Travis Scott, clear both at once.",
+        "taskRole": "spatial_comparison"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Drake",
+          "Lil Baby"
+        ],
+        "displayIdentityCount": 2,
+        "explicitlyUnstated": [
+          "The exact time window behind 'faster yearly clip' for Lil Baby (most recent year vs. a trailing average) is not specified."
+        ],
+        "perceptibilityConstraints": [
+          "Lil Baby's rate must visibly exceed Drake's, even though this says nothing about their respective career-long totals."
+        ],
+        "prohibitedImplications": [
+          "Implying Lil Baby has surpassed Drake's total career certifications (a lifetime sum) would misstate a rate comparison as a totals comparison."
+        ],
+        "truthConstraints": [
+          "Both figures are per-year rates (~22M vs. ~20.5M units/year), not lifetime totals.",
+          "Drake's figure is a whole-career average; Lil Baby's is his current clip.",
+          "This concerns certifications on each artist's own records only."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "difference"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Both figures are per-year rates (~22M vs. ~20.5M units/year), not lifetime totals.",
+          "Drake's figure is a whole-career average; Lil Baby's is his current clip.",
+          "This concerns certifications on each artist's own records only."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "difference"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "29-29a",
+      "taskId": "29-29a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 10.6,
+          "endSeconds": 700.08,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 689.48
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 10.6,
+          "endSeconds": 700.08,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 689.48
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "entity_vs_benchmark",
+        "takeaway": "Lil Baby's current per-year certification pace outpaces Drake's career-long average rate.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Kendrick Lamar",
+          "Post Malone",
+          "Travis Scott"
+        ],
+        "displayIdentityCount": 3,
+        "explicitlyUnstated": [
+          "How this count of five relates to the eleven lead-single #1s cited earlier for the other rapper is not stated here."
+        ],
+        "perceptibilityConstraints": [
+          "The three values must read as equal to one another, not ranked above or below each other."
+        ],
+        "prohibitedImplications": [
+          "Summing the three fives into a combined '15' or ranking the three against each other would misstate an exact tie."
+        ],
+        "truthConstraints": [
+          "Each of the three reached five #1 lead singles independently; this is not a combined total of fifteen."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Each of the three reached five #1 lead singles independently; this is not a combined total of fifteen."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "29-29b",
+      "taskId": "29-29b.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 5.74,
+          "endSeconds": 706.6,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 700.86
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 5.74,
+          "endSeconds": 706.6,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 700.86
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "parallel_instances",
+        "takeaway": "Three different rappers independently reached the same count — five number-one lead singles each — a tie, not a pooled sum.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "Any visual that ranks the rappers shown so far as a definitive best-to-worst list, or presents the chart as crowning a 'best rapper alive,' would contradict this stated limitation."
+        ],
+        "truthConstraints": [
+          "The chart's stated function is limited to counting plays/chart performance, not subjective artistic judgment."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "The chart's stated function is limited to counting plays/chart performance, not subjective artistic judgment."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "29-29c",
+      "taskId": "29-29c.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 8.34,
+          "endSeconds": 723.36,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 715.02
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 8.34,
+          "endSeconds": 723.36,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 715.02
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "assert_without_data",
+        "takeaway": "The chart measures play counts only; it explicitly cannot and does not settle who is the 'best rapper alive.'",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [
+          "Jay-Z"
+        ],
+        "displayIdentityCount": 1,
+        "explicitlyUnstated": [
+          "How many other pre-streaming rappers besides Jay-Z would also be excluded is not stated."
+        ],
+        "perceptibilityConstraints": [
+          "Jay-Z's absence must read as a gap or omission, not as a zero or bottom-ranked position on the same scale."
+        ],
+        "prohibitedImplications": [
+          "Plotting Jay-Z anywhere on the same axis as the streaming-era rappers, even at the bottom, would falsely imply he was measured and fell short."
+        ],
+        "truthConstraints": [
+          "Jay-Z stands as the named example of a rapper whose relevant year (his 17th) predates streaming measurement.",
+          "This is a data-availability gap, not a measured result — Jay-Z has no value on this chart at all."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [
+          "absence"
+        ],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "Jay-Z stands as the named example of a rapper whose relevant year (his 17th) predates streaming measurement.",
+          "This is a data-availability gap, not a measured result — Jay-Z has no value on this chart at all."
+        ],
+        "sourceBeatRequiredEncodings": [
+          "absence"
+        ],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "30-30a",
+      "taskId": "30-30a.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 12.52,
+          "endSeconds": 796.98,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 784.46
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 12.52,
+          "endSeconds": 796.98,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 784.46
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "assert_without_data",
+        "takeaway": "The truest points of comparison predate streaming data entirely, so they're structurally absent from this chart — an absence of data, not a low score.",
+        "taskRole": "main"
+      }
+    },
+    {
+      "contentRequirements": {
+        "displayEligibleIdentities": [],
+        "displayIdentityCount": 0,
+        "explicitlyUnstated": [],
+        "perceptibilityConstraints": [],
+        "prohibitedImplications": [
+          "Any visual implying the 'unprecedented' claim covers all of hip-hop history, including pre-streaming figures like Jay-Z, would contradict this explicit scoping."
+        ],
+        "truthConstraints": [
+          "The 'unprecedented' claim used elsewhere in this piece is scoped by the narrator to the streaming era specifically."
+        ]
+      },
+      "dataRequirements": {
+        "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract.",
+        "requiredEncodings": [],
+        "requiredTypedFields": null,
+        "semanticConstraints": [
+          "The 'unprecedented' claim used elsewhere in this piece is scoped by the narrator to the streaming era specifically."
+        ],
+        "sourceBeatRequiredEncodings": [],
+        "status": "exact_source_beat_encodings"
+      },
+      "mediaRequirements": {
+        "availabilityStatus": "unknown",
+        "contentConstraints": null,
+        "evidence": null,
+        "missingMediaBrief": null,
+        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
+        "requiredEntities": null,
+        "requiredMediaKinds": null,
+        "requiredSlotCount": null,
+        "reviewStatus": null,
+        "singlePersonGroupEligibility": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "sourceBeatId": "30-30b",
+      "taskId": "30-30b.main",
+      "textRequirements": {
+        "characterAndLineLimits": null,
+        "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment.",
+        "requiredExactStrings": null,
+        "requiredFieldCount": null,
+        "status": "unresolved_treatment_dependent"
+      },
+      "timingRequirement": {
+        "exactTaskAudioSpan": {
+          "durationSeconds": 6.44,
+          "endSeconds": 804.1,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 797.66
+        },
+        "reason": null,
+        "sourceBeatSpan": {
+          "durationSeconds": 6.44,
+          "endSeconds": 804.1,
+          "evidence": "The sole VisualTask exactly matches the saved baseline source-beat quote and timing.",
+          "startSeconds": 797.66
+        },
+        "status": "exact_source_beat_span"
+      },
+      "visualIntent": {
+        "continuityGroup": null,
+        "job": "define_terms",
+        "takeaway": "The narrator explicitly limits the claim of 'unprecedented' to the streaming era only, not to hip-hop history as a whole.",
+        "taskRole": "main"
+      }
+    }
+  ]
+}

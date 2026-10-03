@@ -1,0 +1,744 @@
+{
+  "assignments": [
+    {
+      "claimIds": [
+        "c1-provoke-1.1",
+        "c1-provoke-2.1"
+      ],
+      "jobProposalIds": [
+        "p-01-01",
+        "p-02-02a",
+        "p-02-02b"
+      ],
+      "jobs": [
+        "derived_quantity",
+        "equivalence_restatement",
+        "narrate_an_event"
+      ],
+      "requiredEncodings": [
+        "change_over_time",
+        "derivation"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "01-01",
+      "semanticConstraints": [
+        "700/second and 59 million/day describe the same catalog, with the daily figure built from that rate, not a second independent statistic",
+        "the rapper is deliberately unnamed at this point"
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "01-01.subject"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-1.1",
+        "c1-provoke-2.1"
+      ],
+      "jobProposalIds": [
+        "p-01-01",
+        "p-02-02a",
+        "p-02-02b"
+      ],
+      "jobs": [
+        "derived_quantity",
+        "equivalence_restatement",
+        "narrate_an_event"
+      ],
+      "requiredEncodings": [
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "02-02b",
+      "semanticConstraints": [
+        "'every song he has ever put on the platform' is Curren$y's full career total (mixtapes, Jet Life run, features) summed into one figure",
+        "that sum equals only a 24-day slice of the other catalog's output, not the other catalog's lifetime total"
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "02-02b.currensy_catalog"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-3.1",
+        "c1-provoke-3.2"
+      ],
+      "jobProposalIds": [
+        "p-03-03"
+      ],
+      "jobs": [
+        "explain_the_encoding"
+      ],
+      "requiredEncodings": [
+        "rank"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "03-03",
+      "semanticConstraints": [
+        "93 is the total number of rappers represented, one dot per rapper",
+        "dot height encodes plays per day, and reading proceeds from the bottom (lowest) upward"
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "03-03.opening_chart"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-4.3",
+        "c1-provoke-5.1"
+      ],
+      "jobProposalIds": [
+        "p-04-04"
+      ],
+      "jobs": [
+        "one_vs_aggregate"
+      ],
+      "requiredEncodings": [
+        "aggregate",
+        "difference",
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "04-04",
+      "semanticConstraints": [
+        "Future's and Travis Scott's dots sit near the top of the 93-dot field but below the mystery dot",
+        "the mystery dot exceeds the sum of Future's and Travis Scott's daily plays, not merely each individually",
+        "'open air under it' means no other dot is close to the mystery dot's height"
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "04-04.main"
+    },
+    {
+      "claimIds": [
+        "c1-predict-1.3"
+      ],
+      "jobProposalIds": [
+        "p-05-05a"
+      ],
+      "jobs": [
+        "locate_in_distribution"
+      ],
+      "requiredEncodings": [
+        "rank"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "05-05a",
+      "semanticConstraints": [
+        "'that much' refers back to the same daily figure from the opening, not a new number",
+        "'sitting on top of everybody' means this dot is the single highest of all 93",
+        "2026 is the year of this snapshot"
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "05-05a.main"
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-3.2"
+      ],
+      "jobProposalIds": [
+        "p-08-08"
+      ],
+      "jobs": [
+        "category_breakdown"
+      ],
+      "requiredEncodings": [
+        "share_of_whole"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "08-08",
+      "semanticConstraints": [
+        "'Half of it is other people's songs' describes the composition of the catalog (own songs vs. features/guest verses), not a share of streams.",
+        "This composition split is distinct from the streaming-concentration metric introduced later (share of total streams from one song).",
+        "'Seventeen years to pile it up' refers to career-long catalog accumulation, not the chart's single-year window defined in passage 06."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "08-08.main"
+    },
+    {
+      "claimIds": [
+        "c2-provoke-1.3",
+        "c2-provoke-1.4"
+      ],
+      "jobProposalIds": [
+        "p-09-09"
+      ],
+      "jobs": [
+        "parallel_instances"
+      ],
+      "requiredEncodings": [
+        "identity",
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "09-09",
+      "semanticConstraints": [
+        "Each percentage is that artist's single biggest song as a share of that same artist's own total streams — each has its own denominator.",
+        "The four figures are independent benchmarks, not parts of one combined total."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "09-09.main"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-1.1",
+        "c2-reveal-2.1"
+      ],
+      "jobProposalIds": [
+        "p-11-11a"
+      ],
+      "jobs": [
+        "one_vs_aggregate"
+      ],
+      "requiredEncodings": [
+        "difference",
+        "magnitude",
+        "share_of_whole"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "11-11a",
+      "semanticConstraints": [
+        "Three percent is the single biggest song's share of Drake's own total streams.",
+        "Fifteen percent is the combined share of his ten biggest songs of that same total.",
+        "Both percentages are measured against Drake's own catalog, not against any other artist or a chart-wide total."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "11-11a.main"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-2.2"
+      ],
+      "jobProposalIds": [
+        "p-11-11b"
+      ],
+      "jobs": [
+        "entity_vs_benchmark"
+      ],
+      "requiredEncodings": [
+        "difference",
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "11-11b",
+      "semanticConstraints": [
+        "Future's twenty-four percent is the same measure as Drake's fifteen percent (share of his own total from his ten biggest songs).",
+        "Future is the closest rival to Drake's flatness only among catalogs of a similar size, not among all catalogs.",
+        "Drake's fifteen percent remains lower (flatter) than Future's twenty-four."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "11-11b.main"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-4.1"
+      ],
+      "jobProposalIds": [
+        "p-12-12a"
+      ],
+      "jobs": [
+        "change_across_set"
+      ],
+      "requiredEncodings": [
+        "change_over_time",
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "12-12a",
+      "semanticConstraints": [
+        "Each number is a count of rank positions dropped, not a stream count or percentage.",
+        "Jay Rock's number also refers to a fall, matching the verb used for Ab-Soul and Latto.",
+        "All three positions are drops on the same shared ranking, not three separate rankings."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "12-12a.main"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-4.2",
+        "c2-reveal-5.1"
+      ],
+      "jobProposalIds": [
+        "p-12-12b"
+      ],
+      "jobs": [
+        "parallel_instances"
+      ],
+      "requiredEncodings": [
+        "change_over_time",
+        "difference",
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "12-12b",
+      "semanticConstraints": [
+        "Seventy-three percent and ninety-seven percent are each a percentage of that artist's own total streams, not of a shared pool.",
+        "Macklemore's rank drop is three spots; Drake's net rank change is zero.",
+        "Drake's four point four billion is an absolute stream count lost, not a percentage.",
+        "Drake and Macklemore are positions on the same chart referenced in the prior beat."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "12-12b.main"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-1.1",
+        "c2-reconcile-1.2"
+      ],
+      "jobProposalIds": [
+        "p-13-13a-1",
+        "p-13-13a-2"
+      ],
+      "jobs": [
+        "locate_in_distribution"
+      ],
+      "requiredEncodings": [
+        "aggregate",
+        "magnitude",
+        "rank"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "13-13a",
+      "semanticConstraints": [
+        "Thirty is Drake's count of individual songs that have each individually passed a billion streams, not his total stream count.",
+        "Ninety-three is the fixed size of the opening chart's population.",
+        "Thirty-five of those ninety-three rappers have exactly zero songs past a billion streams each."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "13-13a.main"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-1.3"
+      ],
+      "jobProposalIds": [
+        "p-13-13b-1"
+      ],
+      "jobs": [
+        "proportion_of_cohort"
+      ],
+      "requiredEncodings": [
+        "share_of_whole"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "13-13b",
+      "semanticConstraints": [
+        "Thirty billion streams is a total across a rapper's entire recorded catalog, not one song or a top-ten grouping.",
+        "Eighty-one of the ninety-three rappers fall short of that total.",
+        "This threshold and count are distinct from the billion-stream-song count in the prior beat."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "13-13b.main"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-2.1",
+        "c2-reconcile-2.2"
+      ],
+      "jobProposalIds": [
+        "p-14-14"
+      ],
+      "jobs": [
+        "one_vs_aggregate"
+      ],
+      "requiredEncodings": [
+        "identity",
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "14-14",
+      "semanticConstraints": [
+        "Twenty-one billion is the sum of Drake's own ten biggest songs.",
+        "Fifteen billion is the sum of exactly one song each — the single biggest — from five other, distinct artists.",
+        "'Next five artists' refers to a specific five continuing from wherever this chart's ordering places Drake, not an arbitrary or unspecified five.",
+        "Drake's total is the larger of the two."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "14-14.main"
+    },
+    {
+      "claimIds": [
+        "c3-provoke-2.1",
+        "c3-provoke-2.2",
+        "c3-provoke-2.3"
+      ],
+      "jobProposalIds": [
+        "p-16-16"
+      ],
+      "jobs": [
+        "enumerate"
+      ],
+      "requiredEncodings": [
+        "membership"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "16-16",
+      "semanticConstraints": [
+        "2009 and 2010 are two separate named cohorts, not one merged list.",
+        "2009 cohort: Kid Cudi, B.o.B, Wale, Curren$y (4 names).",
+        "2010 cohort: J. Cole, Nicki Minaj, Wiz Khalifa, Big Sean, Nipsey Hussle, Jay Rock, Freddie Gibbs (7 names).",
+        "At this point the eleven are only named, with no quantities or comparison attached."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "16-16.main"
+    },
+    {
+      "claimIds": [
+        "c3-provoke-3.1",
+        "c3-provoke-3.2",
+        "c3-provoke-3.3",
+        "c3-provoke-4.1",
+        "c3-provoke-4.2"
+      ],
+      "jobProposalIds": [
+        "p-17-17",
+        "p-18-18"
+      ],
+      "jobs": [
+        "define_terms",
+        "members_then_total"
+      ],
+      "requiredEncodings": [
+        "aggregate",
+        "membership"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "18-18",
+      "semanticConstraints": [
+        "Nicki Minaj (30B) and J. Cole (29B) are two of the seven members shown individually; the other five are unnamed with values but are part of the stack.",
+        "The 97B total is the sum of all seven members' rule-weighted totals, not just Nicki and Cole.",
+        "'Seven careers' refers to the same seven people named as the 2010 class in passage 16."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "18-18.main"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-1.1",
+        "c3-reveal-1.2",
+        "c3-reveal-1.3",
+        "c3-reveal-2.1",
+        "c3-reveal-2.2",
+        "c3-reveal-2.3"
+      ],
+      "jobProposalIds": [
+        "p-19-19",
+        "p-20-20"
+      ],
+      "jobs": [
+        "one_vs_aggregate",
+        "one_vs_many_individually"
+      ],
+      "requiredEncodings": [
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "19-19",
+      "semanticConstraints": [
+        "His figure (96.5B) counts only records where his name carries the lead, excluding features and remix verses from his side entirely.",
+        "The comparison figure for the seven-rapper side is the 97B combined total established in passage 18.",
+        "This is one individual against the summed total of seven people, not against any one of them separately.",
+        "The gap between the two totals (96.5B vs 97B) is small enough to be called a coin flip."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "19-19.main"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-1.1",
+        "c3-reveal-1.2",
+        "c3-reveal-1.3",
+        "c3-reveal-2.1",
+        "c3-reveal-2.2",
+        "c3-reveal-2.3"
+      ],
+      "jobProposalIds": [
+        "p-19-19",
+        "p-20-20"
+      ],
+      "jobs": [
+        "one_vs_aggregate",
+        "one_vs_many_individually"
+      ],
+      "requiredEncodings": [
+        "identity",
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "20-20",
+      "semanticConstraints": [
+        "'The same slice' is his 96.5B figure carried over unchanged from passage 19.",
+        "Travis Scott (67B), Kendrick (57B), Post Malone (56B), and Future (54B) are compared individually, not summed together.",
+        "These four totals are full catalogs counted at full credit, with no half-weighting for features — a more generous count than the rule applied to the 2010 class.",
+        "His total exceeds each of the four individual totals."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "20-20.main"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-1.2",
+        "c3-reconcile-2.1",
+        "c3-reconcile-2.2"
+      ],
+      "jobProposalIds": [
+        "p-21-21a"
+      ],
+      "jobs": [
+        "one_vs_many_individually"
+      ],
+      "requiredEncodings": [
+        "rank"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "21-21a",
+      "semanticConstraints": [
+        "The counts are of guest features/verses specifically, not total songs or albums.",
+        "Drake: 181 features; Future: 232; Young Thug: 302."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "21-21a.main"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-2.3"
+      ],
+      "jobProposalIds": [
+        "p-21-21b",
+        "p-21-21b-rate"
+      ],
+      "jobs": [
+        "derived_quantity"
+      ],
+      "requiredEncodings": [
+        "derivation"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "21-21b",
+      "semanticConstraints": [
+        "Forty-three billion is the total streams from Drake's 181 features.",
+        "Two hundred forty million per verse is a derived average (43 billion divided by 181), not a separately reported figure.",
+        "\"More streams than anyone\" compares against all other rappers' features, not only Future's or Young Thug's."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "21-21b.main"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-3.1",
+        "c3-reconcile-3.2",
+        "c3-reconcile-3.3"
+      ],
+      "jobProposalIds": [
+        "p-22-22"
+      ],
+      "jobs": [
+        "one_vs_aggregate"
+      ],
+      "requiredEncodings": [
+        "aggregate",
+        "difference"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "22-22",
+      "semanticConstraints": [
+        "The eleven rappers are the 2009 and 2010 classes combined, filtered by the same rule used elsewhere in this comparison.",
+        "It takes all eleven summed together to surpass Drake, and only by roughly three percent.",
+        "This is a single aggregate total for the eleven, not eleven separate wins over him."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "22-22.main"
+    },
+    {
+      "claimIds": [
+        "c4-predict-1.1",
+        "c4-predict-1.2",
+        "c4-predict-2.1"
+      ],
+      "jobProposalIds": [
+        "p-24-24"
+      ],
+      "jobs": [
+        "pose_a_question"
+      ],
+      "requiredEncodings": [
+        "change_over_time"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "24-24",
+      "semanticConstraints": [
+        "So Far Gone marks the start of a seventeen-year span leading up to the present.",
+        "The test per year is binary: a new record either charted or it didn't.",
+        "The actual answer is not revealed in this beat — it is a question posed to the viewer."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "24-24.main"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-1.1",
+        "c4-reveal-1.2"
+      ],
+      "jobProposalIds": [
+        "p-25-25a",
+        "p-25-25b"
+      ],
+      "jobs": [
+        "parallel_instances",
+        "streak_over_time"
+      ],
+      "requiredEncodings": [
+        "change_over_time"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "25-25a",
+      "semanticConstraints": [
+        "The streak is eighteen consecutive years, each with at least one charting entry on a US chart.",
+        "The streak is unbroken across its full span."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "25-25a.main"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-1.1",
+        "c4-reveal-1.2"
+      ],
+      "jobProposalIds": [
+        "p-25-25a",
+        "p-25-25b"
+      ],
+      "jobs": [
+        "parallel_instances",
+        "streak_over_time"
+      ],
+      "requiredEncodings": [
+        "membership"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "25-25b",
+      "semanticConstraints": [
+        "\"The set\" refers to the same cohort of rappers used throughout this comparison.",
+        "J. Cole is the only other member of that set with a matching eighteen-year streak; the rest of the set falls short.",
+        "\"Off the cover he turned down\" identifies J. Cole by his declined magazine-cover appearance, referenced earlier in this material."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "25-25b.main"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-3.1",
+        "c4-reveal-3.2",
+        "c4-reveal-3.3",
+        "c4-reveal-3.4"
+      ],
+      "jobProposalIds": [
+        "p-26-26"
+      ],
+      "jobs": [
+        "category_breakdown"
+      ],
+      "requiredEncodings": [
+        "magnitude"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "26-26",
+      "semanticConstraints": [
+        "All six counts belong to the same single rapper carried over from the prior passage, not six different people.",
+        "The six categories (lead single, album, guest feature, mixtape, joint album, compilation) are independent counts, not cumulative or nested within one another."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "26-26.main"
+    },
+    {
+      "claimIds": [
+        "c5-provoke-1.2",
+        "c5-provoke-1.3",
+        "c5-provoke-1.4",
+        "c5-provoke-1.5",
+        "c5-provoke-1.6"
+      ],
+      "jobProposalIds": [
+        "p-27-27"
+      ],
+      "jobs": [
+        "inversion"
+      ],
+      "requiredEncodings": [
+        "difference",
+        "membership"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "27-27",
+      "semanticConstraints": [
+        "Each rapper has two values — billions of streams on their own credited songs, and billions as a featured guest.",
+        "Group membership is decided purely by which of the two values is larger for that individual, not by fame, genre, or era.",
+        "The groups are three and three."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "27-27.main"
+    },
+    {
+      "claimIds": [
+        "c6-provoke-1.1"
+      ],
+      "jobProposalIds": [
+        "p-29-29a"
+      ],
+      "jobs": [
+        "entity_vs_benchmark"
+      ],
+      "requiredEncodings": [
+        "difference"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "29-29a",
+      "semanticConstraints": [
+        "Both figures are per-year rates (~22M vs. ~20.5M units/year), not lifetime totals.",
+        "Drake's figure is a whole-career average; Lil Baby's is his current clip.",
+        "This concerns certifications on each artist's own records only."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "29-29a.main"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-3.1",
+        "c6-reconcile-3.2"
+      ],
+      "jobProposalIds": [
+        "p-30-30a"
+      ],
+      "jobs": [
+        "assert_without_data"
+      ],
+      "requiredEncodings": [
+        "absence"
+      ],
+      "requiredTypedFields": null,
+      "reviewKey": "30-30a",
+      "semanticConstraints": [
+        "Jay-Z stands as the named example of a rapper whose relevant year (his 17th) predates streaming measurement.",
+        "This is a data-availability gap, not a measured result — Jay-Z has no value on this chart at all."
+      ],
+      "status": "awaiting_data_layer",
+      "taskId": "30-30a.main"
+    }
+  ],
+  "counts": {
+    "assignments": 28,
+    "awaitingDataLayer": 28,
+    "currentVisualTasks": 41
+  },
+  "dataHandoffComplete": false,
+  "packageId": "year-seventeen@7",
+  "purpose": "Source-bound queue for typed data field assignment before template/media feasibility",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sources": {
+    "storyTaskProposals": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/reports/storypackage-02-year-seventeen-full-task-proposals.json",
+      "sha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1"
+    },
+    "technicalRequirements": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/visual-task-technical-requirements.json",
+      "sha256": "847453d4cf167f9c2d5f492f7168e0fd2298dca7c0e57a96d1d0776559421e33"
+    }
+  }
+}

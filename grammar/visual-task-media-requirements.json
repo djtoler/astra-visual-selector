@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Typed editor and treatment media requirements consumed generically by VisualTask matching.",
+  "activationState": "review_only_not_connected",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "sources": {
+    "matchingIssues": {
+      "path": "grammar/issues_matching_layer.json",
+      "sha256": "2cea7c5a268321076b493f91bc12392a374f31e3795f462e73ebe2e8d070ad3c"
+    },
+    "reviewExport": {
+      "path": "grammar/beat-review-export-2026-09-27.json",
+      "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d"
+    }
+  },
+  "requirements": [
+    {
+      "taskId": "01-01.subject",
+      "reviewStatus": "approved",
+      "status": "required",
+      "requiredMediaKinds": ["footage"],
+      "requiredEntities": ["Drake"],
+      "contentConstraints": ["Drake performance footage"],
+      "availabilityStatus": "unknown",
+      "missingMediaBrief": null,
+      "evidence": {
+        "kind": "editor_direction",
+        "reference": "grammar/issues_matching_layer.json PI-12",
+        "quote": "drake b-roll performance footage needed"
+      }
+    },
+    {
+      "taskId": "02-02a.main",
+      "reviewStatus": "approved",
+      "status": "required",
+      "requiredMediaKinds": ["document", "artwork"],
+      "requiredEntities": ["Curren$y"],
+      "contentConstraints": ["The 2009 XXL Freshman cover; use the referenced cover rather than a generic Curren$y portrait"],
+      "availabilityStatus": "unknown",
+      "missingMediaBrief": null,
+      "evidence": {
+        "kind": "editor_direction",
+        "reference": "grammar/beat-review-export-2026-09-27.json beat 02-02a",
+        "quote": "we have the magazine referenced in the media library somewhere, probably not tagged, that would've been best selection. The right asset is the COVER, not a portrait."
+      }
+    },
+    {
+      "taskId": "15-15.main",
+      "reviewStatus": "proposed",
+      "status": "missing_required_media",
+      "requiredMediaKinds": ["footage"],
+      "requiredEntities": ["Drake"],
+      "contentConstraints": ["Authentic event-specific b-roll establishing the 2010 XXL offer and Drake's refusal"],
+      "availabilityStatus": "missing",
+      "missingMediaBrief": {
+        "entity": "Drake",
+        "artifactOrEvent": "2010 XXL Freshman offer and refusal",
+        "mediaKind": "footage",
+        "status": "missing"
+      },
+      "evidence": {
+        "kind": "editor_availability_review",
+        "reference": "grammar/beat-review-export-2026-09-27.json beat 15-15",
+        "quote": "no available broll"
+      }
+    }
+  ]
+}
