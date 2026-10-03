@@ -3,6 +3,7 @@
 Date: 2026-10-03
 Branch: `matching-layer`
 Source: `codex/general-matching-layer-v12` at `e8818ae1f3e56f42d36d111bcc8b8c8aaa73e2d6`
+Extraction commit: `96a802173bba104185ae5180c0b36314c83b8a55`
 
 ## Result
 
