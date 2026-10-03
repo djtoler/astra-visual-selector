@@ -49,6 +49,10 @@ python3 -m pipeline.matching_harness validate
 
 The exact StoryPackage authority test also accepts `STORYPACKAGE_AUTHORITY_ROOT` pointing to a clean checkout of the pinned authority commit.
 
+## Matching agent
+
+The authorized provider-neutral Matching-agent handoff is [docs/MATCHING_AGENT_BUILD.md](docs/MATCHING_AGENT_BUILD.md). GPT is the default profile; provider-specific runners must preserve the same Matching contracts, deterministic gates and cross-story acceptance path.
+
 ## Authorization boundary
 
 Matching output is review evidence. It never silently authorizes a template selection, custom visual, render, or media publication.
