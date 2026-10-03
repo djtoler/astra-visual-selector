@@ -1,0 +1,33 @@
+[
+  {
+    "decision": "Package, validate and publish the current general template-to-beat Matching layer on a dedicated branch so matching work can resume from one reviewable baseline.",
+    "source": "User direction in the current turn.",
+    "scope": "Current general Matching implementation, contracts, cross-story evidence, receipts and tests; no template selection or rendering authorization.",
+    "outcome": "already_covered",
+    "sections": [
+      "## General matching layer product boundary — 2026-10-03",
+      "### Multi-agent ownership and provider variants"
+    ],
+    "reason": "The workflow already defines the general matcher objective, mandatory contracts, provider-neutral runtime and continuation policy. This turn publishes the implementation and evidence that follow those rules."
+  },
+  {
+    "decision": "Treat Claude-authored Matching implementation as a stale baseline unless the current general matcher demonstrably depends on a specific executable or contract component; leave unrelated Claude work unchanged.",
+    "source": "User correction in the current turn.",
+    "scope": "Legacy or parallel Claude-authored Matching code only; Story, Data, Media and shared-registry authority remain separate inputs.",
+    "outcome": "updated",
+    "sections": [
+      "### Multi-agent ownership and provider variants"
+    ],
+    "reason": "This prevents a parallel implementation from being merged or refreshed merely because it exists, while preserving concrete dependencies required by the current matcher."
+  },
+  {
+    "decision": "Keep the pre-existing replacement-selection review file outside this publication package.",
+    "source": "Workspace ownership audit during publication.",
+    "scope": "treatment-requirements/pilot-001/replacement-selection.json only.",
+    "outcome": "no_change",
+    "sections": [
+      "## Mandatory workflow review gate"
+    ],
+    "reason": "The file is user-owned review state and is unrelated to packaging the current general matcher."
+  }
+]

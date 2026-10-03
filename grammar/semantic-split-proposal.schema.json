@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polish.local/schemas/semantic-split-proposal-v1.json",
+  "title": "Review-only semantic VisualTask split proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "requestId", "requestSha256", "reviewState", "activationState",
+    "selectionAuthorized", "renderingAuthorized", "humanApproval", "beatProposals"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "requestId": {"type": "string", "minLength": 1},
+    "requestSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "reviewState": {"const": "external_proposal_unreviewed"},
+    "activationState": {"const": "review_only_not_connected"},
+    "selectionAuthorized": {"const": false},
+    "renderingAuthorized": {"const": false},
+    "humanApproval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reviewer", "reviewedAt"],
+      "properties": {
+        "status": {"const": "pending"},
+        "reviewer": {"type": "null"},
+        "reviewedAt": {"type": "null"}
+      }
+    },
+    "beatProposals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/beatProposal"}
+    }
+  },
+  "$defs": {
+    "beatProposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceBeatId", "sourceTextSha256", "recommendation", "rationale", "tasks"],
+      "properties": {
+        "sourceBeatId": {"type": "string", "minLength": 1},
+        "sourceTextSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "recommendation": {"enum": ["keep_single", "split"]},
+        "rationale": {"type": "string", "minLength": 1},
+        "tasks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/task"}}
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "taskKey", "span", "quote", "visualJob", "taskRole", "takeaway", "reason",
+        "entityRefs", "cohortRefs", "truthConstraintRefs", "prohibitionRefs",
+        "dataRequirementRefs", "editorContextRefs", "requiredMediaKinds",
+        "perceptibilityConstraints"
+      ],
+      "properties": {
+        "taskKey": {"type": "string", "minLength": 1},
+        "span": {
+          "type": "object", "additionalProperties": false, "required": ["start", "end"],
+          "properties": {"start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 1}}
+        },
+        "quote": {"type": "string", "minLength": 1},
+        "visualJob": {"type": "string", "minLength": 1},
+        "taskRole": {"type": "string", "minLength": 1},
+        "takeaway": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1},
+        "entityRefs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "cohortRefs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "truthConstraintRefs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "prohibitionRefs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "dataRequirementRefs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "editorContextRefs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "requiredMediaKinds": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "perceptibilityConstraints": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    }
+  }
+}

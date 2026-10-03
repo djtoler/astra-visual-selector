@@ -1,0 +1,20 @@
+[
+  {
+    "decision": "Show the exact current StoryPackage requirements and measured Production Ready results for the two media clarifications without changing either contract.",
+    "source": "user request, 2026-10-01",
+    "scope": "27-27.main and 30-30b.main clarification",
+    "outcome": "no_change",
+    "reason": "This is a read-only explanation of existing typed requirements and gaps; no editorial ruling has been supplied yet.",
+    "sections": []
+  },
+  {
+    "decision": "Clarify that Story owns communication requirements, Data owns typed values and provenance, and Matching owns template/media binding across those handoffs.",
+    "source": "user architecture question, 2026-10-01",
+    "scope": "cross-layer responsibility boundaries",
+    "outcome": "already_covered",
+    "reason": "The workflow already defines the shared entity-context contract and keeps Story/Data relationships separate from Matching consumption and media retrieval.",
+    "sections": [
+      "Use one shared entity-context contract across Data, Story and Matching while keeping research evidence and media in their established separate stores."
+    ]
+  }
+]

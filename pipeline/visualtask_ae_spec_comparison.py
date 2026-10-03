@@ -20,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_TASKS = ROOT / "grammar" / "visual-tasks.json"
 DEFAULT_SLATE = ROOT / "pipeline" / "shotlist.capacity.json"
 DEFAULT_CATALOG = ROOT / "astra-selector-design" / "approved_media" / "approved-list.json"
+DEFAULT_LOCAL_TEMPLATES = ROOT / "grammar" / "local-templates.json"
 DEFAULT_LINKS = ROOT / "grammar" / "ae-template-spec-links.json"
 DEFAULT_INDEX = ROOT / "grammar" / "ae-template-technical-index.json"
 DEFAULT_SCENE_MAPPINGS = ROOT / "grammar" / "ae-scene-composition-mappings.json"
@@ -265,7 +266,11 @@ def validate_technical_index(artifact: dict[str, Any]) -> dict[str, int]:
     return counts
 
 
-def _scene_index(catalog: dict[str, Any]) -> dict[str, dict[str, Any]]:
+def _scene_index(
+    catalog: dict[str, Any],
+    local_templates: dict[str, Any] | None = None,
+    allowed_local_scene_ids: set[str] | None = None,
+) -> dict[str, dict[str, Any]]:
     scenes: dict[str, dict[str, Any]] = {}
     for family in catalog.get("items") or []:
         if family.get("type") != "after_effects":
@@ -282,6 +287,23 @@ def _scene_index(catalog: dict[str, Any]) -> dict[str, dict[str, Any]]:
                 "observedFocalImageCount": scene.get("focalImageCount"),
                 "availabilityStatus": scene.get("availabilityStatus"),
             }
+    for scene in (local_templates or {}).get("records") or []:
+        if scene.get("kind") != "after_effects":
+            continue
+        scene_id = scene.get("id")
+        if scene_id not in (allowed_local_scene_ids or set()):
+            continue
+        family_id = scene.get("template")
+        if not scene_id or not family_id or scene_id in scenes:
+            raise ValueError(f"missing or duplicate local AE scene id: {scene_id}")
+        scenes[scene_id] = {
+            "familyId": family_id,
+            "nativeCompositionId": None,
+            "nativeCompositionMappingStatus": "unverified",
+            "observedFocalImageCount": None,
+            "availabilityStatus": "local_user_intake",
+            "localSource": True,
+        }
     return scenes
 
 
@@ -409,6 +431,7 @@ def build_comparison(
     tasks_path: Path = DEFAULT_TASKS,
     slate_path: Path = DEFAULT_SLATE,
     catalog_path: Path = DEFAULT_CATALOG,
+    local_templates_path: Path = DEFAULT_LOCAL_TEMPLATES,
     links_path: Path = DEFAULT_LINKS,
     index_path: Path = DEFAULT_INDEX,
     scene_mappings_path: Path = DEFAULT_SCENE_MAPPINGS,
@@ -420,6 +443,7 @@ def build_comparison(
         "visualTasks": Path(tasks_path),
         "baselineSlate": Path(slate_path),
         "approvedCatalog": Path(catalog_path),
+        "localTemplates": Path(local_templates_path),
         "specLinks": Path(links_path),
         "technicalIndex": Path(index_path),
         "sceneMappings": Path(scene_mappings_path),
@@ -432,7 +456,15 @@ def build_comparison(
         raise ValueError("VisualTask artifact is not review-only")
     tasks = tasks_artifact.get("tasks") or []
     slate = _slate_index(_read(paths["baselineSlate"]))
-    scenes = _scene_index(_read(paths["approvedCatalog"]))
+    scene_mappings_artifact = _read(paths["sceneMappings"])
+    explicitly_mapped_scene_ids = {
+        row.get("sceneId") for row in scene_mappings_artifact.get("mappings") or []
+    }
+    scenes = _scene_index(
+        _read(paths["approvedCatalog"]),
+        _read(paths["localTemplates"]),
+        explicitly_mapped_scene_ids,
+    )
     technical = _read(paths["technicalIndex"])
     validate_technical_index(technical)
     projects = {row["id"]: row for row in technical["projects"]}
@@ -452,7 +484,6 @@ def build_comparison(
                 previous = expected_scene_projects.setdefault(option["id"], link["projectId"])
                 if previous != link["projectId"]:
                     raise ValueError(f"scene links to multiple measured projects: {option['id']}")
-    scene_mappings_artifact = _read(paths["sceneMappings"])
     window_capacities_artifact = _read(paths["sceneWindowCapacities"])
     from . import scene_window_capacity
     scene_window_capacity.validate_window_capacities(window_capacities_artifact)
@@ -770,6 +801,7 @@ def validate_comparison(artifact: dict[str, Any], *, verify_sources: bool = True
             tasks_path=ROOT / artifact["sources"]["visualTasks"]["path"],
             slate_path=ROOT / artifact["sources"]["baselineSlate"]["path"],
             catalog_path=ROOT / artifact["sources"]["approvedCatalog"]["path"],
+            local_templates_path=ROOT / artifact["sources"]["localTemplates"]["path"],
             links_path=ROOT / artifact["sources"]["specLinks"]["path"],
             index_path=ROOT / artifact["sources"]["technicalIndex"]["path"],
             scene_mappings_path=ROOT / artifact["sources"]["sceneMappings"]["path"],

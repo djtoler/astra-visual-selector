@@ -1,0 +1,42 @@
+[
+  {
+    "decision": "Distinguish the original architecture's missing executable candidate-admission contract from the implementation's failure to consume the full StoryPackage-derived handoff.",
+    "source": "User asked whether the original org-convo plan missed steps or was insufficient after the Future gallery repeatedly showed similar candidates.",
+    "scope": "Matching architecture, Story-to-Matching handoff, candidate retrieval, and gallery publication for reusable StoryPackages.",
+    "reason": "The reference plan correctly separated layer ownership, but did not fully specify or enforce the mapping from task requirements to catalog capabilities; the gallery implementation additionally dropped structured fields and admitted legacy pools unconditionally.",
+    "outcome": "updated",
+    "sections": [
+      "## Structured beat-to-template retrieval — 2026-10-03"
+    ]
+  },
+  {
+    "decision": "Use local semantic similarity only to order candidates that already passed structured capability admission.",
+    "source": "Recalibration diagnosis and existing no-score authorization policy.",
+    "scope": "Candidate ordering for the Future StoryPackage and future structured StoryPackage ingestion.",
+    "reason": "Semantic relevance improves task-specific ordering without allowing a similarity score, probability, or legacy job binding to authorize selection or rendering.",
+    "outcome": "already_covered",
+    "sections": [
+      "## Structured beat-to-template retrieval — 2026-10-03"
+    ]
+  },
+  {
+    "decision": "Preserve the two editor comments as task-scoped, unvalidated candidate admissions while keeping selection and rendering disabled.",
+    "source": "Existing Future gallery review record and the user's correction that catalog-gap-clean belonged to the previous beat.",
+    "scope": "Future StoryPackage review evidence only; no global template-to-operation rule is inferred.",
+    "reason": "Human feedback must survive regeneration, but an editor note is not proof of general compatibility or render authorization.",
+    "outcome": "already_covered",
+    "sections": [
+      "## Structured beat-to-template retrieval — 2026-10-03"
+    ]
+  },
+  {
+    "decision": "Treat the refreshed gallery as retrieval and calibration evidence rather than validated matching completion.",
+    "source": "Mandatory deterministic scene-selection and workflow policy.",
+    "scope": "Future StoryPackage candidate review and any later StoryPackage using the structured retrieval path.",
+    "reason": "Catalog capability admission does not replace editor review, native fit verification, selection gates, or rendering authorization.",
+    "outcome": "already_covered",
+    "sections": [
+      "## Structured beat-to-template retrieval — 2026-10-03"
+    ]
+  }
+]

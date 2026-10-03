@@ -2,7 +2,7 @@
   "activationState": "review_only_not_connected",
   "counts": {
     "exactTaskAudioSpans": 41,
-    "knownMediaKindRequirements": 2,
+    "knownMediaKindRequirements": 3,
     "knownMediaSlotRequirements": 0,
     "knownTextFieldRequirements": 0,
     "knownTypedDataRequirements": 0,
@@ -39,9 +39,9 @@
       "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
     },
     "mediaRequirements": {
-      "bytes": 1866,
+      "bytes": 2592,
       "path": "grammar/visual-task-media-requirements.json",
-      "sha256": "cf3f72b122c79cd6d341d1c84ad9601ac6753b427727d718c56bf4d07d21b2cb"
+      "sha256": "c2a13935702da3f041b1c1711ce08720ea3d481673ee0edc89995d10f9ed7fdd"
     },
     "timingReviews": {
       "bytes": 1750,
@@ -49,9 +49,9 @@
       "sha256": "a1b2ddc244998ac97fdb28911f796d6db1193524b97d7dd71553de81ef90c89b"
     },
     "visualTasks": {
-      "bytes": 97553,
+      "bytes": 98341,
       "path": "grammar/visual-tasks.json",
-      "sha256": "e253880ec6e8b44450a937110b063091cdd6640484aa2ae6d6390973889a64ad"
+      "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"
     }
   },
   "tasks": [
@@ -175,16 +175,27 @@
       },
       "mediaRequirements": {
         "availabilityStatus": "unknown",
-        "contentConstraints": null,
-        "evidence": null,
+        "contentConstraints": [
+          "The 2009 XXL Freshman cover; use the referenced cover rather than a generic Curren$y portrait"
+        ],
+        "evidence": {
+          "kind": "editor_direction",
+          "quote": "we have the magazine referenced in the media library somewhere, probably not tagged, that would've been best selection. The right asset is the COVER, not a portrait.",
+          "reference": "grammar/beat-review-export-2026-09-27.json beat 02-02a"
+        },
         "missingMediaBrief": null,
-        "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
-        "requiredEntities": null,
-        "requiredMediaKinds": null,
+        "reason": "A typed editor/treatment media requirement is bound to this exact VisualTask.",
+        "requiredEntities": [
+          "Curren$y"
+        ],
+        "requiredMediaKinds": [
+          "document",
+          "artwork"
+        ],
         "requiredSlotCount": null,
-        "reviewStatus": null,
+        "reviewStatus": "approved",
         "singlePersonGroupEligibility": null,
-        "status": "unresolved_treatment_dependent"
+        "status": "required"
       },
       "sourceBeatId": "02-02a",
       "taskId": "02-02a.main",

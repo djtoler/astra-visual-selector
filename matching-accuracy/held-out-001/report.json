@@ -1,0 +1,247 @@
+{
+  "activationState": "review_only_not_connected",
+  "batchId": "matching-accuracy-held-out-001",
+  "cases": [
+    {
+      "assertions": [
+        {
+          "actual": "pass",
+          "expected": "pass",
+          "id": "validator-pass",
+          "operator": "equals",
+          "path": [
+            "automatedValidation"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": true,
+          "expected": null,
+          "id": "complete",
+          "operator": "truthy",
+          "path": [
+            "completeCoverage"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": 0,
+          "expected": 0,
+          "id": "no-overlap",
+          "operator": "equals",
+          "path": [
+            "overlapCount"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": 0,
+          "expected": 0,
+          "id": "no-loss",
+          "operator": "equals",
+          "path": [
+            "lostSpanCount"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": 3,
+          "expected": 3,
+          "id": "three-tasks",
+          "operator": "equals",
+          "path": [
+            "proposedTasks"
+          ],
+          "status": "pass"
+        }
+      ],
+      "expected": "complete exact nonoverlapping coverage for every held-out beat",
+      "id": "heldout-split-accuracy",
+      "status": "pass"
+    },
+    {
+      "assertions": [
+        {
+          "actual": "pass",
+          "expected": "pass",
+          "id": "status",
+          "operator": "equals",
+          "path": [
+            "status"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": 0,
+          "expected": 0,
+          "id": "no-lost-references",
+          "operator": "equals",
+          "path": [
+            "lostReferenceCount"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": {
+            "data": 2,
+            "entities": 2,
+            "perceptibility": 1,
+            "prohibitions": 1,
+            "truth": 2
+          },
+          "expected": {
+            "data": 2,
+            "entities": 2,
+            "perceptibility": 1,
+            "prohibitions": 1,
+            "truth": 2
+          },
+          "id": "same-reference-counts",
+          "operator": "equals",
+          "path": [
+            "preservedReferenceCounts"
+          ],
+          "status": "pass"
+        }
+      ],
+      "expected": "truth, prohibition, data, entity and perceptibility requirements survive conversion",
+      "id": "heldout-requirement-preservation",
+      "status": "pass"
+    },
+    {
+      "assertions": [
+        {
+          "actual": "pass",
+          "expected": "pass",
+          "id": "status",
+          "operator": "equals",
+          "path": [
+            "status"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": 3,
+          "expected": 3,
+          "id": "tasks",
+          "operator": "equals",
+          "path": [
+            "visualTasks"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": 3,
+          "expected": 3,
+          "id": "verdicts",
+          "operator": "equals",
+          "path": [
+            "tasksWithVerdict"
+          ],
+          "status": "pass"
+        }
+      ],
+      "expected": "every held-out VisualTask receives an independent template-fit verdict",
+      "id": "heldout-template-fit",
+      "status": "pass"
+    },
+    {
+      "assertions": [
+        {
+          "actual": "pass",
+          "expected": "pass",
+          "id": "status",
+          "operator": "equals",
+          "path": [
+            "status"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": 3,
+          "expected": 3,
+          "id": "tasks",
+          "operator": "equals",
+          "path": [
+            "visualTasks"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": 3,
+          "expected": 3,
+          "id": "verdicts",
+          "operator": "equals",
+          "path": [
+            "tasksWithVerdict"
+          ],
+          "status": "pass"
+        }
+      ],
+      "expected": "every held-out VisualTask receives an independent media-availability verdict",
+      "id": "heldout-media-availability",
+      "status": "pass"
+    },
+    {
+      "assertions": [
+        {
+          "actual": 0,
+          "expected": 0,
+          "id": "no-reviewed-briefs",
+          "operator": "equals",
+          "path": [
+            "reviewedMissingMediaBriefs"
+          ],
+          "status": "pass"
+        },
+        {
+          "actual": "not_applicable_no_reviewed_missing_media_briefs",
+          "expected": "not_applicable_no_reviewed_missing_media_briefs",
+          "id": "not-applicable",
+          "operator": "equals",
+          "path": [
+            "status"
+          ],
+          "status": "pass"
+        }
+      ],
+      "expected": "conditional-gap accuracy is reported without inventing missing-media review evidence",
+      "id": "heldout-conditional-gap-accuracy",
+      "status": "pass"
+    },
+    {
+      "assertions": [],
+      "expected": "editor approval before semantic split activation",
+      "id": "heldout-human-approval",
+      "pendingSources": [
+        "humanApprovalReceipt"
+      ],
+      "reason": "Automated validation passed, but activating the semantic split still requires a real editor approval receipt.",
+      "status": "pending"
+    }
+  ],
+  "nextBoundary": "Five automated held-out categories are scored. Only editor approval remains pending; selection and rendering remain unauthorized.",
+  "renderingAuthorized": false,
+  "schemaVersion": 2,
+  "selectionAuthorized": false,
+  "sourceAvailability": {
+    "evaluationEvidence": "available",
+    "humanApprovalReceipt": "pending",
+    "semanticSplitOutput": "available",
+    "storyPackage": "available",
+    "templateFitOutput": "available"
+  },
+  "sourceHashes": {
+    "evaluationEvidence": "8a803779a28b27b9ce954d7e6d42698643083c6102dd49eb898fc67d9c552e96",
+    "semanticSplitOutput": "d86ae8f9e1851b39b10260d49a5c91eaf86002e92ba481b4744fc16fed374673",
+    "storyPackage": "398ac151b5a0cfb13b31010029bd71077b22f76644adac5a748c6abb2b2f4bb8",
+    "templateFitOutput": "5825848c08e1b8deff59a9b6d99788c2ef524b358067f8a46411437be57d1328"
+  },
+  "summary": {
+    "allPassed": false,
+    "failed": 0,
+    "passed": 5,
+    "pending": 1,
+    "total": 6
+  }
+}

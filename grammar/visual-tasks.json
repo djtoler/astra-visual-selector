@@ -1,5 +1,27 @@
 {
   "activationState": "review_only_not_connected",
+  "contractEnforcementReceipt": {
+    "contracts": {
+      "entrypoints": {
+        "id": "mandatory-matching-entrypoints-v1",
+        "sha256": "e4dda2a71a98fbb64e97596e4beb5cc348460f5f0a94f1a7ea7cea003b8880bf"
+      },
+      "generalMatching": {
+        "id": "general-storypackage-matching-layer-v1",
+        "sha256": "7b15caaf3df7df6762d7f578d901926dca4eaca29c21f6b5e7cd14eddb408c19"
+      },
+      "stageOrder": {
+        "sha256": "ebcf7723f8ada21e8711ac9aa8198ca5ce90ddbd7250a135b819aaf978401a24"
+      }
+    },
+    "enforced": true,
+    "entrypoint": "visual_tasks.build_visual_tasks",
+    "mode": "review_only",
+    "productionRequiresCompleteHarness": true,
+    "renderingAuthorized": false,
+    "schemaVersion": 1,
+    "selectionAuthorized": false
+  },
   "counts": {
     "cohortTasks": 2,
     "impliedEntityTasks": 2,
@@ -37,7 +59,7 @@
     },
     "roster": {
       "path": "grammar/entity-roster.json",
-      "sha256": "7b6a38a747fc3159e74abc1c5b0f5f10568790e8245875c8c5dfbd3c164b9905"
+      "sha256": "a654b4bd125b78b22a3d696916d9fa05a62409d0a3f1e004142116e32f1d05c5"
     },
     "timing": {
       "path": "narration/year-seventeen-narration-timing.json",
@@ -798,6 +820,7 @@
         "ambiguous": [
           {
             "candidates": [
+              "Big L",
               "Big Punisher",
               "Big Scarr",
               "Big Sean"

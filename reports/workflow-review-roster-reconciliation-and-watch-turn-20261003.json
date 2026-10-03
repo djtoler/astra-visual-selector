@@ -1,0 +1,32 @@
+[
+  {
+    "decision": "Preserve the Data entity-context registry and Matching artist gazetteer as separate authorities connected by a deterministic, non-promoting reconciliation bridge.",
+    "source": "User request to reconcile the Story/Data and Matching rosters plus inspection of both committed contracts.",
+    "scope": "General Story, Data and Matching entity identity handoff.",
+    "reason": "The Data file contains typed IDs, aliases, evidence and story bindings, while the Matching file is a compact extraction gazetteer; flattening them would discard contract meaning.",
+    "outcome": "updated",
+    "sections": [
+      "### Story/Data/Matching entity-roster reconciliation"
+    ]
+  },
+  {
+    "decision": "Require typed owning-layer review for all Data-only and Matching-only records; do not automatically promote, remove, retype or approve aliases.",
+    "source": "Deterministic reconciliation of Data registry version 10 and Matching roster commit 12205a7.",
+    "scope": "Entity roster maintenance and StoryPackage entity resolution.",
+    "reason": "Only 164 identities align; the remaining records include non-artist people, organizations and unmatched artist names that need their owning layer's evidence and type checks.",
+    "outcome": "updated",
+    "sections": [
+      "### Story/Data/Matching entity-roster reconciliation"
+    ]
+  },
+  {
+    "decision": "Reuse the existing Patterns branch poller, fix its macOS Bash compatibility, and operate it as a persistent background service across the three collaboration branches.",
+    "source": "User request for a background update watcher and runtime failure of associative-array syntax under macOS Bash 3.2.",
+    "scope": "Cross-repository collaboration monitoring only.",
+    "reason": "The existing poller already implements low-cost remote-head detection; a portability correction and native lifecycle management are sufficient.",
+    "outcome": "updated",
+    "sections": [
+      "### Story/Data/Matching entity-roster reconciliation"
+    ]
+  }
+]

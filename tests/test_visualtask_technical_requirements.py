@@ -59,6 +59,15 @@ class VisualTaskTechnicalRequirements(unittest.TestCase):
         self.assertIn("performance footage", media["contentConstraints"][0])
         self.assertIsNone(media["requiredSlotCount"])
 
+    def test_reviewed_xxl_cover_requirement_is_not_lost(self):
+        media = self.task("02-02a.main")["mediaRequirements"]
+        self.assertEqual(media["status"], "required")
+        self.assertEqual(media["reviewStatus"], "approved")
+        self.assertEqual(media["requiredMediaKinds"], ["document", "artwork"])
+        self.assertEqual(media["requiredEntities"], ["Curren$y"])
+        self.assertIn("2009 XXL Freshman cover", media["contentConstraints"][0])
+        self.assertIsNone(media["requiredSlotCount"])
+
     def test_missing_required_media_carries_typed_conditional_brief(self):
         task = self.task("15-15.main")
         media = task["mediaRequirements"]

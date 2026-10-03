@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import Any
 
 from . import entities as entity_extractor
+from .matching_contract_gate import enforce_contracts
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,7 +33,7 @@ JOBS = {
     "intersection_of_sets", "streak_over_time", "equivalence_restatement",
     "derived_quantity", "locate_in_distribution", "explain_the_encoding",
     "pose_a_question", "enumerate", "define_terms", "narrate_an_event",
-    "assert_without_data", "unclassified",
+    "assert_without_data", "attributed_quote", "unclassified",
 }
 
 
@@ -131,6 +132,7 @@ def _task(
     beat: dict[str, Any],
     spec: dict[str, Any],
     roster_names: list[str],
+    roster_aliases: dict[str, str],
     roster: set[str],
     cohorts: dict[tuple[str, str], dict[str, Any]],
     passage_timing: dict[str, Any],
@@ -142,7 +144,9 @@ def _task(
     matching_job = spec.get("matchingJob", beat["job"])
     if matching_job not in JOBS:
         raise ValueError(f"invalid matching job in {task_id}: {matching_job}")
-    extracted = entity_extractor.extract(quote + " " + (beat.get("entity_kind") or ""), roster_names)
+    extracted = entity_extractor.extract(
+        quote + " " + (beat.get("entity_kind") or ""), roster_names, roster_aliases
+    )
     explicit = list(extracted["entities"])
 
     implied: list[dict[str, Any]] = []
@@ -246,6 +250,7 @@ def build_visual_tasks(
     overrides_path: Path = DEFAULT_OVERRIDES,
     cohorts_path: Path = DEFAULT_COHORTS,
 ) -> dict[str, Any]:
+    contract_receipt = enforce_contracts("visual_tasks.build_visual_tasks")
     paths = {
         "beats": Path(beats_path),
         "timing": Path(timing_path),
@@ -259,6 +264,9 @@ def build_visual_tasks(
     overrides_raw = _read(paths["overrides"])
     cohorts_raw = _read(paths["cohorts"])
     roster_names = list(roster_raw["names"])
+    roster_aliases = dict(roster_raw.get("aliases") or {})
+    if any(canonical not in roster_names for canonical in roster_aliases.values()):
+        raise ValueError("roster alias references an unknown canonical entity")
     roster = set(roster_names)
     cohorts = _cohort_index(cohorts_raw, roster)
     _verify_cohort_sources(cohorts)
@@ -293,6 +301,7 @@ def build_visual_tasks(
                 beat=beat,
                 spec=spec,
                 roster_names=roster_names,
+                roster_aliases=roster_aliases,
                 roster=roster,
                 cohorts=cohorts,
                 passage_timing=timing[passage_id],
@@ -313,6 +322,7 @@ def build_visual_tasks(
         for row in tasks if row["entities"]["unresolved"]
     ]
     artifact = {
+        "contractEnforcementReceipt": contract_receipt,
         "schemaVersion": 1,
         "purpose": "Derived VisualTask pilot; not yet consumed by slate, media or pairing stages",
         "activationState": "review_only_not_connected",

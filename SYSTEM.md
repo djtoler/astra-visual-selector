@@ -36,6 +36,113 @@ describes the beat's scale.
   across six categories and there is no field for the second dimension (FACTS 2.8).
 - `would_be_a_lie` is mostly caption constraints, not selection criteria (LOG, user).
 
+### 2a. StoryPackage 0.2 ingest — `PARTIAL`, review-only · deterministic
+`pipeline/storypackage_adapter.py` invokes the pinned upstream StoryPackage 0.2 checker
+before preserving claims, exact spans, entity/display roles, cohorts, obligations,
+continuity, timing and typed gaps. `pipeline/storypackage_splitter.py` consumes optional
+source-provenanced job proposals as advice and derives review-only semantic tasks over the
+complete accepted claim set. A beat is not a task boundary and a claim is not a task
+boundary: adjacent claims merge when they share one visual payload, while a strong scope
+expansion inside one claim may split. Derived sibling spans reconstruct the source beat
+exactly and candidate retrieval runs independently per task. The Future opening is the
+standing regression: identity setup, streaming stature, rap influence, expanded pop reach
+and the misunderstood-artist turn must be five distinct review moments without any
+story-specific identifier in production code. See
+`plans/SYSTEMATIC_VISUAL_MOMENT_GRANULARITY_PLAN_2026-10-03.md`.
+**Out:** `reports/storypackage-02-*-adapter.json` and
+`reports/storypackage-02-*-task-proposals.json`.
+**Believes:** StoryPackage is the upstream story contract; a claim is not automatically a
+VisualTask; upstream proposals never activate a task or authorize selection/rendering.
+**Current package:** `year-seventeen@7` covers the full script with 72 beats, 150 claims
+and 116 source-provenanced task proposals. All 40 reviewed beat keys behind the current
+41-task fixture reconcile. Biz Markie is now digest-bound through the package's registry
+extension, and the user's 01-01 identity-withholding and 28-28 split rulings are present.
+
+`pipeline/storypackage_matching_handoff.py` additionally invokes the upstream matching-
+handoff checker before accepting the story-owned task linkage and presentation requirements.
+The normalized `matching-handoff-2` covers all 41 VisualTasks with 11 story-required media-kind records,
+106 exact text fields on 31 tasks, and 89 data values on 32 tasks. Its three upstream unknowns
+remain typed and routed: two untasked-span records go to sequence planning, while the unknown
+30-30a focal count remains visible in template/media feasibility without blocking its b-roll route. The handoff is bound to the older
+VisualTask receipt it was authored against; compatibility with the current artifact is checked
+by task ID, source beat, and preserved `sourceBeatJob`, so a later matching-job override does
+not masquerade as story-linkage drift. The user's 2026-10-01 media rulings are story-owned:
+`27-27` permits footage or a vertical still-image carousel of its six artists, while `30-30b`
+requires early-to-mid-2000s hip-hop b-roll.
+**Out:** `reports/storypackage-02-year-seventeen-matching-handoff.json`.
+
+### 2a.1 StoryPackage to typed data handoff — `COMPLETE`, review-only · deterministic
+`pipeline/storypackage_data_handoff.py` joins current technical data requirements to
+StoryPackage claims and job proposals by reviewed beat key. Only tasks with non-empty
+required encodings enter the queue. The user-authorized
+`pipeline/storypackage_data_assignment.py` consumes that queue with the established Spotify,
+song, cohort and discography snapshots. It binds every input hash, computes exact typed values
+and retains unsupported or changed-snapshot claims as typed gaps rather than parsing narration
+or treating missing data as zero.
+**Out:** `reports/storypackage-02-data-handoff-queue.json` and
+`reports/storypackage-02-data-assignments.json` — 28 assignments from 41 current VisualTasks;
+13 non-data tasks excluded.
+**Believes:** the matching layer may route exact requirements but cannot invent values,
+units, denominators, receipts or metric lineage. A typed value is usable only with its bound
+source and transformation receipt.
+**Current result:** all 28 assignments resolve to 79 typed fields with zero gaps. The consumer
+reuses the established historical-corpus concentration and counterfactual outputs for Biz Markie
+and remove-the-largest-song rankings. Jay-Z's year-seventeen daily meter is a typed absence backed
+by the historical coverage contract: the available Spotify values are one current as-of snapshot,
+not a reconstructed history. Absence remains `unavailable`/null, never zero. This completes data
+handoff without authorizing template selection or rendering.
+
+The existing full VisualTask batch matcher now consumes both the completed assignment artifact
+and matching handoff as hash-bound inputs. It overlays story media, text and data-presentation
+requirements plus resolved data fields in memory, leaving the authoritative technical-
+requirements artifact unchanged. Story focal counts are preserved as presentation constraints,
+not relabeled as template slot counts. Story entities create Production Ready media demand only
+when the story requires a media kind; identities that can be carried by labels, marks or typed
+data no longer create false missing-media gaps. Versioned cohorts expand from StoryPackage-owned
+membership before media coverage is measured, and source-specific non-entity requests are looked
+up only through the existing Production Ready tags and captions.
+
+Its current replayable report covers all 41 tasks. The compact source-beat consumer retains its
+ten-card review slate, while full feasibility now evaluates one representative from every family
+already bound to the task's visual job before reporting a shortage. Every task has at least one
+conditionally feasible existing-template candidate under the user-approved family-first workflow:
+555 candidate pairs are conditional, 70 are incompatible and 13 have insufficient capability
+evidence and remain unresolved. Five tasks have fewer than six conditional choices; that count is
+informational because the prior six-choice minimum has been removed. The exhaustive pass removed
+two false shortages without adding or weakening any candidate. The
+batch now consumes the existing prior-review reconciliation: only `prior_selected` candidates for
+the exact unsplit task are re-admitted, while dismissed, unavailable and split-task rows remain
+excluded. This restored three previously dropped conditional candidate pairs, including the
+editor-selected looped slideshow for `02-02b`, which raises that task from three to four choices.
+Media availability is seven available, 30 not required, one conditional and three unavailable;
+four tasks therefore retain preferred-media gaps. A beat does not require a template, and b-roll
+is always an allowed fallback, so the template-choice counts and preferred-media gaps do not block
+sequence planning. A template route needs one or more distinct valid existing choices; an empty
+slate blocks. `27-27` now resolves all six named artists from
+Production Ready under the permitted footage-or-still treatment. `30-30b` is no longer editorially
+ambiguous, but retains a typed preferred-media gap because no exact early-to-mid-2000s hip-hop
+b-roll is currently Production Ready. Family capability never claims exact
+native fit: exact child mapping, controls, timing and treatment-specific field/slot assignment
+remain explicit use-time checks. These verdicts are feasibility evidence only, not selections or
+render authorization.
+
+`pipeline/ordered_visual_route_plan.py` consumes the current feasibility batch, exact narration
+spans, prior editor decisions and timing plans. Its validated 41-scene sequence assigns nine beats
+to in-beat b-roll, one additional post-beat b-roll segment, and carries 32 beats into deterministic
+template review. Every scene retains b-roll as a
+fallback, an exact narration span and the user-required short editorial transition. Template
+routes preserve prior-selected candidates at the front of the slate without choosing a final
+template. The sequence has zero unresolved ordering conflicts, so the harness now passes
+`sequence_planning`. The established scene-review server exposes exactly those 32 route decisions
+at `/approved/final-route-review.html`.
+Saved decisions are hash-bound to the ordered plan, revision-checked and never authorize rendering.
+
+The editor subsequently corrected that review step: use the earlier choice rather than ask again.
+`pipeline/carry_prior_route_choices.py` verified that every one of the 32 template routes still
+contains at least one prior-selected candidate and carried the first surviving choice in preserved
+review order. No task remains unresolved. Human review now passes; the harness stops at
+`render_release_handoff`. The page reports 32 of 32 reconciled and exposes no duplicate controls.
+
 ### 2b. Beats to VisualTasks — `PARTIAL`, review-only · deterministic · `pipeline/visual_tasks.py`
 Builds a source-hashed representation that can split a beat into exact narration tasks,
 attach source-bound implied entities, and expand versioned cohorts. The current pilot emits

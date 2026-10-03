@@ -73,3 +73,20 @@ Started on 2026-09-28:
 | 6. Compare approved treatments | `capacity-comparison.json` finds the one-slot template structurally capable of holding the full cover and assigns the zoom outside the template. The editor authorized the 3.1-second trim test and the gated request passes validation. Execution is blocked because the exact original project requires AE 26.0 while the host has AE 2025; both available project copies are byte-identical. The 546×246 cover quality also remains untested. | Conditional; AE 26 or an AE-25-compatible source-equivalent copy is required |
 
 No VisualTask was rewritten. No AE application, render, paid call, source-template edit, live ranking, pairing or selection change occurred.
+
+## Deterministic request-preparation expansion
+
+The next authorized implementation generalizes the already accepted pilot request builder without expanding the treatment system's authority.
+
+1. Accept one explicit `taskId` / `candidateId` pair.
+   - Acceptance: the task exists in the bound comparison, the candidate was already offered to that exact task and its source beat's baseline slate, the mapping is exact, and the task has an exact audio span.
+2. Accept a closed batch input containing explicit pairs only.
+   - Acceptance: the input has no unknown fields, contains at least one pair, rejects duplicate pairs, and produces one independently hashed and validated request per pair.
+3. Preserve the existing prompt, draft schema and human-review boundary.
+   - Acceptance: every generated request remains `awaiting_model_draft`, forbids selection and rendering, grants no approval or fillability verdict, and remains consumable by the existing draft validator.
+4. Preserve the original pilot route as a compatibility wrapper.
+   - Acceptance: rebuilding pilot `02-02a.main` / `screen-mockup-rfx--review-002` is byte-deterministic relative to the generalized single-pair builder.
+5. Verify deterministic failure behavior.
+   - Acceptance: tests cover a non-pilot pair, multiple-pair batching, duplicates, malformed batch input, unknown pairs, non-exact candidates, stale hashes and forbidden approval/authorization claims.
+
+This expansion performs no model call, selection, rendering, custom visual work or automatic human-review decision. Batch preparation remains free and disconnected from live matching consumers.

@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Replay a frozen, read-only matching accuracy batch.
-
-This evaluator measures current artifacts. It never changes the slate, approves a
-treatment, selects a template, pairs media, or authorizes rendering.
-"""
+"""Evaluate matching evidence from declarative, read-only fixture assertions."""
 
 from __future__ import annotations
 
@@ -11,18 +7,17 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import sys
 from typing import Any
 
+try:
+    from .matching_contract_gate import enforce_contracts
+except ImportError:
+    from matching_contract_gate import enforce_contracts
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REQUEST = ROOT / "matching-accuracy" / "batch-001" / "request.json"
-DEFAULT_REPORT = ROOT / "matching-accuracy" / "batch-001" / "report.json"
-MATCH_TRIAL = ROOT / "match-trial"
-if str(MATCH_TRIAL) not in sys.path:
-    sys.path.insert(0, str(MATCH_TRIAL))
-
-import candidates as candidate_pool  # noqa: E402
+DEFAULT_REPORT = ROOT / "matching-accuracy" / "batch-001" / "declarative-report.json"
+ALLOWED_OPERATORS = {"equals", "not_equals", "contains", "truthy", "falsey", "length_equals", "length_gte", "distinct"}
 
 
 def _read(path: Path) -> Any:
@@ -38,300 +33,122 @@ def dumps(value: Any) -> str:
     return json.dumps(value, indent=2, ensure_ascii=False, sort_keys=True) + "\n"
 
 
-def _one(rows: list[dict[str, Any]], key: str, value: str) -> dict[str, Any]:
-    found = [row for row in rows if row.get(key) == value]
-    if len(found) != 1:
-        raise ValueError(f"expected one {key}={value}, found {len(found)}")
-    return found[0]
+def _source_path(root: Path, source: dict[str, Any]) -> Path:
+    path = Path(source.get("path", ""))
+    return path if path.is_absolute() else root / path
 
 
-def _shot_id(row: dict[str, Any]) -> str:
-    return f"{row['passage']}-{row['beat']}"
-
-
-def _reachable_option_ids(shot: dict[str, Any]) -> set[str]:
-    return {
-        item["id"]
-        for option in shot.get("options") or []
-        for item in [option, *(option.get("siblings") or [])]
-    }
-
-
-def validate_request(request: dict[str, Any], *, root: Path = ROOT) -> None:
+def validate_request(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, str]:
+    if request.get("schemaVersion") != 2:
+        raise ValueError("unsupported declarative accuracy schema")
     if request.get("activationState") != "review_only_not_connected":
         raise ValueError("accuracy batch must remain review-only")
-    if request.get("selectionAuthorized") is not False:
-        raise ValueError("accuracy batch cannot authorize selection")
-    if request.get("renderingAuthorized") is not False:
-        raise ValueError("accuracy batch cannot authorize rendering")
+    if request.get("selectionAuthorized") is not False or request.get("renderingAuthorized") is not False:
+        raise ValueError("accuracy batch cannot authorize selection or rendering")
     cases = request.get("cases") or []
-    if len(cases) != 5 or len({row.get("id") for row in cases}) != 5:
-        raise ValueError("accuracy batch requires five distinct cases")
+    case_ids = [row.get("id") for row in cases]
+    if not cases or any(not case_id for case_id in case_ids) or len(case_ids) != len(set(case_ids)):
+        raise ValueError("accuracy batch requires distinct nonempty case IDs")
+    availability: dict[str, str] = {}
     for name, source in (request.get("sources") or {}).items():
-        path = root / source["path"]
+        if not isinstance(source, dict) or not source.get("path"):
+            raise ValueError(f"invalid bound source: {name}")
+        path = _source_path(root, source)
         if not path.is_file():
-            raise ValueError(f"bound source missing: {name}: {path}")
+            if source.get("required", True):
+                raise ValueError(f"bound source missing: {name}: {path}")
+            availability[name] = "pending"
+            continue
         actual = _sha(path)
-        if actual != source.get("sha256"):
+        if source.get("sha256") is not None and actual != source["sha256"]:
             raise ValueError(f"bound source changed: {name}: {actual}")
+        availability[name] = "available"
+    source_names = set((request.get("sources") or {}))
+    for case in cases:
+        record = case.get("record") or {}
+        required_sources = set(case.get("requiresSources") or [record.get("source")])
+        if None in required_sources or not required_sources <= source_names:
+            raise ValueError(f"case references unknown source: {case.get('id')}")
+        assertions = case.get("assertions") or []
+        if not assertions:
+            raise ValueError(f"case has no declarative assertions: {case.get('id')}")
+        for assertion in assertions:
+            if assertion.get("operator") not in ALLOWED_OPERATORS:
+                raise ValueError(f"unsupported assertion operator: {assertion.get('operator')}")
+            if not isinstance(assertion.get("path", []), list):
+                raise ValueError(f"assertion path must be a list: {case.get('id')}")
+    return availability
+
+
+def _at(value: Any, path: list[Any]) -> Any:
+    current = value
+    for token in path:
+        if isinstance(current, dict) and token in current:
+            current = current[token]
+        elif isinstance(current, list) and isinstance(token, int) and 0 <= token < len(current):
+            current = current[token]
+        else:
+            raise ValueError(f"declarative path does not resolve: {path}")
+    return current
+
+
+def _record(dataset: Any, spec: dict[str, Any]) -> Any:
+    value = _at(dataset, spec.get("path") or [])
+    where = spec.get("where")
+    if where is None:
+        return value
+    if not isinstance(value, list) or not isinstance(where, dict) or not where:
+        raise ValueError("record filter requires a list and a nonempty equality object")
+    rows = [row for row in value if isinstance(row, dict) and all(row.get(key) == expected for key, expected in where.items())]
+    if len(rows) != 1:
+        raise ValueError(f"record filter expected one result, found {len(rows)}")
+    return rows[0]
+
+
+def _assert(actual: Any, assertion: dict[str, Any]) -> bool:
+    operator, expected = assertion["operator"], assertion.get("expected")
+    if operator == "equals": return actual == expected
+    if operator == "not_equals": return actual != expected
+    if operator == "contains": return expected in actual
+    if operator == "truthy": return bool(actual)
+    if operator == "falsey": return not actual
+    if operator == "length_equals": return len(actual) == expected
+    if operator == "length_gte": return len(actual) >= expected
+    if operator == "distinct": return len(actual) == len({json.dumps(item, sort_keys=True) for item in actual})
+    raise ValueError(f"unsupported assertion operator: {operator}")
 
 
 def evaluate(request: dict[str, Any], *, root: Path = ROOT) -> dict[str, Any]:
-    validate_request(request, root=root)
-    visual_tasks = _read(root / request["sources"]["visualTasks"]["path"])["tasks"]
-    comparison = _read(root / request["sources"]["technicalComparison"]["path"])["tasks"]
-    task_matching = _read(root / request["sources"]["taskMatching"]["path"])["tasks"]
-    shots = _read(root / request["sources"]["currentSlate"]["path"])
-    review = _read(root / request["sources"]["reviewExport"]["path"])["beats"]
-    issues = _read(root / request["sources"]["matchingIssues"]["path"])["issues"]
-    pool = candidate_pool.load()
-    pool_by_id = {row["id"]: row for row in pool}
-    cases = {row["id"]: row for row in request["cases"]}
+    contract_receipt = enforce_contracts("matching_accuracy_batch.evaluate")
+    availability = validate_request(request, root=root)
+    datasets = {name: _read(_source_path(root, source)) for name, source in request["sources"].items() if availability[name] == "available"}
     results: list[dict[str, Any]] = []
-
-    # 1. Eleven people must expose a capacity-qualified AE long-media carousel.
-    case = cases["eleven_person_long_carousel_test"]
-    task = _one(visual_tasks, "id", case["taskIds"][0])
-    shot = _one(shots, "__sourceBeatId", case["sourceBeatId"]) if any(
-        "__sourceBeatId" in row for row in shots
-    ) else _one([{**row, "__sourceBeatId": _shot_id(row)} for row in shots],
-                "__sourceBeatId", case["sourceBeatId"])
-    reachable = _reachable_option_ids(shot)
-    entity_count = task.get("entityCount", 0)
-    eligible_carousel_ids = sorted(
-        row["id"] for row in pool
-        if candidate_pool.is_long_media_carousel(row, entity_count)
-    )
-    offered_carousel_ids = sorted(set(eligible_carousel_ids) & reachable)
-    offered_non_ae_ids = sorted(
-        row_id for row_id in reachable
-        if row_id in pool_by_id and pool_by_id[row_id].get("kind") != "after_effects"
-    )
-    passed = (
-        entity_count >= case["minimumPeople"]
-        and bool(offered_carousel_ids)
-        and all(pool_by_id[row_id].get("kind") == "after_effects" for row_id in offered_carousel_ids)
-    )
-    results.append({
-        "id": case["id"],
-        "status": "pass" if passed else "fail",
-        "expected": case["expected"],
-        "observed": {
-            "taskEntityCount": entity_count,
-            "batchTreatmentRequiresLongCarousel": True,
-            "eligibleLongCarouselCount": len(eligible_carousel_ids),
-            "eligibleLongCarouselIds": eligible_carousel_ids,
-            "offeredLongCarouselIds": offered_carousel_ids,
-            "offeredNonAfterEffectsIds": offered_non_ae_ids,
-            "spatialOrInfographicSatisfiesThisBatchTreatment": False,
-        },
-        "reason": (
-            "A capacity-qualified long-carousel After Effects scene is offered."
-            if passed else
-            "The eleven-person task does not offer a capacity-qualified long-carousel After Effects scene."
-        ),
-    })
-
-    # 2. The split beat must retain reviewed timing and actual task-level matching.
-    case = cases["split_beat_visual_tasks"]
-    split = [_one(visual_tasks, "id", task_id) for task_id in case["taskIds"]]
-    split_comparison = [_one(comparison, "taskId", task_id) for task_id in case["taskIds"]]
-    split_matching = [_one(task_matching, "taskId", task_id) for task_id in case["taskIds"]]
-    roles = [row.get("taskRole") for row in split]
-    timing_states = [
-        (row.get("technicalRequirements") or {}).get("timingRequirement", {}).get("status")
-        for row in split_comparison
-    ]
-    exact_spans = [
-        (row.get("technicalRequirements") or {}).get("timingRequirement", {}).get("exactTaskAudioSpan")
-        for row in split_comparison
-    ]
-    candidate_ids = [[candidate.get("candidateId") for candidate in row.get("templateCandidates") or []] for row in split_matching]
-    candidate_provenance = [
-        [candidate.get("candidateMatchingProvenance") for candidate in row.get("templateCandidates") or []]
-        for row in split_matching
-    ]
-    independently_matched = all(
-        candidates and all(isinstance(provenance, dict) and provenance.get("scope") == "visual_task" and provenance.get("taskId") == row["taskId"] for provenance in candidates)
-        and (row.get("mediaCandidates") or {}).get("candidateMatchingProvenance", {}).get("scope") == "visual_task"
-        for row, candidates in zip(split_matching, candidate_provenance)
-    )
-    passed = (
-        len({row["id"] for row in split}) == 2
-        and len({row["quote"] for row in split}) == 2
-        and roles == ["setup_text", "spatial_comparison"]
-        and timing_states == ["exact_reviewed_split_task_span", "exact_reviewed_split_task_span"]
-        and [row["startSeconds"] for row in exact_spans] == [614.42, 626.66]
-        and exact_spans[0]["endSeconds"] == exact_spans[1]["startSeconds"]
-        and independently_matched
-        and candidate_ids[0] != candidate_ids[1]
-        and split_matching[0]["mediaCandidates"]["status"] == "no_entity_media_demand"
-        and len(split_matching[1]["mediaCandidates"]["entities"]) == 10
-    )
-    results.append({
-        "id": case["id"],
-        "status": "pass" if passed else "fail",
-        "expected": case["expected"],
-        "observed": {
-            "taskIds": [row["id"] for row in split],
-            "taskRoles": roles,
-            "quotesAreDistinct": len({row["quote"] for row in split}) == 2,
-            "timingStates": timing_states,
-            "exactTaskAudioSpans": exact_spans,
-            "continuityGroups": [row.get("continuityGroup") for row in split],
-            "candidateIdsByTask": dict(zip(case["taskIds"], candidate_ids)),
-            "candidateMatchingProvenance": candidate_provenance,
-            "taskLevelCandidateMatchingEvidence": independently_matched,
-            "mediaStatusByTask": {row["taskId"]: row["mediaCandidates"]["status"] for row in split_matching},
-            "mediaEntityCountByTask": {row["taskId"]: len(row["mediaCandidates"]["entities"]) for row in split_matching},
-        },
-        "reason": (
-            "The reviewed split is preserved and each task has evidence of independent task-level candidate matching."
-            if passed else
-            "The reviewed split is incomplete or template/media candidates were not independently matched per VisualTask."
-        ),
-    })
-
-    # 3. Exact native text evidence must not bypass treatment-field fit or editor review.
-    case = cases["text_heavy_document"]
-    comp_task = _one(comparison, "taskId", case["taskIds"][0])
-    candidate = _one(comp_task.get("candidateComparisons") or [], "candidateId", case["candidateId"])
-    on_slate = case["candidateId"] in _reachable_option_ids(
-        _one([{**row, "__sourceBeatId": _shot_id(row)} for row in shots],
-             "__sourceBeatId", case["sourceBeatId"])
-    )
-    exact = candidate.get("exactComposition")
-    verdict = candidate.get("verdict")
-    measured_text_fields = exact.get("recursiveEditableTextFields") if exact else None
-    required_text_items = len(case["treatmentProposal"]["requiredOnScreenText"])
-    passed = (
-        on_slate
-        and exact is not None
-        and measured_text_fields is not None
-        and measured_text_fields < required_text_items
-        and verdict != "fillable_now"
-    )
-    results.append({
-        "id": case["id"],
-        "status": "pass" if passed else "fail",
-        "expected": case["expected"],
-        "observed": {
-            "candidateId": case["candidateId"],
-            "candidateOnSlate": on_slate,
-            "technicalVerdict": verdict,
-            "exactCompositionMapped": exact is not None,
-            "measuredEditableTextFields": measured_text_fields,
-            "requiredTextItems": required_text_items,
-            "requiredOnScreenText": case["treatmentProposal"]["requiredOnScreenText"],
-            "treatmentReviewState": case["treatmentProposal"]["status"],
-        },
-        "missingRequirements": [
-            "treatment_to_native_text_field_assignment",
-            "text_character_and_line_limits",
-            "editor_approved_treatment",
-        ],
-        "reason": (
-            "The native scene exposes three editable text fields for five proposed text items, so the candidate remains unapproved pending an explicit field assignment or a different treatment."
-            if passed else
-            "The text-heavy proposal was lost, lacks native text evidence, or was promoted without proving that its text fits."
-        ),
-    })
-
-    # 4. The saved footage direction must be encoded as a hard media-kind need.
-    case = cases["actual_footage_required"]
-    comp_task = _one(comparison, "taskId", case["taskIds"][0])
-    issue = _one(issues, "id", "PI-12")
-    saved_words = [row["words"] for row in issue.get("userWords") or []
-                   if row.get("beat") == case["sourceBeatId"]]
-    media_req = (comp_task.get("technicalRequirements") or {}).get("mediaRequirements") or {}
-    encoded_kinds = media_req.get("requiredMediaKinds")
-    requirement_found = case["reviewQuote"] in saved_words
-    passed = (
-        requirement_found
-        and isinstance(encoded_kinds, list)
-        and case["requiredMediaKind"] in encoded_kinds
-    )
-    results.append({
-        "id": case["id"],
-        "status": "pass" if passed else "fail",
-        "expected": case["expected"],
-        "observed": {
-            "reviewDirectionFound": requirement_found,
-            "reviewDirection": saved_words,
-            "encodedRequiredMediaKinds": encoded_kinds,
-            "currentMediaRequirementStatus": media_req.get("status"),
-            "currentCandidateIds": [row.get("candidateId") for row in comp_task.get("candidateComparisons") or []],
-        },
-        "missingRequirements": [] if passed else [
-            "required_media_kind:footage",
-            "required_footage_entity:Drake",
-            "performance_footage_content_constraint",
-        ],
-        "reason": (
-            "The saved footage direction is encoded in the task contract."
-            if passed else
-            "The review explicitly requires Drake performance footage, but the task still says its media kind is unresolved."
-        ),
-    })
-
-    # 5. A reviewed missing-media statement must produce a typed conditional gap.
-    case = cases["missing_media_conditional"]
-    beat = _one(review, "beat", case["sourceBeatId"])
-    note = (beat.get("userReview") or {}).get("note")
-    candidate_on_slate = case["candidateId"] in {
-        row.get("id") for row in (beat.get("templates") or {}).get("offeredOnSlate") or []
-    }
-    comp_task = _one(comparison, "taskId", case["taskIds"][0])
-    comp_candidate = _one(comp_task.get("candidateComparisons") or [], "candidateId", case["candidateId"])
-    current_verdict = comp_candidate.get("verdict")
-    media_requirements = (comp_task.get("technicalRequirements") or {}).get("mediaRequirements") or {}
-    typed_gap = comp_candidate.get("missingMediaBrief") or media_requirements.get("missingMediaBrief")
-    typed_gap_present = (
-        isinstance(typed_gap, dict)
-        and typed_gap.get("status") == "missing"
-        and typed_gap.get("mediaKind") == case["treatmentProposal"]["missingMediaBrief"]["mediaKind"]
-    )
-    passed = (
-        note == case["reviewQuote"]
-        and candidate_on_slate
-        and current_verdict == "conditional"
-        and typed_gap_present
-    )
-    results.append({
-        "id": case["id"],
-        "status": "pass" if passed else "fail",
-        "expected": case["expected"],
-        "observed": {
-            "candidateId": case["candidateId"],
-            "candidateOnSlate": candidate_on_slate,
-            "savedReviewNote": note,
-            "currentTechnicalVerdict": current_verdict,
-            "typedMissingMediaBriefPresent": typed_gap_present,
-        },
-        "expectedMissingMediaBrief": case["treatmentProposal"]["missingMediaBrief"],
-        "reason": (
-            "The missing b-roll is preserved as a typed conditional requirement."
-            if passed else
-            "The saved review says no appropriate b-roll is available, but the current matcher does not emit a typed conditional media brief."
-        ),
-    })
-
-    pass_count = sum(row["status"] == "pass" for row in results)
+    for case in request["cases"]:
+        required_sources = case.get("requiresSources") or [case["record"]["source"]]
+        unavailable = [name for name in required_sources if availability[name] != "available"]
+        if unavailable:
+            results.append({"id": case["id"], "expected": case.get("expected"), "status": "pending", "pendingSources": unavailable, "reason": case.get("pendingReason") or "One or more declared evaluation sources are not available yet.", "assertions": []})
+            continue
+        spec = case["record"]
+        record = _record(datasets[spec["source"]], spec)
+        checks = []
+        for assertion in case["assertions"]:
+            actual = _at(record, assertion.get("path") or [])
+            passed = _assert(actual, assertion)
+            checks.append({"id": assertion.get("id"), "path": assertion.get("path") or [], "operator": assertion["operator"], "expected": assertion.get("expected"), "actual": actual, "status": "pass" if passed else "fail"})
+        result = dict(record) if isinstance(record, dict) and case.get("copyRecord", False) else {}
+        result.update({"id": case["id"], "expected": case.get("expected"), "status": "pass" if all(row["status"] == "pass" for row in checks) else "fail", "assertions": checks})
+        results.append(result)
+    counts = {state: sum(row["status"] == state for row in results) for state in ("pass", "fail", "pending")}
     return {
-        "schemaVersion": 1,
-        "batchId": request["batchId"],
-        "activationState": "review_only_not_connected",
-        "selectionAuthorized": False,
-        "renderingAuthorized": False,
-        "sourceHashes": {name: row["sha256"] for name, row in request["sources"].items()},
-        "summary": {
-            "total": len(results),
-            "passed": pass_count,
-            "failed": len(results) - pass_count,
-            "allPassed": pass_count == len(results),
-        },
+        "contractEnforcementReceipt": contract_receipt,
+        "schemaVersion": 2, "batchId": request["batchId"],
+        "activationState": "review_only_not_connected", "selectionAuthorized": False, "renderingAuthorized": False,
+        "sourceHashes": {name: source.get("sha256") for name, source in request["sources"].items() if availability[name] == "available"},
+        "sourceAvailability": availability,
+        "summary": {"total": len(results), "passed": counts["pass"], "failed": counts["fail"], "pending": counts["pending"], "allPassed": counts["pass"] == len(results)},
         "cases": results,
-        "nextBoundary": "Treat failures as measured matching-layer work. Do not activate unreviewed treatment proposals.",
+        "nextBoundary": request.get("nextBoundary") or "Resolve failed or pending evidence without authorizing selection or rendering.",
     }
 
 
@@ -341,8 +158,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=DEFAULT_REPORT)
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    request = _read(args.request)
-    report = evaluate(request)
+    report = evaluate(_read(args.request))
     if not args.check:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(dumps(report), encoding="utf-8")

@@ -130,6 +130,25 @@ class VisualTaskAESpecComparison(unittest.TestCase):
         self.assertEqual(dropoff["projectId"], "project")
         self.assertEqual(dropoff["verdict"], "exact_technical_evidence_partial")
 
+    def test_local_existing_scene_can_consume_exact_source_bound_technical_mapping(self):
+        result = subject.build_comparison()
+        comparisons = [
+            candidate
+            for task in result["tasks"]
+            for candidate in task["candidateComparisons"]
+            if candidate["candidateId"] == "circle-list-infographic--scene-001"
+        ]
+        self.assertTrue(comparisons)
+        self.assertTrue(all(
+            candidate["projectId"] == "circle-list-infographic-left"
+            and candidate["compositionMappingStatus"] == "verified"
+            and candidate["exactComposition"]["path"]
+                == "01. Circle List Infographic Left/Comps/Slide 01 Dark"
+            and candidate["technicalEvidenceVerdict"] == "exact_technical_evidence_partial"
+            for candidate in comparisons
+        ))
+        self.assertIn("localTemplates", result["sources"])
+
     def test_bad_crosswalk_project_fails_closed(self):
         links = json.loads((ROOT / "grammar" / "ae-template-spec-links.json").read_text())
         links["links"][0]["projectId"] = "does-not-exist"

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "packageId": "jayz-drake-settle-it@2",
+  "purpose": "Freeze the unchanged general consumer before the first held-out adapter, splitter and retrieval run",
+  "input": {
+    "patternsCommit": "545922cdce4f4ae29b7a4fae548040da5d1ccd58",
+    "packageSha256": "ab2f9c7c7026718cc080924a13106e09c5b8cf40318738b609eeed41e4b91b4c",
+    "requiredRosterCommit": "12205a7",
+    "astraMergeHead": "4fd3ba952dde3cdc96e67d9c6938d4a21527190c",
+    "automationDataCommit": "0af272f9ffafd32fd3f9413054429cd6f731a866"
+  },
+  "runtimeSha256": {
+    "pipeline/storypackage_adapter.py": "b94b883e34133024c44d1387745683cf5b3436b01f634250638df0355c782720",
+    "pipeline/storypackage_splitter.py": "283bb3f1ba181feb72873846c33eb6d199150da13eeedc60b6d6763c21e93117",
+    "pipeline/visualtask_matching.py": "86deea54e31722bc284d86e46cca2473ff83526dc28fbbc5b3e1d9093f5cb307",
+    "pipeline/storypackage_candidate_gallery.py": "50e7a1695b36d1e0901ccaff339bc955e4eb6ae1155dacbe4395a57d865e505b",
+    "pipeline/matching_contract_gate.py": "038931fe96230327af75903e956f2dc34eaac4db9dda27fb3a8ec37c4b0580a4"
+  },
+  "contractSha256": {
+    "grammar/general-matching-layer-contract.json": "7b15caaf3df7df6762d7f578d901926dca4eaca29c21f6b5e7cd14eddb408c19",
+    "grammar/matching-harness-stage-contract.json": "ebcf7723f8ada21e8711ac9aa8198ca5ce90ddbd7250a135b819aaf978401a24",
+    "grammar/matching-entrypoint-contract.json": "e4dda2a71a98fbb64e97596e4beb5cc348460f5f0a94f1a7ea7cea003b8880bf"
+  },
+  "matcherFrozenBeforeFirstRun": true,
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

@@ -47,6 +47,52 @@ class VisualTaskMatching(unittest.TestCase):
         written = json.loads((ROOT / "reports" / "visualtask-match-pilot-28-28.json").read_text())
         subject.validate(written)
 
+    def test_generic_legacy_binding_cannot_admit_incompatible_data_template(self):
+        pool = {row["id"]: row for row in subject.C.load()}
+        task = {
+            "id": "new-story.statement", "job": "assert_without_data", "taskRole": "main",
+            "quote": "The artist remains deeply misunderstood.", "entityCount": 1,
+            "entities": {"displayEligible": ["artist"]}, "mustBePerceptible": [],
+            "presentationOperations": ["concept_statement"], "templateAdmissions": [],
+            "ignorePriorSelections": True, "candidateDisplayLimit": 50,
+        }
+        rows = subject.template_candidates(
+            task, {"assert_without_data": [{"id": "3d-pie-chart-set--scene-003"}]},
+            pool, exhaustive_families=True,
+        )
+        self.assertNotIn("3d-pie-chart-set--scene-003", {row["candidateId"] for row in rows})
+
+    def test_subject_profile_uses_identity_capability_not_generic_documentary_word(self):
+        pool = {row["id"]: row for row in subject.C.load()}
+        task = {
+            "id": "new-story.profile", "job": "introduce", "taskRole": "main",
+            "quote": "Who is the artist?", "entityCount": 1,
+            "entities": {"displayEligible": ["artist"]}, "mustBePerceptible": [],
+            "presentationOperations": ["subject_profile"], "templateAdmissions": [],
+            "ignorePriorSelections": True, "candidateDisplayLimit": 500,
+        }
+        rows = subject.template_candidates(task, {}, pool, exhaustive_families=True)
+        ids = {row["candidateId"] for row in rows}
+        self.assertIn("03-history-documentary-10-slides--scene-001", ids)
+        self.assertNotIn("3d-pie-chart-set--scene-003", ids)
+        self.assertTrue(all(
+            row["bindingProvenance"]["source"] == "structured-presentation-contract"
+            for row in rows
+        ))
+
+    def test_task_scoped_editor_admission_survives_family_diversification(self):
+        pool = {row["id"]: row for row in subject.C.load()}
+        task = {
+            "id": "new-story.admission", "job": "assert_without_data", "taskRole": "main",
+            "quote": "A statement.", "entityCount": 1,
+            "entities": {"displayEligible": ["artist"]}, "mustBePerceptible": [],
+            "presentationOperations": ["concept_statement"],
+            "templateAdmissions": [{"id": "03-history-documentary-10-slides--scene-001", "source": "user"}],
+            "ignorePriorSelections": True, "candidateDisplayLimit": 16,
+        }
+        rows = subject.template_candidates(task, {}, pool)
+        self.assertIn("03-history-documentary-10-slides--scene-001", {row["candidateId"] for row in rows})
+
 
 if __name__ == "__main__":
     unittest.main()

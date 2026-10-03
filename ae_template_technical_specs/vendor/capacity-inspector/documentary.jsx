@@ -2,7 +2,7 @@
 (function () {
     var job = /*JOB*/;
     if (job.mode !== "inspect" && (!job.selection_gate || job.selection_gate.policyVersion !== "six-options-v2"))
-        throw Error("RENDER BLOCKED: use run.py with a validated six-choice selection review.");
+        throw Error("RENDER BLOCKED: use run.py with a validated deterministic selection review.");
     function encode(v) {
         if (v === null) return 'null';
         if (typeof v === 'undefined') return 'null';

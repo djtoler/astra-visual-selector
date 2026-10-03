@@ -6496,3 +6496,544 @@ VERIFIED    Seven tests pass. The prepared pilot is `02-02a.main` with
 
 STATUS      done — free preparation complete; timing policy, model draft and user
             review remain pending.
+
+================================================================================
+[0135] 2026-10-01  StoryPackage work becomes a harness-owned execution queue
+
+PROBLEM     The matching harness identifies `story_handoff` as its first blocker, but
+            it does not name or consume the concrete StoryPackage 0.2 integration
+            tasks. Work can therefore resume downstream template review without
+            completing the upstream contract, repeating the drift the harness exists
+            to stop.
+
+WHY REAL    The right template and media candidate can only be judged against stable
+            claims, identities and visual obligations. If the harness cannot report
+            the next unfinished StoryPackage task, it cannot enforce the agreed order
+            or prove that the matching input is ready.
+
+CHANGE      Add a source-pinned StoryPackage 0.2 execution plan and make the matching
+            audit consume it, report progress and name the next unfinished task.
+
+TEST        `MatchingHarnessTests.test_storypackage_execution_plan_is_attached` first
+            fails because the audit has no `executionPlan`; after implementation it
+            must pass and the saved audit must validate its source digest.
+
+VERIFIED    The focused harness test failed first with `KeyError: executionPlan`, then
+            passed after the audit consumed the plan. The saved audit validates the
+            plan digest and reports 1 of 7 tasks passed with `SP02-02` next. The pinned
+            upstream checker passed its baseline, rejected 17 broken variants, and its
+            unrelated Apollo package passed while emitting one typed incomplete-cohort
+            gap. The upstream working tree is fast-forwarded to the pinned commit.
+
+STATUS      done — the harness owns the queue; adapter implementation is next.
+
+================================================================================
+[0136] 2026-10-01  StoryPackage adapter must consume validated semantics, not prose
+
+PROBLEM     StoryPackage 0.2 and its validator exist upstream, but this repository has
+            no consumer. The matching harness therefore cannot distinguish a validated
+            story handoff from the current loose beat JSON, and its story gate cannot
+            ever pass on evidence.
+
+WHY REAL    Matching needs the package's claim spans, entity display roles, cohorts,
+            obligations and provenance to decide what a VisualTask must communicate.
+            Re-extracting those fields from prose would recreate the drift and identity
+            errors the StoryPackage contract was designed to remove.
+
+CHANGE      Added a thin generic adapter that invokes the pinned authoritative
+            checker, preserves the semantic fields and typed gaps, records fresh source
+            hashes, and cannot authorize selection or rendering.
+
+TEST        `StoryPackageAdapterTests` covers the unrelated Apollo fixture, semantic
+            field preservation, its expected typed cohort gap, authorization denial,
+            and rejection of a forbidden template field by the upstream checker. It
+            first fails because `pipeline.storypackage_adapter` does not exist.
+
+VERIFIED    The suite first failed because the adapter module did not exist. It then
+            caught a real launcher defect: resolving the virtualenv Python symlink
+            bypassed its `jsonschema` dependency. Keeping the launcher path intact fixed
+            the consumer. Three focused tests pass. The actual CLI consumed
+            `apollo-collins-sample@1`, wrote the normalized adapter artifact and retained
+            its one `cohort_incomplete` gap. A forbidden `template` field is rejected by
+            the authoritative checker before normalization.
+
+STATUS      done — semantic VisualTask proposal splitting is next.
+
+================================================================================
+[0137] 2026-10-01  Semantic splitter preserves claim/task cardinality
+
+PROBLEM     The validated StoryPackage adapter has no downstream consumer. Treating
+            every claim as one VisualTask would reproduce the rejected 0.1 assumption:
+            Apollo claim `a1` has two job proposals, while claims `a4` and `a5` share
+            one continuous proposal.
+
+WHY REAL    Template and media matching operate on VisualTasks, not claims. Collapsing
+            or multiplying at the wrong boundary changes what the viewer must see and
+            can send the matcher an invalid job before candidate retrieval begins.
+
+CHANGE      Produce deterministic, review-only VisualTask proposals from the
+            package's source-provenanced job proposals while retaining claim spans,
+            entity roles, cohorts, obligations, continuity and typed gaps.
+
+TEST        `StoryPackageSplitterTests` proves one-claim-to-many-task and
+            many-claim-to-one-task behavior, preservation of a withheld entity and
+            typed gaps, denial of activation/selection/rendering, and refusal of an
+            unaccepted adapter receipt. It first fails because the splitter module
+            does not exist.
+
+VERIFIED    The suite first failed because the splitter module did not exist. Four
+            focused tests now pass. The actual consumer produced five Apollo task
+            proposals from five job proposals: claim `a1` remains two distinct tasks,
+            claims `a4` and `a5` remain one task, the withheld Collins role survives,
+            and two uncovered claims plus the upstream incomplete cohort remain three
+            explicit typed gaps. Nothing is activated, selected or render-authorized.
+
+STATUS      done — cross-story acceptance is next.
+
+================================================================================
+[0138] 2026-10-01  Complete StoryPackage replaces the four-beat excerpt
+
+PROBLEM     The harness is blocked at `SP02-05` because only the four-beat Year
+            Seventeen excerpt had been available. The story layer has now delivered
+            `year-seventeen@4`, covering 72 beats and 150 claims, at a newer authority
+            commit than the adapter's pinned revision.
+
+WHY REAL    The matcher cannot clear story handoff using four example beats, and it
+            must not silently trust a changed schema/checker. It needs the complete
+            source package plus a freshly validated authority pin before producing
+            VisualTask proposals for the whole script.
+
+CHANGE      Repin the StoryPackage authority only after its negative suite and full
+            package checker pass, then run the unchanged adapter and splitter on the
+            complete package and bind their source hashes into the harness receipts.
+
+TEST        The real adapter run first fails with `StoryPackage authority checkout is
+            not at the pinned commit`. After repinning, the upstream 17-mutation suite,
+            full-package checker, adapter/splitter suites and harness stale-source tests
+            must pass.
+
+VERIFIED    The adapter first failed on the stale authority pin as required. After the
+            pin moved to validated commit `d0dfb09`, the upstream negative suite rejected
+            all 17 mutations and the full package passed. The unchanged adapter and
+            splitter consumed `year-seventeen@4`: 72 beats, 150 claims, 115 task
+            proposals, all 40 current review keys covered, zero uncovered claims. One
+            `entity_unregistered` gap remains visible for Biz Markie. The user explicitly
+            made only that gap non-blocking; no selection or rendering was authorized.
+
+STATUS      done — story handoff passes; typed data handoff is now first blocker.
+
+================================================================================
+[0139] 2026-10-01  Typed data work is routed only from story-linked obligations
+
+PROBLEM     Story handoff now passes, but 28 of 41 current VisualTasks require data
+            encodings and still have no typed fields. There is no source-bound queue
+            telling the data layer which claims and job proposals those assignments
+            must satisfy.
+
+WHY REAL    Sending all tasks to data assignment wastes work and risks inventing values
+            for non-data scenes. Sending only technical requirements without their
+            StoryPackage links loses the claim meaning the values must communicate.
+
+CHANGE      Emit a deterministic assignment queue containing only current
+            data-bearing VisualTasks, joined to StoryPackage claims/job proposals by
+            reviewed beat key. Leave typed fields unresolved for the data layer and
+            deny selection/rendering authorization.
+
+TEST        `StoryPackageDataHandoffTests` covers the measured 28-of-41 routing,
+            exclusion of a non-data task, claim/proposal linkage, unresolved typed
+            fields, authorization denial and failure when a data-bearing task loses its
+            StoryPackage proposal. It first fails because the handoff module does not
+            exist.
+
+VERIFIED    The test suite first failed because the data-handoff module did not exist.
+            Four focused tests now pass. The actual consumer routed 28 of 41 current
+            VisualTasks, excluded all 13 non-data tasks, retained claim and job-proposal
+            links, and left all 28 typed-field assignments explicitly awaiting the data
+            layer. The queue cannot authorize matching selection or rendering.
+
+STATUS      done — integration queue complete; data-layer field assignment remains.
+
+================================================================================
+[0140] 2026-10-01  Existing data snapshots resolve the typed assignment queue
+
+PROBLEM     The 28 StoryPackage-linked data assignments all stop at
+            `awaiting_data_layer`, even when the existing Spotify, song, cohort and
+            discography snapshots contain the exact rows needed to reproduce them.
+
+WHY REAL    Template feasibility cannot safely decide whether a chart, counter, rank,
+            share or comparison can be populated without typed values. Guessing from
+            narration would hide unsupported claims; leaving reproducible values
+            unresolved blocks matching work that the current data can already support.
+
+CHANGE      Add the user-authorized deterministic assignment consumer. It binds every
+            source by hash, computes typed fields from existing snapshots, emits typed
+            gaps for unsupported claims and denies selection/rendering authority.
+
+TEST        `StoryPackageDataAssignmentTests` will first fail because the consumer
+            module does not exist. It will then prove exact queue coverage, measured
+            Drake rate/share/rank and cohort calculations, explicit Biz Markie and
+            historical-rate gaps, stale-source rejection, no missing-as-zero behavior,
+            authorization denial and downstream harness blocking on residual gaps.
+
+VERIFIED    The new test first failed because the consumer module did not exist. The
+            consumer then processed all 28 queued tasks exactly once and emitted 79
+            source-receipted typed fields with zero gaps. It reused the established
+            historical-corpus concentration and counterfactual outputs for Biz Markie
+            and removal rankings, and encoded missing historical Jay-Z rate history as
+            unavailable/null rather than zero. Twenty-six focused data, StoryPackage
+            and harness tests pass. The artifact validator and actual matching-harness
+            consumer both pass; story and data handoff now pass, the first blocker is
+            template/media feasibility, and selection/rendering/production remain false.
+            Full legacy discovery ran 655 tests; its three failures and 17 errors are
+            pre-existing external catalog/configuration issues outside this change.
+
+STATUS      done — all queued data assignments resolve; template/media feasibility is next.
+
+================================================================================
+[0141] 2026-10-01  Completed data fields reach the existing batch matcher
+
+PROBLEM     Data handoff now resolves all 28 assignments, but the full VisualTask batch
+            matcher still sees `requiredTypedFields: null` in the older requirements
+            artifact and reports a stale generic missing-data gap.
+
+WHY REAL    Template feasibility cannot test whether a candidate can encode the actual
+            values if the existing matcher never receives them. Clearing the harness
+            alone would leave the next consumer operating on obsolete inputs.
+
+CHANGE      Bind the completed assignment artifact into the existing batch request and
+            overlay its resolved typed fields in memory before candidate assessment.
+            Preserve the source requirements and all candidate-specific evidence gaps.
+
+TEST        `FullVisualTaskBatchMatching` will first fail because the request's new
+            `dataAssignments` source is rejected. It will then prove every data-bearing
+            task receives typed fields, loses only the stale generic gap, replays from
+            hashes and still cannot select or render.
+
+VERIFIED    The new test first failed because `dataAssignments` was rejected by the
+            existing request loader. Eleven batch tests now pass. The actual 41-task
+            consumer rebuilt and replay-validated with all 28 data assignments attached;
+            no task retains the stale generic missing-data gap. The run reports one
+            conditional and 40 unresolved template verdicts plus 22 available, 17 not
+            required, one conditional and one unavailable media verdict. The harness
+            consumes that exact report and still denies selection and rendering.
+
+STATUS      done — data reaches feasibility; slot, text and exact-candidate evidence are next.
+
+================================================================================
+[0142] 2026-10-01  Revision 7 story requirements reach full-task feasibility
+
+PROBLEM     The upstream `year-seventeen@7` matching handoff had exact linkage, focal
+            media requirements, 106 text fields and 89 data-presentation values, but
+            the current matcher still used generic null slot/text requirements and did
+            not consume that handoff.
+
+WHY REAL    Candidate feasibility cannot test native capacity or media availability
+            against requirements it never receives. Reingesting only the package would
+            preserve story meaning while leaving the matching layer on obsolete generic
+            unknowns.
+
+CHANGE      Repin the existing StoryPackage adapter to validated upstream commit
+            `66992e7`; add an adapter that invokes the official handoff checker; overlay
+            its story-owned media, text and data-presentation requirements in memory in
+            the existing 41-task matcher; bind the resulting artifact into the harness.
+            Preserve the technical grammar and all three upstream unknowns.
+
+TEST        `StoryPackageMatchingHandoffTests` and the new full-batch/harness assertions
+            first failed because the adapter and handoff source did not exist. They now
+            prove official-checker acceptance, 41-task compatibility, 106 text fields,
+            89 values, focal-unknown preservation, source receipt binding and downstream
+            consumption. A deliberately changed source job is rejected.
+
+VERIFIED    The upstream package, handoff and both negative suites pass. The unchanged
+            StoryPackage splitter emits 116 proposals for @7 with zero uncovered claims.
+            Data assignment still resolves 28 tasks to 79 fields with zero gaps. The
+            full matcher replay-validates all 41 tasks with the handoff attached: one
+            conditional and 40 unresolved template verdicts; 30 available, five not
+            required, one conditional, two unavailable and three unresolved media
+            verdicts. The harness accepts fresh receipts and keeps template/media
+            feasibility as the first blocker. Selection, treatment approval, rendering
+            and production remain false.
+
+STATUS      done — Revision 7 is ingested; unresolved feasibility evidence is next.
+
+================================================================================
+[0143] 2026-10-01  Family-first feasibility removes false blockers without claiming native fit
+
+PROBLEM     The Revision 7 batch treated every story entity as required Production Ready
+            media even when StoryPackage required no media kind, did not expand the
+            93-member cohort, and labeled existing candidates unresolved whenever the
+            older exact-child comparison lacked that pair. The harness then repeated the
+            stale generic media unknowns instead of the batch's measured task results.
+
+WHY REAL    Those defects made ordinary labels/data look like missing images and made the
+            approved family-first workflow appear blocked. The objective is usable matching
+            evidence: conditional family feasibility must be distinguishable from exact
+            native validation, while real media and six-choice shortages remain visible.
+
+CHANGE      Require a story media kind before story identities create media demand; expand
+            StoryPackage-owned cohort members before coverage; search source-specific
+            non-entity requests only through existing Production Ready tags/captions; use
+            existing catalog family capability as a conditional-only fallback when exact
+            child evidence is absent; and make the harness derive shortages from the batch.
+            Exact child evidence stays authoritative. Nothing selects or renders.
+
+TEST        New tests first failed for false no-kind media demand, absent cohort expansion,
+            missing source-specific shortages, missing family fallback and missing harness
+            completion counts. The tests now require the 93-member expansion, typed media
+            shortages, conditional-only family evidence and exact downstream counts.
+
+VERIFIED    Thirty-six StoryPackage/matcher/harness/data tests pass. The rebuilt batch and
+            its harness consumer both replay-validate. Across 41 tasks, template verdicts
+            are 41 conditional; candidate pairs are 307 conditional, 50 incompatible and
+            four unresolved. Seven tasks have fewer than six conditional choices. Media is
+            six available, 30 not required, one conditional, three unavailable and one
+            unresolved, leaving five task-level media issues. Selection, rendering and
+            production remain false; template/media feasibility is the first harness stage.
+
+STATUS      done — family-first feasibility is implemented; typed production gaps are preserved.
+
+================================================================================
+[0144] 2026-10-01  Feasibility reconciles every bound family before declaring a shortage
+
+PROBLEM     Full-task feasibility assessed only the existing consumer's ten-card review
+            slate. That slate intentionally truncates families and withholds slideshow-
+            style families after three, so seven tasks were reported below six choices
+            before all families already bound to their communication job were checked.
+
+WHY REAL    A six-choice shortage is a production blocker. Declaring it from a display-
+            optimized subset sends work toward sourcing or new-template decisions while
+            unreviewed existing families remain, contrary to the selection policy.
+
+CHANGE      Add an explicit exhaustive-family mode to the existing diversification path.
+            Default review consumers retain ten cards and the slideshow cap; only the
+            full feasibility runner disables those presentation limits and evaluates one
+            representative per bound family before counting conditional choices.
+
+TEST        The new batch test first failed because `17-17.main` returned ten of its 17
+            bound families. It now proves full feasibility returns all 17 while the
+            standard consumer remains capped at ten. Harness assertions bind the new
+            candidate totals and exact remaining shortage IDs.
+
+VERIFIED    The rebuilt batch replay-validates with 553 conditional, 70 incompatible and
+            12 unresolved candidate pairs across 41 tasks. The measured shortage count
+            falls from seven tasks to five without adding, duplicating or weakening a
+            candidate. Selection, rendering and production remain false.
+
+STATUS      done — remaining shortages have been exhaustively checked within current bindings.
+
+================================================================================
+[0145] 2026-10-01  Editor media rulings are carried through Story into measured availability
+
+PROBLEM     `27-27.main` permitted only footage in its typed handoff even though the editor
+            approved a vertical still-image carousel, leaving four artists falsely missing.
+            `30-30b.main` requested unspecified b-roll, so Matching could not identify the
+            intended era and correctly stopped as unresolved.
+
+WHY REAL    Matching cannot land the right media when the Story contract omits an approved
+            treatment or the subject of a source-specific request. Hardcoding either meaning
+            in Matching would hide the editorial source and drift on the next handoff rebuild.
+
+CHANGE      Update the StoryPackage handoff builder and regenerated handoff: `27-27` now
+            permits footage or person stills for a vertical six-artist carousel, and `30-30b`
+            requests early-to-mid-2000s hip-hop b-roll. Rebuild the existing batch and harness.
+
+TEST        Story handoff tests bind both exact rulings. Batch tests require `27-27` to be
+            available with no gaps and `30-30b` to return a typed source-specific shortage.
+            Harness tests bind the resulting aggregate verdict counts.
+
+VERIFIED    The upstream checker accepts 41 tasks. `27-27` resolves every named artist from
+            Production Ready and is available. `30-30b` is no longer ambiguous and is
+            unavailable because no exact qualifying Production Ready asset exists. Media
+            tasks needing resolution fall from five to four. Nothing selects or renders.
+
+STATUS      done — both rulings are Story-owned, replayable and measured downstream.
+
+================================================================================
+[0146] 2026-10-01  Prior editor selections reach the full-task matcher without a new API pass
+
+PROBLEM     The harness validated 99 prior-selected task/candidate rows, but the full batch
+            retrieved only generic job bindings. Three currently available conditional pairs
+            disappeared, including the editor-selected looped slideshow for `02-02b`.
+
+WHY REAL    Requiring a new binding judgment for an option the editor already selected repeats
+            review, loses stronger human evidence and overstates template shortages. Blindly
+            restoring every shown option would be equally wrong because many were dismissed.
+
+CHANGE      Add the existing prior-review reconciliation as a hash-bound batch input. Route
+            only exact-task `prior_selected` rows through the established task-admission and
+            unchanged fit-assessment path. Exclude unavailable records and all dismissed,
+            none-acceptable, not-shown and split-task rows.
+
+TEST        A fail-first batch test requires the selected `02-02b` looped-slideshow family to
+            return with prior-review provenance and requires a dismissed carousel to remain out.
+            Harness assertions bind the updated aggregate candidate totals.
+
+VERIFIED    The replayable batch now reports 556 conditional, 70 incompatible and 12 unresolved
+            pairs. `02-02b` rises from three to four choices. Five tasks remain below six;
+            selection, rendering and production remain false. No model API was called.
+
+STATUS      done — prior human evidence is preserved without weakening current fit checks.
+
+================================================================================
+[0147] 2026-10-01  Resolve two no-API shortage hypotheses with native and source-bound evidence
+
+PROBLEM     Two locally proposed shortage candidates remained ambiguous: Number Count lacked a
+            readability check for `17-17`, and the registered Circle List clip could not consume
+            its already measured AE project because local intake scenes were absent from the
+            technical comparison's scene index.
+
+WHY REAL    Counting either proposal without proof would pad the six-choice gate. Leaving the
+            Circle List mapping disconnected also discarded existing frame-exact and two-pass
+            source evidence, causing repeated technical uncertainty.
+
+CHANGE      Run one gated, original-project `NATIVE_TEMPLATE_TEST_NOT_FINAL` readability frame
+            for Number Count using five inspected native text layers. Hash-bind local templates
+            as a comparison input, admit only explicitly mapped local scene IDs, link Circle
+            List Left by source SHA-256 and map the registered scene to measured Slide 01 Dark.
+
+TEST        The native gate passed and reported only native text replacements. A fail-first unit
+            test now requires every Circle List comparison row to use project
+            `circle-list-infographic-left`, verified composition 17158 and exact technical
+            evidence. Duplicate and stale-source validation remains active.
+
+VERIFIED    Number Count is rejected because required copy overflows and the third row is not
+            simultaneously readable. Circle List's 780 frames match the registered source span
+            at 55.351963 dB average PSNR and its eight-row dark structure uniquely matches Slide
+            01 Dark. The batch reports 555 conditional, 70 incompatible and 13 unresolved pairs;
+            the proposal is not silently admitted to `18-18`. Selection and rendering remain
+            false, and no API was called.
+
+STATUS      done — both evidence gaps are durable; semantic task admission remains separate.
+
+================================================================================
+[0148] 2026-10-01  Make b-roll the standing beat-level fallback
+
+PROBLEM     The matching harness treated fewer than six template choices and missing preferred
+            media as beat-level blockers, even though a beat does not require a template.
+
+WHY REAL    This conflated the template-selection gate with route feasibility and kept the
+            workflow searching for templates or exact preferred media when b-roll could carry
+            the narration.
+
+CHANGE      Record b-roll as an always-allowed fallback. Keep limited template coverage and
+            preferred-media gaps visible but nonblocking. Preserve the six-choice requirement
+            whenever a template route is actually proposed.
+
+TEST        Harness regressions require template/media feasibility to pass, sequence planning
+            to become the first incomplete stage, and both gap classes to report zero blockers.
+            The gallery regression requires every displayed row to retain a b-roll fallback.
+
+VERIFIED    All 41 beats have a viable route. Five optional template routes remain below six
+            and four preferred-media gaps remain visible, but neither blocks sequence planning.
+            Selection, rendering and production remain false.
+
+STATUS      done — matching now advances by route rather than requiring a template per beat.
+
+================================================================================
+[0149] 2026-10-01  Complete ordered route, timing and transition planning
+
+PROBLEM     Template/media feasibility passed, but the harness still lacked one ordered treatment,
+            timing disposition and transition plan for every VisualTask.
+
+WHY REAL    Candidate feasibility alone cannot prevent adjacent treatment conflicts, lost prior
+            choices or scene endings that ignore the editor's transition requirement.
+
+CHANGE      Build a source-bound 41-scene plan. Route explicit b-roll decisions, template
+            shortfalls and tasks without a surviving prior choice to b-roll. Carry the other 24
+            tasks into six-choice template review with prior choices first. Add narration timing,
+            continuity and a short transition to every task without selecting a template.
+
+TEST        Five route-plan tests and ten harness tests require complete ordering, 41 transitions,
+            six distinct choices on every template slate, b-roll fallback everywhere, zero
+            sequence conflicts and false selection/rendering authorization.
+
+VERIFIED    The plan contains 17 b-roll routes and 24 template-review routes. Sequence planning
+            passes and the harness advances to human review.
+
+STATUS      done — sequence planning is complete; final template-or-b-roll decisions remain.
+
+================================================================================
+[0150] 2026-10-01  Put the 24 final route decisions in the established review server
+
+PROBLEM     Human review needed a compact way to choose one of six templates or b-roll without
+            reopening resolved b-roll tasks or losing prior selections.
+
+WHY REAL    A raw JSON plan is not a usable editorial interface, and unregistered or substituted
+            previews would make the six-choice review misleading.
+
+CHANGE      Extend the existing local scene-review server with a hash-bound final route page.
+            Resolve all 144 choices from approved, intake, infographic, cinematic/RLIS, layered
+            scene or explicitly registered local-template preview sources. Save decisions
+            atomically with revision checks and retain b-roll on every card.
+
+TEST        Three route-review tests plus the existing twelve storage tests require an exact
+            24-task/144-choice queue, registered previews, valid displayed choices, stale-write
+            rejection, backups and false render authorization.
+
+VERIFIED    The page is live at `/approved/final-route-review.html`; zero of 24 decisions are
+            currently saved. Every displayed choice has an existing registered preview.
+
+STATUS      ready — editor input is now the only remaining matching-stage requirement.
+
+================================================================================
+[0151] 2026-10-02  Carry earlier choices forward instead of asking twice
+
+PROBLEM     The final route page asked the editor to choose again even though every displayed
+            task retained one or more selections from the prior beat review.
+
+WHY REAL    Treating durable editor selections as weak preferences creates unnecessary review,
+            invites contradictory answers and violates the reconciliation goal.
+
+CHANGE      Reconcile every template route against its six-choice slate. Carry the first surviving
+            prior choice in preserved review order when several were previously selected. Save
+            the 24 decisions against the exact ordered-plan hash with the user's instruction as
+            authority. Remove duplicate controls when reconciliation is complete.
+
+TEST        Three carry-forward tests require 24/24 coverage, deterministic preserved ordering,
+            candidate membership and false render authorization. Harness tests require human
+            review to pass only with complete valid decisions.
+
+VERIFIED    All 24 earlier choices remain usable; zero tasks require clarification. The harness
+            advances to render/release handoff. The review page reports 24 of 24 reconciled.
+
+STATUS      done — no duplicate editorial review remains.
+
+0152  2026-10-02  RENDER-RELEASE PREPARATION REPLACES THE GENERIC FINAL BLOCKER
+
+DECISION    Build a fail-closed release packet after final route reconciliation. Preserve all
+            24 carried template decisions and all 17 b-roll routes; do not render or bind an
+            asset without a durable approval/use-rights receipt.
+
+IMPLEMENTED pipeline/render_release_preparation.py locks and hashes every upstream matching
+            input, materializes all 41 scenes in sequence, joins typed data, candidate assets,
+            delivery paths, timing and transitions, and classifies concrete release blockers.
+            The existing media resolver's first-ranked results are carried only as proposals;
+            they are never relabeled as approved bindings.
+
+HARNESS     matching_harness.py now consumes reports/render-release-preparation.json. The final
+            stage reports exact blocker counts and required receipts instead of the former
+            upstream_stage_receipts_incomplete placeholder.
+
+VERIFIED    41/41 scene coverage; 24 template routes; 17 b-roll routes; 41 required transitions;
+            stale inputs fail closed; selection, rendering and publishing remain unauthorized.
+            Targeted release and harness tests pass.
+
+STATUS      preparation complete — exact assets/use rights, selected-child native checks and
+            timing, then full-export human QC remain before render release can pass.
+
+0153  2026-10-02  EDITOR CORRECTED B-ROLL PLACEMENT AND NO-B-ROLL BEATS
+
+DECISION    Do not place b-roll on beats 01, 02, 18 or 28. Beat 25 requires a timeline-capable
+            existing template. Beats 05, 07, 17, 23, 24, 29 and 30 need b-roll. Beat 15's
+            b-roll is after the beat. Beat 27 may use b-roll or the existing artist images.
+
+IMPLEMENTED grammar/broll-route-editorial-overrides.json is the durable scoped authority.
+            Ordered routes, carried choices, release preparation, harness reporting and the
+            existing final-route gallery were rebuilt from it in dependency order.
+
+GATES       No-b-roll tasks with fewer than six valid existing choices are deferred rather than
+            silently sent back to b-roll. This currently leaves four template-route shortages.
+            No rendering or publishing authority was granted.
+
+VERIFIED    41 ordered scenes: 29 template review, 9 in-beat b-roll, 3 deferred, plus one
+            after-beat b-roll segment. The UI shows 10 b-roll segments, not the prior 17.

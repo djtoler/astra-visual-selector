@@ -676,7 +676,7 @@ def is_slideish(row):
     fam = _family(row).lower()
     return any(t in fam for t in SLIDEISH_STEMS)
 
-def _within_family(r, pool_index=None):
+def _within_family(r, pool_index=None, honor_global_picks=True):
     """Order scenes inside one family. Two real signals, then a stable arbitrary
     tiebreak — and the arbitrary part is named as such rather than pretending to rank.
 
@@ -701,7 +701,7 @@ def _within_family(r, pool_index=None):
     # A watchable clip outranks a still when everything else is equal. Last key before
     # the arbitrary one, so it never overrides fit, a user pick, or relevance.
     still = not has_motion(r, pool_index)
-    picked = r["id"] not in _picked_ids()
+    picked = honor_global_picks and r["id"] not in _picked_ids()
     clear = ((r.get("provenance") or {}).get("verdict") != "clear")
     rec = (pool_index or {}).get(r.get("id")) or r
     try: declared = not subject_axes(rec)
@@ -709,7 +709,8 @@ def _within_family(r, pool_index=None):
     return (picked, enc, fit, clear, declared, rel, still, r["id"])
 
 def diversify(rows, limit=12, corpus_size=None, pool_index=None,
-              bound_families=None):
+              bound_families=None, slide_max=SLIDE_MAX,
+              honor_global_picks=True):
     """Return (slate, flooded, note).
 
     At most FAM_MAX scenes per template family, families visited rarest-first so an
@@ -720,12 +721,13 @@ def diversify(rows, limit=12, corpus_size=None, pool_index=None,
 
     fams = collections.defaultdict(list)
     for r in rows: fams[_family(r)].append(r)
-    for f in fams: fams[f].sort(key=lambda r: _within_family(r, pool_index))
+    for f in fams: fams[f].sort(key=lambda r: _within_family(
+        r, pool_index, honor_global_picks=honor_global_picks))
     # A family holding a record the user has already picked is visited FIRST. Rarest
     # -first is a reasonable default for families nobody has judged; it is not a reason
     # to drop a family the user has endorsed. Measured: on `enumerate` (249 bound, 12
     # families shown) two user-picked families fell outside the cut.
-    picked = _picked_ids()
+    picked = _picked_ids() if honor_global_picks else frozenset()
     FIT = {"exact": 0, "unlimited": 0, "footage": 0, "within": 1, "unknown": 2, "outside": 3}
     def bestfit(f): return min(FIT.get(r.get("_capfit"), 2) for r in fams[f])
     # ENCODING FIT OUTRANKS CAPACITY FIT. A slot count is re-cuttable and rendering
@@ -784,7 +786,7 @@ def diversify(rows, limit=12, corpus_size=None, pool_index=None,
             requested = ((r.get("provenance") or {}).get("verdict") == "match-cut"
                          or is_match_cut(r, pool_index))
             if is_slideish(r) and not requested:
-                if slid >= SLIDE_MAX: deferred.append(r); continue
+                if slide_max is not None and slid >= slide_max: deferred.append(r); continue
                 slid += 1
             # THE REST OF THE FAMILY, carried on the chosen scene rather than
             # spending slate slots. FAM_MAX=1 was set after a slate came back 7 scenes
@@ -805,8 +807,8 @@ def diversify(rows, limit=12, corpus_size=None, pool_index=None,
     if flooded or len(slate) < limit or withheld:
         bits = []
         if withheld:
-            bits.append(f"{withheld} further slideshow-style scene(s) withheld past the "
-                        f"cap of {SLIDE_MAX}; they are more of what is already shown.")
+                bits.append(f"{withheld} further slideshow-style scene(s) withheld past the "
+                        f"cap of {slide_max}; they are more of what is already shown.")
         if flooded:
             bits.append(f"{len(rows)} options, {len(rows)*100//(corpus_size or len(rows))}% "
                         f"of the corpus — this job is not discriminating.")
@@ -827,7 +829,7 @@ def diversify(rows, limit=12, corpus_size=None, pool_index=None,
             # it can support a claim about the library, and only when nothing was
             # removed. Otherwise the note states what it saw and stops.
             if withheld:
-                bits.append(f"Fewer than {limit}: the slideshow cap of {SLIDE_MAX} "
+                bits.append(f"Fewer than {limit}: the slideshow cap of {slide_max} "
                             f"ended the slate.")
             elif bound_families is not None and bound_families > len(fams):
                 bits.append(f"Fewer than {limit}: {bound_families} families are bound "

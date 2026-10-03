@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "planId": "general-storypackage-matching-layer",
+  "objective": "Accept any validated supported StoryPackage through one reusable Story, Data, Media and Matching path; keep story-specific evidence scoped; and fail closed when cross-story proof or a required stage receipt is missing.",
+  "executionPolicy": {
+    "continueUntil": "objective_complete_or_user_input_required",
+    "reconcileTaskListBeforeEveryRun": true,
+    "reconcileObjectiveBeforeEveryRun": true,
+    "routineTaskCompletionAllowsStop": false,
+    "routineStatusUpdateAllowsStop": false,
+    "currentBlockerRequired": true,
+    "allowedBlockerParties": ["you", "data", "story", "matching", "none"],
+    "allowedStopConditions": [
+      "objective_complete",
+      "explicit_user_input_required",
+      "authorization_boundary_requires_user",
+      "external_blocker_requires_user_action"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "GML-01",
+      "name": "Declare machine-readable general product boundary",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": [],
+      "userInputRequired": false,
+      "receipt": "grammar/general-matching-layer-contract.json"
+    },
+    {
+      "id": "GML-02",
+      "name": "Make generality the first harness stage",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-01"],
+      "userInputRequired": false,
+      "receipt": "grammar/matching-harness-stage-contract.json"
+    },
+    {
+      "id": "GML-03",
+      "name": "Bind distinct regression and calibration packages",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-02"],
+      "userInputRequired": false,
+      "receipt": "reports/matching-harness-audit.json"
+    },
+    {
+      "id": "GML-04",
+      "name": "Pass a genuinely untouched user-supplied StoryPackage",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-03"],
+      "userInputRequired": false,
+      "receipt": "reports/jayz-drake-heldout-acceptance-result-20261003.json"
+    },
+    {
+      "id": "GML-05",
+      "name": "Require complete narrator-claim routing on every evidence package",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-03"],
+      "userInputRequired": false,
+      "receipt": "reports/matching-harness-audit.json"
+    },
+    {
+      "id": "GML-06",
+      "name": "Reject fixture identifiers in reusable runtime modules",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-02"],
+      "userInputRequired": false,
+      "receipt": "reports/matching-harness-audit.json"
+    },
+    {
+      "id": "GML-07",
+      "name": "Require structured capability admission and prohibit legacy binding admission",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-05"],
+      "userInputRequired": false,
+      "receipt": "reports/storypackage-02-future-volksgeist-candidate-gallery.json"
+    },
+    {
+      "id": "GML-08",
+      "name": "Keep human feedback story/task scoped until reusable reconciliation",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-01"],
+      "userInputRequired": false,
+      "receipt": "media_workflows.md"
+    },
+    {
+      "id": "GML-09",
+      "name": "Run harness and cross-story fail-closed regressions",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-04", "GML-05", "GML-06", "GML-07", "GML-08"],
+      "userInputRequired": false,
+      "receipt": "tests/test_matching_harness.py"
+    },
+    {
+      "id": "GML-10",
+      "name": "Enforce contracts inside every registered matching entry point",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-09"],
+      "userInputRequired": false,
+      "receipt": "grammar/matching-entrypoint-contract.json"
+    },
+    {
+      "id": "GML-11",
+      "name": "Adopt one digest-pinned shared entity registry across Story, Data and Matching",
+      "status": "passed",
+      "owner": "cross_layer",
+      "dependsOn": ["GML-10"],
+      "userInputRequired": false,
+      "receipt": "grammar/entity-roster-source.json"
+    },
+    {
+      "id": "GML-12",
+      "name": "Rebuild StoryPackage regression inputs as new revisions pinned to shared registry v11",
+      "status": "passed",
+      "owner": "story",
+      "dependsOn": ["GML-11"],
+      "userInputRequired": false,
+      "receipt": "reports/general-matching-continuation-20261003.json"
+    },
+    {
+      "id": "GML-13",
+      "name": "Run the rebuilt Future package through the unchanged general matching path",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-12"],
+      "userInputRequired": false,
+      "receipt": "reports/storypackage-02-future-volksgeist-v11-candidate-gallery.json"
+    },
+    {
+      "id": "GML-14",
+      "name": "Reconcile the fresh candidate UI and cross-story regressions against the general matcher objective",
+      "status": "blocked",
+      "owner": "matching",
+      "dependsOn": ["GML-13"],
+      "userInputRequired": true,
+      "receipt": "reports/general-matching-continuation-20261003.json"
+    },
+    {
+      "id": "GML-15",
+      "name": "Re-pin StoryPackage regression inputs to shared registry v12",
+      "status": "passed",
+      "owner": "story",
+      "dependsOn": ["GML-12"],
+      "userInputRequired": false,
+      "receipt": "reports/general-matching-v12-repin-20261003.json"
+    },
+    {
+      "id": "GML-16",
+      "name": "Re-run cross-story matching regressions against registry-v12 StoryPackage revisions",
+      "status": "passed",
+      "owner": "matching",
+      "dependsOn": ["GML-13", "GML-15"],
+      "userInputRequired": false,
+      "receipt": "reports/general-matching-v12-repin-20261003.json"
+    }
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

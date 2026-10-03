@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "familyId": "carousel-slideshow",
+  "reviewedAt": "2026-09-30",
+  "evaluatorRole": "editor",
+  "messageRef": "current user request, 2026-09-30",
+  "quote": "1 is completly different, 2-5 are basically the same except off as far as timing.",
+  "comparisonPage": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/carousel-slideshow-alignment.html",
+  "results": [
+    {"clipId": "carousel-slideshow--review-001", "result": "composition_mismatch", "windowPromoted": false},
+    {"clipId": "carousel-slideshow--review-002", "result": "composition_match_timing_mismatch", "windowPromoted": false},
+    {"clipId": "carousel-slideshow--review-003", "result": "composition_match_timing_mismatch", "windowPromoted": false},
+    {"clipId": "carousel-slideshow--review-004", "result": "composition_match_timing_mismatch", "windowPromoted": false},
+    {"clipId": "carousel-slideshow--review-005", "result": "composition_match_timing_mismatch", "windowPromoted": false}
+  ],
+  "secondPass": {
+    "messageRef": "current user request, 2026-09-30, second-pass response",
+    "quote": "5 is exact. 1-4 every thing is same except timing is off",
+    "results": [
+      {"clipId": "carousel-slideshow--review-001", "result": "composition_match_timing_mismatch", "compositionPath": "2.Final/Render 03", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-002", "result": "composition_match_timing_mismatch", "compositionPath": "2.Final/Render 02", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-003", "result": "composition_match_timing_mismatch", "compositionPath": "2.Final/Render 03", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-004", "result": "composition_match_timing_mismatch", "compositionPath": "2.Final/Render 03", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-005", "result": "exact_match", "compositionPath": "2.Final/Render 02", "startSeconds": 25.92, "endSeconds": 32.42, "windowPromoted": false}
+    ]
+  },
+  "thirdPass": {
+    "messageRef": "current user request, 2026-09-30, third-pass response",
+    "quote": "5 is perfect, 1 is back to ll the way off, 2-4 is slightly off",
+    "results": [
+      {"clipId": "carousel-slideshow--review-001", "result": "composition_match_large_timing_mismatch", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-002", "result": "composition_match_small_timing_mismatch", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-003", "result": "composition_match_small_timing_mismatch", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-004", "result": "composition_match_small_timing_mismatch", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-005", "result": "exact_match_reconfirmed", "startSeconds": 25.92, "endSeconds": 32.42, "windowPromoted": false}
+    ]
+  },
+  "equalLengthPass": {
+    "messageRef": "current user request, 2026-09-30, equal-length response",
+    "quote": "2-4 are good but off by about 1 second. the first 2 seconds of 1 has like an intro showing different card sizes. then it matches the native render",
+    "results": [
+      {"clipId": "carousel-slideshow--review-001", "result": "mixed_intro_then_composition_match", "introDurationSecondsApprox": 2.0, "matchedCompositionPath": "2.Final/Render 03", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-002", "result": "composition_match_phase_shift_approximately_one_second_direction_pending", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-003", "result": "composition_match_phase_shift_approximately_one_second_direction_pending", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-004", "result": "composition_match_phase_shift_approximately_one_second_direction_pending", "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-005", "result": "exact_match_reconfirmed", "startSeconds": 25.92, "endSeconds": 32.42, "windowPromoted": false}
+    ]
+  },
+  "phaseDirection": {
+    "messageRef": "current user request, 2026-09-30, phase-direction response",
+    "quote": "about 1 second late",
+    "interpretation": "The native/right side starts approximately one second late, so each candidate native start was moved one second earlier.",
+    "correctedCandidates": [
+      {"clipId": "carousel-slideshow--review-002", "startSeconds": 19.92, "endSeconds": 24.786667},
+      {"clipId": "carousel-slideshow--review-003", "startSeconds": 12.72, "endSeconds": 22.653333},
+      {"clipId": "carousel-slideshow--review-004", "startSeconds": 10.84, "endSeconds": 21.04}
+    ],
+    "windowPromoted": false
+  },
+  "oneSecondCorrectionReview": {
+    "messageRef": "current user request, 2026-09-30, one-second correction response",
+    "quote": "2 is perfect, 3 and 4 still about 1 second behind",
+    "results": [
+      {"clipId": "carousel-slideshow--review-002", "result": "exact_match", "startSeconds": 19.92, "endSeconds": 24.786667, "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-003", "result": "composition_match_native_still_one_second_late", "nextCandidateStartSeconds": 11.72, "windowPromoted": false},
+      {"clipId": "carousel-slideshow--review-004", "result": "composition_match_native_still_one_second_late", "nextCandidateStartSeconds": 9.84, "windowPromoted": false}
+    ]
+  },
+  "finalDisposition": {
+    "messageRef": "current user request, 2026-09-30, final timing response",
+    "quote": "3 is about 3 seconds behind atp. 4 is still about 1 second behind. not sure hats happeneing",
+    "diagnosis": "The publisher slices do not preserve one constant native time offset. Repeated offset changes produced inconsistent residual timing, which is evidence of editorial retiming, speed change, a different animation phase, or a mixed cut rather than a single exact native window.",
+    "familyReviewComplete": true,
+    "results": [
+      {"clipId": "carousel-slideshow--review-001", "result": "composition_verified_mixed_intro", "compositionPath": "2.Final/Render 03", "timingStatus": "first_approximately_two_seconds_are_a_distinct_intro", "useTimeAction": "flag_and_reconcile_in_post"},
+      {"clipId": "carousel-slideshow--review-002", "result": "exact_match", "compositionPath": "2.Final/Render 02", "startSeconds": 19.92, "endSeconds": 24.786667},
+      {"clipId": "carousel-slideshow--review-003", "result": "composition_verified_nonconstant_timing", "compositionPath": "2.Final/Render 03", "timingStatus": "publisher_retime_or_phase_difference", "useTimeAction": "post_retime_required"},
+      {"clipId": "carousel-slideshow--review-004", "result": "composition_verified_nonconstant_timing", "compositionPath": "2.Final/Render 03", "timingStatus": "publisher_retime_or_phase_difference", "useTimeAction": "post_retime_required"},
+      {"clipId": "carousel-slideshow--review-005", "result": "exact_match", "compositionPath": "2.Final/Render 02", "startSeconds": 25.92, "endSeconds": 32.42}
+    ],
+    "renderingAuthorized": false,
+    "finalSelectionAuthorized": false
+  },
+  "renderingAuthorized": false,
+  "finalSelectionAuthorized": false
+}

@@ -1,0 +1,636 @@
+{
+  "beats": [
+    {
+      "beatId": "b1",
+      "claimCoverage": "complete",
+      "claimIds": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "narration": "In July 1969, three men flew to the Moon, but only two of them walked on it. The third stayed in orbit, circling alone behind the far side, out of radio contact with every other human being. His name was Michael Collins.",
+      "order": 0,
+      "section": "HOOK",
+      "span": {
+        "len": 220,
+        "start": 0
+      },
+      "test": "Who went to the Moon in 1969?"
+    },
+    {
+      "beatId": "b2",
+      "claimCoverage": "complete",
+      "claimIds": [
+        "a4",
+        "a5"
+      ],
+      "narration": "Over the next three and a half years, twelve men walked on the Moon. Neil Armstrong was the first and Gene Cernan was the last.",
+      "order": 1,
+      "section": "CONTEXT",
+      "span": {
+        "len": 127,
+        "start": 222
+      },
+      "test": "How many walked on the Moon?"
+    },
+    {
+      "beatId": "b3",
+      "claimCoverage": "complete",
+      "claimIds": [
+        "a6",
+        "a7"
+      ],
+      "narration": "Some historians call Collins the loneliest man in history. He wrote that he never felt that way.",
+      "order": 2,
+      "section": "REFLECT",
+      "span": {
+        "len": 96,
+        "start": 351
+      },
+      "test": "Was Collins the loneliest man in history?"
+    },
+    {
+      "beatId": "b4",
+      "claimCoverage": "complete",
+      "claimIds": [
+        "a8"
+      ],
+      "narration": "Behind those twelve were hundreds of thousands of engineers, technicians and seamstresses whose names almost nobody remembers.",
+      "order": 3,
+      "section": "WIDEN",
+      "span": {
+        "len": 126,
+        "start": 449
+      },
+      "test": "Who made it possible?"
+    }
+  ],
+  "claims": [
+    {
+      "beatId": "b1",
+      "claimId": "a1",
+      "cohortRefs": [
+        {
+          "cohort": "apollo-11-crew",
+          "display": "required",
+          "representedBy": [
+            "media"
+          ],
+          "version": 1
+        }
+      ],
+      "entityRefs": [],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 76,
+        "start": 0
+      },
+      "status": "unverified",
+      "text": "In July 1969, three men flew to the Moon, but only two of them walked on it."
+    },
+    {
+      "beatId": "b1",
+      "claimId": "a2",
+      "entityRefs": [
+        {
+          "display": "withheld",
+          "entity": "michael-collins",
+          "mentioned": false
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 113,
+        "start": 77
+      },
+      "status": "unverified",
+      "text": "The third stayed in orbit, circling alone behind the far side, out of radio contact with every other human being."
+    },
+    {
+      "beatId": "b1",
+      "claimId": "a3",
+      "entityRefs": [
+        {
+          "display": "required",
+          "entity": "michael-collins",
+          "mentioned": true,
+          "representedBy": [
+            "media",
+            "text"
+          ]
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 29,
+        "start": 191
+      },
+      "status": "unverified",
+      "text": "His name was Michael Collins."
+    },
+    {
+      "beatId": "b2",
+      "claimId": "a4",
+      "cohortRefs": [
+        {
+          "cohort": "apollo-moonwalkers",
+          "display": "required",
+          "representedBy": [
+            "media"
+          ],
+          "version": 1
+        }
+      ],
+      "entityRefs": [],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 68,
+        "start": 222
+      },
+      "status": "unverified",
+      "text": "Over the next three and a half years, twelve men walked on the Moon."
+    },
+    {
+      "beatId": "b2",
+      "claimId": "a5",
+      "entityRefs": [
+        {
+          "display": "required",
+          "entity": "neil-armstrong",
+          "mentioned": true
+        },
+        {
+          "display": "required",
+          "entity": "gene-cernan",
+          "mentioned": true
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 58,
+        "start": 291
+      },
+      "status": "unverified",
+      "text": "Neil Armstrong was the first and Gene Cernan was the last."
+    },
+    {
+      "beatId": "b3",
+      "branchId": "collins-loneliness",
+      "claimId": "a6",
+      "entityRefs": [
+        {
+          "display": "eligible",
+          "entity": "michael-collins",
+          "mentioned": true
+        }
+      ],
+      "lane": "interpretive",
+      "phrasing": {
+        "cautious": "Some historians call Collins the loneliest man in history.",
+        "direct": "Collins was the loneliest man in history."
+      },
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "span": {
+        "len": 58,
+        "start": 351
+      },
+      "text": "Some historians call Collins the loneliest man in history."
+    },
+    {
+      "beatId": "b3",
+      "claimId": "a7",
+      "entityRefs": [
+        {
+          "display": "eligible",
+          "entity": "michael-collins",
+          "mentioned": false,
+          "representedBy": [
+            "media",
+            "text"
+          ]
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [
+        "Michael Collins, Carrying the Fire (1974) - passage to be attached"
+      ],
+      "span": {
+        "len": 37,
+        "start": 410
+      },
+      "status": "unverified",
+      "text": "He wrote that he never felt that way."
+    },
+    {
+      "beatId": "b4",
+      "claimId": "a8",
+      "cohortRefs": [
+        {
+          "cohort": "apollo-workforce",
+          "display": "eligible",
+          "representedBy": [
+            "grouped_asset",
+            "data"
+          ],
+          "version": 1
+        }
+      ],
+      "entityRefs": [],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 126,
+        "start": 449
+      },
+      "status": "unverified",
+      "text": "Behind those twelve were hundreds of thousands of engineers, technicians and seamstresses whose names almost nobody remembers."
+    }
+  ],
+  "cohorts": [
+    {
+      "completeness": "complete",
+      "id": "apollo-11-crew",
+      "label": "three men",
+      "members": [
+        {
+          "entity": "neil-armstrong"
+        },
+        {
+          "entity": "buzz-aldrin"
+        },
+        {
+          "entity": "michael-collins"
+        }
+      ],
+      "provenance": {
+        "reviewState": "approved",
+        "source": "editor"
+      },
+      "version": 1
+    },
+    {
+      "completeness": "complete",
+      "id": "apollo-moonwalkers",
+      "label": "twelve men",
+      "members": [
+        {
+          "entity": "neil-armstrong",
+          "sourceValue": "Neil Armstrong"
+        },
+        {
+          "entity": "buzz-aldrin",
+          "sourceValue": "Buzz Aldrin"
+        },
+        {
+          "entity": "pete-conrad",
+          "sourceValue": "Pete Conrad"
+        },
+        {
+          "entity": "alan-bean",
+          "sourceValue": "Alan Bean"
+        },
+        {
+          "entity": "alan-shepard",
+          "sourceValue": "Alan Shepard"
+        },
+        {
+          "entity": "edgar-mitchell",
+          "sourceValue": "Edgar Mitchell"
+        },
+        {
+          "entity": "david-scott",
+          "sourceValue": "David Scott"
+        },
+        {
+          "entity": "james-irwin",
+          "sourceValue": "James Irwin"
+        },
+        {
+          "entity": "john-young",
+          "sourceValue": "John Young"
+        },
+        {
+          "entity": "charles-duke",
+          "sourceValue": "Charles Duke"
+        },
+        {
+          "entity": "gene-cernan",
+          "sourceValue": "Gene Cernan"
+        },
+        {
+          "entity": "harrison-schmitt",
+          "sourceValue": "Harrison Schmitt"
+        }
+      ],
+      "provenance": {
+        "reviewState": "approved",
+        "source": "data_layer"
+      },
+      "rule": {
+        "filters": [],
+        "nameColumn": "name",
+        "orderBy": "row"
+      },
+      "snapshot": {
+        "path": "architecture/storypackage/examples/snapshots/apollo_moonwalkers.csv",
+        "sha256": "97dafde0ab886c6d7c52a0cb7375435f39d1c24b008bdbb328f83b23edbf5c79"
+      },
+      "version": 1
+    },
+    {
+      "completeness": "incomplete",
+      "id": "apollo-workforce",
+      "incompleteReason": "members_not_enumerated",
+      "label": "hundreds of thousands of engineers, technicians and seamstresses",
+      "members": [],
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "version": 1
+    }
+  ],
+  "continuity": [
+    {
+      "claimIds": [
+        "a2",
+        "a3"
+      ],
+      "groupId": "ga-collins",
+      "invariant": "the orbiting command module stays the visual anchor across the reveal",
+      "provenance": {
+        "reviewState": "approved",
+        "source": "editor"
+      },
+      "scope": "subject_framing",
+      "strength": "preferred"
+    }
+  ],
+  "entities": [
+    {
+      "displayName": "Neil Armstrong",
+      "id": "neil-armstrong"
+    },
+    {
+      "displayName": "Buzz Aldrin",
+      "id": "buzz-aldrin"
+    },
+    {
+      "displayName": "Michael Collins",
+      "id": "michael-collins"
+    },
+    {
+      "displayName": "Pete Conrad",
+      "id": "pete-conrad"
+    },
+    {
+      "displayName": "Alan Bean",
+      "id": "alan-bean"
+    },
+    {
+      "displayName": "Alan Shepard",
+      "id": "alan-shepard"
+    },
+    {
+      "displayName": "Edgar Mitchell",
+      "id": "edgar-mitchell"
+    },
+    {
+      "displayName": "David Scott",
+      "id": "david-scott"
+    },
+    {
+      "displayName": "James Irwin",
+      "id": "james-irwin"
+    },
+    {
+      "displayName": "John Young",
+      "id": "john-young"
+    },
+    {
+      "displayName": "Charles Duke",
+      "id": "charles-duke"
+    },
+    {
+      "displayName": "Gene Cernan",
+      "id": "gene-cernan"
+    },
+    {
+      "displayName": "Harrison Schmitt",
+      "id": "harrison-schmitt"
+    }
+  ],
+  "entityRegistry": {
+    "contract": "entity-registry-example/0.1",
+    "snapshot": {
+      "path": "architecture/storypackage/examples/snapshots/apollo_registry.json",
+      "sha256": "249b2600f8e1f2f92b90a72e36ba804b21b67f5bd7459dc1b8da2b5aec8acae2"
+    }
+  },
+  "gaps": [
+    {
+      "claim": "a8",
+      "cohort": "apollo-workforce",
+      "expectedCount": null,
+      "gap": "cohort_incomplete",
+      "reason": "members_not_enumerated",
+      "unresolved": []
+    }
+  ],
+  "jobProposals": [
+    {
+      "claimIds": [
+        "a1"
+      ],
+      "job": "enumerate",
+      "proposalId": "pa1-1",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "span": {
+        "len": 40,
+        "start": 0
+      }
+    },
+    {
+      "claimIds": [
+        "a1"
+      ],
+      "job": "proportion_of_cohort",
+      "proposalId": "pa1-2",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "span": {
+        "len": 29,
+        "start": 46
+      }
+    },
+    {
+      "claimIds": [
+        "a2",
+        "a3"
+      ],
+      "job": "narrate_an_event",
+      "proposalId": "pa2",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      }
+    },
+    {
+      "claimIds": [
+        "a4",
+        "a5"
+      ],
+      "job": "enumerate",
+      "proposalId": "pa4",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      }
+    },
+    {
+      "claimIds": [
+        "a8"
+      ],
+      "job": "assert_without_data",
+      "proposalId": "pa8",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "claimIds": [
+        "a2"
+      ],
+      "mustBePerceptible": [
+        "one figure isolated from the other two"
+      ],
+      "obligationId": "oa2",
+      "provenance": {
+        "reviewState": "approved",
+        "source": "editor"
+      },
+      "withheld": [
+        "Collins's identity until a3"
+      ],
+      "wouldBeALie": [
+        "Showing Collins's face or name before a3"
+      ]
+    },
+    {
+      "claimIds": [
+        "a4",
+        "a5"
+      ],
+      "intent": "Twelve individuals, in order, first to last",
+      "mediaNeeds": [
+        {
+          "constraints": [
+            "one person per asset",
+            "Apollo-era portrait"
+          ],
+          "count": 12,
+          "kind": "person"
+        }
+      ],
+      "mustBePerceptible": [
+        "twelve distinct identities",
+        "which one was first and which was last"
+      ],
+      "obligationId": "oa4",
+      "provenance": {
+        "reviewState": "approved",
+        "source": "editor"
+      },
+      "recognizableIdentityCount": 12
+    },
+    {
+      "claimIds": [
+        "a6",
+        "a7"
+      ],
+      "needsOnScreenText": true,
+      "obligationId": "oa6",
+      "provenance": {
+        "reviewState": "approved",
+        "source": "editor"
+      },
+      "wouldBeALie": [
+        "Presenting 'loneliest man in history' as established fact"
+      ]
+    }
+  ],
+  "packageId": "apollo-collins-sample@1",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "script": {
+    "encoding": "utf-8",
+    "sha256": "44ce9b713e44cab1fa02e9b2b71a1993eed633ea4780ff26ba1089bd3d8a3f2d",
+    "spanUnit": "codepoint",
+    "text": "In July 1969, three men flew to the Moon, but only two of them walked on it. The third stayed in orbit, circling alone behind the far side, out of radio contact with every other human being. His name was Michael Collins.\n\nOver the next three and a half years, twelve men walked on the Moon. Neil Armstrong was the first and Gene Cernan was the last.\n\nSome historians call Collins the loneliest man in history. He wrote that he never felt that way.\n\nBehind those twelve were hundreds of thousands of engineers, technicians and seamstresses whose names almost nobody remembers."
+  },
+  "selectionAuthorized": false,
+  "sourceSchema": "storypackage/0.2",
+  "story": {
+    "niche": "space-history",
+    "revision": 1,
+    "storyId": "apollo-collins-sample",
+    "supersedes": null,
+    "title": "The Man Who Stayed Behind (sample)"
+  },
+  "storyHandoffReceipt": {
+    "accepted": true,
+    "authorityCommit": "ad8ba50c0d35b5ffa4f8d18ef9eb5c17bab5ed6f",
+    "checkerOutput": "apollo-collins-sample.storypackage-0.2.json PASS\n  gap: {\"gap\": \"cohort_incomplete\", \"claim\": \"a8\", \"cohort\": \"apollo-workforce\", \"reason\": \"members_not_enumerated\", \"unresolved\": [], \"expectedCount\": null}",
+    "checkerPath": "architecture/storypackage/tools/check.py",
+    "checkerSha256": "f76f609e579f8fc4d4e11bd9057b14c858f7a93d6544f39890b19a0cd2d8588d",
+    "packageSha256": "ad28408190781dc6634f5357d3a9b1abab2a3ac052d3c0f633f27d6c6636e6b0"
+  },
+  "timing": {
+    "joinKey": "claimId",
+    "status": "absent"
+  }
+}

@@ -4,18 +4,18 @@
     "baselineCandidates": 257,
     "conditionalCandidates": 9,
     "exactTaskAudioSpans": 41,
-    "exactTechnicalEvidencePartial": 148,
-    "exactTimingObservations": 148,
-    "mappedCandidates": 150,
+    "exactTechnicalEvidencePartial": 149,
+    "exactTimingObservations": 149,
+    "mappedCandidates": 151,
     "projectTechnicalEvidencePartial": 2,
     "sourceBeats": 40,
     "splitBeats": 1,
-    "unmappedCandidates": 107,
+    "unmappedCandidates": 106,
     "unresolvedTaskAudioSpans": 0,
     "unresolvedUniqueSceneMappings": 0,
     "unreviewedUniqueSceneMappings": 2,
-    "verifiedUniqueSceneMappings": 73,
-    "verifiedWholeCompositionMappings": 39,
+    "verifiedUniqueSceneMappings": 74,
+    "verifiedWholeCompositionMappings": 40,
     "verifiedWindowMappings": 34,
     "visualTasks": 41
   },
@@ -65,10 +65,15 @@
       "path": "pipeline/shotlist.capacity.json",
       "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
     },
+    "localTemplates": {
+      "bytes": 38057,
+      "path": "grammar/local-templates.json",
+      "sha256": "29bec530753cf5011a74bcab964832c1ba93a2954e0f061822aa00eb64fc0e31"
+    },
     "sceneMappings": {
-      "bytes": 198450,
+      "bytes": 199127,
       "path": "grammar/ae-scene-composition-mappings.json",
-      "sha256": "e340dc3a6f3362da355263efd44c8a71d0b118f5d5a2875afa10f18c7266a270"
+      "sha256": "7fa49560a302ba75b724bb45b8e47eee0a5a656da8d89f16e5fd8cacf3606b4f"
     },
     "sceneWindowCapacities": {
       "bytes": 1946166,
@@ -76,14 +81,14 @@
       "sha256": "9904c76ca10bed36e45f6b3d025db69fc5cbf42eccc923e2e9f15909162364e7"
     },
     "specLinks": {
-      "bytes": 15895,
+      "bytes": 16384,
       "path": "grammar/ae-template-spec-links.json",
-      "sha256": "8e19813ecbee775ea3b748810ec791042ce252043534021dc2a990cb2d2e16df"
+      "sha256": "e38648a9ab1ba7c8592dd4119ec13abf8125baff3b7a8ca1eecbd8dd8142491b"
     },
     "taskRequirements": {
-      "bytes": 158375,
+      "bytes": 158786,
       "path": "grammar/visual-task-technical-requirements.json",
-      "sha256": "fe96883b2e81f5c0143a5a3b28e932a74f383262a3a81058e91baa7520056f70"
+      "sha256": "673d7b495b05d724f295af4c60b1c9f5aad686084d5d3c5c96ffa5e3ded58110"
     },
     "technicalIndex": {
       "bytes": 8555144,
@@ -91,9 +96,9 @@
       "sha256": "c47f658b4c8a999721c36a31d562964138fbc06e6999b60849be57d5f4ebfc72"
     },
     "visualTasks": {
-      "bytes": 97553,
+      "bytes": 98341,
       "path": "grammar/visual-tasks.json",
-      "sha256": "e253880ec6e8b44450a937110b063091cdd6640484aa2ae6d6390973889a64ad"
+      "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"
     }
   },
   "tasks": [
@@ -451,7 +456,6 @@
           "missingForFillableNow": [
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -573,7 +577,6 @@
           "missingForFillableNow": [
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -640,7 +643,6 @@
           "missingForFillableNow": [
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -747,7 +749,6 @@
           "missingForFillableNow": [
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -936,7 +937,6 @@
           "missingForFillableNow": [
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -1275,7 +1275,6 @@
           "missingForFillableNow": [
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -1309,7 +1308,6 @@
             "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -1327,7 +1325,6 @@
             "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -1470,7 +1467,6 @@
           "missingForFillableNow": [
             "task_required_data_fields",
             "task_required_media_slot_count",
-            "media_kind_constraints",
             "single_person_group_eligibility",
             "treatment_required_text_fields",
             "text_character_and_line_limits",
@@ -1540,16 +1536,27 @@
         },
         "mediaRequirements": {
           "availabilityStatus": "unknown",
-          "contentConstraints": null,
-          "evidence": null,
+          "contentConstraints": [
+            "The 2009 XXL Freshman cover; use the referenced cover rather than a generic Curren$y portrait"
+          ],
+          "evidence": {
+            "kind": "editor_direction",
+            "quote": "we have the magazine referenced in the media library somewhere, probably not tagged, that would've been best selection. The right asset is the COVER, not a portrait.",
+            "reference": "grammar/beat-review-export-2026-09-27.json beat 02-02a"
+          },
           "missingMediaBrief": null,
-          "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots.",
-          "requiredEntities": null,
-          "requiredMediaKinds": null,
+          "reason": "A typed editor/treatment media requirement is bound to this exact VisualTask.",
+          "requiredEntities": [
+            "Curren$y"
+          ],
+          "requiredMediaKinds": [
+            "document",
+            "artwork"
+          ],
           "requiredSlotCount": null,
-          "reviewStatus": null,
+          "reviewStatus": "approved",
           "singlePersonGroupEligibility": null,
-          "status": "unresolved_treatment_dependent"
+          "status": "required"
         },
         "sourceBeatId": "02-02a",
         "taskId": "02-02a.main",
@@ -47046,9 +47053,476 @@
         },
         {
           "candidateId": "circle-list-infographic--scene-001",
-          "familyId": null,
+          "compositionMappingStatus": "verified",
+          "displayIdentityDemand": 0,
+          "exactComposition": {
+            "directEditableTextFields": 0,
+            "directTextFields": [],
+            "directVisualMediaInputs": 0,
+            "durationSeconds": 60.0,
+            "frameCount": 3600,
+            "frameRate": 60.0,
+            "height": 2160,
+            "id": 17158,
+            "mappingEvidence": "The registered scene is the user-specified 63.0-89.0 second source-reel span. Frame-for-frame comparison covers all 780 frames and yields average PSNR 55.351963 dB against that exact source interval. The scene is visibly the dark left-hub variant and builds to eight rows; within the source-bound measured project, Slide 01 Dark is the unique dark left composition with eight enabled item branches.",
+            "maxSimultaneouslyEnabledDirectInputs": 0,
+            "maxSimultaneouslyEnabledRecursiveTextFields": 26,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 8,
+            "path": "01. Circle List Infographic Left/Comps/Slide 01 Dark",
+            "recursiveEditableTextFields": 26,
+            "recursiveTextFieldIds": [
+              "text:10411:1",
+              "text:10477:1",
+              "text:16140:1",
+              "text:16154:1",
+              "text:16182:1",
+              "text:16196:1",
+              "text:16210:1",
+              "text:16238:1",
+              "text:16506:1",
+              "text:16519:1",
+              "text:16532:1",
+              "text:16545:1",
+              "text:16558:1",
+              "text:16571:1",
+              "text:17900:1",
+              "text:17913:1",
+              "text:17927:1",
+              "text:17940:1",
+              "text:17954:1",
+              "text:17967:1",
+              "text:18617:1",
+              "text:18631:1",
+              "text:18644:1",
+              "text:2448:1",
+              "text:751:1",
+              "text:764:1"
+            ],
+            "recursiveTextFields": [
+              {
+                "compositionId": 10411,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 08/Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 30.0,
+                "id": "text:10411:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Text 2",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 10477,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 08/Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 70.0,
+                "id": "text:10477:1",
+                "inPoint": 0.000333667000333667,
+                "layerIndex": 1,
+                "layerName": "Text 1",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16140,
+                "compositionPath": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 02",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 225.0,
+                "id": "text:16140:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Icon",
+                "metadataComplete": true,
+                "outPoint": 59.5,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16154,
+                "compositionPath": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 03",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 225.0,
+                "id": "text:16154:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Icon",
+                "metadataComplete": true,
+                "outPoint": 59.5,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16182,
+                "compositionPath": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 05",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 225.0,
+                "id": "text:16182:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Icon",
+                "metadataComplete": true,
+                "outPoint": 59.5,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16196,
+                "compositionPath": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 06",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 225.0,
+                "id": "text:16196:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Icon",
+                "metadataComplete": true,
+                "outPoint": 59.5,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16210,
+                "compositionPath": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 07",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 225.0,
+                "id": "text:16210:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Icon",
+                "metadataComplete": true,
+                "outPoint": 59.5,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16238,
+                "compositionPath": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 08",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 225.0,
+                "id": "text:16238:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Icon",
+                "metadataComplete": true,
+                "outPoint": 59.5,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16506,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 07/Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 70.0,
+                "id": "text:16506:1",
+                "inPoint": 0.000333667000333667,
+                "layerIndex": 1,
+                "layerName": "Text 1",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16519,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 06/Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 70.0,
+                "id": "text:16519:1",
+                "inPoint": 0.000333667000333667,
+                "layerIndex": 1,
+                "layerName": "Text 1",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16532,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 05/Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 70.0,
+                "id": "text:16532:1",
+                "inPoint": 0.000333667000333667,
+                "layerIndex": 1,
+                "layerName": "Text 1",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16545,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 07/Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 30.0,
+                "id": "text:16545:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Text 2",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16558,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 06/Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 30.0,
+                "id": "text:16558:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Text 2",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 16571,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 05/Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 30.0,
+                "id": "text:16571:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Text 2",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 17900,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 01/Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 70.0,
+                "id": "text:17900:1",
+                "inPoint": 0.000333667000333667,
+                "layerIndex": 1,
+                "layerName": "Text 1",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 17913,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 01/Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 30.0,
+                "id": "text:17913:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Text 2",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 17927,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 02/Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 70.0,
+                "id": "text:17927:1",
+                "inPoint": 0.000333667000333667,
+                "layerIndex": 1,
+                "layerName": "Text 1",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 17940,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 02/Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 30.0,
+                "id": "text:17940:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Text 2",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 17954,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 03/Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 70.0,
+                "id": "text:17954:1",
+                "inPoint": 0.000333667000333667,
+                "layerIndex": 1,
+                "layerName": "Text 1",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 17967,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 03/Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 30.0,
+                "id": "text:17967:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Text 2",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 18617,
+                "compositionPath": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 04",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 225.0,
+                "id": "text:18617:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Icon",
+                "metadataComplete": true,
+                "outPoint": 59.5,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 18631,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 04/Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 70.0,
+                "id": "text:18631:1",
+                "inPoint": 0.000333667000333667,
+                "layerIndex": 1,
+                "layerName": "Text 1",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 18644,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Item 04/Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 30.0,
+                "id": "text:18644:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Text 2",
+                "metadataComplete": true,
+                "outPoint": 60.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 2448,
+                "compositionPath": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 01",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 225.0,
+                "id": "text:2448:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Icon",
+                "metadataComplete": true,
+                "outPoint": 59.5,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 751,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Header/Header Text 1",
+                "enabled": true,
+                "font": "Montserrat-SemiBold",
+                "fontSize": 100.0,
+                "id": "text:751:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Header Text 1",
+                "metadataComplete": true,
+                "outPoint": 59.0,
+                "textKind": "point"
+              },
+              {
+                "compositionId": 764,
+                "compositionPath": "01. Circle List Infographic Left/Text/Slide 01 Dark/Header/Header Text 2",
+                "enabled": true,
+                "font": "Montserrat-Medium",
+                "fontSize": 50.0,
+                "id": "text:764:1",
+                "inPoint": 0.0,
+                "layerIndex": 1,
+                "layerName": "Header Text 2",
+                "metadataComplete": true,
+                "outPoint": 58.166666666666664,
+                "textKind": "point"
+              }
+            ],
+            "recursiveVisualMediaInputs": [
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:16140",
+                "kind": "visual",
+                "path": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 02"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:16154",
+                "kind": "visual",
+                "path": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 03"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:16182",
+                "kind": "visual",
+                "path": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 05"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:16196",
+                "kind": "visual",
+                "path": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 06"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:16210",
+                "kind": "visual",
+                "path": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 07"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:16238",
+                "kind": "visual",
+                "path": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 08"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:18617",
+                "kind": "visual",
+                "path": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 04"
+              },
+              {
+                "evidence": "explicit_placeholder_composition",
+                "id": "comp:2448",
+                "kind": "visual",
+                "path": "01. Circle List Infographic Left/Icon Placeholders/Slide 01 Dark/Icon Placeholder 01"
+              }
+            ],
+            "totalIndependentVisualMediaInputs": 8,
+            "unresolvedCount": 0,
+            "width": 3840,
+            "workAreaDurationSeconds": 60.0,
+            "workAreaFrameCount": 3600,
+            "workAreaStartSeconds": 0.0
+          },
+          "familyId": "circle-list-infographic",
           "missingForFillableNow": [
-            "exact_scene_to_native_composition_mapping",
             "task_required_data_fields",
             "task_required_media_slot_count",
             "media_kind_constraints",
@@ -47058,9 +47532,25 @@
             "duration_adjustment_policy_and_timing_fit",
             "media_asset_availability"
           ],
-          "reason": "No explicit reviewed link connects this candidate family to a measured AE project.",
-          "technicalEvidenceVerdict": "technical_spec_unmapped",
-          "verdict": "technical_spec_unmapped"
+          "projectCapacityEnvelope": {
+            "maxDurationSeconds": 60.0,
+            "maxRecursiveEditableTextFields": 26,
+            "maxSimultaneouslyEnabledRecursiveVisualInputs": 8,
+            "maxTotalIndependentVisualMediaInputs": 8
+          },
+          "projectEvidenceStatus": "two_pass_exact_agreement",
+          "projectId": "circle-list-infographic-left",
+          "reason": "Exact composition measurements are available, but unresolved treatment-specific requirements still prevent a fillable-now decision. Display identities are not assumed to equal media slots.",
+          "technicalEvidenceVerdict": "exact_technical_evidence_partial",
+          "timingObservation": {
+            "nativeCompositionDurationSeconds": 60.0,
+            "nativeDurationCoversUnmodifiedTask": true,
+            "nativeMinusTaskSeconds": 51.66,
+            "reason": "No approved looping, trimming, speed, freeze, extension, or phrase-timing policy is encoded for this treatment.",
+            "status": "observation_only_not_timing_fit",
+            "taskAudioDurationSeconds": 8.34
+          },
+          "verdict": "exact_technical_evidence_partial"
         },
         {
           "candidateId": "modern-photo-slideshow-envato--scene-016",

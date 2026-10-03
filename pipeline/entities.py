@@ -12,9 +12,9 @@ still a statistical model, still versioned, still a large dependency, and they
 would need this same domain lexicon bolted on to handle the hard cases. If the
 lexicon is doing the work, use the lexicon.
 
-THE ROSTER IS THE DOMAIN. grammar/entity-roster.json is a dated snapshot of the
-109 artists in the source data behind the charts the narration describes. It is
-snapshotted on THIS side so it cannot go stale invisibly.
+THE SHARED ROSTER IS THE DOMAIN. Data, Story and Matching consume the same
+digest-pinned `djtoler/entity_roster` document. Matching keeps only a name-free
+source manifest and derives its in-memory surface index after verification.
 
 THREE MATCHES, IN ORDER, AND THE THIRD REFUSES TO GUESS:
 
@@ -37,10 +37,11 @@ next script, not this one.
     python3 pipeline/entities.py "Ab-Soul falls twenty-eight places. Jay Rock, twelve."
     python3 pipeline/entities.py --beats          every served beat
 """
-import collections, json, pathlib, re, sys
+import collections, hashlib, json, os, pathlib, re, sys
 
 P = pathlib.Path(__file__).resolve().parent
-ROSTER = P.parent / "grammar" / "entity-roster.json"
+ROOT = P.parent
+ROSTER_SOURCE = ROOT / "grammar" / "entity-roster-source.json"
 BEATS = P / "beats-all.json"
 PICKS = P.parent / "grammar" / "picks.json"
 MIN_TOKEN = 3
@@ -52,18 +53,74 @@ STOP = {"the", "and", "for", "with", "his", "her", "them", "they", "that", "this
         "who", "what", "when", "how", "all", "one", "two", "not", "but", "out"}
 
 
-def roster():
-    d = json.load(open(ROSTER))
-    return list(d["names"]), d
+def _source():
+    return json.loads(ROSTER_SOURCE.read_text(encoding="utf-8"))
 
 
-def _index(names):
+def roster_path():
+    candidates = []
+    if os.environ.get("SHARED_ENTITY_ROSTER_PATH"):
+        candidates.append(pathlib.Path(os.environ["SHARED_ENTITY_ROSTER_PATH"]))
+    candidates.append(ROOT.parent / "entity_roster" / "entity-roster.json")
+    for path in candidates:
+        if path.is_file():
+            return path
+    raise FileNotFoundError(
+        "shared entity roster unavailable; clone djtoler/entity_roster and set "
+        "SHARED_ENTITY_ROSTER_PATH to entity-roster.json"
+    )
+
+
+def roster(path=None):
+    path = pathlib.Path(path) if path else roster_path()
+    source = _source()
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    if digest != source["sha256"]:
+        raise ValueError(f"shared entity roster digest mismatch: {digest}")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("registryId") != source["registryId"]:
+        raise ValueError("shared entity roster registryId mismatch")
+    if str(data.get("registryVersion")) != str(source["registryVersion"]):
+        raise ValueError("shared entity roster version mismatch")
+    names = [entity["canonicalName"] for entity in data["entities"]]
+    aliases = {}
+    ids = {}
+    types = {}
+    alias_review = {}
+    for entity in data["entities"]:
+        name = entity["canonicalName"]
+        ids[name] = entity["id"]
+        types[name] = entity["type"]
+        for alias in entity.get("aliases", []):
+            if alias.get("reviewState") != "reviewed":
+                continue
+            surface = alias["value"]
+            prior = aliases.setdefault(surface.casefold(), name)
+            if prior != name:
+                raise ValueError(f"shared roster alias collision: {surface}")
+            alias_review[surface] = alias["reviewState"]
+    meta = {
+        "_count": len(names),
+        "_snapshotAt": data.get("generatedAt", "")[:10],
+        "_registryId": data["registryId"],
+        "_registryVersion": str(data["registryVersion"]),
+        "_source": source,
+        "_aliases": aliases,
+        "_aliasReview": alias_review,
+        "_entityIds": ids,
+        "_entityTypes": types,
+    }
+    return names, meta
+
+
+def _index(surfaces):
     """token -> the roster names containing it. Built once, pure."""
     tok = collections.defaultdict(set)
-    for name in names:
-        for t in re.split(r"[\s\-]+", name):
-            if len(t) >= MIN_TOKEN and not t.isdigit() and t.lower() not in STOP:
-                tok[t.lower()].add(name)
+    pairs = surfaces.items() if isinstance(surfaces, dict) else ((name, name) for name in surfaces)
+    for surface, canonical in pairs:
+        for t in re.split(r"[\s\-]+", surface):
+            if len(t) > MIN_TOKEN and not t.isdigit() and t.lower() not in STOP:
+                tok[t.lower()].add(canonical)
     return tok
 
 
@@ -76,7 +133,8 @@ def _capitalised(text, start, end):
     return text[start:end][:1].isupper()
 
 
-def extract(text, names=None):
+def extract(text, names=None, aliases=None, entity_ids=None, entity_types=None,
+            ignored_surfaces=None, allowed_short_surfaces=None):
     """-> {'entities': [...], 'ambiguous': [{'token','candidates'}], 'spans': {...}}
 
     `entities` is what a brief may ask for. `ambiguous` is what a human must rule
@@ -85,14 +143,35 @@ def extract(text, names=None):
     gets sourced, a wrong one gets a photo of the wrong person picked for it.
     """
     if names is None:
-        names, _ = roster()
-    tok = _index(names)
+        names, meta = roster()
+        aliases = meta["_aliases"]
+        entity_ids = meta["_entityIds"]
+        entity_types = meta["_entityTypes"]
+    aliases = aliases or {}
+    entity_ids = entity_ids or {}
+    entity_types = entity_types or {}
+    ignored = {str(value).casefold() for value in (ignored_surfaces or [])}
+    allowed_short = {str(value).casefold() for value in (allowed_short_surfaces or [])}
+    unknown_alias_targets = sorted(set(aliases.values()) - set(names))
+    if unknown_alias_targets:
+        raise ValueError(f"roster aliases reference unknown canonical names: {unknown_alias_targets}")
+    def eligible(surface):
+        compact = re.sub(r"[^A-Za-z0-9]", "", surface)
+        return (surface.casefold() not in ignored and
+                (len(compact) > 3 or " " in surface or surface.casefold() in allowed_short))
+
+    surfaces = {name: name for name in names if eligible(name)}
+    for surface_key, canonical in aliases.items():
+        if eligible(surface_key):
+            surfaces[surface_key] = canonical
+    tok = _index(surfaces)
     taken = [False] * len(text)
     found, spans = [], {}
 
     # 1 — full names, longest first
-    for name in sorted(names, key=len, reverse=True):
-        for m in re.finditer(re.escape(name), text, re.I):
+    for surface in sorted(surfaces, key=len, reverse=True):
+        name = surfaces[surface]
+        for m in re.finditer(re.escape(surface), text, re.I):
             if any(taken[m.start():m.end()]):
                 continue
             if not _capitalised(text, m.start(), m.end()):
@@ -147,7 +226,16 @@ def extract(text, names=None):
         if n not in seen:
             seen.add(n)
             out.append(n)
-    return {"entities": sorted(out), "ambiguous": ambiguous,
+    refs = [
+        {
+            "entityId": entity_ids[name],
+            "canonicalName": name,
+            "entityType": entity_types.get(name),
+            "surfaces": spans.get(name, []),
+        }
+        for name in sorted(out) if name in entity_ids
+    ]
+    return {"entities": sorted(out), "entityRefs": refs, "ambiguous": ambiguous,
             "unknown": unknown, "spans": spans}
 
 
@@ -163,7 +251,13 @@ def main(argv):
                 k = f"{pid}-{b['id']}"
                 if k not in served:
                     continue
-                r = extract(b["quote"] + " " + (b.get("entity_kind") or ""), names)
+                r = extract(
+                    b["quote"] + " " + (b.get("entity_kind") or ""),
+                    names,
+                    aliases=meta["_aliases"],
+                    entity_ids=meta["_entityIds"],
+                    entity_types=meta["_entityTypes"],
+                )
                 if r["entities"] or r["ambiguous"]:
                     tot += len(r["entities"])
                     amb += len(r["ambiguous"])
@@ -176,7 +270,13 @@ def main(argv):
     if not text:
         print(__doc__)
         return 2
-    r = extract(text, names)
+    r = extract(
+        text,
+        names,
+        aliases=meta["_aliases"],
+        entity_ids=meta["_entityIds"],
+        entity_types=meta["_entityTypes"],
+    )
     print(json.dumps(r, indent=1, ensure_ascii=False))
     return 0
 

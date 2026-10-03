@@ -24,6 +24,18 @@ DEFAULT_OUTPUT = ROOT / "treatment-requirements" / "pilot-001" / "request.json"
 PILOT_TASK_ID = "02-02a.main"
 PILOT_CANDIDATE_ID = "screen-mockup-rfx--review-002"
 MEDIA_KINDS = {"person", "footage", "document", "artwork", "graphic", "composite"}
+BATCH_INPUT_KEYS = {"schemaVersion", "pairs"}
+PAIR_KEYS = {"taskId", "candidateId"}
+REQUEST_KEYS = {
+    "schemaVersion", "purpose", "reviewState", "selectionAuthorized",
+    "renderingAuthorized", "sources", "taskId", "sourceBeatId", "candidateId",
+    "task", "baselineCandidate", "reviewedPreview", "nativeComposition",
+    "timingObservation", "timingPolicy", "draftingRules", "requestSha256ForDraft",
+}
+BATCH_REQUEST_KEYS = {
+    "schemaVersion", "purpose", "reviewState", "selectionAuthorized",
+    "renderingAuthorized", "pairs", "requests", "batchSha256ForDrafts",
+}
 
 
 def _read(path: Path) -> Any:
@@ -55,21 +67,23 @@ def _scene(catalog: dict[str, Any], scene_id: str) -> dict[str, Any]:
         if scene.get("id") == scene_id
     ]
     if len(found) != 1:
-        raise ValueError(f"pilot candidate must resolve to one reviewed scene: {scene_id}")
+        raise ValueError(f"candidate must resolve to one reviewed scene: {scene_id}")
     return found[0]
 
 
 def _baseline_option(slate: list[dict[str, Any]], source_id: str, candidate_id: str) -> dict[str, Any]:
     rows = [row for row in slate if f"{row['passage']}-{row['beat']}" == source_id]
     if len(rows) != 1:
-        raise ValueError(f"pilot task must resolve to one baseline source beat: {source_id}")
+        raise ValueError(f"task must resolve to one baseline source beat: {source_id}")
     options = [row for row in rows[0].get("options") or [] if row.get("id") == candidate_id]
     if len(options) != 1:
-        raise ValueError(f"pilot candidate is not in the task's baseline slate: {candidate_id}")
+        raise ValueError(f"candidate is not in the task's baseline slate: {candidate_id}")
     return options[0]
 
 
-def build_pilot_request(
+def build_request(
+    task_id: str,
+    candidate_id: str,
     *,
     comparison_path: Path = DEFAULT_COMPARISON,
     catalog_path: Path = DEFAULT_CATALOG,
@@ -88,25 +102,30 @@ def build_pilot_request(
     if comparison.get("activationState") != "review_only_not_connected":
         raise ValueError("comparison is not review-only")
     chosen_task = next(
-        (task for task in comparison.get("tasks") or [] if task.get("taskId") == PILOT_TASK_ID),
+        (task for task in comparison.get("tasks") or [] if task.get("taskId") == task_id),
         None,
     )
+    if not chosen_task:
+        raise ValueError(f"unknown VisualTask: {task_id}")
     chosen_candidate = next(
         (
             candidate
             for candidate in (chosen_task or {}).get("candidateComparisons") or []
-            if candidate.get("candidateId") == PILOT_CANDIDATE_ID
-            and candidate.get("exactComposition")
+            if candidate.get("candidateId") == candidate_id
         ),
         None,
     )
+    if not chosen_candidate:
+        raise ValueError(f"candidate was not offered to VisualTask {task_id}: {candidate_id}")
+    if not chosen_candidate.get("exactComposition"):
+        raise ValueError(f"candidate lacks exact native composition mapping: {candidate_id}")
     exact_span = (
         ((chosen_task or {}).get("technicalRequirements") or {})
         .get("timingRequirement", {})
         .get("exactTaskAudioSpan")
     )
-    if not chosen_task or not chosen_candidate or not exact_span:
-        raise ValueError("configured pilot pair lacks exact mapping or exact task timing")
+    if not exact_span:
+        raise ValueError(f"VisualTask lacks exact task timing: {task_id}")
 
     scene = _scene(_read(paths["catalog"]), chosen_candidate["candidateId"])
     option = _baseline_option(_read(paths["baselineSlate"]), chosen_task["sourceBeatId"], chosen_candidate["candidateId"])
@@ -176,15 +195,126 @@ def build_pilot_request(
     return request
 
 
+def build_pilot_request(
+    *,
+    comparison_path: Path = DEFAULT_COMPARISON,
+    catalog_path: Path = DEFAULT_CATALOG,
+    slate_path: Path = DEFAULT_SLATE,
+    prompt_path: Path = DEFAULT_PROMPT,
+    schema_path: Path = DEFAULT_SCHEMA,
+) -> dict[str, Any]:
+    """Compatibility wrapper for the accepted first pilot pairing."""
+    return build_request(
+        PILOT_TASK_ID,
+        PILOT_CANDIDATE_ID,
+        comparison_path=comparison_path,
+        catalog_path=catalog_path,
+        slate_path=slate_path,
+        prompt_path=prompt_path,
+        schema_path=schema_path,
+    )
+
+
+def validate_pair_batch_input(value: dict[str, Any]) -> list[dict[str, str]]:
+    if not isinstance(value, dict) or set(value) - BATCH_INPUT_KEYS:
+        raise ValueError("batch input contains unknown fields")
+    if value.get("schemaVersion") != 1:
+        raise ValueError("batch input schema version must be 1")
+    pairs = value.get("pairs")
+    if not isinstance(pairs, list) or not pairs:
+        raise ValueError("batch input must contain at least one explicit pair")
+    normalized = []
+    seen: set[tuple[str, str]] = set()
+    for index, pair in enumerate(pairs):
+        if not isinstance(pair, dict) or set(pair) != PAIR_KEYS:
+            raise ValueError(f"batch pair {index} must contain only taskId and candidateId")
+        task_id = pair.get("taskId")
+        candidate_id = pair.get("candidateId")
+        if not isinstance(task_id, str) or not task_id.strip():
+            raise ValueError(f"batch pair {index} has invalid taskId")
+        if not isinstance(candidate_id, str) or not candidate_id.strip():
+            raise ValueError(f"batch pair {index} has invalid candidateId")
+        key = (task_id, candidate_id)
+        if key in seen:
+            raise ValueError(f"duplicate treatment pair: {task_id} / {candidate_id}")
+        seen.add(key)
+        normalized.append({"taskId": task_id, "candidateId": candidate_id})
+    return normalized
+
+
+def validate_batch_request(batch: dict[str, Any]) -> None:
+    if not isinstance(batch, dict) or set(batch) != BATCH_REQUEST_KEYS:
+        raise ValueError("batch request contains unknown or missing fields")
+    if batch.get("reviewState") != "awaiting_model_drafts":
+        raise ValueError("batch request has invalid review state")
+    if batch.get("selectionAuthorized") is not False or batch.get("renderingAuthorized") is not False:
+        raise ValueError("batch request cannot authorize selection or rendering")
+    expected = dict(batch)
+    claimed = expected.pop("batchSha256ForDrafts", None)
+    if claimed != artifact_sha(expected):
+        raise ValueError("batch request hash mismatch")
+    pairs = validate_pair_batch_input({
+        "schemaVersion": batch.get("schemaVersion"),
+        "pairs": batch.get("pairs"),
+    })
+    requests = batch.get("requests")
+    if not isinstance(requests, list) or len(requests) != len(pairs):
+        raise ValueError("batch request count does not match explicit pairs")
+    for pair, request in zip(pairs, requests):
+        validate_request(request)
+        if request.get("taskId") != pair["taskId"] or request.get("candidateId") != pair["candidateId"]:
+            raise ValueError("batch request pairing mismatch")
+
+
+def build_batch_request(
+    pair_input: dict[str, Any],
+    *,
+    comparison_path: Path = DEFAULT_COMPARISON,
+    catalog_path: Path = DEFAULT_CATALOG,
+    slate_path: Path = DEFAULT_SLATE,
+    prompt_path: Path = DEFAULT_PROMPT,
+    schema_path: Path = DEFAULT_SCHEMA,
+) -> dict[str, Any]:
+    pairs = validate_pair_batch_input(pair_input)
+    requests = [
+        build_request(
+            pair["taskId"],
+            pair["candidateId"],
+            comparison_path=comparison_path,
+            catalog_path=catalog_path,
+            slate_path=slate_path,
+            prompt_path=prompt_path,
+            schema_path=schema_path,
+        )
+        for pair in pairs
+    ]
+    batch = {
+        "schemaVersion": 1,
+        "purpose": "Prepare explicit unreviewed treatment-requirements drafts for human review",
+        "reviewState": "awaiting_model_drafts",
+        "selectionAuthorized": False,
+        "renderingAuthorized": False,
+        "pairs": pairs,
+        "requests": requests,
+    }
+    batch["batchSha256ForDrafts"] = artifact_sha(batch)
+    validate_batch_request(batch)
+    return batch
+
+
 def validate_request(request: dict[str, Any]) -> None:
+    if not isinstance(request, dict) or set(request) != REQUEST_KEYS:
+        raise ValueError("treatment request contains unknown or missing fields")
+    if request.get("schemaVersion") != 1:
+        raise ValueError("treatment request schema version must be 1")
     if request.get("reviewState") != "awaiting_model_draft":
-        raise ValueError("pilot request has invalid review state")
+        raise ValueError("treatment request has invalid review state")
     if request.get("selectionAuthorized") is not False or request.get("renderingAuthorized") is not False:
-        raise ValueError("pilot request cannot authorize selection or rendering")
+        raise ValueError("treatment request cannot authorize selection or rendering")
     expected = dict(request)
     claimed = expected.pop("requestSha256ForDraft", None)
     if claimed != artifact_sha(expected):
-        raise ValueError("pilot request hash mismatch")
+        raise ValueError("treatment request hash mismatch")
     native = request.get("nativeComposition") or {}
     media = native.get("allowedMediaSlots") or []
     text = native.get("allowedTextFields") or []
@@ -278,18 +408,42 @@ def main() -> int:
     sub = parser.add_subparsers(dest="command", required=True)
     prepare = sub.add_parser("prepare")
     prepare.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    prepare_pair = sub.add_parser("prepare-pair")
+    prepare_pair.add_argument("--task-id", required=True)
+    prepare_pair.add_argument("--candidate-id", required=True)
+    prepare_pair.add_argument("--output", type=Path, required=True)
+    prepare_batch = sub.add_parser("prepare-batch")
+    prepare_batch.add_argument("--input", type=Path, required=True)
+    prepare_batch.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     if args.command == "prepare":
         request = build_pilot_request()
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(dumps(request), encoding="utf-8")
-        print(json.dumps({
+        summary = {
             "taskId": request["taskId"],
             "candidateId": request["candidateId"],
             "nativeCompositionId": request["nativeComposition"]["id"],
             "reviewState": request["reviewState"],
             "paidModelCallMade": False,
-        }, sort_keys=True))
+        }
+    elif args.command == "prepare-pair":
+        request = build_request(args.task_id, args.candidate_id)
+        summary = {
+            "taskId": request["taskId"],
+            "candidateId": request["candidateId"],
+            "nativeCompositionId": request["nativeComposition"]["id"],
+            "reviewState": request["reviewState"],
+            "paidModelCallMade": False,
+        }
+    else:
+        request = build_batch_request(_read(args.input))
+        summary = {
+            "pairs": len(request["pairs"]),
+            "reviewState": request["reviewState"],
+            "paidModelCallMade": False,
+        }
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(dumps(request), encoding="utf-8")
+    print(json.dumps(summary, sort_keys=True))
     return 0
 
 

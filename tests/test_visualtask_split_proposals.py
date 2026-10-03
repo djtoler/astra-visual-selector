@@ -1,5 +1,4 @@
 import copy
-import hashlib
 import json
 import unittest
 from pathlib import Path
@@ -8,48 +7,129 @@ from pipeline import visualtask_split_proposals as subject
 
 
 ROOT = Path(__file__).resolve().parents[1]
+FIXTURES = ROOT / "tests" / "fixtures" / "semantic_split"
 
 
-class VisualTaskSplitProposals(unittest.TestCase):
+class ProviderIndependentSemanticSplitProposals(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.request = json.loads((ROOT / "visual-task-splits" / "review-001" / "request.json").read_text())
-        cls.draft = json.loads((ROOT / "visual-task-splits" / "review-001" / "draft.json").read_text())
+        cls.paths = {
+            "story": FIXTURES / "story-package.json",
+            "vocabulary": FIXTURES / "task-vocabulary.json",
+            "roster": FIXTURES / "roster-context.json",
+            "editor": FIXTURES / "editor-context.json",
+        }
+        cls.request = subject.prepare_request_from_files(
+            cls.paths["story"], cls.paths["vocabulary"], cls.paths["roster"], cls.paths["editor"]
+        )
+        cls.response = subject.read(FIXTURES / "external-response.json")
 
-    def test_request_is_deterministic_and_source_bound(self):
-        self.assertEqual(subject.dumps(subject.prepare()), subject.dumps(self.request))
-        self.assertEqual(self.draft["requestSha256"], hashlib.sha256(subject.dumps(self.request).encode()).hexdigest())
-
-    def test_all_source_beats_are_assessed_once(self):
-        self.assertEqual(subject.validate_draft(self.draft, self.request), {
-            "sourceBeats": 40, "keepSingle": 33, "proposedSplits": 5, "existingApprovedSplits": 1,
-            "sourceMismatches": 1, "pi05Reconciled": 8,
+    def test_unseen_story_external_response_passes(self):
+        self.assertEqual(subject.validate_response(self.response, self.request), {
+            "sourceBeats": 2,
+            "keepSingle": 1,
+            "proposedSplits": 1,
+            "proposedTasks": 3,
+            "humanApprovalPending": 2,
         })
 
-    def test_new_proposals_include_issue_and_editor_review_findings(self):
-        self.assertEqual([row["sourceBeatId"] for row in self.draft["proposals"]], ["13-13a", "21-21b", "23-23", "24-24", "30-30a"])
-        self.assertTrue(all(row["editorDecision"] is None for row in self.draft["proposals"]))
-
-    def test_every_pi05_beat_has_an_explicit_disposition(self):
-        rows = self.draft["issueReconciliation"]["PI-05"]
-        self.assertEqual({row["sourceBeatId"] for row in rows}, {
-            "13-13a", "13-13b", "14-14", "21-21b", "23-23", "24-24", "25-25a", "28-28",
+    def test_request_is_deterministic_source_bound_and_provider_neutral(self):
+        replay = subject.prepare_request_from_files(
+            self.paths["story"], self.paths["vocabulary"], self.paths["roster"], self.paths["editor"]
+        )
+        self.assertEqual(subject.dumps(replay), subject.dumps(self.request))
+        serialized = subject.dumps(self.request).lower()
+        self.assertNotIn('"provider"', serialized)
+        self.assertNotIn('"model"', serialized)
+        self.assertEqual(set(self.request["sources"]), {
+            "storyPackage", "taskVocabulary", "rosterContext", "editorContext",
         })
 
-    def test_stale_review_text_is_not_turned_into_a_task(self):
-        self.assertEqual([row["sourceBeatId"] for row in self.draft["sourceMismatches"]], ["13-13b"])
+    def test_production_stage_contains_no_current_documentary_issue_ids(self):
+        source = (ROOT / "pipeline" / "visualtask_split_proposals.py").read_text()
+        for fixture_identifier in ("PI-05", "13-13a", "28-28", "year-seventeen"):
+            self.assertNotIn(fixture_identifier, source)
+
+    def test_split_spans_cover_every_source_character_exactly(self):
+        story = subject.read(self.paths["story"])
+        by_id = {row["id"]: row for row in story["beats"]}
+        for proposal in self.response["beatProposals"]:
+            text = by_id[proposal["sourceBeatId"]]["text"]
+            self.assertEqual("".join(task["quote"] for task in proposal["tasks"]), text)
+
+    def test_gap_or_overlap_fails_closed(self):
+        broken = copy.deepcopy(self.response)
+        broken["beatProposals"][0]["tasks"][1]["span"]["start"] += 1
+        with self.assertRaisesRegex(ValueError, "exact, complete and nonoverlapping"):
+            subject.validate_response(broken, self.request)
 
     def test_non_exact_quote_fails_closed(self):
-        broken = copy.deepcopy(self.draft)
-        broken["proposals"][0]["tasks"][0]["quote"] += " invented"
-        with self.assertRaisesRegex(ValueError, "exact unique substring"):
-            subject.validate_draft(broken, self.request)
+        broken = copy.deepcopy(self.response)
+        broken["beatProposals"][0]["tasks"][0]["quote"] = "Invented text."
+        with self.assertRaisesRegex(ValueError, "exact source span"):
+            subject.validate_response(broken, self.request)
 
-    def test_model_cannot_invent_editor_approval(self):
-        broken = copy.deepcopy(self.draft)
-        broken["proposals"][0]["editorDecision"] = "approved"
-        with self.assertRaisesRegex(ValueError, "cannot invent an editor decision"):
-            subject.validate_draft(broken, self.request)
+    def test_missing_beat_fails_closed(self):
+        broken = copy.deepcopy(self.response)
+        broken["beatProposals"].pop()
+        with self.assertRaisesRegex(ValueError, "assess every beat exactly once"):
+            subject.validate_response(broken, self.request)
+
+    def test_unknown_job_fails_closed(self):
+        broken = copy.deepcopy(self.response)
+        broken["beatProposals"][0]["tasks"][0]["visualJob"] = "invented_job"
+        with self.assertRaisesRegex(ValueError, "unknown job or role"):
+            subject.validate_response(broken, self.request)
+
+    def test_out_of_beat_roster_reference_fails_closed(self):
+        broken = copy.deepcopy(self.response)
+        broken["beatProposals"][0]["tasks"][0]["entityRefs"] = ["aisha-patel"]
+        with self.assertRaisesRegex(ValueError, "out-of-beat entityRefs"):
+            subject.validate_response(broken, self.request)
+
+    def test_lost_truth_or_requirement_fails_closed(self):
+        broken = copy.deepcopy(self.response)
+        broken["beatProposals"][0]["tasks"][1]["truthConstraintRefs"] = []
+        with self.assertRaisesRegex(ValueError, "loses source truthConstraintRefs"):
+            subject.validate_response(broken, self.request)
+
+    def test_closed_schema_rejects_extra_fields(self):
+        broken = copy.deepcopy(self.response)
+        broken["beatProposals"][0]["tasks"][0]["confidence"] = 0.99
+        with self.assertRaisesRegex(ValueError, "unsupported fields"):
+            subject.validate_response(broken, self.request)
+        schema = json.loads((ROOT / "grammar" / "semantic-split-proposal.schema.json").read_text())
+        self.assertFalse(schema["additionalProperties"])
+        self.assertFalse(schema["$defs"]["task"]["additionalProperties"])
+
+    def test_response_cannot_invent_human_approval_or_activation(self):
+        approved = copy.deepcopy(self.response)
+        approved["humanApproval"] = {"status": "approved", "reviewer": "editor", "reviewedAt": "now"}
+        with self.assertRaisesRegex(ValueError, "cannot invent human approval"):
+            subject.validate_response(approved, self.request)
+        active = copy.deepcopy(self.response)
+        active["activationState"] = "active"
+        with self.assertRaisesRegex(ValueError, "must remain review-only"):
+            subject.validate_response(active, self.request)
+
+    def test_stale_request_hash_fails_closed(self):
+        broken = copy.deepcopy(self.response)
+        broken["requestSha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "request hash mismatch"):
+            subject.validate_response(broken, self.request)
+
+    def test_input_contract_is_closed_and_story_scoped(self):
+        story = subject.read(self.paths["story"])
+        vocabulary = subject.read(self.paths["vocabulary"])
+        roster = subject.read(self.paths["roster"])
+        editor = subject.read(self.paths["editor"])
+        story["unknownField"] = True
+        with self.assertRaisesRegex(ValueError, "unsupported fields"):
+            subject.prepare_request(story, vocabulary, roster, editor)
+        story.pop("unknownField")
+        editor["storyId"] = "another-story"
+        with self.assertRaisesRegex(ValueError, "another story"):
+            subject.prepare_request(story, vocabulary, roster, editor)
 
 
 if __name__ == "__main__":

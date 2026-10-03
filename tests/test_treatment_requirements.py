@@ -59,10 +59,129 @@ class TreatmentRequirementsPilot(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "request hash mismatch"):
             self.subject.validate_draft(draft, self.request)
 
+    def test_request_cannot_smuggle_an_approval_field(self):
+        request = copy.deepcopy(self.request)
+        request["approval"] = {"decision": "approved"}
+        request_without_hash = dict(request)
+        request_without_hash.pop("requestSha256ForDraft")
+        request["requestSha256ForDraft"] = self.subject.artifact_sha(request_without_hash)
+        with self.assertRaisesRegex(ValueError, "unknown or missing fields"):
+            self.subject.validate_request(request)
+
     def test_build_is_deterministic(self):
         self.assertEqual(
             self.subject.dumps(self.subject.build_pilot_request()),
             self.subject.dumps(self.subject.build_pilot_request()),
+        )
+
+    def test_pilot_wrapper_matches_general_explicit_pair_builder(self):
+        self.assertEqual(
+            self.subject.dumps(self.subject.build_pilot_request()),
+            self.subject.dumps(self.subject.build_request(
+                "02-02a.main", "screen-mockup-rfx--review-002"
+            )),
+        )
+
+    def test_non_pilot_explicit_pair_builds_without_selecting_it(self):
+        request = self.subject.build_request(
+            "01-01.subject", "counters-envato--scene-002"
+        )
+        self.assertEqual(request["taskId"], "01-01.subject")
+        self.assertEqual(request["candidateId"], "counters-envato--scene-002")
+        self.assertEqual(request["nativeComposition"]["id"], 17651)
+        self.assertEqual(request["reviewState"], "awaiting_model_draft")
+        self.assertFalse(request["selectionAuthorized"])
+        self.assertFalse(request["renderingAuthorized"])
+
+    def test_pair_must_already_be_offered_and_exact_mapped(self):
+        with self.assertRaisesRegex(ValueError, "was not offered"):
+            self.subject.build_request(
+                "01-01.subject", "screen-mockup-rfx--review-002"
+            )
+        with self.assertRaisesRegex(ValueError, "lacks exact native composition"):
+            self.subject.build_request(
+                "01-01.subject", "ai-flowchart--scene-001"
+            )
+
+    def test_explicit_batch_builds_independently_hashed_requests(self):
+        batch = self.subject.build_batch_request({
+            "schemaVersion": 1,
+            "pairs": [
+                {
+                    "taskId": "01-01.subject",
+                    "candidateId": "counters-envato--scene-002",
+                },
+                {
+                    "taskId": "02-02a.main",
+                    "candidateId": "screen-mockup-rfx--review-002",
+                },
+            ],
+        })
+        self.assertEqual(batch["reviewState"], "awaiting_model_drafts")
+        self.assertEqual(len(batch["requests"]), 2)
+        self.assertNotEqual(
+            batch["requests"][0]["requestSha256ForDraft"],
+            batch["requests"][1]["requestSha256ForDraft"],
+        )
+        self.assertFalse(batch["selectionAuthorized"])
+        self.assertFalse(batch["renderingAuthorized"])
+        self.subject.validate_batch_request(batch)
+
+    def test_batch_input_is_closed_nonempty_and_duplicate_free(self):
+        with self.assertRaisesRegex(ValueError, "unknown fields"):
+            self.subject.build_batch_request({
+                "schemaVersion": 1,
+                "pairs": [],
+                "approval": {"decision": "approved"},
+            })
+        with self.assertRaisesRegex(ValueError, "at least one"):
+            self.subject.build_batch_request({"schemaVersion": 1, "pairs": []})
+        pair = {
+            "taskId": "01-01.subject",
+            "candidateId": "counters-envato--scene-002",
+        }
+        with self.assertRaisesRegex(ValueError, "duplicate treatment pair"):
+            self.subject.build_batch_request({
+                "schemaVersion": 1,
+                "pairs": [pair, dict(pair)],
+            })
+        with self.assertRaisesRegex(ValueError, "only taskId and candidateId"):
+            self.subject.build_batch_request({
+                "schemaVersion": 1,
+                "pairs": [{**pair, "renderingAuthorized": True}],
+            })
+
+    def test_batch_fails_closed_on_stale_hash_or_authorization(self):
+        batch = self.subject.build_batch_request({
+            "schemaVersion": 1,
+            "pairs": [{
+                "taskId": "01-01.subject",
+                "candidateId": "counters-envato--scene-002",
+            }],
+        })
+        stale = copy.deepcopy(batch)
+        stale["batchSha256ForDrafts"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "batch request hash mismatch"):
+            self.subject.validate_batch_request(stale)
+        authorized = copy.deepcopy(batch)
+        authorized["selectionAuthorized"] = True
+        authorized_without_hash = dict(authorized)
+        authorized_without_hash.pop("batchSha256ForDrafts")
+        authorized["batchSha256ForDrafts"] = self.subject.artifact_sha(authorized_without_hash)
+        with self.assertRaisesRegex(ValueError, "cannot authorize"):
+            self.subject.validate_batch_request(authorized)
+
+    def test_batch_build_is_deterministic(self):
+        value = {
+            "schemaVersion": 1,
+            "pairs": [{
+                "taskId": "01-01.subject",
+                "candidateId": "counters-envato--scene-002",
+            }],
+        }
+        self.assertEqual(
+            self.subject.dumps(self.subject.build_batch_request(value)),
+            self.subject.dumps(self.subject.build_batch_request(copy.deepcopy(value))),
         )
 
     def test_editor_review_assigns_zoom_to_post_not_template(self):

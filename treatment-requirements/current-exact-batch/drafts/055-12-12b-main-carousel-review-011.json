@@ -1,0 +1,78 @@
+{
+  "candidateId": "carousel--review-011",
+  "dataAssignments": [],
+  "evidence": [
+    {
+      "kind": "source_requirement",
+      "quote": "Macklemore keeps seventy-three percent of his streams and drops three spots. Drake loses four point four billion streams, keeps ninety-seven percent of his total, and finishes exactly where he started."
+    },
+    {
+      "kind": "verified_native_fact",
+      "quote": "Gated native renders of Carousel 09–12 establish Carousel 10 as the unique match for the reviewed straight horizontal row: one wide landscape center card flanked by narrow vertical cards. Carousel 09 stacks vertically, Carousel 11 uses horizontal side cards, and Carousel 12 is a vertical column. Evidence is recorded in reports/final-two-native-composition-comparison.json."
+    }
+  ],
+  "mediaAssignments": [
+    {
+      "content": "Drake",
+      "contentRole": "Present Drake as a named subject in the comparison",
+      "evidence": "Macklemore keeps seventy-three percent of his streams and drops three spots. Drake loses four point four billion streams, keeps ninety-seven percent of his total, and finishes exactly where he started.",
+      "mediaKind": "person",
+      "slotId": "comp:2995",
+      "status": "proposed"
+    },
+    {
+      "content": "Macklemore",
+      "contentRole": "Present Macklemore as a named subject in the comparison",
+      "evidence": "Macklemore keeps seventy-three percent of his streams and drops three spots. Drake loses four point four billion streams, keeps ninety-seven percent of his total, and finishes exactly where he started.",
+      "mediaKind": "person",
+      "slotId": "comp:3327",
+      "status": "proposed"
+    }
+  ],
+  "renderingAuthorized": false,
+  "requestSha256": "047586c8801bde2b98cdcd0d34926af941d2df5af2ac391baa14fbf04346532e",
+  "reviewState": "model_draft_unreviewed",
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "taskId": "12-12b.main",
+  "textAssignments": [],
+  "timingProposal": {
+    "evidence": "duration observation only",
+    "nativeDurationSeconds": 60.0,
+    "proposedAdjustments": null,
+    "status": "unresolved_user_policy",
+    "taskDurationSeconds": 12.4
+  },
+  "treatmentSummary": "Propose only the source-supported assignments listed below; all unverified treatment demands and timing choices remain for editor review.",
+  "unresolved": [
+    {
+      "field": "treatment required media slot count",
+      "reason": "A semantic identity can be encoded by media, text, a mark, or a grouped asset; the current VisualTask does not assign identities to template media slots."
+    },
+    {
+      "field": "treatment required text field count",
+      "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment."
+    },
+    {
+      "field": "text character, line, and wrapping fit",
+      "reason": "The narration and semantic constraints do not specify which content must appear as editable on-screen text for a particular treatment."
+    },
+    {
+      "field": "task required typed data fields",
+      "reason": "Encoding categories are source-bound, but exact typed field names and values are not present in the current VisualTask contract."
+    },
+    {
+      "field": "native quantitative or relational encoding",
+      "reason": "The narration contains values or relationships, but native media/text controls alone do not prove the template can encode that relationship."
+    },
+    {
+      "field": "proposed media availability and visual suitability",
+      "reason": "The request supplies native slot IDs and source identities/artifact references, but not an approved asset assignment or treatment-specific media-kind verification."
+    },
+    {
+      "field": "timing adjustment policy",
+      "reason": "The request requires a user decision before trim, loop, freeze, speed change, or extension can be proposed."
+    }
+  ],
+  "verdict": null
+}

@@ -1,0 +1,33 @@
+[
+  {
+    "decision": "Require the shared contract gate inside every registered StoryPackage and matching-layer entry point.",
+    "source": "User required the harness to always enforce contracts and made enforcement mandatory.",
+    "scope": "StoryPackage adaptation, semantic splitting, Story/Data handoffs, typed data assignment, candidate retrieval, matching, route planning, evaluation and harness execution.",
+    "reason": "A separate audit can report a violation after processing but cannot prevent a direct module call from bypassing the contracts.",
+    "outcome": "updated",
+    "sections": [
+      "### Mandatory contract enforcement at every entry point"
+    ]
+  },
+  {
+    "decision": "Allow review-only diagnostic work only after contract validation while reserving production for a completely passing current harness.",
+    "source": "Existing review-only workflow and the user's mandatory enforcement requirement.",
+    "scope": "All registered matching entry points and saved harness receipts.",
+    "reason": "This preserves useful calibration without allowing a missing generality or release receipt to become production authorization.",
+    "outcome": "updated",
+    "sections": [
+      "### Mandatory contract enforcement at every entry point",
+      "## General matching layer product boundary — 2026-10-03"
+    ]
+  },
+  {
+    "decision": "Reject missing, unregistered or stale contract enforcement rather than silently rebinding evidence.",
+    "source": "Mandatory fail-closed contract enforcement requirement.",
+    "scope": "Entrypoint registry, hash-bound receipts, harness validation and legacy frozen evaluation inputs.",
+    "reason": "Automatic rebinding would turn changed inputs into apparently approved evidence and defeat the purpose of mandatory contracts.",
+    "outcome": "already_covered",
+    "sections": [
+      "### Mandatory contract enforcement at every entry point"
+    ]
+  }
+]

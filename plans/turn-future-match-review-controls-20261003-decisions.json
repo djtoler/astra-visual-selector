@@ -1,0 +1,18 @@
+[
+  {
+    "decision": "Add durable acceptable, rejected and unreviewed controls with candidate-specific comments to the Future match gallery.",
+    "source": "User explicitly requested candidate selection and comments in the UI.",
+    "scope": "future-volksgeist@2 exact task/candidate review rows.",
+    "outcome": "updated",
+    "reason": "The durable review interaction and its evidence scope are now defined so feedback can safely drive later component reconciliation.",
+    "sections": ["Future candidate acceptability review"]
+  },
+  {
+    "decision": "Keep gallery decisions task-scoped and non-authorizing until a separate reconciliation determines whether each comment represents a global capability, binding, exclusion or only a story preference.",
+    "source": "User intends to use the review to update necessary system components.",
+    "scope": "Downstream use of Future candidate feedback.",
+    "outcome": "already_covered",
+    "reason": "Existing cross-story rules prohibit task-specific editor choices from silently becoming global admissions; the new review storage preserves that boundary.",
+    "sections": ["Future candidate acceptability review", "Cross-story matching acceptance input — 2026-10-03"]
+  }
+]

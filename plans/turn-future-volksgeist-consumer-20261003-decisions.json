@@ -1,0 +1,26 @@
+[
+  {
+    "decision": "Use future-volksgeist@2 as the held-out cross-story package and accept only its explicitly pinned authority commit while retaining the prior supported StoryPackage commit.",
+    "source": "User supplied the repository handoff instructions dated 2026-10-03.",
+    "scope": "StoryPackage adapter authority and cross-story acceptance.",
+    "outcome": "updated",
+    "reason": "The new package is the requested independent acceptance input and must not invalidate the existing pinned package fixtures.",
+    "sections": ["Cross-story matching acceptance input — 2026-10-03"]
+  },
+  {
+    "decision": "Route clip beats to exact source footage, quote beats to attributed-quote proposals, and narrator beats to semantic VisualTask proposals without importing prior-story choices or treating source timestamps as duration.",
+    "source": "The supplied Future Volksgeist handover and the validated optional beats[].speaker contract.",
+    "scope": "Speaker-aware StoryPackage consumption and matching intake.",
+    "outcome": "updated",
+    "reason": "The second story introduces speaker roles that require distinct media and template behavior and exposes missing timing fields as typed gaps.",
+    "sections": ["StoryPackage speaker-role consumption — 2026-10-03"]
+  },
+  {
+    "decision": "Reject full template matching for the 328 narrator claims that lack source-provenanced visual jobs or splits while continuing to emit the 20 explicit question proposals, three quote proposals, and 36 source-clip routes.",
+    "source": "Measured consumer output from future-volksgeist@2.",
+    "scope": "Completeness boundary for match-ready VisualTasks.",
+    "outcome": "already_covered",
+    "reason": "The workflow already forbids guessed jobs and silent stage substitution; the package-level shortage is surfaced rather than masked.",
+    "sections": ["StoryPackage speaker-role consumption — 2026-10-03", "Cross-story matching acceptance input — 2026-10-03"]
+  }
+]

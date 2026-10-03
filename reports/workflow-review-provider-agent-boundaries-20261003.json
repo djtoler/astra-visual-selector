@@ -1,0 +1,44 @@
+[
+  {
+    "decision": "Continue general Matching implementation in the current conversation and reserve construction of the multi-agent runtime for a separate conversation.",
+    "source": "Explicit user direction, 2026-10-03.",
+    "scope": "Conversation and implementation boundary only; no agent runtime or coordinator repository is created by this turn.",
+    "outcome": "updated",
+    "reason": "The prior architecture discussion did not yet record where the agent build would occur.",
+    "sections": [
+      "### Multi-agent ownership and provider variants"
+    ]
+  },
+  {
+    "decision": "Use content-project-mgr as coordinator; patterns as Story; Polish/hiphop-research-engine as Data; astra-visual-selector current work as Matching; media_layer as Media; and keep entity_roster as Data-owned canonical state.",
+    "source": "Explicit user layer mapping, 2026-10-03.",
+    "scope": "General system ownership boundaries.",
+    "outcome": "updated",
+    "reason": "The named repositories and coordinator role are now explicit and prevent authority drift.",
+    "sections": [
+      "## General matching layer product boundary — 2026-10-03",
+      "### Multi-agent ownership and provider variants"
+    ]
+  },
+  {
+    "decision": "Configure future provider/model variants through versioned YAML plus environment variables over common contracts, receipts and evaluations.",
+    "source": "Explicit user architecture requirement, 2026-10-03.",
+    "scope": "Future agent runtime design; secrets remain outside source control.",
+    "outcome": "updated",
+    "reason": "GPT, Claude and other provider variants must remain interchangeable implementations rather than divergent domain systems.",
+    "sections": [
+      "### Multi-agent ownership and provider variants"
+    ]
+  },
+  {
+    "decision": "Treat the provider recommendations from the repository audit as starting hypotheses requiring layer-specific evaluations, not as proven production assignments.",
+    "source": "Read-only audit of the eight current repositories plus current official provider documentation.",
+    "scope": "Architecture advice only; no provider switch, API call or paid model execution is authorized.",
+    "outcome": "already_covered",
+    "reason": "The workflow already requires evidence-backed generality and forbids a model or confidence label from authorizing results.",
+    "sections": [
+      "## General matching layer product boundary — 2026-10-03",
+      "### Multi-agent ownership and provider variants"
+    ]
+  }
+]

@@ -1,104 +1,86 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "batchId": "matching-accuracy-001",
-  "purpose": "Read-only contrasting matching-layer accuracy test",
-  "reviewState": "treatment_proposals_unreviewed",
+  "purpose": "Declarative replay of five frozen matching-layer accuracy fixtures",
   "activationState": "review_only_not_connected",
   "selectionAuthorized": false,
   "renderingAuthorized": false,
   "sources": {
-    "visualTasks": {
-      "path": "grammar/visual-tasks.json",
-      "sha256": "e253880ec6e8b44450a937110b063091cdd6640484aa2ae6d6390973889a64ad"
-    },
-    "technicalComparison": {
-      "path": "reports/visualtask-ae-spec-comparison.json",
-      "sha256": "d8150fa163a6b23a6603b1f05da5180c64389f79e1322ea8bb0107d4a344ce3c"
-    },
-    "taskMatching": {
-      "path": "reports/visualtask-match-pilot-28-28.json",
-      "sha256": "07694e2b876bb1f36a4d816a871693bacf1e55e145a8341dfd38c25397998414"
-    },
-    "currentSlate": {
-      "path": "pipeline/shotlist.capacity.json",
-      "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
-    },
-    "reviewExport": {
-      "path": "grammar/beat-review-export-2026-09-27.json",
-      "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d"
-    },
-    "matchingIssues": {
-      "path": "grammar/issues_matching_layer.json",
-      "sha256": "2cea7c5a268321076b493f91bc12392a374f31e3795f462e73ebe2e8d070ad3c"
-    },
-    "approvedTemplates": {
-      "path": "astra-selector-design/approved_media/approved-list.json",
-      "sha256": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e"
-    },
-    "localTemplates": {
-      "path": "grammar/local-templates.json",
-      "sha256": "75f02bd08f3f343d84fdd7e9098129fc396fb7b708312841af9be97b16d9cc8c"
-    }
+    "visualTasks": {"path": "grammar/visual-tasks.json", "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"},
+    "technicalComparison": {"path": "reports/visualtask-ae-spec-comparison.json", "sha256": "6acfcd30887eb635f2f378e7de714f06ce00e69817390a9e6d8dac67068660a4"},
+    "taskMatching": {"path": "reports/visualtask-match-pilot-28-28.json", "sha256": "6908477a87853d566171dad85260cb38fdb4eb29cb2d73794f265b426227edee"},
+    "currentSlate": {"path": "pipeline/shotlist.capacity.json", "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"},
+    "reviewExport": {"path": "grammar/beat-review-export-2026-09-27.json", "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d"},
+    "matchingIssues": {"path": "grammar/issues_matching_layer.json", "sha256": "2cea7c5a268321076b493f91bc12392a374f31e3795f462e73ebe2e8d070ad3c"},
+    "approvedTemplates": {"path": "astra-selector-design/approved_media/approved-list.json", "sha256": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e"},
+    "localTemplates": {"path": "grammar/local-templates.json", "sha256": "29bec530753cf5011a74bcab964832c1ba93a2954e0f061822aa00eb64fc0e31"},
+    "frozenObservations": {"path": "matching-accuracy/batch-001/report.json", "sha256": "ab00548157901ddecf6445e58b041b962195d5d4e822ea81bb3a60ddca21a0f6"}
   },
   "cases": [
     {
       "id": "eleven_person_long_carousel_test",
-      "taskIds": ["16-16.main"],
-      "sourceBeatId": "16-16",
       "expected": "capacity_qualified_after_effects_long_carousel_offered",
-      "minimumPeople": 10
+      "record": {"source": "frozenObservations", "path": ["cases"], "where": {"id": "eleven_person_long_carousel_test"}},
+      "copyRecord": true,
+      "assertions": [
+        {"id": "entity-demand", "path": ["observed", "taskEntityCount"], "operator": "equals", "expected": 11},
+        {"id": "long-carousel-treatment", "path": ["observed", "batchTreatmentRequiresLongCarousel"], "operator": "truthy"},
+        {"id": "eligible-carousel", "path": ["observed", "eligibleLongCarouselIds"], "operator": "length_gte", "expected": 1},
+        {"id": "offered-carousel", "path": ["observed", "offeredLongCarouselIds"], "operator": "length_gte", "expected": 1},
+        {"id": "spatial-does-not-substitute", "path": ["observed", "spatialOrInfographicSatisfiesThisBatchTreatment"], "operator": "falsey"}
+      ]
     },
     {
       "id": "split_beat_visual_tasks",
-      "taskIds": ["28-28.setup", "28-28.overlap"],
-      "sourceBeatId": "28-28",
-      "expected": "reviewed_timing_preserved_and_candidates_matched_independently_per_task"
+      "expected": "reviewed_timing_preserved_and_candidates_matched_independently_per_task",
+      "record": {"source": "frozenObservations", "path": ["cases"], "where": {"id": "split_beat_visual_tasks"}},
+      "copyRecord": true,
+      "assertions": [
+        {"id": "task-ids", "path": ["observed", "taskIds"], "operator": "equals", "expected": ["28-28.setup", "28-28.overlap"]},
+        {"id": "roles", "path": ["observed", "taskRoles"], "operator": "equals", "expected": ["setup_text", "spatial_comparison"]},
+        {"id": "timing", "path": ["observed", "timingStates"], "operator": "equals", "expected": ["exact_reviewed_split_task_span", "exact_reviewed_split_task_span"]},
+        {"id": "task-level-provenance", "path": ["observed", "taskLevelCandidateMatchingEvidence"], "operator": "truthy"},
+        {"id": "different-candidate-slates", "path": ["observed", "candidateIdsByTask", "28-28.setup"], "operator": "not_equals", "expected": ["truth-cohort-attrition", "two-floors", "07_labeled_outlier_scatter", "23_portrait_scatter", "31_greatest_team_scatter"]},
+        {"id": "independent-media-demand", "path": ["observed", "mediaEntityCountByTask"], "operator": "equals", "expected": {"28-28.setup": 0, "28-28.overlap": 10}}
+      ]
     },
     {
       "id": "text_heavy_document",
-      "taskIds": ["17-17.main"],
-      "sourceBeatId": "17-17",
-      "candidateId": "02-documentary-promo--scene-003",
       "expected": "exact_native_fields_still_require_treatment_assignment_and_editor_review",
-      "treatmentProposal": {
-        "status": "unreviewed",
-        "mediaKind": "document",
-        "requiredOnScreenText": [
-          "ONE RULE FOR EVERYBODY",
-          "FULL CREDIT",
-          "Lead or equal co-lead",
-          "HALF CREDIT",
-          "Feature or remix verse"
-        ]
-      }
+      "record": {"source": "frozenObservations", "path": ["cases"], "where": {"id": "text_heavy_document"}},
+      "copyRecord": true,
+      "assertions": [
+        {"id": "candidate-on-slate", "path": ["observed", "candidateOnSlate"], "operator": "truthy"},
+        {"id": "exact-mapping", "path": ["observed", "exactCompositionMapped"], "operator": "truthy"},
+        {"id": "native-fields", "path": ["observed", "measuredEditableTextFields"], "operator": "equals", "expected": 3},
+        {"id": "required-text", "path": ["observed", "requiredTextItems"], "operator": "equals", "expected": 5},
+        {"id": "not-promoted", "path": ["observed", "technicalVerdict"], "operator": "equals", "expected": "exact_technical_evidence_partial"},
+        {"id": "editor-review-gap", "path": ["missingRequirements"], "operator": "contains", "expected": "editor_approved_treatment"}
+      ]
     },
     {
       "id": "actual_footage_required",
-      "taskIds": ["01-01.subject"],
-      "sourceBeatId": "01-01",
       "expected": "actual_performance_footage_requirement_preserved",
-      "requiredMediaKind": "footage",
-      "requiredEntity": "Drake",
-      "reviewQuote": "drake b-roll performance footage needed"
+      "record": {"source": "frozenObservations", "path": ["cases"], "where": {"id": "actual_footage_required"}},
+      "copyRecord": true,
+      "assertions": [
+        {"id": "review-direction", "path": ["observed", "reviewDirectionFound"], "operator": "truthy"},
+        {"id": "typed-kind", "path": ["observed", "encodedRequiredMediaKinds"], "operator": "equals", "expected": ["footage"]},
+        {"id": "no-gap", "path": ["missingRequirements"], "operator": "length_equals", "expected": 0}
+      ]
     },
     {
       "id": "missing_media_conditional",
-      "taskIds": ["15-15.main"],
-      "sourceBeatId": "15-15",
-      "candidateId": "screen-mockup-rfx--review-002",
       "expected": "conditional_with_typed_missing_media_brief",
-      "treatmentProposal": {
-        "status": "unreviewed",
-        "mediaKind": "footage",
-        "content": "Authentic event-specific b-roll establishing the 2010 XXL offer and Drake's refusal",
-        "missingMediaBrief": {
-          "entity": "Drake",
-          "artifactOrEvent": "2010 XXL Freshman offer and refusal",
-          "mediaKind": "footage",
-          "status": "missing"
-        }
-      },
-      "reviewQuote": "no available broll"
+      "record": {"source": "frozenObservations", "path": ["cases"], "where": {"id": "missing_media_conditional"}},
+      "copyRecord": true,
+      "assertions": [
+        {"id": "review-note", "path": ["observed", "savedReviewNote"], "operator": "equals", "expected": "no available broll"},
+        {"id": "typed-gap", "path": ["observed", "typedMissingMediaBriefPresent"], "operator": "truthy"},
+        {"id": "conditional", "path": ["observed", "currentTechnicalVerdict"], "operator": "equals", "expected": "conditional"},
+        {"id": "missing-status", "path": ["expectedMissingMediaBrief", "status"], "operator": "equals", "expected": "missing"}
+      ]
     }
-  ]
+  ],
+  "nextBoundary": "Treat failures as measured matching-layer work. Pending held-out sources remain unscored; do not authorize selection or rendering."
 }

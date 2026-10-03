@@ -1,0 +1,186 @@
+{
+  "activationState": "review_only_not_connected",
+  "input": {
+    "editorContext": {
+      "activationState": "review_only_not_connected",
+      "contextVersion": "synthetic-v1",
+      "entries": [
+        {
+          "beatIds": [],
+          "directive": "Keep the tone factual and restrained.",
+          "id": "editor-story-tone",
+          "priority": "editor",
+          "scope": "story"
+        },
+        {
+          "beatIds": [
+            "restoration-progress"
+          ],
+          "directive": "Show the historical loss before the current restoration result.",
+          "id": "editor-restoration-order",
+          "priority": "editor",
+          "scope": "beat"
+        }
+      ],
+      "renderingAuthorized": false,
+      "schemaVersion": 1,
+      "selectionAuthorized": false,
+      "storyId": "wetland-restoration"
+    },
+    "rosterContext": {
+      "activationState": "review_only_not_connected",
+      "cohorts": [],
+      "entities": [
+        {
+          "id": "wetland-north",
+          "name": "North Wetland"
+        },
+        {
+          "id": "aisha-patel",
+          "name": "Aisha Patel"
+        }
+      ],
+      "renderingAuthorized": false,
+      "rosterVersion": "synthetic-v1",
+      "schemaVersion": 1,
+      "selectionAuthorized": false
+    },
+    "storyPackage": {
+      "activationState": "review_only_not_connected",
+      "beats": [
+        {
+          "cohortRefs": [],
+          "continuityGroup": "wetland-change",
+          "dataRequirements": [
+            {
+              "description": "Forty acres lost.",
+              "id": "data-loss",
+              "kind": "quantity"
+            },
+            {
+              "description": "Twelve acres returned this year.",
+              "id": "data-return",
+              "kind": "quantity"
+            }
+          ],
+          "editorContextRefs": [
+            "editor-story-tone",
+            "editor-restoration-order"
+          ],
+          "entityRefs": [
+            "wetland-north"
+          ],
+          "id": "restoration-progress",
+          "ordinal": 1,
+          "perceptibilityConstraints": [
+            "Loss and restored acreage must remain visually distinct."
+          ],
+          "prohibitions": [
+            {
+              "id": "prohibit-full-recovery",
+              "text": "Do not imply the wetland has fully recovered."
+            }
+          ],
+          "text": "The wetland lost forty acres. Restoration returned twelve this year.",
+          "truthConstraints": [
+            {
+              "id": "truth-loss",
+              "text": "The historical loss is forty acres."
+            },
+            {
+              "id": "truth-return",
+              "text": "The restoration returned twelve acres this year."
+            }
+          ]
+        },
+        {
+          "cohortRefs": [],
+          "continuityGroup": null,
+          "dataRequirements": [],
+          "editorContextRefs": [
+            "editor-story-tone"
+          ],
+          "entityRefs": [
+            "aisha-patel"
+          ],
+          "id": "public-tour",
+          "ordinal": 2,
+          "perceptibilityConstraints": [],
+          "prohibitions": [],
+          "text": "Aisha Patel will lead the public tour.",
+          "truthConstraints": []
+        }
+      ],
+      "namespace": "fixture.wetland-restoration",
+      "renderingAuthorized": false,
+      "schemaVersion": 1,
+      "selectionAuthorized": false,
+      "storyId": "wetland-restoration"
+    },
+    "taskVocabulary": {
+      "activationState": "review_only_not_connected",
+      "dataRequirementKinds": [
+        "quantity"
+      ],
+      "jobs": [
+        {
+          "definition": "Compare change between two measured states.",
+          "id": "change_across_set"
+        },
+        {
+          "definition": "Show a single person, action or event.",
+          "id": "narrate_an_event"
+        }
+      ],
+      "mediaKinds": [
+        "location",
+        "person",
+        "numeric_data",
+        "text"
+      ],
+      "renderingAuthorized": false,
+      "schemaVersion": 1,
+      "selectionAuthorized": false,
+      "taskRoles": [
+        "historical_loss",
+        "restoration_progress",
+        "tour_announcement"
+      ],
+      "vocabularyVersion": "synthetic-v1"
+    }
+  },
+  "purpose": "Provider-independent semantic VisualTask split proposal",
+  "renderingAuthorized": false,
+  "requestId": "fixture.wetland-restoration:wetland-restoration:semantic-split:v1",
+  "responseContract": {
+    "exactCompleteNonoverlappingCharacterSpans": true,
+    "humanApprovalRequiredBeforeActivation": true,
+    "oneProposalPerBeat": true,
+    "schemaVersion": 1
+  },
+  "reviewState": "awaiting_external_proposal",
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sources": {
+    "editorContext": {
+      "bytes": 640,
+      "path": "tests/fixtures/semantic_split/editor-context.json",
+      "sha256": "77899a7dc11a378085ac98ba5f6195a8f0349c68c93aba380a399811f8cf5448"
+    },
+    "rosterContext": {
+      "bytes": 315,
+      "path": "tests/fixtures/semantic_split/roster-context.json",
+      "sha256": "51d55843299441a83653ef6699558f1aacc158e08ce57ba513a9c51e91781a60"
+    },
+    "storyPackage": {
+      "bytes": 1614,
+      "path": "tests/fixtures/semantic_split/story-package.json",
+      "sha256": "60a0b06a548233145522847326f2a3ef5856c15bd740e9b2ee23fb79cbbb4878"
+    },
+    "taskVocabulary": {
+      "bytes": 561,
+      "path": "tests/fixtures/semantic_split/task-vocabulary.json",
+      "sha256": "2b2f66a607c4fdb48969c2cb9d8684556e332401b33fcccb701a1756073d6bf1"
+    }
+  }
+}

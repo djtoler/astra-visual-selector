@@ -32,10 +32,14 @@ carries the passages that produced it. This is the closed set the grammar binds 
 | `define_terms` | state a rule, a weighting, or a period | 6, 17 |
 | `narrate_an_event` | something happened, once, at a time | 15 |
 | `assert_without_data` | a norm, a hypothesis, or a limitation | 7, 23, 30 |
+| `attributed_quote` | present quoted words with the quoted person and source perceptible | Future Volksgeist: p02-13, p03-14, p06-5 |
 
 ## What this says
 
-**Twenty jobs cover thirty passages.** Ten of the twenty appear more than once, and five
+**The original twenty jobs cover thirty Year Seventeen passages.** The first cross-story
+acceptance package adds `attributed_quote`, derived from three narrator-read quotations
+whose speaker contract requires the quoted person and source to remain perceptible. Ten
+of the original twenty appear more than once, and five
 appear three or more times. The head is concentrated and the tail is long.
 
 **Roughly two in three beats want a data treatment.** The rest want a face, a line of text,

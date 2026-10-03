@@ -1,0 +1,44 @@
+[
+  {
+    "decision": "Require the matching harness to continue through the canonical task list until the general template/beat matcher objective is complete or a specific user decision, authorization boundary, or external user action is required.",
+    "source": "User direction in the current turn.",
+    "scope": "General matching-layer execution control across StoryPackages; no template selection or rendering authorization.",
+    "reason": "Routine task completion and status reporting were allowing work to appear finished while the reusable matching objective still had pending tasks.",
+    "outcome": "updated",
+    "sections": [
+      "## General matching layer product boundary — 2026-10-03",
+      "The harness must also reconcile the canonical general-matcher objective and saved task list before every run."
+    ]
+  },
+  {
+    "decision": "Add StoryPackage registry-v11 rebuild, unchanged-path Future matching, and fresh cross-story/UI reconciliation as explicit remaining general-matcher tasks.",
+    "source": "Current shared-registry migration state and saved general matching objective.",
+    "scope": "Task-plan reconciliation only; does not claim those pending tasks passed.",
+    "reason": "The prior task list ended at contract enforcement and incorrectly reported no next task after the shared entity registry changed the cross-layer input contract.",
+    "outcome": "updated",
+    "sections": [
+      "## General matching layer product boundary — 2026-10-03"
+    ]
+  },
+  {
+    "decision": "Consume Story's three registry-v11 package revisions through the unchanged authoritative adapter and semantic splitter, preserving typed unresolved entities and requiring zero uncovered narration claims.",
+    "source": "djtoler/patterns commit a9c6299a639d2bc775ca377ab09e152763ac44f5 and HANDOVER-v11-migration-20261003.md.",
+    "scope": "Cross-story regression evidence for the general matching layer; no selection or rendering authorization.",
+    "reason": "The continuation harness identified registry-v11 package rebuilding as the next ready task, and Story delivered the required revisions during this turn.",
+    "outcome": "already_covered",
+    "sections": [
+      "### Story/Data/Matching entity-roster reconciliation",
+      "## General matching layer product boundary — 2026-10-03"
+    ]
+  },
+  {
+    "decision": "Publish the fresh Future v11 candidate run into the existing review UI with a separate revision-bound review file, preserving the older review artifact unchanged, and stop only because candidate-quality review now requires the editor.",
+    "source": "GML-13 and GML-14 continuation receipts generated in this turn.",
+    "scope": "Review-only candidate evaluation; fit remains unvalidated and selection/rendering remain false.",
+    "reason": "Automated cross-story regression and candidate generation are complete; evaluating whether the varied candidates are editorially useful is the first genuine user-input dependency.",
+    "outcome": "already_covered",
+    "sections": [
+      "## General matching layer product boundary — 2026-10-03"
+    ]
+  }
+]

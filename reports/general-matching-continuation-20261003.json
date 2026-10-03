@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "objective": "general-storypackage-matching-layer",
+  "storyAuthority": {
+    "repo": "djtoler/patterns",
+    "commit": "a9c6299a639d2bc775ca377ab09e152763ac44f5",
+    "handover": "architecture/storypackage/HANDOVER-v11-migration-20261003.md"
+  },
+  "sharedEntityRegistry": {
+    "repo": "djtoler/entity_roster",
+    "commit": "284c483ab9c909194ad6cc8221a9c4a28e489a6b",
+    "version": 11,
+    "sha256": "4de151ade3490fc650cd8490a76871601e235f45d1ef05a01cacd510c7eb2f27"
+  },
+  "rebuiltPackages": [
+    {
+      "packageId": "future-volksgeist@4",
+      "adapter": "reports/storypackage-02-future-volksgeist-v11-adapter.json",
+      "adapterSha256": "9da9e640339481ae62f4138926e8415766cda7046d230ad74eaaba04bd24c2e0",
+      "taskProposals": "reports/storypackage-02-future-volksgeist-v11-task-proposals.json",
+      "taskProposalsSha256": "bdcce8966c4d4a82e3a73239e3509a2f0880806b059d847807831040e9f97187",
+      "claims": 502,
+      "tasks": 309,
+      "uncoveredClaims": 0
+    },
+    {
+      "packageId": "jayz-drake-settle-it@3",
+      "adapter": "reports/storypackage-02-jayz-drake-settle-it-v11-adapter.json",
+      "adapterSha256": "656cbc1cff00923f9a418037e84d35ca4153c45f6d3f8a085718fb7331c5ca4a",
+      "taskProposals": "reports/storypackage-02-jayz-drake-settle-it-v11-task-proposals.json",
+      "taskProposalsSha256": "394abdfe1f8beb538e74677418ac96de0a7f2e45a36d10045cb566590a5d9074",
+      "claims": 222,
+      "tasks": 187,
+      "uncoveredClaims": 0
+    },
+    {
+      "packageId": "year-seventeen@8",
+      "adapter": "reports/storypackage-02-year-seventeen-v11-adapter.json",
+      "adapterSha256": "e7746ae89764c21169758e996ddb2ea4fc9f65b79ef38e8747806097c60ba2e0",
+      "taskProposals": "reports/storypackage-02-year-seventeen-v11-task-proposals.json",
+      "taskProposalsSha256": "cc59625a4f2bf32a3a854099ab0a4f5a47d97fed8e607317205ceb808e1ac302",
+      "claims": 150,
+      "tasks": 115,
+      "uncoveredClaims": 0
+    }
+  ],
+  "freshCandidateRuns": [
+    {
+      "packageId": "future-volksgeist@4",
+      "artifact": "reports/storypackage-02-future-volksgeist-v11-candidate-gallery.json",
+      "sha256": "a3f74e52b8300b5e97e02529277da22fee59f567ff16a5ab19e1899fc9d9921e",
+      "tasks": 309,
+      "tasksWithCandidates": 309,
+      "candidateCards": 4880
+    },
+    {
+      "packageId": "jayz-drake-settle-it@3",
+      "artifact": "reports/storypackage-02-jayz-drake-settle-it-v11-candidate-gallery.json",
+      "sha256": "55a4bf781634e98d3ccc44e058d6153b2dbc7aabacf9ba453b25cc883eb65877",
+      "tasks": 187,
+      "tasksWithCandidates": 187,
+      "candidateCards": 2992
+    }
+  ],
+  "nextRequiredReview": {
+    "taskId": "GML-14",
+    "packageId": "future-volksgeist@4",
+    "surface": "approved/future-volksgeist-matches.html?semantic=5",
+    "question": "Do the fresh v11 candidates demonstrate useful, varied template-to-beat matching across the new package?",
+    "userInputRequired": true
+  },
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

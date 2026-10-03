@@ -1,0 +1,72 @@
+{
+  "activationState": "review_only_not_connected",
+  "beats": [
+    {
+      "cohortRefs": [],
+      "continuityGroup": "wetland-change",
+      "dataRequirements": [
+        {
+          "description": "Forty acres lost.",
+          "id": "data-loss",
+          "kind": "quantity"
+        },
+        {
+          "description": "Twelve acres returned this year.",
+          "id": "data-return",
+          "kind": "quantity"
+        }
+      ],
+      "editorContextRefs": [
+        "editor-story-tone",
+        "editor-restoration-order"
+      ],
+      "entityRefs": [
+        "wetland-north"
+      ],
+      "id": "restoration-progress",
+      "ordinal": 1,
+      "perceptibilityConstraints": [
+        "Loss and restored acreage must remain visually distinct."
+      ],
+      "prohibitions": [
+        {
+          "id": "prohibit-full-recovery",
+          "text": "Do not imply the wetland has fully recovered."
+        }
+      ],
+      "text": "The wetland lost forty acres. Restoration returned twelve this year.",
+      "truthConstraints": [
+        {
+          "id": "truth-loss",
+          "text": "The historical loss is forty acres."
+        },
+        {
+          "id": "truth-return",
+          "text": "The restoration returned twelve acres this year."
+        }
+      ]
+    },
+    {
+      "cohortRefs": [],
+      "continuityGroup": null,
+      "dataRequirements": [],
+      "editorContextRefs": [
+        "editor-story-tone"
+      ],
+      "entityRefs": [
+        "aisha-patel"
+      ],
+      "id": "public-tour",
+      "ordinal": 2,
+      "perceptibilityConstraints": [],
+      "prohibitions": [],
+      "text": "Aisha Patel will lead the public tour.",
+      "truthConstraints": []
+    }
+  ],
+  "namespace": "fixture.wetland-restoration",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "storyId": "wetland-restoration"
+}

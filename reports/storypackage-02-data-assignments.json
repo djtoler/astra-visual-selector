@@ -1,0 +1,3326 @@
+{
+  "assignments": [
+    {
+      "claimIds": [
+        "c1-provoke-1.1",
+        "c1-provoke-2.1"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-01-01",
+        "p-02-02a",
+        "p-02-02b"
+      ],
+      "requiredEncodings": [
+        "change_over_time",
+        "derivation"
+      ],
+      "reviewKey": "01-01",
+      "status": "resolved",
+      "taskId": "01-01.subject",
+      "typedFields": [
+        {
+          "encodings": [
+            "magnitude",
+            "change_over_time"
+          ],
+          "fieldId": "drake.daily_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "streams/day",
+          "value": 58525904
+        },
+        {
+          "encodings": [
+            "derivation",
+            "magnitude"
+          ],
+          "fieldId": "drake.streams_per_second",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "daily_total / 86400"
+          },
+          "subject": "Drake",
+          "unit": "streams/second",
+          "value": 677.3831481481482
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "currensy.catalog_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_total"
+            ],
+            "selector": {
+              "artist": "Curren$y",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Curren$y",
+          "unit": "streams",
+          "value": 1398826988
+        },
+        {
+          "basis": "1398826988 / 58525904",
+          "encodings": [
+            "derivation",
+            "magnitude"
+          ],
+          "fieldId": "currensy.catalog_equivalent_drake_days",
+          "receipt": {
+            "columns": [
+              "streams_total",
+              "daily_total"
+            ],
+            "selector": {
+              "artists": [
+                "Curren$y",
+                "Drake"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "Curren$y streams_total / Drake daily_total"
+          },
+          "subject": "Curren$y",
+          "unit": "days",
+          "value": 23.900989004800337
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c1-provoke-1.1",
+        "c1-provoke-2.1"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-01-01",
+        "p-02-02a",
+        "p-02-02b"
+      ],
+      "requiredEncodings": [
+        "magnitude"
+      ],
+      "reviewKey": "02-02b",
+      "status": "resolved",
+      "taskId": "02-02b.currensy_catalog",
+      "typedFields": [
+        {
+          "encodings": [
+            "magnitude",
+            "change_over_time"
+          ],
+          "fieldId": "drake.daily_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "streams/day",
+          "value": 58525904
+        },
+        {
+          "encodings": [
+            "derivation",
+            "magnitude"
+          ],
+          "fieldId": "drake.streams_per_second",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "daily_total / 86400"
+          },
+          "subject": "Drake",
+          "unit": "streams/second",
+          "value": 677.3831481481482
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "currensy.catalog_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_total"
+            ],
+            "selector": {
+              "artist": "Curren$y",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Curren$y",
+          "unit": "streams",
+          "value": 1398826988
+        },
+        {
+          "basis": "1398826988 / 58525904",
+          "encodings": [
+            "derivation",
+            "magnitude"
+          ],
+          "fieldId": "currensy.catalog_equivalent_drake_days",
+          "receipt": {
+            "columns": [
+              "streams_total",
+              "daily_total"
+            ],
+            "selector": {
+              "artists": [
+                "Curren$y",
+                "Drake"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "Curren$y streams_total / Drake daily_total"
+          },
+          "subject": "Curren$y",
+          "unit": "days",
+          "value": 23.900989004800337
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c1-provoke-3.1",
+        "c1-provoke-3.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-03-03"
+      ],
+      "requiredEncodings": [
+        "rank"
+      ],
+      "reviewKey": "03-03",
+      "status": "resolved",
+      "taskId": "03-03.opening_chart",
+      "typedFields": [
+        {
+          "encodings": [
+            "rank",
+            "magnitude"
+          ],
+          "fieldId": "chart93.daily_stream_rank",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "artist",
+              "daily_total"
+            ],
+            "selector": {
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "filter status=ok; sort daily_total descending; one-based rank"
+          },
+          "unit": "ranked series",
+          "value": [
+            {
+              "artist": "Drake",
+              "dailyStreams": 58525904,
+              "rank": 1
+            },
+            {
+              "artist": "Travis Scott",
+              "dailyStreams": 19223048,
+              "rank": 2
+            },
+            {
+              "artist": "Future",
+              "dailyStreams": 19027567,
+              "rank": 3
+            },
+            {
+              "artist": "Kendrick Lamar",
+              "dailyStreams": 16581178,
+              "rank": 4
+            },
+            {
+              "artist": "Post Malone",
+              "dailyStreams": 14537250,
+              "rank": 5
+            },
+            {
+              "artist": "Nicki Minaj",
+              "dailyStreams": 13304303,
+              "rank": 6
+            },
+            {
+              "artist": "Lil Baby",
+              "dailyStreams": 11460349,
+              "rank": 7
+            },
+            {
+              "artist": "Mac Miller",
+              "dailyStreams": 10815808,
+              "rank": 8
+            },
+            {
+              "artist": "Gunna",
+              "dailyStreams": 10703721,
+              "rank": 9
+            },
+            {
+              "artist": "J. Cole",
+              "dailyStreams": 10317827,
+              "rank": 10
+            },
+            {
+              "artist": "Playboi Carti",
+              "dailyStreams": 10114434,
+              "rank": 11
+            },
+            {
+              "artist": "Young Thug",
+              "dailyStreams": 9304498,
+              "rank": 12
+            },
+            {
+              "artist": "Ty Dolla $ign",
+              "dailyStreams": 9229121,
+              "rank": 13
+            },
+            {
+              "artist": "21 Savage",
+              "dailyStreams": 9224708,
+              "rank": 14
+            },
+            {
+              "artist": "Lil Uzi Vert",
+              "dailyStreams": 9208618,
+              "rank": 15
+            },
+            {
+              "artist": "ASAP Rocky",
+              "dailyStreams": 9079409,
+              "rank": 16
+            },
+            {
+              "artist": "Wiz Khalifa",
+              "dailyStreams": 8676921,
+              "rank": 17
+            },
+            {
+              "artist": "XXXTentacion",
+              "dailyStreams": 7462276,
+              "rank": 18
+            },
+            {
+              "artist": "Kodak Black",
+              "dailyStreams": 6416155,
+              "rank": 19
+            },
+            {
+              "artist": "Tory Lanez",
+              "dailyStreams": 5873344,
+              "rank": 20
+            },
+            {
+              "artist": "Trippie Redd",
+              "dailyStreams": 5682424,
+              "rank": 21
+            },
+            {
+              "artist": "Cardi B",
+              "dailyStreams": 5381094,
+              "rank": 22
+            },
+            {
+              "artist": "Lil Durk",
+              "dailyStreams": 4883906,
+              "rank": 23
+            },
+            {
+              "artist": "Megan Thee Stallion",
+              "dailyStreams": 4624615,
+              "rank": 24
+            },
+            {
+              "artist": "Kid Cudi",
+              "dailyStreams": 4480927,
+              "rank": 25
+            },
+            {
+              "artist": "A Boogie Wit da Hoodie",
+              "dailyStreams": 4318984,
+              "rank": 26
+            },
+            {
+              "artist": "DaBaby",
+              "dailyStreams": 4194799,
+              "rank": 27
+            },
+            {
+              "artist": "B.o.B",
+              "dailyStreams": 3834316,
+              "rank": 28
+            },
+            {
+              "artist": "Rod Wave",
+              "dailyStreams": 3551327,
+              "rank": 29
+            },
+            {
+              "artist": "Macklemore",
+              "dailyStreams": 3382419,
+              "rank": 30
+            },
+            {
+              "artist": "Migos",
+              "dailyStreams": 3290730,
+              "rank": 31
+            },
+            {
+              "artist": "Jack Harlow",
+              "dailyStreams": 3246213,
+              "rank": 32
+            },
+            {
+              "artist": "Chief Keef",
+              "dailyStreams": 3180770,
+              "rank": 33
+            },
+            {
+              "artist": "Big Sean",
+              "dailyStreams": 3131313,
+              "rank": 34
+            },
+            {
+              "artist": "French Montana",
+              "dailyStreams": 3048780,
+              "rank": 35
+            },
+            {
+              "artist": "Polo G",
+              "dailyStreams": 2976557,
+              "rank": 36
+            },
+            {
+              "artist": "Anderson .Paak",
+              "dailyStreams": 2864437,
+              "rank": 37
+            },
+            {
+              "artist": "Roddy Ricch",
+              "dailyStreams": 2777278,
+              "rank": 38
+            },
+            {
+              "artist": "Chance the Rapper",
+              "dailyStreams": 2603159,
+              "rank": 39
+            },
+            {
+              "artist": "Fetty Wap",
+              "dailyStreams": 2599701,
+              "rank": 40
+            },
+            {
+              "artist": "Latto",
+              "dailyStreams": 2595927,
+              "rank": 41
+            },
+            {
+              "artist": "Meek Mill",
+              "dailyStreams": 2571784,
+              "rank": 42
+            },
+            {
+              "artist": "Wale",
+              "dailyStreams": 2570359,
+              "rank": 43
+            },
+            {
+              "artist": "Lil Yachty",
+              "dailyStreams": 2558608,
+              "rank": 44
+            },
+            {
+              "artist": "ScHoolboy Q",
+              "dailyStreams": 2531118,
+              "rank": 45
+            },
+            {
+              "artist": "Rae Sremmurd",
+              "dailyStreams": 2421465,
+              "rank": 46
+            },
+            {
+              "artist": "Lil Tjay",
+              "dailyStreams": 2261934,
+              "rank": 47
+            },
+            {
+              "artist": "Kevin Gates",
+              "dailyStreams": 2120528,
+              "rank": 48
+            },
+            {
+              "artist": "NLE Choppa",
+              "dailyStreams": 2061910,
+              "rank": 49
+            },
+            {
+              "artist": "YG",
+              "dailyStreams": 1925127,
+              "rank": 50
+            },
+            {
+              "artist": "JID",
+              "dailyStreams": 1820873,
+              "rank": 51
+            },
+            {
+              "artist": "6ix9ine",
+              "dailyStreams": 1626048,
+              "rank": 52
+            },
+            {
+              "artist": "Logic",
+              "dailyStreams": 1530532,
+              "rank": 53
+            },
+            {
+              "artist": "NAV",
+              "dailyStreams": 1328272,
+              "rank": 54
+            },
+            {
+              "artist": "Denzel Curry",
+              "dailyStreams": 1324593,
+              "rank": 55
+            },
+            {
+              "artist": "Nipsey Hussle",
+              "dailyStreams": 1198461,
+              "rank": 56
+            },
+            {
+              "artist": "Iggy Azalea",
+              "dailyStreams": 1108733,
+              "rank": 57
+            },
+            {
+              "artist": "Kid Ink",
+              "dailyStreams": 1078662,
+              "rank": 58
+            },
+            {
+              "artist": "Freddie Gibbs",
+              "dailyStreams": 1075520,
+              "rank": 59
+            },
+            {
+              "artist": "Iann Dior",
+              "dailyStreams": 1020198,
+              "rank": 60
+            },
+            {
+              "artist": "G Herbo",
+              "dailyStreams": 1005724,
+              "rank": 61
+            },
+            {
+              "artist": "Isaiah Rashad",
+              "dailyStreams": 1000813,
+              "rank": 62
+            },
+            {
+              "artist": "PnB Rock",
+              "dailyStreams": 975760,
+              "rank": 63
+            },
+            {
+              "artist": "Joey Bada$$",
+              "dailyStreams": 891536,
+              "rank": 64
+            },
+            {
+              "artist": "Rich Homie Quan",
+              "dailyStreams": 852251,
+              "rank": 65
+            },
+            {
+              "artist": "Vince Staples",
+              "dailyStreams": 754106,
+              "rank": 66
+            },
+            {
+              "artist": "Lil Skies",
+              "dailyStreams": 750194,
+              "rank": 67
+            },
+            {
+              "artist": "Lil Mosey",
+              "dailyStreams": 749167,
+              "rank": 68
+            },
+            {
+              "artist": "Ski Mask the Slump God",
+              "dailyStreams": 745363,
+              "rank": 69
+            },
+            {
+              "artist": "Blueface",
+              "dailyStreams": 743324,
+              "rank": 70
+            },
+            {
+              "artist": "Yelawolf",
+              "dailyStreams": 662600,
+              "rank": 71
+            },
+            {
+              "artist": "DeJ Loaf",
+              "dailyStreams": 626421,
+              "rank": 72
+            },
+            {
+              "artist": "YBN Nahmir",
+              "dailyStreams": 592671,
+              "rank": 73
+            },
+            {
+              "artist": "Stefflon Don",
+              "dailyStreams": 525880,
+              "rank": 74
+            },
+            {
+              "artist": "Shy Glizzy",
+              "dailyStreams": 483656,
+              "rank": 75
+            },
+            {
+              "artist": "Young M.A",
+              "dailyStreams": 427719,
+              "rank": 76
+            },
+            {
+              "artist": "YBN Cordae",
+              "dailyStreams": 406028,
+              "rank": 77
+            },
+            {
+              "artist": "GoldLink",
+              "dailyStreams": 404712,
+              "rank": 78
+            },
+            {
+              "artist": "Lil Pump",
+              "dailyStreams": 348751,
+              "rank": 79
+            },
+            {
+              "artist": "August Alsina",
+              "dailyStreams": 345155,
+              "rank": 80
+            },
+            {
+              "artist": "Kyle",
+              "dailyStreams": 342045,
+              "rank": 81
+            },
+            {
+              "artist": "Desiigner",
+              "dailyStreams": 325883,
+              "rank": 82
+            },
+            {
+              "artist": "K Camp",
+              "dailyStreams": 325355,
+              "rank": 83
+            },
+            {
+              "artist": "Fivio Foreign",
+              "dailyStreams": 305540,
+              "rank": 84
+            },
+            {
+              "artist": "Curren$y",
+              "dailyStreams": 300642,
+              "rank": 85
+            },
+            {
+              "artist": "Lil Dicky",
+              "dailyStreams": 290257,
+              "rank": 86
+            },
+            {
+              "artist": "Jay Rock",
+              "dailyStreams": 248787,
+              "rank": 87
+            },
+            {
+              "artist": "Ab-Soul",
+              "dailyStreams": 166558,
+              "rank": 88
+            },
+            {
+              "artist": "MadeinTYO",
+              "dailyStreams": 158891,
+              "rank": 89
+            },
+            {
+              "artist": "Hopsin",
+              "dailyStreams": 149136,
+              "rank": 90
+            },
+            {
+              "artist": "BlocBoy JB",
+              "dailyStreams": 137200,
+              "rank": 91
+            },
+            {
+              "artist": "Comethazine",
+              "dailyStreams": 104098,
+              "rank": 92
+            },
+            {
+              "artist": "Smokepurpp",
+              "dailyStreams": 89022,
+              "rank": 93
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c1-provoke-4.3",
+        "c1-provoke-5.1"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-04-04"
+      ],
+      "requiredEncodings": [
+        "aggregate",
+        "difference",
+        "magnitude"
+      ],
+      "reviewKey": "04-04",
+      "status": "resolved",
+      "taskId": "04-04.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "future.daily_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artist": "Future",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Future",
+          "unit": "streams/day",
+          "value": 19027567
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "travis_scott.daily_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artist": "Travis Scott",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Travis Scott",
+          "unit": "streams/day",
+          "value": 19223048
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "drake.daily_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "streams/day",
+          "value": 58525904
+        },
+        {
+          "encodings": [
+            "aggregate",
+            "magnitude"
+          ],
+          "fieldId": "future_travis.combined_daily_streams",
+          "population": "two artists",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artists": [
+                "Future",
+                "Travis Scott"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "sum daily_total"
+          },
+          "unit": "streams/day",
+          "value": 38250615
+        },
+        {
+          "encodings": [
+            "difference"
+          ],
+          "fieldId": "drake.edge_over_future_travis",
+          "receipt": {
+            "columns": [
+              "daily_total"
+            ],
+            "selector": {
+              "artists": [
+                "Drake",
+                "Future",
+                "Travis Scott"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "Drake - Future - Travis Scott daily_total"
+          },
+          "subject": "Drake",
+          "unit": "streams/day",
+          "value": 20275289
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c1-predict-1.3"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-05-05a"
+      ],
+      "requiredEncodings": [
+        "rank"
+      ],
+      "reviewKey": "05-05a",
+      "status": "resolved",
+      "taskId": "05-05a.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "rank"
+          ],
+          "fieldId": "drake.daily_stream_rank",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "artist",
+              "daily_total"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "sort status=ok daily_total descending; one-based rank"
+          },
+          "subject": "Drake",
+          "unit": "rank",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-3.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-08-08"
+      ],
+      "requiredEncodings": [
+        "share_of_whole"
+      ],
+      "reviewKey": "08-08",
+      "status": "resolved",
+      "taskId": "08-08.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "drake.catalog_track_count",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "tracks_total"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "tracks",
+          "value": 553
+        },
+        {
+          "encodings": [
+            "share_of_whole"
+          ],
+          "fieldId": "drake.feature_stream_share",
+          "receipt": {
+            "columns": [
+              "streams_feature",
+              "streams_total"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "streams_feature / streams_total"
+          },
+          "subject": "Drake",
+          "unit": "ratio",
+          "value": 0.31045351926237147
+        },
+        {
+          "encodings": [
+            "change_over_time"
+          ],
+          "fieldId": "drake.elapsed_years_since_2009",
+          "receipt": {
+            "columns": [
+              "artist",
+              "year",
+              "us_peak",
+              "us_rnb_peak",
+              "us_rap_peak"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "chartYears": [
+                2009,
+                2026
+              ]
+            },
+            "source": "discography",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+            "sourceSha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544",
+            "transform": "latest chart year - first year of uninterrupted 2009-2026 run"
+          },
+          "subject": "Drake",
+          "unit": "elapsed years",
+          "value": 17
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c2-provoke-1.3",
+        "c2-provoke-1.4"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-09-09"
+      ],
+      "requiredEncodings": [
+        "identity",
+        "magnitude"
+      ],
+      "reviewKey": "09-09",
+      "status": "resolved",
+      "taskId": "09-09.main",
+      "typedFields": [
+        {
+          "basis": "numerator=3065860870; denominator=6005500380",
+          "encodings": [
+            "identity",
+            "magnitude",
+            "share_of_whole"
+          ],
+          "fieldId": "latto.top_song_share",
+          "population": "artist catalog",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artist": "Latto",
+              "topN": 1
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "sum top 1 streams / spotify_streams.streams_total"
+          },
+          "subject": "Latto",
+          "unit": "ratio",
+          "value": 0.5105088129225961
+        },
+        {
+          "basis": "numerator=2306203506; denominator=4432493464",
+          "encodings": [
+            "identity",
+            "magnitude",
+            "share_of_whole"
+          ],
+          "fieldId": "jay_rock.top_song_share",
+          "population": "artist catalog",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artist": "Jay Rock",
+              "topN": 1
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "sum top 1 streams / spotify_streams.streams_total"
+          },
+          "subject": "Jay Rock",
+          "unit": "ratio",
+          "value": 0.5202948463952884
+        },
+        {
+          "basis": "numerator=2310112491; denominator=3262323990",
+          "encodings": [
+            "identity",
+            "magnitude",
+            "share_of_whole"
+          ],
+          "fieldId": "ab_soul.top_song_share",
+          "population": "artist catalog",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artist": "Ab-Soul",
+              "topN": 1
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "sum top 1 streams / spotify_streams.streams_total"
+          },
+          "subject": "Ab-Soul",
+          "unit": "ratio",
+          "value": 0.7081186596062152
+        },
+        {
+          "basis": "38 observed tracks; 237785091 streams",
+          "encodings": [
+            "identity",
+            "magnitude",
+            "share_of_whole"
+          ],
+          "fieldId": "biz_markie.top_song_share",
+          "population": "artist catalog",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams_observed",
+              "top1_share"
+            ],
+            "selector": {
+              "artist": "Biz Markie"
+            },
+            "source": "catalogConcentration",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/derived/catalog_concentration.csv",
+            "sourceSha256": "1b626d34914496f6c0dc3e89c23f62070e24289e57ee5fac65c02901e1492463",
+            "transform": "established historical_corpus catalog concentration output"
+          },
+          "subject": "Biz Markie",
+          "unit": "ratio",
+          "value": 0.793137
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c2-reveal-1.1",
+        "c2-reveal-2.1"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-11-11a"
+      ],
+      "requiredEncodings": [
+        "difference",
+        "magnitude",
+        "share_of_whole"
+      ],
+      "reviewKey": "11-11a",
+      "status": "resolved",
+      "taskId": "11-11a.main",
+      "typedFields": [
+        {
+          "basis": "numerator=4432936151; denominator=139972159392",
+          "encodings": [
+            "share_of_whole",
+            "magnitude",
+            "difference"
+          ],
+          "fieldId": "drake.top_song_share",
+          "population": "artist catalog",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "topN": 1
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "sum top 1 streams / spotify_streams.streams_total"
+          },
+          "subject": "Drake",
+          "unit": "ratio",
+          "value": 0.031670127618631
+        },
+        {
+          "basis": "numerator=21163234907; denominator=139972159392",
+          "encodings": [
+            "share_of_whole",
+            "magnitude",
+            "difference"
+          ],
+          "fieldId": "drake.top_10_share",
+          "population": "artist catalog",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "topN": 10
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "sum top 10 streams / spotify_streams.streams_total"
+          },
+          "subject": "Drake",
+          "unit": "ratio",
+          "value": 0.15119603068872545
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c2-reveal-2.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-11-11b"
+      ],
+      "requiredEncodings": [
+        "difference",
+        "magnitude"
+      ],
+      "reviewKey": "11-11b",
+      "status": "resolved",
+      "taskId": "11-11b.main",
+      "typedFields": [
+        {
+          "basis": "numerator=13191505291; denominator=54464177910",
+          "encodings": [
+            "share_of_whole",
+            "difference",
+            "magnitude"
+          ],
+          "fieldId": "future.top_10_share",
+          "population": "artist catalog",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artist": "Future",
+              "topN": 10
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "sum top 10 streams / spotify_streams.streams_total"
+          },
+          "subject": "Future",
+          "unit": "ratio",
+          "value": 0.24220516672074743
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c2-reveal-4.1"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-12-12a"
+      ],
+      "requiredEncodings": [
+        "change_over_time",
+        "magnitude"
+      ],
+      "reviewKey": "12-12a",
+      "status": "resolved",
+      "taskId": "12-12a.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "change_over_time",
+            "difference",
+            "magnitude"
+          ],
+          "fieldId": "ab_soul.top_song_removed",
+          "population": "114 artists in canonical historical metric set",
+          "receipt": {
+            "columns": [
+              "artist",
+              "removed_top_track_streams",
+              "retained_share",
+              "original_rank",
+              "adjusted_rank",
+              "rank_change"
+            ],
+            "selector": {
+              "artist": "Ab-Soul"
+            },
+            "source": "counterfactualRankings",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/derived/counterfactual_rankings.csv",
+            "sourceSha256": "f21c8d59593594323541be99367d9af942f469b39e91de03551b542b1be04568",
+            "transform": "established historical_corpus derive_counterfactual output; rankDrop=adjusted_rank-original_rank"
+          },
+          "subject": "Ab-Soul",
+          "unit": "rank-removal result",
+          "value": {
+            "newRank": 102,
+            "originalRank": 74,
+            "rankDrop": 28,
+            "removedStreams": 2310112491,
+            "retainedShare": 0.291881
+          }
+        },
+        {
+          "encodings": [
+            "change_over_time",
+            "difference",
+            "magnitude"
+          ],
+          "fieldId": "latto.top_song_removed",
+          "population": "114 artists in canonical historical metric set",
+          "receipt": {
+            "columns": [
+              "artist",
+              "removed_top_track_streams",
+              "retained_share",
+              "original_rank",
+              "adjusted_rank",
+              "rank_change"
+            ],
+            "selector": {
+              "artist": "Latto"
+            },
+            "source": "counterfactualRankings",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/derived/counterfactual_rankings.csv",
+            "sourceSha256": "f21c8d59593594323541be99367d9af942f469b39e91de03551b542b1be04568",
+            "transform": "established historical_corpus derive_counterfactual output; rankDrop=adjusted_rank-original_rank"
+          },
+          "subject": "Latto",
+          "unit": "rank-removal result",
+          "value": {
+            "newRank": 73,
+            "originalRank": 60,
+            "rankDrop": 13,
+            "removedStreams": 3065860870,
+            "retainedShare": 0.489491
+          }
+        },
+        {
+          "encodings": [
+            "change_over_time",
+            "difference",
+            "magnitude"
+          ],
+          "fieldId": "jay_rock.top_song_removed",
+          "population": "114 artists in canonical historical metric set",
+          "receipt": {
+            "columns": [
+              "artist",
+              "removed_top_track_streams",
+              "retained_share",
+              "original_rank",
+              "adjusted_rank",
+              "rank_change"
+            ],
+            "selector": {
+              "artist": "Jay Rock"
+            },
+            "source": "counterfactualRankings",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/derived/counterfactual_rankings.csv",
+            "sourceSha256": "f21c8d59593594323541be99367d9af942f469b39e91de03551b542b1be04568",
+            "transform": "established historical_corpus derive_counterfactual output; rankDrop=adjusted_rank-original_rank"
+          },
+          "subject": "Jay Rock",
+          "unit": "rank-removal result",
+          "value": {
+            "newRank": 84,
+            "originalRank": 72,
+            "rankDrop": 12,
+            "removedStreams": 2306203506,
+            "retainedShare": 0.479705
+          }
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c2-reveal-4.2",
+        "c2-reveal-5.1"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-12-12b"
+      ],
+      "requiredEncodings": [
+        "change_over_time",
+        "difference",
+        "magnitude"
+      ],
+      "reviewKey": "12-12b",
+      "status": "resolved",
+      "taskId": "12-12b.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "change_over_time",
+            "difference",
+            "magnitude"
+          ],
+          "fieldId": "macklemore.top_song_removed",
+          "population": "114 artists in canonical historical metric set",
+          "receipt": {
+            "columns": [
+              "artist",
+              "removed_top_track_streams",
+              "retained_share",
+              "original_rank",
+              "adjusted_rank",
+              "rank_change"
+            ],
+            "selector": {
+              "artist": "Macklemore"
+            },
+            "source": "counterfactualRankings",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/derived/counterfactual_rankings.csv",
+            "sourceSha256": "f21c8d59593594323541be99367d9af942f469b39e91de03551b542b1be04568",
+            "transform": "established historical_corpus derive_counterfactual output; rankDrop=adjusted_rank-original_rank"
+          },
+          "subject": "Macklemore",
+          "unit": "rank-removal result",
+          "value": {
+            "newRank": 42,
+            "originalRank": 39,
+            "rankDrop": 3,
+            "removedStreams": 3478111894,
+            "retainedShare": 0.726832
+          }
+        },
+        {
+          "encodings": [
+            "change_over_time",
+            "difference",
+            "magnitude"
+          ],
+          "fieldId": "drake.top_song_removed",
+          "population": "114 artists in canonical historical metric set",
+          "receipt": {
+            "columns": [
+              "artist",
+              "removed_top_track_streams",
+              "retained_share",
+              "original_rank",
+              "adjusted_rank",
+              "rank_change"
+            ],
+            "selector": {
+              "artist": "Drake"
+            },
+            "source": "counterfactualRankings",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/derived/counterfactual_rankings.csv",
+            "sourceSha256": "f21c8d59593594323541be99367d9af942f469b39e91de03551b542b1be04568",
+            "transform": "established historical_corpus derive_counterfactual output; rankDrop=adjusted_rank-original_rank"
+          },
+          "subject": "Drake",
+          "unit": "rank-removal result",
+          "value": {
+            "newRank": 1,
+            "originalRank": 1,
+            "rankDrop": 0,
+            "removedStreams": 4432936151,
+            "retainedShare": 0.968278
+          }
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-1.1",
+        "c2-reconcile-1.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-13-13a-1",
+        "p-13-13a-2"
+      ],
+      "requiredEncodings": [
+        "aggregate",
+        "magnitude",
+        "rank"
+      ],
+      "reviewKey": "13-13a",
+      "status": "resolved",
+      "taskId": "13-13a.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "aggregate",
+            "magnitude",
+            "rank"
+          ],
+          "fieldId": "drake.billion_stream_song_count",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artist": "Drake"
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "count streams >= 1,000,000,000"
+          },
+          "subject": "Drake",
+          "unit": "songs",
+          "value": 30
+        },
+        {
+          "encodings": [
+            "aggregate",
+            "magnitude"
+          ],
+          "fieldId": "chart93.zero_billion_song_artists",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artists": "chart-93"
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "per artist count streams >= 1bn; count equals zero"
+          },
+          "unit": "artists",
+          "value": 35
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-1.3"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-13-13b-1"
+      ],
+      "requiredEncodings": [
+        "share_of_whole"
+      ],
+      "reviewKey": "13-13b",
+      "status": "resolved",
+      "taskId": "13-13b.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "share_of_whole",
+            "magnitude"
+          ],
+          "fieldId": "chart93.catalogs_under_30b",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams_total"
+            ],
+            "selector": {
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "count streams_total < 30,000,000,000"
+          },
+          "unit": "artists",
+          "value": 81
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-2.1",
+        "c2-reconcile-2.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-14-14"
+      ],
+      "requiredEncodings": [
+        "identity",
+        "magnitude"
+      ],
+      "reviewKey": "14-14",
+      "status": "resolved",
+      "taskId": "14-14.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "identity",
+            "magnitude"
+          ],
+          "fieldId": "drake.top_10_streams",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "topN": 10
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "sum top 10"
+          },
+          "subject": "Drake",
+          "unit": "streams",
+          "value": 21163234907
+        },
+        {
+          "encodings": [
+            "identity",
+            "magnitude"
+          ],
+          "fieldId": "next_five.top_song_sum",
+          "population": "next five artists by catalog streams",
+          "receipt": {
+            "columns": [
+              "artist",
+              "streams"
+            ],
+            "selector": {
+              "artists": [
+                "Travis Scott",
+                "Kendrick Lamar",
+                "Post Malone",
+                "Future",
+                "Nicki Minaj"
+              ],
+              "topNPerArtist": 1
+            },
+            "source": "spotifySongs",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+            "sourceSha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008",
+            "transform": "sum each artist's largest song"
+          },
+          "unit": "streams",
+          "value": 15107253480
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c3-provoke-2.1",
+        "c3-provoke-2.2",
+        "c3-provoke-2.3"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-16-16"
+      ],
+      "requiredEncodings": [
+        "membership"
+      ],
+      "reviewKey": "16-16",
+      "status": "resolved",
+      "taskId": "16-16.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "membership"
+          ],
+          "fieldId": "xxl_2009.story_members",
+          "population": "XXL 2009 story subset",
+          "receipt": {
+            "columns": [
+              "Cohort_Year",
+              "Artist",
+              "Source"
+            ],
+            "selector": {
+              "Cohort_Year": "2009",
+              "Source": [
+                "XXL Freshman (selected)",
+                "Declined XXL invite"
+              ],
+              "storyClaimSubset": [
+                "Wale",
+                "B.o.B",
+                "Curren$y",
+                "Kid Cudi"
+              ]
+            },
+            "source": "cohortMembership",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/rapper_cohort_2009_2020.csv",
+            "sourceSha256": "469fb432281a35c530077a09d855d659b5ea836848d99d882f8d744600c3a33c",
+            "transform": "retain exact members named by approved claims"
+          },
+          "unit": "entity list",
+          "value": [
+            "Wale",
+            "B.o.B",
+            "Curren$y",
+            "Kid Cudi"
+          ]
+        },
+        {
+          "encodings": [
+            "membership"
+          ],
+          "fieldId": "xxl_2010.story_members",
+          "population": "XXL 2010 story subset",
+          "receipt": {
+            "columns": [
+              "Cohort_Year",
+              "Artist",
+              "Source"
+            ],
+            "selector": {
+              "Cohort_Year": "2010",
+              "Source": [
+                "XXL Freshman (selected)",
+                "Declined XXL invite"
+              ],
+              "storyClaimSubset": [
+                "J. Cole",
+                "Nipsey Hussle",
+                "Wiz Khalifa",
+                "Big Sean",
+                "Freddie Gibbs",
+                "Jay Rock",
+                "Nicki Minaj"
+              ]
+            },
+            "source": "cohortMembership",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/rapper_cohort_2009_2020.csv",
+            "sourceSha256": "469fb432281a35c530077a09d855d659b5ea836848d99d882f8d744600c3a33c",
+            "transform": "retain exact members named by approved claims"
+          },
+          "unit": "entity list",
+          "value": [
+            "J. Cole",
+            "Nipsey Hussle",
+            "Wiz Khalifa",
+            "Big Sean",
+            "Freddie Gibbs",
+            "Jay Rock",
+            "Nicki Minaj"
+          ]
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c3-provoke-3.1",
+        "c3-provoke-3.2",
+        "c3-provoke-3.3",
+        "c3-provoke-4.1",
+        "c3-provoke-4.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-17-17",
+        "p-18-18"
+      ],
+      "requiredEncodings": [
+        "aggregate",
+        "membership"
+      ],
+      "reviewKey": "18-18",
+      "status": "resolved",
+      "taskId": "18-18.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "aggregate",
+            "membership"
+          ],
+          "fieldId": "xxl_2010.weighting_rule",
+          "population": "XXL 2010 story subset",
+          "receipt": {
+            "columns": [
+              "claims.text"
+            ],
+            "selector": {
+              "claimIds": [
+                "c3-provoke-3.1",
+                "c3-provoke-3.2",
+                "c3-provoke-3.3"
+              ]
+            },
+            "source": "storyPackage",
+            "sourcePath": "/Users/dwaynetoler/Documents/ChatGPT/Polish/patterns-storypackage-review/architecture/storypackage/year-seventeen.storypackage-0.2.json",
+            "sourceSha256": "af2e711cfccda94b84166cfa9a35d107da14df77c76d10b7ca6f310130182fe6",
+            "transform": "approved story rule represented as typed coefficients; not numeric evidence"
+          },
+          "unit": "weights",
+          "value": {
+            "featureOrRemix": 0.5,
+            "leadOrCoLead": 1.0
+          }
+        },
+        {
+          "encodings": [
+            "aggregate",
+            "membership",
+            "magnitude"
+          ],
+          "fieldId": "xxl_2010.weighted_members",
+          "population": "seven named peers",
+          "receipt": {
+            "columns": [
+              "streams_lead",
+              "streams_feature"
+            ],
+            "selector": {
+              "artists": [
+                "J. Cole",
+                "Nipsey Hussle",
+                "Wiz Khalifa",
+                "Big Sean",
+                "Freddie Gibbs",
+                "Jay Rock",
+                "Nicki Minaj"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "streams_lead + 0.5 * streams_feature per artist"
+          },
+          "unit": "streams",
+          "value": [
+            {
+              "artist": "J. Cole",
+              "weightedStreams": 28556272039.5
+            },
+            {
+              "artist": "Nipsey Hussle",
+              "weightedStreams": 2741112277.0
+            },
+            {
+              "artist": "Wiz Khalifa",
+              "weightedStreams": 18815286209.0
+            },
+            {
+              "artist": "Big Sean",
+              "weightedStreams": 11859577349.5
+            },
+            {
+              "artist": "Freddie Gibbs",
+              "weightedStreams": 1986196824.5
+            },
+            {
+              "artist": "Jay Rock",
+              "weightedStreams": 3111874733.0
+            },
+            {
+              "artist": "Nicki Minaj",
+              "weightedStreams": 30067498709.0
+            }
+          ]
+        },
+        {
+          "encodings": [
+            "aggregate",
+            "magnitude"
+          ],
+          "fieldId": "xxl_2010.weighted_total",
+          "population": "seven named peers",
+          "receipt": {
+            "columns": [
+              "streams_lead",
+              "streams_feature"
+            ],
+            "selector": {
+              "artists": [
+                "J. Cole",
+                "Nipsey Hussle",
+                "Wiz Khalifa",
+                "Big Sean",
+                "Freddie Gibbs",
+                "Jay Rock",
+                "Nicki Minaj"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "sum(streams_lead + 0.5 * streams_feature)"
+          },
+          "unit": "streams",
+          "value": 97137818141.5
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "drake.lead_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "streams",
+          "value": 96517309910
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c3-reveal-1.1",
+        "c3-reveal-1.2",
+        "c3-reveal-1.3",
+        "c3-reveal-2.1",
+        "c3-reveal-2.2",
+        "c3-reveal-2.3"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-19-19",
+        "p-20-20"
+      ],
+      "requiredEncodings": [
+        "magnitude"
+      ],
+      "reviewKey": "19-19",
+      "status": "resolved",
+      "taskId": "19-19.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "aggregate",
+            "membership"
+          ],
+          "fieldId": "xxl_2010.weighting_rule",
+          "population": "XXL 2010 story subset",
+          "receipt": {
+            "columns": [
+              "claims.text"
+            ],
+            "selector": {
+              "claimIds": [
+                "c3-provoke-3.1",
+                "c3-provoke-3.2",
+                "c3-provoke-3.3"
+              ]
+            },
+            "source": "storyPackage",
+            "sourcePath": "/Users/dwaynetoler/Documents/ChatGPT/Polish/patterns-storypackage-review/architecture/storypackage/year-seventeen.storypackage-0.2.json",
+            "sourceSha256": "af2e711cfccda94b84166cfa9a35d107da14df77c76d10b7ca6f310130182fe6",
+            "transform": "approved story rule represented as typed coefficients; not numeric evidence"
+          },
+          "unit": "weights",
+          "value": {
+            "featureOrRemix": 0.5,
+            "leadOrCoLead": 1.0
+          }
+        },
+        {
+          "encodings": [
+            "aggregate",
+            "membership",
+            "magnitude"
+          ],
+          "fieldId": "xxl_2010.weighted_members",
+          "population": "seven named peers",
+          "receipt": {
+            "columns": [
+              "streams_lead",
+              "streams_feature"
+            ],
+            "selector": {
+              "artists": [
+                "J. Cole",
+                "Nipsey Hussle",
+                "Wiz Khalifa",
+                "Big Sean",
+                "Freddie Gibbs",
+                "Jay Rock",
+                "Nicki Minaj"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "streams_lead + 0.5 * streams_feature per artist"
+          },
+          "unit": "streams",
+          "value": [
+            {
+              "artist": "J. Cole",
+              "weightedStreams": 28556272039.5
+            },
+            {
+              "artist": "Nipsey Hussle",
+              "weightedStreams": 2741112277.0
+            },
+            {
+              "artist": "Wiz Khalifa",
+              "weightedStreams": 18815286209.0
+            },
+            {
+              "artist": "Big Sean",
+              "weightedStreams": 11859577349.5
+            },
+            {
+              "artist": "Freddie Gibbs",
+              "weightedStreams": 1986196824.5
+            },
+            {
+              "artist": "Jay Rock",
+              "weightedStreams": 3111874733.0
+            },
+            {
+              "artist": "Nicki Minaj",
+              "weightedStreams": 30067498709.0
+            }
+          ]
+        },
+        {
+          "encodings": [
+            "aggregate",
+            "magnitude"
+          ],
+          "fieldId": "xxl_2010.weighted_total",
+          "population": "seven named peers",
+          "receipt": {
+            "columns": [
+              "streams_lead",
+              "streams_feature"
+            ],
+            "selector": {
+              "artists": [
+                "J. Cole",
+                "Nipsey Hussle",
+                "Wiz Khalifa",
+                "Big Sean",
+                "Freddie Gibbs",
+                "Jay Rock",
+                "Nicki Minaj"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "sum(streams_lead + 0.5 * streams_feature)"
+          },
+          "unit": "streams",
+          "value": 97137818141.5
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "drake.lead_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "streams",
+          "value": 96517309910
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c3-reveal-1.1",
+        "c3-reveal-1.2",
+        "c3-reveal-1.3",
+        "c3-reveal-2.1",
+        "c3-reveal-2.2",
+        "c3-reveal-2.3"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-19-19",
+        "p-20-20"
+      ],
+      "requiredEncodings": [
+        "identity",
+        "magnitude"
+      ],
+      "reviewKey": "20-20",
+      "status": "resolved",
+      "taskId": "20-20.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "identity",
+            "magnitude"
+          ],
+          "fieldId": "travis_scott.catalog_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_total"
+            ],
+            "selector": {
+              "artist": "Travis Scott",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Travis Scott",
+          "unit": "streams",
+          "value": 66596515279
+        },
+        {
+          "encodings": [
+            "identity",
+            "magnitude"
+          ],
+          "fieldId": "kendrick_lamar.catalog_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_total"
+            ],
+            "selector": {
+              "artist": "Kendrick Lamar",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Kendrick Lamar",
+          "unit": "streams",
+          "value": 56935099111
+        },
+        {
+          "encodings": [
+            "identity",
+            "magnitude"
+          ],
+          "fieldId": "post_malone.catalog_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_total"
+            ],
+            "selector": {
+              "artist": "Post Malone",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Post Malone",
+          "unit": "streams",
+          "value": 55578469669
+        },
+        {
+          "encodings": [
+            "identity",
+            "magnitude"
+          ],
+          "fieldId": "future.catalog_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_total"
+            ],
+            "selector": {
+              "artist": "Future",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Future",
+          "unit": "streams",
+          "value": 54464177910
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-1.2",
+        "c3-reconcile-2.1",
+        "c3-reconcile-2.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-21-21a"
+      ],
+      "requiredEncodings": [
+        "rank"
+      ],
+      "reviewKey": "21-21a",
+      "status": "resolved",
+      "taskId": "21-21a.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "rank",
+            "difference",
+            "magnitude"
+          ],
+          "fieldId": "drake.lead_catalog_edge_over_largest_peer",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead",
+              "streams_total"
+            ],
+            "selector": {
+              "comparison": "largest non-Drake status=ok catalog",
+              "subject": "Drake"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "Drake streams_lead - max(non-Drake streams_total)"
+          },
+          "subject": "Drake",
+          "unit": "streams",
+          "value": 29920794631
+        },
+        {
+          "encodings": [
+            "rank",
+            "magnitude"
+          ],
+          "fieldId": "drake.feature_credits",
+          "receipt": {
+            "columns": [
+              "feature_credits"
+            ],
+            "selector": {
+              "artist": "Drake"
+            },
+            "source": "cohortMetrics",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/cohort_metrics.csv",
+            "sourceSha256": "bb69a071d75f5aeb7051ccaa5ca807905582938eb8aef1fabd7493a5cfc5f6ca",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "credits",
+          "value": 181
+        },
+        {
+          "encodings": [
+            "rank",
+            "magnitude"
+          ],
+          "fieldId": "future.feature_credits",
+          "receipt": {
+            "columns": [
+              "feature_credits"
+            ],
+            "selector": {
+              "artist": "Future"
+            },
+            "source": "cohortMetrics",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/cohort_metrics.csv",
+            "sourceSha256": "bb69a071d75f5aeb7051ccaa5ca807905582938eb8aef1fabd7493a5cfc5f6ca",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Future",
+          "unit": "credits",
+          "value": 232
+        },
+        {
+          "encodings": [
+            "rank",
+            "magnitude"
+          ],
+          "fieldId": "young_thug.feature_credits",
+          "receipt": {
+            "columns": [
+              "feature_credits"
+            ],
+            "selector": {
+              "artist": "Young Thug"
+            },
+            "source": "cohortMetrics",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/cohort_metrics.csv",
+            "sourceSha256": "bb69a071d75f5aeb7051ccaa5ca807905582938eb8aef1fabd7493a5cfc5f6ca",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Young Thug",
+          "unit": "credits",
+          "value": 302
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-2.3"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-21-21b",
+        "p-21-21b-rate"
+      ],
+      "requiredEncodings": [
+        "derivation"
+      ],
+      "reviewKey": "21-21b",
+      "status": "resolved",
+      "taskId": "21-21b.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "derivation",
+            "magnitude"
+          ],
+          "fieldId": "drake.feature_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_feature"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "streams",
+          "value": 43454849482
+        },
+        {
+          "encodings": [
+            "derivation",
+            "magnitude"
+          ],
+          "fieldId": "drake.feature_streams_per_credit",
+          "receipt": {
+            "columns": [
+              "feature_credits",
+              "spotify_feature"
+            ],
+            "selector": {
+              "artist": "Drake"
+            },
+            "source": "cohortMetrics",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/cohort_metrics.csv",
+            "sourceSha256": "bb69a071d75f5aeb7051ccaa5ca807905582938eb8aef1fabd7493a5cfc5f6ca",
+            "transform": "spotify_feature / feature_credits"
+          },
+          "subject": "Drake",
+          "unit": "streams/credit",
+          "value": 240082041.33701658
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-3.1",
+        "c3-reconcile-3.2",
+        "c3-reconcile-3.3"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-22-22"
+      ],
+      "requiredEncodings": [
+        "aggregate",
+        "difference"
+      ],
+      "reviewKey": "22-22",
+      "status": "resolved",
+      "taskId": "22-22.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "aggregate",
+            "difference"
+          ],
+          "fieldId": "xxl_2009_2010.weighted_total",
+          "population": "eleven named peers",
+          "receipt": {
+            "columns": [
+              "streams_lead",
+              "streams_feature"
+            ],
+            "selector": {
+              "artists": [
+                "Wale",
+                "B.o.B",
+                "Curren$y",
+                "Kid Cudi",
+                "J. Cole",
+                "Nipsey Hussle",
+                "Wiz Khalifa",
+                "Big Sean",
+                "Freddie Gibbs",
+                "Jay Rock",
+                "Nicki Minaj"
+              ],
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "sum(streams_lead + 0.5 * streams_feature)"
+          },
+          "unit": "streams",
+          "value": 121979432135.5
+        },
+        {
+          "encodings": [
+            "difference",
+            "aggregate"
+          ],
+          "fieldId": "xxl_2009_2010.edge_over_drake",
+          "population": "eleven named peers",
+          "receipt": {
+            "columns": [
+              "streams_lead",
+              "streams_feature"
+            ],
+            "selector": {
+              "peerArtists": [
+                "Wale",
+                "B.o.B",
+                "Curren$y",
+                "Kid Cudi",
+                "J. Cole",
+                "Nipsey Hussle",
+                "Wiz Khalifa",
+                "Big Sean",
+                "Freddie Gibbs",
+                "Jay Rock",
+                "Nicki Minaj"
+              ],
+              "subject": "Drake"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "peer weighted total / Drake weighted total - 1"
+          },
+          "subject": "Drake",
+          "unit": "ratio",
+          "value": 0.03158447177815549
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c4-predict-1.1",
+        "c4-predict-1.2",
+        "c4-predict-2.1"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-24-24"
+      ],
+      "requiredEncodings": [
+        "change_over_time"
+      ],
+      "reviewKey": "24-24",
+      "status": "resolved",
+      "taskId": "24-24.main",
+      "typedFields": [
+        {
+          "basis": "2009-2026",
+          "encodings": [
+            "change_over_time"
+          ],
+          "fieldId": "drake.elapsed_years_since_streak_start",
+          "receipt": {
+            "columns": [
+              "year",
+              "us_peak",
+              "us_rnb_peak",
+              "us_rap_peak"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "charted": true
+            },
+            "source": "discography",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+            "sourceSha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544",
+            "transform": "last year - first year of maximum uninterrupted chart-year run"
+          },
+          "subject": "Drake",
+          "unit": "elapsed years",
+          "value": 17
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c4-reveal-1.1",
+        "c4-reveal-1.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-25-25a",
+        "p-25-25b"
+      ],
+      "requiredEncodings": [
+        "change_over_time"
+      ],
+      "reviewKey": "25-25a",
+      "status": "resolved",
+      "taskId": "25-25a.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "change_over_time",
+            "membership"
+          ],
+          "fieldId": "chart_streak.leaders",
+          "population": "named comparison",
+          "receipt": {
+            "columns": [
+              "artist",
+              "year",
+              "us_peak",
+              "us_rnb_peak",
+              "us_rap_peak"
+            ],
+            "selector": {
+              "artists": [
+                "Drake",
+                "J. Cole"
+              ],
+              "charted": true
+            },
+            "source": "discography",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+            "sourceSha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544",
+            "transform": "maximum uninterrupted sequence of years containing any US chart peak"
+          },
+          "unit": "entity streak list",
+          "value": [
+            {
+              "artist": "Drake",
+              "consecutiveYears": 18,
+              "years": [
+                2009,
+                2010,
+                2011,
+                2012,
+                2013,
+                2014,
+                2015,
+                2016,
+                2017,
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023,
+                2024,
+                2025,
+                2026
+              ]
+            },
+            {
+              "artist": "J. Cole",
+              "consecutiveYears": 18,
+              "years": [
+                2009,
+                2010,
+                2011,
+                2012,
+                2013,
+                2014,
+                2015,
+                2016,
+                2017,
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023,
+                2024,
+                2025,
+                2026
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c4-reveal-1.1",
+        "c4-reveal-1.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-25-25a",
+        "p-25-25b"
+      ],
+      "requiredEncodings": [
+        "membership"
+      ],
+      "reviewKey": "25-25b",
+      "status": "resolved",
+      "taskId": "25-25b.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "change_over_time",
+            "membership"
+          ],
+          "fieldId": "chart_streak.leaders",
+          "population": "named comparison",
+          "receipt": {
+            "columns": [
+              "artist",
+              "year",
+              "us_peak",
+              "us_rnb_peak",
+              "us_rap_peak"
+            ],
+            "selector": {
+              "artists": [
+                "Drake",
+                "J. Cole"
+              ],
+              "charted": true
+            },
+            "source": "discography",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+            "sourceSha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544",
+            "transform": "maximum uninterrupted sequence of years containing any US chart peak"
+          },
+          "unit": "entity streak list",
+          "value": [
+            {
+              "artist": "Drake",
+              "consecutiveYears": 18,
+              "years": [
+                2009,
+                2010,
+                2011,
+                2012,
+                2013,
+                2014,
+                2015,
+                2016,
+                2017,
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023,
+                2024,
+                2025,
+                2026
+              ]
+            },
+            {
+              "artist": "J. Cole",
+              "consecutiveYears": 18,
+              "years": [
+                2009,
+                2010,
+                2011,
+                2012,
+                2013,
+                2014,
+                2015,
+                2016,
+                2017,
+                2018,
+                2019,
+                2020,
+                2021,
+                2022,
+                2023,
+                2024,
+                2025,
+                2026
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c4-reveal-3.1",
+        "c4-reveal-3.2",
+        "c4-reveal-3.3",
+        "c4-reveal-3.4"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-26-26"
+      ],
+      "requiredEncodings": [
+        "magnitude"
+      ],
+      "reviewKey": "26-26",
+      "status": "resolved",
+      "taskId": "26-26.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "drake.number_one_lead_singles",
+          "receipt": {
+            "columns": [
+              "artist",
+              "section",
+              "us_peak"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "section": "single",
+              "us_peak": "1"
+            },
+            "source": "discography",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+            "sourceSha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544",
+            "transform": "count matching rows"
+          },
+          "subject": "Drake",
+          "unit": "number-one releases",
+          "value": 11
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "drake.number_one_albums",
+          "receipt": {
+            "columns": [
+              "artist",
+              "section",
+              "us_peak"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "section": "studio_album",
+              "us_peak": "1"
+            },
+            "source": "discography",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+            "sourceSha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544",
+            "transform": "count matching rows"
+          },
+          "subject": "Drake",
+          "unit": "number-one releases",
+          "value": 9
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "drake.number_one_guest_features",
+          "receipt": {
+            "columns": [
+              "artist",
+              "section",
+              "us_peak"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "section": "feature_single",
+              "us_peak": "1"
+            },
+            "source": "discography",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+            "sourceSha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544",
+            "transform": "count matching rows"
+          },
+          "subject": "Drake",
+          "unit": "number-one releases",
+          "value": 4
+        },
+        {
+          "encodings": [
+            "magnitude"
+          ],
+          "fieldId": "drake.number_one_mixtapes",
+          "receipt": {
+            "columns": [
+              "artist",
+              "section",
+              "us_peak"
+            ],
+            "selector": {
+              "artist": "Drake",
+              "section": "mixtape",
+              "us_peak": "1"
+            },
+            "source": "discography",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+            "sourceSha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544",
+            "transform": "count matching rows"
+          },
+          "subject": "Drake",
+          "unit": "number-one releases",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c5-provoke-1.2",
+        "c5-provoke-1.3",
+        "c5-provoke-1.4",
+        "c5-provoke-1.5",
+        "c5-provoke-1.6"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-27-27"
+      ],
+      "requiredEncodings": [
+        "difference",
+        "membership"
+      ],
+      "reviewKey": "27-27",
+      "status": "resolved",
+      "taskId": "27-27.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "post_malone.lead_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead"
+            ],
+            "selector": {
+              "artist": "Post Malone",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Post Malone",
+          "unit": "streams",
+          "value": 49280116774
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "post_malone.feature_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_feature"
+            ],
+            "selector": {
+              "artist": "Post Malone",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Post Malone",
+          "unit": "streams",
+          "value": 6298352895
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "xxxtentacion.lead_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead"
+            ],
+            "selector": {
+              "artist": "XXXTentacion",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "XXXTentacion",
+          "unit": "streams",
+          "value": 34731032553
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "xxxtentacion.feature_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_feature"
+            ],
+            "selector": {
+              "artist": "XXXTentacion",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "XXXTentacion",
+          "unit": "streams",
+          "value": 5978489529
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "kendrick_lamar.lead_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead"
+            ],
+            "selector": {
+              "artist": "Kendrick Lamar",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Kendrick Lamar",
+          "unit": "streams",
+          "value": 41241442242
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "kendrick_lamar.feature_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_feature"
+            ],
+            "selector": {
+              "artist": "Kendrick Lamar",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Kendrick Lamar",
+          "unit": "streams",
+          "value": 15693656869
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "ty_dolla_sign.lead_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead"
+            ],
+            "selector": {
+              "artist": "Ty Dolla $ign",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Ty Dolla $ign",
+          "unit": "streams",
+          "value": 5123968181
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "ty_dolla_sign.feature_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_feature"
+            ],
+            "selector": {
+              "artist": "Ty Dolla $ign",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Ty Dolla $ign",
+          "unit": "streams",
+          "value": 22437309682
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "young_thug.lead_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead"
+            ],
+            "selector": {
+              "artist": "Young Thug",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Young Thug",
+          "unit": "streams",
+          "value": 10601698332
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "young_thug.feature_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_feature"
+            ],
+            "selector": {
+              "artist": "Young Thug",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Young Thug",
+          "unit": "streams",
+          "value": 20673309733
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "21_savage.lead_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_lead"
+            ],
+            "selector": {
+              "artist": "21 Savage",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "21 Savage",
+          "unit": "streams",
+          "value": 16004438101
+        },
+        {
+          "encodings": [
+            "difference",
+            "membership"
+          ],
+          "fieldId": "21_savage.feature_streams",
+          "population": "chart-93",
+          "receipt": {
+            "columns": [
+              "streams_feature"
+            ],
+            "selector": {
+              "artist": "21 Savage",
+              "status": "ok"
+            },
+            "source": "spotifyStreams",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+            "sourceSha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "21 Savage",
+          "unit": "streams",
+          "value": 23381023687
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c6-provoke-1.1"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-29-29a"
+      ],
+      "requiredEncodings": [
+        "difference"
+      ],
+      "reviewKey": "29-29a",
+      "status": "resolved",
+      "taskId": "29-29a.main",
+      "typedFields": [
+        {
+          "encodings": [
+            "difference"
+          ],
+          "fieldId": "lil_baby.primary_units_per_year",
+          "receipt": {
+            "columns": [
+              "units_primary_per_year"
+            ],
+            "selector": {
+              "artist": "Lil Baby"
+            },
+            "source": "cohortMetrics",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/cohort_metrics.csv",
+            "sourceSha256": "bb69a071d75f5aeb7051ccaa5ca807905582938eb8aef1fabd7493a5cfc5f6ca",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Lil Baby",
+          "unit": "certified units/year",
+          "value": 21666667
+        },
+        {
+          "encodings": [
+            "difference"
+          ],
+          "fieldId": "drake.primary_units_per_year",
+          "receipt": {
+            "columns": [
+              "units_primary_per_year"
+            ],
+            "selector": {
+              "artist": "Drake"
+            },
+            "source": "cohortMetrics",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/cohort_metrics.csv",
+            "sourceSha256": "bb69a071d75f5aeb7051ccaa5ca807905582938eb8aef1fabd7493a5cfc5f6ca",
+            "transform": "exact CSV numeric value"
+          },
+          "subject": "Drake",
+          "unit": "certified units/year",
+          "value": 20529412
+        }
+      ]
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-3.1",
+        "c6-reconcile-3.2"
+      ],
+      "gaps": [],
+      "jobProposalIds": [
+        "p-30-30a"
+      ],
+      "requiredEncodings": [
+        "absence"
+      ],
+      "reviewKey": "30-30a",
+      "status": "resolved",
+      "taskId": "30-30a.main",
+      "typedFields": [
+        {
+          "basis": "Current Spotify totals are one as-of observation, not reconstructed history.",
+          "encodings": [
+            "absence"
+          ],
+          "fieldId": "jay_z.year_17_daily_meter",
+          "receipt": {
+            "columns": [
+              "capability",
+              "selected_use",
+              "status",
+              "evidence_rows",
+              "note"
+            ],
+            "selector": {
+              "capability": "Historical snapshots",
+              "selected_use": "Detect unusually slow decay"
+            },
+            "source": "historicalCoverage",
+            "sourcePath": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/coverage.csv",
+            "sourceSha256": "2b424c9a909defbfe709dcec102fca9b03ce43160353b1b34f6d5640a9061f39",
+            "transform": "represent documented missing historical time series as unavailable; never coerce absence to zero"
+          },
+          "subject": "Jay-Z",
+          "unit": "typed absence",
+          "value": {
+            "availability": "unavailable",
+            "coverageStatus": "waiting_for_source_drop",
+            "reason": "Current Spotify totals are one as-of observation, not a reconstructed history.",
+            "value": null
+          }
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "assignments": 28,
+    "blocked": 0,
+    "partial": 0,
+    "resolved": 28,
+    "typedFields": 79,
+    "typedGaps": 0
+  },
+  "dataHandoffComplete": true,
+  "packageId": "year-seventeen@7",
+  "purpose": "Deterministic typed data assignments for StoryPackage-linked VisualTasks",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sources": {
+    "catalogConcentration": {
+      "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/derived/catalog_concentration.csv",
+      "sha256": "1b626d34914496f6c0dc3e89c23f62070e24289e57ee5fac65c02901e1492463"
+    },
+    "cohortMembership": {
+      "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/rapper_cohort_2009_2020.csv",
+      "sha256": "469fb432281a35c530077a09d855d659b5ea836848d99d882f8d744600c3a33c"
+    },
+    "cohortMetrics": {
+      "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/cohort_metrics.csv",
+      "sha256": "bb69a071d75f5aeb7051ccaa5ca807905582938eb8aef1fabd7493a5cfc5f6ca"
+    },
+    "counterfactualRankings": {
+      "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/derived/counterfactual_rankings.csv",
+      "sha256": "f21c8d59593594323541be99367d9af942f469b39e91de03551b542b1be04568"
+    },
+    "discography": {
+      "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/discography.csv",
+      "sha256": "d200b5a9c9b31ebe63de6593345a67ab8bba1a03346907e4cc494c33cd6b1544"
+    },
+    "historicalCoverage": {
+      "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/historical/coverage.csv",
+      "sha256": "2b424c9a909defbfe709dcec102fca9b03ce43160353b1b34f6d5640a9061f39"
+    },
+    "queue": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/reports/storypackage-02-data-handoff-queue.json",
+      "sha256": "35fcab42e9382ff74e9ec7535fb7e7175795be5e3ee33efdc7b93c40e19fcacd"
+    },
+    "spotifySongs": {
+      "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_songs.csv",
+      "sha256": "c452b21ff3eb2daf1526cacd62e3847127fd266ba20d0c49a65cc07776c70008"
+    },
+    "spotifyStreams": {
+      "path": "/Users/dwaynetoler/yt001data/hiphop_content_system/data/spotify_streams.csv",
+      "sha256": "ed54846dbd977e7f472e3473fd1108e4397d2ee5056f976edd6260fded948501"
+    },
+    "storyPackage": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/patterns-storypackage-review/architecture/storypackage/year-seventeen.storypackage-0.2.json",
+      "sha256": "af2e711cfccda94b84166cfa9a35d107da14df77c76d10b7ca6f310130182fe6"
+    }
+  }
+}

@@ -1,0 +1,730 @@
+{
+  "beats": [
+    {
+      "beatId": "01-01",
+      "claimCoverage": "complete",
+      "claimIds": [
+        "c01-1",
+        "c01-2"
+      ],
+      "narration": "One rapper's catalog gets played on Spotify seven hundred times a second, and by the time the day closes out, that comes to fifty-nine million plays. Curren$y was on the 2009 XXL Freshman cover, and every song he has ever put on the platform — the mixtapes, the Jet Life run, the features, all of it stacked end to end — adds up to what this one catalog moves in twenty-four days.",
+      "order": 0,
+      "section": "PROVOKE",
+      "span": {
+        "len": 380,
+        "start": 0
+      },
+      "test": "How dominant is Drake's catalog in daily streaming right now?"
+    },
+    {
+      "beatId": "12-12a",
+      "claimCoverage": "complete",
+      "claimIds": [
+        "c12a-1"
+      ],
+      "narration": "Ab-Soul falls twenty-eight places, Latto falls thirteen, and Jay Rock falls twelve.",
+      "order": 1,
+      "section": "REVEAL",
+      "span": {
+        "len": 83,
+        "start": 382
+      },
+      "test": "Is one hit carrying him?"
+    },
+    {
+      "beatId": "12-12b",
+      "claimCoverage": "complete",
+      "claimIds": [
+        "c12b-1",
+        "c12b-2"
+      ],
+      "narration": "Macklemore keeps seventy-three percent of his streams and drops three spots. Drake loses four point four billion streams, keeps ninety-seven percent of his total, and finishes exactly where he started.",
+      "order": 2,
+      "section": "REVEAL",
+      "span": {
+        "len": 201,
+        "start": 467
+      },
+      "test": "Is one hit carrying him?"
+    },
+    {
+      "beatId": "18-18",
+      "claimCoverage": "complete",
+      "claimIds": [
+        "c18-1",
+        "c18-2",
+        "c18-3"
+      ],
+      "narration": "A feature or a remix verse counts at half. That's the 2010 class under the rule, with Nicki at thirty billion and Cole at twenty-nine billion. Now stack all seven careers end to end.",
+      "order": 3,
+      "section": "PROVOKE",
+      "span": {
+        "len": 182,
+        "start": 670
+      },
+      "test": "Is his success built on features?"
+    }
+  ],
+  "claims": [
+    {
+      "beatId": "01-01",
+      "claimId": "c01-1",
+      "entityRefs": [
+        {
+          "display": "required",
+          "entity": "Drake",
+          "mentioned": false,
+          "provenance": {
+            "evidence": "beat-review 2026-09-27, 01-01: 'drake b-roll performance footage needed'",
+            "reviewState": "approved",
+            "source": "user"
+          },
+          "representedBy": [
+            "media"
+          ]
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 149,
+        "start": 0
+      },
+      "status": "unverified",
+      "text": "One rapper's catalog gets played on Spotify seven hundred times a second, and by the time the day closes out, that comes to fifty-nine million plays.",
+      "values": [
+        {
+          "basis": "spotify_streams",
+          "entity": "Drake",
+          "unit": "plays_per_second",
+          "value": 700
+        },
+        {
+          "basis": "spotify_streams",
+          "entity": "Drake",
+          "unit": "plays_per_day",
+          "value": 59000000
+        }
+      ]
+    },
+    {
+      "beatId": "01-01",
+      "claimId": "c01-2",
+      "entityRefs": [
+        {
+          "display": "required",
+          "entity": "Curren$y",
+          "mentioned": true,
+          "representedBy": [
+            "media"
+          ]
+        },
+        {
+          "display": "eligible",
+          "entity": "Drake",
+          "mentioned": false
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 230,
+        "start": 150
+      },
+      "status": "unverified",
+      "text": "Curren$y was on the 2009 XXL Freshman cover, and every song he has ever put on the platform — the mixtapes, the Jet Life run, the features, all of it stacked end to end — adds up to what this one catalog moves in twenty-four days.",
+      "values": [
+        {
+          "basis": "spotify_streams",
+          "label": "days of Drake's catalog equal to Curren$y's lifetime plays",
+          "unit": "days",
+          "value": 24
+        }
+      ]
+    },
+    {
+      "beatId": "12-12a",
+      "claimId": "c12a-1",
+      "entityRefs": [
+        {
+          "display": "required",
+          "entity": "Ab-Soul",
+          "mentioned": true
+        },
+        {
+          "display": "required",
+          "entity": "Latto",
+          "mentioned": true
+        },
+        {
+          "display": "required",
+          "entity": "Jay Rock",
+          "mentioned": true
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 83,
+        "start": 382
+      },
+      "status": "unverified",
+      "text": "Ab-Soul falls twenty-eight places, Latto falls thirteen, and Jay Rock falls twelve.",
+      "values": [
+        {
+          "entity": "Ab-Soul",
+          "unit": "rank_places",
+          "value": -28
+        },
+        {
+          "entity": "Latto",
+          "unit": "rank_places",
+          "value": -13
+        },
+        {
+          "entity": "Jay Rock",
+          "unit": "rank_places",
+          "value": -12
+        }
+      ]
+    },
+    {
+      "beatId": "12-12b",
+      "claimId": "c12b-1",
+      "entityRefs": [
+        {
+          "display": "required",
+          "entity": "Macklemore",
+          "mentioned": true
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 76,
+        "start": 467
+      },
+      "status": "unverified",
+      "text": "Macklemore keeps seventy-three percent of his streams and drops three spots.",
+      "values": [
+        {
+          "entity": "Macklemore",
+          "unit": "share_kept",
+          "value": 0.73
+        },
+        {
+          "entity": "Macklemore",
+          "unit": "rank_places",
+          "value": -3
+        }
+      ]
+    },
+    {
+      "beatId": "12-12b",
+      "claimId": "c12b-2",
+      "entityRefs": [
+        {
+          "display": "required",
+          "entity": "Drake",
+          "mentioned": true
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 124,
+        "start": 544
+      },
+      "status": "unverified",
+      "text": "Drake loses four point four billion streams, keeps ninety-seven percent of his total, and finishes exactly where he started.",
+      "values": [
+        {
+          "basis": "spotify_streams",
+          "entity": "Drake",
+          "unit": "streams",
+          "value": -4400000000
+        },
+        {
+          "entity": "Drake",
+          "unit": "share_kept",
+          "value": 0.97
+        },
+        {
+          "entity": "Drake",
+          "unit": "rank_places",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "beatId": "18-18",
+      "claimId": "c18-1",
+      "editorPriority": 1,
+      "entityRefs": [],
+      "lane": "editorial",
+      "phrasing": {
+        "direct": "A feature or a remix verse counts at half."
+      },
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "span": {
+        "len": 42,
+        "start": 670
+      },
+      "text": "A feature or a remix verse counts at half."
+    },
+    {
+      "beatId": "18-18",
+      "claimId": "c18-2",
+      "cohortRefs": [
+        {
+          "cohort": "xxl-2010-class",
+          "display": "required",
+          "representedBy": [
+            "media"
+          ],
+          "shownAuthorization": {
+            "evidence": "2026-09-29: user confirmed 'all seven careers' = J. Cole, Nicki Minaj, Big Sean, Wiz Khalifa, Nipsey Hussle, Jay Rock, Freddie Gibbs (2010 invitees minus Drake and the four with no chart output)",
+            "reviewState": "approved",
+            "source": "user"
+          },
+          "shownIds": [
+            "J. Cole",
+            "Nicki Minaj",
+            "Big Sean",
+            "Wiz Khalifa",
+            "Nipsey Hussle",
+            "Jay Rock",
+            "Freddie Gibbs"
+          ],
+          "version": 1
+        }
+      ],
+      "entityRefs": [
+        {
+          "display": "required",
+          "entity": "Nicki Minaj",
+          "mentioned": true
+        },
+        {
+          "display": "required",
+          "entity": "J. Cole",
+          "mentioned": true
+        }
+      ],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 99,
+        "start": 713
+      },
+      "status": "unverified",
+      "text": "That's the 2010 class under the rule, with Nicki at thirty billion and Cole at twenty-nine billion.",
+      "values": [
+        {
+          "basis": "spotify_streams",
+          "entity": "Nicki Minaj",
+          "unit": "weighted_streams",
+          "value": 30000000000
+        },
+        {
+          "basis": "spotify_streams",
+          "entity": "J. Cole",
+          "unit": "weighted_streams",
+          "value": 29000000000
+        }
+      ]
+    },
+    {
+      "beatId": "18-18",
+      "claimId": "c18-3",
+      "cohortRefs": [
+        {
+          "cohort": "xxl-2010-class",
+          "display": "required",
+          "displayCount": 7,
+          "representedBy": [
+            "media",
+            "data"
+          ],
+          "shownAuthorization": {
+            "evidence": "2026-09-29: user confirmed 'all seven careers' = J. Cole, Nicki Minaj, Big Sean, Wiz Khalifa, Nipsey Hussle, Jay Rock, Freddie Gibbs (2010 invitees minus Drake and the four with no chart output)",
+            "reviewState": "approved",
+            "source": "user"
+          },
+          "shownIds": [
+            "J. Cole",
+            "Nicki Minaj",
+            "Big Sean",
+            "Wiz Khalifa",
+            "Nipsey Hussle",
+            "Jay Rock",
+            "Freddie Gibbs"
+          ],
+          "version": 1
+        }
+      ],
+      "entityRefs": [],
+      "lane": "factual",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      },
+      "receipts": [],
+      "span": {
+        "len": 39,
+        "start": 813
+      },
+      "status": "unverified",
+      "text": "Now stack all seven careers end to end."
+    }
+  ],
+  "cohorts": [
+    {
+      "completeness": "incomplete",
+      "id": "xxl-2010-class",
+      "incompleteReason": "members_unregistered",
+      "label": "the 2010 class",
+      "members": [
+        {
+          "entity": "J. Cole",
+          "sourceValue": "J. Cole"
+        },
+        {
+          "entity": "Nipsey Hussle",
+          "sourceValue": "Nipsey Hussle"
+        },
+        {
+          "entity": "Wiz Khalifa",
+          "sourceValue": "Wiz Khalifa"
+        },
+        {
+          "entity": "Big Sean",
+          "sourceValue": "Big Sean"
+        },
+        {
+          "entity": "Freddie Gibbs",
+          "sourceValue": "Freddie Gibbs"
+        },
+        {
+          "entity": "Jay Rock",
+          "sourceValue": "Jay Rock"
+        },
+        {
+          "entity": null,
+          "sourceValue": "Pill"
+        },
+        {
+          "entity": null,
+          "sourceValue": "OJ Da Juiceman"
+        },
+        {
+          "entity": null,
+          "sourceValue": "Fashawn"
+        },
+        {
+          "entity": null,
+          "sourceValue": "Donnis"
+        },
+        {
+          "entity": "Drake",
+          "sourceValue": "Drake"
+        },
+        {
+          "entity": "Nicki Minaj",
+          "sourceValue": "Nicki Minaj"
+        }
+      ],
+      "provenance": {
+        "evidence": "2026-09-29: user confirmed the 2010 class for this video includes invited-but-declined artists (Nicki Minaj); premise per automation-data GAPS.md section 11",
+        "reviewState": "approved",
+        "source": "user"
+      },
+      "rule": {
+        "filters": [
+          {
+            "column": "Cohort_Year",
+            "op": "eq",
+            "value": "2010"
+          },
+          {
+            "column": "Source",
+            "op": "in",
+            "value": [
+              "XXL Freshman (selected)",
+              "Declined XXL invite"
+            ]
+          }
+        ],
+        "nameColumn": "Artist",
+        "orderBy": "row"
+      },
+      "snapshot": {
+        "commit": "0af272f9ffafd32fd3f9413054429cd6f731a866",
+        "path": "hiphop_content_system/data/rapper_cohort_2009_2020.csv",
+        "repo": "djtoler/automation-data",
+        "sha256": "469fb432281a35c530077a09d855d659b5ea836848d99d882f8d744600c3a33c"
+      },
+      "version": 1
+    }
+  ],
+  "continuity": [
+    {
+      "claimIds": [
+        "c12a-1",
+        "c12b-1",
+        "c12b-2"
+      ],
+      "groupId": "g12-rank-fall",
+      "invariant": "same downward rank-change treatment",
+      "provenance": {
+        "evidence": "beat-review 2026-09-27, 12-12b: 'needs the same downward template from the previous beat. the one thats paired could work but for visual consistency, they should be the same'",
+        "reviewState": "approved",
+        "source": "user"
+      },
+      "scope": "template",
+      "strength": "preferred"
+    }
+  ],
+  "entities": [
+    {
+      "displayName": "Ab-Soul",
+      "id": "Ab-Soul"
+    },
+    {
+      "displayName": "Big Sean",
+      "id": "Big Sean"
+    },
+    {
+      "displayName": "Curren$y",
+      "id": "Curren$y"
+    },
+    {
+      "displayName": "Drake",
+      "id": "Drake"
+    },
+    {
+      "displayName": "Freddie Gibbs",
+      "id": "Freddie Gibbs"
+    },
+    {
+      "displayName": "J. Cole",
+      "id": "J. Cole"
+    },
+    {
+      "displayName": "Jay Rock",
+      "id": "Jay Rock"
+    },
+    {
+      "displayName": "Latto",
+      "id": "Latto"
+    },
+    {
+      "displayName": "Macklemore",
+      "id": "Macklemore"
+    },
+    {
+      "displayName": "Nicki Minaj",
+      "id": "Nicki Minaj"
+    },
+    {
+      "displayName": "Nipsey Hussle",
+      "id": "Nipsey Hussle"
+    },
+    {
+      "displayName": "Wiz Khalifa",
+      "id": "Wiz Khalifa"
+    }
+  ],
+  "entityRegistry": {
+    "contract": "astra-entity-roster/snapshot",
+    "snapshot": {
+      "commit": "da8b1755ea6d89a3d23c2fea157e972cee75b869",
+      "path": "grammar/entity-roster.json",
+      "repo": "djtoler/astra-visual-selector",
+      "sha256": "7b6a38a747fc3159e74abc1c5b0f5f10568790e8245875c8c5dfbd3c164b9905"
+    }
+  },
+  "gaps": [],
+  "jobProposals": [
+    {
+      "claimIds": [
+        "c01-1"
+      ],
+      "job": "derived_quantity",
+      "proposalId": "p01-1",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      }
+    },
+    {
+      "claimIds": [
+        "c01-2"
+      ],
+      "job": "equivalence_restatement",
+      "proposalId": "p01-2",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      }
+    },
+    {
+      "claimIds": [
+        "c12a-1",
+        "c12b-1",
+        "c12b-2"
+      ],
+      "job": "change_across_set",
+      "proposalId": "p12-1",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      }
+    },
+    {
+      "claimIds": [
+        "c18-1"
+      ],
+      "job": "define_terms",
+      "proposalId": "p18-1",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      }
+    },
+    {
+      "claimIds": [
+        "c18-2",
+        "c18-3"
+      ],
+      "job": "members_then_total",
+      "proposalId": "p18-2",
+      "provenance": {
+        "reviewState": "proposed",
+        "source": "story_writer"
+      }
+    }
+  ],
+  "obligations": [
+    {
+      "claimIds": [
+        "c01-1"
+      ],
+      "mediaNeeds": [
+        {
+          "constraints": [
+            "Drake performance b-roll"
+          ],
+          "kind": "footage"
+        }
+      ],
+      "obligationId": "o01-1",
+      "provenance": {
+        "evidence": "beat-review 2026-09-27, 01-01: 'drake b-roll performance footage needed'",
+        "reviewState": "approved",
+        "source": "user"
+      },
+      "withheld": [
+        "Drake's name is not spoken until later; the visual may show him but no caption may name him"
+      ]
+    },
+    {
+      "claimIds": [
+        "c01-2"
+      ],
+      "mediaNeeds": [
+        {
+          "constraints": [
+            "Curren$y album/single covers"
+          ],
+          "kind": "artwork"
+        }
+      ],
+      "obligationId": "o01-2",
+      "provenance": {
+        "evidence": "beat-review 2026-09-27, 02-02b: 'currency album covers and songs artwork should be whats available to select from'",
+        "reviewState": "approved",
+        "source": "user"
+      },
+      "wouldBeALie": [
+        "Showing Drake as the subject of the Curren$y sentence"
+      ]
+    },
+    {
+      "claimIds": [
+        "c18-2",
+        "c18-3"
+      ],
+      "intent": "The class's careers, stacked, add up to one combined total",
+      "mustBePerceptible": [
+        "each of the seven as a distinct identity",
+        "the combined total"
+      ],
+      "obligationId": "o18-1",
+      "provenance": {
+        "evidence": "beat-review 2026-09-27, 18-18: 'Nicki, Cole plus 7 other artists need to be shown collectively to represent the 97 billion'; count resolved 2026-09-29: the seven are the 2010 class as confirmed",
+        "reviewState": "approved",
+        "source": "user"
+      },
+      "recognizableIdentityCount": 7
+    }
+  ],
+  "packageId": "year-seventeen@2",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "script": {
+    "encoding": "utf-8",
+    "sha256": "61cc01d0ebf61841533c9bd0959081ca5d02ffc743c9725f57e52e2ec6fdf723",
+    "spanUnit": "codepoint",
+    "text": "One rapper's catalog gets played on Spotify seven hundred times a second, and by the time the day closes out, that comes to fifty-nine million plays. Curren$y was on the 2009 XXL Freshman cover, and every song he has ever put on the platform — the mixtapes, the Jet Life run, the features, all of it stacked end to end — adds up to what this one catalog moves in twenty-four days.\n\nAb-Soul falls twenty-eight places, Latto falls thirteen, and Jay Rock falls twelve.\n\nMacklemore keeps seventy-three percent of his streams and drops three spots. Drake loses four point four billion streams, keeps ninety-seven percent of his total, and finishes exactly where he started.\n\nA feature or a remix verse counts at half. That's the 2010 class under the rule, with Nicki at thirty billion and Cole at twenty-nine billion. Now stack all seven careers end to end."
+  },
+  "selectionAuthorized": false,
+  "sourceSchema": "storypackage/0.2",
+  "story": {
+    "blueprint": "contested_ranking",
+    "niche": "rap",
+    "revision": 2,
+    "storyId": "year-seventeen",
+    "supersedes": 1,
+    "title": "Year Seventeen (excerpt)"
+  },
+  "storyHandoffReceipt": {
+    "accepted": true,
+    "authorityCommit": "ad8ba50c0d35b5ffa4f8d18ef9eb5c17bab5ed6f",
+    "checkerOutput": "year-seventeen-excerpt.storypackage-0.2.json PASS",
+    "checkerPath": "architecture/storypackage/tools/check.py",
+    "checkerSha256": "f76f609e579f8fc4d4e11bd9057b14c858f7a93d6544f39890b19a0cd2d8588d",
+    "packageSha256": "fc35fbf38e62784eceecebdf5935bf3034703627ece6761207c00a1c93872c04"
+  },
+  "timing": {
+    "joinKey": "claimId",
+    "status": "absent"
+  }
+}

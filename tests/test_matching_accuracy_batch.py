@@ -34,6 +34,38 @@ class MatchingAccuracyBatch01(unittest.TestCase):
         second = self.subject.dumps(self.subject.evaluate(self.request))
         self.assertEqual(first, second)
 
+    def test_evaluator_is_declarative_and_contains_no_fixture_ids(self):
+        source = (self.root / "pipeline" / "matching_accuracy_batch.py").read_text()
+        for fixture_id in (
+            "eleven_person_long_carousel_test",
+            "split_beat_visual_tasks",
+            "28-28",
+            "screen-mockup-rfx",
+            "no available broll",
+        ):
+            self.assertNotIn(fixture_id, source)
+
+    def test_unknown_assertion_operator_fails_closed(self):
+        broken = copy.deepcopy(self.request)
+        broken["cases"][0]["assertions"][0]["operator"] = "run_case_specific_code"
+        with self.assertRaisesRegex(ValueError, "unsupported assertion operator"):
+            self.subject.evaluate(broken)
+
+    def test_unrelated_heldout_harness_scores_automated_stages_and_holds_human_review(self):
+        heldout = json.loads(
+            (self.root / "matching-accuracy" / "held-out-001" / "request.json").read_text()
+        )
+        report = self.subject.evaluate(heldout)
+        self.assertEqual(report["summary"], {
+            "total": 6, "passed": 5, "failed": 0, "pending": 1, "allPassed": False
+        })
+        self.assertEqual(
+            [row["id"] for row in report["cases"] if row["status"] == "pending"],
+            ["heldout-human-approval"],
+        )
+        self.assertFalse(report["selectionAuthorized"])
+        self.assertFalse(report["renderingAuthorized"])
+
     def test_ten_plus_case_uses_a_long_ae_carousel_not_spatial_or_infographic(self):
         case = self.cases["eleven_person_long_carousel_test"]
         self.assertEqual(case["status"], "pass")
