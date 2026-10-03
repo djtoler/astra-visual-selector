@@ -2,6 +2,7 @@
 
 Date: 2026-10-03
 Branch: `codex/general-matching-layer-v12`
+Package commit: `aae890d6f03929ad8f8b97b5d57b2a86d0e0af4d`
 
 ## Scope
 
