@@ -1,0 +1,3079 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "entity-roster-reconciliation",
+  "generatedAt": "2026-10-03T14:30:00Z",
+  "policy": {
+    "dataAuthority": "stable entity IDs, typed context, evidence and reviewed alias state",
+    "matchingAuthority": "compact artist-name gazetteer for deterministic extraction",
+    "automaticPromotion": false,
+    "matchingRuntimeRosterChanged": false
+  },
+  "inputs": {
+    "data": {
+      "path": "hiphop-research-engine/config/roster_from_csv_v1.json",
+      "branch": "feature/vector-reasoning-story-generation",
+      "commit": "1e407c0ff",
+      "sha256": "ef085351f1d4a3c82700c80f5d2a5708a9fd1fabbf6ee06bfcd5ef08d972d7eb",
+      "registryId": "registry:hiphop-research-engine-csv-v1",
+      "registryVersion": "10"
+    },
+    "matching": {
+      "path": "grammar/entity-roster.json",
+      "branch": "claude/roster-scale-31-additions",
+      "commit": "12205a7",
+      "sha256": "a654b4bd125b78b22a3d696916d9fa05a62409d0a3f1e004142116e32f1d05c5",
+      "snapshotAt": "2026-10-03"
+    }
+  },
+  "counts": {
+    "dataEntities": 309,
+    "matchingNames": 308,
+    "aligned": 164,
+    "canonicalNormalizedMatches": 163,
+    "aliasMatches": 1,
+    "canonicalSpellingDifferences": 11,
+    "dataOnly": 145,
+    "matchingOnly": 144,
+    "invalidMatchingAliases": 0,
+    "dataAliasCollisions": 0
+  },
+  "aligned": [
+    {
+      "normalizedKey": "21savage",
+      "entityId": "person:21-savage",
+      "entityType": "person",
+      "dataCanonicalName": "21 Savage",
+      "matchingCanonicalName": "21 Savage",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "2pac",
+      "entityId": "person:2pac",
+      "entityType": "person",
+      "dataCanonicalName": "2Pac",
+      "matchingCanonicalName": "2pac",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "50cent",
+      "entityId": "person:50-cent",
+      "entityType": "person",
+      "dataCanonicalName": "50 Cent",
+      "matchingCanonicalName": "50 Cent",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "6ix9ine",
+      "entityId": "person:6ix9ine",
+      "entityType": "person",
+      "dataCanonicalName": "6ix9ine",
+      "matchingCanonicalName": "6ix9ine",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "aboogiewitdahoodie",
+      "entityId": "person:a-boogie-wit-da-hoodie",
+      "entityType": "person",
+      "dataCanonicalName": "A Boogie Wit da Hoodie",
+      "matchingCanonicalName": "A Boogie Wit da Hoodie",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "atribecalledquest",
+      "entityId": "person:a-tribe-called-quest",
+      "entityType": "person",
+      "dataCanonicalName": "A Tribe Called Quest",
+      "matchingCanonicalName": "A Tribe Called Quest",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "aaprocky",
+      "entityId": "person:a-ap-rocky",
+      "entityType": "person",
+      "dataCanonicalName": "A$AP Rocky",
+      "matchingCanonicalName": "A$ap Rocky",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "absoul",
+      "entityId": "person:ab-soul",
+      "entityType": "person",
+      "dataCanonicalName": "Ab-Soul",
+      "matchingCanonicalName": "Ab-Soul",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "acehood",
+      "entityId": "person:ace-hood",
+      "entityType": "person",
+      "dataCanonicalName": "Ace Hood",
+      "matchingCanonicalName": "Ace Hood",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "actionbronson",
+      "entityId": "person:action-bronson",
+      "entityType": "person",
+      "dataCanonicalName": "Action Bronson",
+      "matchingCanonicalName": "Action Bronson",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "akon",
+      "entityId": "person:akon",
+      "entityType": "person",
+      "dataCanonicalName": "Akon",
+      "matchingCanonicalName": "Akon",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "aliciakeys",
+      "entityId": "person:alicia-keys",
+      "entityType": "person",
+      "dataCanonicalName": "Alicia Keys",
+      "matchingCanonicalName": "Alicia Keys",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "amin",
+      "entityId": "person:amin",
+      "entityType": "person",
+      "dataCanonicalName": "Aminé",
+      "matchingCanonicalName": "Aminé",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "andersonpaak",
+      "entityId": "person:anderson-paak",
+      "entityType": "person",
+      "dataCanonicalName": "Anderson .Paak",
+      "matchingCanonicalName": "Anderson .Paak",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "augustalsina",
+      "entityId": "person:august-alsina",
+      "entityType": "person",
+      "dataCanonicalName": "August Alsina",
+      "matchingCanonicalName": "August Alsina",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "bob",
+      "entityId": "person:b-o-b",
+      "entityType": "person",
+      "dataCanonicalName": "B.o.B",
+      "matchingCanonicalName": "B.o.B",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "babykeem",
+      "entityId": "person:baby-keem",
+      "entityType": "person",
+      "dataCanonicalName": "Baby Keem",
+      "matchingCanonicalName": "Baby Keem",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "beastieboys",
+      "entityId": "person:beastie-boys",
+      "entityType": "person",
+      "dataCanonicalName": "Beastie Boys",
+      "matchingCanonicalName": "Beastie Boys",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "bigl",
+      "entityId": "person:big-l",
+      "entityType": "person",
+      "dataCanonicalName": "Big L",
+      "matchingCanonicalName": "Big L",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "bigpunisher",
+      "entityId": "person:big-pun",
+      "entityType": "person",
+      "dataCanonicalName": "Big Pun",
+      "matchingCanonicalName": "Big Punisher",
+      "matchMethod": "matching_alias",
+      "aliasSurface": "Big Pun",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "bigsean",
+      "entityId": "person:big-sean",
+      "entityType": "person",
+      "dataCanonicalName": "Big Sean",
+      "matchingCanonicalName": "Big Sean",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "blackthought",
+      "entityId": "person:black-thought",
+      "entityType": "person",
+      "dataCanonicalName": "Black Thought",
+      "matchingCanonicalName": "Black Thought",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "blocboyjb",
+      "entityId": "person:blocboy-jb",
+      "entityType": "person",
+      "dataCanonicalName": "BlocBoy JB",
+      "matchingCanonicalName": "BlocBoy JB",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "blueface",
+      "entityId": "person:blueface",
+      "entityType": "person",
+      "dataCanonicalName": "Blueface",
+      "matchingCanonicalName": "Blueface",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "bonethugsnharmony",
+      "entityId": "person:bone-thugs-n-harmony",
+      "entityType": "person",
+      "dataCanonicalName": "Bone Thugs-N-Harmony",
+      "matchingCanonicalName": "Bone Thugs 'n Harmony",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "cardib",
+      "entityId": "person:cardi-b",
+      "entityType": "person",
+      "dataCanonicalName": "Cardi B",
+      "matchingCanonicalName": "Cardi B",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "chamillionaire",
+      "entityId": "person:chamillionaire",
+      "entityType": "person",
+      "dataCanonicalName": "Chamillionaire",
+      "matchingCanonicalName": "Chamillionaire",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "chancetherapper",
+      "entityId": "person:chance-the-rapper",
+      "entityType": "person",
+      "dataCanonicalName": "Chance the Rapper",
+      "matchingCanonicalName": "Chance the Rapper",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "chiefkeef",
+      "entityId": "person:chief-keef",
+      "entityType": "person",
+      "dataCanonicalName": "Chief Keef",
+      "matchingCanonicalName": "Chief Keef",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "chrisbrown",
+      "entityId": "person:chris-brown",
+      "entityType": "person",
+      "dataCanonicalName": "Chris Brown",
+      "matchingCanonicalName": "Chris Brown",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "clipse",
+      "entityId": "person:clipse",
+      "entityType": "person",
+      "dataCanonicalName": "Clipse",
+      "matchingCanonicalName": "Clipse",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "comethazine",
+      "entityId": "person:comethazine",
+      "entityType": "person",
+      "dataCanonicalName": "Comethazine",
+      "matchingCanonicalName": "Comethazine",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "common",
+      "entityId": "person:common",
+      "entityType": "person",
+      "dataCanonicalName": "Common",
+      "matchingCanonicalName": "Common",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "curreny",
+      "entityId": "person:curren-y",
+      "entityType": "person",
+      "dataCanonicalName": "Curren$y",
+      "matchingCanonicalName": "Curren$y",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "dabrat",
+      "entityId": "person:da-brat",
+      "entityType": "person",
+      "dataCanonicalName": "Da Brat",
+      "matchingCanonicalName": "Da Brat",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "dababy",
+      "entityId": "person:dababy",
+      "entityType": "person",
+      "dataCanonicalName": "DaBaby",
+      "matchingCanonicalName": "DaBaby",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "dejloaf",
+      "entityId": "person:dej-loaf",
+      "entityType": "person",
+      "dataCanonicalName": "DeJ Loaf",
+      "matchingCanonicalName": "DeJ Loaf",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "denzelcurry",
+      "entityId": "person:denzel-curry",
+      "entityType": "person",
+      "dataCanonicalName": "Denzel Curry",
+      "matchingCanonicalName": "Denzel Curry",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "desiigner",
+      "entityId": "person:desiigner",
+      "entityType": "person",
+      "dataCanonicalName": "Desiigner",
+      "matchingCanonicalName": "Desiigner",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "djkhaled",
+      "entityId": "person:dj-khaled",
+      "entityType": "person",
+      "dataCanonicalName": "DJ Khaled",
+      "matchingCanonicalName": "DJ Khaled",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "dmx",
+      "entityId": "person:dmx",
+      "entityType": "person",
+      "dataCanonicalName": "DMX",
+      "matchingCanonicalName": "DMX",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "dontoliver",
+      "entityId": "person:don-toliver",
+      "entityType": "person",
+      "dataCanonicalName": "Don Toliver",
+      "matchingCanonicalName": "Don Toliver",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "drdre",
+      "entityId": "person:dr-dre",
+      "entityType": "person",
+      "dataCanonicalName": "Dr. Dre",
+      "matchingCanonicalName": "Dr. Dre",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "drake",
+      "entityId": "person:drake",
+      "entityType": "person",
+      "dataCanonicalName": "Drake",
+      "matchingCanonicalName": "Drake",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "eminem",
+      "entityId": "person:eminem",
+      "entityType": "person",
+      "dataCanonicalName": "Eminem",
+      "matchingCanonicalName": "Eminem",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "epmd",
+      "entityId": "person:epmd",
+      "entityType": "person",
+      "dataCanonicalName": "EPMD",
+      "matchingCanonicalName": "EPMD",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "fabolous",
+      "entityId": "person:fabolous",
+      "entityType": "person",
+      "dataCanonicalName": "Fabolous",
+      "matchingCanonicalName": "Fabolous",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "fettywap",
+      "entityId": "person:fetty-wap",
+      "entityType": "person",
+      "dataCanonicalName": "Fetty Wap",
+      "matchingCanonicalName": "Fetty Wap",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "fivioforeign",
+      "entityId": "person:fivio-foreign",
+      "entityType": "person",
+      "dataCanonicalName": "Fivio Foreign",
+      "matchingCanonicalName": "Fivio Foreign",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "freddiegibbs",
+      "entityId": "person:freddie-gibbs",
+      "entityType": "person",
+      "dataCanonicalName": "Freddie Gibbs",
+      "matchingCanonicalName": "Freddie Gibbs",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "freeway",
+      "entityId": "person:freeway",
+      "entityType": "person",
+      "dataCanonicalName": "Freeway",
+      "matchingCanonicalName": "Freeway",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "frenchmontana",
+      "entityId": "person:french-montana",
+      "entityType": "person",
+      "dataCanonicalName": "French Montana",
+      "matchingCanonicalName": "French Montana",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "future",
+      "entityId": "person:future",
+      "entityType": "person",
+      "dataCanonicalName": "Future",
+      "matchingCanonicalName": "Future",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "gherbo",
+      "entityId": "person:g-herbo",
+      "entityType": "person",
+      "dataCanonicalName": "G Herbo",
+      "matchingCanonicalName": "G Herbo",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "gangstarr",
+      "entityId": "person:gang-starr",
+      "entityType": "person",
+      "dataCanonicalName": "Gang Starr",
+      "matchingCanonicalName": "Gang Starr",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "ghostfacekillah",
+      "entityId": "person:ghostface-killah",
+      "entityType": "person",
+      "dataCanonicalName": "Ghostface Killah",
+      "matchingCanonicalName": "Ghostface Killah",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "goldlink",
+      "entityId": "person:goldlink",
+      "entityType": "person",
+      "dataCanonicalName": "GoldLink",
+      "matchingCanonicalName": "GoldLink",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "guccimane",
+      "entityId": "person:gucci-mane",
+      "entityType": "person",
+      "dataCanonicalName": "Gucci Mane",
+      "matchingCanonicalName": "Gucci Mane",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "gunna",
+      "entityId": "person:gunna",
+      "entityType": "person",
+      "dataCanonicalName": "Gunna",
+      "matchingCanonicalName": "Gunna",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "hopsin",
+      "entityId": "person:hopsin",
+      "entityType": "person",
+      "dataCanonicalName": "Hopsin",
+      "matchingCanonicalName": "Hopsin",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "ianndior",
+      "entityId": "person:iann-dior",
+      "entityType": "person",
+      "dataCanonicalName": "Iann Dior",
+      "matchingCanonicalName": "Iann Dior",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "icecube",
+      "entityId": "person:ice-cube",
+      "entityType": "person",
+      "dataCanonicalName": "Ice Cube",
+      "matchingCanonicalName": "Ice Cube",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "iggyazalea",
+      "entityId": "person:iggy-azalea",
+      "entityType": "person",
+      "dataCanonicalName": "Iggy Azalea",
+      "matchingCanonicalName": "Iggy Azalea",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "isaiahrashad",
+      "entityId": "person:isaiah-rashad",
+      "entityType": "person",
+      "dataCanonicalName": "Isaiah Rashad",
+      "matchingCanonicalName": "Isaiah Rashad",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "jcole",
+      "entityId": "person:j-cole",
+      "entityType": "person",
+      "dataCanonicalName": "J. Cole",
+      "matchingCanonicalName": "J. Cole",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "jackharlow",
+      "entityId": "person:jack-harlow",
+      "entityType": "person",
+      "dataCanonicalName": "Jack Harlow",
+      "matchingCanonicalName": "Jack Harlow",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "jayrock",
+      "entityId": "person:jay-rock",
+      "entityType": "person",
+      "dataCanonicalName": "Jay Rock",
+      "matchingCanonicalName": "Jay Rock",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "jayz",
+      "entityId": "person:jay-z",
+      "entityType": "person",
+      "dataCanonicalName": "Jay-Z",
+      "matchingCanonicalName": "Jay-Z",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "jeezy",
+      "entityId": "person:jeezy",
+      "entityType": "person",
+      "dataCanonicalName": "Jeezy",
+      "matchingCanonicalName": "Jeezy",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "jid",
+      "entityId": "person:jid",
+      "entityType": "person",
+      "dataCanonicalName": "JID",
+      "matchingCanonicalName": "JID",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "joeybada",
+      "entityId": "person:joey-bada",
+      "entityType": "person",
+      "dataCanonicalName": "Joey Bada$$",
+      "matchingCanonicalName": "Joey Bada$$",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "juicewrld",
+      "entityId": "person:juice-wrld",
+      "entityType": "person",
+      "dataCanonicalName": "Juice WRLD",
+      "matchingCanonicalName": "Juice Wrld",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "justinbieber",
+      "entityId": "person:justin-bieber",
+      "entityType": "person",
+      "dataCanonicalName": "Justin Bieber",
+      "matchingCanonicalName": "Justin Bieber",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kcamp",
+      "entityId": "person:k-camp",
+      "entityType": "person",
+      "dataCanonicalName": "K Camp",
+      "matchingCanonicalName": "K Camp",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kanyewest",
+      "entityId": "person:kanye-west",
+      "entityType": "person",
+      "dataCanonicalName": "Kanye West",
+      "matchingCanonicalName": "Kanye West",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kendricklamar",
+      "entityId": "person:kendrick-lamar",
+      "entityType": "person",
+      "dataCanonicalName": "Kendrick Lamar",
+      "matchingCanonicalName": "Kendrick Lamar",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kevingates",
+      "entityId": "person:kevin-gates",
+      "entityType": "person",
+      "dataCanonicalName": "Kevin Gates",
+      "matchingCanonicalName": "Kevin Gates",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kidcudi",
+      "entityId": "person:kid-cudi",
+      "entityType": "person",
+      "dataCanonicalName": "Kid Cudi",
+      "matchingCanonicalName": "Kid Cudi",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kidink",
+      "entityId": "person:kid-ink",
+      "entityType": "person",
+      "dataCanonicalName": "Kid Ink",
+      "matchingCanonicalName": "Kid Ink",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kingvon",
+      "entityId": "person:king-von",
+      "entityType": "person",
+      "dataCanonicalName": "King Von",
+      "matchingCanonicalName": "King Von",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kodakblack",
+      "entityId": "person:kodak-black",
+      "entityType": "person",
+      "dataCanonicalName": "Kodak Black",
+      "matchingCanonicalName": "Kodak Black",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "kyle",
+      "entityId": "person:kyle",
+      "entityType": "person",
+      "dataCanonicalName": "Kyle",
+      "matchingCanonicalName": "Kyle",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "llcoolj",
+      "entityId": "person:ll-cool-j",
+      "entityType": "person",
+      "dataCanonicalName": "LL Cool J",
+      "matchingCanonicalName": "L.L. Cool J",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "latto",
+      "entityId": "person:latto",
+      "entityType": "person",
+      "dataCanonicalName": "Latto",
+      "matchingCanonicalName": "Latto",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "laurynhill",
+      "entityId": "person:lauryn-hill",
+      "entityType": "person",
+      "dataCanonicalName": "Lauryn Hill",
+      "matchingCanonicalName": "Lauryn Hill",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "leonthomas",
+      "entityId": "person:leon-thomas",
+      "entityType": "person",
+      "dataCanonicalName": "Leon Thomas",
+      "matchingCanonicalName": "Leon Thomas",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lilbaby",
+      "entityId": "person:lil-baby",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Baby",
+      "matchingCanonicalName": "Lil Baby",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lildicky",
+      "entityId": "person:lil-dicky",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Dicky",
+      "matchingCanonicalName": "Lil Dicky",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lildurk",
+      "entityId": "person:lil-durk",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Durk",
+      "matchingCanonicalName": "Lil Durk",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lilmosey",
+      "entityId": "person:lil-mosey",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Mosey",
+      "matchingCanonicalName": "Lil Mosey",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lilpump",
+      "entityId": "person:lil-pump",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Pump",
+      "matchingCanonicalName": "Lil Pump",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lilskies",
+      "entityId": "person:lil-skies",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Skies",
+      "matchingCanonicalName": "Lil Skies",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "liltecca",
+      "entityId": "person:lil-tecca",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Tecca",
+      "matchingCanonicalName": "Lil Tecca",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "liltjay",
+      "entityId": "person:lil-tjay",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Tjay",
+      "matchingCanonicalName": "Lil Tjay",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "liluzivert",
+      "entityId": "person:lil-uzi-vert",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Uzi Vert",
+      "matchingCanonicalName": "Lil Uzi Vert",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lilwayne",
+      "entityId": "person:lil-wayne",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Wayne",
+      "matchingCanonicalName": "Lil Wayne",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lilyachty",
+      "entityId": "person:lil-yachty",
+      "entityType": "person",
+      "dataCanonicalName": "Lil Yachty",
+      "matchingCanonicalName": "Lil Yachty",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "logic",
+      "entityId": "person:logic",
+      "entityType": "person",
+      "dataCanonicalName": "Logic",
+      "matchingCanonicalName": "Logic",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "ludacris",
+      "entityId": "person:ludacris",
+      "entityType": "person",
+      "dataCanonicalName": "Ludacris",
+      "matchingCanonicalName": "Ludacris",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "lupefiasco",
+      "entityId": "person:lupe-fiasco",
+      "entityType": "person",
+      "dataCanonicalName": "Lupe Fiasco",
+      "matchingCanonicalName": "Lupe Fiasco",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "macmiller",
+      "entityId": "person:mac-miller",
+      "entityType": "person",
+      "dataCanonicalName": "Mac Miller",
+      "matchingCanonicalName": "Mac Miller",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "machinegunkelly",
+      "entityId": "person:machine-gun-kelly",
+      "entityType": "person",
+      "dataCanonicalName": "Machine Gun Kelly",
+      "matchingCanonicalName": "Machine Gun Kelly",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "macklemore",
+      "entityId": "person:macklemore",
+      "entityType": "person",
+      "dataCanonicalName": "Macklemore",
+      "matchingCanonicalName": "Macklemore",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "madeintyo",
+      "entityId": "person:madeintyo",
+      "entityType": "person",
+      "dataCanonicalName": "MadeinTYO",
+      "matchingCanonicalName": "MadeinTYO",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "meekmill",
+      "entityId": "person:meek-mill",
+      "entityType": "person",
+      "dataCanonicalName": "Meek Mill",
+      "matchingCanonicalName": "Meek Mill",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "megantheestallion",
+      "entityId": "person:megan-thee-stallion",
+      "entityType": "person",
+      "dataCanonicalName": "Megan Thee Stallion",
+      "matchingCanonicalName": "Megan Thee Stallion",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "metroboomin",
+      "entityId": "person:metro-boomin",
+      "entityType": "person",
+      "dataCanonicalName": "Metro Boomin",
+      "matchingCanonicalName": "Metro Boomin",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "migos",
+      "entityId": "person:migos",
+      "entityType": "person",
+      "dataCanonicalName": "Migos",
+      "matchingCanonicalName": "Migos",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "missyelliott",
+      "entityId": "person:missy-elliott",
+      "entityType": "person",
+      "dataCanonicalName": "Missy Elliott",
+      "matchingCanonicalName": "Missy Elliott",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "mobbdeep",
+      "entityId": "person:mobb-deep",
+      "entityType": "person",
+      "dataCanonicalName": "Mobb Deep",
+      "matchingCanonicalName": "Mobb Deep",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "nwa",
+      "entityId": "person:n-w-a",
+      "entityType": "person",
+      "dataCanonicalName": "N.W.A",
+      "matchingCanonicalName": "N.W.A",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "nas",
+      "entityId": "person:nas",
+      "entityType": "person",
+      "dataCanonicalName": "Nas",
+      "matchingCanonicalName": "Nas",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "nav",
+      "entityId": "person:nav",
+      "entityType": "person",
+      "dataCanonicalName": "NAV",
+      "matchingCanonicalName": "NAV",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "nelly",
+      "entityId": "person:nelly",
+      "entityType": "person",
+      "dataCanonicalName": "Nelly",
+      "matchingCanonicalName": "Nelly",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "nickiminaj",
+      "entityId": "person:nicki-minaj",
+      "entityType": "person",
+      "dataCanonicalName": "Nicki Minaj",
+      "matchingCanonicalName": "Nicki Minaj",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "nipseyhussle",
+      "entityId": "person:nipsey-hussle",
+      "entityType": "person",
+      "dataCanonicalName": "Nipsey Hussle",
+      "matchingCanonicalName": "Nipsey Hussle",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "nlechoppa",
+      "entityId": "person:nle-choppa",
+      "entityType": "person",
+      "dataCanonicalName": "NLE Choppa",
+      "matchingCanonicalName": "NLE Choppa",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "oldirtybastard",
+      "entityId": "person:ol-dirty-bastard",
+      "entityType": "person",
+      "dataCanonicalName": "Ol' Dirty Bastard",
+      "matchingCanonicalName": "Ol' Dirty Bastard",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "outkast",
+      "entityId": "person:outkast",
+      "entityType": "person",
+      "dataCanonicalName": "Outkast",
+      "matchingCanonicalName": "Outkast",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "peteypablo",
+      "entityId": "person:petey-pablo",
+      "entityType": "person",
+      "dataCanonicalName": "Petey Pablo",
+      "matchingCanonicalName": "Petey Pablo",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "playboicarti",
+      "entityId": "person:playboi-carti",
+      "entityType": "person",
+      "dataCanonicalName": "Playboi Carti",
+      "matchingCanonicalName": "Playboi Carti",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "pnbrock",
+      "entityId": "person:pnb-rock",
+      "entityType": "person",
+      "dataCanonicalName": "PnB Rock",
+      "matchingCanonicalName": "PnB Rock",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "polog",
+      "entityId": "person:polo-g",
+      "entityType": "person",
+      "dataCanonicalName": "Polo G",
+      "matchingCanonicalName": "Polo G",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "poohshiesty",
+      "entityId": "person:pooh-shiesty",
+      "entityType": "person",
+      "dataCanonicalName": "Pooh Shiesty",
+      "matchingCanonicalName": "Pooh Shiesty",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "popsmoke",
+      "entityId": "person:pop-smoke",
+      "entityType": "person",
+      "dataCanonicalName": "Pop Smoke",
+      "matchingCanonicalName": "Pop Smoke",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "postmalone",
+      "entityId": "person:post-malone",
+      "entityType": "person",
+      "dataCanonicalName": "Post Malone",
+      "matchingCanonicalName": "Post Malone",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "publicenemy",
+      "entityId": "person:public-enemy",
+      "entityType": "person",
+      "dataCanonicalName": "Public Enemy",
+      "matchingCanonicalName": "Public Enemy",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "pushat",
+      "entityId": "person:pusha-t",
+      "entityType": "person",
+      "dataCanonicalName": "Pusha T",
+      "matchingCanonicalName": "Pusha T",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "raesremmurd",
+      "entityId": "person:rae-sremmurd",
+      "entityType": "person",
+      "dataCanonicalName": "Rae Sremmurd",
+      "matchingCanonicalName": "Rae Sremmurd",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "raekwon",
+      "entityId": "person:raekwon",
+      "entityType": "person",
+      "dataCanonicalName": "Raekwon",
+      "matchingCanonicalName": "Raekwon",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "richhomiequan",
+      "entityId": "person:rich-homie-quan",
+      "entityType": "person",
+      "dataCanonicalName": "Rich Homie Quan",
+      "matchingCanonicalName": "Rich Homie Quan",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "rickross",
+      "entityId": "person:rick-ross",
+      "entityType": "person",
+      "dataCanonicalName": "Rick Ross",
+      "matchingCanonicalName": "Rick Ross",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "rodwave",
+      "entityId": "person:rod-wave",
+      "entityType": "person",
+      "dataCanonicalName": "Rod Wave",
+      "matchingCanonicalName": "Rod Wave",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "roddyricch",
+      "entityId": "person:roddy-ricch",
+      "entityType": "person",
+      "dataCanonicalName": "Roddy Ricch",
+      "matchingCanonicalName": "Roddy Ricch",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "rundmc",
+      "entityId": "person:run-dmc",
+      "entityType": "person",
+      "dataCanonicalName": "Run DMC",
+      "matchingCanonicalName": "Run-d.m.c",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "scarface",
+      "entityId": "person:scarface",
+      "entityType": "person",
+      "dataCanonicalName": "Scarface",
+      "matchingCanonicalName": "Scarface",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "schoolboyq",
+      "entityId": "person:schoolboy-q",
+      "entityType": "person",
+      "dataCanonicalName": "ScHoolboy Q",
+      "matchingCanonicalName": "ScHoolboy Q",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "shyglizzy",
+      "entityId": "person:shy-glizzy",
+      "entityType": "person",
+      "dataCanonicalName": "Shy Glizzy",
+      "matchingCanonicalName": "Shy Glizzy",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "skimasktheslumpgod",
+      "entityId": "person:ski-mask-the-slump-god",
+      "entityType": "person",
+      "dataCanonicalName": "Ski Mask the Slump God",
+      "matchingCanonicalName": "Ski Mask the Slump God",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "smokepurpp",
+      "entityId": "person:smokepurpp",
+      "entityType": "person",
+      "dataCanonicalName": "Smokepurpp",
+      "matchingCanonicalName": "Smokepurpp",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "tpain",
+      "entityId": "person:t-pain",
+      "entityType": "person",
+      "dataCanonicalName": "T-Pain",
+      "matchingCanonicalName": "T-pain",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "ti",
+      "entityId": "person:t-i",
+      "entityType": "person",
+      "dataCanonicalName": "T.I.",
+      "matchingCanonicalName": "T.I",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "theblackeyedpeas",
+      "entityId": "person:the-black-eyed-peas",
+      "entityType": "person",
+      "dataCanonicalName": "The Black Eyed Peas",
+      "matchingCanonicalName": "The Black Eyed Peas",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "thelox",
+      "entityId": "person:the-lox",
+      "entityType": "person",
+      "dataCanonicalName": "The Lox",
+      "matchingCanonicalName": "The Lox",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "thenotoriousbig",
+      "entityId": "person:the-notorious-b-i-g",
+      "entityType": "person",
+      "dataCanonicalName": "The Notorious B.I.G.",
+      "matchingCanonicalName": "The Notorious B.I.G",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "theweeknd",
+      "entityId": "person:the-weeknd",
+      "entityType": "person",
+      "dataCanonicalName": "The Weeknd",
+      "matchingCanonicalName": "The Weeknd",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "torylanez",
+      "entityId": "person:tory-lanez",
+      "entityType": "person",
+      "dataCanonicalName": "Tory Lanez",
+      "matchingCanonicalName": "Tory Lanez",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "travisscott",
+      "entityId": "person:travis-scott",
+      "entityType": "person",
+      "dataCanonicalName": "Travis Scott",
+      "matchingCanonicalName": "Travis Scott",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "trickdaddy",
+      "entityId": "person:trick-daddy",
+      "entityType": "person",
+      "dataCanonicalName": "Trick Daddy",
+      "matchingCanonicalName": "Trick Daddy",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "trippieredd",
+      "entityId": "person:trippie-redd",
+      "entityType": "person",
+      "dataCanonicalName": "Trippie Redd",
+      "matchingCanonicalName": "Trippie Redd",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "tydollaign",
+      "entityId": "person:ty-dolla-ign",
+      "entityType": "person",
+      "dataCanonicalName": "Ty Dolla $ign",
+      "matchingCanonicalName": "Ty Dolla $ign",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "ugk",
+      "entityId": "person:ugk",
+      "entityType": "person",
+      "dataCanonicalName": "UGK",
+      "matchingCanonicalName": "UGK",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "vincestaples",
+      "entityId": "person:vince-staples",
+      "entityType": "person",
+      "dataCanonicalName": "Vince Staples",
+      "matchingCanonicalName": "Vince Staples",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "wale",
+      "entityId": "person:wale",
+      "entityType": "person",
+      "dataCanonicalName": "Wale",
+      "matchingCanonicalName": "Wale",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "willsmith",
+      "entityId": "person:will-smith",
+      "entityType": "person",
+      "dataCanonicalName": "Will Smith",
+      "matchingCanonicalName": "Will Smith",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "wizkhalifa",
+      "entityId": "person:wiz-khalifa",
+      "entityType": "person",
+      "dataCanonicalName": "Wiz Khalifa",
+      "matchingCanonicalName": "Wiz Khalifa",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "wutangclan",
+      "entityId": "person:wu-tang-clan",
+      "entityType": "person",
+      "dataCanonicalName": "Wu-Tang Clan",
+      "matchingCanonicalName": "Wu-tang Clan",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "xxxtentacion",
+      "entityId": "person:xxxtentacion",
+      "entityType": "person",
+      "dataCanonicalName": "XXXTentacion",
+      "matchingCanonicalName": "XXXTentacion",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "ybncordae",
+      "entityId": "person:ybn-cordae",
+      "entityType": "person",
+      "dataCanonicalName": "YBN Cordae",
+      "matchingCanonicalName": "YBN Cordae",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "ybnnahmir",
+      "entityId": "person:ybn-nahmir",
+      "entityType": "person",
+      "dataCanonicalName": "YBN Nahmir",
+      "matchingCanonicalName": "YBN Nahmir",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "yelawolf",
+      "entityId": "person:yelawolf",
+      "entityType": "person",
+      "dataCanonicalName": "Yelawolf",
+      "matchingCanonicalName": "Yelawolf",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "yg",
+      "entityId": "person:yg",
+      "entityType": "person",
+      "dataCanonicalName": "YG",
+      "matchingCanonicalName": "YG",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "youngmoney",
+      "entityId": "org:young-money",
+      "entityType": "organization",
+      "dataCanonicalName": "Young Money",
+      "matchingCanonicalName": "Young Money",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    },
+    {
+      "normalizedKey": "youngthug",
+      "entityId": "person:young-thug",
+      "entityType": "person",
+      "dataCanonicalName": "Young Thug",
+      "matchingCanonicalName": "Young Thug",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": false
+    }
+  ],
+  "canonicalSpellingDifferences": [
+    {
+      "normalizedKey": "2pac",
+      "entityId": "person:2pac",
+      "entityType": "person",
+      "dataCanonicalName": "2Pac",
+      "matchingCanonicalName": "2pac",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "aaprocky",
+      "entityId": "person:a-ap-rocky",
+      "entityType": "person",
+      "dataCanonicalName": "A$AP Rocky",
+      "matchingCanonicalName": "A$ap Rocky",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "bonethugsnharmony",
+      "entityId": "person:bone-thugs-n-harmony",
+      "entityType": "person",
+      "dataCanonicalName": "Bone Thugs-N-Harmony",
+      "matchingCanonicalName": "Bone Thugs 'n Harmony",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "juicewrld",
+      "entityId": "person:juice-wrld",
+      "entityType": "person",
+      "dataCanonicalName": "Juice WRLD",
+      "matchingCanonicalName": "Juice Wrld",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "llcoolj",
+      "entityId": "person:ll-cool-j",
+      "entityType": "person",
+      "dataCanonicalName": "LL Cool J",
+      "matchingCanonicalName": "L.L. Cool J",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "rundmc",
+      "entityId": "person:run-dmc",
+      "entityType": "person",
+      "dataCanonicalName": "Run DMC",
+      "matchingCanonicalName": "Run-d.m.c",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "thenotoriousbig",
+      "entityId": "person:the-notorious-b-i-g",
+      "entityType": "person",
+      "dataCanonicalName": "The Notorious B.I.G.",
+      "matchingCanonicalName": "The Notorious B.I.G",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "ti",
+      "entityId": "person:t-i",
+      "entityType": "person",
+      "dataCanonicalName": "T.I.",
+      "matchingCanonicalName": "T.I",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "tpain",
+      "entityId": "person:t-pain",
+      "entityType": "person",
+      "dataCanonicalName": "T-Pain",
+      "matchingCanonicalName": "T-pain",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "wutangclan",
+      "entityId": "person:wu-tang-clan",
+      "entityType": "person",
+      "dataCanonicalName": "Wu-Tang Clan",
+      "matchingCanonicalName": "Wu-tang Clan",
+      "matchMethod": "canonical_normalized",
+      "canonicalSpellingDiffers": true
+    },
+    {
+      "normalizedKey": "bigpunisher",
+      "entityId": "person:big-pun",
+      "entityType": "person",
+      "dataCanonicalName": "Big Pun",
+      "matchingCanonicalName": "Big Punisher",
+      "matchMethod": "matching_alias",
+      "aliasSurface": "Big Pun",
+      "canonicalSpellingDiffers": true
+    }
+  ],
+  "dataOnly": [
+    {
+      "entityId": "person:213",
+      "entityType": "person",
+      "canonicalName": "213",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:504-boyz",
+      "entityType": "person",
+      "canonicalName": "504 Boyz",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:asher-roth",
+      "entityType": "person",
+      "canonicalName": "Asher Roth",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "org:atlantic-records",
+      "entityType": "organization",
+      "canonicalName": "Atlantic Records",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "org:bad-boy-records",
+      "entityType": "organization",
+      "canonicalName": "Bad Boy Records",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "person:bad-bunny",
+      "entityType": "person",
+      "canonicalName": "Bad Bunny",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:beanie-sigel",
+      "entityType": "person",
+      "canonicalName": "Beanie Sigel",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:big-daddy-kane",
+      "entityType": "person",
+      "canonicalName": "Big Daddy Kane",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:big-k-r-i-t",
+      "entityType": "person",
+      "canonicalName": "Big K.R.I.T.",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:birdman",
+      "entityType": "person",
+      "canonicalName": "Birdman",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:biz-markie",
+      "entityType": "person",
+      "canonicalName": "Biz Markie",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:bizzy-bone",
+      "entityType": "person",
+      "canonicalName": "Bizzy Bone",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:black-rob",
+      "entityType": "person",
+      "canonicalName": "Black Rob",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "other:breakfast-club",
+      "entityType": "other",
+      "canonicalName": "Breakfast Club",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "person:bruno-mars",
+      "entityType": "person",
+      "canonicalName": "Bruno Mars",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:bubba-sparxxx",
+      "entityType": "person",
+      "canonicalName": "Bubba Sparxxx",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:bun-b",
+      "entityType": "person",
+      "canonicalName": "Bun B",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:busta-rhymes",
+      "entityType": "person",
+      "canonicalName": "Busta Rhymes",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:cappadonna",
+      "entityType": "person",
+      "canonicalName": "Cappadonna",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "org:cash-money",
+      "entityType": "organization",
+      "canonicalName": "Cash Money",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "person:cassidy",
+      "entityType": "person",
+      "canonicalName": "Cassidy",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:c-c-music-factory",
+      "entityType": "person",
+      "canonicalName": "C+C Music Factory",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:central-cee",
+      "entityType": "person",
+      "canonicalName": "Central Cee",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:chingy",
+      "entityType": "person",
+      "canonicalName": "Chingy",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:chris-lighty",
+      "entityType": "person",
+      "canonicalName": "Chris Lighty",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:chuck-d",
+      "entityType": "person",
+      "canonicalName": "Chuck D",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:city-girls",
+      "entityType": "person",
+      "canonicalName": "City Girls",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:c-murder",
+      "entityType": "person",
+      "canonicalName": "C-Murder",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:cole-bennett",
+      "entityType": "person",
+      "canonicalName": "Cole Bennett",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:d12",
+      "entityType": "person",
+      "canonicalName": "D12",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:dalton-higgins",
+      "entityType": "person",
+      "canonicalName": "Dalton Higgins",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "org:death-row-records",
+      "entityType": "organization",
+      "canonicalName": "Death Row Records",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "org:def-jam",
+      "entityType": "organization",
+      "canonicalName": "Def Jam",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "person:def-squad",
+      "entityType": "person",
+      "canonicalName": "Def Squad",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:de-la-soul",
+      "entityType": "person",
+      "canonicalName": "De La Soul",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:dj-drama",
+      "entityType": "person",
+      "canonicalName": "DJ Drama",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:dj-vlad",
+      "entityType": "person",
+      "canonicalName": "DJ Vlad",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:donald-trump",
+      "entityType": "person",
+      "canonicalName": "Donald Trump",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:drag-on",
+      "entityType": "person",
+      "canonicalName": "Drag-On",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:eddie-murphy",
+      "entityType": "person",
+      "canonicalName": "Eddie Murphy",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:elliot-grainge",
+      "entityType": "person",
+      "canonicalName": "Elliot Grainge",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:eric-b",
+      "entityType": "person",
+      "canonicalName": "Eric B",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:eve",
+      "entityType": "person",
+      "canonicalName": "Eve",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:faith-evans",
+      "entityType": "person",
+      "canonicalName": "Faith Evans",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:fat-joe",
+      "entityType": "person",
+      "canonicalName": "Fat Joe",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:flo-rida",
+      "entityType": "person",
+      "canonicalName": "Flo Rida",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:foxy-brown",
+      "entityType": "person",
+      "canonicalName": "Foxy Brown",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:frank-ocean",
+      "entityType": "person",
+      "canonicalName": "Frank Ocean",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:gnarls-barkley",
+      "entityType": "person",
+      "canonicalName": "Gnarls Barkley",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:grandmaster-flash",
+      "entityType": "person",
+      "canonicalName": "Grandmaster Flash",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:grand-puba",
+      "entityType": "person",
+      "canonicalName": "Grand Puba",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:g-unit",
+      "entityType": "person",
+      "canonicalName": "G-Unit",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:ice-spice",
+      "entityType": "person",
+      "canonicalName": "Ice Spice",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "org:interscope-records",
+      "entityType": "organization",
+      "canonicalName": "Interscope Records",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "person:jadakiss",
+      "entityType": "person",
+      "canonicalName": "Jadakiss",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:ja-rule",
+      "entityType": "person",
+      "canonicalName": "Ja Rule",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:jay-electronica",
+      "entityType": "person",
+      "canonicalName": "Jay Electronica",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:jermaine-dupri",
+      "entityType": "person",
+      "canonicalName": "Jermaine Dupri",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:jim-jones",
+      "entityType": "person",
+      "canonicalName": "Jim Jones",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:jimmy-iovine",
+      "entityType": "person",
+      "canonicalName": "Jimmy Iovine",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:joe-budden",
+      "entityType": "person",
+      "canonicalName": "Joe Budden",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:juicy-j",
+      "entityType": "person",
+      "canonicalName": "Juicy J",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:just-blaze",
+      "entityType": "person",
+      "canonicalName": "Just Blaze",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:killer-mike",
+      "entityType": "person",
+      "canonicalName": "Killer Mike",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:kim-kardashian",
+      "entityType": "person",
+      "canonicalName": "Kim Kardashian",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:kirk-franklin",
+      "entityType": "person",
+      "canonicalName": "Kirk Franklin",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:kool-g-rap",
+      "entityType": "person",
+      "canonicalName": "Kool G Rap",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:krayzie-bone",
+      "entityType": "person",
+      "canonicalName": "Krayzie Bone",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:kris-kross",
+      "entityType": "person",
+      "canonicalName": "Kris Kross",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:lil-kim",
+      "entityType": "person",
+      "canonicalName": "Lil' Kim",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:lil-mabu",
+      "entityType": "person",
+      "canonicalName": "Lil Mabu",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:lionel-richie",
+      "entityType": "person",
+      "canonicalName": "Lionel Richie",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:lloyd-banks",
+      "entityType": "person",
+      "canonicalName": "Lloyd Banks",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:loon",
+      "entityType": "person",
+      "canonicalName": "Loon",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:lost-boyz",
+      "entityType": "person",
+      "canonicalName": "Lost Boyz",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:lucian-grainge",
+      "entityType": "person",
+      "canonicalName": "Lucian Grainge",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:malcolm-x",
+      "entityType": "person",
+      "canonicalName": "Malcolm X",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:mase",
+      "entityType": "person",
+      "canonicalName": "Mase",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:masta-ace",
+      "entityType": "person",
+      "canonicalName": "Masta Ace",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:master-p",
+      "entityType": "person",
+      "canonicalName": "Master P",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:max-b",
+      "entityType": "person",
+      "canonicalName": "Max B",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:mc-eiht",
+      "entityType": "person",
+      "canonicalName": "MC Eiht",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:mc-lyte",
+      "entityType": "person",
+      "canonicalName": "MC Lyte",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:memphis-bleek",
+      "entityType": "person",
+      "canonicalName": "Memphis Bleek",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:method-man",
+      "entityType": "person",
+      "canonicalName": "Method Man",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:method-man-redman",
+      "entityType": "person",
+      "canonicalName": "Method Man & Redman",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:michael-jackson",
+      "entityType": "person",
+      "canonicalName": "Michael Jackson",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:michael-jordan",
+      "entityType": "person",
+      "canonicalName": "Michael Jordan",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:mike-jones",
+      "entityType": "person",
+      "canonicalName": "Mike Jones",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:mike-will-made-it",
+      "entityType": "person",
+      "canonicalName": "Mike WiLL Made-It",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:miley-cyrus",
+      "entityType": "person",
+      "canonicalName": "Miley Cyrus",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:mims",
+      "entityType": "person",
+      "canonicalName": "Mims",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:mo-thugs",
+      "entityType": "person",
+      "canonicalName": "Mo Thugs",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "org:murder-inc",
+      "entityType": "organization",
+      "canonicalName": "Murder Inc",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "person:murphy-lee",
+      "entityType": "person",
+      "canonicalName": "Murphy Lee",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:nate-dogg",
+      "entityType": "person",
+      "canonicalName": "Nate Dogg",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:nba-youngboy",
+      "entityType": "person",
+      "canonicalName": "NBA YoungBoy",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:n-o-r-e",
+      "entityType": "person",
+      "canonicalName": "N.O.R.E.",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:obie-trice",
+      "entityType": "person",
+      "canonicalName": "Obie Trice",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:odd-future",
+      "entityType": "person",
+      "canonicalName": "Odd Future",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:paul-wall",
+      "entityType": "person",
+      "canonicalName": "Paul Wall",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:pharrell",
+      "entityType": "person",
+      "canonicalName": "Pharrell",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:pitbull",
+      "entityType": "person",
+      "canonicalName": "Pitbull",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:plies",
+      "entityType": "person",
+      "canonicalName": "Plies",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:queen-latifah",
+      "entityType": "person",
+      "canonicalName": "Queen Latifah",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:quincy-jones",
+      "entityType": "person",
+      "canonicalName": "Quincy Jones",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:rakim",
+      "entityType": "person",
+      "canonicalName": "Rakim",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:redman",
+      "entityType": "person",
+      "canonicalName": "Redman",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:remy-ma",
+      "entityType": "person",
+      "canonicalName": "Remy Ma",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:rich-boy",
+      "entityType": "person",
+      "canonicalName": "Rich Boy",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "org:roc-nation",
+      "entityType": "organization",
+      "canonicalName": "Roc Nation",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "person:romeo-miller",
+      "entityType": "person",
+      "canonicalName": "Romeo Miller",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:russell-simmons",
+      "entityType": "person",
+      "canonicalName": "Russell Simmons",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:sean-combs",
+      "entityType": "person",
+      "canonicalName": "Sean Combs",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:sexy-red",
+      "entityType": "person",
+      "canonicalName": "Sexy Red",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:shyne",
+      "entityType": "person",
+      "canonicalName": "Shyne",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:sisqo",
+      "entityType": "person",
+      "canonicalName": "Sisqo",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:slick-rick",
+      "entityType": "person",
+      "canonicalName": "Slick Rick",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:slim-thug",
+      "entityType": "person",
+      "canonicalName": "Slim Thug",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:snoop-dogg",
+      "entityType": "person",
+      "canonicalName": "Snoop Dogg",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:snow",
+      "entityType": "person",
+      "canonicalName": "Snow",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:sofia-richie",
+      "entityType": "person",
+      "canonicalName": "Sofia Richie",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:soulja-boy",
+      "entityType": "person",
+      "canonicalName": "Soulja Boy",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:st-lunatics",
+      "entityType": "person",
+      "canonicalName": "St. Lunatics",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:styles-p",
+      "entityType": "person",
+      "canonicalName": "Styles P",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:suge-knight",
+      "entityType": "person",
+      "canonicalName": "Suge Knight",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:swae-lee",
+      "entityType": "person",
+      "canonicalName": "Swae Lee",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:talib-kweli",
+      "entityType": "person",
+      "canonicalName": "Talib Kweli",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:taylor-swift",
+      "entityType": "person",
+      "canonicalName": "Taylor Swift",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:teddy-riley",
+      "entityType": "person",
+      "canonicalName": "Teddy Riley",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:tha-dogg-pound",
+      "entityType": "person",
+      "canonicalName": "Tha Dogg Pound",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:the-firm",
+      "entityType": "person",
+      "canonicalName": "The Firm",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:the-game",
+      "entityType": "person",
+      "canonicalName": "The Game",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:timbaland",
+      "entityType": "person",
+      "canonicalName": "Timbaland",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:tony-yayo",
+      "entityType": "person",
+      "canonicalName": "Tony Yayo",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:too-short",
+      "entityType": "person",
+      "canonicalName": "Too Short",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:trey-songz",
+      "entityType": "person",
+      "canonicalName": "Trey Songz",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:tyler-the-creator",
+      "entityType": "person",
+      "canonicalName": "Tyler, the Creator",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "org:universal-music-group",
+      "entityType": "organization",
+      "canonicalName": "Universal Music Group",
+      "disposition": "retain_in_data_context_only_unless_visual_task_requires_it"
+    },
+    {
+      "entityId": "person:val-blavatnik",
+      "entityType": "person",
+      "canonicalName": "Val Blavatnik",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:warren-g",
+      "entityType": "person",
+      "canonicalName": "Warren G",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:westside-connection",
+      "entityType": "person",
+      "canonicalName": "Westside Connection",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:young-gunz",
+      "entityType": "person",
+      "canonicalName": "Young Gunz",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:young-nudy",
+      "entityType": "person",
+      "canonicalName": "Young Nudy",
+      "disposition": "matching_scope_review_required"
+    },
+    {
+      "entityId": "person:yung-joc",
+      "entityType": "person",
+      "canonicalName": "Yung Joc",
+      "disposition": "matching_scope_review_required"
+    }
+  ],
+  "matchingOnly": [
+    {
+      "canonicalName": "24kgoldn",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "2 Chainz",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "6lack",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "A$ap Mob",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Amine",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Andra Day",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Anthony Hamilton",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Ari Lennox",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "ASAP Rocky",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Baby Bash",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Big Scarr",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Bigxthaplug",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Blackbear",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Blac Youngsta",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Bleu",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Bobby Shmurda",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Bossman Dlow",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Brent Faiyaz",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Bryson Tiller",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Calboy",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Chaka Khan",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Cory Gunz",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Cypress Hill",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Daniel Caesar",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Dave East",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "DJ Jazzy Jeff",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Doechii",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Doja Cat",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Dreamville",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "E-40",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Earl Sweatshirt",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Ella Mai",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Est Gee",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Famous Dex",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Fresh Prince",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Fugees",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "G-eazy",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Genius/gza",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Giveon",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "GloRilla",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "H.E.R",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Hunxho",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Internet Money",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Jacquees",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Jazmine Sullivan",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Jelly Roll",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Jeremih",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Jessie Reyez",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Jhene Aiko",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Joji",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Joyner Lucas",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Kali Uchis",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Kap G",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Kehlani",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Ken Carson",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Key Glock",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Khalid",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Kidd Kidd",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Kids See Ghosts",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "K. Michelle",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Lecrae",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Leon Bridges",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Lil Nas X",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Lil Peep",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Lizzo",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Lloyd",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Luther Vandross",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Madvillain",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Mariah The Scientist",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Marques Houston",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Marvin Gaye",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Mary J. Blige",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "MC Hammer",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Meli'sa Morgan",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Mf Doom",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Miguel",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Mo3",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Moneybagg Yo",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Money Man",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Mos Def",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Mustard",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Nardo Wick",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Ne-yo",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Nf",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Offset",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Outlawz",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "PARTYNEXTDOOR",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Quavo",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Queen Naija",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Rich The Kid",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Rico Nasty",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Rihanna",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Robin Thicke",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Roscoe Dash",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Russ",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Ryan Lewis",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Rylo Rodriguez",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Sage The Gemini",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Saint Jhn",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Seal",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Sexyy Red",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Sheck Wes",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Shoreline Mafia",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Silk Sonic",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Sir",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Sir Mix-a-lot",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Sleepy Hallow",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Somo",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Stefflon Don",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Stevie Wonder",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Summer Walker",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Sza",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Tammi Terrell",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Tech N9ne",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Tee Grizzley",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Teyana Taylor",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "The Creator",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "The Kid Laroi",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "The Roots",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Tierra Whack",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Tone Loc",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Toosii",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Travis Porter",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Trinidad James",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Troy Ave",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Twista",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Tyga",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Tyler",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Ugly God",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "$uicideboy$",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Usher",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Various Artists",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Vic Mensa",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Wizkid",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "YBN Almighty Jay",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Yeat",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Yfn Lucci",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "YK Osiris",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Ynw Melly",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Yo Gotti",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Youngboy Never Broke Again",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Young Dolph",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Young Jeezy",
+      "disposition": "data_entity_resolution_request"
+    },
+    {
+      "canonicalName": "Young M.A",
+      "disposition": "data_entity_resolution_request"
+    }
+  ],
+  "invalidMatchingAliases": [],
+  "dataAliasCollisions": [],
+  "acceptance": {
+    "inputsReconstructed": true,
+    "noNormalizedCollisions": true,
+    "allMatchingAliasesResolve": true,
+    "passed": true
+  }
+}
