@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Prove that reconciled editor rules and their underlying story-neutral principles are mandatory matching-harness policy",
+  "sources": {
+    "generalContract": {"path": "grammar/general-matching-layer-contract.json", "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"},
+    "stageContract": {"path": "grammar/matching-harness-stage-contract.json", "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"},
+    "harness": {"path": "pipeline/matching_harness.py", "sha256": "a7d80a3f38489eb55a9bbbce3eb6d48f47ac9ef723662a081485d8a1759b6a80"},
+    "contractGate": {"path": "pipeline/matching_contract_gate.py", "sha256": "93e1f6a544408c2c338b63e61c58cb62928368b820d10c2de7ac4ef20fd34b7d"},
+    "plan": {"path": "plans/REVIEW_RULE_PRINCIPLES_HARNESS_PLAN_2026-10-04.md", "sha256": "d1520a42b2f16ecd5c50ecb257980932851b8230a56372bd39c9a66222a3f162"}
+  },
+  "enforcement": {
+    "principlesRequired": 6,
+    "rulesRequired": 10,
+    "generalContractFailsClosedWhenWeakened": true,
+    "stageContractBindsAdmissionAndHumanReview": true,
+    "hashBoundHarnessReceiptRequired": true,
+    "storySpecificRuntimeExceptionsAdded": false
+  },
+  "regressions": {
+    "focusedMatcherTestsPassed": 32,
+    "focusedContractAndHarnessSuitePassed": 61,
+    "fullRepositorySuite": {
+      "testsRun": 183,
+      "matchingTestsPassed": 182,
+      "externalStoryAuthorityPinErrors": 1,
+      "error": "The external StoryPackage authority checkout is not at the commit pinned by the historical Year Seventeen handoff test."
+    },
+    "crossStoryPackages": ["apollo", "jayz-drake-settle-it", "year-seventeen"],
+    "crossStoryUncoveredClaims": 0
+  },
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

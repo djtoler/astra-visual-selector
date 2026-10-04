@@ -26,8 +26,8 @@
       "id": "general_matching_contract",
       "order": 0,
       "owner": "matching",
-      "requires": ["general_matching_layer_contract", "objective_task_reconciliation", "distinct_storypackage_receipts", "runtime_source_neutrality", "scoped_editor_evidence"],
-      "produces": ["general_matching_layer_receipt", "continuation_receipt"]
+      "requires": ["general_matching_layer_contract", "objective_task_reconciliation", "distinct_storypackage_receipts", "runtime_source_neutrality", "scoped_editor_evidence", "review_rule_principles_contract"],
+      "produces": ["general_matching_layer_receipt", "continuation_receipt", "review_rule_enforcement_receipt"]
     },
     {
       "id": "baseline_reconciliation",
@@ -54,7 +54,7 @@
       "id": "template_media_feasibility",
       "order": 4,
       "owner": "matching",
-      "requires": ["validated_visual_tasks", "verified_task_data_requirements", "native_template_specs", "production_ready_media_boundary", "broll_fallback_route"],
+      "requires": ["validated_visual_tasks", "verified_task_data_requirements", "native_template_specs", "production_ready_media_boundary", "broll_fallback_route", "primary_presentation_operation", "scoped_family_contract", "honest_non_template_disposition"],
       "produces": ["separate_template_media_pairing_verdicts", "typed_media_briefs", "per_beat_viable_route_receipt"]
     },
     {
@@ -68,7 +68,7 @@
       "id": "human_review",
       "order": 6,
       "owner": "editor",
-      "requires": ["automated_resolution_exhausted", "true_editorial_conflicts_only", "one_or_more_distinct_valid_existing_choices_when_template_route_is_proposed"],
+      "requires": ["automated_resolution_exhausted", "true_editorial_conflicts_only", "one_or_more_distinct_valid_existing_choices_when_template_route_is_proposed", "editor_status_comment_authority_separation", "scoped_feedback_reconciliation"],
       "produces": ["durable_scoped_decisions"]
     },
     {

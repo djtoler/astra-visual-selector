@@ -37,6 +37,13 @@ class MatchingContractGateTests(unittest.TestCase):
         with self.assertRaisesRegex(subject.MatchingContractError, "permits"):
             subject._validate_general(broken)
 
+    def test_review_rule_principles_fail_closed(self):
+        contract = json.loads(subject.GENERAL_CONTRACT.read_text())
+        broken = copy.deepcopy(contract)
+        broken["reviewReconciliation"]["rules"]["incidentalNumbersDoNotCreateDataJobs"] = False
+        with self.assertRaisesRegex(subject.MatchingContractError, "editor-review rule"):
+            subject._validate_general(broken)
+
     def test_non_harness_entrypoint_cannot_request_production(self):
         with self.assertRaisesRegex(subject.MatchingContractError, "does not allow mode"):
             subject.enforce_contracts("storypackage_candidate_gallery.build", mode="production")

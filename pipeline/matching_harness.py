@@ -76,6 +76,26 @@ ALLOWED_STOP_CONDITIONS = (
     "external_blocker_requires_user_action",
 )
 ALLOWED_BLOCKER_PARTIES = ("you", "data", "story", "matching", "none")
+REVIEW_PRINCIPLES = (
+    "examplesRequireStoryNeutralReconciliation",
+    "visualJobIsNotEveryNarrationDetail",
+    "admissionFollowsPrimaryCommunicationRequirement",
+    "templateCapabilityEvidenceOverridesHistoricalPopularity",
+    "nonTemplateRouteMayBeBetterThanWeakTemplate",
+    "humanCommentsAreEvidenceNotApproval",
+)
+REVIEW_RULES = (
+    "editorStatusAndCommentAuthoritySeparated",
+    "primaryPresentationOperationControlsAdmission",
+    "secondaryOperationsCannotUnionAdmission",
+    "incidentalNumbersDoNotCreateDataJobs",
+    "scopedFamiliesRequireMatchingOperation",
+    "identityRoutesRejectUnrelatedQuantitativeSemantics",
+    "templateCapacityMustMatchSemanticAndMediaDemand",
+    "brollFallbackDoesNotAuthorizeMedia",
+    "pureRhetoricalQuestionMayUseNoTemplate",
+    "commentsNeverAuthorizeSelectionOrRendering",
+)
 
 
 def blocker_party(owner: str | None, *, user_input_required: bool,
@@ -146,6 +166,16 @@ def validate_contract(contract: dict[str, Any]) -> None:
         raise ValueError("general matching stage does not require objective/task reconciliation")
     if "continuation_receipt" not in stages[0]["produces"]:
         raise ValueError("general matching stage does not produce a continuation receipt")
+    if "review_rule_principles_contract" not in stages[0]["requires"]:
+        raise ValueError("general matching stage omits review-rule principles")
+    if "review_rule_enforcement_receipt" not in stages[0]["produces"]:
+        raise ValueError("general matching stage omits review-rule enforcement receipt")
+    feasibility = next(row for row in stages if row["id"] == "template_media_feasibility")
+    if not {"primary_presentation_operation", "scoped_family_contract", "honest_non_template_disposition"}.issubset(feasibility["requires"]):
+        raise ValueError("template/media feasibility omits reconciled review rules")
+    human_review = next(row for row in stages if row["id"] == "human_review")
+    if not {"editor_status_comment_authority_separation", "scoped_feedback_reconciliation"}.issubset(human_review["requires"]):
+        raise ValueError("human review omits scoped feedback principles")
     if contract.get("selectionAuthorized") is not False or contract.get("renderingAuthorized") is not False:
         raise ValueError("stage contract cannot authorize selection or rendering")
 
@@ -172,6 +202,13 @@ def validate_general_contract(contract: dict[str, Any]) -> None:
         raise ValueError("general matching contract lacks cross-story proof")
     if evidence.get("userSuppliedHeldOutPackageRequired") is not True:
         raise ValueError("general matching contract lacks a held-out package requirement")
+    reconciliation = contract.get("reviewReconciliation") or {}
+    principles = reconciliation.get("principles") or {}
+    rules = reconciliation.get("rules") or {}
+    if any(principles.get(key) is not True for key in REVIEW_PRINCIPLES):
+        raise ValueError("general matching contract omits a review-reconciliation principle")
+    if any(rules.get(key) is not True for key in REVIEW_RULES):
+        raise ValueError("general matching contract omits an enforced editor-review rule")
     execution = contract.get("execution") or {}
     if execution.get("objectiveSource") != "plans/general-matching-layer-tasks.json":
         raise ValueError("general matching contract has no canonical objective source")
@@ -581,6 +618,15 @@ def build(*, mode: str = "evaluation_fixture", contract_path: Path = DEFAULT_CON
             "structuredCapabilityAdmissionRequired": retrieval.get("structuredCompatibilityRequired"),
             "legacyJobBindingCanAdmit": retrieval.get("legacyJobBindingCanAdmit"),
             "taskFeedbackScope": "story_and_task_until_reconciled",
+            "reviewRulePrinciples": {
+                "principles": {key: general_contract["reviewReconciliation"]["principles"][key] for key in REVIEW_PRINCIPLES},
+                "rules": {key: general_contract["reviewReconciliation"]["rules"][key] for key in REVIEW_RULES},
+                "principleCount": len(REVIEW_PRINCIPLES),
+                "ruleCount": len(REVIEW_RULES),
+                "contractSha256": sha(general_contract_path),
+                "selectionAuthorized": False,
+                "renderingAuthorized": False,
+            },
             "complete": not generality_gaps,
             "selectionAuthorized": False,
             "renderingAuthorized": False,
@@ -686,6 +732,15 @@ def validate(artifact: dict[str, Any], *, verify_sources: bool = True) -> dict[s
         raise ValueError("production allowed with incomplete stage")
     if artifact.get("selectionAuthorized") is not False or artifact.get("renderingAuthorized") is not False:
         raise ValueError("matching audit cannot authorize selection or rendering")
+    review_policy = (artifact.get("generalMatchingLayer") or {}).get("reviewRulePrinciples") or {}
+    if any((review_policy.get("principles") or {}).get(key) is not True for key in REVIEW_PRINCIPLES):
+        raise ValueError("matching audit omits review-reconciliation principles")
+    if any((review_policy.get("rules") or {}).get(key) is not True for key in REVIEW_RULES):
+        raise ValueError("matching audit omits enforced editor-review rules")
+    if review_policy.get("contractSha256") != sha(DEFAULT_GENERAL_CONTRACT):
+        raise ValueError("matching audit review-rule contract is stale")
+    if review_policy.get("selectionAuthorized") is not False or review_policy.get("renderingAuthorized") is not False:
+        raise ValueError("matching audit review-rule receipt authorizes selection or rendering")
     continuation = artifact.get("continuation") or {}
     if continuation.get("taskListReconciled") is not True or continuation.get("objectiveReconciled") is not True:
         raise ValueError("matching audit lacks mandatory objective/task reconciliation")

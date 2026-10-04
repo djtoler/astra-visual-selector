@@ -38,6 +38,8 @@ One primary presentation operation controls structured candidate admission. Seco
 
 Every derived task carries a B-roll fallback. A pure rhetorical question without a stronger identity, relationship, lyric or evidence payload is a deliberate non-template route using B-roll or a cutout with text overlay. Retrieval returns an empty template slate instead of forcing a weak candidate. This does not select or source B-roll.
 
+The harness must enforce both the concrete rules above and their reusable principles. Examples can affect runtime only through story-neutral reconciliation; the visual job is not every detail mentioned in narration; primary communication need controls admission; structured template capability evidence outranks historical popularity; a strong non-template treatment is preferable to a weak forced template; and human comments remain evidence rather than approval. A missing or weakened principle fails the general-contract stage.
+
 ### Semantic task granularity correction
 
 One VisualTask should express one coherent visual moment. Split when a narration span requires distinct subject introduction, scale claim, influence claim, contrast, or reinterpretation that cannot be communicated by one treatment without overload.

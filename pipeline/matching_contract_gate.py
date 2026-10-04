@@ -28,6 +28,26 @@ ALLOWED_STOP_CONDITIONS = [
     "external_blocker_requires_user_action",
 ]
 ALLOWED_BLOCKER_PARTIES = ["you", "data", "story", "matching", "none"]
+REVIEW_PRINCIPLES = [
+    "examplesRequireStoryNeutralReconciliation",
+    "visualJobIsNotEveryNarrationDetail",
+    "admissionFollowsPrimaryCommunicationRequirement",
+    "templateCapabilityEvidenceOverridesHistoricalPopularity",
+    "nonTemplateRouteMayBeBetterThanWeakTemplate",
+    "humanCommentsAreEvidenceNotApproval",
+]
+REVIEW_RULES = [
+    "editorStatusAndCommentAuthoritySeparated",
+    "primaryPresentationOperationControlsAdmission",
+    "secondaryOperationsCannotUnionAdmission",
+    "incidentalNumbersDoNotCreateDataJobs",
+    "scopedFamiliesRequireMatchingOperation",
+    "identityRoutesRejectUnrelatedQuantitativeSemantics",
+    "templateCapacityMustMatchSemanticAndMediaDemand",
+    "brollFallbackDoesNotAuthorizeMedia",
+    "pureRhetoricalQuestionMayUseNoTemplate",
+    "commentsNeverAuthorizeSelectionOrRendering",
+]
 
 
 class MatchingContractError(ValueError):
@@ -61,6 +81,13 @@ def _validate_general(contract: dict[str, Any]) -> None:
     ):
         if runtime.get(key) is not True:
             raise MatchingContractError(f"general matching contract omits {key}")
+    reconciliation = contract.get("reviewReconciliation") or {}
+    principles = reconciliation.get("principles") or {}
+    rules = reconciliation.get("rules") or {}
+    if any(principles.get(key) is not True for key in REVIEW_PRINCIPLES):
+        raise MatchingContractError("general matching contract omits a review-reconciliation principle")
+    if any(rules.get(key) is not True for key in REVIEW_RULES):
+        raise MatchingContractError("general matching contract omits an enforced editor-review rule")
     execution = contract.get("execution") or {}
     if execution.get("objectiveSource") != "plans/general-matching-layer-tasks.json":
         raise MatchingContractError("general matching contract lacks its objective source")
@@ -115,6 +142,16 @@ def _validate_stages(contract: dict[str, Any]) -> None:
         raise MatchingContractError("general matching stage omits objective/task reconciliation")
     if "continuation_receipt" not in stages[0]["produces"]:
         raise MatchingContractError("general matching stage omits its continuation receipt")
+    if "review_rule_principles_contract" not in stages[0]["requires"]:
+        raise MatchingContractError("general matching stage omits review-rule principles")
+    if "review_rule_enforcement_receipt" not in stages[0]["produces"]:
+        raise MatchingContractError("general matching stage omits review-rule enforcement receipt")
+    feasibility = next(row for row in stages if row["id"] == "template_media_feasibility")
+    if not {"primary_presentation_operation", "scoped_family_contract", "honest_non_template_disposition"}.issubset(feasibility["requires"]):
+        raise MatchingContractError("template/media feasibility omits reconciled review rules")
+    human_review = next(row for row in stages if row["id"] == "human_review")
+    if not {"editor_status_comment_authority_separation", "scoped_feedback_reconciliation"}.issubset(human_review["requires"]):
+        raise MatchingContractError("human review omits scoped feedback principles")
     if contract.get("selectionAuthorized") is not False or contract.get("renderingAuthorized") is not False:
         raise MatchingContractError("matching stage contract authorizes selection or rendering")
 

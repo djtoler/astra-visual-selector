@@ -28,10 +28,10 @@
       },
       "generalMatching": {
         "id": "general-storypackage-matching-layer-v1",
-        "sha256": "7999ab0b7af15cd846a110d35017e04bde9c01487fcfb77e1bb020d589b9c4ab"
+        "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
       },
       "stageOrder": {
-        "sha256": "60c7e52b372dca0350258c51048ea85fda36ad433ee10d7559b387c86327fd28"
+        "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
       }
     },
     "enforced": true,
@@ -60,7 +60,7 @@
     "typedGaps": 0
   },
   "executionPlan": {
-    "completed": 16,
+    "completed": 17,
     "continuationRequired": false,
     "currentBlocker": {
       "party": "none",
@@ -79,7 +79,7 @@
     "readyTaskIds": [],
     "stopAllowed": true,
     "stopReason": "objective_complete",
-    "total": 16,
+    "total": 17,
     "userInputRequired": false,
     "userInputTaskIds": []
   },
@@ -130,6 +130,33 @@
     "productBoundary": "any_validated_supported_storypackage",
     "regressionPackages": 3,
     "renderingAuthorized": false,
+    "reviewRulePrinciples": {
+      "contractSha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568",
+      "principleCount": 6,
+      "principles": {
+        "admissionFollowsPrimaryCommunicationRequirement": true,
+        "examplesRequireStoryNeutralReconciliation": true,
+        "humanCommentsAreEvidenceNotApproval": true,
+        "nonTemplateRouteMayBeBetterThanWeakTemplate": true,
+        "templateCapabilityEvidenceOverridesHistoricalPopularity": true,
+        "visualJobIsNotEveryNarrationDetail": true
+      },
+      "renderingAuthorized": false,
+      "ruleCount": 10,
+      "rules": {
+        "brollFallbackDoesNotAuthorizeMedia": true,
+        "commentsNeverAuthorizeSelectionOrRendering": true,
+        "editorStatusAndCommentAuthoritySeparated": true,
+        "identityRoutesRejectUnrelatedQuantitativeSemantics": true,
+        "incidentalNumbersDoNotCreateDataJobs": true,
+        "primaryPresentationOperationControlsAdmission": true,
+        "pureRhetoricalQuestionMayUseNoTemplate": true,
+        "scopedFamiliesRequireMatchingOperation": true,
+        "secondaryOperationsCannotUnionAdmission": true,
+        "templateCapacityMustMatchSemanticAndMediaDemand": true
+      },
+      "selectionAuthorized": false
+    },
     "runtimeSourceViolations": [],
     "runtimeSourcesChecked": 4,
     "selectionAuthorized": false,
@@ -194,7 +221,7 @@
   "sources": {
     "contract": {
       "path": "grammar/matching-harness-stage-contract.json",
-      "sha256": "60c7e52b372dca0350258c51048ea85fda36ad433ee10d7559b387c86327fd28"
+      "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
     },
     "dataAssignments": {
       "path": "reports/storypackage-02-data-assignments.json",
@@ -206,7 +233,7 @@
     },
     "executionPlan": {
       "path": "plans/general-matching-layer-tasks.json",
-      "sha256": "6389f94425c83f3f22a3db20ceba3a0927e866357e98c9fa6ab1db4d096ea890"
+      "sha256": "775340a46f7acdabbac72ff2459c2444c84df1fc8a810facef994c3459a671fe"
     },
     "fullVisualTaskBatchMatching": {
       "path": "reports/full-visualtask-batch-matching-current.json",
@@ -214,7 +241,7 @@
     },
     "generalMatchingContract": {
       "path": "grammar/general-matching-layer-contract.json",
-      "sha256": "7999ab0b7af15cd846a110d35017e04bde9c01487fcfb77e1bb020d589b9c4ab"
+      "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
     },
     "generalPackageAdapter1": {
       "path": "reports/storypackage-02-apollo-adapter.json",

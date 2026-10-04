@@ -50,6 +50,34 @@ class MatchingHarnessTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "story-specific runtime behavior"):
             subject.validate_general_contract(broken)
 
+    def test_review_rules_and_underlying_principles_are_mandatory(self):
+        audit = subject.build()
+        policy = audit["generalMatchingLayer"]["reviewRulePrinciples"]
+        self.assertEqual(policy["principleCount"], len(subject.REVIEW_PRINCIPLES))
+        self.assertEqual(policy["ruleCount"], len(subject.REVIEW_RULES))
+        self.assertTrue(all(policy["principles"].values()))
+        self.assertTrue(all(policy["rules"].values()))
+        self.assertFalse(policy["selectionAuthorized"])
+        self.assertFalse(policy["renderingAuthorized"])
+
+        contract = subject.read(subject.DEFAULT_GENERAL_CONTRACT)
+        weakened = copy.deepcopy(contract)
+        weakened["reviewReconciliation"]["principles"]["visualJobIsNotEveryNarrationDetail"] = False
+        with self.assertRaisesRegex(ValueError, "review-reconciliation principle"):
+            subject.validate_general_contract(weakened)
+        weakened = copy.deepcopy(contract)
+        weakened["reviewReconciliation"]["rules"]["secondaryOperationsCannotUnionAdmission"] = False
+        with self.assertRaisesRegex(ValueError, "editor-review rule"):
+            subject.validate_general_contract(weakened)
+
+    def test_stage_contract_binds_review_policy_to_admission_and_human_review(self):
+        contract = subject.read(subject.DEFAULT_CONTRACT)
+        by_id = {row["id"]: row for row in contract["stages"]}
+        self.assertIn("review_rule_principles_contract", by_id["general_matching_contract"]["requires"])
+        self.assertIn("review_rule_enforcement_receipt", by_id["general_matching_contract"]["produces"])
+        self.assertIn("primary_presentation_operation", by_id["template_media_feasibility"]["requires"])
+        self.assertIn("scoped_feedback_reconciliation", by_id["human_review"]["requires"])
+
     def test_story_data_media_and_sequence_are_separate_stages(self):
         audit = subject.build()
         states = {row["id"]: row for row in audit["stageResults"]}
@@ -128,6 +156,8 @@ class MatchingHarnessTests(unittest.TestCase):
         by_id["GML-15"]["receipt"] = None
         by_id["GML-16"]["status"] = "pending"
         by_id["GML-16"]["receipt"] = None
+        by_id["GML-17"]["status"] = "pending"
+        by_id["GML-17"]["receipt"] = None
         summary = subject.execution_plan_summary(active)
         self.assertIn("GML-14", summary["readyTaskIds"])
         self.assertIn("GML-15", summary["readyNonUserTaskIds"])
