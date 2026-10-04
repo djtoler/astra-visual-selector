@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "matching-agent-activation-receipt@1",
+  "activationId": "openai-gpt-default-20261004",
+  "evaluationReceipt": "reports/matching-agent-evaluation-20261004/cross-story-evaluation-receipt.json",
+  "evaluationReceiptSha256": "763b8f4774b8b0df84516ad7a5c5592e53c2846afaf76054cd7e194b1006bf81",
+  "configuredTupleSha256": "432c662641e5e57ed2cb4f4f0fb0f039b2bab8d045cf23de6f42def6614d07b5",
+  "provider": "openai",
+  "configuredModel": "gpt-6-astra",
+  "servedModel": "unavailable",
+  "transport": "cli",
+  "reasoningEffort": "high",
+  "promptVersion": "matching-agent-prompt@1",
+  "toolPolicy": "matching-tools@1",
+  "permissionPolicy": "matching-review-only@1",
+  "evaluationProfile": "matching-cross-story@1",
+  "evidence": {
+    "regressionPackages": 2,
+    "heldOutPackages": 1,
+    "allPackagesPassed": true,
+    "totalClaims": 874,
+    "totalTaskProposals": 611,
+    "totalUncoveredClaims": 0,
+    "totalCandidateCards": 9043,
+    "samePublicCommand": true,
+    "schemaBoundProviderReview": true
+  },
+  "telemetry": {
+    "servedModel": "unavailable",
+    "cost": "unsupported",
+    "inferenceRule": "unsupported or unavailable telemetry is never inferred"
+  },
+  "status": "passed",
+  "overallBuildAcceptance": "blocked_pending_clean_checkout_provider_authorization",
+  "currentBlocker": "external_provider_payload_authorization",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

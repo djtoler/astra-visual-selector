@@ -3,7 +3,7 @@
 **Date:** 2026-10-04  
 **Authority:** `docs/MATCHING_AGENT_BUILD.md`  
 **Branch:** `matching-layer`  
-**Current blocker:** `matching`
+**Current blocker:** `external_provider_payload_authorization`
 
 ## No-deviation assessment
 
@@ -39,3 +39,11 @@ The versioned profile is stored as JSON-compatible YAML. JSON is a strict YAML s
 ## Output boundary
 
 All generated Matching-agent outputs are review artifacts. Every schema and receipt must carry `selectionAuthorized: false` and `renderingAuthorized: false`. Rendering is out of scope and prohibited by the branch policy.
+
+## Acceptance evidence
+
+- The isolated suite passes all 198 tests when the pinned StoryPackage authority and shared entity roster are declared.
+- Matching harness build and validation pass with `currentBlocker: none`, `productionAllowed: false`, and the expected first downstream boundary `render_release_handoff`.
+- Two regression packages and the untouched `jayz-drake-settle-it@4` held-out package passed the identical public command with GPT configured as `gpt-6-astra`; all claims were routed and all selection/render authorization flags remained false.
+- A detached clean checkout at `96363a637421ba24d8f9375f6932bb9958729c90` passes the full 198-test suite and Matching harness without modifying the checkout.
+- The final duplicate provider call from that clean checkout did not run. The execution boundary rejected transmission of the compact review manifest because it still contains pinned repository identifiers, commits, digests, and evaluation metadata. Explicit user authorization for that payload is the only remaining acceptance decision; no workaround was attempted.

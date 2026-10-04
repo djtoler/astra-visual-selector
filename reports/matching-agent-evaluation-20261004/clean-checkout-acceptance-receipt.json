@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "matching-agent-clean-checkout-acceptance@1",
+  "checkout": {
+    "path": "/private/tmp/matching-agent-clean-checkout-20261004",
+    "commit": "96363a637421ba24d8f9375f6932bb9958729c90",
+    "detached": true,
+    "cleanAfterTestsAndHarness": true
+  },
+  "declaredAuthorities": {
+    "storyPackageAuthorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+    "entityRosterCommit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+    "templateCatalogCommit": "a818acd6e3cf3865961ee9cfdf9dc96efbbda6a7",
+    "automationDataCommit": "0af272f9ffafd32fd3f9413054429cd6f731a866"
+  },
+  "checks": {
+    "fullSuite": {
+      "status": "passed",
+      "testsRun": 198,
+      "failures": 0,
+      "errors": 0
+    },
+    "matchingHarnessBuild": {
+      "status": "passed",
+      "currentBlocker": "none",
+      "firstBlockingStage": "render_release_handoff",
+      "productionAllowed": false
+    },
+    "matchingHarnessValidate": {
+      "status": "passed",
+      "currentBlocker": "none",
+      "firstBlockingStage": "render_release_handoff",
+      "productionAllowed": false
+    },
+    "publicCommandProviderRun": {
+      "status": "blocked",
+      "reason": "external execution boundary requires explicit user authorization before transmitting the compact review manifest containing pinned repository identifiers, commits, digests, and evaluation metadata",
+      "workaroundAttempted": false
+    }
+  },
+  "status": "blocked",
+  "currentBlocker": "external_provider_payload_authorization",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}
