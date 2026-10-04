@@ -1,0 +1,66 @@
+{
+  "auditStatus": "PASS",
+  "checks": {
+    "reviewRecords": 60,
+    "distinctReviewedTasks": 59,
+    "candidateLineageRows": 26520,
+    "allEligibleRowsAccountedFor": true,
+    "storedScoresAndTaskReplayExact": true,
+    "historicalDisplaysPreservedSeparately": true,
+    "historicalIntermediateReproduction": "unavailable; provenance_gap explicitly reported",
+    "forcedTemplateFocusedRouteProbeTasks": 12,
+    "existingTestsPassed": 33,
+    "sourceHashesVerified": true,
+    "codeGrammarCatalogUnchangedFromBaseline": true,
+    "requiredStageOrderValidated": true,
+    "reorderedStagesRejected": true,
+    "noHistoricalPicksAppliedToNewStories": true,
+    "workflowReviewValidated": true
+  },
+  "omissionTests": [
+    {
+      "omittedStage": "inspect_consumers",
+      "rejected": true
+    },
+    {
+      "omittedStage": "reconstruct_inputs",
+      "rejected": true
+    },
+    {
+      "omittedStage": "complete_lineages",
+      "rejected": true
+    },
+    {
+      "omittedStage": "isolated_probes",
+      "rejected": true
+    },
+    {
+      "omittedStage": "publish_validate",
+      "rejected": true
+    }
+  ],
+  "workflowReview": {
+    "id": "49d72d8e-8849-41a1-9864-464fe53495bd",
+    "checkpoint": "astra-job06-candidate-pipeline-20261004-complete",
+    "validated": true
+  },
+  "outputs": [
+    {
+      "path": "reports/astra-root-cause/06-candidate-pipeline.md",
+      "sha256": "448a9426d7346fab52152ce53ec94f3d7e0e97f05462a2199a8c91baeaf2efb7"
+    },
+    {
+      "path": "reports/astra-root-cause/06-candidate-pipeline.json",
+      "sha256": "18fe3546468a47fc46d2db059a7fd40085045d19bb08f9713f07af0906eb4203"
+    },
+    {
+      "path": "reports/astra-root-cause/06-candidate-lineages.json",
+      "sha256": "bffda290440022033a400d165525f7846bd74863967a9b4a01f32d57e1f47f5f"
+    },
+    {
+      "path": "reports/astra-root-cause/06-pipeline-probes.json",
+      "sha256": "16f31c4be766cae6eea2fbd0b04476d919f23ec93d1dbef030c48966916da981"
+    }
+  ],
+  "scope": "Audit acceptance, not production fit or historical intermediate-state reproduction."
+}
