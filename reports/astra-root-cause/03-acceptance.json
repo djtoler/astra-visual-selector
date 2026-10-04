@@ -1,0 +1,58 @@
+{
+  "auditStatus": "PASS",
+  "checks": {
+    "matrixRows": 24,
+    "ownedTypedGaps": 12,
+    "editorCases": 15,
+    "evidenceIdsValid": true,
+    "existingTestsPassed": 16,
+    "focusedProbesRecorded": 30,
+    "newFieldsProposed": 0,
+    "productionUnchanged": true,
+    "stageOrderValidated": true,
+    "reorderedStagesRejected": true,
+    "workflowReviewValidated": true
+  },
+  "omissionTests": [
+    {
+      "omittedStage": "inspect_contracts_and_consumers",
+      "rejected": true
+    },
+    {
+      "omittedStage": "measure_population_and_freshness",
+      "rejected": true
+    },
+    {
+      "omittedStage": "reconcile_editor_cases",
+      "rejected": true
+    },
+    {
+      "omittedStage": "focused_validation_probes",
+      "rejected": true
+    },
+    {
+      "omittedStage": "publish_and_acceptance",
+      "rejected": true
+    }
+  ],
+  "workflowReview": {
+    "id": "ac7d2596-3ff1-46c5-9d0e-28971b290687",
+    "checkpoint": "astra-job03-contract-fitness-20261004-complete",
+    "validated": true
+  },
+  "validationScope": "Audit acceptance only; no new production enforcement system.",
+  "outputs": [
+    {
+      "path": "reports/astra-root-cause/03-upstream-contract-fitness.json",
+      "sha256": "c60de914c7f1a6c1c1d50f8d8f75d38e5867659e966c713dea7b4ee8d1261e67"
+    },
+    {
+      "path": "reports/astra-root-cause/03-upstream-contract-fitness.md",
+      "sha256": "46d29937ac4e09c053f87a7e8312862fd32955f050e5424faa67a25165bdfcff"
+    },
+    {
+      "path": "reports/astra-root-cause/03-validation-probes.json",
+      "sha256": "84caae606a945e0d50eba3a4962721d16bbd26e6905fb1c28545c9d77a830743"
+    }
+  ]
+}

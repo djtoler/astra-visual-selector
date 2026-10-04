@@ -1,0 +1,332 @@
+{
+  "probes": [
+    {
+      "probe": "baseline_story_year-seventeen",
+      "outcome": "accepted",
+      "detail": {
+        "gaps": []
+      }
+    },
+    {
+      "probe": "baseline_story_future-volksgeist",
+      "outcome": "accepted",
+      "detail": {
+        "gaps": [
+          {
+            "gap": "speaker_unidentified",
+            "beat": "p01-3",
+            "role": "clip",
+            "label": "unknown",
+            "sourceTimestamp": "00:00:24"
+          },
+          {
+            "gap": "speaker_unidentified",
+            "beat": "p02-10",
+            "role": "clip",
+            "label": "interviewer",
+            "sourceTimestamp": "00:03:48"
+          },
+          {
+            "gap": "speaker_unidentified",
+            "beat": "p03-7",
+            "role": "clip",
+            "label": "unknown",
+            "sourceTimestamp": "00:07:44"
+          },
+          {
+            "gap": "speaker_unidentified",
+            "beat": "p04-4",
+            "role": "clip",
+            "label": "unknown",
+            "sourceTimestamp": "00:11:13"
+          },
+          {
+            "gap": "speaker_unidentified",
+            "beat": "p06-3",
+            "role": "clip",
+            "label": "unknown",
+            "sourceTimestamp": "00:19:41"
+          },
+          {
+            "gap": "speaker_unidentified",
+            "beat": "p07-7",
+            "role": "clip",
+            "label": "unknown",
+            "sourceTimestamp": "00:26:14"
+          }
+        ]
+      }
+    },
+    {
+      "probe": "baseline_story_jayz-drake-settle-it",
+      "outcome": "accepted",
+      "detail": {
+        "gaps": []
+      }
+    },
+    {
+      "probe": "stale_script_digest",
+      "outcome": "rejected",
+      "detail": "stale script sha256"
+    },
+    {
+      "probe": "stale_registry_digest",
+      "outcome": "rejected",
+      "detail": "stale entity registry snapshot"
+    },
+    {
+      "probe": "stale_cohort_digest",
+      "outcome": "rejected",
+      "detail": "cohort scale-31 stale snapshot"
+    },
+    {
+      "probe": "registry_commit_changed_hash_unchanged",
+      "outcome": "accepted",
+      "detail": {
+        "gaps": []
+      }
+    },
+    {
+      "probe": "supported_value_changed_receipt_unchanged",
+      "outcome": "accepted",
+      "detail": {
+        "gaps": []
+      }
+    },
+    {
+      "probe": "supported_receipt_nonsense",
+      "outcome": "accepted",
+      "detail": {
+        "gaps": []
+      }
+    },
+    {
+      "probe": "splitter_stale_adapter_receipt",
+      "outcome": "accepted",
+      "detail": {
+        "tasks": 186
+      }
+    },
+    {
+      "probe": "public_preflight_baseline",
+      "outcome": "accepted",
+      "detail": {
+        "inputs": [
+          "storyPackage",
+          "entityRoster",
+          "templateCatalog",
+          "repositoryMappings",
+          "dependencyReceipts"
+        ]
+      }
+    },
+    {
+      "probe": "public_preflight_wrong_registry_commit",
+      "outcome": "rejected",
+      "detail": "entityRoster repository moved: expected 0000000000000000000000000000000000000000 got eacb739a4d24acf6ce25d2f4789569d9828e652e"
+    },
+    {
+      "probe": "public_empty_data_media_handoffs",
+      "outcome": "accepted",
+      "detail": {
+        "tasks": 186,
+        "typedGaps": 0,
+        "dataRequired": 73,
+        "mediaRequired": 104
+      }
+    },
+    {
+      "probe": "public_stale_media_handoff_digest",
+      "outcome": "rejected",
+      "detail": "mediaHandoff digest is stale"
+    },
+    {
+      "probe": "requirements_no_handoffs_year-seventeen",
+      "outcome": "accepted",
+      "detail": {
+        "tasks": 115,
+        "typedGaps": 89,
+        "dataRequired": 15,
+        "mediaRequired": 74
+      }
+    },
+    {
+      "probe": "requirements_no_handoffs_future-volksgeist",
+      "outcome": "accepted",
+      "detail": {
+        "tasks": 310,
+        "typedGaps": 275,
+        "dataRequired": 17,
+        "mediaRequired": 258
+      }
+    },
+    {
+      "probe": "requirements_no_handoffs_jayz-drake-settle-it",
+      "outcome": "accepted",
+      "detail": {
+        "tasks": 186,
+        "typedGaps": 177,
+        "dataRequired": 73,
+        "mediaRequired": 104
+      }
+    },
+    {
+      "probe": "stored_data_assignment_freshness",
+      "outcome": "accepted",
+      "detail": {
+        "dataHandoffComplete": true,
+        "assignments": 28,
+        "blocked": 0,
+        "partial": 0,
+        "resolved": 28,
+        "typedFields": 79,
+        "typedGaps": 0
+      }
+    },
+    {
+      "probe": "fresh_legacy_data_assignment",
+      "outcome": "accepted",
+      "detail": {
+        "dataHandoffComplete": true,
+        "assignments": 28,
+        "resolved": 28,
+        "partial": 0,
+        "blocked": 0,
+        "typedFields": 79,
+        "typedGaps": 0
+      }
+    },
+    {
+      "probe": "stale_data_source_digest",
+      "outcome": "rejected",
+      "detail": "source receipt is stale"
+    },
+    {
+      "probe": "field_receipt_digest_unlinked_to_source",
+      "outcome": "accepted",
+      "detail": {
+        "dataHandoffComplete": true,
+        "assignments": 28,
+        "resolved": 28,
+        "partial": 0,
+        "blocked": 0,
+        "typedFields": 79,
+        "typedGaps": 0
+      }
+    },
+    {
+      "probe": "typed_absence_replaced_with_zero",
+      "outcome": "accepted",
+      "detail": {
+        "dataHandoffComplete": true,
+        "assignments": 28,
+        "resolved": 28,
+        "partial": 0,
+        "blocked": 0,
+        "typedFields": 79,
+        "typedGaps": 0
+      }
+    },
+    {
+      "probe": "historical_missing_data_representation",
+      "outcome": "observed",
+      "detail": {
+        "availability": "unavailable",
+        "value": null,
+        "coverageStatus": "waiting_for_source_drop",
+        "reason": "Current Spotify totals are one as-of observation, not a reconstructed history."
+      }
+    },
+    {
+      "probe": "live_delivery_manifest_validation",
+      "outcome": "accepted",
+      "detail": {
+        "categoryCounts": {
+          "Articles": 70,
+          "Videos": 134,
+          "Full Images": 75,
+          "Social Posts": 20,
+          "Lyrics": 1,
+          "Album - Single Covers": 21,
+          "Cutouts": 261,
+          "Glow Cutouts": 261
+        },
+        "uniqueAssetIds": 575,
+        "sourceSha256": "c1d9ab38906f8ff389277301c2309ef01e5ba243b3321e7e722898b9a6a491cb",
+        "generatedAt": "2026-09-26T05:24:38.598798+00:00",
+        "scope": "manifest metadata checks only; not asset content revalidation"
+      }
+    },
+    {
+      "probe": "live_failed_delivery_verification",
+      "outcome": "rejected",
+      "detail": "unverified Production Ready delivery: source_media_unchanged"
+    },
+    {
+      "probe": "frozen_snapshot_delivery_manifest_validation",
+      "outcome": "accepted",
+      "detail": {
+        "categoryCounts": {
+          "Articles": 70,
+          "Videos": 134,
+          "Full Images": 75,
+          "Social Posts": 20,
+          "Lyrics": 1,
+          "Album - Single Covers": 21,
+          "Cutouts": 261,
+          "Glow Cutouts": 261
+        },
+        "uniqueAssetIds": 575,
+        "sourceSha256": "14716d55a4e178f2f5cff9d172011e3ac56541eace9f75ee5be4328be510b867",
+        "generatedAt": "2026-09-26T05:24:38.598798+00:00",
+        "scope": "manifest metadata checks only; not asset content revalidation"
+      }
+    },
+    {
+      "probe": "frozen_snapshot_failed_delivery_verification",
+      "outcome": "rejected",
+      "detail": "unverified Production Ready delivery: source_media_unchanged"
+    },
+    {
+      "probe": "public_artifact_requirements_year-seventeen-regression",
+      "outcome": "observed",
+      "detail": {
+        "tasks": 115,
+        "typedGaps": 127,
+        "dataRequired": 51,
+        "mediaRequired": 76
+      }
+    },
+    {
+      "probe": "public_artifact_requirements_future-regression",
+      "outcome": "observed",
+      "detail": {
+        "tasks": 310,
+        "typedGaps": 275,
+        "dataRequired": 17,
+        "mediaRequired": 258
+      }
+    },
+    {
+      "probe": "public_artifact_requirements_jayz-drake-heldout",
+      "outcome": "observed",
+      "detail": {
+        "tasks": 186,
+        "typedGaps": 177,
+        "dataRequired": 73,
+        "mediaRequired": 104
+      }
+    }
+  ],
+  "existingTests": {
+    "command": "python3 -m unittest tests.test_matching_agent_contracts tests.test_storypackage_data_assignment tests.test_storypackage_data_handoff",
+    "testsRun": 14,
+    "result": "PASS"
+  },
+  "productionEdits": false,
+  "additionalExistingTests": {
+    "command": "STORYPACKAGE_AUTHORITY_ROOT=/private/tmp/patterns-agent-authority-d511-20261004 python3 -m unittest tests.test_storypackage_matching_handoff",
+    "testsRun": 2,
+    "result": "PASS"
+  }
+}

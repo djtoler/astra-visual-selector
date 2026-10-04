@@ -1,0 +1,2495 @@
+{
+  "schemaVersion": 1,
+  "job": "03-upstream-contract-fitness",
+  "createdAt": "2026-10-04T20:53:58.343977+00:00",
+  "auditStatus": "PASS",
+  "productContractFitness": "partial_with_proven_validation_and_consumption_gaps",
+  "blockerOwner": "none",
+  "nextJob": "04-matching-transformations.md",
+  "nextJobStarted": false,
+  "baselines": {
+    "matching": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "story": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+  },
+  "plan": "plans/ASTRA_ROOT_CAUSE_JOB_03_PLAN_20261004.md",
+  "fieldByFieldSufficiencyMatrix": [
+    {
+      "field": "script / spans / package revision",
+      "owner": "story",
+      "existingContract": "Exact text, UTF-8 digest, codepoint spans, story revision and packageId.",
+      "observedInputs": "All three exact packages validated; revisions @9/@5/@4.",
+      "consumerBehavior": "Adapter validates; splitter trusts accepted receipt and does not bind mutated body to receipt.",
+      "sufficiency": "sufficient_input_incomplete_downstream_revalidation",
+      "evidenceIds": [],
+      "sources": [
+        "pipeline/storypackage_adapter.py::build",
+        "pipeline/storypackage_splitter.py::build"
+      ]
+    },
+    {
+      "field": "entityRegistry / canonical IDs",
+      "owner": "data",
+      "existingContract": "Repo, commit, path, digest; package-local entities are caches.",
+      "observedInputs": "All three bind entity_roster eacb739 / roster v12.",
+      "consumerBehavior": "Story checker checks digest, not declared commit; public preflight plus registry binding checks commit/repo/digest.",
+      "sufficiency": "sufficient_on_public_path_layered_validation_required",
+      "evidenceIds": [],
+      "sources": [
+        "architecture/storypackage/tools/check.py::check",
+        "pipeline/matching_agent.py::_validate_registry_binding"
+      ]
+    },
+    {
+      "field": "mentioned / display / representedBy",
+      "owner": "story",
+      "existingContract": "Separate mentioned, required/eligible/none/withheld display states and representation forms.",
+      "observedInputs": "Curren$y clause excludes Drake; unnamed Drake withheld in opening.",
+      "consumerBehavior": "Fields survive adapter; historical media requests ignored scoped subject semantics.",
+      "sufficiency": "adequate_in_examined_corrected_inputs",
+      "evidenceIds": [
+        "ev_0183c99a16600ab0"
+      ],
+      "sources": [
+        "architecture/storypackage/year-seventeen@9.storypackage-0.2.json#/claims/1"
+      ]
+    },
+    {
+      "field": "cohorts / members / subset authorization",
+      "owner": "data",
+      "existingContract": "Replayable snapshot/rule, completeness, expectedCount, shownIds and approved shownAuthorization.",
+      "observedInputs": "Year: complete93 and incomplete12/10 cohorts; Jay-Z: complete31; Future has no cohorts.",
+      "consumerBehavior": "Checker replays complete membership and retains unresolved gaps unless an authorized subset applies; public requirements ignore cohortRefs when deciding media_needed.",
+      "sufficiency": "representation_sufficient_consumption_gap",
+      "evidenceIds": [
+        "ev_c0014381cd5b341b"
+      ],
+      "sources": [
+        "architecture/storypackage/tools/check.py::check",
+        "pipeline/matching_agent.py::_requirements"
+      ]
+    },
+    {
+      "field": "relationship participants / roles",
+      "owner": "story",
+      "existingContract": "Narration, entityRefs, obligations.intent/mustBePerceptible; richer handoff value roles/showTogether. No generic relation graph required by current schema.",
+      "observedInputs": "Rico/Future relationship explicit; Jay-Z values identify both comparators; Future collective influence only names Future in refs.",
+      "consumerBehavior": "Gallery reviewed entityCount uses displayed refs without reconciling value participants.",
+      "sufficiency": "mixed_upstream_omission_and_downstream_loss",
+      "evidenceIds": [
+        "ev_5b014d59e8746769",
+        "ev_ae89ed37733a21e4",
+        "ev_945fc64c57b6bbfb"
+      ],
+      "sources": []
+    },
+    {
+      "field": "numeric values / units",
+      "owner": "data",
+      "existingContract": "Story values allow number/string, optional unit/label/entity/basis; Data assignments carry value/unit and source receipts.",
+      "observedInputs": "Year and Future: 0 claim values; Jay-Z: 62 values, 70 supported claims. Legacy Year assignments:79 fields/28 tasks.",
+      "consumerBehavior": "General path has no per-task assignment-content consumer; typed values influence classification but not verified calculations.",
+      "sufficiency": "not_sufficient_as_verified_general_data_contract",
+      "evidenceIds": [
+        "ev_197e8df3cdb679e1",
+        "ev_76144b97f6b04467"
+      ],
+      "sources": []
+    },
+    {
+      "field": "measurement basis / population / comparability",
+      "owner": "data",
+      "existingContract": "Optional basis string; legacy assignment population/basis; richer handoff concept/caveats.",
+      "observedInputs": "61/62 Jay-Z values have empty or absent basis. Some population is in labels/cohortRefs rather than basis.",
+      "consumerBehavior": "No cross-field comparability verification in Story checker; unit changes do not prevent task merge.",
+      "sufficiency": "partial_do_not_infer_every_empty_basis_is_semantically_unknown",
+      "evidenceIds": [
+        "ev_197e8df3cdb679e1",
+        "ev_ae89ed37733a21e4"
+      ],
+      "sources": []
+    },
+    {
+      "field": "source row locator / columns / transform",
+      "owner": "data",
+      "existingContract": "Legacy assignment receipt already has sourcePath/sourceSha256/selector/columns/transform. Story receipts are strings.",
+      "observedInputs": "Structured receipts present in79 legacy fields; Jay-Z claim receipts identify source files in prose, not replayable per-value row/transform contracts.",
+      "consumerBehavior": "Assignment validator verifies top-level source files but does not cross-check each field digest or recompute values.",
+      "sufficiency": "insufficient_value_level_verification",
+      "evidenceIds": [],
+      "sources": [
+        "pipeline/storypackage_data_assignment.py::validate",
+        "architecture/storypackage/storypackage-0.2.schema.json#/properties/claims"
+      ]
+    },
+    {
+      "field": "supported status / receipts",
+      "owner": "data",
+      "existingContract": "Factual supported requires receipts under Story schema; factual unverified remains allowed.",
+      "observedInputs": "Year87 and Future364 factual claims are not thereby fact-checked; Jay-Z70 supported.",
+      "consumerBehavior": "Supported value mutation and nonsense receipt survive Story checker. Passing structure is not fact approval.",
+      "sufficiency": "structural_only",
+      "evidenceIds": [],
+      "sources": [
+        "architecture/storypackage/tools/check.py::check"
+      ]
+    },
+    {
+      "field": "display / rounding / narration alignment",
+      "owner": "story",
+      "existingContract": "Richer matching handoff values specify display exact/rounded/ordering/qualitative/absent and narration anchors.",
+      "observedInputs": "Year@7 handoff has89 values with display roles; Year@9 and other general packages do not carry equivalent handoff artifacts on agent path.",
+      "consumerBehavior": "General path does not consume richer handoff; legacy data fields lack a general rounding-to-narration check.",
+      "sufficiency": "existing_representation_not_generally_connected",
+      "evidenceIds": [
+        "ev_76144b97f6b04467",
+        "ev_81a8bfc05956e7b1"
+      ],
+      "sources": []
+    },
+    {
+      "field": "caveats / prohibited implications",
+      "owner": "story",
+      "existingContract": "obligations.mustBeTrue/wouldBeALie and richer handoff data.caveats.",
+      "observedInputs": "Jay-Z warns against calling Umbrella his single and against treating crowd examples as data-sourced; Year handoff has Spotify-only/history caveats.",
+      "consumerBehavior": "Preserved in adapter/tasks; requirement status does not validate these constraints against handed-off content.",
+      "sufficiency": "meaning_available_enforcement_unproven",
+      "evidenceIds": [],
+      "sources": [
+        "architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json#/obligations",
+        "pipeline/matching_agent.py::_requirements"
+      ]
+    },
+    {
+      "field": "missing value versus zero",
+      "owner": "data",
+      "existingContract": "Explicit typed absence exists in legacy assignment and absence role in matching handoff.",
+      "observedInputs": "Historical Jay-Z year17 meter: value:null, availability:unavailable. No missing value was interpreted as zero in this audit.",
+      "consumerBehavior": "Assignment validate accepted synthetic replacement with numeric zero; whole-source digests do not bind derived payload.",
+      "sufficiency": "correct_baseline_representation_weak_validator",
+      "evidenceIds": [],
+      "sources": [
+        "pipeline/storypackage_data_assignment.py::_assignment_values",
+        "pipeline/storypackage_data_assignment.py::validate"
+      ]
+    },
+    {
+      "field": "evidence / documents / artifacts",
+      "owner": "story",
+      "existingContract": "mediaNeeds(kind=document/artwork/footage,constraints), needsOnScreenText and perceptibility.",
+      "observedInputs": "Track-list inspection and fan allegations lack explicit evidence requirements in examined claims.",
+      "consumerBehavior": "Reviewed contexts classify as item_sequence/data_explanation; Future current adds evidence_presentation.",
+      "sufficiency": "upstream_annotation_gap_and_downstream_classification_gap",
+      "evidenceIds": [
+        "ev_063fd655708a1b49",
+        "ev_8d097d68699e413f"
+      ],
+      "sources": []
+    },
+    {
+      "field": "quote / lyrics / source footage",
+      "owner": "story",
+      "existingContract": "Beat speaker role, speaker identity/sourceTimestamp, quote text obligation, clip exact-footage need.",
+      "observedInputs": "Future36 clips,3quotes;6 unidentified speakers explicitly flagged. Lyrics request ev_6c440... is not satisfied merely by a document category existing.",
+      "consumerBehavior": "Clip routes separate, quote grouped; rhetorical-question heuristics can override quote treatment metadata.",
+      "sufficiency": "role_inputs_useful_asset_readiness_unverified",
+      "evidenceIds": [
+        "ev_6c440a7b5cb840d4"
+      ],
+      "sources": [
+        "architecture/storypackage/future-volksgeist@5.storypackage-0.2.json"
+      ]
+    },
+    {
+      "field": "text content / truncation / wrapping",
+      "owner": "story",
+      "existingContract": "Richer handoff text.fields supports copy/contentRef, role, priority,truncation,abbreviation,wrap,maxChars,simultaneousWith.",
+      "observedInputs": "Year@7 handoff106 text fields across31 tasks; no equivalent attached to current general runs.",
+      "consumerBehavior": "Not consumed by general candidate gallery as text feasibility input.",
+      "sufficiency": "existing_contract_capability_not_current_general_coverage",
+      "evidenceIds": [
+        "ev_063fd655708a1b49",
+        "ev_60553fc81c4e442a"
+      ],
+      "sources": []
+    },
+    {
+      "field": "mediaNeeds versus availability",
+      "owner": "media",
+      "existingContract": "Story expresses needs; Media manifest expresses delivered asset IDs/kinds and lifecycle verification.",
+      "observedInputs": "Frozen and live manifests each575 distinct asset IDs; category counts do not establish any task has its required assets. Three public tasks contain no mediaHandoff.",
+      "consumerBehavior": "_requirements tests presence of a file binding, not supply eligibility; it misses three Year tasks with explicit mediaNeeds.",
+      "sufficiency": "general_media_supply_unverified",
+      "evidenceIds": [
+        "ev_4bad981eb189dc6f",
+        "ev_65fa5e81c76d4c01",
+        "ev_805456ee8bf50f03"
+      ],
+      "sources": []
+    },
+    {
+      "field": "solo/group / identity / framing / era",
+      "owner": "media",
+      "existingContract": "Manifest/person_view and metadata; resolver kinds/framing and task requirements; Story can request solo images and era spread.",
+      "observedInputs": "Year editor distinguishes correct subjects from ineligible group framing and insufficient era assets.",
+      "consumerBehavior": "Legacy media resolver exists; general gallery retrieves templates independently of live media feasibility.",
+      "sufficiency": "separate_media_eligibility_required",
+      "evidenceIds": [
+        "ev_040c6162ac818a19",
+        "ev_65fa5e81c76d4c01",
+        "ev_84d8227c5595ac1a"
+      ],
+      "sources": []
+    },
+    {
+      "field": "source provenance / lifecycle eligibility",
+      "owner": "media",
+      "existingContract": "Delivered source/delivery path and sha256, verification flags; lifecycle controls upstream.",
+      "observedInputs": "Both inspected manifests pass metadata gate; false source_media_unchanged rejected. Live asset bytes, rights or semantic identity not re-audited.",
+      "consumerBehavior": "Existing consumer uses delivered path and metadata; optional generic media handoff is not parsed for lifecycle proof.",
+      "sufficiency": "manifest_provenance_exists_general_handoff_content_unverified",
+      "evidenceIds": [],
+      "sources": [
+        "pipeline/media_candidates.py::validate_delivery_manifest",
+        "pipeline/media_candidates.py::delivery",
+        "pipeline/media_candidates.py::display_path"
+      ]
+    },
+    {
+      "field": "focal simultaneous versus sequential counts",
+      "owner": "story",
+      "existingContract": "Richer handoff media.focal separates simultaneous/storyItems/sequencePermitted/basis and typed unknown.",
+      "observedInputs": "Year@7 handoff includes one focal_unknown; Story recognizableIdentityCount alone does not define staging.",
+      "consumerBehavior": "Rich checker guards conflation; general path uses identity counts/operations without this input.",
+      "sufficiency": "existing_richer_model_not_generally_connected",
+      "evidenceIds": [
+        "ev_5b014d59e8746769",
+        "ev_81a8bfc05956e7b1"
+      ],
+      "sources": []
+    },
+    {
+      "field": "continuity / adjacency / return",
+      "owner": "story",
+      "existingContract": "continuity scope includes adjacency, sequence, template/family, palette/grammar/framing; strength and provenance.",
+      "observedInputs": "Year5, Future2, Jay-Z4 continuity groups. Required opening-chart return encoded.",
+      "consumerBehavior": "Preserved in task artifacts; no assertion that per-task candidate lists enforce sequence invariants.",
+      "sufficiency": "input_adequate_enforcement_deferred",
+      "evidenceIds": [
+        "ev_197902cdbab5c967",
+        "ev_457bec72518e17bd"
+      ],
+      "sources": []
+    },
+    {
+      "field": "withholding / recognizable identity demand",
+      "owner": "story",
+      "existingContract": "display:withheld; obligations.withheld, recognizableIdentityCount, wouldBeALie.",
+      "observedInputs": "Opening hidden identity and93-person requirements explicit.",
+      "consumerBehavior": "Fields cannot be replaced by raw entity-count heuristics or generic media presence.",
+      "sufficiency": "adequate_specific_inputs_consumption_gap",
+      "evidenceIds": [
+        "ev_c0014381cd5b341b",
+        "ev_0183c99a16600ab0"
+      ],
+      "sources": []
+    },
+    {
+      "field": "timing / freshness of audio attachment",
+      "owner": "story",
+      "existingContract": "timing status,joinKey,audio snapshot,claim start/end attachments.",
+      "observedInputs": "All3 packages timing absent.",
+      "consumerBehavior": "Exact source timestamps are not narration durations; neither task length nor candidate existence proves timed fit.",
+      "sufficiency": "explicitly_unresolved_not_zero",
+      "evidenceIds": [],
+      "sources": []
+    },
+    {
+      "field": "Data / Media handoff identity and completeness",
+      "owner": "matching",
+      "existingContract": "Optional task bindings contain path+sha256 only; generic content schema not enforced here.",
+      "observedInputs": "None supplied on all3 public evaluation task contracts.",
+      "consumerBehavior": "Two {} files pass preflight and suppress177 missing-handoff gaps in Jay-Z requirements. No provider or full pipeline was run for this probe.",
+      "sufficiency": "proven_validation_gap",
+      "evidenceIds": [],
+      "sources": [
+        "pipeline/matching_agent_contracts.py::preflight",
+        "pipeline/matching_agent.py::_requirements"
+      ]
+    },
+    {
+      "field": "adapter / source receipt freshness",
+      "owner": "matching",
+      "existingContract": "Adapter has accepted/packageSha256/authorityCommit/checkerSha256; proposals source digest.",
+      "observedInputs": "Frozen sources verified; public preflight rejects moved registry commit and stale handoff digest.",
+      "consumerBehavior": "Standalone splitter accepted deliberately stale packageSha256; gallery verifies packageId but not stored source digest.",
+      "sufficiency": "strong_entry_preflight_weak_intermediate_revalidation",
+      "evidenceIds": [],
+      "sources": [
+        "pipeline/storypackage_adapter.py::build",
+        "pipeline/storypackage_splitter.py::build",
+        "pipeline/storypackage_candidate_gallery.py::build"
+      ]
+    }
+  ],
+  "typedGaps": [
+    {
+      "gapId": "G01",
+      "kind": "required_meaning_only_in_provenance",
+      "owner": "story",
+      "status": "proven_gap",
+      "proof": "Six Year obligations carry only id/claims/provenance; Future collective influence and fan-evidence cases omit required perceptibility/evidence annotations.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Populate existing obligations.intent/mustBePerceptible/mediaNeeds/wouldBeALie and implied entityRefs where source-supported; never invent closed membership from a collective phrase.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [
+        "ev_76144b97f6b04467",
+        "ev_945fc64c57b6bbfb",
+        "ev_8d097d68699e413f"
+      ],
+      "caseIds": []
+    },
+    {
+      "gapId": "G02",
+      "kind": "typed_data_not_bound_to_general_tasks",
+      "owner": "data",
+      "status": "proven_gap",
+      "proof": "No dataHandoff on any public evaluation contract; Year/Future have no claim values; Jay-Z values lack replayable structured receipts. Historical Year79 fields do not cover arbitrary current tasks.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Supply current task-bound assignments using existing typedFields/receipt selector+columns+transform/sourceSha256, keyed to exact claim/task/package identities. Keep unsupported quantities unresolved.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [
+        "ev_76144b97f6b04467",
+        "ev_197e8df3cdb679e1"
+      ],
+      "caseIds": []
+    },
+    {
+      "gapId": "G03",
+      "kind": "value_receipt_not_verified",
+      "owner": "matching",
+      "status": "proven_gap",
+      "proof": "Story checker accepts modified supported values and arbitrary receipt strings; assignment validator accepts field sourceSha256 inconsistent with top-level verified source.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Validate existing receipt references against bound sources and replay declared transformations or require Data verification receipt; distinguish structural acceptance from verified fact acceptance.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [],
+      "caseIds": []
+    },
+    {
+      "gapId": "G04",
+      "kind": "empty_handoff_suppresses_missing_gaps",
+      "owner": "matching",
+      "status": "proven_gap",
+      "proof": "Public preflight accepts two correctly hashed {} files; _requirements marks all73 data-required and104 media-required tasks bound.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Require existing assignment/media receipt content validation plus exact package/task coverage before marking bound; retain per-task typed gaps for absent or invalid coverage.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [],
+      "caseIds": []
+    },
+    {
+      "gapId": "G05",
+      "kind": "explicit_media_need_not_detected",
+      "owner": "matching",
+      "status": "proven_gap",
+      "proof": "Three Year proposals p-03-03,p-07-07,p-30-30b carry mediaNeeds yet public requirements say media not_required.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Derive demand from existing obligations.mediaNeeds, cohortRefs representedBy and speaker routes, not only entityRefs/operation labels.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [
+        "ev_c0014381cd5b341b",
+        "ev_4bad981eb189dc6f",
+        "ev_805456ee8bf50f03"
+      ],
+      "caseIds": []
+    },
+    {
+      "gapId": "G06",
+      "kind": "task_specific_media_supply_unverified",
+      "owner": "media",
+      "status": "proven_gap",
+      "proof": "No general-run media handoff covers requested artwork/era spread/footage. Historical review proves shortages in some scopes; current575-asset manifest alone cannot resolve them.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Return task-scoped eligible asset IDs with existing lifecycle/source digest and kind/identity/framing evidence, or an explicit unmet sourcing brief. Do not report template incompatibility for absent media.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [
+        "ev_65fa5e81c76d4c01",
+        "ev_4bad981eb189dc6f",
+        "ev_032190ddc33477c4"
+      ],
+      "caseIds": []
+    },
+    {
+      "gapId": "G07",
+      "kind": "participant_information_not_reconciled",
+      "owner": "matching",
+      "status": "proven_gap",
+      "proof": "Jay-Z/Drake values and formula obligation name both artists but reviewed entityCount=1; valid Rico/Future relation shows semantic inputs can carry both.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Reconcile existing values.entity, entityRefs, cohortRefs and obligation participants before constructing display demand; preserve hidden/none states.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [
+        "ev_ae89ed37733a21e4",
+        "ev_5b014d59e8746769"
+      ],
+      "caseIds": []
+    },
+    {
+      "gapId": "G08",
+      "kind": "richer_handoff_not_connected_generally",
+      "owner": "matching",
+      "status": "proven_gap",
+      "proof": "Year@7 matching handoff41 tasks/106 text fields/89 value roles passes existing tests; general current agent path does not consume it.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Consume a current source-bound matching handoff through the established checker; require upstream refresh per package rather than repinning or copying legacy authored tables blindly.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [
+        "ev_063fd655708a1b49",
+        "ev_81a8bfc05956e7b1",
+        "ev_65fa5e81c76d4c01"
+      ],
+      "caseIds": []
+    },
+    {
+      "gapId": "G09",
+      "kind": "intermediate_receipt_not_revalidated",
+      "owner": "matching",
+      "status": "proven_gap",
+      "proof": "Standalone splitter accepts stale adapter packageSha256 despite accepted:true; public entry checks do not make independent downstream calls safe.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Bind existing receipts to exact consumed artifact bytes and reject mismatch at consumption boundaries, retaining checker authority/source hashes.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [],
+      "caseIds": []
+    },
+    {
+      "gapId": "G10",
+      "kind": "typed_absence_can_be_coerced",
+      "owner": "matching",
+      "status": "proven_gap",
+      "proof": "Legacy baseline uses unavailable/null correctly; validator accepts mutated value=0 as resolved.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Enforce existing availability/absence representation and value type at validation. Legitimate observed zeros remain numeric; unknown values stay explicit missing states.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [],
+      "caseIds": []
+    },
+    {
+      "gapId": "G11",
+      "kind": "unidentified_clip_speaker",
+      "owner": "story",
+      "status": "proven_gap",
+      "proof": "Pinned Future checker emits six speaker_unidentified gaps.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Resolve speaker through existing beat.speaker.entity only with source evidence, or keep speaker_unidentified and exact-footage constraints; do not substitute narrator or a guessed person.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [],
+      "caseIds": []
+    },
+    {
+      "gapId": "G12",
+      "kind": "timing_unattached",
+      "owner": "story",
+      "status": "proven_gap",
+      "proof": "All three pinned packages declare timing.status=absent.",
+      "minimalProposedContractDelta": {
+        "newFields": [],
+        "change": "Attach existing source-bound timing contract when timing becomes available; retain duration/readability fit as unresolved until then.",
+        "implementationStatus": "proposal_only_no_schema_or_runtime_edit"
+      },
+      "evidenceIds": [],
+      "caseIds": []
+    }
+  ],
+  "newFieldProposals": [],
+  "newFieldPolicy": "No new schema field is justified as necessary by this audit. All proposed deltas populate, connect or validate existing fields/contracts. Evidence spanning multiple stories supports the recurring needs; isolated constraints retain story scope.",
+  "packageMetrics": [
+    {
+      "packageId": "year-seventeen@9",
+      "path": "architecture/storypackage/year-seventeen@9.storypackage-0.2.json",
+      "sha256": "3e260634e01e0157072bf5d65553c502be3f380e1a3188185db98dd28a258fb6",
+      "claims": 150,
+      "typedValues": 0,
+      "valuesWithEmptyOrMissingBasis": 0,
+      "supportedClaims": 0,
+      "claimsWithReceipts": 0,
+      "receiptFormat": "array of strings",
+      "registrySnapshot": {
+        "repo": "djtoler/entity_roster",
+        "commit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+        "path": "entity-roster.json",
+        "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd"
+      },
+      "cohorts": [
+        {
+          "id": "chart-93",
+          "members": 93,
+          "completeness": "complete",
+          "unregistered": 0
+        },
+        {
+          "id": "xxl-2010-class",
+          "members": 12,
+          "completeness": "incomplete",
+          "unregistered": 4
+        },
+        {
+          "id": "xxl-2009-class",
+          "members": 10,
+          "completeness": "incomplete",
+          "unregistered": 3
+        }
+      ],
+      "timing": {
+        "status": "absent",
+        "joinKey": "claimId"
+      }
+    },
+    {
+      "packageId": "future-volksgeist@5",
+      "path": "architecture/storypackage/future-volksgeist@5.storypackage-0.2.json",
+      "sha256": "9c16482d73d24e78308a0f6854eb1d5cc653f69eccccdad452b5d5aeb253275d",
+      "claims": 502,
+      "typedValues": 0,
+      "valuesWithEmptyOrMissingBasis": 0,
+      "supportedClaims": 0,
+      "claimsWithReceipts": 0,
+      "receiptFormat": "array of strings",
+      "registrySnapshot": {
+        "repo": "djtoler/entity_roster",
+        "commit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+        "path": "entity-roster.json",
+        "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd"
+      },
+      "cohorts": [],
+      "timing": {
+        "status": "absent",
+        "joinKey": "claimId"
+      }
+    },
+    {
+      "packageId": "jayz-drake-settle-it@4",
+      "path": "architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json",
+      "sha256": "21f02e6aa12b133583d7ccfb9683b5879c529a53f41bb692bac0a6d9fe4119d3",
+      "claims": 222,
+      "typedValues": 62,
+      "valuesWithEmptyOrMissingBasis": 61,
+      "supportedClaims": 70,
+      "claimsWithReceipts": 70,
+      "receiptFormat": "array of strings",
+      "registrySnapshot": {
+        "repo": "djtoler/entity_roster",
+        "commit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+        "path": "entity-roster.json",
+        "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd"
+      },
+      "cohorts": [
+        {
+          "id": "scale-31",
+          "members": 31,
+          "completeness": "complete",
+          "unregistered": 0
+        }
+      ],
+      "timing": {
+        "status": "absent",
+        "joinKey": "claimId"
+      }
+    }
+  ],
+  "publicHandoffCoverage": [
+    {
+      "path": "reports/matching-agent-evaluation-20261004/year-seventeen-regression/30-data-media-requirements.json",
+      "sha256": "951e0cee1152aa6c346e9a596ec948157edd7612267507484fb1a645747e0cbe",
+      "packageId": "year-seventeen@9",
+      "counts": {
+        "dataRequired": 51,
+        "mediaRequired": 76,
+        "tasks": 115,
+        "typedGaps": 127
+      },
+      "note": "recorded public evaluation artifacts; warnings indicate unbound handoff, not proof of zero inventory or wrong template"
+    },
+    {
+      "path": "reports/matching-agent-evaluation-20261004/future-regression/30-data-media-requirements.json",
+      "sha256": "f13850f1fc51d61753b7b480e0b471c7c16b13c100e99ae07a620eb95dcea84e",
+      "packageId": "future-volksgeist@5",
+      "counts": {
+        "dataRequired": 17,
+        "mediaRequired": 258,
+        "tasks": 310,
+        "typedGaps": 275
+      },
+      "note": "recorded public evaluation artifacts; warnings indicate unbound handoff, not proof of zero inventory or wrong template"
+    },
+    {
+      "path": "reports/matching-agent-evaluation-20261004/jayz-drake-heldout/30-data-media-requirements.json",
+      "sha256": "406954a366888d6ff6f1198b88f6b613fb8d2e142ae70f6e507acdae09412ac0",
+      "packageId": "jayz-drake-settle-it@4",
+      "counts": {
+        "dataRequired": 73,
+        "mediaRequired": 104,
+        "tasks": 186,
+        "typedGaps": 177
+      },
+      "note": "recorded public evaluation artifacts; warnings indicate unbound handoff, not proof of zero inventory or wrong template"
+    }
+  ],
+  "cases": [
+    {
+      "caseId": "U01",
+      "evidenceId": "ev_0183c99a16600ab0",
+      "comment": "I have the correct templates but incorrect media. drake has no place in the beat. this beat is about currensys songs/albums. currency album covers and songs artwork should be whats available to select from",
+      "sourceRefs": [
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "jsonPointer": "/beats/2/userReview"
+        }
+      ],
+      "conclusion": "Corrected Story names Curren$y artwork and excludes Drake; historical wrong media is not a template-fit failure.",
+      "classification": "adequate_story_historical_matching_media_error",
+      "historicalReviewKey": "02-02b",
+      "packageId": "year-seventeen@9",
+      "claims": [
+        {
+          "claimId": "c1-provoke-2.1",
+          "beatId": "c1-provoke-2",
+          "span": {
+            "start": 268,
+            "len": 230
+          },
+          "text": "Curren$y was on the 2009 XXL Freshman cover, and every song he has ever put on the platform — the mixtapes, the Jet Life run, the features, all of it stacked end to end — adds up to what this one catalog moves in twenty-four days.",
+          "reviewKeys": [
+            "01-01",
+            "02-02a",
+            "02-02b"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:curren-y",
+              "mentioned": true,
+              "display": "required"
+            },
+            {
+              "entity": "person:drake",
+              "mentioned": false,
+              "display": "none",
+              "representedBy": [
+                "media"
+              ],
+              "provenance": {
+                "source": "user",
+                "reviewState": "approved",
+                "evidence": "beat-review 02-02b: 'drake has no place in the beat. this beat is about currensys songs/albums'"
+              }
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [
+        {
+          "obligationId": "o-01-01",
+          "claimIds": [
+            "c1-provoke-1.1",
+            "c1-provoke-2.1"
+          ],
+          "mediaNeeds": [
+            {
+              "kind": "footage",
+              "constraints": [
+                "performance b-roll in which Drake is not recognizable (identity withheld)"
+              ]
+            }
+          ],
+          "withheld": [
+            "Drake's identity: no recognizable face or name (user ruling 2026-10-02: keep him hidden)"
+          ],
+          "wouldBeALie": [
+            "any shot that lets the viewer identify Drake before the script names him"
+          ],
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 01-01: drake b-roll performance footage needed | ruling 2026-10-02: keep him hidden"
+          }
+        },
+        {
+          "obligationId": "o-02-02b",
+          "claimIds": [
+            "c1-provoke-2.1"
+          ],
+          "mediaNeeds": [
+            {
+              "kind": "artwork",
+              "constraints": [
+                "Curren$y album and song artwork"
+              ]
+            }
+          ],
+          "wouldBeALie": [
+            "presenting Drake as the subject of this sentence"
+          ],
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 02-02b: I have the correct templates but incorrect media. drake has no place in the beat. this beat is about currensys songs/albums. currency album covers and songs artwork should be whats available to select from"
+          }
+        },
+        {
+          "obligationId": "o-name-withheld-c1",
+          "claimIds": [
+            "c1-provoke-1.1",
+            "c1-provoke-2.1",
+            "c1-provoke-5.1",
+            "c1-predict-1.1",
+            "c1-predict-1.3",
+            "c1-predict-1.4",
+            "c1-reveal-1.1",
+            "c1-reconcile-2.2",
+            "c1-reconcile-3.2",
+            "c1-reconcile-5.1",
+            "c1-reconcile-6.1"
+          ],
+          "withheld": [
+            "Drake's name as a caption or label: cycle 1 narration never names him ('The name goes on in a second')"
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "continuity": []
+    },
+    {
+      "caseId": "U02",
+      "evidenceId": "ev_c0014381cd5b341b",
+      "comment": "only drake images available. system should ask for images of the 93 rappers.  drake is only 1 of 93 artists that need to be in this scene.\n\nall spatial templates should be shown as options. period. make 20+ entities and any type of comparative / contrasting intentions be the condition to always show all spatial scenes as options",
+      "sourceRefs": [
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "jsonPointer": "/beats/3/userReview"
+        }
+      ],
+      "conclusion": "Cohort and93-person obligation adequate, but public media-needed classifier misses this demand.",
+      "classification": "adequate_story_matching_failure",
+      "historicalReviewKey": "03-03",
+      "packageId": "year-seventeen@9",
+      "claims": [
+        {
+          "claimId": "c1-provoke-3.1",
+          "beatId": "c1-provoke-3",
+          "span": {
+            "start": 500,
+            "len": 60
+          },
+          "text": "Here are ninety-three rappers, with one dot for each artist.",
+          "reviewKeys": [
+            "03-03"
+          ],
+          "entityRefs": [],
+          "cohortRefs": [
+            {
+              "cohort": "chart-93",
+              "version": 1,
+              "display": "required",
+              "representedBy": [
+                "media",
+                "data"
+              ]
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c1-provoke-3.2",
+          "beatId": "c1-provoke-3",
+          "span": {
+            "start": 561,
+            "len": 59
+          },
+          "text": "The higher the dot, the more plays per day that artist has.",
+          "reviewKeys": [
+            "03-03"
+          ],
+          "entityRefs": [],
+          "cohortRefs": [
+            {
+              "cohort": "chart-93",
+              "version": 1,
+              "display": "required",
+              "representedBy": [
+                "media",
+                "data"
+              ]
+            }
+          ],
+          "lane": "editorial",
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [
+        {
+          "obligationId": "o-03-03",
+          "claimIds": [
+            "c1-provoke-3.1",
+            "c1-provoke-3.2"
+          ],
+          "mustBePerceptible": [
+            "all 93 rappers, one mark each"
+          ],
+          "recognizableIdentityCount": 93,
+          "mediaNeeds": [
+            {
+              "kind": "person",
+              "count": 93,
+              "constraints": [
+                "one person per asset"
+              ]
+            }
+          ],
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 03-03: only drake images available. system should ask for images of the 93 rappers.  drake is only 1 of 93 artists that need to be in this scene.\n\nall spatial templates should be shown as options. period. make 20+ entities and any type of comparative / contrasting intentions be the condition to always show all spatial scenes as options"
+          }
+        }
+      ],
+      "continuity": [
+        {
+          "groupId": "g-opening-chart",
+          "claimIds": [
+            "c1-provoke-3.1",
+            "c1-provoke-3.2",
+            "c1-provoke-4.3",
+            "c1-provoke-5.1",
+            "c6-provoke-2.1",
+            "c6-provoke-2.2"
+          ],
+          "scope": "template",
+          "invariant": "the opening 93-dot chart template; mandatory here unless explicitly overridden",
+          "strength": "required",
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 29-29c: beat is asking for a specific chart from the beginning so that template should be the same one marked as mandatory here with explicit decision to go against it."
+          }
+        },
+        {
+          "groupId": "g-chart-return",
+          "claimIds": [
+            "c1-provoke-3.1",
+            "c6-predict-1.1",
+            "c6-predict-2.1",
+            "c6-reveal-1.1",
+            "c6-reveal-1.2",
+            "c6-reveal-2.1"
+          ],
+          "scope": "template",
+          "invariant": "narration says 'we return to the same chart from the beginning'",
+          "strength": "required",
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "U03",
+      "evidenceId": "ev_040c6162ac818a19",
+      "comment": "perfect except drake shows up in single images with others. group photos are ineligible for spatial scenes",
+      "sourceRefs": [
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "jsonPointer": "/beats/4/userReview"
+        }
+      ],
+      "conclusion": "Solo-image constraint is explicit; group photos require Media eligibility rejection independent of template capability.",
+      "classification": "media_eligibility_not_template_incompatibility",
+      "historicalReviewKey": "04-04",
+      "packageId": "year-seventeen@9",
+      "claims": [
+        {
+          "claimId": "c1-provoke-4.3",
+          "beatId": "c1-provoke-4",
+          "span": {
+            "start": 816,
+            "len": 47
+          },
+          "text": "Near the top, you find Future and Travis Scott.",
+          "reviewKeys": [
+            "04-04"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:travis-scott",
+              "mentioned": true,
+              "display": "required"
+            },
+            {
+              "entity": "person:future",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c1-provoke-5.1",
+          "beatId": "c1-provoke-5",
+          "span": {
+            "start": 865,
+            "len": 103
+          },
+          "text": "Then there is one dot with open air under it, representing more plays than both of them added together.",
+          "reviewKeys": [
+            "04-04"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:drake",
+              "mentioned": false,
+              "display": "eligible",
+              "representedBy": [
+                "media"
+              ]
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [
+        {
+          "obligationId": "o-04-04",
+          "claimIds": [
+            "c1-provoke-4.3",
+            "c1-provoke-5.1"
+          ],
+          "mediaNeeds": [
+            {
+              "kind": "person",
+              "constraints": [
+                "solo images only: group photos are ineligible for spatial scenes"
+              ]
+            }
+          ],
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 04-04: perfect except drake shows up in single images with others. group photos are ineligible for spatial scenes"
+          }
+        },
+        {
+          "obligationId": "o-name-withheld-c1",
+          "claimIds": [
+            "c1-provoke-1.1",
+            "c1-provoke-2.1",
+            "c1-provoke-5.1",
+            "c1-predict-1.1",
+            "c1-predict-1.3",
+            "c1-predict-1.4",
+            "c1-reveal-1.1",
+            "c1-reconcile-2.2",
+            "c1-reconcile-3.2",
+            "c1-reconcile-5.1",
+            "c1-reconcile-6.1"
+          ],
+          "withheld": [
+            "Drake's name as a caption or label: cycle 1 narration never names him ('The name goes on in a second')"
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "continuity": [
+        {
+          "groupId": "g-04-05a",
+          "claimIds": [
+            "c1-provoke-4.3",
+            "c1-provoke-5.1",
+            "c1-predict-1.3"
+          ],
+          "scope": "template",
+          "invariant": "the template and media asset from 04-04 carry into 05-05a",
+          "strength": "preferred",
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 05-05a: the media asset and the template from last beat carries into this one."
+          }
+        },
+        {
+          "groupId": "g-opening-chart",
+          "claimIds": [
+            "c1-provoke-3.1",
+            "c1-provoke-3.2",
+            "c1-provoke-4.3",
+            "c1-provoke-5.1",
+            "c6-provoke-2.1",
+            "c6-provoke-2.2"
+          ],
+          "scope": "template",
+          "invariant": "the opening 93-dot chart template; mandatory here unless explicitly overridden",
+          "strength": "required",
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 29-29c: beat is asking for a specific chart from the beginning so that template should be the same one marked as mandatory here with explicit decision to go against it."
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "U04",
+      "evidenceId": "ev_4bad981eb189dc6f",
+      "comment": "templates are correct. drake being here is not. this is what the system should conclude that the beat is trying to communicate  \"anniversary-tour territory, with deluxe reissues carrying three unreleased demos on the back and a festival slot at seven-forty, before the headliner.\" no media thats available can satisfy what this beat needs to communicate",
+      "sourceRefs": [
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "jsonPointer": "/beats/8/userReview"
+        }
+      ],
+      "conclusion": "Story has reissue artwork/festival-footage requirements; historical user says templates correct but supply unsuitable; public demand misses it.",
+      "classification": "media_shortage_and_matching_demand_failure",
+      "historicalReviewKey": "07-07",
+      "packageId": "year-seventeen@9",
+      "claims": [
+        {
+          "claimId": "c1-reconcile-2.1",
+          "beatId": "c1-reconcile-2",
+          "span": {
+            "start": 1332,
+            "len": 192
+          },
+          "text": "Year seventeen of a rap career is usually anniversary-tour territory, with deluxe reissues carrying three unreleased demos on the back and a festival slot at seven-forty, before the headliner.",
+          "reviewKeys": [
+            "07-07"
+          ],
+          "entityRefs": [],
+          "lane": "interpretive",
+          "branchId": "year-seventeen-norm",
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [
+        {
+          "obligationId": "o-07-07",
+          "claimIds": [
+            "c1-reconcile-2.1"
+          ],
+          "intent": "anniversary-tour territory, with deluxe reissues carrying three unreleased demos on the back and a festival slot at seven-forty, before the headliner",
+          "wouldBeALie": [
+            "presenting Drake as the subject of this sentence"
+          ],
+          "mediaNeeds": [
+            {
+              "kind": "artwork",
+              "constraints": [
+                "deluxe reissue packaging"
+              ]
+            },
+            {
+              "kind": "footage",
+              "constraints": [
+                "early-slot festival set"
+              ]
+            }
+          ],
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 07-07: templates are correct. drake being here is not. this is what the system should conclude that the beat is trying to communicate  \"anniversary-tour territory, with deluxe reissues carrying three unreleased demos on the back and a festival slot at seven-forty, before the headliner.\" no media thats available can satisfy what this beat needs to communicate"
+          }
+        }
+      ],
+      "continuity": []
+    },
+    {
+      "caseId": "U05",
+      "evidenceId": "ev_65fa5e81c76d4c01",
+      "comment": "broll for this -> If he had gone quiet, there is one place it would show up first. New records either chart or they don't, \n\"archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-001\" would work for \"and it has now been seventeen years since So Far Gone. Pick the year the ticks stop lighting\".. but there's no eligible media. that timeline within the context of the beat, is asking for either 8 albums or 8 portraits from different years/eras. needs to be sourced and overall template to media requirements needs tightening.",
+      "sourceRefs": [
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "jsonPointer": "/beats/29/userReview"
+        }
+      ],
+      "conclusion": "Eight artworks/portraits across eras is a sourceable brief; historical lack of eligible media does not reject the timeline capability.",
+      "classification": "media_supply_gap",
+      "historicalReviewKey": "24-24",
+      "packageId": "year-seventeen@9",
+      "claims": [
+        {
+          "claimId": "c4-predict-1.1",
+          "beatId": "c4-predict-1",
+          "span": {
+            "start": 7416,
+            "len": 64
+          },
+          "text": "If he had gone quiet, there is one place it would show up first.",
+          "reviewKeys": [
+            "24-24"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:drake",
+              "mentioned": false,
+              "display": "eligible",
+              "representedBy": [
+                "media"
+              ]
+            }
+          ],
+          "lane": "interpretive",
+          "branchId": "archive-hypothesis",
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c4-predict-1.2",
+          "beatId": "c4-predict-1",
+          "span": {
+            "start": 7481,
+            "len": 94
+          },
+          "text": "New records either chart or they don't, and it has now been seventeen years since So Far Gone.",
+          "reviewKeys": [
+            "24-24"
+          ],
+          "entityRefs": [],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c4-predict-2.1",
+          "beatId": "c4-predict-2",
+          "span": {
+            "start": 7577,
+            "len": 38
+          },
+          "text": "Pick the year the ticks stop lighting.",
+          "reviewKeys": [
+            "24-24"
+          ],
+          "entityRefs": [],
+          "lane": "editorial",
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [
+        {
+          "obligationId": "o-24-24",
+          "claimIds": [
+            "c4-predict-1.1",
+            "c4-predict-1.2",
+            "c4-predict-2.1"
+          ],
+          "mediaNeeds": [
+            {
+              "kind": "footage",
+              "constraints": [
+                "for the first sentence"
+              ]
+            },
+            {
+              "kind": "artwork",
+              "count": 8,
+              "constraints": [
+                "8 albums or 8 portraits from different years/eras"
+              ]
+            }
+          ],
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 24-24: broll for this -> If he had gone quiet, there is one place it would show up first. New records either chart or they don't, \n\"archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-001\" would work for \"and it has now been seventeen years since So Far Gone. Pick the year the ticks stop lighting\".. but there's no eligible media. that timeline within the context of the beat, is asking for either 8 albums or 8 portraits from different years/eras. needs to be sourced and overall template to media requirements needs tightening."
+          }
+        }
+      ],
+      "continuity": []
+    },
+    {
+      "caseId": "U06",
+      "evidenceId": "ev_84d8227c5595ac1a",
+      "comment": "none of the templates are good. a vertical carousel would be perfect. b-roll would be perfect too. this is the first time b-roll has be requested and available. The media selections are perfect. all artists show up and are available. The current pairing is not a good match, it's an error. no selected media because I can't pair it to a template",
+      "sourceRefs": [
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "jsonPointer": "/beats/33/userReview"
+        }
+      ],
+      "conclusion": "Editor explicitly says media are available and correct but pairing/template choice is wrong.",
+      "classification": "adequate_media_historical_matching_failure",
+      "historicalReviewKey": "27-27",
+      "packageId": "year-seventeen@9",
+      "claims": [
+        {
+          "claimId": "c5-provoke-1.2",
+          "beatId": "c5-provoke-1",
+          "span": {
+            "start": 8762,
+            "len": 128
+          },
+          "text": "Some carry their own records, like Post Malone with forty-nine billion streams on his own songs but only six billion as a guest.",
+          "reviewKeys": [
+            "27-27"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:post-malone",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c5-provoke-1.3",
+          "beatId": "c5-provoke-1",
+          "span": {
+            "start": 8891,
+            "len": 167
+          },
+          "text": "XXXTentacion has thirty-five billion on his own songs and six billion as a guest, while Kendrick has forty-one billion on his own songs and sixteen billion as a guest.",
+          "reviewKeys": [
+            "27-27"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:xxxtentacion",
+              "mentioned": true,
+              "display": "required"
+            },
+            {
+              "entity": "person:kendrick-lamar",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c5-provoke-1.4",
+          "beatId": "c5-provoke-1",
+          "span": {
+            "start": 9059,
+            "len": 62
+          },
+          "text": "Other rappers do more of their work on other people's records.",
+          "reviewKeys": [
+            "27-27"
+          ],
+          "entityRefs": [],
+          "lane": "interpretive",
+          "branchId": "two-kinds",
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c5-provoke-1.5",
+          "beatId": "c5-provoke-1",
+          "span": {
+            "start": 9122,
+            "len": 94
+          },
+          "text": "Ty Dolla $ign has five billion streams on his own records but twenty-two billion as a feature.",
+          "reviewKeys": [
+            "27-27"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:ty-dolla-ign",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c5-provoke-1.6",
+          "beatId": "c5-provoke-1",
+          "span": {
+            "start": 9217,
+            "len": 163
+          },
+          "text": "Young Thug has eleven billion on his own but twenty-one billion as a feature, while 21 Savage has sixteen billion on his own and twenty-three billion as a feature.",
+          "reviewKeys": [
+            "27-27"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:young-thug",
+              "mentioned": true,
+              "display": "required"
+            },
+            {
+              "entity": "person:21-savage",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [
+        {
+          "obligationId": "o-27-27",
+          "claimIds": [
+            "c5-provoke-1.2",
+            "c5-provoke-1.3",
+            "c5-provoke-1.4",
+            "c5-provoke-1.5",
+            "c5-provoke-1.6"
+          ],
+          "mediaNeeds": [
+            {
+              "kind": "footage"
+            }
+          ],
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 27-27: none of the templates are good. a vertical carousel would be perfect. b-roll would be perfect too. this is the first time b-roll has be requested and available. The media selections are perfect. all artists show up and are available. The current pairing is not a good match, it's an error. no selected media because I can't pair it to a template"
+          }
+        }
+      ],
+      "continuity": []
+    },
+    {
+      "caseId": "U07",
+      "evidenceId": "ev_457bec72518e17bd",
+      "comment": "beat is asking for a specific chart from the beginning so that template should be the same one marked as mandatory here with explicit decision to go against it.",
+      "sourceRefs": [
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "jsonPointer": "/beats/37/userReview"
+        }
+      ],
+      "conclusion": "Required opening-chart return is encoded in continuity, not a request for new data.",
+      "classification": "adequate_story_continuity_input",
+      "historicalReviewKey": "29-29c",
+      "packageId": "year-seventeen@9",
+      "claims": [
+        {
+          "claimId": "c6-provoke-2.1",
+          "beatId": "c6-provoke-2",
+          "span": {
+            "start": 11247,
+            "len": 79
+          },
+          "text": "The title of best rapper alive is an argument, and this chart can't referee it.",
+          "reviewKeys": [
+            "29-29c"
+          ],
+          "entityRefs": [],
+          "lane": "interpretive",
+          "branchId": "best-rapper-debate",
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "c6-provoke-2.2",
+          "beatId": "c6-provoke-2",
+          "span": {
+            "start": 11327,
+            "len": 50
+          },
+          "text": "The chart counts plays, and that is its whole job.",
+          "reviewKeys": [
+            "29-29c"
+          ],
+          "entityRefs": [],
+          "lane": "editorial",
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [],
+      "continuity": [
+        {
+          "groupId": "g-opening-chart",
+          "claimIds": [
+            "c1-provoke-3.1",
+            "c1-provoke-3.2",
+            "c1-provoke-4.3",
+            "c1-provoke-5.1",
+            "c6-provoke-2.1",
+            "c6-provoke-2.2"
+          ],
+          "scope": "template",
+          "invariant": "the opening 93-dot chart template; mandatory here unless explicitly overridden",
+          "strength": "required",
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 29-29c: beat is asking for a specific chart from the beginning so that template should be the same one marked as mandatory here with explicit decision to go against it."
+          }
+        }
+      ]
+    },
+    {
+      "caseId": "U08",
+      "evidenceId": "ev_76144b97f6b04467",
+      "comment": "this beat continues with future and travis. they should be available as media candidates but they're not. \"with forty-three billion in total and roughly two hundred forty million per verse\" <- needs separate media and template to depict the 240 million per verse.",
+      "sourceRefs": [
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "jsonPointer": "/beats/26/userReview"
+        }
+      ],
+      "conclusion": "Rate subspan exists; contextual comparison identities and structured obligation are incomplete; text expansion is Matching defect.",
+      "classification": "mixed_story_omission_matching_failure",
+      "historicalReviewKey": "21-21b",
+      "packageId": "year-seventeen@9",
+      "claims": [
+        {
+          "claimId": "c3-reconcile-2.3",
+          "beatId": "c3-reconcile-2",
+          "span": {
+            "start": 6312,
+            "len": 169
+          },
+          "text": "Drake has fewer guest verses than either of them but more feature streams than anyone, with forty-three billion in total and roughly two hundred forty million per verse.",
+          "reviewKeys": [
+            "21-21b"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:drake",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [
+        {
+          "obligationId": "o-21-21b",
+          "claimIds": [
+            "c3-reconcile-2.3"
+          ],
+          "provenance": {
+            "source": "user",
+            "reviewState": "approved",
+            "evidence": "beat-review 2026-09-27, 21-21b: this beat continues with future and travis. they should be available as media candidates but they're not. \"with forty-three billion in total and roughly two hundred forty million per verse\" <- needs separate media and template to depict the 240 million per verse."
+          }
+        }
+      ],
+      "continuity": []
+    },
+    {
+      "caseId": "U09",
+      "evidenceId": "ev_ae89ed37733a21e4",
+      "comment": "the beat is naming 1 subject but speaking of 2 so this needs to be a comparison. the spatial scene with 2 people being compared side by side would be perfect. lets make sure that lands for as a canidate for these types and disanose why it didnt. \n\nbase-single-billboard has double and triple hero versions so that shouldve been an option. Lets consider adding basic if, else statements as a gate during beat to visual job pairings. theres someing off between beats, beat/visual job splitting, visual job understanding and the available grammar/tags. something in that chain is off and needs to be tweaked",
+      "sourceRefs": [
+        {
+          "sourceId": "src_f0572fc2d68a98c4",
+          "jsonPointer": "/decisions/jayz-drake-settle-it.proposal.matching-derived-p02-2-03::counters-envato--scene-008"
+        },
+        {
+          "sourceId": "src_fb6f2c7cfe51c3ea",
+          "jsonPointer": "/decisions/jayz-drake-settle-it.proposal.matching-derived-p02-2-03::counters-envato--scene-008"
+        }
+      ],
+      "conclusion": "Both artist values and comparison obligation exist despite only Jay-Z in entityRefs.",
+      "classification": "adequate_cross_field_input_matching_failure",
+      "reviewedGallery": {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-gallery.json",
+        "sha256": "3339209343220822a2070a5f05259621bbb1b96e00d2a6e1dc9011d5991c218e"
+      },
+      "reviewedTask": {
+        "candidateCount": 16,
+        "candidateStatus": "retrieved_unvalidated",
+        "job": "derived_quantity",
+        "presentationContract": {
+          "entityCount": 1,
+          "evidenceKind": null,
+          "hasCohort": false,
+          "hasTypedValues": true,
+          "mustBePerceptible": [
+            "Drake ahead 15-14 when all album types count",
+            "Jay-Z ahead 11-9 when only studio albums count",
+            "that the underlying charts are identical"
+          ],
+          "needsOnScreenText": true,
+          "operations": [
+            "data_explanation"
+          ],
+          "primaryOperation": "data_explanation",
+          "quantitativeClaim": true,
+          "wouldBeALie": []
+        },
+        "presentationOperations": [
+          "data_explanation"
+        ],
+        "primaryPresentationOperation": "data_explanation",
+        "quote": "Count only studio albums, and Jay-Z leads, 11 to 9.",
+        "routeDisposition": {
+          "brollFallbackAvailable": true,
+          "mixedPayloadReviewRequired": false,
+          "preferredTreatment": "template_or_broll",
+          "renderingAuthorized": false,
+          "selectionAuthorized": false,
+          "templateEligible": true
+        },
+        "semanticDerived": true,
+        "sourceBeatIds": [
+          "p02-2"
+        ],
+        "speakerDerived": false,
+        "taskId": "jayz-drake-settle-it.proposal.matching-derived-p02-2-03"
+      },
+      "packageId": "jayz-drake-settle-it@4",
+      "claims": [
+        {
+          "claimId": "p02-2.3",
+          "beatId": "p02-2",
+          "span": {
+            "start": 2113,
+            "len": 51
+          },
+          "text": "Count only studio albums, and Jay-Z leads, 11 to 9.",
+          "lane": "factual",
+          "status": "supported",
+          "receipts": [
+            "automation-data@0af272f:hiphop_content_system/data/jayz_drake_disc.csv (us_peak by kind/section/year)"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:jay-z",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "values": [
+            {
+              "value": 11,
+              "unit": "albums",
+              "label": "#1 studio albums",
+              "entity": "person:jay-z",
+              "basis": ""
+            },
+            {
+              "value": 9,
+              "unit": "albums",
+              "label": "#1 studio albums",
+              "entity": "person:drake",
+              "basis": ""
+            }
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [
+        {
+          "obligationId": "o-formula-flip",
+          "claimIds": [
+            "p02-2.2",
+            "p02-2.3"
+          ],
+          "intent": "the same chart history produces two different winners when one counting rule changes",
+          "mustBePerceptible": [
+            "Drake ahead 15-14 when all album types count",
+            "Jay-Z ahead 11-9 when only studio albums count",
+            "that the underlying charts are identical"
+          ],
+          "needsOnScreenText": true,
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "continuity": []
+    },
+    {
+      "caseId": "U10",
+      "evidenceId": "ev_197e8df3cdb679e1",
+      "comment": "this first part of this beat calls for a pie chart to show porportion. none are good for that.second part of the beat is should just be a counter with broll in the back.",
+      "sourceRefs": [
+        {
+          "sourceId": "src_f0572fc2d68a98c4",
+          "jsonPointer": "/decisions/jayz-drake-settle-it.proposal.matching-derived-p04-4-03::03_dual_trend_lines"
+        },
+        {
+          "sourceId": "src_fb6f2c7cfe51c3ea",
+          "jsonPointer": "/decisions/jayz-drake-settle-it.proposal.matching-derived-p04-4-03::03_dual_trend_lines"
+        }
+      ],
+      "conclusion": "Share and streams/track are typed separately; they should not merge merely because subject is identical.",
+      "classification": "adequate_data_semantics_matching_failure",
+      "reviewedGallery": {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-gallery.json",
+        "sha256": "3339209343220822a2070a5f05259621bbb1b96e00d2a6e1dc9011d5991c218e"
+      },
+      "reviewedTask": {
+        "candidateCount": 16,
+        "candidateStatus": "retrieved_unvalidated",
+        "job": "parallel_instances",
+        "presentationContract": {
+          "entityCount": 1,
+          "evidenceKind": null,
+          "hasCohort": false,
+          "hasTypedValues": true,
+          "mustBePerceptible": [],
+          "needsOnScreenText": false,
+          "operations": [
+            "comparison",
+            "data_explanation",
+            "milestone_reveal"
+          ],
+          "primaryOperation": "comparison",
+          "quantitativeClaim": true,
+          "wouldBeALie": []
+        },
+        "presentationOperations": [
+          "milestone_reveal",
+          "data_explanation",
+          "comparison"
+        ],
+        "primaryPresentationOperation": "comparison",
+        "quote": "Drake's five biggest make up less than 10% of his. Drake's catalog averages 253 million streams per track.",
+        "routeDisposition": {
+          "brollFallbackAvailable": true,
+          "mixedPayloadReviewRequired": true,
+          "preferredTreatment": "template_or_broll",
+          "renderingAuthorized": false,
+          "selectionAuthorized": false,
+          "templateEligible": true
+        },
+        "semanticDerived": true,
+        "sourceBeatIds": [
+          "p04-4"
+        ],
+        "speakerDerived": false,
+        "taskId": "jayz-drake-settle-it.proposal.matching-derived-p04-4-03"
+      },
+      "packageId": "jayz-drake-settle-it@4",
+      "claims": [
+        {
+          "claimId": "p04-4.3",
+          "beatId": "p04-4",
+          "span": {
+            "start": 4837,
+            "len": 50
+          },
+          "text": "Drake's five biggest make up less than 10% of his.",
+          "lane": "factual",
+          "status": "supported",
+          "receipts": [
+            "automation-data@0af272f:hiphop_content_system/data/historical/derived/catalog_concentration.csv (top5_share)"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:drake",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "values": [
+            {
+              "value": 0.096179,
+              "unit": "share",
+              "label": "top five songs' share of catalog streams",
+              "entity": "person:drake",
+              "basis": ""
+            }
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        },
+        {
+          "claimId": "p04-4.4",
+          "beatId": "p04-4",
+          "span": {
+            "start": 4888,
+            "len": 55
+          },
+          "text": "Drake's catalog averages 253 million streams per track.",
+          "lane": "factual",
+          "status": "supported",
+          "receipts": [
+            "automation-data@0af272f:hiphop_content_system/data/scale/artists.csv (streams_total, daily_total, streams_feature; status=ok rows)"
+          ],
+          "entityRefs": [
+            {
+              "entity": "person:drake",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "values": [
+            {
+              "value": 253114212,
+              "unit": "streams/track",
+              "label": "average streams per track",
+              "entity": "person:drake",
+              "basis": ""
+            }
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [],
+      "continuity": []
+    },
+    {
+      "caseId": "U11",
+      "evidenceId": "ev_8d097d68699e413f",
+      "comment": "there are no good canidates here. this beat calls for screen or document templates and/or broll / screenshots of these things being said or implied.... because a non-numerical claim is being made and it needs evidence.",
+      "sourceRefs": [
+        {
+          "sourceId": "src_f0572fc2d68a98c4",
+          "jsonPointer": "/decisions/jayz-drake-settle-it.proposal.matching-derived-p01-3-05::counters-envato--scene-008"
+        },
+        {
+          "sourceId": "src_fb6f2c7cfe51c3ea",
+          "jsonPointer": "/decisions/jayz-drake-settle-it.proposal.matching-derived-p01-3-05::counters-envato--scene-008"
+        }
+      ],
+      "conclusion": "Attributed fan allegation needs evidence; no explicit evidence obligation, plus wrong quantitative classification.",
+      "classification": "story_omission_and_matching_failure",
+      "reviewedGallery": {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-gallery.json",
+        "sha256": "3339209343220822a2070a5f05259621bbb1b96e00d2a6e1dc9011d5991c218e"
+      },
+      "reviewedTask": {
+        "candidateCount": 16,
+        "candidateStatus": "retrieved_unvalidated",
+        "job": "assert_without_data",
+        "presentationContract": {
+          "entityCount": 1,
+          "evidenceKind": null,
+          "hasCohort": false,
+          "hasTypedValues": false,
+          "mustBePerceptible": [],
+          "needsOnScreenText": false,
+          "operations": [
+            "data_explanation"
+          ],
+          "primaryOperation": "data_explanation",
+          "quantitativeClaim": false,
+          "wouldBeALie": []
+        },
+        "presentationOperations": [
+          "data_explanation"
+        ],
+        "primaryPresentationOperation": "data_explanation",
+        "quote": "Jay-Z fans say streaming rigged the numbers.",
+        "routeDisposition": {
+          "brollFallbackAvailable": true,
+          "mixedPayloadReviewRequired": false,
+          "preferredTreatment": "template_or_broll",
+          "renderingAuthorized": false,
+          "selectionAuthorized": false,
+          "templateEligible": true
+        },
+        "semanticDerived": true,
+        "sourceBeatIds": [
+          "p01-3"
+        ],
+        "speakerDerived": false,
+        "taskId": "jayz-drake-settle-it.proposal.matching-derived-p01-3-05"
+      },
+      "packageId": "jayz-drake-settle-it@4",
+      "claims": [
+        {
+          "claimId": "p01-3.6",
+          "beatId": "p01-3",
+          "span": {
+            "start": 904,
+            "len": 44
+          },
+          "text": "Jay-Z fans say streaming rigged the numbers.",
+          "lane": "editorial",
+          "entityRefs": [
+            {
+              "entity": "person:jay-z",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [],
+      "continuity": []
+    },
+    {
+      "caseId": "U12",
+      "evidenceId": "ev_063fd655708a1b49",
+      "comment": "only the document/screen templates works for this. its asking to look at a tracklist and those templates are specifically for showing documents/screens with words. all others should not be considered",
+      "sourceRefs": [
+        {
+          "sourceId": "src_960ded6879c1354f",
+          "jsonPointer": "/decisions/future-volksgeist.proposal.matching-derived-p11-3-01::photo-slideshow-smooth-envato--scene-007"
+        },
+        {
+          "sourceId": "src_851626d6d1cd2f9c",
+          "jsonPointer": "/decisions/future-volksgeist.proposal.matching-derived-p11-3-01::photo-slideshow-smooth-envato--scene-007"
+        }
+      ],
+      "conclusion": "Track-list evidence needs readable document/text; historical operation omitted it; current operation improved but requirement remains unverified.",
+      "classification": "story_annotation_gap_partial_matching_improvement",
+      "reviewedGallery": {
+        "path": "reports/storypackage-02-future-volksgeist-v12-candidate-gallery.json",
+        "sha256": "63e2e9f3055aebfe74781ea17c957314e1adb265ba60dfe69e2069e4ba494b10"
+      },
+      "reviewedTask": {
+        "candidateCount": 16,
+        "candidateStatus": "retrieved_unvalidated",
+        "job": "enumerate",
+        "presentationContract": {
+          "entityCount": 1,
+          "hasCohort": false,
+          "hasTypedValues": false,
+          "mustBePerceptible": [],
+          "needsOnScreenText": false,
+          "operations": [
+            "item_sequence",
+            "milestone_reveal"
+          ],
+          "primaryOperation": "item_sequence",
+          "quantitativeClaim": false,
+          "wouldBeALie": []
+        },
+        "presentationOperations": [
+          "item_sequence",
+          "milestone_reveal"
+        ],
+        "quote": "Looking through the track list, you can really see how influential Future became by releasing this album.",
+        "semanticDerived": true,
+        "sourceBeatIds": [
+          "p11-3"
+        ],
+        "speakerDerived": false,
+        "taskId": "future-volksgeist.proposal.matching-derived-p11-3-01"
+      },
+      "packageId": "future-volksgeist@5",
+      "claims": [
+        {
+          "claimId": "p11-3.1",
+          "beatId": "p11-3",
+          "span": {
+            "start": 41447,
+            "len": 105
+          },
+          "text": "Looking through the track list, you can really see how influential Future became by releasing this album.",
+          "lane": "editorial",
+          "entityRefs": [
+            {
+              "entity": "person:future",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [],
+      "continuity": []
+    },
+    {
+      "caseId": "U13",
+      "evidenceId": "ev_5b014d59e8746769",
+      "comment": "intro-slideshow-full-720p--scene-012 is a good selection as well but shouldve shown the version with 2-3 cards, not 6. the beat is asking for 1 main subject, another sub-subject and explaining a familial relationship 2 slots would be prefered to show main subject and main subject with sub-subject.  the main or main with sub can have multiple slots so 4-6 is ok but we need to reconcile for if its 4-6, we need supporting images to coveer that, so lower or slightly above would be better.  rejects are completly unrelated and shouldnt be canidates because the beat has nothing to do with data and the rejects are data oriented infographics. this should be a rule for sure",
+      "sourceRefs": [
+        {
+          "sourceId": "src_960ded6879c1354f",
+          "jsonPointer": "/decisions/future-volksgeist.proposal.matching-derived-p03-2-01::archive3-photo-slideshow-final--review-008"
+        },
+        {
+          "sourceId": "src_851626d6d1cd2f9c",
+          "jsonPointer": "/decisions/future-volksgeist.proposal.matching-derived-p03-2-01::archive3-photo-slideshow-final--review-008"
+        }
+      ],
+      "conclusion": "Both family participants and relation available; reviewer’s simultaneous/sequential capacity concern exceeds a raw entity count.",
+      "classification": "adequate_story_relation_staging_reconciliation_needed",
+      "reviewedGallery": {
+        "path": "reports/storypackage-02-future-volksgeist-v12-candidate-gallery.json",
+        "sha256": "63e2e9f3055aebfe74781ea17c957314e1adb265ba60dfe69e2069e4ba494b10"
+      },
+      "reviewedTask": {
+        "candidateCount": 16,
+        "candidateStatus": "retrieved_unvalidated",
+        "job": "assert_without_data",
+        "presentationContract": {
+          "entityCount": 2,
+          "hasCohort": false,
+          "hasTypedValues": false,
+          "mustBePerceptible": [],
+          "needsOnScreenText": false,
+          "operations": [
+            "relationship_intro",
+            "evidence_presentation"
+          ],
+          "primaryOperation": "relationship_intro",
+          "quantitativeClaim": false,
+          "wouldBeALie": []
+        },
+        "presentationOperations": [
+          "relationship_intro",
+          "evidence_presentation"
+        ],
+        "quote": "You just heard a quote from Rico Wade, Future's older cousin.",
+        "semanticDerived": true,
+        "sourceBeatIds": [
+          "p03-2"
+        ],
+        "speakerDerived": false,
+        "taskId": "future-volksgeist.proposal.matching-derived-p03-2-01"
+      },
+      "packageId": "future-volksgeist@5",
+      "claims": [
+        {
+          "claimId": "p03-2.1",
+          "beatId": "p03-2",
+          "span": {
+            "start": 5292,
+            "len": 61
+          },
+          "text": "You just heard a quote from Rico Wade, Future's older cousin.",
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "entityRefs": [
+            {
+              "entity": "person:rico-wade",
+              "mentioned": true,
+              "display": "required"
+            },
+            {
+              "entity": "person:future",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [],
+      "continuity": []
+    },
+    {
+      "caseId": "U14",
+      "evidenceId": "ev_032190ddc33477c4",
+      "comment": "2 things this beat needs visualized... the new character introduced in the story  elliot wilson and b-roll of future in an interview. the acceptable selections could show elliot and futures interview of just an image of elliot before a future interview showing next",
+      "sourceRefs": [
+        {
+          "sourceId": "src_960ded6879c1354f",
+          "jsonPointer": "/decisions/future-volksgeist.proposal.matching-derived-p02-3-03::03-history-documentary-10-slides--scene-001"
+        },
+        {
+          "sourceId": "src_851626d6d1cd2f9c",
+          "jsonPointer": "/decisions/future-volksgeist.proposal.matching-derived-p02-3-03::03-history-documentary-10-slides--scene-001"
+        }
+      ],
+      "conclusion": "Witness and interview identities are supplied; exact evidence/media availability is not certified by that supply.",
+      "classification": "adequate_story_identity_media_readiness_unresolved",
+      "reviewedGallery": {
+        "path": "reports/storypackage-02-future-volksgeist-v12-candidate-gallery.json",
+        "sha256": "63e2e9f3055aebfe74781ea17c957314e1adb265ba60dfe69e2069e4ba494b10"
+      },
+      "reviewedTask": {
+        "candidateCount": 8,
+        "candidateStatus": "retrieved_unvalidated",
+        "job": "assert_without_data",
+        "presentationContract": {
+          "entityCount": 2,
+          "hasCohort": false,
+          "hasTypedValues": false,
+          "mustBePerceptible": [],
+          "needsOnScreenText": false,
+          "operations": [
+            "evidence_presentation"
+          ],
+          "primaryOperation": "evidence_presentation",
+          "quantitativeClaim": false,
+          "wouldBeALie": []
+        },
+        "presentationOperations": [
+          "evidence_presentation"
+        ],
+        "quote": "Even a journalist like Elliott Wilson, who's known Future for a long time, says that generally he's funny and easy to talk with, but as soon as the recorded interview begins, something in him changes, and speaking with Future becomes a chess match.",
+        "semanticDerived": true,
+        "sourceBeatIds": [
+          "p02-3"
+        ],
+        "speakerDerived": false,
+        "taskId": "future-volksgeist.proposal.matching-derived-p02-3-03"
+      },
+      "packageId": "future-volksgeist@5",
+      "claims": [
+        {
+          "claimId": "p02-3.3",
+          "beatId": "p02-3",
+          "span": {
+            "start": 2198,
+            "len": 248
+          },
+          "text": "Even a journalist like Elliott Wilson, who's known Future for a long time, says that generally he's funny and easy to talk with, but as soon as the recorded interview begins, something in him changes, and speaking with Future becomes a chess match.",
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "entityRefs": [
+            {
+              "entity": "person:elliott-wilson",
+              "mentioned": true,
+              "display": "required"
+            },
+            {
+              "entity": "person:future",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [],
+      "continuity": []
+    },
+    {
+      "caseId": "U15",
+      "evidenceId": "ev_6c440a7b5cb840d4",
+      "comment": "the selected is the only one that would work for this. we should have lyrics templates suggested here. this is the exact kind of beat the lyrics templates were added to the collection for. where are the lyrics templates?",
+      "sourceRefs": [
+        {
+          "sourceId": "src_960ded6879c1354f",
+          "jsonPointer": "/decisions/future-volksgeist.proposal.matching-derived-p06-1-10::03-history-documentary-10-slides--scene-002"
+        },
+        {
+          "sourceId": "src_851626d6d1cd2f9c",
+          "jsonPointer": "/decisions/future-volksgeist.proposal.matching-derived-p06-1-10::03-history-documentary-10-slides--scene-002"
+        }
+      ],
+      "conclusion": "Lyrics-specific requirement concerns readable/source-faithful content, not generic identity imagery.",
+      "classification": "evidence_requirement_reconciliation",
+      "reviewedGallery": {
+        "path": "reports/storypackage-02-future-volksgeist-v12-candidate-gallery.json",
+        "sha256": "63e2e9f3055aebfe74781ea17c957314e1adb265ba60dfe69e2069e4ba494b10"
+      },
+      "reviewedTask": {
+        "candidateCount": 16,
+        "candidateStatus": "retrieved_unvalidated",
+        "job": "enumerate",
+        "presentationContract": {
+          "entityCount": 3,
+          "hasCohort": false,
+          "hasTypedValues": false,
+          "mustBePerceptible": [],
+          "needsOnScreenText": false,
+          "operations": [
+            "evidence_presentation",
+            "item_sequence",
+            "archival_progression"
+          ],
+          "primaryOperation": "evidence_presentation",
+          "quantitativeClaim": false,
+          "wouldBeALie": []
+        },
+        "presentationOperations": [
+          "item_sequence",
+          "archival_progression",
+          "evidence_presentation"
+        ],
+        "quote": "The song starts out with a spoken-word poem by Dungeon Family member Big Rube; then Future comes in with the hook: \"The streets is where I got respect, that's where I got my stripes. And Wikipedia can't check that.\"",
+        "semanticDerived": true,
+        "sourceBeatIds": [
+          "p06-1"
+        ],
+        "speakerDerived": false,
+        "taskId": "future-volksgeist.proposal.matching-derived-p06-1-10"
+      },
+      "packageId": "future-volksgeist@5",
+      "claims": [
+        {
+          "claimId": "p06-1.10",
+          "beatId": "p06-1",
+          "span": {
+            "start": 20975,
+            "len": 215
+          },
+          "text": "The song starts out with a spoken-word poem by Dungeon Family member Big Rube; then Future comes in with the hook: \"The streets is where I got respect, that's where I got my stripes. And Wikipedia can't check that.\"",
+          "lane": "factual",
+          "status": "unverified",
+          "receipts": [],
+          "entityRefs": [
+            {
+              "entity": "person:dungeon-family",
+              "mentioned": true,
+              "display": "required"
+            },
+            {
+              "entity": "person:big-rube",
+              "mentioned": true,
+              "display": "required"
+            },
+            {
+              "entity": "person:future",
+              "mentioned": true,
+              "display": "required"
+            }
+          ],
+          "provenance": {
+            "source": "story_writer",
+            "reviewState": "proposed"
+          }
+        }
+      ],
+      "obligations": [],
+      "continuity": []
+    }
+  ],
+  "sourceInventory": [
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/storypackage_adapter.py",
+      "sha256": "b94b883e34133024c44d1387745683cf5b3436b01f634250638df0355c782720"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/storypackage_splitter.py",
+      "sha256": "40a9c0540b33eca1c0037f758d784b2e89f6703780c485054769a3e6f8ec77a7"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/storypackage_candidate_gallery.py",
+      "sha256": "a9593ce75c618eb43d6e9699ba170b94b8c00e7527e53190d8c4c528c87d8e80"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/storypackage_matching_handoff.py",
+      "sha256": "c438c00121b5bbaebad465eb60221a7b268bff4daba1f0343c8cc23b1ff9516b"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/storypackage_data_handoff.py",
+      "sha256": "9c73d158c6113c827ba6ed2f71311e45eb979091c94eee5ee1d7c5a0943c3823"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/storypackage_data_assignment.py",
+      "sha256": "ed558054f64c951c1d43b274f0f82734d4fabcc3391273120ff050ad7ba3c886"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/matching_agent.py",
+      "sha256": "81b1475c4304e8e74a2d9b386b99932e612b9e4ef1bb61d4d9cac4b809a77b27"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/matching_agent_contracts.py",
+      "sha256": "331c850ade21bbe775fcf94c7c94caa22657c52232e593ffb5b2e015a611b17b"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/media_candidates.py",
+      "sha256": "853c8fb5a71836bfebbf7e1142dc3e15c4cdf50297af137e40d5d9743648f1b2"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/visualtask_matching.py",
+      "sha256": "1de7914be513b54aa8d3bea3b696e7e80ce271fc4ba9f76ddf4d0c45c610a15a"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "pipeline/visualtask_requirements.py",
+      "sha256": "8d7d440658f8cc9fbd845d826b5411c8fdf150f58ebdc10ef4f52079733701ce"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "plans/storypackage-02-integration-tasks.json",
+      "sha256": "bbc12d4b1b64184118ec18c2f9f621bdf3d96c3325546311daabae7261b8284c"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "grammar/matching-agent-task.schema.json",
+      "sha256": "75c9666db3fdb3f061b3c4385c666fbe522a87df082a7c0054b2413671face9c"
+    },
+    {
+      "repo": "djtoler/astra-visual-selector",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "path": "grammar/library-snapshot.json",
+      "sha256": "14716d55a4e178f2f5cff9d172011e3ac56541eace9f75ee5be4328be510b867"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/SPEC-0.2.md",
+      "sha256": "f038acab27a20d7941a3e2986cd284938972b0a70b05d7ad98e4727fee5487f0"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/storypackage-0.2.schema.json",
+      "sha256": "6c624c6b39df9c9f2f0b9b6847cc889e577dd2a8c30952b4a2eedcc78f08b244"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/matching-handoff-0.2.schema.json",
+      "sha256": "4bf4508a4ac95b29bd31a304c6fd08b4bd1085b10440942243b14fdf4ee92d9c"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/tools/check.py",
+      "sha256": "33f3015301c080d627562160f17da9f043c4faaa990a907183f4d50d25be3f2f"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/tools/check_handoff.py",
+      "sha256": "84d47cca7a11291b5a473abfc299d0e6aee66006c59b0636f6743c0b4a373f6d"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/tools/build_matching_handoff.py",
+      "sha256": "631f096d9b2f692889e9a05ac883921489de4aae74583e72e8b11e8882a517e0"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/year-seventeen@9.storypackage-0.2.json",
+      "sha256": "3e260634e01e0157072bf5d65553c502be3f380e1a3188185db98dd28a258fb6"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/future-volksgeist@5.storypackage-0.2.json",
+      "sha256": "9c16482d73d24e78308a0f6854eb1d5cc653f69eccccdad452b5d5aeb253275d"
+    },
+    {
+      "repo": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "path": "architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json",
+      "sha256": "21f02e6aa12b133583d7ccfb9683b5879c529a53f41bb692bac0a6d9fe4119d3"
+    }
+  ],
+  "validationReceipt": "03-validation-probes.json",
+  "observedFacts": [
+    "General agent receives exact StoryPackage/registry/catalog bindings, but optional Data/Media handoff contents are not parsed for task-level correctness.",
+    "Richer Year Seventeen matching handoff exists and passes two existing tests, but remains package@7 and is not a general current-package pipeline input.",
+    "Legacy Data assignments have usable receipts and explicit absence but are generated by a fixture-specific recipe path, not general cross-story authority.",
+    "Frozen and live media manifest metadata both pass existing verification; neither575-asset count proves per-task eligibility."
+  ],
+  "measuredResults": {
+    "matrixRows": 24,
+    "typedGaps": 12,
+    "evidenceCases": 15,
+    "existingTestsPassed": 16,
+    "probeCount": 30,
+    "publicMissingHandoffWarnings": 579
+  },
+  "hypotheses": [
+    {
+      "statement": "Reusing the richer handoff contracts and enforcing their contents may close more gaps than extending StoryPackage.",
+      "status": "proposal requiring Jobs4-8 reconciliation, not a redesign decision"
+    },
+    {
+      "statement": "Automatic brollFallbackAvailable:true may be mistaken for verified footage supply by downstream consumers.",
+      "status": "flag semantics are observed; no render or user-facing misuse is asserted"
+    }
+  ],
+  "recommendations": [
+    "Populate existing Story obligations and implied-participant fields where evidence supports them.",
+    "Bind current Data and Media outputs to exact package/task versions and validate content and coverage before marking them bound.",
+    "Preserve unknown numerical values and unavailable media as independent typed gaps; retain compatible templates as unfillable/review-only rather than incompatible.",
+    "Use existing richer text/focal/value-display/caveat contracts rather than immediately introducing new fields.",
+    "Revalidate intermediate artifact receipts at consumption boundaries; keep structural validation separate from factual correctness and media readiness."
+  ],
+  "limitations": [
+    "No new schema/runtime changes or media sourcing.",
+    "Media manifest metadata inspected; asset pixels, playback, rights and each task’s actual eligible supply not revalidated.",
+    "Historical human supply verdicts are scoped to reviewed artifacts, not asserted as current live inventory.",
+    "Synthetic mutation probes establish acceptance holes, not evidence of production tampering.",
+    "Year-v12 legacy proposal requirements produce89 warnings versus127 from the public Year proposal artifact; both sources are labeled in probes and not conflated.",
+    "Review-only warnings are not render authorization; all tested public artifacts keep selection/rendering false."
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "productionChanges": false,
+  "executionReceipt": {
+    "configuredModel": "gpt-6-astra",
+    "reasoningEffort": "medium",
+    "source": "/Users/dwaynetoler/.codex/sessions/2026/10/04/rollout-2026-10-04T15-28-34-01a10863-b544-7851-b0a5-a3b658c6952c.jsonl",
+    "line": 573,
+    "timestamp": "2026-10-04T20:48:43.087Z",
+    "escalations": []
+  },
+  "stageReceipts": [
+    {
+      "order": 1,
+      "stage": "inspect_contracts_and_consumers",
+      "status": "completed",
+      "evidence": "sourceInventory, code reads and frozen-object comparison"
+    },
+    {
+      "order": 2,
+      "stage": "measure_population_and_freshness",
+      "status": "completed",
+      "evidence": "24 matrix rows, packageMetrics/publicHandoffCoverage and manifest observations"
+    },
+    {
+      "order": 3,
+      "stage": "reconcile_editor_cases",
+      "status": "completed",
+      "evidence": "15 exact case joins with editor IDs and recovered gallery contexts"
+    },
+    {
+      "order": 4,
+      "stage": "focused_validation_probes",
+      "status": "completed",
+      "evidence": "03-validation-probes.json:30 probes and16 existing passing tests"
+    },
+    {
+      "order": 5,
+      "stage": "publish_and_acceptance",
+      "status": "completed",
+      "evidence": "Markdown/JSON reports and03-acceptance.json"
+    }
+  ],
+  "workflowReview": {
+    "id": "ac7d2596-3ff1-46c5-9d0e-28971b290687",
+    "checkpoint": "astra-job03-contract-fitness-20261004-complete",
+    "validated": true
+  }
+}
