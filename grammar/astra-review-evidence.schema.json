@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/djtoler/astra-visual-selector/grammar/astra-review-evidence.schema.json",
+  "title": "Astra matching review evidence package",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "purpose",
+    "generatedAt",
+    "selectionAuthorized",
+    "renderingAuthorized",
+    "counts",
+    "sources",
+    "records",
+    "excludedClasses"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "astra-matching-review-evidence@1"},
+    "purpose": {"type": "string", "minLength": 1},
+    "generatedAt": {"type": "string", "minLength": 1},
+    "selectionAuthorized": {"const": false},
+    "renderingAuthorized": {"const": false},
+    "counts": {"type": "object"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sourceId", "sha256", "canonicalPath", "aliases", "parser", "recordCount"],
+        "properties": {
+          "sourceId": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "canonicalPath": {"type": "string", "minLength": 1},
+          "aliases": {"type": "array", "items": {"type": "string"}},
+          "parser": {"type": "string", "minLength": 1},
+          "recordCount": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "evidenceId",
+          "evidenceType",
+          "authorship",
+          "scope",
+          "status",
+          "comment",
+          "sourceRefs",
+          "selectionAuthorized",
+          "renderingAuthorized"
+        ],
+        "properties": {
+          "evidenceId": {"type": "string", "pattern": "^ev_[0-9a-f]{16}$"},
+          "evidenceType": {"type": "string", "minLength": 1},
+          "authorship": {"enum": ["human", "human_verbatim_recovered", "derived_from_human", "mixed"]},
+          "scope": {"enum": ["story_task", "story_beat", "template_candidate", "template_capability", "media_asset", "timing", "route", "unknown"]},
+          "status": {"type": ["string", "null"]},
+          "comment": {"type": "string"},
+          "sourceRefs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["sourceId", "jsonPointer"],
+              "properties": {
+                "sourceId": {"type": "string"},
+                "jsonPointer": {"type": "string"}
+              }
+            }
+          },
+          "selectionAuthorized": {"const": false},
+          "renderingAuthorized": {"const": false}
+        }
+      }
+    },
+    "excludedClasses": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": true
+}

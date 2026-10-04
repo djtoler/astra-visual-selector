@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "objective": "Diagnose and redesign the general StoryPackage-to-template matching system from preserved cross-layer evidence without story-specific tuning.",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "implementationAuthorized": false,
+  "storyAuthority": {
+    "repository": "djtoler/patterns",
+    "branch": "claude/friendly-maxwell-i5brux",
+    "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+  },
+  "matchingAuthority": {
+    "repository": "djtoler/astra-visual-selector",
+    "branch": "matching-layer"
+  },
+  "tasks": [
+    {
+      "id": "astra-root-cause-01",
+      "name": "System map and evidence integrity",
+      "prompt": "docs/astra-root-cause/jobs/01-system-map-and-evidence.md",
+      "dependsOn": [],
+      "status": "pending"
+    },
+    {
+      "id": "astra-root-cause-02",
+      "name": "Story beat, claim and visual-moment semantics",
+      "prompt": "docs/astra-root-cause/jobs/02-story-semantics.md",
+      "dependsOn": ["astra-root-cause-01"],
+      "status": "pending"
+    },
+    {
+      "id": "astra-root-cause-03",
+      "name": "Story, Data and Media contract fitness",
+      "prompt": "docs/astra-root-cause/jobs/03-upstream-contract-fitness.md",
+      "dependsOn": ["astra-root-cause-01", "astra-root-cause-02"],
+      "status": "pending"
+    },
+    {
+      "id": "astra-root-cause-04",
+      "name": "Matching transformations and visual-job derivation",
+      "prompt": "docs/astra-root-cause/jobs/04-matching-transformations.md",
+      "dependsOn": ["astra-root-cause-01", "astra-root-cause-02", "astra-root-cause-03"],
+      "status": "pending"
+    },
+    {
+      "id": "astra-root-cause-05",
+      "name": "Grammar, tags and template-capability coverage",
+      "prompt": "docs/astra-root-cause/jobs/05-grammar-tags-capabilities.md",
+      "dependsOn": ["astra-root-cause-01", "astra-root-cause-02", "astra-root-cause-04"],
+      "status": "pending"
+    },
+    {
+      "id": "astra-root-cause-06",
+      "name": "Candidate admission, diversity, ordering and display",
+      "prompt": "docs/astra-root-cause/jobs/06-candidate-pipeline.md",
+      "dependsOn": ["astra-root-cause-01", "astra-root-cause-04", "astra-root-cause-05"],
+      "status": "pending"
+    },
+    {
+      "id": "astra-root-cause-07",
+      "name": "Human-review and reference-match error analysis",
+      "prompt": "docs/astra-root-cause/jobs/07-human-evidence-and-reference-evaluation.md",
+      "dependsOn": ["astra-root-cause-01", "astra-root-cause-02", "astra-root-cause-03", "astra-root-cause-04", "astra-root-cause-05", "astra-root-cause-06"],
+      "status": "pending"
+    },
+    {
+      "id": "astra-root-cause-08",
+      "name": "Integrated root cause, redesign and validation plan",
+      "prompt": "docs/astra-root-cause/jobs/08-integrated-root-cause-and-redesign.md",
+      "dependsOn": ["astra-root-cause-01", "astra-root-cause-02", "astra-root-cause-03", "astra-root-cause-04", "astra-root-cause-05", "astra-root-cause-06", "astra-root-cause-07"],
+      "status": "pending"
+    }
+  ]
+}

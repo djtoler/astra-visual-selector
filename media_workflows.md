@@ -61,3 +61,18 @@ Every beat may route to b-roll. An empty template slate is not automatically a s
 ## Mandatory workflow review gate
 
 Every new decision is checked against this memory. Update it only when the decision changes the reusable workflow; otherwise record that the rule was already covered or did not change the workflow.
+
+### Evidence-first matching recalibration — 2026-10-04
+
+When editor review shows systematic candidate mismatch, freeze the current
+gallery-bound reviews before changing Story, Data, Media or Matching behavior.
+Recalibration begins with a normalized, hash-addressed evidence package that
+includes active and abandoned-repository editor notes, preserves verbatim text
+and source pointers, deduplicates byte-identical mirrors and keeps derived or
+machine judgments distinct from human evidence.
+
+Trace representative successes and failures through upstream semantics and
+contracts, task granularity, presentation-operation derivation, candidate
+admission, family coverage, ordering and display. Do not patch ranking or add a
+story-specific rule until the failing stage is identified. Prior comments remain
+scoped evidence unless a separate reconciliation proves a reusable principle.
