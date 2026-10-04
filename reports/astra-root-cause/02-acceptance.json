@@ -1,0 +1,60 @@
+{
+  "auditStatus": "PASS",
+  "checks": {
+    "representativeCases": 21,
+    "stories": {
+      "year-seventeen": 6,
+      "future-volksgeist": 9,
+      "jayz-drake-settle-it": 6
+    },
+    "exactClaimExcerpts": 47,
+    "scriptAndBeatSpansExact": true,
+    "evidenceIdsExist": true,
+    "scopedGalleryQuotesExact": true,
+    "allFindingsAttributed": true,
+    "pinnedStoryFilesExact": 26,
+    "matchingProductionDiffEmpty": true,
+    "focusedGatedReplayReproducesSubspanDefect": true,
+    "requiredStageOrderValidated": true,
+    "reorderedStagesRejected": true,
+    "workflowCheckpointValidated": true
+  },
+  "omissionTests": [
+    {
+      "omittedStage": "definitions_and_builders",
+      "rejected": true
+    },
+    {
+      "omittedStage": "package_and_reference_measurement",
+      "rejected": true
+    },
+    {
+      "omittedStage": "representative_span_review",
+      "rejected": true
+    },
+    {
+      "omittedStage": "classification_and_gold_comparison",
+      "rejected": true
+    },
+    {
+      "omittedStage": "publish_and_acceptance",
+      "rejected": true
+    }
+  ],
+  "validationScope": "Executed audit acceptance assertions, not a new production publisher or render gate. Existing structural checker receipts from Job 1 reused; not claimed as rerun.",
+  "workflowReview": {
+    "id": "b81eea75-d5cc-4530-8ed7-bc2a8aa24ba1",
+    "checkpoint": "astra-job02-story-semantics-20261004-complete",
+    "validated": true
+  },
+  "outputs": [
+    {
+      "path": "reports/astra-root-cause/02-story-semantics.json",
+      "sha256": "e4e77448e055b61dd2471ff61ba3b28d29efb1ef95701b04832fdae49a969ecd"
+    },
+    {
+      "path": "reports/astra-root-cause/02-story-semantics.md",
+      "sha256": "71fe7552d21c8e7e51a953ec8aedf8138ed4a11b0b49edf585806ec3ca46be9f"
+    }
+  ]
+}

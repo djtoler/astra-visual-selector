@@ -1,0 +1,3484 @@
+[
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/SPEC-0.2.md",
+    "sha256": "f038acab27a20d7941a3e2986cd284938972b0a70b05d7ad98e4727fee5487f0",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# StoryPackage 0.2",
+      "## Boundary",
+      "## Changes from 0.1, mapped to the feedback",
+      "## Additive fields (2026-10-01)",
+      "## Additive changes (2026-10-02)",
+      "## Additive changes (2026-10-03)",
+      "### Shared entity registry v11",
+      "## Builder additions (2026-10-03, later)",
+      "## Story migration to v11 (2026-10-03)",
+      "## Re-pin to v12 (2026-10-03)",
+      "## What the two examples contain",
+      "## Deterministic checks"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/storypackage-0.2.schema.json",
+    "sha256": "6c624c6b39df9c9f2f0b9b6847cc889e577dd2a8c30952b4a2eedcc78f08b244",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "$schema",
+      "$id",
+      "title",
+      "description",
+      "type",
+      "additionalProperties",
+      "required",
+      "$defs",
+      "properties"
+    ],
+    "collections": {
+      "required": 8,
+      "$defs": 9,
+      "properties": 15
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/matching-handoff-0.2.schema.json",
+    "sha256": "4bf4508a4ac95b29bd31a304c6fd08b4bd1085b10440942243b14fdf4ee92d9c",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "$schema",
+      "$id",
+      "title",
+      "description",
+      "type",
+      "additionalProperties",
+      "required",
+      "$defs",
+      "properties"
+    ],
+    "collections": {
+      "required": 10,
+      "$defs": 9,
+      "properties": 11
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/tools/build_tagged_script.py",
+    "sha256": "d68cd4ddf24a2205f0cd6d10c3c8e2eda995258369444c302b40ed8ddf35cf39",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# ---- registry: one digest-pinned authority; extensions remain legacy support",
+      "# ---- segment",
+      "# ---- entities: gazetteer over canonical names plus aliases",
+      "# ---- lanes: heuristics, then authored overrides",
+      "# ---- cohorts: replayed from pinned CSV snapshots, members mapped through the registry",
+      "# ---- names the registry lacks: never minted, emitted as typed unresolved mentions per claim"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/tools/check.py",
+    "sha256": "33f3015301c080d627562160f17da9f043c4faaa990a907183f4d50d25be3f2f",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": []
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/tools/build_matching_handoff.py",
+    "sha256": "631f096d9b2f692889e9a05ac883921489de4aae74583e72e8b11e8882a517e0",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# ----------------------------------------------------------------------------------------------",
+      "# Authored tables. Claim refs: \"claimId\" (whole claim) or (\"claimId\", \"exact sub-span text\").",
+      "# focal: (simultaneous, sequencePermitted, storyItems, basis); \"?reason\" marks an unknown count.",
+      "# values: (valueId, role, claimId, anchor phrase, display, entity|None, population|None)",
+      "# ----------------------------------------------------------------------------------------------",
+      "# ----------------------------------------------------------------------------------------------",
+      "# Derivation",
+      "# ----------------------------------------------------------------------------------------------"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/tools/check_handoff.py",
+    "sha256": "84d47cca7a11291b5a473abfc299d0e6aee66006c59b0636f6743c0b4a373f6d",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": []
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/MATCHING_LAYER_FEEDBACK.md",
+    "sha256": "752167b2c13fe4108eed9576ca7921b69a051e5b506313c9845c7b8be202a74c",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Matching-layer feedback on StoryPackage 0.1",
+      "## What 0.1 gets right",
+      "## Required changes before matching integration",
+      "### 1. Keep Claim and VisualTask as different units",
+      "### 2. Add exact claim spans",
+      "### 3. Separate mentioned entities from display requirements",
+      "### 4. Make cohorts replayable and fail closed when incomplete",
+      "### 5. Reference the shared entity roster instead of creating a second authority",
+      "### 6. Carry the visual obligations matching must preserve",
+      "### 7. Preserve factual and interpretive lanes",
+      "### 8. Make continuity instructions specific",
+      "### 9. Keep timing optional, but define how it joins later",
+      "### 10. Add a genuinely unrelated example",
+      "## Recommended 0.2 boundary",
+      "## Acceptance checks for the next handoff",
+      "## Integration decision"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/HANDOVER-v12-repin-20261003.md",
+    "sha256": "54b7e0728f090400c19f2d7f3a70b9d921f0aebab1176b0d059a61edd58fc58d",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Handover: StoryPackages re-pinned to registry v12",
+      "## Registry receipt",
+      "## Current revisions (use these)",
+      "## For Matching",
+      "## Observation for Data"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/future-volksgeist@5.storypackage-0.2.json",
+    "sha256": "9c16482d73d24e78308a0f6854eb1d5cc653f69eccccdad452b5d5aeb253275d",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schema",
+      "story",
+      "packageId",
+      "createdAt",
+      "producer",
+      "script",
+      "entityRegistry",
+      "entities",
+      "beats",
+      "claims",
+      "jobProposals",
+      "obligations",
+      "continuity",
+      "timing"
+    ],
+    "collections": {
+      "story": 6,
+      "producer": 2,
+      "script": 5,
+      "entityRegistry": 2,
+      "entities": 47,
+      "beats": 94,
+      "claims": 502,
+      "jobProposals": 20,
+      "obligations": 42,
+      "continuity": 2,
+      "timing": 2
+    },
+    "sourceManifests": {
+      "entityRegistry": {
+        "contract": "djtoler/entity_roster/entity-context@1.1.0",
+        "snapshot": {
+          "repo": "djtoler/entity_roster",
+          "commit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+          "path": "entity-roster.json",
+          "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd"
+        }
+      }
+    },
+    "scriptReceipt": {
+      "path": "script/future-volksgeist-cleaned.md",
+      "sha256": "94a54b4c5bb33f115771e9afccddd5575f40eaa507f55facfe509c23b48932a8",
+      "encoding": "utf-8",
+      "spanUnit": "codepoint"
+    }
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json",
+    "sha256": "21f02e6aa12b133583d7ccfb9683b5879c529a53f41bb692bac0a6d9fe4119d3",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schema",
+      "story",
+      "packageId",
+      "createdAt",
+      "producer",
+      "script",
+      "entityRegistry",
+      "entities",
+      "cohorts",
+      "beats",
+      "claims",
+      "jobProposals",
+      "obligations",
+      "continuity",
+      "timing"
+    ],
+    "collections": {
+      "story": 6,
+      "producer": 2,
+      "script": 5,
+      "entityRegistry": 2,
+      "entities": 34,
+      "cohorts": 1,
+      "beats": 54,
+      "claims": 222,
+      "jobProposals": 14,
+      "obligations": 6,
+      "continuity": 4,
+      "timing": 2
+    },
+    "sourceManifests": {
+      "entityRegistry": {
+        "contract": "djtoler/entity_roster/entity-context@1.1.0",
+        "snapshot": {
+          "repo": "djtoler/entity_roster",
+          "commit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+          "path": "entity-roster.json",
+          "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd"
+        }
+      }
+    },
+    "scriptReceipt": {
+      "path": "script/jayz-drake-settle-it-v2.md",
+      "sha256": "cf8ad2516d690e0c30b19c3e9071c274653043eee0479abd1a5128f284dfb488",
+      "encoding": "utf-8",
+      "spanUnit": "codepoint"
+    }
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/year-seventeen@9.storypackage-0.2.json",
+    "sha256": "3e260634e01e0157072bf5d65553c502be3f380e1a3188185db98dd28a258fb6",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schema",
+      "story",
+      "packageId",
+      "createdAt",
+      "producer",
+      "script",
+      "entityRegistry",
+      "entities",
+      "cohorts",
+      "beats",
+      "claims",
+      "jobProposals",
+      "obligations",
+      "continuity",
+      "timing"
+    ],
+    "collections": {
+      "story": 6,
+      "producer": 2,
+      "script": 5,
+      "entityRegistry": 2,
+      "entities": 98,
+      "cohorts": 3,
+      "beats": 72,
+      "claims": 150,
+      "jobProposals": 116,
+      "obligations": 24,
+      "continuity": 5,
+      "timing": 2
+    },
+    "sourceManifests": {
+      "entityRegistry": {
+        "contract": "djtoler/entity_roster/entity-context@1.1.0",
+        "snapshot": {
+          "repo": "djtoler/entity_roster",
+          "commit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+          "path": "entity-roster.json",
+          "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd"
+        }
+      }
+    },
+    "scriptReceipt": {
+      "path": "script/year-seventeen-script-v2.1.md",
+      "sha256": "d478e38bc38f291b596e472090ab3ab3221a030ee11dcbf17f5221cef78ca5f2",
+      "encoding": "utf-8",
+      "spanUnit": "codepoint"
+    }
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/stories/future-volksgeist.story.json",
+    "sha256": "ac79386521d1742dd2affc29fa67d5f7d0837773b16cf19f34960f37d8197ebb",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "story",
+      "createdAt",
+      "script",
+      "out",
+      "source",
+      "registry",
+      "speakers",
+      "aliases",
+      "capitalOnly",
+      "speakerSources",
+      "speakerNotes",
+      "lanes",
+      "impliedSubject",
+      "impliedRefs",
+      "unresolvedMentions",
+      "obligations",
+      "continuity",
+      "noQuestionJob",
+      "speakerApprovals",
+      "ignoreSurfaces"
+    ],
+    "collections": {
+      "story": 6,
+      "source": 1,
+      "registry": 4,
+      "speakers": 8,
+      "aliases": 6,
+      "capitalOnly": 1,
+      "speakerSources": 2,
+      "speakerNotes": 9,
+      "lanes": 5,
+      "impliedSubject": 5,
+      "impliedRefs": 5,
+      "unresolvedMentions": 3,
+      "obligations": 3,
+      "continuity": 2,
+      "noQuestionJob": 1,
+      "speakerApprovals": 2,
+      "ignoreSurfaces": 1
+    },
+    "sourceManifests": {
+      "source": {
+        "citation": "Volksgeist, 'Rap's Misunderstood Genius: The Story of Future' (youtube.com/watch?v=NZ105XlGPus)"
+      }
+    }
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/stories/jayz-drake-settle-it.story.json",
+    "sha256": "cf8eb2a5204d0666ceddb84c0ecbb671e69ca9fdcfd56d4bfd93904f20558d99",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "story",
+      "createdAt",
+      "script",
+      "out",
+      "registry",
+      "speakers",
+      "aliases",
+      "lanes",
+      "cohorts",
+      "claimData",
+      "impliedRefs",
+      "unresolvedMentions",
+      "obligations",
+      "continuity",
+      "noQuestionJob"
+    ],
+    "collections": {
+      "story": 6,
+      "registry": 4,
+      "speakers": 0,
+      "aliases": 0,
+      "lanes": 5,
+      "cohorts": 1,
+      "claimData": 70,
+      "impliedRefs": 37,
+      "unresolvedMentions": 0,
+      "obligations": 6,
+      "continuity": 4,
+      "noQuestionJob": 2
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "story",
+    "path": "script/future-volksgeist-cleaned.md",
+    "sha256": "94a54b4c5bb33f115771e9afccddd5575f40eaa507f55facfe509c23b48932a8",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Rap's Misunderstood Genius: The Story of Future \u2014 cleaned transcript",
+      "## PART 1 \u2014 WHO IS FUTURE?",
+      "## PART 2 \u2014 HIDING IN PLAIN SIGHT",
+      "## PART 3 \u2014 NAYVADIUS",
+      "## PART 4 \u2014 THE DUNGEON YEARS",
+      "## PART 5 \u2014 SEVEN YEARS OF FAILURE",
+      "## PART 6 \u2014 THE BREAKTHROUGH",
+      "## PART 7 \u2014 PLUTO",
+      "## PART 8 \u2014 HONEST",
+      "## PART 9 \u2014 MONSTER",
+      "## PART 10 \u2014 56 NIGHTS",
+      "## PART 11 \u2014 DS2",
+      "## PART 12 \u2014 THE LEGACY",
+      "## PART 13 \u2014 WHO IS FUTURE?"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "script/jayz-drake-settle-it-v2.md",
+    "sha256": "cf8ad2516d690e0c30b19c3e9071c274653043eee0479abd1a5128f284dfb488",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Jay-Z vs Drake: The Only Way To Settle It \u2014 draft v2",
+      "## PART 1 \u2014 THE DEBATE THAT NEVER ENDS",
+      "## PART 2 \u2014 THE FORMULA",
+      "## PART 3 \u2014 JUST THE NUMBERS",
+      "## PART 4 \u2014 WHERE THE NUMBERS GET WEIRD",
+      "## PART 5 \u2014 THE ONE NUMBER THAT HOLDS",
+      "## PART 6 \u2014 HEIGHT VERSUS DEPTH",
+      "## PART 7 \u2014 THE ERA TAX",
+      "## PART 8 \u2014 THE HANDOFF",
+      "## PART 9 \u2014 WHAT DO WE EVEN VALUE?",
+      "## PART 10 \u2014 ASK THE AUDIENCE",
+      "## PART 11 \u2014 THE JELLY BEAN JAR",
+      "## PART 12 \u2014 THE CROWD HAS ALREADY VOTED",
+      "## PART 13 \u2014 THE VERDICT"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "script/year-seventeen-script-v2.1.md",
+    "sha256": "d478e38bc38f291b596e472090ab3ab3221a030ee11dcbf17f5221cef78ca5f2",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "## CYCLE 1 \u2014 THE TAP",
+      "### PROVOKE",
+      "### PREDICT",
+      "### REVEAL",
+      "### RECONCILE",
+      "## CYCLE 2 \u2014 ONE SONG?",
+      "### PROVOKE",
+      "### PREDICT",
+      "### REVEAL",
+      "### RECONCILE",
+      "## CYCLE 3 \u2014 WHOSE RECORDS?",
+      "### PROVOKE",
+      "### PREDICT",
+      "### REVEAL",
+      "### RECONCILE",
+      "## CYCLE 4 \u2014 ONLY THE OLD STUFF?",
+      "### PROVOKE",
+      "### PREDICT",
+      "### REVEAL",
+      "### RECONCILE",
+      "## CYCLE 5 \u2014 THE TWO KINDS",
+      "### PROVOKE",
+      "### PREDICT",
+      "### REVEAL",
+      "### RECONCILE",
+      "## CYCLE 6 \u2014 WHAT'S STILL MOVING",
+      "### PROVOKE",
+      "### PREDICT",
+      "### REVEAL",
+      "### RECONCILE"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/HANDOVER-future-volksgeist.md",
+    "sha256": "faa18517d12b33ad79f5648ec4ecce058d30e40efec7d34dacf24eaf967cef10",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Handover: Future (Volksgeist) StoryPackage",
+      "## Files",
+      "## What is new compared with Year Seventeen",
+      "## Contents",
+      "## Registry",
+      "## Lanes",
+      "## Authored decisions",
+      "## Gaps the checker reports",
+      "## Boundary (unchanged)",
+      "## What I need back",
+      "## Run the checker"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/HANDOVER-jayz-drake-settle-it.md",
+    "sha256": "364f6bcfd29e9855de72f5f66618b4d238f8f8bdd5f84cf80e8ba3d38ae59805",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Handover: Jay-Z vs Drake StoryPackage",
+      "## Files",
+      "## What this story is",
+      "## Contents",
+      "## Lanes",
+      "## Obligations",
+      "## Continuity",
+      "## Gaps the checker reports",
+      "## Registry note",
+      "## Boundary (unchanged)",
+      "## What I need back",
+      "## Run the checker"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "architecture/storypackage/HANDOVER-year-seventeen.md",
+    "sha256": "24d3a55e905ed2eb53c28109d36e8f68731494bbe02f1c1faecfbf1a83b36565",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Handover: Year Seventeen StoryPackage (full)",
+      "## Contents",
+      "## Provenance",
+      "## Gaps the checker reports",
+      "## Not included yet",
+      "## Run the checker"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "youtube_doc_analysis/transcripts/full/002_This_Is_The_Only_Way_To_Settle_This_Debate_XMaPrXzclaQ.txt",
+    "sha256": "9321cf23104b6b2c785a5d9b0d53b96587d1e39ccafb8b1cd2ff76a288969699",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# This Is The Only Way To Settle This Debate",
+      "# https://www.youtube.com/watch?v=XMaPrXzclaQ",
+      "# source: json3",
+      "# clip: yt-dlp --download-sections '*HH:MM:SS-HH:MM:SS' https://youtu.be/XMaPrXzclaQ"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "youtube_doc_analysis/transcripts/full/006_Raps_Misunderstood_Genius_The_Story_of_Future_NZ105XlGPus.txt",
+    "sha256": "2e60e4458c4ce9e641c19d489d1c874b3c66741ffc9251153246bde9ed43410f",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Rap\u2019s Misunderstood Genius: The Story of Future",
+      "# https://www.youtube.com/watch?v=NZ105XlGPus",
+      "# source: json3",
+      "# clip: yt-dlp --download-sections '*HH:MM:SS-HH:MM:SS' https://youtu.be/NZ105XlGPus"
+    ]
+  },
+  {
+    "owner": "story",
+    "path": "youtube_doc_analysis/analyses/analysis_002.json",
+    "sha256": "add0f7d09af93fc4b1febe05664189cdb92649a7bb1fad838a88b03ed6e4f821",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schema_version",
+      "analysis_type",
+      "source_metadata",
+      "input_quality",
+      "packaging_promise",
+      "opening",
+      "narrative_arc",
+      "act_structure",
+      "story_beats",
+      "open_loops_and_payoffs",
+      "youtube_retention_mechanics",
+      "stakes_escalation",
+      "pacing_and_tone",
+      "thematic_categories",
+      "storytelling_devices_summary",
+      "closing",
+      "structural_signatures",
+      "transfer_readiness_summary",
+      "quality_control"
+    ],
+    "collections": {
+      "source_metadata": 10,
+      "input_quality": 5,
+      "packaging_promise": 5,
+      "opening": 7,
+      "narrative_arc": 7,
+      "act_structure": 4,
+      "story_beats": 15,
+      "open_loops_and_payoffs": 4,
+      "youtube_retention_mechanics": 4,
+      "stakes_escalation": 5,
+      "pacing_and_tone": 6,
+      "thematic_categories": 5,
+      "storytelling_devices_summary": 2,
+      "closing": 11,
+      "structural_signatures": 3,
+      "transfer_readiness_summary": 6,
+      "quality_control": 5
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "story",
+    "path": "youtube_doc_analysis/analyses/analysis_006.json",
+    "sha256": "2c9ecba53908ca9053c1d745839b8792ab9a3d372b22c9c9d87d6523edb0b2f4",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schema_version",
+      "analysis_type",
+      "source_metadata",
+      "input_quality",
+      "packaging_promise",
+      "opening",
+      "narrative_arc",
+      "act_structure",
+      "story_beats",
+      "open_loops_and_payoffs",
+      "youtube_retention_mechanics",
+      "stakes_escalation",
+      "pacing_and_tone",
+      "thematic_categories",
+      "storytelling_devices_summary",
+      "closing",
+      "structural_signatures",
+      "transfer_readiness_summary",
+      "quality_control"
+    ],
+    "collections": {
+      "source_metadata": 10,
+      "input_quality": 5,
+      "packaging_promise": 5,
+      "opening": 7,
+      "narrative_arc": 7,
+      "act_structure": 4,
+      "story_beats": 18,
+      "open_loops_and_payoffs": 6,
+      "youtube_retention_mechanics": 4,
+      "stakes_escalation": 5,
+      "pacing_and_tone": 6,
+      "thematic_categories": 5,
+      "storytelling_devices_summary": 2,
+      "closing": 11,
+      "structural_signatures": 4,
+      "transfer_readiness_summary": 6,
+      "quality_control": 5
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "story",
+    "path": "youtube_doc_analysis/synthesis/pattern_library.json",
+    "sha256": "66ae184aab1d1466633cf4120d4ddab3f4c8722f36aef1e6a466d781e8be7924",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "signature_families",
+      "blueprints"
+    ],
+    "collections": {
+      "signature_families": 10,
+      "blueprints": 7
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "story",
+    "path": "youtube_doc_analysis/synthesis/playbook.md",
+    "sha256": "56f9a31509d58ca5a8cd2d496e07fc7d065e159f3ee5247de821c40c4182bcb9",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Documentary Storytelling Playbook",
+      "## 1. Rules that held across the corpus",
+      "## 2. The ten signature families",
+      "## 3. Blueprints",
+      "### Data Myth-Debunk",
+      "### Contested Ranking or Verdict",
+      "### Downfall Expos\u00e9",
+      "### Misunderstood Artist Biography",
+      "### Who Really Benefited",
+      "### Profile as a Model",
+      "### System Explainer",
+      "## 4. Caveats"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "AGENTS.md",
+    "sha256": "7d598436afd816dda0d13549fd5bc8ac7bab902076c5d87da570614032cc7de6",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Matching Layer operating instructions",
+      "## Objective",
+      "## Execution harness",
+      "## Ownership",
+      "## Generality and evidence",
+      "## Shared registry",
+      "## Legacy branches",
+      "## Render safety"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "media_workflows.md",
+    "sha256": "055125976e1cd5c582aa581a0151ccbc755327f9ae1ae5ba3749f25d7a5808f9",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Matching Layer workflow memory",
+      "## General matching layer product boundary \u2014 2026-10-03",
+      "### Story/Data/Matching entity-roster reconciliation",
+      "### Multi-agent ownership and provider variants",
+      "### Mandatory contract enforcement at every entry point",
+      "## Cross-story matching acceptance input \u2014 2026-10-03",
+      "### StoryPackage semantic-split ownership correction",
+      "### Future candidate acceptability review",
+      "### Semantic task granularity correction",
+      "## Selection after intake",
+      "## Match reusable structure, not sample subject matter",
+      "## Beat-level b-roll fallback \u2014 2026-10-01",
+      "## Mandatory workflow review gate",
+      "### Evidence-first matching recalibration \u2014 2026-10-04",
+      "### Astra root-cause execution and gold-reference policy \u2014 2026-10-04"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/general-matching-layer-contract.json",
+    "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "contractId",
+      "productBoundary",
+      "runtime",
+      "evidence",
+      "reviewReconciliation",
+      "execution",
+      "layerOwnership",
+      "selectionAuthorized",
+      "renderingAuthorized"
+    ],
+    "collections": {
+      "runtime": 8,
+      "evidence": 6,
+      "reviewReconciliation": 2,
+      "execution": 9,
+      "layerOwnership": 4
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/matching-entrypoint-contract.json",
+    "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "contractId",
+      "unknownEntrypointsAllowed",
+      "reviewOnlySelectionAuthorized",
+      "reviewOnlyRenderingAuthorized",
+      "productionRequiresCompleteHarness",
+      "entrypoints",
+      "selectionAuthorized",
+      "renderingAuthorized"
+    ],
+    "collections": {
+      "entrypoints": 19
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/matching-harness-stage-contract.json",
+    "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "authority",
+      "modes",
+      "continuationPolicy",
+      "stages",
+      "selectionAuthorized",
+      "renderingAuthorized"
+    ],
+    "collections": {
+      "authority": 2,
+      "modes": 2,
+      "continuationPolicy": 9,
+      "stages": 8
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "plans/general-matching-layer-tasks.json",
+    "sha256": "775340a46f7acdabbac72ff2459c2444c84df1fc8a810facef994c3459a671fe",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "planId",
+      "objective",
+      "executionPolicy",
+      "tasks",
+      "selectionAuthorized",
+      "renderingAuthorized"
+    ],
+    "collections": {
+      "executionPolicy": 8,
+      "tasks": 17
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "reports/matching-harness-audit.json",
+    "sha256": "6406a9aba2ed02eb04855a6ff512ea3de403d96db12acb9d27f32f103e3a9e12",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "continuation",
+      "contractEnforcementReceipt",
+      "counts",
+      "dataHandoff",
+      "executionPlan",
+      "firstBlockingStage",
+      "generalMatchingLayer",
+      "humanReview",
+      "mode",
+      "productionAllowed",
+      "purpose",
+      "renderRelease",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sequencePlanning",
+      "sources",
+      "stageResults",
+      "storyHandoff",
+      "templateMediaFeasibility"
+    ],
+    "collections": {
+      "continuation": 13,
+      "contractEnforcementReceipt": 8,
+      "counts": 4,
+      "dataHandoff": 9,
+      "executionPlan": 16,
+      "generalMatchingLayer": 15,
+      "humanReview": 6,
+      "renderRelease": 7,
+      "sequencePlanning": 11,
+      "sources": 32,
+      "stageResults": 8,
+      "storyHandoff": 10,
+      "templateMediaFeasibility": 13
+    },
+    "sourceManifests": {
+      "sources": {
+        "contract": {
+          "path": "grammar/matching-harness-stage-contract.json",
+          "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+        },
+        "dataAssignments": {
+          "path": "reports/storypackage-02-data-assignments.json",
+          "sha256": "470ff52539035a50178574bdf2aed1168c78653010867b47c2c91f2845420d93"
+        },
+        "dataHandoffQueue": {
+          "path": "reports/storypackage-02-data-handoff-queue.json",
+          "sha256": "35fcab42e9382ff74e9ec7535fb7e7175795be5e3ee33efdc7b93c40e19fcacd"
+        },
+        "executionPlan": {
+          "path": "plans/general-matching-layer-tasks.json",
+          "sha256": "775340a46f7acdabbac72ff2459c2444c84df1fc8a810facef994c3459a671fe"
+        },
+        "fullVisualTaskBatchMatching": {
+          "path": "reports/full-visualtask-batch-matching-current.json",
+          "sha256": "e6b3fb10149ec7d22a594fa861fc18fb8dd628cd225e1b83eb784c0f99d4bfd2"
+        },
+        "generalMatchingContract": {
+          "path": "grammar/general-matching-layer-contract.json",
+          "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+        },
+        "generalPackageAdapter1": {
+          "path": "reports/storypackage-02-apollo-adapter.json",
+          "sha256": "f5c8d09f1adb4622be5b978b5f1eef63d8818f91d72a03d52f4096587037f23e"
+        },
+        "generalPackageAdapter2": {
+          "path": "reports/storypackage-02-year-seventeen-v12-adapter.json",
+          "sha256": "4b716762fa368109d06396d0feb22f7423f960a7013ef6b5812d555ba590727e"
+        },
+        "generalPackageAdapter3": {
+          "path": "reports/storypackage-02-future-volksgeist-v12-adapter.json",
+          "sha256": "62634bd5306bbcd634269b8233ef752a6be8b79158f02e9e3641991a1009b49f"
+        },
+        "generalPackageAdapter4": {
+          "path": "reports/storypackage-02-jayz-drake-settle-it-v12-adapter.json",
+          "sha256": "39a2cb64d8799198a6a36c0da034144dfc8b2d458e411621c487b573324ee9c0"
+        },
+        "generalPackageTasks1": {
+          "path": "reports/storypackage-02-apollo-task-proposals.json",
+          "sha256": "bbcba2b964bac9b7e95c3804ad712d74cb6f6e0d2c529756968ad56b76065e0f"
+        },
+        "generalPackageTasks2": {
+          "path": "reports/storypackage-02-year-seventeen-v12-task-proposals.json",
+          "sha256": "82741057b1ec7a6b193f1bb8d4dc4176764593f46bace3c6cf07419de0c79503"
+        },
+        "generalPackageTasks3": {
+          "path": "reports/storypackage-02-future-volksgeist-v12-task-proposals.json",
+          "sha256": "2fa870400d171e5289fa2d6f1e61eeab7654e8bc9873327c8be7ca619b30b46f"
+        },
+        "generalPackageTasks4": {
+          "path": "reports/storypackage-02-jayz-drake-settle-it-v12-task-proposals.json",
+          "sha256": "6a49c16eddb3c44e9fa03d8250703353035b5b4b56b3a09bf5da7c6a6839325e"
+        },
+        "generalRuntimeSource1": {
+          "path": "pipeline/storypackage_adapter.py",
+          "sha256": "b94b883e34133024c44d1387745683cf5b3436b01f634250638df0355c782720"
+        },
+        "generalRuntimeSource2": {
+          "path": "pipeline/storypackage_splitter.py",
+          "sha256": "40a9c0540b33eca1c0037f758d784b2e89f6703780c485054769a3e6f8ec77a7"
+        },
+        "generalRuntimeSource3": {
+          "path": "pipeline/visualtask_matching.py",
+          "sha256": "1de7914be513b54aa8d3bea3b696e7e80ce271fc4ba9f76ddf4d0c45c610a15a"
+        },
+        "generalRuntimeSource4": {
+          "path": "pipeline/storypackage_candidate_gallery.py",
+          "sha256": "a9593ce75c618eb43d6e9699ba170b94b8c00e7527e53190d8c4c528c87d8e80"
+        },
+        "matchingEntrypointContract": {
+          "path": "grammar/matching-entrypoint-contract.json",
+          "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+        },
+        "orderedVisualRouteDecisions": {
+          "path": "reports/ordered-visual-route-decisions.json",
+          "sha256": "ed59149d064470c5b3751c1c39c932f1f696bb4a9ab61b06e358a6504c8b671f"
+        },
+        "orderedVisualRoutePlan": {
+          "path": "reports/ordered-visual-route-plan.json",
+          "sha256": "5fccc6b1c0a103d0ddb76a37acf82e91cec906bfcd0807a93626077e8756b78e"
+        },
+        "priorReviewReconciliation": {
+          "path": "reports/prior-editor-review-reconciliation.json",
+          "sha256": "a1f074aa3a64ea2ab5b53356088259e4b5f50469eed2f8a7b7ad7de498776049"
+        },
+        "renderReleasePreparation": {
+          "path": "reports/render-release-preparation.json",
+          "sha256": "11182e8f62445ee1e3f258b4655a5ddf56f5289ed88cc1f33c6fc755b547d4cb"
+        },
+        "storyHandoffExceptions": {
+          "path": "grammar/story-handoff-exceptions.json",
+          "sha256": "e2f11b24a81bdea7759aeb329900f2d08ceec53bbd093c5b090950381c76e827"
+        },
+        "storyMatchingHandoff": {
+          "path": "reports/storypackage-02-year-seventeen-matching-handoff.json",
+          "sha256": "7146ee8128064e23e8d047f3f4fbd24d727b04e19f1d2841bf1272cdc96acbde"
+        },
+        "storyPackageAdapter": {
+          "path": "reports/storypackage-02-year-seventeen-full-adapter.json",
+          "sha256": "ff2be05f968b91d360753cac9f9c42c8e21f84821f180fee07bf17c81f506914"
+        },
+        "storyTaskProposals": {
+          "path": "reports/storypackage-02-year-seventeen-full-task-proposals.json",
+          "sha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1"
+        },
+        "structuredCandidateGallery": {
+          "path": "reports/storypackage-02-jayz-drake-settle-it-v12-candidate-gallery.json",
+          "sha256": "385b54faa469420e9a7bccc18de895487dd1107b2156447679275a7ef5ed721e"
+        },
+        "technicalComparison": {
+          "path": "reports/visualtask-ae-spec-comparison.json",
+          "sha256": "6acfcd30887eb635f2f378e7de714f06ce00e69817390a9e6d8dac67068660a4"
+        },
+        "technicalRequirements": {
+          "path": "grammar/visual-task-technical-requirements.json",
+          "sha256": "673d7b495b05d724f295af4c60b1c9f5aad686084d5d3c5c96ffa5e3ded58110"
+        },
+        "timingPlans": {
+          "path": "reports/post-render-timing-feasibility.json",
+          "sha256": "6dae7c291a99d395fb821791002702f69fcfe4253fc60419ede9af0a3ebe9922"
+        },
+        "visualTasks": {
+          "path": "grammar/visual-tasks.json",
+          "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/matching_contract_gate.py",
+    "sha256": "93e1f6a544408c2c338b63e61c58cb62928368b820d10c2de7ac4ef20fd34b7d",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/storypackage_adapter.py",
+    "sha256": "b94b883e34133024c44d1387745683cf5b3436b01f634250638df0355c782720",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/storypackage_splitter.py",
+    "sha256": "40a9c0540b33eca1c0037f758d784b2e89f6703780c485054769a3e6f8ec77a7",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/visualtask_requirements.py",
+    "sha256": "8d7d440658f8cc9fbd845d826b5411c8fdf150f58ebdc10ef4f52079733701ce",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/visualtask_matching.py",
+    "sha256": "1de7914be513b54aa8d3bea3b696e7e80ce271fc4ba9f76ddf4d0c45c610a15a",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3",
+      "# Backward-compatible name for existing callers while they move to the public",
+      "# task-scoped consumer above."
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/visualtask_batch_matching.py",
+    "sha256": "6ccef7e0ddf337bf1af89d2d5790e70efcb0e96c7596c85a05066f07c67b396f",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/storypackage_candidate_gallery.py",
+    "sha256": "a9593ce75c618eb43d6e9699ba170b94b8c00e7527e53190d8c4c528c87d8e80",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/focused_candidate_diversity.py",
+    "sha256": "40b1e506a7c063241710bee0c5313db1f765ea85e6b75be266d0e86a80bf32ab",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/focused_review_queue.py",
+    "sha256": "ab37979e992fed83534a0808e8dbaf268e102f06dc84a5fa802b4cd240587625",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/focused_review_reconciliation.py",
+    "sha256": "e22e91833cfd557def152a058ce7d7d0d5fe0a8bba26258d441228ed8e7f5d4a",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/matching_harness.py",
+    "sha256": "a7d80a3f38489eb55a9bbbce3eb6d48f47ac9ef723662a081485d8a1759b6a80",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "#!/usr/bin/env python3"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/JOBS.md",
+    "sha256": "b9d834d278785418b85272e0afff5fe7ab8b5854284a6c296efeb714dd23c295",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Communication jobs \u2014 derived from the Year Seventeen corpus",
+      "## Data jobs \u2014 need a quantitative treatment",
+      "## Non-data jobs \u2014 need identity, text or footage",
+      "## What this says",
+      "## How the grammar uses this",
+      "## Honest limits"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/SCOPE.md",
+    "sha256": "a72534f491b3d87d8290be42c29dc65877954d521618918fb1989cc7c3b137d3",
+    "readMode": "direct_text_or_structured_inventory",
+    "headings": [
+      "# Template scope restrictions",
+      "## Removed from the corpus, 2026-09-18"
+    ]
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/semantic-split-proposal.schema.json",
+    "sha256": "dc5aeccdb8783cfa3b5463b1644796c17a9958c1c398465a72a1864a8b7e8294",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "$schema",
+      "$id",
+      "title",
+      "type",
+      "additionalProperties",
+      "required",
+      "properties",
+      "$defs"
+    ],
+    "collections": {
+      "required": 9,
+      "properties": 9,
+      "$defs": 2
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/bindings.json",
+    "sha256": "7a07459e56983404bf8c0afb8f4c5c6b106fb604f067690009f3ca7970972fd8",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "assert_without_data",
+      "category_breakdown",
+      "change_across_set",
+      "define_terms",
+      "derived_quantity",
+      "entity_vs_benchmark",
+      "enumerate",
+      "equivalence_restatement",
+      "explain_the_encoding",
+      "intersection_of_sets",
+      "inversion",
+      "locate_in_distribution",
+      "members_then_total",
+      "narrate_an_event",
+      "one_vs_aggregate",
+      "one_vs_many_individually",
+      "parallel_instances",
+      "pose_a_question",
+      "proportion_of_cohort",
+      "streak_over_time"
+    ],
+    "collections": {
+      "assert_without_data": 47,
+      "category_breakdown": 10,
+      "change_across_set": 24,
+      "define_terms": 37,
+      "derived_quantity": 15,
+      "entity_vs_benchmark": 18,
+      "enumerate": 145,
+      "equivalence_restatement": 3,
+      "explain_the_encoding": 5,
+      "intersection_of_sets": 5,
+      "inversion": 12,
+      "locate_in_distribution": 22,
+      "members_then_total": 6,
+      "narrate_an_event": 141,
+      "one_vs_aggregate": 9,
+      "one_vs_many_individually": 26,
+      "parallel_instances": 52,
+      "pose_a_question": 26,
+      "proportion_of_cohort": 12,
+      "streak_over_time": 9
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/capability.json",
+    "sha256": "0608016aec2b47b717b43b33304a6c001b5b669797bd808eea39a651e4b81b34",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "01_finals_head_to_head",
+      "02-documentary-promo--scene-002",
+      "02-documentary-promo--scene-003",
+      "02-documentary-promo--scene-004",
+      "02-documentary-promo--scene-005",
+      "02-documentary-promo--scene-006",
+      "02-documentary-promo--scene-007",
+      "02-documentary-promo--scene-008",
+      "03-history-documentary-10-slides--scene-001",
+      "03-history-documentary-10-slides--scene-002",
+      "03-history-documentary-10-slides--scene-003",
+      "03-history-documentary-10-slides--scene-004",
+      "03-history-documentary-10-slides--scene-005",
+      "03-history-documentary-10-slides--scene-006",
+      "03-history-documentary-10-slides--scene-007",
+      "03-history-documentary-10-slides--scene-008",
+      "03-history-documentary-10-slides--scene-009",
+      "03_dual_trend_lines",
+      "04-history-documentary-20-slides--scene-010",
+      "04-history-documentary-20-slides--scene-011",
+      "04-history-documentary-20-slides--scene-012",
+      "04-history-documentary-20-slides--scene-013",
+      "04-history-documentary-20-slides--scene-014",
+      "04-history-documentary-20-slides--scene-015",
+      "04-history-documentary-20-slides--scene-016",
+      "04-history-documentary-20-slides--scene-017",
+      "05_measured_height_ruler",
+      "06-the-history--scene-001",
+      "06-the-history--scene-002",
+      "06-the-history--scene-003",
+      "06-the-history--scene-004",
+      "06-the-history--scene-005",
+      "06-the-history--scene-006",
+      "06-the-history--scene-007",
+      "06-the-history--scene-008",
+      "06-the-history--scene-009",
+      "06-the-history--scene-010",
+      "06-the-history--scene-016",
+      "06_historical_winners_table",
+      "07-history-slideshow--scene-001",
+      "07-history-slideshow--scene-002",
+      "07-history-slideshow--scene-003",
+      "07-history-slideshow--scene-004",
+      "07-history-slideshow--scene-005",
+      "07-history-slideshow--scene-006",
+      "07-history-slideshow--scene-007",
+      "07-history-slideshow--scene-008",
+      "07-history-slideshow--scene-009",
+      "07-history-slideshow--scene-010",
+      "07-history-slideshow--scene-011",
+      "07-history-slideshow--scene-012",
+      "07-history-slideshow--scene-013",
+      "07-history-slideshow--scene-014",
+      "07-history-slideshow--scene-015",
+      "07-history-slideshow--scene-016",
+      "07-history-slideshow--scene-017",
+      "07-history-slideshow--scene-018",
+      "07_labeled_outlier_scatter",
+      "08-documentary-slideshow--scene-003",
+      "08-documentary-slideshow--scene-004",
+      "08-documentary-slideshow--scene-005",
+      "08-documentary-slideshow--scene-006",
+      "08-documentary-slideshow--scene-007",
+      "08_yearly_leader_timeline",
+      "09_artist_field_grid",
+      "10_two_era_rankings",
+      "11_defensive_numbers",
+      "14_quote_score_columns",
+      "16_ranked_table_and_bars",
+      "17_awards_height_board",
+      "18_cutout_intro",
+      "20_prime_portrait_cards",
+      "22_single_measurement",
+      "23_portrait_scatter",
+      "24_dense_vertical_bars",
+      "25_career_value_list",
+      "26_mirrored_stat_compare",
+      "27_rank_context_panel",
+      "28_stat_profile_cards",
+      "30_dense_rank_bars",
+      "31_greatest_team_scatter",
+      "32_record_height_bars",
+      "34_superteam_bar_compare",
+      "35_shooting_portrait_matrix",
+      "36_four_portrait_cards",
+      "37_fullbody_impact_lineup",
+      "38_matchup_win_list",
+      "39_five_player_impact",
+      "3d-pie-chart-set--scene-001",
+      "3d-pie-chart-set--scene-002",
+      "3d-pie-chart-set--scene-003",
+      "3d-pie-chart-set--scene-004",
+      "3dz-charts--scene-001",
+      "3dz-charts--scene-002",
+      "3dz-charts--scene-003",
+      "40_two_era_fullbody_compare",
+      "41_five_value_headshots",
+      "42_playoff_rank_grid",
+      "43_successor_tier_grid",
+      "44_three_metric_tables",
+      "45_two_metric_tables",
+      "46_similarity_criteria_table",
+      "47_similarity_ascending_bars",
+      "48_playoff_path_summary",
+      "49_similarity_final_results",
+      "50_championship_odds_history",
+      "51_debut_leaderboard",
+      "52_rookie_record_columns",
+      "53_lineup_rotation_columns",
+      "54_trade_package_panels",
+      "55_best_vs_value",
+      "56_seven_artist_stat_lineup",
+      "57_three_playoff_run_cards",
+      "58_big_three_stat_rows",
+      "ai-flowchart--scene-001",
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001",
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-002",
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-004",
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-006",
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-007",
+      "archive3-carousel-galleries-loop-animation-2--review-v2-001",
+      "archive3-carousel-galleries-loop-animation-2--review-v2-002",
+      "archive3-carousel-galleries-loop-animation-2--review-v2-003",
+      "archive3-carousel-galleries-loop-animation-2--review-v2-004",
+      "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-001",
+      "archive3-comparison-pack-ae--review-001",
+      "archive3-comparison-pack-ae--review-002",
+      "archive3-comparison-pack-ae--review-003",
+      "archive3-comparison-pack-ae--review-004",
+      "archive3-comparison-pack-ae--review-006",
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-002",
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003",
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-004",
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-005",
+      "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001",
+      "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002",
+      "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b",
+      "archive3-infographic-bar-charts--review-001",
+      "archive3-infographic-bar-charts--review-002",
+      "archive3-infographic-bar-charts--review-003",
+      "archive3-infographic-bar-charts--review-004",
+      "archive3-infographic-bar-charts--review-005",
+      "archive3-infographic-bar-charts--review-006",
+      "archive3-infographic-bar-charts--review-007",
+      "archive3-infographic-bar-charts--review-008",
+      "archive3-infographic-bar-charts--review-009",
+      "archive3-looped-slideshow-background--review-001",
+      "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a",
+      "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a",
+      "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004",
+      "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-v2-006",
+      "archive3-photo-slideshow-final--review-001",
+      "archive3-photo-slideshow-final--review-002",
+      "archive3-photo-slideshow-final--review-003",
+      "archive3-photo-slideshow-final--review-004",
+      "archive3-photo-slideshow-final--review-005",
+      "archive3-photo-slideshow-final--review-006",
+      "archive3-photo-slideshow-final--review-007",
+      "archive3-photo-slideshow-final--review-008",
+      "archive3-photo-slideshow-final--review-009",
+      "archive3-photo-slideshow-final--review-010",
+      "archive3-photo-slideshow-final--review-011",
+      "archive3-photo-slideshow-final--review-012",
+      "archive3-photo-slideshow-final--review-013",
+      "archive3-photo-slideshow-final--review-014",
+      "archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-001",
+      "archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-002",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-001",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-002",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-003",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-004",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-005",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-006",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-007",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-008",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-009",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-010",
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-011",
+      "base-single-billboard",
+      "carousel--review-001",
+      "carousel--review-002",
+      "carousel--review-003",
+      "carousel--review-004",
+      "carousel--review-005",
+      "carousel--review-006",
+      "carousel--review-007",
+      "carousel--review-008",
+      "carousel--review-009",
+      "carousel--review-010",
+      "carousel--review-011",
+      "carousel--review-012b",
+      "carousel--review-013",
+      "carousel--review-014",
+      "carousel--review-015",
+      "carousel--review-016",
+      "carousel--review-017",
+      "carousel--review-018",
+      "carousel--review-019",
+      "carousel-slideshow--review-001",
+      "carousel-slideshow--review-002",
+      "carousel-slideshow--review-003",
+      "carousel-slideshow--review-004",
+      "carousel-slideshow--review-005",
+      "circle-list-infographic--scene-001",
+      "counters-envato--scene-001",
+      "counters-envato--scene-002",
+      "counters-envato--scene-003",
+      "counters-envato--scene-004",
+      "counters-envato--scene-005",
+      "counters-envato--scene-006",
+      "counters-envato--scene-007",
+      "counters-envato--scene-008",
+      "counters-envato--scene-009",
+      "glass-lower-thirds--scene-001",
+      "grunge-lower-thirds--scene-001",
+      "grunge-lower-thirds--scene-002",
+      "grunge-lower-thirds--scene-003",
+      "history-slideshow-envato--scene-001",
+      "history-slideshow-envato--scene-002",
+      "history-slideshow-envato--scene-003",
+      "history-slideshow-envato--scene-004",
+      "history-slideshow-envato--scene-005",
+      "history-slideshow-envato--scene-006",
+      "history-slideshow-envato--scene-007",
+      "history-slideshow-envato--scene-008",
+      "history-slideshow-envato--scene-009",
+      "history-slideshow-envato--scene-010",
+      "history-slideshow-envato--scene-011",
+      "history-slideshow-envato--scene-012",
+      "history-slideshow-envato--scene-013",
+      "history-slideshow-envato--scene-014",
+      "intro-slideshow-full-720p--scene-002",
+      "intro-slideshow-full-720p--scene-003",
+      "intro-slideshow-full-720p--scene-004",
+      "intro-slideshow-full-720p--scene-005",
+      "intro-slideshow-full-720p--scene-006",
+      "intro-slideshow-full-720p--scene-007",
+      "intro-slideshow-full-720p--scene-008",
+      "intro-slideshow-full-720p--scene-009",
+      "intro-slideshow-full-720p--scene-010",
+      "intro-slideshow-full-720p--scene-011",
+      "intro-slideshow-full-720p--scene-012",
+      "intro-slideshow-full-720p--scene-013",
+      "intro-slideshow-full-720p--scene-015",
+      "intro-slideshow-full-720p--scene-016",
+      "intro-slideshow-full-720p--scene-017",
+      "intro-slideshow-full-720p--scene-018",
+      "intro-slideshow-full-720p--scene-019",
+      "intro-slideshow-full-720p--scene-020",
+      "intro-slideshow-full-720p--scene-021",
+      "intro-slideshow-full-720p--scene-022",
+      "intro-slideshow-full-720p--scene-023",
+      "intro-slideshow-full-720p--scene-028",
+      "intro-slideshow-full-720p--scene-029",
+      "intro-slideshow-full-720p--scene-030",
+      "intro-slideshow-full-720p--scene-031",
+      "intro-slideshow-full-720p--scene-032",
+      "intro-slideshow-full-720p--scene-033",
+      "intro-slideshow-full-720p--scene-034",
+      "intro-slideshow-full-720p--scene-035",
+      "intro-slideshow-full-720p--scene-036",
+      "intro-slideshow-full-720p--scene-037",
+      "intro-slideshow-full-720p--scene-038",
+      "intro-slideshow-full-720p--scene-040",
+      "intro-slideshow-full-720p--scene-041",
+      "intro-slideshow-full-720p--scene-042",
+      "intro-slideshow-full-720p--scene-043",
+      "intro-slideshow-full-720p--scene-044",
+      "intro-slideshow-full-720p--scene-045",
+      "memories-photo-slideshow-creative-slides-envato--scene-001",
+      "memories-photo-slideshow-creative-slides-envato--scene-002",
+      "memories-photo-slideshow-creative-slides-envato--scene-003",
+      "memories-photo-slideshow-creative-slides-envato--scene-004",
+      "memories-photo-slideshow-creative-slides-envato--scene-005",
+      "memories-photo-slideshow-creative-slides-envato--scene-006",
+      "memories-photo-slideshow-creative-slides-envato--scene-007",
+      "memories-photo-slideshow-creative-slides-envato--scene-008",
+      "memories-photo-slideshow-creative-slides-envato--scene-009",
+      "memories-photo-slideshow-creative-slides-envato--scene-010",
+      "memories-photo-slideshow-creative-slides-envato--scene-011",
+      "memories-photo-slideshow-creative-slides-envato--scene-012",
+      "memories-photo-slideshow-creative-slides-envato--scene-013",
+      "memories-photo-slideshow-creative-slides-envato--scene-014",
+      "memories-photo-slideshow-creative-slides-envato--scene-015",
+      "minimalism-slideshow--review-001",
+      "minimalism-slideshow--review-002",
+      "minimalism-slideshow--review-003",
+      "minimalism-slideshow--review-004",
+      "minimalism-slideshow--review-005",
+      "minimalism-slideshow--review-006",
+      "minimalism-slideshow--review-007",
+      "minimalism-slideshow--review-008",
+      "minimalism-slideshow--review-009",
+      "minimalism-slideshow--review-010",
+      "minimalism-slideshow--review-011a",
+      "minimalism-slideshow--review-011b",
+      "modern-photo-slideshow-envato--scene-001",
+      "modern-photo-slideshow-envato--scene-002",
+      "modern-photo-slideshow-envato--scene-003",
+      "modern-photo-slideshow-envato--scene-004",
+      "modern-photo-slideshow-envato--scene-005",
+      "modern-photo-slideshow-envato--scene-006",
+      "modern-photo-slideshow-envato--scene-007",
+      "modern-photo-slideshow-envato--scene-008",
+      "modern-photo-slideshow-envato--scene-009",
+      "modern-photo-slideshow-envato--scene-010",
+      "modern-photo-slideshow-envato--scene-011",
+      "modern-photo-slideshow-envato--scene-012",
+      "modern-photo-slideshow-envato--scene-013",
+      "modern-photo-slideshow-envato--scene-014",
+      "modern-photo-slideshow-envato--scene-015",
+      "modern-photo-slideshow-envato--scene-016",
+      "paper-lower-thirds--scene-001",
+      "paper-lower-thirds--scene-002",
+      "paper-lower-thirds--scene-003",
+      "paper-lower-thirds--scene-004",
+      "photo-slideshow--review-001",
+      "photo-slideshow--review-002",
+      "photo-slideshow--review-003",
+      "photo-slideshow--review-004",
+      "photo-slideshow--review-005",
+      "photo-slideshow--review-006",
+      "photo-slideshow--review-007",
+      "photo-slideshow--review-008",
+      "photo-slideshow--review-009",
+      "photo-slideshow--review-010",
+      "photo-slideshow--review-011",
+      "photo-slideshow--review-012",
+      "photo-slideshow--review-013",
+      "photo-slideshow--review-014",
+      "photo-slideshow--review-015",
+      "photo-slideshow--review-016",
+      "photo-slideshow--review-017",
+      "photo-slideshow--review-018",
+      "photo-slideshow--review-019",
+      "photo-slideshow--review-020",
+      "photo-slideshow--review-021",
+      "photo-slideshow--review-022",
+      "photo-slideshow--review-023",
+      "photo-slideshow--review-024",
+      "photo-slideshow--review-025",
+      "photo-slideshow--review-026",
+      "photo-slideshow--review-027",
+      "photo-slideshow--review-028",
+      "photo-slideshow--review-029",
+      "photo-slideshow--review-030",
+      "photo-slideshow--review-031",
+      "photo-slideshow--review-032",
+      "photo-slideshow--review-033",
+      "photo-slideshow--review-034",
+      "photo-slideshow--review-035",
+      "photo-slideshow--review-036",
+      "photo-slideshow--review-037",
+      "photo-slideshow--review-038",
+      "photo-slideshow--review-039",
+      "photo-slideshow--review-040",
+      "photo-slideshow--review-041",
+      "photo-slideshow--review-042",
+      "photo-slideshow--review-043",
+      "photo-slideshow--review-044",
+      "photo-slideshow--review-045",
+      "photo-slideshow--review-046",
+      "photo-slideshow--review-047",
+      "photo-slideshow--review-048",
+      "photo-slideshow--review-049",
+      "photo-slideshow--review-050a",
+      "photo-slideshow--review-050b",
+      "photo-slideshow--review-051",
+      "photo-slideshow--review-052",
+      "photo-slideshow--review-053",
+      "photo-slideshow--review-054",
+      "photo-slideshow--review-055",
+      "photo-slideshow-memories-envato--scene-001",
+      "photo-slideshow-memories-envato--scene-002",
+      "photo-slideshow-memories-envato--scene-003",
+      "photo-slideshow-memories-envato--scene-004",
+      "photo-slideshow-memories-envato--scene-005",
+      "photo-slideshow-memories-envato--scene-006",
+      "photo-slideshow-memories-envato--scene-007",
+      "photo-slideshow-memories-envato--scene-008",
+      "photo-slideshow-memories-envato--scene-009",
+      "photo-slideshow-memories-envato--scene-010",
+      "photo-slideshow-smooth-envato--scene-001",
+      "photo-slideshow-smooth-envato--scene-002",
+      "photo-slideshow-smooth-envato--scene-003",
+      "photo-slideshow-smooth-envato--scene-004",
+      "photo-slideshow-smooth-envato--scene-005",
+      "photo-slideshow-smooth-envato--scene-006",
+      "photo-slideshow-smooth-envato--scene-007",
+      "photo-slideshow-smooth-envato--scene-008",
+      "photo-slideshow-smooth-envato--scene-009",
+      "photo-slideshow-smooth-envato--scene-010",
+      "photo-slideshow-smooth-envato--scene-011",
+      "photo-slideshow-smooth-envato--scene-012",
+      "photo-slideshow-smooth-envato--scene-013",
+      "photo-slideshow-smooth-envato--scene-014",
+      "photo-slideshow-smooth-envato--scene-015",
+      "photo-slideshow-smooth-envato--scene-016",
+      "screen-mockup-rfx--review-001",
+      "screen-mockup-rfx--review-002",
+      "screen-mockup-rfx--review-003",
+      "screen-mockup-rfx--review-004",
+      "screen-mockup-rfx--review-005",
+      "screen-mockup-rfx--review-006",
+      "screen-mockup-rfx--review-007",
+      "screen-mockup-rfx--review-008",
+      "scrolling-screen--review-001",
+      "scrolling-screen--review-002",
+      "scrolling-screen--review-003",
+      "scrolling-screen--review-004",
+      "scrolling-screen--review-005",
+      "scrolling-screen--review-006",
+      "scrolling-screen--review-007",
+      "scrolling-screen--review-008",
+      "scrolling-screen--review-009",
+      "scrolling-screen--review-010",
+      "scrolling-screen--review-011",
+      "story-on-photo-slideshow-envato--scene-001",
+      "story-on-photo-slideshow-envato--scene-002",
+      "story-on-photo-slideshow-envato--scene-003",
+      "story-on-photo-slideshow-envato--scene-004",
+      "story-on-photo-slideshow-envato--scene-005",
+      "story-on-photo-slideshow-envato--scene-006",
+      "story-on-photo-slideshow-envato--scene-007",
+      "story-on-photo-slideshow-envato--scene-008",
+      "story-on-photo-slideshow-envato--scene-009",
+      "text-list-carousel--review-001",
+      "text-list-carousel--review-002",
+      "text-list-carousel--review-003",
+      "text-list-carousel--review-004",
+      "text-list-carousel--review-005",
+      "text-list-carousel--review-006",
+      "text-list-carousel--review-007",
+      "text-list-carousel--review-008",
+      "text-list-carousel--review-009",
+      "text-list-carousel--review-010",
+      "truth-cohort-attrition",
+      "truth-population-field",
+      "truth-rank-fall",
+      "truth-ratio-days",
+      "truth-small-outlier",
+      "two-floors"
+    ],
+    "collections": {
+      "01_finals_head_to_head": 18,
+      "02-documentary-promo--scene-002": 18,
+      "02-documentary-promo--scene-003": 18,
+      "02-documentary-promo--scene-004": 18,
+      "02-documentary-promo--scene-005": 18,
+      "02-documentary-promo--scene-006": 18,
+      "02-documentary-promo--scene-007": 18,
+      "02-documentary-promo--scene-008": 18,
+      "03-history-documentary-10-slides--scene-001": 18,
+      "03-history-documentary-10-slides--scene-002": 18,
+      "03-history-documentary-10-slides--scene-003": 18,
+      "03-history-documentary-10-slides--scene-004": 18,
+      "03-history-documentary-10-slides--scene-005": 18,
+      "03-history-documentary-10-slides--scene-006": 18,
+      "03-history-documentary-10-slides--scene-007": 18,
+      "03-history-documentary-10-slides--scene-008": 18,
+      "03-history-documentary-10-slides--scene-009": 18,
+      "03_dual_trend_lines": 18,
+      "04-history-documentary-20-slides--scene-010": 18,
+      "04-history-documentary-20-slides--scene-011": 18,
+      "04-history-documentary-20-slides--scene-012": 18,
+      "04-history-documentary-20-slides--scene-013": 18,
+      "04-history-documentary-20-slides--scene-014": 18,
+      "04-history-documentary-20-slides--scene-015": 18,
+      "04-history-documentary-20-slides--scene-016": 18,
+      "04-history-documentary-20-slides--scene-017": 18,
+      "05_measured_height_ruler": 18,
+      "06-the-history--scene-001": 18,
+      "06-the-history--scene-002": 18,
+      "06-the-history--scene-003": 18,
+      "06-the-history--scene-004": 18,
+      "06-the-history--scene-005": 18,
+      "06-the-history--scene-006": 18,
+      "06-the-history--scene-007": 18,
+      "06-the-history--scene-008": 18,
+      "06-the-history--scene-009": 18,
+      "06-the-history--scene-010": 18,
+      "06-the-history--scene-016": 18,
+      "06_historical_winners_table": 18,
+      "07-history-slideshow--scene-001": 18,
+      "07-history-slideshow--scene-002": 18,
+      "07-history-slideshow--scene-003": 18,
+      "07-history-slideshow--scene-004": 18,
+      "07-history-slideshow--scene-005": 18,
+      "07-history-slideshow--scene-006": 18,
+      "07-history-slideshow--scene-007": 18,
+      "07-history-slideshow--scene-008": 18,
+      "07-history-slideshow--scene-009": 18,
+      "07-history-slideshow--scene-010": 18,
+      "07-history-slideshow--scene-011": 18,
+      "07-history-slideshow--scene-012": 18,
+      "07-history-slideshow--scene-013": 18,
+      "07-history-slideshow--scene-014": 18,
+      "07-history-slideshow--scene-015": 18,
+      "07-history-slideshow--scene-016": 18,
+      "07-history-slideshow--scene-017": 18,
+      "07-history-slideshow--scene-018": 18,
+      "07_labeled_outlier_scatter": 18,
+      "08-documentary-slideshow--scene-003": 18,
+      "08-documentary-slideshow--scene-004": 18,
+      "08-documentary-slideshow--scene-005": 18,
+      "08-documentary-slideshow--scene-006": 18,
+      "08-documentary-slideshow--scene-007": 18,
+      "08_yearly_leader_timeline": 18,
+      "09_artist_field_grid": 18,
+      "10_two_era_rankings": 18,
+      "11_defensive_numbers": 18,
+      "14_quote_score_columns": 18,
+      "16_ranked_table_and_bars": 18,
+      "17_awards_height_board": 18,
+      "18_cutout_intro": 18,
+      "20_prime_portrait_cards": 18,
+      "22_single_measurement": 18,
+      "23_portrait_scatter": 18,
+      "24_dense_vertical_bars": 18,
+      "25_career_value_list": 18,
+      "26_mirrored_stat_compare": 18,
+      "27_rank_context_panel": 18,
+      "28_stat_profile_cards": 18,
+      "30_dense_rank_bars": 18,
+      "31_greatest_team_scatter": 18,
+      "32_record_height_bars": 18,
+      "34_superteam_bar_compare": 18,
+      "35_shooting_portrait_matrix": 18,
+      "36_four_portrait_cards": 18,
+      "37_fullbody_impact_lineup": 18,
+      "38_matchup_win_list": 18,
+      "39_five_player_impact": 18,
+      "3d-pie-chart-set--scene-001": 18,
+      "3d-pie-chart-set--scene-002": 18,
+      "3d-pie-chart-set--scene-003": 18,
+      "3d-pie-chart-set--scene-004": 18,
+      "3dz-charts--scene-001": 18,
+      "3dz-charts--scene-002": 18,
+      "3dz-charts--scene-003": 18,
+      "40_two_era_fullbody_compare": 18,
+      "41_five_value_headshots": 18,
+      "42_playoff_rank_grid": 18,
+      "43_successor_tier_grid": 18,
+      "44_three_metric_tables": 18,
+      "45_two_metric_tables": 18,
+      "46_similarity_criteria_table": 18,
+      "47_similarity_ascending_bars": 18,
+      "48_playoff_path_summary": 18,
+      "49_similarity_final_results": 18,
+      "50_championship_odds_history": 18,
+      "51_debut_leaderboard": 18,
+      "52_rookie_record_columns": 18,
+      "53_lineup_rotation_columns": 18,
+      "54_trade_package_panels": 18,
+      "55_best_vs_value": 18,
+      "56_seven_artist_stat_lineup": 18,
+      "57_three_playoff_run_cards": 18,
+      "58_big_three_stat_rows": 18,
+      "ai-flowchart--scene-001": 18,
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-001": 18,
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-002": 18,
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-004": 18,
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-006": 18,
+      "archive3-carousel-flow-loops-2026-09-15-08-02-14-utc--review-007": 18,
+      "archive3-carousel-galleries-loop-animation-2--review-v2-001": 18,
+      "archive3-carousel-galleries-loop-animation-2--review-v2-002": 18,
+      "archive3-carousel-galleries-loop-animation-2--review-v2-003": 18,
+      "archive3-carousel-galleries-loop-animation-2--review-v2-004": 18,
+      "archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc--review-v2-001": 18,
+      "archive3-comparison-pack-ae--review-001": 18,
+      "archive3-comparison-pack-ae--review-002": 18,
+      "archive3-comparison-pack-ae--review-003": 18,
+      "archive3-comparison-pack-ae--review-004": 18,
+      "archive3-comparison-pack-ae--review-006": 18,
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-002": 18,
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-003": 18,
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-004": 18,
+      "archive3-dropoff-carousels-2026-09-15-17-30-59-utc--review-005": 18,
+      "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-001": 18,
+      "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-002": 18,
+      "archive3-gallery-pro-carousel-2026-09-11-10-23-37-utc--review-v2-003b": 18,
+      "archive3-infographic-bar-charts--review-001": 18,
+      "archive3-infographic-bar-charts--review-002": 18,
+      "archive3-infographic-bar-charts--review-003": 18,
+      "archive3-infographic-bar-charts--review-004": 18,
+      "archive3-infographic-bar-charts--review-005": 18,
+      "archive3-infographic-bar-charts--review-006": 18,
+      "archive3-infographic-bar-charts--review-007": 18,
+      "archive3-infographic-bar-charts--review-008": 18,
+      "archive3-infographic-bar-charts--review-009": 18,
+      "archive3-looped-slideshow-background--review-001": 18,
+      "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-001a": 18,
+      "archive3-moving-contact-sheets-2026-09-13-14-49-02-utc--review-v3-003a": 18,
+      "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-004": 18,
+      "archive3-number-count-pack-2026-09-13-15-09-11-utc--review-v2-006": 18,
+      "archive3-photo-slideshow-final--review-001": 18,
+      "archive3-photo-slideshow-final--review-002": 18,
+      "archive3-photo-slideshow-final--review-003": 18,
+      "archive3-photo-slideshow-final--review-004": 18,
+      "archive3-photo-slideshow-final--review-005": 18,
+      "archive3-photo-slideshow-final--review-006": 18,
+      "archive3-photo-slideshow-final--review-007": 18,
+      "archive3-photo-slideshow-final--review-008": 18,
+      "archive3-photo-slideshow-final--review-009": 18,
+      "archive3-photo-slideshow-final--review-010": 18,
+      "archive3-photo-slideshow-final--review-011": 18,
+      "archive3-photo-slideshow-final--review-012": 18,
+      "archive3-photo-slideshow-final--review-013": 18,
+      "archive3-photo-slideshow-final--review-014": 18,
+      "archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-001": 18,
+      "archive3-search-bar-business-timeline-2026-09-12-21-38-59-utc--scene-002": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-001": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-002": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-003": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-004": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-005": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-006": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-007": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-008": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-009": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-010": 18,
+      "archive3-vertical-cinematic-slideshow-vertical-cinematic-2026-09-12-14-41-50-utc--review-v3-011": 18,
+      "base-single-billboard": 18,
+      "carousel--review-001": 18,
+      "carousel--review-002": 18,
+      "carousel--review-003": 18,
+      "carousel--review-004": 18,
+      "carousel--review-005": 18,
+      "carousel--review-006": 18,
+      "carousel--review-007": 18,
+      "carousel--review-008": 18,
+      "carousel--review-009": 18,
+      "carousel--review-010": 18,
+      "carousel--review-011": 18,
+      "carousel--review-012b": 18,
+      "carousel--review-013": 18,
+      "carousel--review-014": 18,
+      "carousel--review-015": 18,
+      "carousel--review-016": 18,
+      "carousel--review-017": 18,
+      "carousel--review-018": 18,
+      "carousel--review-019": 18,
+      "carousel-slideshow--review-001": 18,
+      "carousel-slideshow--review-002": 18,
+      "carousel-slideshow--review-003": 18,
+      "carousel-slideshow--review-004": 18,
+      "carousel-slideshow--review-005": 18,
+      "circle-list-infographic--scene-001": 18,
+      "counters-envato--scene-001": 18,
+      "counters-envato--scene-002": 18,
+      "counters-envato--scene-003": 18,
+      "counters-envato--scene-004": 18,
+      "counters-envato--scene-005": 18,
+      "counters-envato--scene-006": 18,
+      "counters-envato--scene-007": 18,
+      "counters-envato--scene-008": 18,
+      "counters-envato--scene-009": 18,
+      "glass-lower-thirds--scene-001": 18,
+      "grunge-lower-thirds--scene-001": 18,
+      "grunge-lower-thirds--scene-002": 18,
+      "grunge-lower-thirds--scene-003": 18,
+      "history-slideshow-envato--scene-001": 18,
+      "history-slideshow-envato--scene-002": 18,
+      "history-slideshow-envato--scene-003": 18,
+      "history-slideshow-envato--scene-004": 18,
+      "history-slideshow-envato--scene-005": 18,
+      "history-slideshow-envato--scene-006": 18,
+      "history-slideshow-envato--scene-007": 18,
+      "history-slideshow-envato--scene-008": 18,
+      "history-slideshow-envato--scene-009": 18,
+      "history-slideshow-envato--scene-010": 18,
+      "history-slideshow-envato--scene-011": 18,
+      "history-slideshow-envato--scene-012": 18,
+      "history-slideshow-envato--scene-013": 18,
+      "history-slideshow-envato--scene-014": 18,
+      "intro-slideshow-full-720p--scene-002": 18,
+      "intro-slideshow-full-720p--scene-003": 18,
+      "intro-slideshow-full-720p--scene-004": 18,
+      "intro-slideshow-full-720p--scene-005": 18,
+      "intro-slideshow-full-720p--scene-006": 18,
+      "intro-slideshow-full-720p--scene-007": 18,
+      "intro-slideshow-full-720p--scene-008": 18,
+      "intro-slideshow-full-720p--scene-009": 18,
+      "intro-slideshow-full-720p--scene-010": 18,
+      "intro-slideshow-full-720p--scene-011": 18,
+      "intro-slideshow-full-720p--scene-012": 18,
+      "intro-slideshow-full-720p--scene-013": 18,
+      "intro-slideshow-full-720p--scene-015": 18,
+      "intro-slideshow-full-720p--scene-016": 18,
+      "intro-slideshow-full-720p--scene-017": 18,
+      "intro-slideshow-full-720p--scene-018": 18,
+      "intro-slideshow-full-720p--scene-019": 18,
+      "intro-slideshow-full-720p--scene-020": 18,
+      "intro-slideshow-full-720p--scene-021": 18,
+      "intro-slideshow-full-720p--scene-022": 18,
+      "intro-slideshow-full-720p--scene-023": 18,
+      "intro-slideshow-full-720p--scene-028": 18,
+      "intro-slideshow-full-720p--scene-029": 18,
+      "intro-slideshow-full-720p--scene-030": 18,
+      "intro-slideshow-full-720p--scene-031": 18,
+      "intro-slideshow-full-720p--scene-032": 18,
+      "intro-slideshow-full-720p--scene-033": 18,
+      "intro-slideshow-full-720p--scene-034": 18,
+      "intro-slideshow-full-720p--scene-035": 18,
+      "intro-slideshow-full-720p--scene-036": 18,
+      "intro-slideshow-full-720p--scene-037": 18,
+      "intro-slideshow-full-720p--scene-038": 18,
+      "intro-slideshow-full-720p--scene-040": 18,
+      "intro-slideshow-full-720p--scene-041": 18,
+      "intro-slideshow-full-720p--scene-042": 18,
+      "intro-slideshow-full-720p--scene-043": 18,
+      "intro-slideshow-full-720p--scene-044": 18,
+      "intro-slideshow-full-720p--scene-045": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-001": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-002": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-003": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-004": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-005": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-006": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-007": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-008": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-009": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-010": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-011": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-012": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-013": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-014": 18,
+      "memories-photo-slideshow-creative-slides-envato--scene-015": 18,
+      "minimalism-slideshow--review-001": 18,
+      "minimalism-slideshow--review-002": 18,
+      "minimalism-slideshow--review-003": 18,
+      "minimalism-slideshow--review-004": 18,
+      "minimalism-slideshow--review-005": 18,
+      "minimalism-slideshow--review-006": 18,
+      "minimalism-slideshow--review-007": 18,
+      "minimalism-slideshow--review-008": 18,
+      "minimalism-slideshow--review-009": 18,
+      "minimalism-slideshow--review-010": 18,
+      "minimalism-slideshow--review-011a": 18,
+      "minimalism-slideshow--review-011b": 18,
+      "modern-photo-slideshow-envato--scene-001": 18,
+      "modern-photo-slideshow-envato--scene-002": 18,
+      "modern-photo-slideshow-envato--scene-003": 18,
+      "modern-photo-slideshow-envato--scene-004": 18,
+      "modern-photo-slideshow-envato--scene-005": 18,
+      "modern-photo-slideshow-envato--scene-006": 18,
+      "modern-photo-slideshow-envato--scene-007": 18,
+      "modern-photo-slideshow-envato--scene-008": 18,
+      "modern-photo-slideshow-envato--scene-009": 18,
+      "modern-photo-slideshow-envato--scene-010": 18,
+      "modern-photo-slideshow-envato--scene-011": 18,
+      "modern-photo-slideshow-envato--scene-012": 18,
+      "modern-photo-slideshow-envato--scene-013": 18,
+      "modern-photo-slideshow-envato--scene-014": 18,
+      "modern-photo-slideshow-envato--scene-015": 18,
+      "modern-photo-slideshow-envato--scene-016": 18,
+      "paper-lower-thirds--scene-001": 18,
+      "paper-lower-thirds--scene-002": 18,
+      "paper-lower-thirds--scene-003": 18,
+      "paper-lower-thirds--scene-004": 18,
+      "photo-slideshow--review-001": 18,
+      "photo-slideshow--review-002": 18,
+      "photo-slideshow--review-003": 18,
+      "photo-slideshow--review-004": 18,
+      "photo-slideshow--review-005": 18,
+      "photo-slideshow--review-006": 18,
+      "photo-slideshow--review-007": 18,
+      "photo-slideshow--review-008": 18,
+      "photo-slideshow--review-009": 18,
+      "photo-slideshow--review-010": 18,
+      "photo-slideshow--review-011": 18,
+      "photo-slideshow--review-012": 18,
+      "photo-slideshow--review-013": 18,
+      "photo-slideshow--review-014": 18,
+      "photo-slideshow--review-015": 18,
+      "photo-slideshow--review-016": 18,
+      "photo-slideshow--review-017": 18,
+      "photo-slideshow--review-018": 18,
+      "photo-slideshow--review-019": 18,
+      "photo-slideshow--review-020": 18,
+      "photo-slideshow--review-021": 18,
+      "photo-slideshow--review-022": 18,
+      "photo-slideshow--review-023": 18,
+      "photo-slideshow--review-024": 18,
+      "photo-slideshow--review-025": 18,
+      "photo-slideshow--review-026": 18,
+      "photo-slideshow--review-027": 18,
+      "photo-slideshow--review-028": 18,
+      "photo-slideshow--review-029": 18,
+      "photo-slideshow--review-030": 18,
+      "photo-slideshow--review-031": 18,
+      "photo-slideshow--review-032": 18,
+      "photo-slideshow--review-033": 18,
+      "photo-slideshow--review-034": 18,
+      "photo-slideshow--review-035": 18,
+      "photo-slideshow--review-036": 18,
+      "photo-slideshow--review-037": 18,
+      "photo-slideshow--review-038": 18,
+      "photo-slideshow--review-039": 18,
+      "photo-slideshow--review-040": 18,
+      "photo-slideshow--review-041": 18,
+      "photo-slideshow--review-042": 18,
+      "photo-slideshow--review-043": 18,
+      "photo-slideshow--review-044": 18,
+      "photo-slideshow--review-045": 18,
+      "photo-slideshow--review-046": 18,
+      "photo-slideshow--review-047": 18,
+      "photo-slideshow--review-048": 18,
+      "photo-slideshow--review-049": 18,
+      "photo-slideshow--review-050a": 18,
+      "photo-slideshow--review-050b": 18,
+      "photo-slideshow--review-051": 18,
+      "photo-slideshow--review-052": 18,
+      "photo-slideshow--review-053": 18,
+      "photo-slideshow--review-054": 18,
+      "photo-slideshow--review-055": 18,
+      "photo-slideshow-memories-envato--scene-001": 18,
+      "photo-slideshow-memories-envato--scene-002": 18,
+      "photo-slideshow-memories-envato--scene-003": 18,
+      "photo-slideshow-memories-envato--scene-004": 18,
+      "photo-slideshow-memories-envato--scene-005": 18,
+      "photo-slideshow-memories-envato--scene-006": 18,
+      "photo-slideshow-memories-envato--scene-007": 18,
+      "photo-slideshow-memories-envato--scene-008": 18,
+      "photo-slideshow-memories-envato--scene-009": 18,
+      "photo-slideshow-memories-envato--scene-010": 18,
+      "photo-slideshow-smooth-envato--scene-001": 18,
+      "photo-slideshow-smooth-envato--scene-002": 18,
+      "photo-slideshow-smooth-envato--scene-003": 18,
+      "photo-slideshow-smooth-envato--scene-004": 18,
+      "photo-slideshow-smooth-envato--scene-005": 18,
+      "photo-slideshow-smooth-envato--scene-006": 18,
+      "photo-slideshow-smooth-envato--scene-007": 18,
+      "photo-slideshow-smooth-envato--scene-008": 18,
+      "photo-slideshow-smooth-envato--scene-009": 18,
+      "photo-slideshow-smooth-envato--scene-010": 18,
+      "photo-slideshow-smooth-envato--scene-011": 18,
+      "photo-slideshow-smooth-envato--scene-012": 18,
+      "photo-slideshow-smooth-envato--scene-013": 18,
+      "photo-slideshow-smooth-envato--scene-014": 18,
+      "photo-slideshow-smooth-envato--scene-015": 18,
+      "photo-slideshow-smooth-envato--scene-016": 18,
+      "screen-mockup-rfx--review-001": 18,
+      "screen-mockup-rfx--review-002": 18,
+      "screen-mockup-rfx--review-003": 18,
+      "screen-mockup-rfx--review-004": 18,
+      "screen-mockup-rfx--review-005": 18,
+      "screen-mockup-rfx--review-006": 18,
+      "screen-mockup-rfx--review-007": 18,
+      "screen-mockup-rfx--review-008": 18,
+      "scrolling-screen--review-001": 18,
+      "scrolling-screen--review-002": 18,
+      "scrolling-screen--review-003": 18,
+      "scrolling-screen--review-004": 18,
+      "scrolling-screen--review-005": 18,
+      "scrolling-screen--review-006": 18,
+      "scrolling-screen--review-007": 18,
+      "scrolling-screen--review-008": 18,
+      "scrolling-screen--review-009": 18,
+      "scrolling-screen--review-010": 18,
+      "scrolling-screen--review-011": 18,
+      "story-on-photo-slideshow-envato--scene-001": 18,
+      "story-on-photo-slideshow-envato--scene-002": 18,
+      "story-on-photo-slideshow-envato--scene-003": 18,
+      "story-on-photo-slideshow-envato--scene-004": 18,
+      "story-on-photo-slideshow-envato--scene-005": 18,
+      "story-on-photo-slideshow-envato--scene-006": 18,
+      "story-on-photo-slideshow-envato--scene-007": 18,
+      "story-on-photo-slideshow-envato--scene-008": 18,
+      "story-on-photo-slideshow-envato--scene-009": 18,
+      "text-list-carousel--review-001": 18,
+      "text-list-carousel--review-002": 18,
+      "text-list-carousel--review-003": 18,
+      "text-list-carousel--review-004": 18,
+      "text-list-carousel--review-005": 18,
+      "text-list-carousel--review-006": 18,
+      "text-list-carousel--review-007": 18,
+      "text-list-carousel--review-008": 18,
+      "text-list-carousel--review-009": 18,
+      "text-list-carousel--review-010": 18,
+      "truth-cohort-attrition": 18,
+      "truth-population-field": 18,
+      "truth-rank-fall": 18,
+      "truth-ratio-days": 18,
+      "truth-small-outlier": 18,
+      "two-floors": 18
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/class-tags.json",
+    "sha256": "b98c3471620c7840e27126683f1fbe351a345b045fb84120df47b39dc50f3c63",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "_note",
+      "_why",
+      "_measuredAt",
+      "tags"
+    ],
+    "collections": {
+      "tags": 39
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/local-templates.json",
+    "sha256": "29bec530753cf5011a74bcab964832c1ba93a2954e0f061822aa00eb64fc0e31",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "_note",
+      "_rules",
+      "records",
+      "clipOverrides",
+      "_clipOverrides",
+      "remove",
+      "_remove",
+      "capacityOverrides",
+      "_capacityOverrides",
+      "_userIntent",
+      "capabilityCorrections",
+      "_capabilityCorrections",
+      "userBindings",
+      "_userBindings",
+      "profileCorrections",
+      "_profileCorrections"
+    ],
+    "collections": {
+      "records": 20,
+      "clipOverrides": 1,
+      "remove": 11,
+      "capacityOverrides": 1,
+      "capabilityCorrections": 6,
+      "userBindings": 3,
+      "profileCorrections": 1
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/library-snapshot.json",
+    "sha256": "14716d55a4e178f2f5cff9d172011e3ac56541eace9f75ee5be4328be510b867",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "projects",
+      "suppressedClaims",
+      "_note",
+      "_source",
+      "_generatedAt",
+      "_counts",
+      "delivery",
+      "assets"
+    ],
+    "collections": {
+      "projects": 31,
+      "suppressedClaims": 49,
+      "_counts": 7,
+      "delivery": 6,
+      "assets": 1685
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/ae-template-technical-index.json",
+    "sha256": "c47f658b4c8a999721c36a31d562964138fbc06e6999b60849be57d5f4ebfc72",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "counts",
+      "projects",
+      "purpose",
+      "renderingPerformed",
+      "schemaVersion",
+      "sourceReports"
+    ],
+    "collections": {
+      "counts": 3,
+      "projects": 57,
+      "sourceReports": 4
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/ae-scene-composition-mappings.json",
+    "sha256": "7fa49560a302ba75b724bb45b8e47eee0a5a656da8d89f16e5fd8cacf3606b4f",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "purpose",
+      "scope",
+      "mappings"
+    ],
+    "collections": {
+      "scope": 4,
+      "mappings": 398
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/visual-task-technical-requirements.json",
+    "sha256": "673d7b495b05d724f295af4c60b1c9f5aad686084d5d3c5c96ffa5e3ded58110",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "counts",
+      "evidenceBoundary",
+      "purpose",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sources",
+      "tasks"
+    ],
+    "collections": {
+      "counts": 9,
+      "evidenceBoundary": 2,
+      "sources": 4,
+      "tasks": 41
+    },
+    "sourceManifests": {
+      "sources": {
+        "baselineSlate": {
+          "bytes": 255954,
+          "path": "pipeline/shotlist.capacity.json",
+          "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
+        },
+        "mediaRequirements": {
+          "bytes": 2592,
+          "path": "grammar/visual-task-media-requirements.json",
+          "sha256": "c2a13935702da3f041b1c1711ce08720ea3d481673ee0edc89995d10f9ed7fdd"
+        },
+        "timingReviews": {
+          "bytes": 1750,
+          "path": "grammar/visual-task-timing-reviews.json",
+          "sha256": "a1b2ddc244998ac97fdb28911f796d6db1193524b97d7dd71553de81ef90c89b"
+        },
+        "visualTasks": {
+          "bytes": 98341,
+          "path": "grammar/visual-tasks.json",
+          "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/visual-task-media-requirements.json",
+    "sha256": "c2a13935702da3f041b1c1711ce08720ea3d481673ee0edc89995d10f9ed7fdd",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "purpose",
+      "activationState",
+      "selectionAuthorized",
+      "renderingAuthorized",
+      "sources",
+      "requirements"
+    ],
+    "collections": {
+      "sources": 2,
+      "requirements": 3
+    },
+    "sourceManifests": {
+      "sources": {
+        "matchingIssues": {
+          "path": "grammar/issues_matching_layer.json",
+          "sha256": "2cea7c5a268321076b493f91bc12392a374f31e3795f462e73ebe2e8d070ad3c"
+        },
+        "reviewExport": {
+          "path": "grammar/beat-review-export-2026-09-27.json",
+          "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/visual-task-overrides.json",
+    "sha256": "b197478678ac38fe8cc342c57d8362e4b94216cd2d970f54dd8b1fff8fe63920",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "purpose",
+      "source",
+      "beats"
+    ],
+    "collections": {
+      "beats": 4
+    },
+    "sourceManifests": {
+      "source": "User approved the VisualTask/entity-resolution implementation plan on 2026-09-27."
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/eligibility-overrides.json",
+    "sha256": "38a8ada047888b50c7e80a28ebc88c2582d86c9487d3dbe413578181f1398793",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "_note",
+      "_gates",
+      "admit"
+    ],
+    "collections": {
+      "_gates": 2,
+      "admit": 4
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "docs/astra-root-cause/references/gold-standard/storypackage-02-year-seventeen-full-task-proposals.json",
+    "sha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "counts",
+      "gaps",
+      "packageId",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "source",
+      "story",
+      "taskProposals"
+    ],
+    "collections": {
+      "counts": 5,
+      "gaps": 0,
+      "source": 2,
+      "story": 6,
+      "taskProposals": 116
+    },
+    "sourceManifests": {
+      "source": {
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/reports/storypackage-02-year-seventeen-full-adapter.json",
+        "sha256": "ff2be05f968b91d360753cac9f9c42c8e21f84821f180fee07bf17c81f506914"
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "docs/astra-root-cause/references/gold-standard/storypackage-02-future-volksgeist-task-proposals.json",
+    "sha256": "f48f7ed31e854a7fcf316c4f9366890e1b3a688686d407f747fe46f27918ebde",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "counts",
+      "gaps",
+      "granularityPolicy",
+      "packageId",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "source",
+      "speakerRoutes",
+      "story",
+      "taskProposals"
+    ],
+    "collections": {
+      "counts": 9,
+      "gaps": 43,
+      "granularityPolicy": 5,
+      "source": 2,
+      "speakerRoutes": 39,
+      "story": 6,
+      "taskProposals": 310
+    },
+    "sourceManifests": {
+      "source": {
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/reports/storypackage-02-future-volksgeist-adapter.json",
+        "sha256": "653a56ed1144547684454bfde4b49bb48d1a5b9d595d8c0f0203aa9790909890"
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/beat-review-export-2026-09-27.json",
+    "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "_what",
+      "_generatedAt",
+      "_sources",
+      "_counts",
+      "grammar",
+      "assets",
+      "beats",
+      "issues_matching_layer"
+    ],
+    "collections": {
+      "_sources": 8,
+      "_counts": 10,
+      "grammar": 12,
+      "assets": 229,
+      "beats": 40,
+      "issues_matching_layer": 12
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "grammar/visual-tasks.json",
+    "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "contractEnforcementReceipt",
+      "counts",
+      "issues",
+      "purpose",
+      "schemaVersion",
+      "sources",
+      "tasks"
+    ],
+    "collections": {
+      "contractEnforcementReceipt": 8,
+      "counts": 6,
+      "issues": 1,
+      "sources": 5,
+      "tasks": 41
+    },
+    "sourceManifests": {
+      "sources": {
+        "beats": {
+          "path": "pipeline/beats-all.json",
+          "sha256": "311d2a79b70d1284c17ca749bacd2a713e28e1b320731774c17ac1c6efee82b7"
+        },
+        "cohorts": {
+          "path": "grammar/cohorts.json",
+          "sha256": "abfac9c280d8884d7d0968127d8f1023aaf0c873c21a7979a3bd378a277a35aa"
+        },
+        "overrides": {
+          "path": "grammar/visual-task-overrides.json",
+          "sha256": "b197478678ac38fe8cc342c57d8362e4b94216cd2d970f54dd8b1fff8fe63920"
+        },
+        "roster": {
+          "path": "grammar/entity-roster.json",
+          "sha256": "a654b4bd125b78b22a3d696916d9fa05a62409d0a3f1e004142116e32f1d05c5"
+        },
+        "timing": {
+          "path": "narration/year-seventeen-narration-timing.json",
+          "sha256": "2318939150dde4dbd07a1898810ba7d724808cca919127670edc6bbd2a312018"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/beats-all.json",
+    "sha256": "311d2a79b70d1284c17ca749bacd2a713e28e1b320731774c17ac1c6efee82b7",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30"
+    ],
+    "collections": {
+      "01": 1,
+      "02": 2,
+      "03": 1,
+      "04": 1,
+      "05": 2,
+      "06": 1,
+      "07": 1,
+      "08": 1,
+      "09": 1,
+      "10": 1,
+      "11": 2,
+      "12": 2,
+      "13": 2,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "21": 2,
+      "22": 1,
+      "23": 1,
+      "24": 1,
+      "25": 2,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 3,
+      "30": 2
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "pipeline/shotlist.capacity.json",
+    "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "list",
+    "keys": null,
+    "collections": {
+      "length": 40
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "reports/prior-editor-review-reconciliation.json",
+    "sha256": "a1f074aa3a64ea2ab5b53356088259e4b5f50469eed2f8a7b7ad7de498776049",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "counts",
+      "humanAttentionQueue",
+      "priorNoneAcceptableBeatCount",
+      "priorSelectedOptionCount",
+      "priorSelectionCoverage",
+      "purpose",
+      "renderingAuthorized",
+      "reviewedBeatCount",
+      "rows",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sources",
+      "systemResolutionQueue"
+    ],
+    "collections": {
+      "counts": 4,
+      "humanAttentionQueue": 4,
+      "priorSelectionCoverage": 3,
+      "rows": 257,
+      "sources": 2,
+      "systemResolutionQueue": 66
+    },
+    "sourceManifests": {
+      "sources": {
+        "comparison": {
+          "path": "reports/visualtask-ae-spec-comparison.json",
+          "sha256": "8e6050b9e1f614f1dc0e577b1a0122f433077b7c64b564e3b52ed268ddb2f334"
+        },
+        "priorReview": {
+          "path": "grammar/beat-review-export-2026-09-27.json",
+          "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "reports/ordered-visual-route-decisions.json",
+    "sha256": "ed59149d064470c5b3751c1c39c932f1f696bb4a9ab61b06e358a6504c8b671f",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "contractEnforcementReceipt",
+      "counts",
+      "decisionAuthority",
+      "decisions",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorizedForRecordedTasks",
+      "sourcePlanId",
+      "sourcePlanSha256",
+      "unresolvedTaskIds"
+    ],
+    "collections": {
+      "contractEnforcementReceipt": 8,
+      "counts": 3,
+      "decisions": 32,
+      "unresolvedTaskIds": 0
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/batch-001/report.json",
+    "sha256": "ab00548157901ddecf6445e58b041b962195d5d4e822ea81bb3a60ddca21a0f6",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "batchId",
+      "cases",
+      "nextBoundary",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sourceHashes",
+      "summary"
+    ],
+    "collections": {
+      "cases": 5,
+      "sourceHashes": 8,
+      "summary": 4
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/batch-001/request.json",
+    "sha256": "64b44b6afcad73120dbfb59328981f6577faebe8a950098ce8906d8bdd347cba",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "batchId",
+      "purpose",
+      "activationState",
+      "selectionAuthorized",
+      "renderingAuthorized",
+      "sources",
+      "cases",
+      "nextBoundary"
+    ],
+    "collections": {
+      "sources": 9,
+      "cases": 5
+    },
+    "sourceManifests": {
+      "sources": {
+        "visualTasks": {
+          "path": "grammar/visual-tasks.json",
+          "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"
+        },
+        "technicalComparison": {
+          "path": "reports/visualtask-ae-spec-comparison.json",
+          "sha256": "6acfcd30887eb635f2f378e7de714f06ce00e69817390a9e6d8dac67068660a4"
+        },
+        "taskMatching": {
+          "path": "reports/visualtask-match-pilot-28-28.json",
+          "sha256": "f7328a5860113597fc51366eae61b076a405bfa2eb01c05df108f137da1b2e77"
+        },
+        "currentSlate": {
+          "path": "pipeline/shotlist.capacity.json",
+          "sha256": "1ca4e36d8686ef598893e4bc5a4d102770b4f4f2ec00fd72f3c70f8672b3631c"
+        },
+        "reviewExport": {
+          "path": "grammar/beat-review-export-2026-09-27.json",
+          "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d"
+        },
+        "matchingIssues": {
+          "path": "grammar/issues_matching_layer.json",
+          "sha256": "2cea7c5a268321076b493f91bc12392a374f31e3795f462e73ebe2e8d070ad3c"
+        },
+        "approvedTemplates": {
+          "path": "astra-selector-design/approved_media/approved-list.json",
+          "sha256": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e"
+        },
+        "localTemplates": {
+          "path": "grammar/local-templates.json",
+          "sha256": "29bec530753cf5011a74bcab964832c1ba93a2954e0f061822aa00eb64fc0e31"
+        },
+        "frozenObservations": {
+          "path": "matching-accuracy/batch-001/report.json",
+          "sha256": "ab00548157901ddecf6445e58b041b962195d5d4e822ea81bb3a60ddca21a0f6"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/batch-001/workflow-review-carousel-correction.json",
+    "sha256": "d7120e0d1d8f99a4370dbae1c5a599077e835c1b82bcca614b587eb780b2a563",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "list",
+    "keys": null,
+    "collections": {
+      "length": 2
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/batch-001/workflow-review-decisions.json",
+    "sha256": "e8d8b32ed1e87a194683be7938d03a3a86c43304777bc7d5d4c8f6640aa9bc78",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "list",
+    "keys": null,
+    "collections": {
+      "length": 2
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/batch-request.json",
+    "sha256": "223c7ab44a5ca8d88106856050b7ee906369d6911bb46b8d86174d99bc2d5b0a",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "batchId",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sources"
+    ],
+    "collections": {
+      "sources": 6
+    },
+    "sourceManifests": {
+      "sources": {
+        "bindings": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/bindings.json",
+        "storyPackage": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/story-package.json",
+        "technicalComparison": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/technical-comparison.json",
+        "technicalRequirements": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/technical-requirements.json",
+        "timingPlans": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/timing-plans.json",
+        "visualTasks": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/visual-tasks.json"
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/evaluation-evidence.json",
+    "sha256": "8a803779a28b27b9ce954d7e6d42698643083c6102dd49eb898fc67d9c552e96",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "conditionalGap",
+      "mediaAvailability",
+      "renderingAuthorized",
+      "requirements",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sources",
+      "split",
+      "storyId",
+      "templateFit"
+    ],
+    "collections": {
+      "conditionalGap": 3,
+      "mediaAvailability": 4,
+      "requirements": 4,
+      "sources": 9,
+      "split": 10,
+      "templateFit": 4
+    },
+    "sourceManifests": {
+      "sources": {
+        "batchOutput": {
+          "bytes": 58466,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/template-fit-output.json",
+          "sha256": "5825848c08e1b8deff59a9b6d99788c2ef524b358067f8a46411437be57d1328"
+        },
+        "batchRequest": {
+          "bytes": 1039,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/batch-request.json",
+          "sha256": "223c7ab44a5ca8d88106856050b7ee906369d6911bb46b8d86174d99bc2d5b0a"
+        },
+        "comparison": {
+          "bytes": 226,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/technical-comparison.json",
+          "sha256": "0f1536ebce987bd615fc8f55fe988297bb537114aba127336975ec4039b69579"
+        },
+        "requirements": {
+          "bytes": 6165,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/technical-requirements.json",
+          "sha256": "0889e304c822660800c617a8824e0777fe2ddf75dd62e93a14db9a51cc7ac6ce"
+        },
+        "splitOutput": {
+          "bytes": 3952,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/semantic-split-output.json",
+          "sha256": "d86ae8f9e1851b39b10260d49a5c91eaf86002e92ba481b4744fc16fed374673"
+        },
+        "splitRequest": {
+          "bytes": 5549,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/semantic-split-request.json",
+          "sha256": "8f9e9b24dbf63c9931c7054ad35999e676fad64a746631cdd0ac9d1fc51e02e0"
+        },
+        "story": {
+          "bytes": 1872,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/story-package.json",
+          "sha256": "398ac151b5a0cfb13b31010029bd71077b22f76644adac5a748c6abb2b2f4bb8"
+        },
+        "tasks": {
+          "bytes": 5382,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/visual-tasks.json",
+          "sha256": "7a984533c46661e877ed99efdd67b37dc50f756efa80cd2f765578a78b2ce18a"
+        },
+        "timing": {
+          "bytes": 144,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/timing-plans.json",
+          "sha256": "f861532c3958f8e3ed349843c553267c5a4f9383dbf7fc5c3660e71695af5ba3"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/report.json",
+    "sha256": "4b327aa9221da806dab8007aed7cae38104c1465922ded93b1c1289126e2195c",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "batchId",
+      "cases",
+      "nextBoundary",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sourceAvailability",
+      "sourceHashes",
+      "summary"
+    ],
+    "collections": {
+      "cases": 6,
+      "sourceAvailability": 5,
+      "sourceHashes": 4,
+      "summary": 5
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/request.json",
+    "sha256": "7525a1d7d6cf2f156a123cb747de8ef757a2fb0c87ef28d5dd5c5dab717aa441",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "batchId",
+      "purpose",
+      "activationState",
+      "selectionAuthorized",
+      "renderingAuthorized",
+      "sources",
+      "cases",
+      "nextBoundary"
+    ],
+    "collections": {
+      "sources": 5,
+      "cases": 6
+    },
+    "sourceManifests": {
+      "sources": {
+        "storyPackage": {
+          "path": "matching-accuracy/held-out-001/story-package.json",
+          "sha256": "398ac151b5a0cfb13b31010029bd71077b22f76644adac5a748c6abb2b2f4bb8"
+        },
+        "semanticSplitOutput": {
+          "path": "matching-accuracy/held-out-001/semantic-split-output.json",
+          "sha256": "d86ae8f9e1851b39b10260d49a5c91eaf86002e92ba481b4744fc16fed374673"
+        },
+        "templateFitOutput": {
+          "path": "matching-accuracy/held-out-001/template-fit-output.json",
+          "sha256": "5825848c08e1b8deff59a9b6d99788c2ef524b358067f8a46411437be57d1328"
+        },
+        "evaluationEvidence": {
+          "path": "matching-accuracy/held-out-001/evaluation-evidence.json",
+          "sha256": "8a803779a28b27b9ce954d7e6d42698643083c6102dd49eb898fc67d9c552e96"
+        },
+        "humanApprovalReceipt": {
+          "path": "matching-accuracy/held-out-001/human-approval-receipt.json",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/semantic-split-output.json",
+    "sha256": "d86ae8f9e1851b39b10260d49a5c91eaf86002e92ba481b4744fc16fed374673",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "beatProposals",
+      "humanApproval",
+      "renderingAuthorized",
+      "requestId",
+      "requestSha256",
+      "reviewState",
+      "schemaVersion",
+      "selectionAuthorized"
+    ],
+    "collections": {
+      "beatProposals": 2,
+      "humanApproval": 3
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/semantic-split-request.json",
+    "sha256": "8f9e9b24dbf63c9931c7054ad35999e676fad64a746631cdd0ac9d1fc51e02e0",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "input",
+      "purpose",
+      "renderingAuthorized",
+      "requestId",
+      "responseContract",
+      "reviewState",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sources"
+    ],
+    "collections": {
+      "input": 4,
+      "responseContract": 4,
+      "sources": 4
+    },
+    "sourceManifests": {
+      "sources": {
+        "editorContext": {
+          "bytes": 640,
+          "path": "tests/fixtures/semantic_split/editor-context.json",
+          "sha256": "77899a7dc11a378085ac98ba5f6195a8f0349c68c93aba380a399811f8cf5448"
+        },
+        "rosterContext": {
+          "bytes": 315,
+          "path": "tests/fixtures/semantic_split/roster-context.json",
+          "sha256": "51d55843299441a83653ef6699558f1aacc158e08ce57ba513a9c51e91781a60"
+        },
+        "storyPackage": {
+          "bytes": 1614,
+          "path": "tests/fixtures/semantic_split/story-package.json",
+          "sha256": "60a0b06a548233145522847326f2a3ef5856c15bd740e9b2ee23fb79cbbb4878"
+        },
+        "taskVocabulary": {
+          "bytes": 561,
+          "path": "tests/fixtures/semantic_split/task-vocabulary.json",
+          "sha256": "2b2f66a607c4fdb48969c2cb9d8684556e332401b33fcccb701a1756073d6bf1"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/story-package.json",
+    "sha256": "398ac151b5a0cfb13b31010029bd71077b22f76644adac5a748c6abb2b2f4bb8",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "beats",
+      "namespace",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "storyId"
+    ],
+    "collections": {
+      "beats": 2
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/technical-comparison.json",
+    "sha256": "0f1536ebce987bd615fc8f55fe988297bb537114aba127336975ec4039b69579",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "purpose",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "tasks"
+    ],
+    "collections": {
+      "tasks": 0
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/technical-requirements.json",
+    "sha256": "0889e304c822660800c617a8824e0777fe2ddf75dd62e93a14db9a51cc7ac6ce",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "purpose",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "storyId",
+      "tasks"
+    ],
+    "collections": {
+      "tasks": 3
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/template-fit-output.json",
+    "sha256": "5825848c08e1b8deff59a9b6d99788c2ef524b358067f8a46411437be57d1328",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "batchId",
+      "consumerFingerprints",
+      "counts",
+      "purpose",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sources",
+      "storyId",
+      "storyNamespace",
+      "tasks"
+    ],
+    "collections": {
+      "consumerFingerprints": 2,
+      "counts": 4,
+      "sources": 7,
+      "tasks": 3
+    },
+    "sourceManifests": {
+      "sources": {
+        "bindings": {
+          "bytes": 465805,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/grammar/bindings.json",
+          "sha256": "7a07459e56983404bf8c0afb8f4c5c6b106fb604f067690009f3ca7970972fd8"
+        },
+        "request": {
+          "bytes": 1039,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/batch-request.json",
+          "sha256": "223c7ab44a5ca8d88106856050b7ee906369d6911bb46b8d86174d99bc2d5b0a"
+        },
+        "storyPackage": {
+          "bytes": 1872,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/story-package.json",
+          "sha256": "398ac151b5a0cfb13b31010029bd71077b22f76644adac5a748c6abb2b2f4bb8"
+        },
+        "technicalComparison": {
+          "bytes": 226,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/technical-comparison.json",
+          "sha256": "0f1536ebce987bd615fc8f55fe988297bb537114aba127336975ec4039b69579"
+        },
+        "technicalRequirements": {
+          "bytes": 6165,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/technical-requirements.json",
+          "sha256": "0889e304c822660800c617a8824e0777fe2ddf75dd62e93a14db9a51cc7ac6ce"
+        },
+        "timingPlans": {
+          "bytes": 144,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/timing-plans.json",
+          "sha256": "f861532c3958f8e3ed349843c553267c5a4f9383dbf7fc5c3660e71695af5ba3"
+        },
+        "visualTasks": {
+          "bytes": 5382,
+          "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/matching-accuracy/held-out-001/visual-tasks.json",
+          "sha256": "7a984533c46661e877ed99efdd67b37dc50f756efa80cd2f765578a78b2ce18a"
+        }
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/timing-plans.json",
+    "sha256": "f861532c3958f8e3ed349843c553267c5a4f9383dbf7fc5c3660e71695af5ba3",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "plans",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized"
+    ],
+    "collections": {
+      "plans": 0
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "matching-accuracy/held-out-001/visual-tasks.json",
+    "sha256": "7a984533c46661e877ed99efdd67b37dc50f756efa80cd2f765578a78b2ce18a",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "purpose",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "storyId",
+      "tasks"
+    ],
+    "collections": {
+      "tasks": 3
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "reports/storypackage-02-year-seventeen-matching-handoff.json",
+    "sha256": "7146ee8128064e23e8d047f3f4fbd24d727b04e19f1d2841bf1272cdc96acbde",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "activationState",
+      "cohortMembers",
+      "counts",
+      "entityRegistry",
+      "handoffId",
+      "package",
+      "packageId",
+      "renderingAuthorized",
+      "schemaVersion",
+      "selectionAuthorized",
+      "sourceSchema",
+      "storyMatchingHandoffReceipt",
+      "tasks",
+      "treatmentApproved",
+      "unresolved",
+      "visualTasks"
+    ],
+    "collections": {
+      "cohortMembers": 3,
+      "counts": 8,
+      "entityRegistry": 3,
+      "package": 3,
+      "storyMatchingHandoffReceipt": 6,
+      "tasks": 41,
+      "unresolved": 3,
+      "visualTasks": 4
+    },
+    "sourceManifests": {
+      "package": {
+        "packageId": "year-seventeen@7",
+        "path": "architecture/storypackage/year-seventeen.storypackage-0.2.json",
+        "sha256": "af2e711cfccda94b84166cfa9a35d107da14df77c76d10b7ca6f310130182fe6"
+      },
+      "entityRegistry": {
+        "contract": "astra-entity-roster/snapshot",
+        "extensions": [
+          {
+            "path": "architecture/storypackage/registry/storypackage-registry-extension.json",
+            "sha256": "b4d0a4f31173356dad7bf1df53b4706386c2a31875955e76ec05e1a4acc49be5"
+          }
+        ],
+        "snapshot": {
+          "commit": "da8b1755ea6d89a3d23c2fea157e972cee75b869",
+          "path": "grammar/entity-roster.json",
+          "repo": "djtoler/astra-visual-selector",
+          "sha256": "7b6a38a747fc3159e74abc1c5b0f5f10568790e8245875c8c5dfbd3c164b9905"
+        }
+      },
+      "visualTasks": {
+        "commit": "da8b1755ea6d89a3d23c2fea157e972cee75b869",
+        "path": "grammar/visual-tasks.json",
+        "repo": "djtoler/astra-visual-selector",
+        "sha256": "0dcc1de301d5ddf124b3a62d3811ecfb3ae6c08bd4c09f80fdfd85797ab1b442"
+      }
+    }
+  },
+  {
+    "owner": "matching",
+    "path": "reports/storypackage-02-future-volksgeist-v12-candidate-review.json",
+    "sha256": "851626d6d1cd2f9c3bd97a5da62c21b875d382040be107bdd21840da8d00d1bb",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "packageId",
+      "sourceGallerySha256",
+      "reviewer",
+      "decisions",
+      "selectionAuthorized",
+      "renderingAuthorized",
+      "updatedAt"
+    ],
+    "collections": {
+      "decisions": 48
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-review.json",
+    "sha256": "fb6f2c7cfe51c3ead245e0eeb586a569a2aeb61b9b2f016522ac1b9bafeb31b5",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "packageId",
+      "sourceGallerySha256",
+      "reviewer",
+      "decisions",
+      "selectionAuthorized",
+      "renderingAuthorized",
+      "updatedAt"
+    ],
+    "collections": {
+      "decisions": 12
+    },
+    "sourceManifests": {}
+  },
+  {
+    "owner": "matching",
+    "path": "reports/astra-matching-review-evidence-20261004.json",
+    "sha256": "b6d2cd12649e7367c3efa1d7c70bd735ff6c94b8d74473bcf5248c0412d19ce5",
+    "readMode": "direct_text_or_structured_inventory",
+    "rootType": "dict",
+    "keys": [
+      "schemaVersion",
+      "purpose",
+      "generatedAt",
+      "selectionAuthorized",
+      "renderingAuthorized",
+      "usageBoundary",
+      "counts",
+      "sources",
+      "records",
+      "excludedClasses"
+    ],
+    "collections": {
+      "usageBoundary": 2,
+      "counts": 7,
+      "sources": 24,
+      "records": 439,
+      "excludedClasses": 4
+    },
+    "sourceManifests": {
+      "sources": [
+        {
+          "sourceId": "src_968bc8071be57617",
+          "sha256": "968bc8071be5761775ebb73aad512585e7f36ccc137b37033065f217ee5341a4",
+          "canonicalPath": "ae-template-automation/scene-library/approved/archive3-review-decisions.json",
+          "aliases": [],
+          "parser": "decision_map",
+          "recordCount": 118
+        },
+        {
+          "sourceId": "src_6ee3a4dda385aabd",
+          "sha256": "6ee3a4dda385aabde95efcc0bf3ae94e51c468dc8f26127fb78251b8350ead46",
+          "canonicalPath": "ae-template-automation/scene-library/approved/embedding-review-decisions.json",
+          "aliases": [],
+          "parser": "decision_map",
+          "recordCount": 71
+        },
+        {
+          "sourceId": "src_fb7effe15b948801",
+          "sha256": "fb7effe15b9488011b3a61bd7f95d1cf45e0f0281a29523071b5d61138411355",
+          "canonicalPath": "ae-template-automation/scene-library/approved/evaluation-feedback.json",
+          "aliases": [],
+          "parser": "evaluation_feedback",
+          "recordCount": 49
+        },
+        {
+          "sourceId": "src_5d1751d7d4e4ffcb",
+          "sha256": "5d1751d7d4e4ffcb73f8efa93a8bc60d54ec68d29ee8ab219ea234a417dc2149",
+          "canonicalPath": "ae-template-automation/scene-library/approved/infographic-review-notes.json",
+          "aliases": [],
+          "parser": "notes_map",
+          "recordCount": 26
+        },
+        {
+          "sourceId": "src_92a1bf798c8c7681",
+          "sha256": "92a1bf798c8c76818b40a70724388aa3a4b59b2604d863b56380bff89df5c248",
+          "canonicalPath": "ae-template-automation/scene-library/approved/infographic-review-results-2026-09-30.json",
+          "aliases": [],
+          "parser": "infographic_review_results",
+          "recordCount": 26
+        },
+        {
+          "sourceId": "src_c685e97f78581c8e",
+          "sha256": "c685e97f78581c8e84af2d807043006f8ebeaba3170676a31e458b98a8a560cf",
+          "canonicalPath": "ae-template-automation/scene-library/approved/template-review-notes.json",
+          "aliases": [],
+          "parser": "notes_map",
+          "recordCount": 0
+        },
+        {
+          "sourceId": "src_f26280780dda181b",
+          "sha256": "f26280780dda181ba525749a3e8c31c80eb757a05a0a764996ade1bec3d56e3f",
+          "canonicalPath": "astra-visual-selector/grammar/astra-media-review-recovered-decisions-2026-09-25.json",
+          "aliases": [],
+          "parser": "media_review_recovery",
+          "recordCount": 29
+        },
+        {
+          "sourceId": "src_1ad84546a4db0d13",
+          "sha256": "1ad84546a4db0d135391dc897888886f6b70dbc3b0bf1a025309255e1863756d",
+          "canonicalPath": "matching-layer/grammar/beat-review-export-2026-09-27.json",
+          "aliases": [
+            "astra-visual-selector/grammar/beat-review-export-2026-09-27.json"
+          ],
+          "parser": "beat_review_export",
+          "recordCount": 31
+        },
+        {
+          "sourceId": "src_9ea362b80124bff5",
+          "sha256": "9ea362b80124bff5a05516ab09dbd28a74ad264f1cd2c4edc4989dbeaca080e5",
+          "canonicalPath": "astra-visual-selector/grammar/pairing-notes.json",
+          "aliases": [],
+          "parser": "pairing_notes",
+          "recordCount": 14
+        },
+        {
+          "sourceId": "src_a1b2ddc244998ac9",
+          "sha256": "a1b2ddc244998ac97fdb28911f796d6db1193524b97d7dd71553de81ef90c89b",
+          "canonicalPath": "matching-layer/grammar/visual-task-timing-reviews.json",
+          "aliases": [
+            "astra-visual-selector/grammar/visual-task-timing-reviews.json"
+          ],
+          "parser": "timing_reviews",
+          "recordCount": 1
+        },
+        {
+          "sourceId": "src_fb14e61f76ead873",
+          "sha256": "fb14e61f76ead873ae29ee27e9b2d62da87244d2dc9fd7a84b820fb1645b6f2b",
+          "canonicalPath": "astra-visual-selector/reports/carousel-slideshow-editor-alignment-review-20260930.json",
+          "aliases": [],
+          "parser": "carousel_timing_review",
+          "recordCount": 1
+        },
+        {
+          "sourceId": "src_ed59149d064470c5",
+          "sha256": "ed59149d064470c5b3751c1c39c932f1f696bb4a9ab61b06e358a6504c8b671f",
+          "canonicalPath": "matching-layer/reports/ordered-visual-route-decisions.json",
+          "aliases": [
+            "astra-visual-selector/reports/ordered-visual-route-decisions.json"
+          ],
+          "parser": "decision_map",
+          "recordCount": 32
+        },
+        {
+          "sourceId": "src_c69b9e995d27e4b1",
+          "sha256": "c69b9e995d27e4b1508acc227bc3673a571a04e528abdf92dbbf8ce3164c8b50",
+          "canonicalPath": "astra-visual-selector/reports/storypackage-02-future-volksgeist-candidate-review.backup.json",
+          "aliases": [],
+          "parser": "candidate_review",
+          "recordCount": 1
+        },
+        {
+          "sourceId": "src_8cfd128be8eb2cef",
+          "sha256": "8cfd128be8eb2cef0b3bbf4f88e0cf895754c564df3d4088fb7197c3b18a1e68",
+          "canonicalPath": "astra-visual-selector/reports/storypackage-02-future-volksgeist-candidate-review.diagnostic-job-proposals-only.json",
+          "aliases": [],
+          "parser": "candidate_review",
+          "recordCount": 0
+        },
+        {
+          "sourceId": "src_3408c60aecacc7b7",
+          "sha256": "3408c60aecacc7b7b7658c73d18d47bce986b842665bcc69a6da7df1df2d1b12",
+          "canonicalPath": "astra-visual-selector/reports/storypackage-02-future-volksgeist-candidate-review.json",
+          "aliases": [],
+          "parser": "candidate_review",
+          "recordCount": 2
+        },
+        {
+          "sourceId": "src_6534eab2620de780",
+          "sha256": "6534eab2620de78082735ec7f2442d08e536f1f1efa61b81c0ebc43bff0772eb",
+          "canonicalPath": "astra-visual-selector/reports/storypackage-02-future-volksgeist-candidate-review.pre-structured-retrieval-20261003.json",
+          "aliases": [],
+          "parser": "candidate_review",
+          "recordCount": 2
+        },
+        {
+          "sourceId": "src_8d11262fb401aad9",
+          "sha256": "8d11262fb401aad9f1569112ad1d8bacfe71cb977061aefe4a1a0f4967316dfb",
+          "canonicalPath": "astra-visual-selector/reports/storypackage-02-future-volksgeist-v11-candidate-review.json",
+          "aliases": [],
+          "parser": "candidate_review",
+          "recordCount": 0
+        },
+        {
+          "sourceId": "src_960ded6879c1354f",
+          "sha256": "960ded6879c1354ffb6ece1668ef308ee2f06e9c8f9619da06358c86ecff458b",
+          "canonicalPath": "astra-visual-selector/reports/storypackage-02-future-volksgeist-v12-candidate-review.backup.json",
+          "aliases": [],
+          "parser": "candidate_review",
+          "recordCount": 47
+        },
+        {
+          "sourceId": "src_851626d6d1cd2f9c",
+          "sha256": "851626d6d1cd2f9c3bd97a5da62c21b875d382040be107bdd21840da8d00d1bb",
+          "canonicalPath": "matching-layer/reports/storypackage-02-future-volksgeist-v12-candidate-review.json",
+          "aliases": [
+            "astra-visual-selector/reports/storypackage-02-future-volksgeist-v12-candidate-review.json"
+          ],
+          "parser": "candidate_review",
+          "recordCount": 48
+        },
+        {
+          "sourceId": "src_8b027f1cd3f8abd1",
+          "sha256": "8b027f1cd3f8abd117000a141358cb5bb7f484bde5a871b5d2d066b9b6fad951",
+          "canonicalPath": "astra-visual-selector/treatment-requirements/current-exact-batch/review-decisions.backup.json",
+          "aliases": [],
+          "parser": "decision_map",
+          "recordCount": 2
+        },
+        {
+          "sourceId": "src_4eff8853d5e20894",
+          "sha256": "4eff8853d5e208946b0689ff94d2e2fdb3814c39f48479d0fb2d3fc064704290",
+          "canonicalPath": "astra-visual-selector/treatment-requirements/current-exact-batch/review-decisions.json",
+          "aliases": [],
+          "parser": "decision_map",
+          "recordCount": 3
+        },
+        {
+          "sourceId": "src_39ab90772391fdfe",
+          "sha256": "39ab90772391fdfe94af717332f40a377fd42c2380584e48ef53ecdb136671e7",
+          "canonicalPath": "astra-visual-selector/treatment-requirements/pilot-001/review-001.json",
+          "aliases": [],
+          "parser": "treatment_pilot_review",
+          "recordCount": 1
+        },
+        {
+          "sourceId": "src_f0572fc2d68a98c4",
+          "sha256": "f0572fc2d68a98c4f529c4e45519562fa76411cd5c715c082de0d45d8c9029d4",
+          "canonicalPath": "matching-layer/reports/storypackage-02-jayz-drake-settle-it-v13-candidate-review.backup.json",
+          "aliases": [],
+          "parser": "candidate_review",
+          "recordCount": 11
+        },
+        {
+          "sourceId": "src_fb6f2c7cfe51c3ea",
+          "sha256": "fb6f2c7cfe51c3ead245e0eeb586a569a2aeb61b9b2f016522ac1b9bafeb31b5",
+          "canonicalPath": "matching-layer/reports/storypackage-02-jayz-drake-settle-it-v13-candidate-review.json",
+          "aliases": [],
+          "parser": "candidate_review",
+          "recordCount": 12
+        }
+      ]
+    }
+  }
+]

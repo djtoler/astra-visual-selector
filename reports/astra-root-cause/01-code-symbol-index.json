@@ -1,0 +1,2574 @@
+[
+  {
+    "file": "pipeline/matching_contract_gate.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_read",
+        "line": 57,
+        "endLine": 60,
+        "calls": [
+          "MatchingContractError",
+          "Path",
+          "Path(path).is_file",
+          "Path(path).read_text",
+          "json.loads"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 63,
+        "endLine": 64,
+        "calls": [
+          "Path",
+          "Path(path).read_bytes",
+          "hashlib.sha256",
+          "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+        ]
+      },
+      {
+        "symbol": "_validate_general",
+        "line": 67,
+        "endLine": 111,
+        "calls": [
+          "MatchingContractError",
+          "any",
+          "contract.get",
+          "execution.get",
+          "principles.get",
+          "reconciliation.get",
+          "rules.get",
+          "runtime.get"
+        ]
+      },
+      {
+        "symbol": "_validate_stages",
+        "line": 114,
+        "endLine": 156,
+        "calls": [
+          "MatchingContractError",
+          "any",
+          "contract.get",
+          "len",
+          "list",
+          "next",
+          "policy.get",
+          "range",
+          "row.get",
+          "{'editor_status_comment_authority_separation', 'scoped_feedback_reconciliation'}.issubset",
+          "{'primary_presentation_operation', 'scoped_family_contract', 'honest_non_template_disposition'}.issubset"
+        ]
+      },
+      {
+        "symbol": "_validate_entrypoints",
+        "line": 159,
+        "endLine": 176,
+        "calls": [
+          "MatchingContractError",
+          "contract.get",
+          "len",
+          "row.get",
+          "source.is_file"
+        ]
+      },
+      {
+        "symbol": "_validate_production_harness",
+        "line": 179,
+        "endLine": 193,
+        "calls": [
+          "(audit.get('sources') or {}).values",
+          "MatchingContractError",
+          "_read",
+          "_sha",
+          "any",
+          "audit.get",
+          "continuation.get",
+          "item.get",
+          "path.is_file",
+          "row.get"
+        ]
+      },
+      {
+        "symbol": "enforce_contracts",
+        "line": 196,
+        "endLine": 224,
+        "calls": [
+          "MatchingContractError",
+          "_read",
+          "_sha",
+          "_validate_entrypoints",
+          "_validate_general",
+          "_validate_production_harness",
+          "_validate_stages",
+          "registered.get",
+          "row.get"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/storypackage_adapter.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_read",
+        "line": 23,
+        "endLine": 24,
+        "calls": [
+          "Path",
+          "Path(path).read_text",
+          "json.loads"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 27,
+        "endLine": 28,
+        "calls": [
+          "Path",
+          "Path(path).read_bytes",
+          "hashlib.sha256",
+          "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+        ]
+      },
+      {
+        "symbol": "_git_head",
+        "line": 31,
+        "endLine": 36,
+        "calls": [
+          "result.stdout.strip",
+          "subprocess.run"
+        ]
+      },
+      {
+        "symbol": "_run_checker",
+        "line": 39,
+        "endLine": 61,
+        "calls": [
+          "(repo_mappings or {}).items",
+          "(result.stdout + result.stderr).strip",
+          "Path",
+          "Path(path).resolve",
+          "ValueError",
+          "_git_head",
+          "_read",
+          "authority.get",
+          "command.extend",
+          "gaps.append",
+          "json.loads",
+          "line.removeprefix",
+          "line.startswith",
+          "result.stdout.splitlines",
+          "set",
+          "sorted",
+          "str",
+          "subprocess.run"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 64,
+        "endLine": 103,
+        "calls": [
+          "Path",
+          "Path(checker_python).absolute",
+          "Path(package_path).resolve",
+          "Path(upstream_root).resolve",
+          "_read",
+          "_run_checker",
+          "_sha",
+          "enforce_contracts",
+          "package.get"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 106,
+        "endLine": 126,
+        "calls": [
+          "Path",
+          "ValueError",
+          "argparse.ArgumentParser",
+          "args.output.write_text",
+          "build",
+          "item.partition",
+          "json.dumps",
+          "len",
+          "parser.add_argument",
+          "parser.parse_args",
+          "print"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/storypackage_splitter.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_unique",
+        "line": 30,
+        "endLine": 31,
+        "calls": [
+          "dict.fromkeys",
+          "list"
+        ]
+      },
+      {
+        "symbol": "_presentation_operations",
+        "line": 34,
+        "endLine": 110,
+        "calls": [
+          "' '.join",
+          "_unique",
+          "any",
+          "len",
+          "lowered.lstrip",
+          "operations.append",
+          "re.search",
+          "ref.get",
+          "row.get",
+          "text.lower",
+          "text.lower().split"
+        ]
+      },
+      {
+        "symbol": "_derived_job",
+        "line": 113,
+        "endLine": 133,
+        "calls": [
+          "any",
+          "len",
+          "ref.get",
+          "row.get",
+          "text.lower"
+        ]
+      },
+      {
+        "symbol": "_display_entities",
+        "line": 136,
+        "endLine": 140,
+        "calls": [
+          "claim.get",
+          "ref.get"
+        ]
+      },
+      {
+        "symbol": "_primary_operation",
+        "line": 143,
+        "endLine": 159,
+        "calls": [
+          "_presentation_operations",
+          "any",
+          "next",
+          "text.lower"
+        ]
+      },
+      {
+        "symbol": "_split_claim_segments",
+        "line": 162,
+        "endLine": 182,
+        "calls": [
+          "claim.get",
+          "len",
+          "match.end",
+          "match.start",
+          "re.search",
+          "rows.append",
+          "source_span.get",
+          "text[:match.start()].lower"
+        ]
+      },
+      {
+        "symbol": "_semantic_units",
+        "line": 185,
+        "endLine": 248,
+        "calls": [
+          "''.join",
+          "ValueError",
+          "_display_entities",
+          "_primary_operation",
+          "_split_claim_segments",
+          "_unique",
+          "all",
+          "beat.get",
+          "beat_span.get",
+          "bool",
+          "current_text.lower",
+          "current_text.lower().startswith",
+          "dict",
+          "enumerate",
+          "isinstance",
+          "len",
+          "list",
+          "prior.get",
+          "prior['text'].strip",
+          "prior_text.endswith",
+          "segment.get",
+          "segment['text'].strip",
+          "set",
+          "set().union",
+          "unit.get",
+          "units.append"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 251,
+        "endLine": 252,
+        "calls": [
+          "Path",
+          "Path(path).read_bytes",
+          "hashlib.sha256",
+          "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 255,
+        "endLine": 529,
+        "calls": [
+          "' '.join",
+          "(beats.get(beat_id) or {}).get",
+          "Counter",
+          "Path",
+          "Path(source_path).resolve",
+          "ValueError",
+          "_derived_job",
+          "_presentation_operations",
+          "_primary_operation",
+          "_semantic_units",
+          "_sha",
+          "_unique",
+          "adapter.get",
+          "advisory_by_beat.get",
+          "advisory_by_beat[beat_id].append",
+          "any",
+          "beat.get",
+          "beats.get",
+          "beats.values",
+          "bool",
+          "covered.update",
+          "defaultdict",
+          "dict.fromkeys",
+          "enforce_contracts",
+          "enumerate",
+          "gaps.append",
+          "len",
+          "list",
+          "proposal.get",
+          "proposal_jobs_by_beat[claims[claim_id]['beatId']].add",
+          "receipt.get",
+          "row.get",
+          "set",
+          "sorted",
+          "source_beats.append",
+          "speaker.get",
+          "speaker_routes.append",
+          "str",
+          "sum",
+          "task_from_claims",
+          "tasks.append",
+          "unit.get"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 532,
+        "endLine": 540,
+        "calls": [
+          "argparse.ArgumentParser",
+          "args.adapter.read_text",
+          "args.output.write_text",
+          "build",
+          "json.dumps",
+          "json.loads",
+          "parser.add_argument",
+          "parser.parse_args",
+          "print"
+        ]
+      },
+      {
+        "symbol": "task_from_claims",
+        "line": 270,
+        "endLine": 353,
+        "calls": [
+          "' '.join",
+          "ValueError",
+          "_presentation_operations",
+          "_primary_operation",
+          "beat.get",
+          "beats.get",
+          "dict.fromkeys",
+          "len",
+          "list",
+          "row.get",
+          "set",
+          "sorted",
+          "source_beats.append"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/visualtask_requirements.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_read",
+        "line": 27,
+        "endLine": 29,
+        "calls": [
+          "Path",
+          "Path(path).open",
+          "json.load"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 32,
+        "endLine": 33,
+        "calls": [
+          "Path",
+          "Path(path).read_bytes",
+          "hashlib.sha256",
+          "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+        ]
+      },
+      {
+        "symbol": "_logical",
+        "line": 36,
+        "endLine": 40,
+        "calls": [
+          "Path",
+          "Path(path).resolve",
+          "Path(path).resolve().relative_to",
+          "Path(path).resolve().relative_to(ROOT.resolve()).as_posix",
+          "ROOT.resolve"
+        ]
+      },
+      {
+        "symbol": "_source",
+        "line": 43,
+        "endLine": 44,
+        "calls": [
+          "Path",
+          "Path(path).stat",
+          "_logical",
+          "_sha"
+        ]
+      },
+      {
+        "symbol": "_slate_index",
+        "line": 47,
+        "endLine": 54,
+        "calls": [
+          "ValueError"
+        ]
+      },
+      {
+        "symbol": "_reviewed_timing_spans",
+        "line": 57,
+        "endLine": 124,
+        "calls": [
+          "(evidence_artifact.get('contract') or {}).get",
+          "(review.get('editorReview') or {}).get",
+          "ValueError",
+          "_read",
+          "_sha",
+          "all",
+          "enumerate",
+          "evidence.get",
+          "evidence_artifact.get",
+          "evidence_path.is_file",
+          "isinstance",
+          "measured.get",
+          "next",
+          "raw.get",
+          "review.get",
+          "round",
+          "row.get",
+          "sorted",
+          "task.get",
+          "tasks_by_id.get"
+        ]
+      },
+      {
+        "symbol": "_reviewed_media_requirements",
+        "line": 127,
+        "endLine": 169,
+        "calls": [
+          "(raw.get('sources') or {}).values",
+          "ValueError",
+          "_sha",
+          "any",
+          "evidence.get",
+          "isinstance",
+          "missing.get",
+          "path.is_file",
+          "raw.get",
+          "row.get",
+          "source.get"
+        ]
+      },
+      {
+        "symbol": "build_requirements",
+        "line": 172,
+        "endLine": 340,
+        "calls": [
+          "(task.get('entities') or {}).get",
+          "Counter",
+          "Path",
+          "ValueError",
+          "_read",
+          "_reviewed_media_requirements",
+          "_reviewed_timing_spans",
+          "_slate_index",
+          "_source",
+          "baseline.get",
+          "len",
+          "list",
+          "paths.items",
+          "reviewed_media.get",
+          "reviewed_media_row.get",
+          "reviewed_spans.get",
+          "rows.append",
+          "slate.get",
+          "sum",
+          "task.get",
+          "task_artifact.get",
+          "validate_requirements"
+        ]
+      },
+      {
+        "symbol": "validate_requirements",
+        "line": 343,
+        "endLine": 408,
+        "calls": [
+          "(artifact.get('sources') or {}).items",
+          "(media.get('evidence') or {}).get",
+          "(row.get('dataRequirements') or {}).get",
+          "(row.get('mediaRequirements') or {}).get",
+          "(row.get('textRequirements') or {}).get",
+          "(row.get('timingRequirement') or {}).get",
+          "Counter",
+          "ValueError",
+          "_sha",
+          "artifact.get",
+          "brief.get",
+          "build_requirements",
+          "data.get",
+          "dumps",
+          "isinstance",
+          "len",
+          "media.get",
+          "path.is_file",
+          "row.get",
+          "set",
+          "sum",
+          "text.get",
+          "timing.get"
+        ]
+      },
+      {
+        "symbol": "dumps",
+        "line": 411,
+        "endLine": 412,
+        "calls": [
+          "json.dumps"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 415,
+        "endLine": 430,
+        "calls": [
+          "_read",
+          "argparse.ArgumentParser",
+          "args.output.parent.mkdir",
+          "args.output.write_text",
+          "build.add_argument",
+          "build_requirements",
+          "dumps",
+          "json.dumps",
+          "parser.add_subparsers",
+          "parser.parse_args",
+          "print",
+          "sub.add_parser",
+          "validate.add_argument",
+          "validate_requirements"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/visualtask_matching.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_operation_text",
+        "line": 40,
+        "endLine": 47,
+        "calls": [
+          "' '.join",
+          "' '.join((str(part) for part in parts if part)).lower",
+          "capability.get",
+          "record.get",
+          "str"
+        ]
+      },
+      {
+        "symbol": "presentation_contract",
+        "line": 50,
+        "endLine": 94,
+        "calls": [
+          "ValueError",
+          "any",
+          "bool",
+          "dict.fromkeys",
+          "int",
+          "list",
+          "next",
+          "obligation.get",
+          "operations.extend",
+          "quote.lower",
+          "re.search",
+          "row.get",
+          "str",
+          "task.get"
+        ]
+      },
+      {
+        "symbol": "_capability_values",
+        "line": 97,
+        "endLine": 98,
+        "calls": [
+          "(record.get('capability') or {}).get",
+          "record.get",
+          "set"
+        ]
+      },
+      {
+        "symbol": "_supports_operation",
+        "line": 101,
+        "endLine": 196,
+        "calls": [
+          "_capability_values",
+          "_operation_text",
+          "capability.get",
+          "contract.get",
+          "int",
+          "max",
+          "next",
+          "re.escape",
+          "re.search",
+          "record.get",
+          "sorted"
+        ]
+      },
+      {
+        "symbol": "_presentation_candidates",
+        "line": 199,
+        "endLine": 227,
+        "calls": [
+          "_supports_operation",
+          "enumerate",
+          "len",
+          "pool.values",
+          "presentation_contract",
+          "record.get",
+          "rows.append",
+          "seen.add",
+          "set"
+        ]
+      },
+      {
+        "symbol": "_read",
+        "line": 230,
+        "endLine": 232,
+        "calls": [
+          "Path",
+          "Path(path).open",
+          "json.load"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 235,
+        "endLine": 236,
+        "calls": [
+          "Path",
+          "Path(path).read_bytes",
+          "hashlib.sha256",
+          "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+        ]
+      },
+      {
+        "symbol": "_source",
+        "line": 239,
+        "endLine": 241,
+        "calls": [
+          "Path",
+          "ROOT.resolve",
+          "_sha",
+          "path.resolve",
+          "path.resolve().relative_to",
+          "path.resolve().relative_to(ROOT.resolve()).as_posix",
+          "path.stat"
+        ]
+      },
+      {
+        "symbol": "template_candidates",
+        "line": 244,
+        "endLine": 345,
+        "calls": [
+          "(task.get('entities') or {}).get",
+          "(task.get('routeDisposition') or {}).get",
+          "C._family",
+          "C.diversify",
+          "C.is_spatial",
+          "C.needs_spatial",
+          "ValueError",
+          "_presentation_candidates",
+          "admission.get",
+          "bindings.get",
+          "bool",
+          "dict",
+          "enforce_contracts",
+          "enumerate",
+          "legacy[row['id']].get",
+          "len",
+          "max",
+          "next",
+          "pool.values",
+          "pool[row['id']].get",
+          "pool[template_id].get",
+          "presentation_contract",
+          "ranked.insert",
+          "ranked.pop",
+          "record.get",
+          "reversed",
+          "row.get",
+          "rows.append",
+          "rows.insert",
+          "seen.add",
+          "task.get"
+        ]
+      },
+      {
+        "symbol": "_summarize_media",
+        "line": 353,
+        "endLine": 370,
+        "calls": [
+          "(resolved.get('individual') or {}).items",
+          "(task.get('entities') or {}).get",
+          "M.resolve",
+          "list",
+          "resolved.get",
+          "task.get"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 373,
+        "endLine": 397,
+        "calls": [
+          "C.load",
+          "M.load",
+          "ValueError",
+          "_read",
+          "_source",
+          "_summarize_media",
+          "row.get",
+          "task.get",
+          "tasks_artifact.get",
+          "template_candidates",
+          "validate"
+        ]
+      },
+      {
+        "symbol": "validate",
+        "line": 400,
+        "endLine": 423,
+        "calls": [
+          "(artifact.get('sources') or {}).values",
+          "(row.get('mediaCandidates') or {}).get",
+          "ValueError",
+          "_sha",
+          "artifact.get",
+          "build",
+          "candidate.get",
+          "dumps",
+          "len",
+          "path.is_file",
+          "provenance.get",
+          "row.get"
+        ]
+      },
+      {
+        "symbol": "dumps",
+        "line": 426,
+        "endLine": 427,
+        "calls": [
+          "json.dumps"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 430,
+        "endLine": 442,
+        "calls": [
+          "_read",
+          "argparse.ArgumentParser",
+          "args.output.parent.mkdir",
+          "args.output.write_text",
+          "build",
+          "dumps",
+          "parser.add_argument",
+          "parser.parse_args",
+          "print",
+          "validate"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/visualtask_batch_matching.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_read",
+        "line": 31,
+        "endLine": 33,
+        "calls": [
+          "Path",
+          "Path(path).open",
+          "json.load"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 36,
+        "endLine": 37,
+        "calls": [
+          "Path",
+          "Path(path).read_bytes",
+          "hashlib.sha256",
+          "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+        ]
+      },
+      {
+        "symbol": "_source",
+        "line": 40,
+        "endLine": 42,
+        "calls": [
+          "Path",
+          "Path(path).resolve",
+          "_sha",
+          "path.as_posix",
+          "path.stat"
+        ]
+      },
+      {
+        "symbol": "_resolve_source",
+        "line": 45,
+        "endLine": 47,
+        "calls": [
+          "(request_path.parent / path).resolve",
+          "Path",
+          "path.is_absolute",
+          "path.resolve"
+        ]
+      },
+      {
+        "symbol": "_review_only",
+        "line": 50,
+        "endLine": 58,
+        "calls": [
+          "ValueError",
+          "artifact.get"
+        ]
+      },
+      {
+        "symbol": "_load_inputs",
+        "line": 61,
+        "endLine": 85,
+        "calls": [
+          "', '.join",
+          "Path",
+          "Path(request_path).resolve",
+          "ValueError",
+          "_read",
+          "_resolve_source",
+          "_review_only",
+          "path.is_file",
+          "paths.items",
+          "request.get",
+          "required.issubset",
+          "set",
+          "sorted",
+          "sources.items"
+        ]
+      },
+      {
+        "symbol": "_validate_scope",
+        "line": 88,
+        "endLine": 237,
+        "calls": [
+          "(field.get('contentRef') or {}).get",
+          "(handoff.get('cohortMembers') or {}).get",
+          "(row.get('dataRequirements') or {}).get",
+          "ValueError",
+          "_review_only",
+          "all",
+          "any",
+          "assessments.get",
+          "assignment.get",
+          "assignment_by_id.items",
+          "assignments.get",
+          "cohort.get",
+          "cohort_entities.extend",
+          "comparison.get",
+          "copy.deepcopy",
+          "declaration.get",
+          "dict.fromkeys",
+          "field.get",
+          "handoff.get",
+          "handoff.get('storyMatchingHandoffReceipt', {}).get",
+          "isinstance",
+          "len",
+          "list",
+          "media.get",
+          "prior.get",
+          "requirements_artifact.get",
+          "row.get",
+          "row.get('linkage', {}).get",
+          "set",
+          "set(comparison_ids).issubset",
+          "story.get",
+          "task.get",
+          "tasks_artifact.get",
+          "timing.get"
+        ]
+      },
+      {
+        "symbol": "_template_gaps",
+        "line": 240,
+        "endLine": 264,
+        "calls": [
+          "bool",
+          "data.get",
+          "gaps.append",
+          "media.get",
+          "requirements.get",
+          "text.get",
+          "timing.get"
+        ]
+      },
+      {
+        "symbol": "_comparison_index",
+        "line": 267,
+        "endLine": 272,
+        "calls": [
+          "artifact.get",
+          "task.get"
+        ]
+      },
+      {
+        "symbol": "_timing_index",
+        "line": 275,
+        "endLine": 279,
+        "calls": [
+          "artifact.get",
+          "row.get"
+        ]
+      },
+      {
+        "symbol": "_assessment_rows",
+        "line": 282,
+        "endLine": 288,
+        "calls": [
+          "artifact.get",
+          "list"
+        ]
+      },
+      {
+        "symbol": "_assessment_index",
+        "line": 291,
+        "endLine": 299,
+        "calls": [
+          "ValueError",
+          "_assessment_rows",
+          "all",
+          "row.get"
+        ]
+      },
+      {
+        "symbol": "_candidate_fit",
+        "line": 302,
+        "endLine": 451,
+        "calls": [
+          "(catalog_record or {}).get",
+          "(requirements.get('timingRequirement') or {}).get",
+          "(timing_plan or {}).get",
+          "_template_gaps",
+          "abs",
+          "all",
+          "any",
+          "bool",
+          "capability.get",
+          "comparison.get",
+          "data.get",
+          "deficits.append",
+          "evidence.update",
+          "exact.get",
+          "gap.get",
+          "gaps.append",
+          "list",
+          "max",
+          "media.get",
+          "requirements.get",
+          "span.get",
+          "text.get",
+          "treatment.get"
+        ]
+      },
+      {
+        "symbol": "_template_result",
+        "line": 454,
+        "endLine": 494,
+        "calls": [
+          "_candidate_fit",
+          "_template_gaps",
+          "assessments.get",
+          "comparisons.get",
+          "gaps.insert",
+          "len",
+          "matching.template_candidates",
+          "pool.get",
+          "task.get",
+          "timing_plans.get"
+        ]
+      },
+      {
+        "symbol": "_media_kind",
+        "line": 497,
+        "endLine": 498,
+        "calls": [
+          "matching.M.kind_of",
+          "record.get"
+        ]
+      },
+      {
+        "symbol": "_source_specific_media",
+        "line": 501,
+        "endLine": 513,
+        "calls": [
+          "any",
+          "evidence.extend",
+          "matches.append",
+          "matching.M.norm",
+          "pool.items",
+          "record.get",
+          "tag.get"
+        ]
+      },
+      {
+        "symbol": "_media_result",
+        "line": 516,
+        "endLine": 634,
+        "calls": [
+          "(resolved.get('individual') or {}).items",
+          "(task.get('entities') or {}).get",
+          "ValueError",
+          "_media_kind",
+          "_source_specific_media",
+          "gaps.append",
+          "gaps.extend",
+          "isinstance",
+          "list",
+          "matching.M.resolve",
+          "media.get",
+          "pool.items",
+          "requirements.get",
+          "resolved.get",
+          "reviewed_gap.get",
+          "set",
+          "sorted",
+          "task.get"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 637,
+        "endLine": 717,
+        "calls": [
+          "(values.get('priorReviewReconciliation') or {}).get",
+          "Counter",
+          "Counter((row['mediaResult']['availabilityVerdict'] for row in rows)).items",
+          "Counter((row['templateResult']['fitVerdict'] for row in rows)).items",
+          "Path",
+          "_assessment_index",
+          "_comparison_index",
+          "_load_inputs",
+          "_media_result",
+          "_source",
+          "_template_result",
+          "_timing_index",
+          "_validate_scope",
+          "copy.deepcopy",
+          "dict",
+          "enforce_contracts",
+          "hashlib.sha256",
+          "hashlib.sha256(json.dumps(sorted(media_pool), separators=(',', ':')).encode()).hexdigest",
+          "hashlib.sha256(json.dumps(sorted(template_pool), separators=(',', ':')).encode()).hexdigest",
+          "json.dumps",
+          "json.dumps(sorted(media_pool), separators=(',', ':')).encode",
+          "json.dumps(sorted(template_pool), separators=(',', ':')).encode",
+          "len",
+          "list",
+          "matching.C.load",
+          "matching.M.load",
+          "next",
+          "paths.items",
+          "prior_admissions.get",
+          "prior_admissions.setdefault",
+          "prior_admissions.setdefault(row['taskId'], []).append",
+          "row.get",
+          "rows.append",
+          "sorted",
+          "sum",
+          "task.get",
+          "validate",
+          "values.get"
+        ]
+      },
+      {
+        "symbol": "validate",
+        "line": 720,
+        "endLine": 788,
+        "calls": [
+          "(artifact.get('sources') or {}).items",
+          "Counter",
+          "Counter((row['mediaResult']['availabilityVerdict'] for row in rows)).items",
+          "Counter((row['templateResult']['fitVerdict'] for row in rows)).items",
+          "Path",
+          "ValueError",
+          "_review_only",
+          "_sha",
+          "any",
+          "artifact.get",
+          "assessment.get",
+          "build",
+          "candidate.get",
+          "dict",
+          "dumps",
+          "gap.get",
+          "isinstance",
+          "len",
+          "media.get",
+          "path.is_file",
+          "provenance.get",
+          "row.get",
+          "set",
+          "sorted",
+          "source.get",
+          "sum",
+          "template.get"
+        ]
+      },
+      {
+        "symbol": "dumps",
+        "line": 791,
+        "endLine": 792,
+        "calls": [
+          "json.dumps"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 795,
+        "endLine": 812,
+        "calls": [
+          "_read",
+          "argparse.ArgumentParser",
+          "args.output.parent.mkdir",
+          "args.output.write_text",
+          "build",
+          "build_parser.add_argument",
+          "check_parser.add_argument",
+          "dumps",
+          "parser.add_subparsers",
+          "parser.parse_args",
+          "print",
+          "sub.add_parser",
+          "validate"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/storypackage_candidate_gallery.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_read",
+        "line": 28,
+        "endLine": 29,
+        "calls": [
+          "Path",
+          "Path(path).read_text",
+          "json.loads"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 32,
+        "endLine": 33,
+        "calls": [
+          "Path",
+          "Path(path).read_bytes",
+          "hashlib.sha256",
+          "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+        ]
+      },
+      {
+        "symbol": "_source",
+        "line": 36,
+        "endLine": 38,
+        "calls": [
+          "Path",
+          "Path(path).resolve",
+          "_sha",
+          "path.as_posix",
+          "path.stat"
+        ]
+      },
+      {
+        "symbol": "_unique",
+        "line": 41,
+        "endLine": 42,
+        "calls": [
+          "dict.fromkeys",
+          "list"
+        ]
+      },
+      {
+        "symbol": "_embedding_text",
+        "line": 45,
+        "endLine": 55,
+        "calls": [
+          "' '.join",
+          "capability.get",
+          "record.get",
+          "str"
+        ]
+      },
+      {
+        "symbol": "_local_relevance",
+        "line": 58,
+        "endLine": 91,
+        "calls": [
+          "Path",
+          "_embedding_text",
+          "_source",
+          "cosine",
+          "json.dumps",
+          "json.loads",
+          "len",
+          "math.sqrt",
+          "module_cache.mkdir",
+          "str",
+          "subprocess.run",
+          "sum",
+          "zip"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 94,
+        "endLine": 241,
+        "calls": [
+          "' '.join",
+          "(beats.get(beat_id) or {}).get",
+          "(proposal.get('taskText') or ' '.join((row['text'] for row in claim_rows))).strip",
+          "ValueError",
+          "_local_relevance",
+          "_read",
+          "_source",
+          "_unique",
+          "adapter.get",
+          "admissions.get",
+          "admissions_by_task.get",
+          "admissions_by_task.setdefault",
+          "admissions_by_task.setdefault(admission['taskId'], []).append",
+          "beats.get",
+          "bool",
+          "clip_routes.append",
+          "enforce_contracts",
+          "filter",
+          "len",
+          "list",
+          "matching.C.load",
+          "matching.presentation_contract",
+          "matching.template_candidates",
+          "min",
+          "obligation.get",
+          "proposal.get",
+          "proposals.get",
+          "proposals.get('counts', {}).get",
+          "ref.get",
+          "route.get",
+          "row.get",
+          "sum",
+          "tasks.append",
+          "tasks.sort",
+          "template_pool.values",
+          "zip"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 244,
+        "endLine": 261,
+        "calls": [
+          "argparse.ArgumentParser",
+          "args.output.parent.mkdir",
+          "args.output.write_text",
+          "build",
+          "json.dumps",
+          "parser.add_argument",
+          "parser.parse_args",
+          "print"
+        ]
+      },
+      {
+        "symbol": "cosine",
+        "line": 75,
+        "endLine": 77,
+        "calls": [
+          "math.sqrt",
+          "sum",
+          "zip"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/focused_candidate_diversity.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_read",
+        "line": 25,
+        "endLine": 26,
+        "calls": [
+          "json.loads",
+          "path.read_text"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 29,
+        "endLine": 30,
+        "calls": [
+          "hashlib.sha256",
+          "hashlib.sha256(path.read_bytes()).hexdigest",
+          "path.read_bytes"
+        ]
+      },
+      {
+        "symbol": "_unique",
+        "line": 33,
+        "endLine": 34,
+        "calls": [
+          "dict.fromkeys",
+          "list"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 37,
+        "endLine": 145,
+        "calls": [
+          "' '.join",
+          "(proposal.get('taskText') or ' '.join((row['text'] for row in claim_rows))).strip",
+          "Path",
+          "ValueError",
+          "_read",
+          "_sha",
+          "_unique",
+          "adapter.get",
+          "admitted_families.index",
+          "bool",
+          "enforce_contracts",
+          "exploration_frequency.get",
+          "exploration_pool.sort",
+          "gallery.get",
+          "len",
+          "matching.C._family",
+          "matching.C.load",
+          "matching.template_candidates",
+          "obligation.get",
+          "pool.values",
+          "proposal.get",
+          "proposals.get",
+          "queue.get",
+          "ref.get",
+          "row.get",
+          "set",
+          "shown.get",
+          "sorted",
+          "sum",
+          "tasks.append"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 148,
+        "endLine": 156,
+        "calls": [
+          "argparse.ArgumentParser",
+          "args.gallery.resolve",
+          "args.output.write_text",
+          "args.queue.resolve",
+          "build",
+          "json.dumps",
+          "parser.add_argument",
+          "parser.parse_args"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/focused_review_queue.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_read",
+        "line": 25,
+        "endLine": 26,
+        "calls": [
+          "json.loads",
+          "path.read_text"
+        ]
+      },
+      {
+        "symbol": "_sha",
+        "line": 29,
+        "endLine": 30,
+        "calls": [
+          "hashlib.sha256",
+          "hashlib.sha256(path.read_bytes()).hexdigest",
+          "path.read_bytes"
+        ]
+      },
+      {
+        "symbol": "_entity_bucket",
+        "line": 33,
+        "endLine": 40,
+        "calls": []
+      },
+      {
+        "symbol": "_signature",
+        "line": 43,
+        "endLine": 58,
+        "calls": [
+          "_entity_bucket",
+          "bool",
+          "contract.get",
+          "int",
+          "task.get"
+        ]
+      },
+      {
+        "symbol": "_signature_key",
+        "line": 61,
+        "endLine": 62,
+        "calls": [
+          "json.dumps"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 65,
+        "endLine": 131,
+        "calls": [
+          "ValueError",
+          "_read",
+          "_sha",
+          "_signature",
+          "_signature_key",
+          "defaultdict",
+          "enforce_contracts",
+          "f\"{gallery.get('packageId')}:{row['taskId']}\".encode",
+          "gallery.get",
+          "grouped[key].append",
+          "hashlib.sha256",
+          "hashlib.sha256(f\"{gallery.get('packageId')}:{row['taskId']}\".encode('utf-8')).hexdigest",
+          "len",
+          "representatives.append",
+          "representatives.sort",
+          "set",
+          "sorted"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 134,
+        "endLine": 141,
+        "calls": [
+          "argparse.ArgumentParser",
+          "args.gallery.resolve",
+          "args.output.write_text",
+          "build",
+          "json.dumps",
+          "parser.add_argument",
+          "parser.parse_args"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/focused_review_reconciliation.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_sha",
+        "line": 33,
+        "endLine": 34,
+        "calls": [
+          "hashlib.sha256",
+          "hashlib.sha256(path.read_bytes()).hexdigest",
+          "path.read_bytes"
+        ]
+      },
+      {
+        "symbol": "_themes",
+        "line": 37,
+        "endLine": 39,
+        "calls": [
+          "THEMES.items",
+          "any",
+          "comment.lower"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 42,
+        "endLine": 95,
+        "calls": [
+          "Counter",
+          "ValueError",
+          "_sha",
+          "_themes",
+          "decision.get",
+          "decisions.values",
+          "dict",
+          "enforce_contracts",
+          "json.loads",
+          "len",
+          "queue.get",
+          "queue_path.read_text",
+          "review.get",
+          "review_path.read_text",
+          "rows.append",
+          "set",
+          "sorted",
+          "str",
+          "str(decision.get('comment') or '').strip",
+          "theme_counts.items",
+          "value.get"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 98,
+        "endLine": 107,
+        "calls": [
+          "argparse.ArgumentParser",
+          "args.output.write_text",
+          "build",
+          "json.dumps",
+          "parser.add_argument",
+          "parser.parse_args",
+          "print"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/matching_harness.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "blocker_party",
+        "line": 101,
+        "endLine": 114,
+        "calls": [
+          "{'story': 'story', 'data': 'data', 'matching': 'matching', 'cross_layer': 'matching', 'editor': 'you', 'render_release': 'matching'}.get"
+        ]
+      },
+      {
+        "symbol": "read",
+        "line": 117,
+        "endLine": 118,
+        "calls": [
+          "Path",
+          "Path(path).read_text",
+          "json.loads"
+        ]
+      },
+      {
+        "symbol": "sha",
+        "line": 121,
+        "endLine": 122,
+        "calls": [
+          "Path",
+          "Path(path).read_bytes",
+          "hashlib.sha256",
+          "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+        ]
+      },
+      {
+        "symbol": "dumps",
+        "line": 125,
+        "endLine": 126,
+        "calls": [
+          "json.dumps"
+        ]
+      },
+      {
+        "symbol": "_source",
+        "line": 129,
+        "endLine": 130,
+        "calls": [
+          "Path",
+          "Path(path).resolve",
+          "Path(path).resolve().relative_to",
+          "Path(path).resolve().relative_to(ROOT.resolve()).as_posix",
+          "ROOT.resolve",
+          "sha"
+        ]
+      },
+      {
+        "symbol": "validate_contract",
+        "line": 133,
+        "endLine": 180,
+        "calls": [
+          "ValueError",
+          "any",
+          "contract.get",
+          "len",
+          "list",
+          "next",
+          "policy.get",
+          "range",
+          "row.get",
+          "tuple",
+          "{'editor_status_comment_authority_separation', 'scoped_feedback_reconciliation'}.issubset",
+          "{'primary_presentation_operation', 'scoped_family_contract', 'honest_non_template_disposition'}.issubset"
+        ]
+      },
+      {
+        "symbol": "validate_general_contract",
+        "line": 183,
+        "endLine": 232,
+        "calls": [
+          "ValueError",
+          "any",
+          "contract.get",
+          "evidence.get",
+          "execution.get",
+          "principles.get",
+          "reconciliation.get",
+          "rules.get",
+          "runtime.get",
+          "tuple"
+        ]
+      },
+      {
+        "symbol": "execution_plan_summary",
+        "line": 235,
+        "endLine": 322,
+        "calls": [
+          "(base / receipt).is_file",
+          "Path",
+          "ValueError",
+          "all",
+          "any",
+          "blocker_party",
+          "bool",
+          "isinstance",
+          "len",
+          "plan.get",
+          "policy.get",
+          "row.get",
+          "set",
+          "set(row['dependsOn']).issubset",
+          "sum",
+          "tuple"
+        ]
+      },
+      {
+        "symbol": "build",
+        "line": 325,
+        "endLine": 712,
+        "calls": [
+          "Counter",
+          "ValueError",
+          "_source",
+          "adapter.get",
+          "adapter.get('storyHandoffReceipt', {}).get",
+          "any",
+          "batch_matching.get",
+          "batch_matching.get('counts', {}).get",
+          "candidate.get",
+          "candidate.get('fitAssessment', {}).get",
+          "candidate_verdicts.items",
+          "comparison.get",
+          "comparison.get('counts', {}).get",
+          "data_assignments.get",
+          "data_assignments.get('counts', {}).get",
+          "data_handoff.get",
+          "data_handoff.get('counts', {}).get",
+          "decision.get",
+          "decisions.get",
+          "decisions.values",
+          "dict",
+          "enforce_contracts",
+          "enumerate",
+          "exception.get",
+          "exception_for",
+          "execution_plan_summary",
+          "gaps.append",
+          "general_contract.get",
+          "generality_gaps.append",
+          "generality_gaps.extend",
+          "human_review_gaps.append",
+          "item.get",
+          "item.get('provenance', {}).get",
+          "len",
+          "media_needing_resolution.append",
+          "next",
+          "package_evidence.append",
+          "package_ids.add",
+          "path.is_file",
+          "proposals.get",
+          "proposals.get('counts', {}).get",
+          "proposals.get('source', {}).get",
+          "read",
+          "read(requirements_path).get",
+          "read(tasks_path).get",
+          "reconciliation.get",
+          "reconciliation.get('priorSelectionCoverage', {}).get",
+          "render_release.get",
+          "render_release.get('counts', {}).get",
+          "retrieval.get",
+          "route_decisions.get",
+          "row.get",
+          "row.get('mediaResult', {}).get",
+          "row.get('templateResult', {}).get",
+          "row.get('transition', {}).get",
+          "row.items",
+          "row['id'].split",
+          "sequence_gaps.append",
+          "sequence_plan.get",
+          "sequence_plan.get('counts', {}).get",
+          "sequence_plan.get('sequencePlanningReceipt', {}).get",
+          "sequence_plan.get('sources', {}).items",
+          "set",
+          "sha",
+          "sorted",
+          "source_path.read_text",
+          "source_path.read_text(encoding='utf-8').lower",
+          "source_path.relative_to",
+          "source_path.relative_to(ROOT).as_posix",
+          "source_violations.append",
+          "story_adapter.get",
+          "story_adapter.get('storyHandoffReceipt', {}).get",
+          "story_exceptions.get",
+          "story_gaps.append",
+          "story_matching_handoff.get",
+          "story_matching_handoff.get('counts', {}).get",
+          "story_matching_handoff.get('storyMatchingHandoffReceipt', {}).get",
+          "story_tasks.get",
+          "story_tasks.get('counts', {}).get",
+          "story_tasks.get('source', {}).get",
+          "structured_gallery.get",
+          "sum",
+          "timing.get",
+          "timing.get('counts', {}).get",
+          "validate_contract",
+          "validate_general_contract",
+          "{'generalMatchingContract': general_contract_path, 'matchingEntrypointContract': DEFAULT_ENTRYPOINT_CONTRACT, 'contract': contract_path, 'visualTasks': tasks_path, 'technicalRequirements': requirements_path, 'technicalComparison': comparison_path, 'priorReviewReconciliation': reconciliation_path, 'timingPlans': timing_path, 'executionPlan': execution_plan_path, 'storyPackageAdapter': story_adapter_path, 'storyTaskProposals': story_tasks_path, 'storyMatchingHandoff': story_matching_handoff_path, 'storyHandoffExceptions': story_exceptions_path, 'dataHandoffQueue': data_handoff_path, 'dataAssignments': data_assignments_path, 'fullVisualTaskBatchMatching': batch_matching_path, 'orderedVisualRoutePlan': sequence_plan_path, 'orderedVisualRouteDecisions': route_decisions_path, 'renderReleasePreparation': render_release_path, 'structuredCandidateGallery': structured_gallery_path, **{f'generalPackageAdapter{index + 1}': pair[0] for index, pair in enumerate(general_package_receipts)}, **{f'generalPackageTasks{index + 1}': pair[1] for index, pair in enumerate(general_package_receipts)}, **{f'generalRuntimeSource{index + 1}': path for index, path in enumerate(general_runtime_sources)}}.items"
+        ]
+      },
+      {
+        "symbol": "validate",
+        "line": 715,
+        "endLine": 778,
+        "calls": [
+          "(artifact.get('generalMatchingLayer') or {}).get",
+          "(enforced_contracts.get(name) or {}).get",
+          "(review_policy.get('principles') or {}).get",
+          "(review_policy.get('rules') or {}).get",
+          "ValueError",
+          "any",
+          "artifact.get",
+          "artifact.get('sources', {}).values",
+          "blocker.get",
+          "continuation.get",
+          "enforced_contracts.get",
+          "enforcement.get",
+          "expected_contract_hashes.items",
+          "path.is_file",
+          "review_policy.get",
+          "row.get",
+          "sha"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 781,
+        "endLine": 792,
+        "calls": [
+          "DEFAULT_OUTPUT.write_text",
+          "argparse.ArgumentParser",
+          "build",
+          "dumps",
+          "json.dumps",
+          "parser.add_argument",
+          "parser.parse_args",
+          "print",
+          "read",
+          "validate"
+        ]
+      },
+      {
+        "symbol": "exception_for",
+        "line": 459,
+        "endLine": 467,
+        "calls": [
+          "item.get",
+          "item.get('provenance', {}).get",
+          "next",
+          "row.get",
+          "story_adapter.get"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "pipeline/matching_agent.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_now",
+        "line": 29,
+        "endLine": 30,
+        "calls": [
+          "datetime.now",
+          "datetime.now(timezone.utc).isoformat"
+        ]
+      },
+      {
+        "symbol": "_dump",
+        "line": 33,
+        "endLine": 34,
+        "calls": [
+          "json.dumps"
+        ]
+      },
+      {
+        "symbol": "_write",
+        "line": 37,
+        "endLine": 42,
+        "calls": [
+          "_dump",
+          "path.as_posix",
+          "path.parent.mkdir",
+          "path.stat",
+          "path.with_suffix",
+          "sha256",
+          "temporary.replace",
+          "temporary.write_text"
+        ]
+      },
+      {
+        "symbol": "_provider_source",
+        "line": 45,
+        "endLine": 51,
+        "calls": []
+      },
+      {
+        "symbol": "_matching_runtime",
+        "line": 54,
+        "endLine": 59,
+        "calls": [
+          "bool",
+          "subprocess.run",
+          "subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True, capture_output=True, check=True).stdout.strip",
+          "subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT, text=True, capture_output=True, check=True).stdout.strip"
+        ]
+      },
+      {
+        "symbol": "_validate_registry_binding",
+        "line": 62,
+        "endLine": 69,
+        "calls": [
+          "(adapter.get('entityRegistry') or {}).get",
+          "AgentContractError",
+          "adapter.get",
+          "snapshot.get"
+        ]
+      },
+      {
+        "symbol": "_requirements",
+        "line": 72,
+        "endLine": 109,
+        "calls": [
+          "bool",
+          "gaps.append",
+          "len",
+          "proposals.get",
+          "row.get",
+          "sum",
+          "tasks.append"
+        ]
+      },
+      {
+        "symbol": "_route_plan",
+        "line": 112,
+        "endLine": 145,
+        "calls": [
+          "Counter",
+          "bool",
+          "counts.items",
+          "dict",
+          "disposition.get",
+          "enumerate",
+          "gallery.get",
+          "len",
+          "row.get",
+          "scenes.append",
+          "sorted"
+        ]
+      },
+      {
+        "symbol": "_failed_receipt",
+        "line": 148,
+        "endLine": 173,
+        "calls": [
+          "_now",
+          "isinstance",
+          "str",
+          "task.get",
+          "text.lower",
+          "type"
+        ]
+      },
+      {
+        "symbol": "run_task",
+        "line": 176,
+        "endLine": 355,
+        "calls": [
+          "(output_directory / 'matching-agent-receipt.json').as_posix",
+          "AgentContractError",
+          "AgentRunnerError",
+          "Counter",
+          "Counter((gap['kind'] for row in requirements['tasks'] for gap in row['gaps'])).items",
+          "Path",
+          "_dump",
+          "_failed_receipt",
+          "_matching_runtime",
+          "_now",
+          "_provider_source",
+          "_requirements",
+          "_route_plan",
+          "_validate_registry_binding",
+          "_write",
+          "active_runner.capabilities",
+          "active_runner.collect",
+          "active_runner.run",
+          "any",
+          "checks.append",
+          "checks.extend",
+          "dict",
+          "enforce_contracts",
+          "isinstance",
+          "matching_harness.build",
+          "matching_harness.validate",
+          "os.environ.get",
+          "os.environ.pop",
+          "output_directory.mkdir",
+          "outputs.append",
+          "preflight",
+          "preflight_receipt['inputs'].items",
+          "provider_workspace.mkdir",
+          "range",
+          "read_json",
+          "resolve_profile",
+          "round",
+          "runner_for",
+          "sorted",
+          "storypackage_adapter.build",
+          "storypackage_candidate_gallery.build",
+          "storypackage_splitter.build",
+          "str",
+          "subprocess.run",
+          "time.monotonic",
+          "validate_task_contract"
+        ]
+      },
+      {
+        "symbol": "main",
+        "line": 358,
+        "endLine": 373,
+        "calls": [
+          "argparse.ArgumentParser",
+          "json.dumps",
+          "parser.add_argument",
+          "parser.parse_args",
+          "print",
+          "run_task"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "match-trial/candidates.py",
+    "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "functions": [
+      {
+        "symbol": "_rj",
+        "line": 7,
+        "endLine": 9,
+        "calls": [
+          "json.load",
+          "open"
+        ]
+      },
+      {
+        "symbol": "bounds",
+        "line": 13,
+        "endLine": 15,
+        "calls": [
+          "max",
+          "round"
+        ]
+      },
+      {
+        "symbol": "axes",
+        "line": 17,
+        "endLine": 29,
+        "calls": [
+          "(cap.get('semantic_counts') or {}).items",
+          "(rec.get('selectionContract') or {}).get",
+          "all",
+          "cap.get",
+          "cr.get",
+          "int",
+          "isinstance",
+          "len",
+          "rec.get",
+          "sum"
+        ]
+      },
+      {
+        "symbol": "approved_path",
+        "line": 41,
+        "endLine": 43,
+        "calls": [
+          "os.environ.get",
+          "os.path.exists"
+        ]
+      },
+      {
+        "symbol": "_optional",
+        "line": 45,
+        "endLine": 59,
+        "calls": [
+          "_rj",
+          "path.split",
+          "type"
+        ]
+      },
+      {
+        "symbol": "approved_ids",
+        "line": 68,
+        "endLine": 74,
+        "calls": [
+          "_rj",
+          "approved_path",
+          "c.get",
+          "ids.add",
+          "set"
+        ]
+      },
+      {
+        "symbol": "scope_of",
+        "line": 76,
+        "endLine": 81,
+        "calls": [
+          "SCOPED.items",
+          "rec_id.startswith"
+        ]
+      },
+      {
+        "symbol": "load",
+        "line": 83,
+        "endLine": 240,
+        "calls": [
+          "'; '.join",
+          "(cap.get(rid) or {}).get",
+          "(card.get('selection') or {}).get",
+          "(d.get('selectionContract') or {}).get",
+          "(e.get('evidence') or {}).get",
+          "(r.get('axes') or {}).items",
+          "_axis_base",
+          "_c.get",
+          "_capability",
+          "_capacity_overrides",
+          "_clip_overrides",
+          "_local",
+          "_optional",
+          "_profile_corrections",
+          "_removed",
+          "_rj",
+          "_superseded",
+          "apply_profile_corrections",
+          "approved_path",
+          "ax.items",
+          "ax.update",
+          "axes",
+          "bool",
+          "cap.get",
+          "cap_ovr.get",
+          "card.get",
+          "co.get",
+          "cp.get",
+          "d.get",
+          "detail.get",
+          "dict",
+          "e.get",
+          "eligibility_overrides",
+          "inv.get",
+          "isinstance",
+          "ovr.get",
+          "pick",
+          "r.get",
+          "recs.append",
+          "recs.extend",
+          "sc.get",
+          "scope_of",
+          "str",
+          "str(card.get('catalogStatus') or '').startswith",
+          "t.get"
+        ]
+      },
+      {
+        "symbol": "_removed",
+        "line": 242,
+        "endLine": 252,
+        "calls": [
+          "_rj",
+          "_rj(LOCAL).get",
+          "os.path.exists",
+          "set"
+        ]
+      },
+      {
+        "symbol": "eligibility_overrides",
+        "line": 255,
+        "endLine": 261,
+        "calls": [
+          "_rj",
+          "_rj(f).get",
+          "os.path.exists",
+          "str"
+        ]
+      },
+      {
+        "symbol": "_capacity_overrides",
+        "line": 263,
+        "endLine": 266,
+        "calls": [
+          "_rj",
+          "_rj(LOCAL).get",
+          "os.path.exists"
+        ]
+      },
+      {
+        "symbol": "_clip_overrides",
+        "line": 268,
+        "endLine": 271,
+        "calls": [
+          "_rj",
+          "_rj(LOCAL).get",
+          "os.path.exists"
+        ]
+      },
+      {
+        "symbol": "_profile_corrections",
+        "line": 275,
+        "endLine": 289,
+        "calls": [
+          "_rj",
+          "_rj(LOCAL).get",
+          "os.path.exists"
+        ]
+      },
+      {
+        "symbol": "apply_profile_corrections",
+        "line": 291,
+        "endLine": 313,
+        "calls": [
+          "', '.join",
+          "KeyError",
+          "ValueError",
+          "by_id[rid].setdefault",
+          "corr.items",
+          "f.startswith",
+          "len",
+          "list",
+          "sorted"
+        ]
+      },
+      {
+        "symbol": "_superseded",
+        "line": 315,
+        "endLine": 319,
+        "calls": [
+          "(r.get('provenance') or {}).get",
+          "_rj",
+          "_rj(LOCAL).get",
+          "os.path.exists",
+          "r.get",
+          "set"
+        ]
+      },
+      {
+        "symbol": "_local",
+        "line": 323,
+        "endLine": 366,
+        "calls": [
+          "_rj",
+          "cap.get",
+          "cp.get",
+          "dict",
+          "doc.get",
+          "isinstance",
+          "os.path.exists",
+          "out.append",
+          "r.get",
+          "scope_of"
+        ]
+      },
+      {
+        "symbol": "_picked_ids",
+        "line": 385,
+        "endLine": 390,
+        "calls": [
+          "_rj",
+          "_rj(PICKS)['beats'].values",
+          "b.get",
+          "frozenset",
+          "os.path.exists"
+        ]
+      },
+      {
+        "symbol": "_capability_corrections",
+        "line": 394,
+        "endLine": 405,
+        "calls": [
+          "_rj",
+          "_rj(LOCAL).get",
+          "os.path.exists"
+        ]
+      },
+      {
+        "symbol": "_capability",
+        "line": 407,
+        "endLine": 414,
+        "calls": [
+          "_capability_corrections",
+          "_rj",
+          "apply_capability_corrections",
+          "os.path.exists"
+        ]
+      },
+      {
+        "symbol": "apply_capability_corrections",
+        "line": 417,
+        "endLine": 443,
+        "calls": [
+          "(c.get('add') or {}).items",
+          "(c.get('set') or {}).items",
+          "ValueError",
+          "c.get",
+          "cap.get",
+          "corr.items",
+          "isinstance",
+          "rec.get",
+          "set",
+          "sorted"
+        ]
+      },
+      {
+        "symbol": "is_match_cut",
+        "line": 505,
+        "endLine": 514,
+        "calls": [
+          "(pool_index or {}).get",
+          "c.get",
+          "r.get",
+          "rec.get"
+        ]
+      },
+      {
+        "symbol": "match_cut_pool",
+        "line": 516,
+        "endLine": 517,
+        "calls": [
+          "is_match_cut",
+          "pool_index.values"
+        ]
+      },
+      {
+        "symbol": "has_motion",
+        "line": 519,
+        "endLine": 549,
+        "calls": [
+          "(pool_index or {}).get",
+          "os.environ.get",
+          "os.path.exists",
+          "os.path.join",
+          "r.get",
+          "rec.get"
+        ]
+      },
+      {
+        "symbol": "is_spatial",
+        "line": 551,
+        "endLine": 552,
+        "calls": [
+          "rec.get"
+        ]
+      },
+      {
+        "symbol": "needs_spatial",
+        "line": 554,
+        "endLine": 556,
+        "calls": [
+          "isinstance"
+        ]
+      },
+      {
+        "symbol": "is_long_media_carousel",
+        "line": 558,
+        "endLine": 584,
+        "calls": [
+          "' '.join",
+          "' '.join((str(rec.get(key) or '') for key in ('id', 'template', 'title'))).lower",
+          "capability.get",
+          "isinstance",
+          "min",
+          "rec.get",
+          "str"
+        ]
+      },
+      {
+        "symbol": "_axis_base",
+        "line": 586,
+        "endLine": 587,
+        "calls": [
+          "k.split"
+        ]
+      },
+      {
+        "symbol": "unclassified_axes",
+        "line": 589,
+        "endLine": 596,
+        "calls": [
+          "_axis_base",
+          "r.get",
+          "seen.add",
+          "set",
+          "sorted"
+        ]
+      },
+      {
+        "symbol": "subject_axes",
+        "line": 598,
+        "endLine": 611,
+        "calls": [
+          "(rec.get('axes') or {}).items",
+          "ValueError",
+          "_axis_base",
+          "rec.get"
+        ]
+      },
+      {
+        "symbol": "shape",
+        "line": 615,
+        "endLine": 632,
+        "calls": [
+          "abs",
+          "any",
+          "ax.items",
+          "bounds",
+          "is_spatial",
+          "out.append",
+          "sorted",
+          "subject_axes"
+        ]
+      },
+      {
+        "symbol": "_family",
+        "line": 639,
+        "endLine": 640,
+        "calls": [
+          "_FAM_SUFFIX.sub",
+          "isinstance",
+          "row.get"
+        ]
+      },
+      {
+        "symbol": "capacity_band",
+        "line": 642,
+        "endLine": 651,
+        "calls": [
+          "(pool_index or {}).get",
+          "ax.values",
+          "max",
+          "row.get",
+          "subject_axes"
+        ]
+      },
+      {
+        "symbol": "is_slideish",
+        "line": 678,
+        "endLine": 680,
+        "calls": [
+          "_family",
+          "_family(row).lower",
+          "any"
+        ]
+      },
+      {
+        "symbol": "_within_family",
+        "line": 682,
+        "endLine": 712,
+        "calls": [
+          "(pool_index or {}).get",
+          "(r.get('provenance') or {}).get",
+          "FIT.get",
+          "_picked_ids",
+          "has_motion",
+          "r.get",
+          "subject_axes"
+        ]
+      },
+      {
+        "symbol": "diversify",
+        "line": 714,
+        "endLine": 849,
+        "calls": [
+          "' '.join",
+          "(r.get('provenance') or {}).get",
+          "FIT.get",
+          "_family",
+          "_picked_ids",
+          "_within_family",
+          "any",
+          "bestenc",
+          "bestfit",
+          "bestrel",
+          "bits.append",
+          "collections.defaultdict",
+          "deferred.append",
+          "fams[_family(r)].append",
+          "fams[f].sort",
+          "frozenset",
+          "has_motion",
+          "is_match_cut",
+          "is_slideish",
+          "len",
+          "max",
+          "min",
+          "named",
+          "nomotion",
+          "r.get",
+          "range",
+          "slate.append",
+          "sorted"
+        ]
+      },
+      {
+        "symbol": "local_pending",
+        "line": 852,
+        "endLine": 857,
+        "calls": [
+          "_capability",
+          "_rj",
+          "_rj(LOCAL).get",
+          "os.path.exists"
+        ]
+      },
+      {
+        "symbol": "bestfit",
+        "line": 735,
+        "endLine": 735,
+        "calls": [
+          "FIT.get",
+          "min",
+          "r.get"
+        ]
+      },
+      {
+        "symbol": "bestenc",
+        "line": 742,
+        "endLine": 742,
+        "calls": [
+          "min",
+          "r.get"
+        ]
+      },
+      {
+        "symbol": "bestrel",
+        "line": 749,
+        "endLine": 749,
+        "calls": [
+          "max",
+          "r.get"
+        ]
+      },
+      {
+        "symbol": "nomotion",
+        "line": 754,
+        "endLine": 754,
+        "calls": [
+          "any",
+          "has_motion"
+        ]
+      },
+      {
+        "symbol": "named",
+        "line": 764,
+        "endLine": 765,
+        "calls": [
+          "(r.get('provenance') or {}).get",
+          "any",
+          "r.get"
+        ]
+      },
+      {
+        "symbol": "pick",
+        "line": 147,
+        "endLine": 151,
+        "calls": []
+      }
+    ]
+  }
+]

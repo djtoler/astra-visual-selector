@@ -1,0 +1,753 @@
+{
+  "schemaVersion": 1,
+  "job": "01-system-map-and-evidence",
+  "createdAt": "2026-10-04T19:43:43.263017+00:00",
+  "auditStatus": "PASS",
+  "statusMeaning": "The mapping/integrity audit completed with every required question accounted for. Evidence defects are separately reported, not a claim that the product or canonical context is clean.",
+  "canonicalEvidenceIntegrity": "FAIL_context_binding_and_one_literal_pointer",
+  "blockerOwner": "none",
+  "findingOwners": [
+    "matching",
+    "story"
+  ],
+  "nextJob": "02-story-semantics.md",
+  "nextJobStarted": false,
+  "scope": "Job 1 only; no semantic quality judgment, redesign, production patch, selection or rendering",
+  "baselines": {
+    "matching": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "story": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+  },
+  "executionReceipt": {
+    "configuredModel": "gpt-6-astra",
+    "reasoningEffort": "medium",
+    "evidence": {
+      "path": "/Users/dwaynetoler/.codex/sessions/2026/10/04/rollout-2026-10-04T15-28-34-01a10863-b544-7851-b0a5-a3b658c6952c.jsonl",
+      "line": 58,
+      "timestamp": "2026-10-04T19:32:04.945Z",
+      "recordType": "turn_context",
+      "fields": [
+        "payload.model",
+        "payload.effort",
+        "payload.collaboration_mode.settings.reasoning_effort"
+      ]
+    },
+    "escalations": [],
+    "narrowArchitecturalQuestion": null,
+    "escalationReason": null,
+    "servedModelAttestation": "Not separately available; receipt verifies configured session model and effort."
+  },
+  "plan": "plans/ASTRA_ROOT_CAUSE_JOB_01_PLAN_20261004.md",
+  "stageReceipts": [
+    {
+      "order": 1,
+      "stage": "freeze_and_configuration",
+      "status": "completed",
+      "evidence": "Pinned clean starting HEAD; current turn_context line 58 Astra/Medium; baseline inventory hashes"
+    },
+    {
+      "order": 2,
+      "stage": "source_inventory",
+      "status": "completed",
+      "evidence": "01-source-inventory.json: 87 expanded manifest entries, 86 literal paths plus one resolved alternate; 01-followed-source-inventory.json"
+    },
+    {
+      "order": 3,
+      "stage": "evidence_integrity",
+      "status": "completed_with_findings",
+      "evidence": "01-evidence-integrity.json; schema PASS; source hashes 28/28; literal pointers 526/527; 439 source records reproduce; gallery context 27/60 exact before sidecar resolution"
+    },
+    {
+      "order": 4,
+      "stage": "system_map",
+      "status": "completed",
+      "evidence": "17 stages plus 13-module AST symbol/call index; directly inspected code and external review surface"
+    },
+    {
+      "order": 5,
+      "stage": "reference_boundary_reconciliation",
+      "status": "completed_with_scoped_gap",
+      "evidence": "01-gold-reference-alignment.json; source analyses/manifests and historical review mappings inspected; no separately identified original video visual-job map"
+    },
+    {
+      "order": 6,
+      "stage": "publish_reports",
+      "status": "completed",
+      "evidence": "01-system-map.md and .json; 01-acceptance.json; workflow checkpoint in execution report"
+    }
+  ],
+  "stages": [
+    {
+      "id": "story_creation",
+      "owner": "story",
+      "inputContract": "Tagged script + stories/*.story.json + registry/cohort snapshots; editorial inputs are authored, not produced by Matching",
+      "implementation": [
+        {
+          "file": "architecture/storypackage/tools/build_tagged_script.py",
+          "symbol": "module-level segmentation and package construction; named_in; lane_for; replay",
+          "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+        },
+        {
+          "file": "architecture/storypackage/tools/build_year_seventeen.py",
+          "symbol": "segment; named_in; module-level authored tables",
+          "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+        }
+      ],
+      "outputArtifact": "future@5, jayz-drake@4, year-seventeen@9 StoryPackage 0.2 files",
+      "validation": "check.py after creation; script and snapshot digests",
+      "knownBypassRisk": "Builders contain authored settings/heuristics; structural validation does not prove semantic quality. Original script authoring is human/model editorial work, not established as one automated pipeline here.",
+      "downstreamConsumer": "story_validation",
+      "executionPath": "story"
+    },
+    {
+      "id": "story_validation",
+      "owner": "story",
+      "inputContract": "storypackage-0.2.schema.json; package/script spans; entity registry and cohort snapshots",
+      "implementation": [
+        {
+          "file": "architecture/storypackage/tools/check.py",
+          "symbol": "check; registry_index; local; main",
+          "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+        }
+      ],
+      "outputArtifact": "errors and typed gaps; adapter checker receipt",
+      "validation": "All three pinned current packages freshly PASS; Future emits six speaker_unidentified gaps",
+      "knownBypassRisk": "check.local resolves repository paths and SHA-256; it does not itself git-verify repository HEAD despite the usage prose. Do not equate supported facts or semantic quality with structural acceptance.",
+      "downstreamConsumer": "matching_adaptation",
+      "executionPath": "story"
+    },
+    {
+      "id": "story_matching_handoff",
+      "owner": "story",
+      "inputContract": "matching-handoff-0.2.schema.json; package plus legacy VisualTasks and authored task requirements",
+      "implementation": [
+        {
+          "file": "architecture/storypackage/tools/build_matching_handoff.py",
+          "symbol": "task; D; anchor; module-level T and task assembly",
+          "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+        },
+        {
+          "file": "architecture/storypackage/tools/check_handoff.py",
+          "symbol": "check_handoff",
+          "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+        },
+        {
+          "file": "pipeline/storypackage_matching_handoff.py",
+          "symbol": "build; _run_checker; validate_current_task_compatibility",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "year-seventeen.matching-handoff-0.2.json -> reports/storypackage-02-year-seventeen-matching-handoff.json",
+      "validation": "Schema, package and VisualTask hashes, task links, typed unknowns, prohibition on selection/capacity keys",
+      "knownBypassRisk": "This is a Year Seventeen authored companion/legacy path, not a general StoryPackage output automatically emitted for each story. Adapter pins differ from the current general package checker.",
+      "downstreamConsumer": "legacy_requirement_derivation; legacy_batch_feasibility",
+      "executionPath": "legacy_feasibility"
+    },
+    {
+      "id": "entrypoint_contract_gate",
+      "owner": "matching",
+      "inputContract": "general-matching-layer-contract.json; matching-harness-stage-contract.json; matching-entrypoint-contract.json",
+      "implementation": [
+        {
+          "file": "pipeline/matching_contract_gate.py",
+          "symbol": "enforce_contracts; _validate_general; _validate_stages; _validate_entrypoints; _validate_production_harness",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "hash-bound contractEnforcementReceipt",
+      "validation": "7 existing gate tests PASS; unknown entrypoint and unauthorized production request fail",
+      "knownBypassRisk": "Review mode verifies contract declarations/registration; it does not prove completed stages, semantic fit or a fresh per-input production run. Helper calls and external UI require separate tracing.",
+      "downstreamConsumer": "adapter; splitter; candidate gallery; batch; queue; reconciliation; harness",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "matching_adaptation",
+      "owner": "matching",
+      "inputContract": "Accepted pinned StoryPackage and supported authority commit via plans/storypackage-02-integration-tasks.json",
+      "implementation": [
+        {
+          "file": "pipeline/storypackage_adapter.py",
+          "symbol": "build; _run_checker",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "adapter with source schema/package, preserved story/script/entities/cohorts/beats/claims/jobs/obligations/continuity/timing and checker gaps",
+      "validation": "Gate runs first; authoritative checker subprocess; package/checker hashes and authorityCommit receipt",
+      "knownBypassRisk": "Source checker success is structural evidence. Downstream consumers must retain input freshness; acceptance boolean alone is not semantic proof.",
+      "downstreamConsumer": "semantic_splitting",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "semantic_splitting",
+      "owner": "matching",
+      "inputContract": "Accepted review-only adapter; optional upstream jobProposals and narrator/clip/quote speaker roles",
+      "implementation": [
+        {
+          "file": "pipeline/storypackage_splitter.py",
+          "symbol": "build; task_from_claims; _split_claim_segments; _semantic_units; _presentation_operations; _primary_operation; _derived_job",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "taskProposals, speakerRoutes, gaps, routeDisposition, counts",
+      "validation": "Accepted adapter required; source-exact semantic span reconstruction where implemented; uncoveredClaims retained",
+      "knownBypassRisk": "Actual path materializes some Story proposals before role routing, derives remaining narrator moments and uses fixed operation priorities/lexical rules. Semantic adequacy is deferred to Jobs 2/4; no diagnosis inferred from names.",
+      "downstreamConsumer": "requirement_derivation; structured_admission",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "requirement_derivation",
+      "owner": "matching",
+      "inputContract": "Exact proposal entities, values, cohorts, obligations, operation and task text",
+      "implementation": [
+        {
+          "file": "pipeline/visualtask_matching.py",
+          "symbol": "presentation_contract",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "pipeline/matching_agent.py",
+          "symbol": "_requirements",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "presentationContract and optional 30-data-media-requirements.json",
+      "validation": "Primary operation must occur in operations; requirements attach typed Data/Media gaps",
+      "knownBypassRisk": "General agent requirements use presence of bound handoffs; gallery path does not invoke visualtask_requirements.build_requirements or batch native-fit assessment.",
+      "downstreamConsumer": "structured_admission; review route planning",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "catalog_eligibility",
+      "owner": "matching",
+      "inputContract": "Approved list, capability.json, local-templates.json, scope and correction sidecars",
+      "implementation": [
+        {
+          "file": "match-trial/candidates.py",
+          "symbol": "load; approved_path; _capability; _local; scope_of; eligibility_overrides; _removed; _superseded",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "template_pool indexed by record ID",
+      "validation": "Approved/eligible scope retained, removals and corrections applied; unavailable enrichment reported",
+      "knownBypassRisk": "Environment-selected approved list and optional external enrichments are outside a bare code commit. Need source hashes for reproducible catalog replay; tag/capability is not native-fit proof.",
+      "downstreamConsumer": "structured_admission",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "structured_admission",
+      "owner": "matching",
+      "inputContract": "template-neutral presentationContract + eligible catalog, legacy bindings as secondary evidence",
+      "implementation": [
+        {
+          "file": "pipeline/visualtask_matching.py",
+          "symbol": "template_candidates; _presentation_candidates; _supports_operation",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "retrieved_unvalidated candidate records and admission evidence",
+      "validation": "Primary operation controls structured admission; routeDisposition can return no candidates; fresh stories ignore global picks",
+      "knownBypassRisk": "Explicit task admissions and 20+ identity spatial-route additions are separate branches; older no-operation tasks use legacy bindings. Their generality/fit needs later audit rather than assuming one admission path.",
+      "downstreamConsumer": "ordering; legacy_batch_feasibility",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "ordering",
+      "owner": "matching",
+      "inputContract": "Queries from proposal text/operations/obligations and catalog descriptions/capabilities",
+      "implementation": [
+        {
+          "file": "pipeline/storypackage_candidate_gallery.py",
+          "symbol": "_local_relevance; _embedding_text; build",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "pipeline/retrieval/local_embeddings.swift",
+          "symbol": "IDF-weighted mean NLEmbedding and token vectors",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "match-trial/candidates.py",
+          "symbol": "_within_family; diversify",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "ordering relevance + family representative slate",
+      "validation": "Code separates score use from structured admission and leaves fitValidated false",
+      "knownBypassRisk": "Vectors are calculated before per-task admission, then used within admitted candidates. Receipt names are logical stages, not proof of runtime order. Family/slideshow caps affect displayed coverage.",
+      "downstreamConsumer": "display",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "display",
+      "owner": "matching",
+      "inputContract": "gallery proposals + adapter + bindings; 16-candidate and 6-slideshow controls",
+      "implementation": [
+        {
+          "file": "pipeline/storypackage_candidate_gallery.py",
+          "symbol": "build",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "pipeline/focused_review_queue.py",
+          "symbol": "_signature; build",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "pipeline/focused_candidate_diversity.py",
+          "symbol": "build",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "ae-template-automation/scene-library/label-server.py",
+          "symbol": "Labels.read_future_match_gallery",
+          "commit": null
+        },
+        {
+          "file": "ae-template-automation/scene-library/approved/future-volksgeist-matches.js",
+          "symbol": "candidatesFor; refreshTaskQueue; showTask",
+          "commit": null
+        }
+      ],
+      "outputArtifact": "gallery, signature representatives, 8-primary + up-to-8 exploration focused slate",
+      "validation": "Queue accounts for task IDs exactly once; server checks gallery/review hashes, diversity and registered previews",
+      "knownBypassRisk": "Focused sampling does not mean every task/candidate was reviewed. UI hides any task with a saved record, including unreviewed status. External UI bytes are observed separately and not pinned by Matching commit; no browser playback performed.",
+      "downstreamConsumer": "human_review",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "human_review",
+      "owner": "you",
+      "inputContract": "Displayed exact task/candidate plus editor status/comment/revision",
+      "implementation": [
+        {
+          "file": "ae-template-automation/scene-library/label-server.py",
+          "symbol": "Labels.save_future_match_review",
+          "commit": null
+        },
+        {
+          "file": "ae-template-automation/scene-library/approved/future-volksgeist-matches.js",
+          "symbol": "saveReview; completedTaskIds",
+          "commit": null
+        }
+      ],
+      "outputArtifact": "candidate-review.json and previous-byte backup",
+      "validation": "Server checks candidate membership, gallery hash, previous revision; saves human attribution, false authorizations",
+      "knownBypassRisk": "Server membership check reads ordinary candidates while focused UI may use focusedCandidates; flag as code-path risk for Job 6, not a reproduced user failure. Read endpoint can initialize a missing review file; it was not invoked in this audit.",
+      "downstreamConsumer": "review_reconciliation",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "review_reconciliation",
+      "owner": "matching",
+      "inputContract": "Focused queue and saved review records",
+      "implementation": [
+        {
+          "file": "pipeline/focused_review_reconciliation.py",
+          "symbol": "build; _themes",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "focused-review-reconciliation.json",
+      "validation": "Exactly one nonempty-comment review per focused task; explicit separation from approval",
+      "knownBypassRisk": "Themes are substring-derived diagnostic labels; helper does not establish reusable editorial principles or native fit. Keep task/package/gallery provenance in later evaluation.",
+      "downstreamConsumer": "evidence_export; later Jobs 4/7",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "evidence_export",
+      "owner": "matching",
+      "inputContract": "Active and abandoned review sources, external scene review notes, candidate-gallery glob",
+      "implementation": [
+        {
+          "file": "pipeline/build_astra_review_evidence.py",
+          "symbol": "source_candidates; candidate_gallery_index; parser_for; stable_record_key; build; validate",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "reports/astra-matching-review-evidence-20261004.json",
+      "validation": "Schema and internal validation pass; 439 records reproduced from source pointers; sources SHA-grouped and observations deduplicated",
+      "knownBypassRisk": "Observed 33/60 current review contexts differ because gallery lookup is keyed only by task/candidate and later galleries overwrite earlier context; one nonstandard root pointer. Comments/status remain faithful.",
+      "downstreamConsumer": "root_cause_audit",
+      "executionPath": "general_review"
+    },
+    {
+      "id": "legacy_requirement_derivation",
+      "owner": "matching",
+      "inputContract": "Legacy VisualTasks, baseline slate, reviewed timing spans, media requirements and optional Story handoff",
+      "implementation": [
+        {
+          "file": "pipeline/visualtask_requirements.py",
+          "symbol": "build_requirements; _reviewed_timing_spans; _reviewed_media_requirements; validate_requirements",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "grammar/visual-task-technical-requirements.json",
+      "validation": "Source quote/scope checks; missing exact slot/text/data/timing assignments remain unresolved",
+      "knownBypassRisk": "This richer requirement path is not called by storypackage_candidate_gallery.build. Separate source-beat encodings from exact split-task allocation.",
+      "downstreamConsumer": "legacy_batch_feasibility",
+      "executionPath": "legacy_feasibility"
+    },
+    {
+      "id": "legacy_batch_feasibility",
+      "owner": "matching",
+      "inputContract": "Portable request containing story, VisualTasks, requirements, bindings, technical comparison, timing; optional treatment/data/handoff/reconciliation",
+      "implementation": [
+        {
+          "file": "pipeline/visualtask_batch_matching.py",
+          "symbol": "build; _load_inputs; _validate_scope; _template_result; _candidate_fit; _media_result; validate",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "pipeline/media_candidates.py",
+          "symbol": "load; resolve",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "full-visualtask-batch-matching-current.json with separate template/media verdicts",
+      "validation": "Checks task/source scopes; evaluates native mapping, capacity, treatment and timing; availability separately",
+      "knownBypassRisk": "Conditional family-level evidence explicitly defers exact native/text/data checks. Do not label general review gallery retrieval as if this richer feasibility path ran.",
+      "downstreamConsumer": "sequence_planning; matching_harness",
+      "executionPath": "legacy_feasibility"
+    },
+    {
+      "id": "harness_and_release_boundary",
+      "owner": "matching",
+      "inputContract": "Ordered stage contract, general objective task plan, frozen adapters/proposals/gallery and legacy feasibility/sequence/review/release artifacts",
+      "implementation": [
+        {
+          "file": "pipeline/matching_harness.py",
+          "symbol": "build; execution_plan_summary; validate",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "pipeline/matching_agent.py",
+          "symbol": "run_task; _route_plan",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "outputArtifact": "matching-harness-audit.json; agent review route and machine-review receipts",
+      "validation": "22 existing harness tests PASS; all 32 saved harness source hashes match; frozen productionAllowed false and release blocked",
+      "knownBypassRisk": "General agent invokes harness with default artifacts rather than all newly produced per-run inputs. Harness evidence combines cross-story generality with legacy sequence/release receipts. Machine candidate reviews are separate from human review evidence.",
+      "downstreamConsumer": "review-only reporting; gated release pending outside this audit",
+      "executionPath": "shared"
+    }
+  ],
+  "findings": [
+    {
+      "id": "J1-E01",
+      "classification": "measured_result",
+      "owner": "matching",
+      "title": "Normalized review context is not bound to reviewed gallery",
+      "count": 33,
+      "population": 60,
+      "evidenceIds": [
+        "ev_0125568cf745b6da",
+        "ev_02f2640e521e014b",
+        "ev_032190ddc33477c4",
+        "ev_0de23875340c8cac",
+        "ev_1ca1664c3d191497",
+        "ev_2717f824af0316f0",
+        "ev_2801e7ff3abddf95",
+        "ev_3f7238a0568539d6",
+        "ev_51312a34468c7c4d",
+        "ev_524a09c49328bbe4",
+        "ev_5b014d59e8746769",
+        "ev_5bad2a912e2c782e",
+        "ev_6c5dbac6f8f2ea66",
+        "ev_7058ede7e45b1b58",
+        "ev_729f1b94098af1c7",
+        "ev_755a18328ee44670",
+        "ev_8d8f5e31713d758d",
+        "ev_945fc64c57b6bbfb",
+        "ev_9606325d5cb82b3a",
+        "ev_9d5ba2b78bcd30fd",
+        "ev_abbda4e266fb6ee1",
+        "ev_acd365cc2cc1e56a",
+        "ev_b8839bd467a43e84",
+        "ev_bddeca05ada71de3",
+        "ev_be9670fb3e87714c",
+        "ev_bfdc582e3d570f04",
+        "ev_c062fcf214353ca3",
+        "ev_c57dfd265f379748",
+        "ev_c8dd281084e16f30",
+        "ev_cec7aeb58e1d1957",
+        "ev_d87ad400e56798b0",
+        "ev_ddc72215b37fdd5e",
+        "ev_dfa05990da3200b3"
+      ],
+      "citations": [
+        {
+          "file": "pipeline/build_astra_review_evidence.py",
+          "symbols": [
+            "candidate_gallery_index",
+            "parse_candidate_review"
+          ],
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "measurement": "33 current Future records differ from hash-bound v12 gallery context; all 33 use v13 context. 27 current records match. All 60 reviewed task/candidate pairs still exist in their bound galleries.",
+      "disposition": "Canonical package untouched. Audit-only exact-context sidecar saved for all 60 current records; use the bound-gallery context in later jobs. Exporter repair deferred under Jobs 1–7 no-patch rule."
+    },
+    {
+      "id": "J1-E02",
+      "classification": "measured_result",
+      "owner": "matching",
+      "title": "One nonstandard JSON root pointer",
+      "evidenceIds": [
+        "ev_47909742eab48515"
+      ],
+      "sourceId": "src_fb14e61f76ead873",
+      "measurement": "526/527 pointers resolve literally. Pointer / targets an empty-key member under RFC6901; source has no such key. Exporter parse_carousel intends document root.",
+      "disposition": "Read whole hash-matched source with explicit interpretation; no silent canonical pointer edit."
+    },
+    {
+      "id": "J1-E03",
+      "classification": "observed_fact",
+      "owner": "matching",
+      "title": "Historical review lacks gallery context",
+      "evidenceIds": [
+        "ev_160840d04b878840"
+      ],
+      "measurement": "future-volksgeist@2 task matching-derived-p01-1-05 / catalog-gap-clean has preserved comment but no context; current 60 records all have recoverable bound-gallery context.",
+      "disposition": "Do not interpret previous-beat reference without original review order/gallery. Scoped historical gap, not a current-review count gap."
+    },
+    {
+      "id": "J1-S01",
+      "classification": "observed_fact",
+      "owner": "story",
+      "title": "Manifest handoff path is mislocated",
+      "evidenceIds": [],
+      "measurement": "architecture/storypackage/HANDOFF_data_matching_media.md absent at Story pin; actual architecture/HANDOFF_data_matching_media.md exists at same pin.",
+      "disposition": "Alternate read and hash recorded; original baseline manifest unchanged."
+    },
+    {
+      "id": "J1-B01",
+      "classification": "observed_fact",
+      "owner": "matching",
+      "title": "Review retrieval and full feasibility are different executable paths",
+      "evidenceIds": [],
+      "citations": [
+        {
+          "file": "pipeline/storypackage_candidate_gallery.py",
+          "symbol": "build",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "pipeline/visualtask_batch_matching.py",
+          "symbols": [
+            "build",
+            "_candidate_fit"
+          ],
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        },
+        {
+          "file": "pipeline/matching_agent.py",
+          "symbol": "run_task",
+          "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077"
+        }
+      ],
+      "measurement": "Gallery calls template_candidates but not visualtask_requirements or _candidate_fit. General agent calls default fixture harness.",
+      "disposition": "Map separately; adequacy/causal impact reserved for later jobs."
+    }
+  ],
+  "evidence": {
+    "package": "reports/astra-matching-review-evidence-20261004.json",
+    "sha256": "b6d2cd12649e7367c3efa1d7c70bd735ff6c94b8d74473bcf5248c0412d19ce5",
+    "counts": {
+      "uniqueRecords": 439,
+      "sources": 24,
+      "sourceAliases": 4,
+      "byEvidenceType": {
+        "beat_review": 31,
+        "candidate_acceptability": 63,
+        "matching_output_feedback": 49,
+        "media_eligibility": 29,
+        "route_decision": 32,
+        "template_capability_review": 218,
+        "template_media_pairing": 14,
+        "template_timing_review": 1,
+        "timing_boundary": 1,
+        "treatment_review": 1
+      },
+      "byAuthorship": {
+        "derived_from_human": 32,
+        "human": 333,
+        "human_verbatim_recovered": 74
+      },
+      "byPackage": {
+        "future-volksgeist@2": 3,
+        "future-volksgeist@5": 48,
+        "jayz-drake-settle-it@4": 12
+      },
+      "candidateReviewsWithoutGalleryContext": 1
+    },
+    "currentReviewIds": {
+      "jayz-drake-settle-it@4": [
+        "ev_0aca38d1b1fd04f1",
+        "ev_0c2a0aba000bca29",
+        "ev_197e8df3cdb679e1",
+        "ev_60553fc81c4e442a",
+        "ev_7f4a926a6afacecf",
+        "ev_81a8bfc05956e7b1",
+        "ev_8d097d68699e413f",
+        "ev_9968d9e53524c9b1",
+        "ev_ae89ed37733a21e4",
+        "ev_b28174f436fb78aa",
+        "ev_d9088e29e1e0ae41",
+        "ev_de698031ae7624db"
+      ],
+      "future-volksgeist@5": [
+        "ev_0125568cf745b6da",
+        "ev_02f2640e521e014b",
+        "ev_032190ddc33477c4",
+        "ev_063fd655708a1b49",
+        "ev_0de23875340c8cac",
+        "ev_1474531742be97a8",
+        "ev_1ca1664c3d191497",
+        "ev_2717f824af0316f0",
+        "ev_2794546a910cc39b",
+        "ev_2801e7ff3abddf95",
+        "ev_2ab63ad9958fa8b2",
+        "ev_2ba0efcf6b2099d8",
+        "ev_394f04a8fb042538",
+        "ev_3f7238a0568539d6",
+        "ev_4bcb609716da7182",
+        "ev_51312a34468c7c4d",
+        "ev_524a09c49328bbe4",
+        "ev_54ae21917a62a9ee",
+        "ev_57967222489c4a06",
+        "ev_5b014d59e8746769",
+        "ev_5bad2a912e2c782e",
+        "ev_686fd44338f49f3c",
+        "ev_6c440a7b5cb840d4",
+        "ev_6c5dbac6f8f2ea66",
+        "ev_6d203f360acad72f",
+        "ev_7058ede7e45b1b58",
+        "ev_729f1b94098af1c7",
+        "ev_755a18328ee44670",
+        "ev_8d8f5e31713d758d",
+        "ev_945fc64c57b6bbfb",
+        "ev_9606325d5cb82b3a",
+        "ev_9d5ba2b78bcd30fd",
+        "ev_abbda4e266fb6ee1",
+        "ev_acd365cc2cc1e56a",
+        "ev_b8839bd467a43e84",
+        "ev_bddeca05ada71de3",
+        "ev_be9670fb3e87714c",
+        "ev_bfdc582e3d570f04",
+        "ev_c062fcf214353ca3",
+        "ev_c57dfd265f379748",
+        "ev_c730c3156911095c",
+        "ev_c8dd281084e16f30",
+        "ev_cec7aeb58e1d1957",
+        "ev_d87ad400e56798b0",
+        "ev_ddc72215b37fdd5e",
+        "ev_dfa05990da3200b3",
+        "ev_e8853cc8bcf8a83d",
+        "ev_eeb4b0eecc7f1538"
+      ]
+    },
+    "authorshipBoundary": "333 human, 74 human_verbatim_recovered, 32 derived_from_human. Normalized record claims reproduced from preserved sources. This audit and machine evaluation files are not editor comments.",
+    "mirrorPolicy": "24 byte-distinct sources plus 4 aliases; 527 source pointers merge to 439 distinct observation IDs. 12/48 current reviews counted once, not once per mirror/backup."
+  },
+  "goldReferences": [
+    {
+      "gold": "docs/astra-root-cause/references/gold-standard/storypackage-02-future-volksgeist-task-proposals.json",
+      "goldPackageId": "future-volksgeist@2",
+      "currentPackageId": "future-volksgeist@5",
+      "adapterSource": {
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/reports/storypackage-02-future-volksgeist-adapter.json",
+        "sha256": "653a56ed1144547684454bfde4b49bb48d1a5b9d595d8c0f0203aa9790909890"
+      },
+      "adapterSourceHashVerified": true,
+      "scriptSha256": "94a54b4c5bb33f115771e9afccddd5575f40eaa507f55facfe509c23b48932a8",
+      "scriptBytesEqual": true,
+      "claimTextAndSpansEqual": true,
+      "goldTaskCount": 310,
+      "currentClaimCount": 502,
+      "role": "editor_designated_positive_target",
+      "semanticQualityComparison": "pending_job_2_and_7"
+    },
+    {
+      "gold": "docs/astra-root-cause/references/gold-standard/storypackage-02-year-seventeen-full-task-proposals.json",
+      "goldPackageId": "year-seventeen@7",
+      "currentPackageId": "year-seventeen@9",
+      "adapterSource": {
+        "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/astra-visual-selector/reports/storypackage-02-year-seventeen-full-adapter.json",
+        "sha256": "ff2be05f968b91d360753cac9f9c42c8e21f84821f180fee07bf17c81f506914"
+      },
+      "adapterSourceHashVerified": true,
+      "scriptSha256": "d478e38bc38f291b596e472090ab3ab3221a030ee11dcbf17f5221cef78ca5f2",
+      "scriptBytesEqual": true,
+      "claimTextAndSpansEqual": true,
+      "goldTaskCount": 116,
+      "currentClaimCount": 150,
+      "role": "editor_designated_positive_target",
+      "semanticQualityComparison": "pending_job_2_and_7"
+    }
+  ],
+  "referenceGap": {
+    "status": "separate_original_visual_job_mapping_not_identified",
+    "owner": "you",
+    "expectedArtifactName": "Not established in supplied manifest; do not invent a filename.",
+    "role": "A separately intended original-video transcript-span -> visual job/shot mapping, distinct from the supplied gold task proposals.",
+    "searched": [
+      "all expanded REFERENCE_MANIFEST entries",
+      "Story youtube_doc_analysis/HANDOFF.md and manifest_full.csv",
+      "analysis_002.json and analysis_006.json story_beats",
+      "gold source adapters",
+      "historical beat-script-map.json at da8b175",
+      "matching-accuracy/batch-001 and held-out-001 source declarations"
+    ],
+    "available": "Both editor-designated gold mappings, exact source transcripts and narrative structural beat analyses are present. Year Seventeen historical review/VisualTask mapping is present.",
+    "unverifiableDecisions": "Which original source-video visual/shot corresponds to each narrative beat in analyses 002/006; those analyses describe narrative beats, not template communication jobs. No specific missing file or exact full set of unmapped visual spans can be asserted from a nonexistent artifact.",
+    "smallestRequestIfNeeded": "Only if a separate org reference beyond the two gold files was intended: provide its path or export with transcript span/timestamp, visual-job label, and review provenance.",
+    "blocksJob1": false,
+    "blocksUnrelatedAnalysis": false
+  },
+  "tests": {
+    "existingTests": 35,
+    "passed": 35,
+    "suites": {
+      "test_astra_review_evidence.py": 3,
+      "test_astra_root_cause_workflow.py": 3,
+      "test_matching_contract_gate.py": 7,
+      "test_matching_harness.py": 22
+    },
+    "authoritativeStoryValidation": {
+      "future-volksgeist@5": {
+        "status": "PASS",
+        "speaker_unidentified": 6
+      },
+      "jayz-drake-settle-it@4": {
+        "status": "PASS",
+        "gaps": 0
+      },
+      "year-seventeen@9": {
+        "status": "PASS",
+        "gaps": 0
+      }
+    },
+    "limits": "Tests are targeted evidence, not proof of semantic quality/native fit. No fresh matching gallery or UI session was produced."
+  },
+  "artifacts": [
+    "01-source-inventory.json",
+    "01-followed-source-inventory.json",
+    "01-artifact-inventory-details.json",
+    "01-evidence-integrity.json",
+    "01-review-gallery-binding.json",
+    "01-reviewed-context-resolution.json",
+    "01-harness-source-check.json",
+    "01-gold-reference-alignment.json",
+    "01-code-symbol-index.json"
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "productionFilesModified": false,
+  "deviationAssessment": "No material deviation. Source path typo resolved at same commit; installed schema runtime reused after default/bundled runtimes lacked jsonschema. No evidence regeneration on disk and no production fixes.",
+  "workflowReview": {
+    "id": "9e68027a-8ccc-433d-aaa5-5516f7e37ff8",
+    "checkpoint": "astra-job01-20261004-b5a5af99-d9aa-435d-bd1e-63dcfffe3c34",
+    "workflowHash": "2d4f8a3bda0bec46802e70641e9226062f20f89e30ca0a59ff95af10238357de",
+    "validated": true
+  }
+}
