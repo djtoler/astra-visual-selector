@@ -146,6 +146,8 @@ def _failed_receipt(task: dict[str, Any], configuration: dict[str, Any] | None,
     text = str(exc)
     if isinstance(exc, AgentRunnerError):
         party = "matching"
+    elif "automation-data" in text.lower():
+        party = "data"
     elif "StoryPackage" in text or "story" in text.lower():
         party = "story"
     elif "entity" in text.lower() or "data" in text.lower():
@@ -203,10 +205,17 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
         old_catalog = os.environ.get("ASTRA_APPROVED_LIST")
         os.environ["ASTRA_APPROVED_LIST"] = preflight_receipt["inputs"]["templateCatalog"]["path"]
         try:
+            repo_mappings = {
+                roster["repositoryId"]: Path(roster["repositoryRoot"]),
+                **{
+                    mapping["repositoryId"]: Path(mapping["repositoryRoot"])
+                    for mapping in preflight_receipt["inputs"]["repositoryMappings"]
+                },
+            }
             adapter = storypackage_adapter.build(
                 Path(story["path"]), upstream_root=Path(story["authorityRoot"]),
                 checker_python=Path(story["checkerPython"]),
-                repo_mappings={roster["repositoryId"]: Path(roster["repositoryRoot"])},
+                repo_mappings=repo_mappings,
             )
             _validate_registry_binding(adapter, roster)
             adapter_path = output_directory / "10-storypackage-adapter.json"

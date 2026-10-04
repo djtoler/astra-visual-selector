@@ -45,6 +45,7 @@ class MatchingAgentContractTests(unittest.TestCase):
                 "repositoryId": "test/catalog", "repositoryRoot": str(self.repo), "repositoryCommit": self.commit,
                 "path": str(self.repo / "catalog.json"), "sha256": digest(self.repo / "catalog.json"), "identity": "catalog@1",
             },
+            "repositoryMappings": [],
             "output": {"schema": "matching-agent-receipt@1", "directory": str(self.output)},
             "dependencyReceiptIds": [], "dependencyReceipts": [],
             "profile": {

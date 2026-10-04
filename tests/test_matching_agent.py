@@ -62,6 +62,7 @@ class MatchingAgentCommandTests(unittest.TestCase):
                 "repositoryId": "catalog/repo", "repositoryRoot": "/catalog", "repositoryCommit": "5" * 40,
                 "path": "/catalog/approved-list.json", "sha256": "6" * 64, "identity": "approved@1",
             },
+            "repositoryMappings": [],
             "output": {"schema": "matching-agent-receipt@1", "directory": str(self.output)},
             "dependencyReceiptIds": [], "dependencyReceipts": [],
             "profile": {
@@ -82,6 +83,7 @@ class MatchingAgentCommandTests(unittest.TestCase):
                 "storyPackage": {**self.task["storyPackage"], "path": "/story/package.json", "authorityRoot": "/story", "checkerPython": "/python"},
                 "entityRoster": {**self.task["entityRoster"], "path": "/roster/entity-roster.json"},
                 "templateCatalog": {**self.task["templateCatalog"], "path": "/catalog/approved-list.json"},
+                "repositoryMappings": [],
                 "dependencyReceipts": [],
             },
             "outputDirectory": str(self.output), "dependencyReceiptIds": [],

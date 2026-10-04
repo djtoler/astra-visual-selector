@@ -3,7 +3,7 @@
   "$id": "matching-agent-task@1",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "taskId", "objectiveId", "owner", "requestedBy", "storyPackage", "entityRoster", "templateCatalog", "output", "dependencyReceiptIds", "dependencyReceipts", "profile", "toolAllowList", "mutationScope", "acceptanceChecks", "timeoutClass", "retryClass", "userInput", "selectionAuthorized", "renderingAuthorized"],
+  "required": ["schemaVersion", "taskId", "objectiveId", "owner", "requestedBy", "storyPackage", "entityRoster", "templateCatalog", "repositoryMappings", "output", "dependencyReceiptIds", "dependencyReceipts", "profile", "toolAllowList", "mutationScope", "acceptanceChecks", "timeoutClass", "retryClass", "userInput", "selectionAuthorized", "renderingAuthorized"],
   "properties": {
     "schemaVersion": {"const": "matching-agent-task@1"},
     "taskId": {"type": "string", "minLength": 1},
@@ -13,6 +13,18 @@
     "storyPackage": {"$ref": "#/$defs/storyPackage"},
     "entityRoster": {"$ref": "#/$defs/authority"},
     "templateCatalog": {"$ref": "#/$defs/catalog"},
+    "repositoryMappings": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["repositoryId", "repositoryRoot", "repositoryCommit"],
+        "properties": {
+          "repositoryId": {"type": "string", "minLength": 1},
+          "repositoryRoot": {"type": "string", "minLength": 1},
+          "repositoryCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+        }
+      }
+    },
     "dataHandoff": {"$ref": "#/$defs/fileInput"},
     "mediaHandoff": {"$ref": "#/$defs/fileInput"},
     "output": {

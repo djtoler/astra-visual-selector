@@ -15,7 +15,7 @@ SHA256 = re.compile(r"^[0-9a-f]{64}$")
 COMMIT = re.compile(r"^[0-9a-f]{40}$")
 ROOT_KEYS = {
     "schemaVersion", "taskId", "objectiveId", "owner", "requestedBy",
-    "storyPackage", "entityRoster", "templateCatalog", "dataHandoff", "mediaHandoff",
+    "storyPackage", "entityRoster", "templateCatalog", "repositoryMappings", "dataHandoff", "mediaHandoff",
     "output", "dependencyReceiptIds", "dependencyReceipts", "profile", "toolAllowList", "mutationScope",
     "acceptanceChecks", "timeoutClass", "retryClass", "userInput",
     "selectionAuthorized", "renderingAuthorized",
@@ -100,6 +100,21 @@ def validate_task_contract(task: dict[str, Any]) -> dict[str, Any]:
     _file_input(task.get("storyPackage"), "storyPackage", story=True)
     _file_input(task.get("entityRoster"), "entityRoster", authority=True)
     _file_input(task.get("templateCatalog"), "templateCatalog", catalog=True)
+    mappings = task.get("repositoryMappings")
+    if not isinstance(mappings, list):
+        raise AgentContractError("repositoryMappings must be a list")
+    mapping_ids = []
+    for index, mapping in enumerate(mappings):
+        required = {"repositoryId", "repositoryRoot", "repositoryCommit"}
+        if not isinstance(mapping, dict):
+            raise AgentContractError("repository mapping must be an object")
+        _keys(mapping, required, required, f"repositoryMappings[{index}]")
+        mapping_ids.append(_text(mapping["repositoryId"], "repository mapping id"))
+        _text(mapping["repositoryRoot"], "repository mapping root")
+        if not COMMIT.fullmatch(str(mapping["repositoryCommit"])):
+            raise AgentContractError("repository mapping commit is not exact")
+    if len(mapping_ids) != len(set(mapping_ids)):
+        raise AgentContractError("repository mapping IDs are duplicated")
     for optional in ("dataHandoff", "mediaHandoff"):
         if optional in task:
             _file_input(task[optional], optional)
@@ -195,6 +210,15 @@ def preflight(task: dict[str, Any]) -> dict[str, Any]:
     for optional in ("dataHandoff", "mediaHandoff"):
         if optional in task:
             inputs[optional] = {**task[optional], "path": _resolved_file(task[optional], optional).as_posix()}
+    inputs["repositoryMappings"] = []
+    for mapping in task["repositoryMappings"]:
+        root = Path(mapping["repositoryRoot"]).expanduser().resolve()
+        head = git_head(root)
+        if head != mapping["repositoryCommit"]:
+            raise AgentContractError(
+                f"repository mapping moved for {mapping['repositoryId']}: "
+                f"expected {mapping['repositoryCommit']} got {head}")
+        inputs["repositoryMappings"].append({**mapping, "repositoryRoot": root.as_posix()})
     inputs["dependencyReceipts"] = [
         {**receipt, "path": _resolved_file(receipt, f"dependency receipt {receipt['id']}").as_posix()}
         for receipt in task["dependencyReceipts"]
