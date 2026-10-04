@@ -42,8 +42,13 @@ def _write(path: Path, value: Any) -> dict[str, Any]:
     return {"path": path.as_posix(), "sha256": sha256(path), "bytes": path.stat().st_size}
 
 
-def _source(value: dict[str, Any]) -> dict[str, Any]:
-    return {key: value[key] for key in value if key not in {"checkerPython", "authorityRoot", "repositoryRoot"}}
+def _provider_source(value: dict[str, Any]) -> dict[str, Any]:
+    """Expose immutable identity to the model without local filesystem locations."""
+    return {
+        key: value[key] for key in (
+            "repositoryId", "repositoryCommit", "sha256", "version", "identity", "authorityCommit"
+        ) if key in value
+    }
 
 
 def _matching_runtime() -> dict[str, Any]:
@@ -258,10 +263,17 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
         outputs.append(_write(output_directory / "60-matching-harness-audit.json", harness))
         checks.append({"id": "matching_harness", "status": "passed"})
 
+        provider_workspace = output_directory / "provider-workspace"
+        provider_workspace.mkdir(parents=True, exist_ok=True)
+        subprocess.run(["git", "init", "-q"], cwd=provider_workspace, check=True)
         review_input = {
             "schemaVersion": "matching-agent-review-input@1", "taskId": task["taskId"],
             "packageId": adapter["packageId"],
-            "immutableInputs": {key: _source(value) for key, value in preflight_receipt["inputs"].items() if isinstance(value, dict)},
+            "immutableInputs": {
+                key: _provider_source(value)
+                for key, value in preflight_receipt["inputs"].items()
+                if isinstance(value, dict)
+            },
             "counts": {
                 "claims": proposals["counts"]["claims"], "taskProposals": proposals["counts"]["taskProposals"],
                 "uncoveredClaims": proposals["counts"]["uncoveredClaims"],
@@ -279,7 +291,7 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
             },
             "selectionAuthorized": False, "renderingAuthorized": False,
         }
-        outputs.append(_write(output_directory / "agent-review-input.json", review_input))
+        outputs.append(_write(provider_workspace / "agent-review-input.json", review_input))
         active_runner = runner or runner_for(configuration, executable=executable)
         capability = active_runner.capabilities()
         outputs.append(_write(output_directory / "70-runner-capabilities.json", capability))
@@ -290,7 +302,7 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
         last_runner_error = None
         for attempt in range(1, attempts + 1):
             try:
-                handle = active_runner.run(runner_task, output_directory, runner_configuration)
+                handle = active_runner.run(runner_task, provider_workspace, runner_configuration)
                 runner_receipt = active_runner.collect(handle)
                 checks.append({"id": f"provider_attempt_{attempt}", "status": "passed"})
                 break
