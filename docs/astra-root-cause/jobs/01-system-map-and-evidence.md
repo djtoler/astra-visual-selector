@@ -8,8 +8,13 @@ propose a redesign yet.
 
 ## Inspect
 
+- `docs/astra-root-cause/EXECUTION_POLICY.json`; run this job with its required
+  `gpt-6-astra` / `medium` configuration.
 - Every contract, implementation step and evidence artifact in
   `docs/astra-root-cause/REFERENCE_MANIFEST.md`.
+- Both editor-designated perfect reference versions under
+  `docs/astra-root-cause/references/gold-standard/`; verify their hashes and
+  establish their exact role in later comparison work.
 - `reports/astra-matching-review-evidence-20261004.json` against its schema and
   every source hash/pointer available in the checkout.
 - The actual executable call graph from entrypoint/contract gate through gallery
@@ -26,6 +31,11 @@ It must separately map Story creation, Story validation, Matching adaptation,
 semantic splitting, requirement derivation, admission, ordering, display and
 human review.
 
+Both outputs must include an execution receipt with the configured model and
+reasoning effort. If Medium leaves a genuinely difficult architectural
+ambiguity, isolate it as one narrow question and record any High/Ultra rerun of
+that question. Do not rerun the complete job at a higher effort.
+
 ## Acceptance
 
 - Every stage resolves to actual code or is explicitly human/manual.
@@ -33,6 +43,10 @@ human review.
   for without treating the abandoned mirror as duplicate evidence.
 - Machine evaluations are not labeled as editor feedback.
 - Any missing org reference is precisely named.
+- Both perfect reference files match the manifest hashes and are classified as
+  positive target evidence rather than ordinary generated output.
+- The execution receipt reports `gpt-6-astra` at `medium`; any High/Ultra use is
+  limited to one documented narrow architectural question.
 - No production file is modified.
 
 Stop after Job 1.

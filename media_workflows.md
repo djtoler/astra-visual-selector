@@ -76,3 +76,21 @@ contracts, task granularity, presentation-operation derivation, candidate
 admission, family coverage, ordering and display. Do not patch ranking or add a
 story-specific rule until the failing stage is identified. Prior comments remain
 scoped evidence unless a separate reconciliation proves a reusable principle.
+
+### Astra root-cause execution and gold-reference policy — 2026-10-04
+
+The Astra root-cause workflow begins with Job 1 on `gpt-6-astra` at `medium`
+reasoning effort. If that run exposes a genuinely difficult architectural
+ambiguity, isolate the unresolved issue and rerun only that narrow question at
+`high` or `ultra`; never rerun the complete job at the higher effort. Preserve
+the configured model, effort, question and escalation reason in the Job 1
+receipt. `docs/astra-root-cause/EXECUTION_POLICY.json` is the machine-readable
+authority for this strategy.
+
+The byte-preserved Year Seventeen and Future task-proposal files under
+`docs/astra-root-cause/references/gold-standard/` are editor-designated perfect
+reference versions for the beat/script-to-template task-proposal quality the
+general system must reach. Root-cause analysis must compare current outputs to
+their beat boundaries, coherent visual moments, visual jobs, requirements and
+downstream matchability. Extract reusable principles; never hardcode their
+subjects, package IDs or beat IDs.

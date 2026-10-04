@@ -28,6 +28,32 @@ Distinguish verbatim human observations, recovered human data, derived prior
 choices, and machine evaluation. Cite `evidenceId` for every conclusion that
 depends on a review.
 
+## Perfect reference versions
+
+The editor has designated these exact files as **perfect reference versions**
+for the beat/script-to-template task-proposal quality the general system must
+learn to produce:
+
+- `docs/astra-root-cause/references/gold-standard/storypackage-02-year-seventeen-full-task-proposals.json`
+- `docs/astra-root-cause/references/gold-standard/storypackage-02-future-volksgeist-task-proposals.json`
+
+Verify their SHA-256 digests against `REFERENCE_MANIFEST.md`. Evaluate how
+their beat boundaries, coherent visual moments, visual jobs, requirements and
+template-matchable task descriptions differ from current outputs. Treat their
+quality as the target, while extracting story-neutral principles rather than
+hardcoding either documentary's subjects, package IDs or beat IDs.
+
+## Mandatory Job 1 model strategy
+
+Read and obey `EXECUTION_POLICY.json` before starting:
+
+1. Run Job 1 with `gpt-6-astra` at `medium` reasoning effort.
+2. If Job 1 exposes a genuinely difficult architectural ambiguity, isolate the
+   narrow question, document why Medium could not resolve it, and rerun only
+   that question at `high` or `ultra`.
+3. Never rerun the whole Job 1 at High or Ultra. Record the configured model,
+   effort, narrow question and escalation reason in the Job 1 outputs.
+
 ## Execution contract
 
 The audit is divided into separate jobs under `docs/astra-root-cause/jobs/`.

@@ -21,3 +21,16 @@ single broad speculative review.
 
 No job authorizes template selection, rendering, or implementation. Preserve
 the current failing artifacts until Job 8 is reviewed.
+
+## Mandatory execution policy
+
+`EXECUTION_POLICY.json` is part of the workflow contract. Job 1 runs on
+`gpt-6-astra` with `medium` reasoning effort. High or Ultra is allowed only for
+a narrowly isolated architectural ambiguity that Medium could not resolve; it
+must not be used to rerun the entire job. The Job 1 report must record the
+configured model and effort and any scoped escalation.
+
+The two files under `references/gold-standard/` are editor-designated perfect
+reference versions. They define the target quality for beat boundaries,
+coherent visual moments, visual-job derivation and task proposals. Use them to
+derive general principles, not story-specific production rules.

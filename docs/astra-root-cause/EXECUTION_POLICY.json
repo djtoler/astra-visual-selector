@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "workflow": "astra-matching-root-cause",
+  "jobPolicies": {
+    "01-system-map-and-evidence": {
+      "requiredModel": "gpt-6-astra",
+      "requiredReasoningEffort": "medium",
+      "escalation": {
+        "allowed": true,
+        "allowedReasoningEfforts": ["high", "ultra"],
+        "scope": "single_narrow_architectural_question_only",
+        "requires": [
+          "medium_attempt_receipt",
+          "unresolved_architectural_ambiguity",
+          "isolated_question",
+          "escalation_reason"
+        ],
+        "wholeJobRerunAllowed": false
+      },
+      "receiptRequired": true
+    }
+  },
+  "goldReferences": [
+    {
+      "path": "docs/astra-root-cause/references/gold-standard/storypackage-02-year-seventeen-full-task-proposals.json",
+      "sha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1",
+      "designation": "editor_perfect_reference",
+      "targetQualities": [
+        "beat_boundaries",
+        "coherent_visual_moments",
+        "visual_job_derivation",
+        "task_requirements",
+        "downstream_matchability"
+      ]
+    },
+    {
+      "path": "docs/astra-root-cause/references/gold-standard/storypackage-02-future-volksgeist-task-proposals.json",
+      "sha256": "f48f7ed31e854a7fcf316c4f9366890e1b3a688686d407f747fe46f27918ebde",
+      "designation": "editor_perfect_reference",
+      "targetQualities": [
+        "beat_boundaries",
+        "coherent_visual_moments",
+        "visual_job_derivation",
+        "task_requirements",
+        "downstream_matchability"
+      ]
+    }
+  ],
+  "prohibitions": [
+    "whole_job_high_or_ultra_rerun",
+    "story_specific_hardcoding",
+    "gold_reference_regeneration_during_audit"
+  ]
+}

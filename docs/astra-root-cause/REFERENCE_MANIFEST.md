@@ -100,6 +100,27 @@ Branch: `matching-layer`
 
 ### Historical/manual reference evidence
 
+#### Editor-designated gold-standard task proposals
+
+These two byte-preserved files are **perfect reference versions** for the
+beat/script-to-template task-proposal quality the general system is intended to
+reach. Astra must use them as positive target evidence when evaluating beat
+definition, visual-moment granularity, visual-job derivation, requirements and
+downstream matchability. They are not merely historical machine outputs.
+
+- `docs/astra-root-cause/references/gold-standard/storypackage-02-year-seventeen-full-task-proposals.json`
+  - package: `year-seventeen@7`
+  - task proposals: 116
+  - SHA-256: `b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1`
+- `docs/astra-root-cause/references/gold-standard/storypackage-02-future-volksgeist-task-proposals.json`
+  - package: `future-volksgeist@2`
+  - task proposals: 310
+  - SHA-256: `f48f7ed31e854a7fcf316c4f9366890e1b3a688686d407f747fe46f27918ebde`
+
+Do not overwrite or regenerate these files during the audit. Compare current
+Story and Matching outputs against their reusable structure and principles;
+do not hardcode their package IDs, subjects or beat IDs into production code.
+
 - `grammar/beat-review-export-2026-09-27.json`
 - `grammar/visual-tasks.json`
 - `pipeline/beats-all.json`
