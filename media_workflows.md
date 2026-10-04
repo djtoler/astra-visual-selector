@@ -24,6 +24,8 @@ Every public Matching build path must call the mandatory contract gate. Review-o
 
 A calibration package cannot prove generality by itself. Acceptance requires distinct regression packages plus a genuinely untouched user-supplied held-out package through the same runtime, with complete narration-claim routing and no fixture-specific branches.
 
+Automated ingestion, held-out regression, task splitting and candidate retrieval do not constitute editor-facing review. Track machine processing and human review as separate states. A package is human-reviewed only when an editor has used a gallery-hash-bound review surface and saved explicit task/candidate evidence; never infer that state from the existence of adapter, proposal, gallery or regression artifacts. A package-neutral focused review may represent repeated tasks by semantic/capability signature only when every full-gallery task is traceably covered and the complete queue remains available.
+
 ### StoryPackage semantic-split ownership correction
 
 Story supplies semantic moments at a granularity that can be treated coherently. Matching validates and consumes those moments; it does not combine several distinct claims into one oversized template choice. External split proposals remain provider-independent, schema-validated, and review-only.
