@@ -118,7 +118,7 @@ def _route_plan(gallery: dict[str, Any]) -> dict[str, Any]:
                 else ("non_template_disposition" if disposition.get("templateEligible") is False
                       else "no_structurally_admitted_template_candidate")
             ),
-            "candidateIds": [candidate["id"] for candidate in candidates] if template_route else [],
+            "candidateIds": [candidate["candidateId"] for candidate in candidates] if template_route else [],
             "brollFallbackAvailable": True,
             "transition": {"status": "review_required", "owner": "matching"},
             "selectionAuthorized": False, "renderingAuthorized": False,

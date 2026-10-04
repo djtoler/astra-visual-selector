@@ -105,7 +105,7 @@ class MatchingAgentCommandTests(unittest.TestCase):
         }
         self.gallery = {
             "packageId": "package-1", "tasks": [{
-                "taskId": "proposal-1", "sourceBeatIds": ["beat-1"], "candidates": [{"id": "template-1"}],
+                "taskId": "proposal-1", "sourceBeatIds": ["beat-1"], "candidates": [{"candidateId": "template-1"}],
                 "routeDisposition": {"templateEligible": True},
             }], "clipRoutes": [],
             "counts": {"candidateCards": 1, "tasksWithoutCandidates": 0},
