@@ -93,6 +93,69 @@ class VisualTaskMatching(unittest.TestCase):
         rows = subject.template_candidates(task, {}, pool)
         self.assertIn("03-history-documentary-10-slides--scene-001", {row["candidateId"] for row in rows})
 
+    def test_primary_operation_prevents_secondary_union_from_admitting_data_templates(self):
+        pool = {row["id"]: row for row in subject.C.load(content_class="*")}
+        task = {
+            "id": "new-story.relationship", "job": "enumerate", "taskRole": "main",
+            "quote": "The artist met his cousin at age 17.", "entityCount": 2,
+            "entities": {"displayEligible": ["artist", "cousin"]}, "mustBePerceptible": [],
+            "presentationOperations": ["relationship_intro", "data_explanation"],
+            "primaryPresentationOperation": "relationship_intro", "templateAdmissions": [],
+            "ignorePriorSelections": True, "candidateDisplayLimit": 500,
+        }
+        ids = {row["candidateId"] for row in subject.template_candidates(
+            task, {}, pool, exhaustive_families=True)}
+        self.assertNotIn("3d-pie-chart-set--scene-003", ids)
+        self.assertNotIn("58_big_three_stat_rows", ids)
+        self.assertIn("photo-slideshow-memories-envato--scene-001", ids)
+
+    def test_scoped_lyrics_are_admitted_only_for_lyric_operation(self):
+        pool = {row["id"]: row for row in subject.C.load(content_class="*")}
+        base = {
+            "id": "new-story.lyrics", "job": "present_evidence", "taskRole": "main",
+            "quote": "The hook says the exact lyric.", "entityCount": 1,
+            "entities": {"displayEligible": ["artist"]}, "mustBePerceptible": [],
+            "templateAdmissions": [], "ignorePriorSelections": True,
+            "candidateDisplayLimit": 500,
+        }
+        lyric_task = {**base, "presentationOperations": ["lyric_presentation"],
+                      "primaryPresentationOperation": "lyric_presentation"}
+        lyric_ids = {row["candidateId"] for row in subject.template_candidates(
+            lyric_task, {}, pool, exhaustive_families=True)}
+        self.assertIn("archive3-horizontal-music-players-with-lyric-vol-2--review-001", lyric_ids)
+        statement_task = {**base, "id": "new-story.statement",
+                          "presentationOperations": ["concept_statement"],
+                          "primaryPresentationOperation": "concept_statement"}
+        statement_ids = {row["candidateId"] for row in subject.template_candidates(
+            statement_task, {}, pool, exhaustive_families=True)}
+        self.assertFalse(lyric_ids & {candidate for candidate in statement_ids if "lyric" in candidate})
+
+    def test_explicit_non_template_route_returns_no_template_candidates(self):
+        pool = {row["id"]: row for row in subject.C.load(content_class="*")}
+        task = {
+            "id": "new-story.question", "job": "pose_a_question", "taskRole": "main",
+            "quote": "How could this happen?", "entityCount": 0,
+            "entities": {"displayEligible": []}, "mustBePerceptible": [],
+            "presentationOperations": ["rhetorical_question"],
+            "primaryPresentationOperation": "rhetorical_question",
+            "routeDisposition": {"templateEligible": False},
+        }
+        self.assertEqual(subject.template_candidates(task, {}, pool), [])
+
+    def test_identity_transformation_rejects_quantitative_change_templates(self):
+        pool = {row["id"]: row for row in subject.C.load(content_class="*")}
+        task = {
+            "id": "new-story.transformation", "job": "assert_without_data", "taskRole": "main",
+            "quote": "Before we understand the star, meet his former self.", "entityCount": 1,
+            "entities": {"displayEligible": ["artist"]}, "mustBePerceptible": [],
+            "presentationOperations": ["transformation"],
+            "primaryPresentationOperation": "transformation",
+        }
+        ids = {row["candidateId"] for row in subject.template_candidates(
+            task, {}, pool, exhaustive_families=True)}
+        self.assertNotIn("truth-cohort-attrition", ids)
+        self.assertNotIn("26_mirrored_stat_compare", ids)
+
 
 if __name__ == "__main__":
     unittest.main()

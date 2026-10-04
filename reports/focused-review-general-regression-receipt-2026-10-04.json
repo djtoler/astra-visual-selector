@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Portable regression evidence for rules derived from the completed focused review",
+  "runtimeSources": {
+    "storypackageSplitterSha256": "40a9c0540b33eca1c0037f758d784b2e89f6703780c485054769a3e6f8ec77a7",
+    "visualtaskMatcherSha256": "1de7914be513b54aa8d3bea3b696e7e80ce271fc4ba9f76ddf4d0c45c610a15a"
+  },
+  "automatedTests": {
+    "command": "python3 -m unittest tests.test_focused_review_reconciliation tests.test_storypackage_splitter tests.test_visualtask_matching tests.test_matching_contract_gate",
+    "testsRun": 38,
+    "passed": true
+  },
+  "packageRuns": [
+    {"fixture": "apollo", "taskProposals": 6, "tasksWithCandidates": 6, "tasksWithoutCandidates": 0, "uncoveredClaims": 0},
+    {"fixture": "jayz-drake-settle-it", "taskProposals": 186, "tasksWithCandidates": 174, "tasksWithoutCandidates": 12, "uncoveredClaims": 0},
+    {"fixture": "year-seventeen", "taskProposals": 115, "tasksWithCandidates": 110, "tasksWithoutCandidates": 5, "uncoveredClaims": 0}
+  ],
+  "futureRegeneration": {
+    "taskProposals": 310,
+    "tasksWithCandidates": 292,
+    "tasksWithoutCandidates": 18,
+    "uncoveredClaims": 0,
+    "selectionAuthorized": false,
+    "renderingAuthorized": false
+  },
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

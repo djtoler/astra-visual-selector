@@ -164,6 +164,66 @@ class StoryPackageSplitterTests(unittest.TestCase):
         )
         self.assertNotIn("item_sequence", operations)
 
+    def test_referential_plural_artifacts_request_a_sequence(self):
+        operations = subject._presentation_operations(
+            text="These mixtapes helped him find his formula.",
+            claim_rows=[{"entityRefs": [], "values": [], "cohortRefs": []}],
+        )
+        self.assertIn("item_sequence", operations)
+
+    def test_age_and_duration_are_not_data_jobs_without_a_quantitative_claim(self):
+        for text in (
+            "He was shot at the age of 16 and left school.",
+            "He became successful at 28 after 10 years of failure.",
+        ):
+            operations = subject._presentation_operations(
+                text=text, claim_rows=[{"entityRefs": [], "values": [], "cohortRefs": []}],
+            )
+            self.assertNotIn("data_explanation", operations)
+
+    def test_lyrics_tracklists_and_transformations_receive_specific_operations(self):
+        rows = [{"entityRefs": [], "values": [], "cohortRefs": []}]
+        self.assertIn("lyric_presentation", subject._presentation_operations(
+            text='Then he comes in with the hook: "A lyric line."', claim_rows=rows))
+        self.assertIn("evidence_presentation", subject._presentation_operations(
+            text="Looking through the track list reveals the influence.", claim_rows=rows))
+        self.assertIn("transformation", subject._presentation_operations(
+            text="He went from an unknown artist to a star.", claim_rows=rows))
+
+    def test_question_overlay_and_broll_are_explicit_route_options(self):
+        adapter = {
+            "storyHandoffReceipt": {"accepted": True}, "selectionAuthorized": False,
+            "renderingAuthorized": False, "story": {"storyId": "question-route"},
+            "packageId": "question-route@1",
+            "claims": [{"claimId": "c1", "beatId": "b1", "span": {"start": 0, "len": 30},
+                        "lane": "editorial", "text": "Would the artist ever succeed?",
+                        "entityRefs": [], "values": [], "cohortRefs": []}],
+            "beats": [{"beatId": "b1", "order": 0, "claimIds": ["c1"],
+                       "speaker": {"role": "narrator"}}],
+            "jobProposals": [], "obligations": [], "continuity": [], "gaps": [],
+        }
+        artifact = subject.build(adapter, source_path=self.adapter_path)
+        task = artifact["taskProposals"][0]
+        self.assertEqual(task["primaryPresentationOperation"], "rhetorical_question")
+        self.assertTrue(task["routeDisposition"]["brollFallbackAvailable"])
+        self.assertEqual(task["routeDisposition"]["preferredTreatment"],
+                         "broll_or_cutout_with_text_overlay")
+        self.assertFalse(task["routeDisposition"]["templateEligible"])
+
+    def test_temporal_word_does_not_override_concrete_human_event(self):
+        rows = subject._presentation_operations(
+            text="He was later shot in the hand and dropped out of school.", claim_rows=[])
+        self.assertIn("event_narration", rows)
+        self.assertEqual(subject._primary_operation(
+            "He was later shot in the hand and dropped out of school.", []), "event_narration")
+
+    def test_from_to_extent_is_not_a_transformation(self):
+        rows = subject._presentation_operations(
+            text="He faced mockery from critics, to the extent that every interview discussed it.",
+            claim_rows=[],
+        )
+        self.assertNotIn("transformation", rows)
+
 
 if __name__ == "__main__":
     unittest.main()

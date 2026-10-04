@@ -638,7 +638,7 @@ def build(request_path: Path) -> dict[str, Any]:
     contract_receipt = enforce_contracts("visualtask_batch_matching.build")
     request, paths, values = _load_inputs(request_path)
     tasks, requirements_by_id = _validate_scope(values)
-    template_pool = {row["id"]: row for row in matching.C.load()}
+    template_pool = {row["id"]: row for row in matching.C.load(content_class="*")}
     media_pool = matching.M.load()
     comparisons = _comparison_index(values["technicalComparison"])
     timing_plans = _timing_index(values["timingPlans"])

@@ -15,7 +15,7 @@ class MatchingHarnessTests(unittest.TestCase):
 
     def test_fixture_audit_exposes_current_first_blocker(self):
         audit = subject.build()
-        self.assertEqual(audit["firstBlockingStage"], "general_matching_contract")
+        self.assertEqual(audit["firstBlockingStage"], "render_release_handoff")
         self.assertFalse(audit["productionAllowed"])
         self.assertFalse(audit["selectionAuthorized"])
 
@@ -24,8 +24,8 @@ class MatchingHarnessTests(unittest.TestCase):
         self.assertEqual(contract["stages"][0]["id"], "general_matching_contract")
         audit = subject.build()
         self.assertEqual(audit["stageResults"][0]["id"], "general_matching_contract")
-        self.assertEqual(audit["stageResults"][0]["status"], "blocked")
-        self.assertIn("general_matching_objective_tasks_incomplete", {
+        self.assertEqual(audit["stageResults"][0]["status"], "passed")
+        self.assertNotIn("general_matching_objective_tasks_incomplete", {
             row["kind"] for row in audit["stageResults"][0]["gaps"]
         })
 
@@ -72,7 +72,7 @@ class MatchingHarnessTests(unittest.TestCase):
     def test_production_cannot_pass_with_incomplete_receipts(self):
         audit = subject.build(mode="production")
         self.assertFalse(audit["productionAllowed"])
-        self.assertEqual(audit["firstBlockingStage"], "general_matching_contract")
+        self.assertEqual(audit["firstBlockingStage"], "render_release_handoff")
 
     def test_stale_source_fails_closed(self):
         audit = subject.build()
@@ -83,12 +83,12 @@ class MatchingHarnessTests(unittest.TestCase):
     def test_storypackage_execution_plan_is_attached(self):
         audit = subject.build()
         self.assertEqual(audit["executionPlan"]["planId"], "general-storypackage-matching-layer")
-        self.assertEqual(audit["executionPlan"]["nextTaskId"], "GML-14")
-        self.assertEqual(audit["executionPlan"]["nextTaskOwner"], "matching")
+        self.assertIsNone(audit["executionPlan"]["nextTaskId"])
+        self.assertIsNone(audit["executionPlan"]["nextTaskOwner"])
         self.assertFalse(audit["executionPlan"]["continuationRequired"])
         self.assertTrue(audit["executionPlan"]["stopAllowed"])
-        self.assertTrue(audit["executionPlan"]["userInputRequired"])
-        self.assertEqual(audit["executionPlan"]["currentBlocker"]["party"], "you")
+        self.assertFalse(audit["executionPlan"]["userInputRequired"])
+        self.assertEqual(audit["executionPlan"]["currentBlocker"]["party"], "none")
         self.assertIn("executionPlan", audit["sources"])
 
     def test_continuation_receipt_prevents_silent_stopping(self):
@@ -97,9 +97,9 @@ class MatchingHarnessTests(unittest.TestCase):
         self.assertTrue(audit["continuation"]["objectiveReconciled"])
         self.assertFalse(audit["continuation"]["continuationRequired"])
         self.assertTrue(audit["continuation"]["stopAllowed"])
-        self.assertTrue(audit["continuation"]["userInputRequired"])
-        self.assertEqual(audit["continuation"]["nextTaskId"], "GML-14")
-        self.assertEqual(audit["continuation"]["currentBlocker"]["party"], "you")
+        self.assertFalse(audit["continuation"]["userInputRequired"])
+        self.assertIsNone(audit["continuation"]["nextTaskId"])
+        self.assertEqual(audit["continuation"]["currentBlocker"]["party"], "none")
         broken = copy.deepcopy(audit)
         broken["continuation"]["continuationRequired"] = True
         with self.assertRaisesRegex(ValueError, "continuation receipt is inconsistent"):
@@ -120,10 +120,14 @@ class MatchingHarnessTests(unittest.TestCase):
     def test_ready_system_work_prevents_an_unrelated_user_review_from_stopping_execution(self):
         plan = subject.read(subject.DEFAULT_EXECUTION_PLAN)
         active = copy.deepcopy(plan)
-        active["tasks"][-2]["status"] = "pending"
-        active["tasks"][-2]["receipt"] = None
-        active["tasks"][-1]["status"] = "pending"
-        active["tasks"][-1]["receipt"] = None
+        by_id = {row["id"]: row for row in active["tasks"]}
+        by_id["GML-14"]["status"] = "pending"
+        by_id["GML-14"]["receipt"] = None
+        by_id["GML-14"]["userInputRequired"] = True
+        by_id["GML-15"]["status"] = "pending"
+        by_id["GML-15"]["receipt"] = None
+        by_id["GML-16"]["status"] = "pending"
+        by_id["GML-16"]["receipt"] = None
         summary = subject.execution_plan_summary(active)
         self.assertIn("GML-14", summary["readyTaskIds"])
         self.assertIn("GML-15", summary["readyNonUserTaskIds"])
@@ -135,6 +139,9 @@ class MatchingHarnessTests(unittest.TestCase):
         plan = subject.read(subject.DEFAULT_EXECUTION_PLAN)
         waiting = copy.deepcopy(plan)
         waiting["tasks"] = waiting["tasks"][:14]
+        waiting["tasks"][-1]["status"] = "pending"
+        waiting["tasks"][-1]["receipt"] = None
+        waiting["tasks"][-1]["userInputRequired"] = True
         summary = subject.execution_plan_summary(waiting)
         self.assertTrue(summary["userInputRequired"])
         self.assertEqual(summary["currentBlocker"]["party"], "you")

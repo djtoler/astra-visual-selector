@@ -25,8 +25,9 @@ DEFAULT_OUTPUT = ROOT / "reports" / "visualtask-match-pilot-28-28.json"
 
 
 OPERATION_PRIORITY = (
-    "subject_profile", "relationship_intro", "evidence_presentation", "comparison",
-    "data_explanation", "item_sequence", "milestone_reveal", "archival_progression",
+    "lyric_presentation", "transformation", "relationship_intro",
+    "evidence_presentation", "comparison", "data_explanation", "item_sequence",
+    "subject_profile", "milestone_reveal", "archival_progression",
     "event_narration", "rhetorical_question", "concept_statement",
 )
 
@@ -64,13 +65,27 @@ def presentation_contract(task: dict[str, Any]) -> dict[str, Any]:
         r"\b(?:\d+(?:\.\d+)?|first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|percent|percentage|half|double|triple)\b",
         quote.lower(),
     ))
+    supplied_primary = task.get("primaryPresentationOperation")
+    if supplied_primary and supplied_primary not in operations:
+        raise ValueError(f"primary presentation operation is not in task operations: {supplied_primary}")
+    primary = supplied_primary or next((op for op in OPERATION_PRIORITY if op in operations), operations[0])
+    lowered_quote = quote.lower()
+    evidence_kind = None
+    if any(term in lowered_quote for term in (
+        "track list", "tracklist", "article", "headline", "wikipedia", "reddit",
+        "critics", "mockery", "reviewers",
+    )):
+        evidence_kind = "document_screen"
+    elif any(term in lowered_quote for term in ("interview", "footage", "you just heard")):
+        evidence_kind = "source_footage_or_document"
     return {
         "operations": operations,
-        "primaryOperation": next((op for op in OPERATION_PRIORITY if op in operations), operations[0]),
+        "primaryOperation": primary,
         "entityCount": entity_count,
         "hasCohort": bool(cohorts),
         "hasTypedValues": bool(values),
         "quantitativeClaim": quantitative,
+        "evidenceKind": evidence_kind,
         "needsOnScreenText": needs_text,
         "mustBePerceptible": list(task.get("mustBePerceptible") or []),
         "wouldBeALie": [
@@ -92,6 +107,11 @@ def _supports_operation(operation: str, record: dict[str, Any],
     words never admit a record.
     """
     capability = record.get("capability") or {}
+    scope = record.get("scope")
+    if scope and not (scope == "lyrics" and operation == "lyric_presentation"):
+        return None
+    if operation == "lyric_presentation" and scope == "lyrics":
+        return ["scope:lyrics", "approved_scoped_template"]
     if not capability:
         return None
     structure = capability.get("structure")
@@ -104,13 +124,29 @@ def _supports_operation(operation: str, record: dict[str, Any],
     text_slots = int(capability.get("text_slots") or 0)
     slots_total = int(capability.get("slots_total") or 0)
 
-    if operation == "subject_profile":
+    if operation == "transformation":
+        capacity = max(media_slots, slots_total)
+        if contract["hasTypedValues"]:
+            supported = carries & {"change_over_time", "difference"}
+            if supported:
+                return sorted([f"carries:{value}" for value in supported])
+        elif ("identity" in carries and structure in {"pair", "sequence"} and capacity >= 2 and
+                not (carries & DATA_CARRIES) and
+                not (readable & {"exact_value", "proportion", "difference", "rank"})):
+            return [f"structure:{structure}", "carries:identity", f"subject_capacity:{capacity}"]
+    elif operation == "subject_profile":
         if ("identity" in carries and not non_identity_carries and media_slots >= 1 and
                 structure in {"single", "sequence"} and not (implies - {"chronology"})):
             return ["carries:identity", f"structure:{structure}", f"media_slots:{media_slots}"]
     elif operation == "relationship_intro":
         capacity = max(media_slots, slots_total)
-        if "identity" in carries and capacity >= 2 and structure in {"pair", "list", "grid", "sequence", "grouped_clusters"}:
+        quantitative_readables = readable & {"exact_value", "proportion", "difference", "rank"}
+        quantitative_carries = carries & (DATA_CARRIES - {"parity"})
+        misleading_implications = implies - {"equality", "chronology"}
+        if ("identity" in carries and capacity >= 2 and
+                structure in {"pair", "list", "grid", "sequence", "grouped_clusters"} and
+                not quantitative_readables and not quantitative_carries and
+                not misleading_implications):
             return ["carries:identity", f"structure:{structure}", f"subject_capacity:{capacity}"]
     elif operation == "item_sequence":
         if "identity" in carries and structure in {"sequence", "list", "grid", "grouped_clusters"} and max(media_slots, slots_total) >= 2:
@@ -124,8 +160,14 @@ def _supports_operation(operation: str, record: dict[str, Any],
                 [f"implies:{value}" for value in implies & {"chronology"}]
             )
     elif operation == "evidence_presentation":
-        evidence_terms = ("article", "document", "webpage", "screen", "newspaper", "source", "evidence", "quote")
-        matched = next((term for term in evidence_terms if term in _operation_text(record)), None)
+        evidence_terms = (
+            ("article", "document", "webpage", "screen", "newspaper")
+            if contract.get("evidenceKind") == "document_screen"
+            else ("article", "document", "webpage", "screen", "newspaper", "source", "evidence", "quote")
+        )
+        operation_text = _operation_text(record)
+        matched = next((term for term in evidence_terms
+                        if re.search(rf"\b{re.escape(term)}\b", operation_text)), None)
         if matched and (readable & {"statement", "label", "exact_value"} or text_slots >= 1):
             return [f"evidence_descriptor:{matched}", f"structure:{structure}", f"text_slots:{text_slots}"]
     elif operation == "milestone_reveal":
@@ -143,7 +185,9 @@ def _supports_operation(operation: str, record: dict[str, Any],
         if supported or (structure == "pair" and "identity" in carries):
             return sorted([f"carries:{value}" for value in supported] or ["structure:pair", "carries:identity"])
     elif operation == "event_narration":
-        if "identity" in carries and media_slots >= 1 and structure in {"single", "sequence"}:
+        if ("identity" in carries and media_slots >= 1 and structure in {"single", "sequence"} and
+                not non_identity_carries and not implies and
+                not (readable & {"exact_value", "proportion", "difference", "rank"})):
             return ["carries:identity", f"structure:{structure}", f"media_slots:{media_slots}"]
     elif operation in {"concept_statement", "rhetorical_question"}:
         if (structure == "single" and not non_identity_carries and not implies and
@@ -156,7 +200,11 @@ def _presentation_candidates(task: dict[str, Any], pool: dict[str, Any]) -> list
     rows: list[dict[str, Any]] = []
     seen: set[str] = set()
     contract = presentation_contract(task)
-    for operation_index, operation in enumerate(contract["operations"]):
+    # Secondary operations explain the task, but unioning every operation turns
+    # an incidental year or phrase into permission for unrelated families. One
+    # primary communication requirement controls admission; alternatives for
+    # mixed payloads are represented as route/split review, not a broad union.
+    for operation_index, operation in enumerate([contract["primaryOperation"]]):
         for record in pool.values():
             if record["id"] in seen:
                 continue
@@ -204,6 +252,8 @@ def template_candidates(
     selection, treatment, or render eligibility.
     """
     enforce_contracts("visualtask_matching.template_candidates")
+    if (task.get("routeDisposition") or {}).get("templateEligible") is False:
+        return []
     job = task["job"]
     contract = presentation_contract(task)
     structured_mode = bool(task.get("presentationOperations"))
@@ -328,7 +378,7 @@ def build(*, source_beat: str, tasks_path: Path = DEFAULT_TASKS, bindings_path: 
     if not tasks:
         raise ValueError(f"no VisualTasks for source beat: {source_beat}")
     bindings = _read(bindings_path)
-    template_pool = {row["id"]: row for row in C.load()}
+    template_pool = {row["id"]: row for row in C.load(content_class="*")}
     media_pool = M.load()
     rows = [{
         "taskId": task["id"], "sourceBeatId": source_beat, "ordinal": task["ordinal"],

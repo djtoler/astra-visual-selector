@@ -111,7 +111,7 @@ def build(*, proposals_path: Path, adapter_path: Path,
 
     claims = {row["claimId"]: row for row in adapter.get("claims") or []}
     beats = {row["beatId"]: row for row in adapter.get("beats") or []}
-    template_pool = {row["id"]: row for row in matching.C.load()}
+    template_pool = {row["id"]: row for row in matching.C.load(content_class="*")}
     proposal_rows = list(proposals.get("taskProposals") or [])
     queries = [
         " ".join(filter(None, [
@@ -156,6 +156,8 @@ def build(*, proposals_path: Path, adapter_path: Path,
                 for row in admissions_by_task.get(proposal["taskProposalId"], [])
             ],
             "presentationOperations": proposal.get("presentationOperations") or [],
+            "primaryPresentationOperation": proposal.get("primaryPresentationOperation"),
+            "routeDisposition": proposal.get("routeDisposition") or {},
             "values": proposal.get("values") or [],
             "cohortRefs": proposal.get("cohortRefs") or [],
             "obligations": proposal.get("obligations") or [],
@@ -176,6 +178,8 @@ def build(*, proposals_path: Path, adapter_path: Path,
             "speakerDerived": bool(proposal.get("speakerDerived")),
             "semanticDerived": bool(proposal.get("semanticDerived")),
             "presentationOperations": task["presentationOperations"],
+            "primaryPresentationOperation": task["primaryPresentationOperation"],
+            "routeDisposition": task["routeDisposition"],
             "presentationContract": matching.presentation_contract(task),
         })
     tasks.sort(key=lambda row: (

@@ -2,29 +2,29 @@
   "continuation": {
     "continuationRequired": false,
     "currentBlocker": {
-      "party": "you",
-      "reason": "user_input_required",
-      "taskId": "GML-14",
-      "taskName": "Reconcile the fresh candidate UI and cross-story regressions against the general matcher objective",
-      "userActionRequired": true
+      "party": "none",
+      "reason": "objective_complete",
+      "taskId": null,
+      "taskName": null,
+      "userActionRequired": false
     },
-    "nextTaskId": "GML-14",
-    "nextTaskName": "Reconcile the fresh candidate UI and cross-story regressions against the general matcher objective",
-    "nextTaskOwner": "matching",
+    "nextTaskId": null,
+    "nextTaskName": null,
+    "nextTaskOwner": null,
     "objective": "Accept any validated supported StoryPackage through one reusable Story, Data, Media and Matching path; keep story-specific evidence scoped; and fail closed when cross-story proof or a required stage receipt is missing.",
-    "objectiveComplete": false,
+    "objectiveComplete": true,
     "objectiveReconciled": true,
     "stopAllowed": true,
-    "stopReason": "explicit_user_input_required",
+    "stopReason": "objective_complete",
     "taskListPath": "plans/general-matching-layer-tasks.json",
     "taskListReconciled": true,
-    "userInputRequired": true
+    "userInputRequired": false
   },
   "contractEnforcementReceipt": {
     "contracts": {
       "entrypoints": {
         "id": "mandatory-matching-entrypoints-v1",
-        "sha256": "ecd609fecd67125047b86f7f8f8adf7299d918cdcdad5f44b2b52d445557ef10"
+        "sha256": "4fa71f2dffd796dfcee95522af4c67f2d92ec3a37a9d1a9bc234e1effce66940"
       },
       "generalMatching": {
         "id": "general-storypackage-matching-layer-v1",
@@ -60,36 +60,32 @@
     "typedGaps": 0
   },
   "executionPlan": {
-    "completed": 15,
+    "completed": 16,
     "continuationRequired": false,
     "currentBlocker": {
-      "party": "you",
-      "reason": "user_input_required",
-      "taskId": "GML-14",
-      "taskName": "Reconcile the fresh candidate UI and cross-story regressions against the general matcher objective",
-      "userActionRequired": true
+      "party": "none",
+      "reason": "objective_complete",
+      "taskId": null,
+      "taskName": null,
+      "userActionRequired": false
     },
-    "nextTaskId": "GML-14",
-    "nextTaskName": "Reconcile the fresh candidate UI and cross-story regressions against the general matcher objective",
-    "nextTaskOwner": "matching",
+    "nextTaskId": null,
+    "nextTaskName": null,
+    "nextTaskOwner": null,
     "objective": "Accept any validated supported StoryPackage through one reusable Story, Data, Media and Matching path; keep story-specific evidence scoped; and fail closed when cross-story proof or a required stage receipt is missing.",
-    "objectiveComplete": false,
+    "objectiveComplete": true,
     "planId": "general-storypackage-matching-layer",
     "readyNonUserTaskIds": [],
-    "readyTaskIds": [
-      "GML-14"
-    ],
+    "readyTaskIds": [],
     "stopAllowed": true,
-    "stopReason": "explicit_user_input_required",
+    "stopReason": "objective_complete",
     "total": 16,
-    "userInputRequired": true,
-    "userInputTaskIds": [
-      "GML-14"
-    ]
+    "userInputRequired": false,
+    "userInputTaskIds": []
   },
-  "firstBlockingStage": "general_matching_contract",
+  "firstBlockingStage": "render_release_handoff",
   "generalMatchingLayer": {
-    "complete": false,
+    "complete": true,
     "contractId": "general-storypackage-matching-layer-v1",
     "distinctPackages": 4,
     "legacyJobBindingCanAdmit": false,
@@ -210,7 +206,7 @@
     },
     "executionPlan": {
       "path": "plans/general-matching-layer-tasks.json",
-      "sha256": "f4aec2ca0b46d18c17f9f211c63d1d13907d9c514987a70dad06126c622f7dc3"
+      "sha256": "6389f94425c83f3f22a3db20ceba3a0927e866357e98c9fa6ab1db4d096ea890"
     },
     "fullVisualTaskBatchMatching": {
       "path": "reports/full-visualtask-batch-matching-current.json",
@@ -258,19 +254,19 @@
     },
     "generalRuntimeSource2": {
       "path": "pipeline/storypackage_splitter.py",
-      "sha256": "283bb3f1ba181feb72873846c33eb6d199150da13eeedc60b6d6763c21e93117"
+      "sha256": "40a9c0540b33eca1c0037f758d784b2e89f6703780c485054769a3e6f8ec77a7"
     },
     "generalRuntimeSource3": {
       "path": "pipeline/visualtask_matching.py",
-      "sha256": "86deea54e31722bc284d86e46cca2473ff83526dc28fbbc5b3e1d9093f5cb307"
+      "sha256": "1de7914be513b54aa8d3bea3b696e7e80ce271fc4ba9f76ddf4d0c45c610a15a"
     },
     "generalRuntimeSource4": {
       "path": "pipeline/storypackage_candidate_gallery.py",
-      "sha256": "50e7a1695b36d1e0901ccaff339bc955e4eb6ae1155dacbe4395a57d865e505b"
+      "sha256": "a9593ce75c618eb43d6e9699ba170b94b8c00e7527e53190d8c4c528c87d8e80"
     },
     "matchingEntrypointContract": {
       "path": "grammar/matching-entrypoint-contract.json",
-      "sha256": "ecd609fecd67125047b86f7f8f8adf7299d918cdcdad5f44b2b52d445557ef10"
+      "sha256": "4fa71f2dffd796dfcee95522af4c67f2d92ec3a37a9d1a9bc234e1effce66940"
     },
     "orderedVisualRouteDecisions": {
       "path": "reports/ordered-visual-route-decisions.json",
@@ -327,17 +323,9 @@
   },
   "stageResults": [
     {
-      "gaps": [
-        {
-          "continuationRequired": false,
-          "kind": "general_matching_objective_tasks_incomplete",
-          "nextTaskId": "GML-14",
-          "nextTaskOwner": "matching",
-          "userInputRequired": true
-        }
-      ],
+      "gaps": [],
       "id": "general_matching_contract",
-      "status": "blocked"
+      "status": "passed"
     },
     {
       "gaps": [],

@@ -46,11 +46,11 @@ class MatchingContractGateTests(unittest.TestCase):
         receipt = audit["contractEnforcementReceipt"]
         self.assertTrue(receipt["enforced"])
         self.assertEqual(receipt["entrypoint"], "matching_harness.build")
-        self.assertEqual(audit["firstBlockingStage"], "general_matching_contract")
+        self.assertEqual(audit["firstBlockingStage"], "render_release_handoff")
         self.assertFalse(audit["continuation"]["continuationRequired"])
-        self.assertTrue(audit["continuation"]["userInputRequired"])
-        self.assertEqual(audit["continuation"]["nextTaskId"], "GML-14")
-        self.assertEqual(audit["continuation"]["currentBlocker"]["party"], "you")
+        self.assertFalse(audit["continuation"]["userInputRequired"])
+        self.assertIsNone(audit["continuation"]["nextTaskId"])
+        self.assertEqual(audit["continuation"]["currentBlocker"]["party"], "none")
 
 
 if __name__ == "__main__":

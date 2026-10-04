@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "packageId": "future-volksgeist@2",
+  "purpose": "Preserve completed focused-review evidence across a regenerated candidate gallery without replaying stale candidate decisions as approvals",
+  "sourceReview": {
+    "path": "reports/storypackage-02-future-volksgeist-v12-candidate-review.json",
+    "sha256": "851626d6d1cd2f9c3bd97a5da62c21b875d382040be107bdd21840da8d00d1bb"
+  },
+  "reconciliation": {
+    "path": "reports/storypackage-02-future-volksgeist-v12-focused-review-reconciliation.json",
+    "sha256": "ddeb5918850b3022a0780fb47d2f82048790323551c454175b211a2da4ba2cbc",
+    "focusedTasksPreserved": 26,
+    "eachTaskExactlyOnce": true
+  },
+  "regeneratedGallery": {
+    "path": "reports/storypackage-02-future-volksgeist-v13-candidate-gallery.json",
+    "sha256": "b9147e187dadf0f2dd3b7d6acc86ba38c36b64378a007cab2fcc2e85b4cc01bb"
+  },
+  "migrationPolicy": {
+    "commentsRemainCalibrationEvidence": true,
+    "candidateStatusesCopiedToChangedSlate": false,
+    "reason": "Candidate admission and task granularity changed; copying exact statuses would falsely approve different review surfaces."
+  },
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

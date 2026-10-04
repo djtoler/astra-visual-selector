@@ -20,8 +20,9 @@ except ImportError:
 QUESTION_WORDS = ("who ", "what ", "why ", "how ", "when ", "where ", "which ", "is ", "are ", "can ", "could ", "did ", "does ", "would ", "should ")
 CONTRAST_STARTS = ("but ", "however ", "yet ", "meanwhile ", "instead ", "on the other hand ")
 OPERATION_PRIORITY = (
-    "subject_profile", "relationship_intro", "evidence_presentation", "comparison",
-    "data_explanation", "item_sequence", "milestone_reveal", "archival_progression",
+    "lyric_presentation", "transformation", "relationship_intro",
+    "evidence_presentation", "comparison", "data_explanation", "item_sequence",
+    "subject_profile", "milestone_reveal", "archival_progression",
     "event_narration", "rhetorical_question", "concept_statement",
 )
 
@@ -38,6 +39,18 @@ def _presentation_operations(*, text: str, claim_rows: list[dict[str, Any]]) -> 
     values = [value for row in claim_rows for value in row.get("values") or []]
     cohorts = [ref for row in claim_rows for ref in row.get("cohortRefs") or []]
     operations: list[str] = []
+    if any(term in lowered for term in (
+        "the lyrics", "these lyrics", "lyric says", "lyrics say", "the hook:",
+        "comes in with the hook", "song starts out with", "verse starts",
+    )):
+        operations.append("lyric_presentation")
+    if (re.search(r"\b(?:go|went|going|move|moved|moving|transition|transitioned|evolve|evolved|rise|rose|fall|fell)\b.{0,35}\bfrom\b.{1,80}\bto\b", lowered) or
+            re.search(r"\bbefore\b.{0,80}\b(?:understand|know)\b.{0,80}\bmeet\b", lowered) or
+            any(term in lowered for term in (
+                "before and after", "used to be", "became known as", "turned into",
+                "transformed into", "meet his former", "meet her former",
+            ))):
+        operations.append("transformation")
     if ("who is " in lowered or "who was " in lowered or "his name was " in lowered or
             "her name was " in lowered or "known as " in lowered or "meet " in lowered):
         operations.append("subject_profile")
@@ -49,7 +62,8 @@ def _presentation_operations(*, text: str, claim_rows: list[dict[str, Any]]) -> 
     if (cohorts or len(refs) >= 3 or any(term in lowered for term in (
         "roster", "list of", "a total of", "each of", "all of them",
         "these artists", "those artists", "people like", "members included",
-        "track list", "the following", "one by one",
+        "track list", "the following", "one by one", "these mixtapes",
+        "these albums", "these releases", "both songs", "both tracks",
     ))):
         operations.append("item_sequence")
     if any(term in lowered for term in (
@@ -61,6 +75,7 @@ def _presentation_operations(*, text: str, claim_rows: list[dict[str, Any]]) -> 
     if any(term in lowered for term in (
         "according to", "wikipedia", "reddit", "article", "interview", "footage",
         "you just heard", "the quote", "the caption", "the lyrics", "the song starts",
+        "track list", "critics", "mockery", "headline", "reviewers",
     )):
         operations.append("evidence_presentation")
     if any(term in lowered for term in (
@@ -71,12 +86,12 @@ def _presentation_operations(*, text: str, claim_rows: list[dict[str, Any]]) -> 
     quantitative_terms = (
         "percent", "percentage", "streamed", "streams", "monthly listeners",
         "fans", "rank", "ranking", "number one", "number two", "top ",
-        "total", "combined", "more than", "less than", "million", "billion",
-        "zero ", "times", "years old", "age of",
+        "total", "combined", "less than", "million", "billion",
+        "zero ", "times",
     )
     if values or cohorts or any(term in lowered for term in quantitative_terms):
         operations.append("data_explanation")
-    if len(refs) >= 2 and any(term in lowered for term in (
+    if len(refs) >= 2 and "more than a little" not in lowered and any(term in lowered for term in (
         "more than", "less than", "against", "versus", "compared", "outweigh",
         "bigger than", "same as", "different from",
     )):
@@ -84,9 +99,10 @@ def _presentation_operations(*, text: str, claim_rows: list[dict[str, Any]]) -> 
     stripped = lowered.lstrip("'\"“”")
     if "?" in text:
         operations.append("rhetorical_question")
-    if not operations and any(term in lowered for term in (
+    if any(term in lowered for term in (
         "was ", "were ", "happened", "went ", "came ", "got ", "shot ", "died",
         "lost ", "won ", "made ", "created ", "recorded ", "joined ", "left ",
+        "dropped out",
     )):
         operations.append("event_narration")
     if not operations:
@@ -126,6 +142,20 @@ def _display_entities(claim: dict[str, Any]) -> set[str]:
 
 def _primary_operation(text: str, claim_rows: list[dict[str, Any]]) -> str:
     operations = _presentation_operations(text=text, claim_rows=claim_rows)
+    if ("rhetorical_question" in operations and
+            not any(operation in operations for operation in (
+                "subject_profile", "relationship_intro", "evidence_presentation",
+                "lyric_presentation",
+            ))):
+        return "rhetorical_question"
+    lowered = text.lower()
+    if ("event_narration" in operations and
+            any(term in lowered for term in ("shot ", "died", "dropped out", "lost ", "won ")) and
+            not any(operation in operations for operation in (
+                "lyric_presentation", "transformation", "relationship_intro",
+                "evidence_presentation", "comparison", "data_explanation", "item_sequence",
+            ))):
+        return "event_narration"
     return next((operation for operation in OPERATION_PRIORITY if operation in operations), operations[0])
 
 
@@ -260,6 +290,19 @@ def build(adapter: dict[str, Any], *, source_path: Path) -> dict[str, Any]:
             })
         exact_text = task_text or " ".join(row.get("text", "") for row in claim_rows)
         presentation_operations = _presentation_operations(text=exact_text, claim_rows=claim_rows)
+        primary_operation = _primary_operation(exact_text, claim_rows)
+        route_disposition = {
+            "templateEligible": primary_operation != "rhetorical_question",
+            "brollFallbackAvailable": True,
+            "preferredTreatment": (
+                "broll_or_cutout_with_text_overlay"
+                if primary_operation == "rhetorical_question"
+                else "template_or_broll"
+            ),
+            "mixedPayloadReviewRequired": len(presentation_operations) > 1,
+            "selectionAuthorized": False,
+            "renderingAuthorized": False,
+        }
         return {
             "taskProposalId": task_id,
             "jobProposalId": proposal_id,
@@ -299,6 +342,8 @@ def build(adapter: dict[str, Any], *, source_path: Path) -> dict[str, Any]:
             "semanticDerived": semantic_derived,
             "advisoryJobProposalIds": advisory_proposal_ids or [],
             "presentationOperations": presentation_operations,
+            "primaryPresentationOperation": primary_operation,
+            "routeDisposition": route_disposition,
             "semanticDerivation": {
                 "source": "matching_semantic_splitter" if semantic_derived else "story_job_proposal_plus_matching_context",
                 "templateNeutral": True,

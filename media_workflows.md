@@ -32,6 +32,12 @@ Story supplies semantic moments at a granularity that can be treated coherently.
 
 Future Volksgeist is calibration evidence, not permission to hardcode Future-specific candidates. Editor feedback is stored at story/task scope until reconciliation demonstrates a reusable capability or presentation rule.
 
+The completed 26-task focused review is reconciled without turning editor comments into selection or render approval. Each focused task must have exactly one persisted non-empty review record. An `unreviewed` status remains unreviewed even when its comment supplies useful calibration evidence.
+
+One primary presentation operation controls structured candidate admission. Secondary operations describe mixed payloads or future splits; they do not union unrelated template families into the slate. Incidental years, ages and durations do not create data jobs. People, relationships and concrete events reject metric, rank, counter and spatial scenes that merely advertise identity slots. Concrete plural artifacts may request sequences or carousels; lyrics request the scoped lyric collection; tracklists, criticism and cited evidence request document or screen scenes; non-quantitative transformations use identity-based before/after structures rather than quantitative change charts.
+
+Every derived task carries a B-roll fallback. A pure rhetorical question without a stronger identity, relationship, lyric or evidence payload is a deliberate non-template route using B-roll or a cutout with text overlay. Retrieval returns an empty template slate instead of forcing a weak candidate. This does not select or source B-roll.
+
 ### Semantic task granularity correction
 
 One VisualTask should express one coherent visual moment. Split when a narration span requires distinct subject introduction, scale claim, influence claim, contrast, or reinterpretation that cannot be communicated by one treatment without overload.
