@@ -1,0 +1,370 @@
+{
+  "job": 5,
+  "auditStatus": "PASS",
+  "statusMeaning": "Completed metadata audit, not defect-free product or native fit.",
+  "productionBaseline": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+  "storyBaseline": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+  "findings": [
+    {
+      "id": "G05-01",
+      "priority": "high",
+      "title": "Timeline scope removes an existing family",
+      "finding": "Both search-bar timeline scenes are in the 442-record pool, with measured sequence/chronology metadata. Every operation returns None solely because scope=timelines is not handled. Clearing only scope in an in-memory diagnostic admits archival_progression; this is a causal probe, not a proposed scope removal. Explicit task admissions remain a separate bypass for reviewed requests; general exposure is broken.",
+      "evidenceIds": [
+        "ev_65fa5e81c76d4c01",
+        "ev_de698031ae7624db"
+      ],
+      "source": "match-trial/candidates.py:SCOPED; pipeline/visualtask_matching.py:_supports_operation",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-02",
+      "priority": "high",
+      "title": "Approved qualitative spatial layouts have no capability record",
+      "finding": "catalog-gap-clean, topographic-cloud, hologram-stage and kendrick-red-stage-clean load through eligibility overrides but capability=None. Generic operation predicates reject them. The 20+ identity spatial route or explicit task admissions can still expose them, so they are not universally absent. A two-person comparison cannot rely on the 20+ route. The corrected red-stage description explicitly permits numeric text without treating portrait position/size as magnitude.",
+      "evidenceIds": [
+        "ev_ae89ed37733a21e4",
+        "ev_c0014381cd5b341b"
+      ],
+      "source": "grammar/eligibility-overrides.json; grammar/local-templates.json:profileCorrections; pipeline/visualtask_matching.py:template_candidates",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-03",
+      "priority": "high",
+      "title": "Demo text and variant metadata can hide editor-expected treatments",
+      "finding": "The accepted dropoff review-002 is identity/sequence but readable includes exact_value, so relationship_intro rejects it. Its current record does not prove whether those numeric labels are removable. base-single-billboard has corrected axes of 3 heroes/10 entities, but its demo capability says nested, magnitude and 5 media slots; comparison rejects it even though readable includes difference. The editor expected double/triple hero versions. Native variant compatibility remains pending; this is a metadata/consumer mismatch, not permission to assert the variants fit.",
+      "evidenceIds": [
+        "ev_0125568cf745b6da",
+        "ev_ae89ed37733a21e4"
+      ],
+      "source": "grammar/local-templates.json:capacityOverrides; grammar/capability.json; pipeline/visualtask_matching.py:_supports_operation",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-04",
+      "priority": "high",
+      "title": "Relationships and data operations remain too broad for fit",
+      "finding": "150 records pass relationship_intro for both the two-person contract and a diagnostic 19-person simultaneous labeled relationship with explicit negative constraints. The operation predicate does not read those changed demands. data_explanation admits 133 records under a non-typed probe contract from any recognized data carry or exact-value readability. These are retrieval sets, not 150 or 133 valid choices. Relationship edges, denominator, rate, scale and measurement method still need reconciliation.",
+      "evidenceIds": [
+        "ev_5b014d59e8746769",
+        "ev_197e8df3cdb679e1"
+      ],
+      "source": "pipeline/visualtask_matching.py:presentation_contract,_supports_operation",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-05",
+      "priority": "medium",
+      "title": "Document capability depends on descriptive wording",
+      "finding": "The evidence predicate has no dedicated document/screen capability field. screen-mockup-rfx--review-001 is admitted with evidence_descriptor:article; clearing only its title/description/useWhen/asserts removes admission while structure/counts/readable fields remain unchanged. This proves dependence on prose, not an invalid template. Conversely, mentioning a screen does not certify document legibility.",
+      "evidenceIds": [
+        "ev_063fd655708a1b49"
+      ],
+      "source": "pipeline/visualtask_matching.py:_operation_text,_supports_operation",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-06",
+      "priority": "medium",
+      "title": "Reduction is documented but staging contradicts it",
+      "finding": "two-floors and truth-cohort-attrition retain staging=all_at_once while asserts describe isolating selected points or dropping members. Sidecar correction notes explicitly identify the missing elimination vocabulary and avoid substituting another wrong term. This is a known unresolved representation gap, not a new inferred native behavior.",
+      "evidenceIds": [
+        "ev_5b0549ebba618177"
+      ],
+      "source": "grammar/local-templates.json:capabilityCorrections; grammar/capability.json",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-07",
+      "priority": "medium",
+      "title": "Legacy vocabulary and bindings drift apart",
+      "finding": "JOBS.md lists 21 jobs including attributed_quote; bindings has 20 keys, no attributed_quote and an additional inversion. JOBS.md says nobody builds explain_the_encoding, while 5 bindings exist. Neither those bindings nor their model verdicts prove native instructional capability. SCOPE.md lists one timeline scene, but two replacement local scenes load. Seven legacy references across jobs still name the three deliberately retired 3Dz scenes; the effective loader correctly removes them.",
+      "evidenceIds": [],
+      "source": "grammar/JOBS.md; grammar/SCOPE.md; grammar/bindings.json; grammar/local-templates.json:remove",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-08",
+      "priority": "medium",
+      "title": "Native evidence exists but does not close fit",
+      "finding": "The technical index covers 57 projects, 5,806 compositions and 4,089 text fields. Among 382 effective AE records, 105 have verified mappings, 222 verified_window, 14 unreviewed and 41 no mapping. All 431 loaded records with capability include native_editability in unclear; seven lyrics and four calibrated spatials lack capability altogether. Mapping status locates compositions; it does not certify a task-specific render. Legacy technical/media requirements explicitly remain review_only_not_connected. No new native test ran.",
+      "evidenceIds": [],
+      "source": "grammar/ae-template-technical-index.json; grammar/ae-scene-composition-mappings.json; grammar/visual-task-technical-requirements.json",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-09",
+      "priority": "medium",
+      "title": "Family cap prevents simple variant flooding but can hide treatment variants",
+      "finding": "442 records group into 102 inferred families. Largest families have 56, 38 and 19 scenes. A 150-row relationship probe spans 21 families; default diagnostic display shows 16 rows from 16 families, exhaustive diversity returns 21. Thus no duplicate-family crowding occurred in this probe. C.diversify attaches siblings, but template_candidates serializes no sibling field. One family representative can hide a materially different native treatment. Family identity is suffix-derived; no template ID split across multiple inferred families was observed. Full ranking/reconciliation sequence is Job 6.",
+      "evidenceIds": [],
+      "source": "match-trial/candidates.py:_family,diversify; pipeline/visualtask_matching.py:template_candidates",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-10",
+      "priority": "medium",
+      "title": "Adjustment evidence is distributed and not a universal authorization",
+      "finding": "growable describes observed capability; capacityOverrides and capabilityCorrections record specific user rulings; bindings styleAdaptation can remain unassessed; technical mappings identify native sources. These must not be collapsed into arbitrary recutting. Intro scene-012 documents six media slots; the editor preferred a 2–3-card treatment while allowing supporting media. That preference does not prove an editable 2–3-card version exists.",
+      "evidenceIds": [
+        "ev_5b014d59e8746769"
+      ],
+      "source": "grammar/local-templates.json; grammar/bindings.json; grammar/ae-scene-composition-mappings.json",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    },
+    {
+      "id": "G05-11",
+      "priority": "medium",
+      "title": "Job 4 catalog-source receipt needs correction",
+      "finding": "Job 4 diagnostics invoked C.load without catalog overrides, which selects astra-selector-design/approved_media/approved-list.json (SHA 96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e). Its catalogInputs instead named the neighboring AE export (SHA c278d5ec7715b3bfbc8a9589edb3358a74048bb508019a23bc24ed885d6d69d8). Those bytes differ. This report records the actually loaded source; prior operation counts remain observations of the local export. Earlier reports are preserved with this explicit correction.",
+      "evidenceIds": [],
+      "source": "reports/astra-root-cause/04-diagnostic-probes.json; match-trial/candidates.py:approved_path",
+      "owner": "matching",
+      "nativeFit": "not established by this audit"
+    }
+  ],
+  "conceptMap": [
+    {
+      "concept": "relationship",
+      "storyMeaning": "Story typed relationships and participant roles",
+      "presentationContract": "relationship_intro; entityCount only, no typed edge consumed",
+      "templateCapability": "identity + pair/list/grid/sequence/grouped_clusters; capacity >=2",
+      "gapAndObservableProposal": "Partial: kinship, collaboration and causal edges collapse to co-presence. Proposed observable requirement: endpoints and edge meaning perceptible together or in an explicit reveal.",
+      "owner": "story + matching"
+    },
+    {
+      "concept": "reading demand",
+      "storyMeaning": "Quoted words, source attribution, required labels and phrase timing",
+      "presentationContract": "needsOnScreenText, mustBePerceptible, wouldBeALie",
+      "templateCapability": "readable categories and text_slots",
+      "gapAndObservableProposal": "Partial: counts are not exact strings, line capacity, dwell or attribution. Those demand fields do not constrain _supports_operation. Require measurable field assignment and timed reading review.",
+      "owner": "matching"
+    },
+    {
+      "concept": "evidence kind",
+      "storyMeaning": "Document/screen versus source footage, speaker/source",
+      "presentationContract": "evidenceKind inferred from narration words",
+      "templateCapability": "Evidence admission matches descriptor words plus readable/text slots",
+      "gapAndObservableProposal": "Missing dedicated evidence-role capability: document region, legible source, attribution, footage/speaker coexistence. Existing descriptions are discovery evidence only.",
+      "owner": "story + matching"
+    },
+    {
+      "concept": "ordered sequence",
+      "storyMeaning": "Ordered works, milestones, temporal direction",
+      "presentationContract": "item_sequence / archival_progression",
+      "templateCapability": "structure, staging, chronology; slots_total",
+      "gapAndObservableProposal": "Partial: order labels and distinct identities do not prove chronology, duration, exact sequence or reusable native length. Preserve explicit order and verify supported timing controls.",
+      "owner": "matching"
+    },
+    {
+      "concept": "identity cardinality",
+      "storyMeaning": "Distinct people, works, anonymous cohort members and repeated appearances",
+      "presentationContract": "entityCount and hasCohort",
+      "templateCapability": "media_slots, slots_at_once, slots_total, corrected axes",
+      "gapAndObservableProposal": "Partial: entity count is not media-slot demand. Separate simultaneous identity demand, total items and hero/support roles; validate treatment mapping.",
+      "owner": "data + matching"
+    },
+    {
+      "concept": "cohort structure",
+      "storyMeaning": "Membership, subset, benchmark, intersection, population",
+      "presentationContract": "hasCohort boolean",
+      "templateCapability": "membership/overlap/aggregate/absence carries",
+      "gapAndObservableProposal": "Partial: nested groups, denominators and survivor sets are not represented by the boolean. Observable encoding must preserve set membership and the reference population.",
+      "owner": "data + matching"
+    },
+    {
+      "concept": "quantitative relation",
+      "storyMeaning": "Share, rate, aggregate, difference, rank, magnitude and derivation",
+      "presentationContract": "hasTypedValues, quantitativeClaim; data_explanation / comparison",
+      "templateCapability": "carries and readable; broad union of data carries",
+      "gapAndObservableProposal": "Missing relation-specific reconciliation: a rank or exact-value display is not automatically a proportion, derivation or explanation of scale. Require verified data-to-mark mappings.",
+      "owner": "data + matching"
+    },
+    {
+      "concept": "elimination",
+      "storyMeaning": "Population reduces to survivors; absence differs from zero",
+      "presentationContract": "No distinct reduction requirement in presentation contract",
+      "templateCapability": "absence/overlap corrections, but all_at_once staging remains",
+      "gapAndObservableProposal": "Missing staging vocabulary. Proposed reduces_to_subset means visible membership removal with survivors retained; require beginning/end membership and transition evidence.",
+      "owner": "matching"
+    },
+    {
+      "concept": "layout roles and variants",
+      "storyMeaning": "Primary subjects versus supporting works; two-person qualitative comparison",
+      "presentationContract": "comparison/relationship_intro",
+      "templateCapability": "Demo capability + independent capacity overrides",
+      "gapAndObservableProposal": "Contradiction: hero axes say 3 heroes/10 entities, demo fields still say 4 simultaneous/6 total/5 media; predicate reads demo fields. Supported variant capability needs explicit provenance and native mapping.",
+      "owner": "matching"
+    },
+    {
+      "concept": "scope",
+      "storyMeaning": "Explicit editorial content-class restriction",
+      "presentationContract": "Only lyric scope special-cased by _supports_operation",
+      "templateCapability": "lyrics and timelines scopes",
+      "gapAndObservableProposal": "Timeline class has no accepted operation path. Preserve restriction and implement matching content-class compatibility in a later authorized job; never erase the restriction.",
+      "owner": "matching"
+    },
+    {
+      "concept": "permitted adjustments",
+      "storyMeaning": "Approved timing/text/color or scoped post work",
+      "presentationContract": "No adjustment plan argument in operation predicate",
+      "templateCapability": "growable, sidecar corrections, native mappings, binding styleAdaptation",
+      "gapAndObservableProposal": "Partial/distributed: demo observation, declared supported range and approved adjustment are different evidence. Require candidate-specific existing-control plan and verify it; do not infer recutting permission from comments.",
+      "owner": "matching"
+    },
+    {
+      "concept": "style and sample content",
+      "storyMeaning": "Universal communication job independent of sample subject",
+      "presentationContract": "Operations are story-neutral in intent",
+      "templateCapability": "asserts/description, implies, readable; profileCorrections",
+      "gapAndObservableProposal": "Prose/sample numeric text can suppress qualitative use. Proposed distinction: optional label content versus unavoidable visual quantitative encoding, validated against existing controls.",
+      "owner": "matching"
+    }
+  ],
+  "stageReceipts": [
+    {
+      "stage": "inventory",
+      "evidence": "05-catalog-evidence.json:sourceInventory,pool,mappingStatusEffectiveAE"
+    },
+    {
+      "stage": "concept_map",
+      "evidence": "05-grammar-capability-audit.json:conceptMap"
+    },
+    {
+      "stage": "metadata_probes",
+      "evidence": "05-catalog-evidence.json:probes,expectedAlternativeReceipts"
+    },
+    {
+      "stage": "family_and_drift",
+      "evidence": "05-catalog-evidence.json:familyProbe,bindingUnavailable; G05-07,G05-09"
+    },
+    {
+      "stage": "publish_validate",
+      "evidence": "05-acceptance.json"
+    }
+  ],
+  "sourceInventory": [
+    {
+      "path": "grammar/JOBS.md",
+      "sha256": "b9d834d278785418b85272e0afff5fe7ab8b5854284a6c296efeb714dd23c295",
+      "bytes": 4137
+    },
+    {
+      "path": "grammar/SCOPE.md",
+      "sha256": "a72534f491b3d87d8290be42c29dc65877954d521618918fb1989cc7c3b137d3",
+      "bytes": 1633
+    },
+    {
+      "path": "grammar/bindings.json",
+      "sha256": "7a07459e56983404bf8c0afb8f4c5c6b106fb604f067690009f3ca7970972fd8",
+      "bytes": 465805
+    },
+    {
+      "path": "grammar/capability.json",
+      "sha256": "0608016aec2b47b717b43b33304a6c001b5b669797bd808eea39a651e4b81b34",
+      "bytes": 942751
+    },
+    {
+      "path": "grammar/class-tags.json",
+      "sha256": "b98c3471620c7840e27126683f1fbe351a345b045fb84120df47b39dc50f3c63",
+      "bytes": 1386
+    },
+    {
+      "path": "grammar/local-templates.json",
+      "sha256": "29bec530753cf5011a74bcab964832c1ba93a2954e0f061822aa00eb64fc0e31",
+      "bytes": 38057
+    },
+    {
+      "path": "grammar/library-snapshot.json",
+      "sha256": "14716d55a4e178f2f5cff9d172011e3ac56541eace9f75ee5be4328be510b867",
+      "bytes": 2956888
+    },
+    {
+      "path": "grammar/ae-template-technical-index.json",
+      "sha256": "c47f658b4c8a999721c36a31d562964138fbc06e6999b60849be57d5f4ebfc72",
+      "bytes": 8555144
+    },
+    {
+      "path": "grammar/ae-scene-composition-mappings.json",
+      "sha256": "7fa49560a302ba75b724bb45b8e47eee0a5a656da8d89f16e5fd8cacf3606b4f",
+      "bytes": 199127
+    },
+    {
+      "path": "grammar/visual-task-technical-requirements.json",
+      "sha256": "673d7b495b05d724f295af4c60b1c9f5aad686084d5d3c5c96ffa5e3ded58110",
+      "bytes": 158786
+    },
+    {
+      "path": "grammar/visual-task-media-requirements.json",
+      "sha256": "c2a13935702da3f041b1c1711ce08720ea3d481673ee0edc89995d10f9ed7fdd",
+      "bytes": 2592
+    },
+    {
+      "path": "grammar/visual-task-overrides.json",
+      "sha256": "b197478678ac38fe8cc342c57d8362e4b94216cd2d970f54dd8b1fff8fe63920",
+      "bytes": 4925
+    },
+    {
+      "path": "grammar/eligibility-overrides.json",
+      "sha256": "38a8ada047888b50c7e80a28ebc88c2582d86c9487d3dbe413578181f1398793",
+      "bytes": 1960
+    },
+    {
+      "path": "match-trial/candidates.py",
+      "sha256": "ccf7a6576b200f79cca45ca773395c24807dbd37aab9ef0ba4f4db86b0d98936",
+      "bytes": 45337
+    },
+    {
+      "path": "pipeline/visualtask_matching.py",
+      "sha256": "1de7914be513b54aa8d3bea3b696e7e80ce271fc4ba9f76ddf4d0c45c610a15a",
+      "bytes": 22779
+    },
+    {
+      "path": "pipeline/focused_candidate_diversity.py",
+      "sha256": "40b1e506a7c063241710bee0c5313db1f765ea85e6b75be266d0e86a80bf32ab",
+      "bytes": 7711
+    },
+    {
+      "path": "plans/general-matching-layer-tasks.json",
+      "sha256": "775340a46f7acdabbac72ff2459c2444c84df1fc8a810facef994c3459a671fe",
+      "bytes": 6179
+    },
+    {
+      "path": "astra-selector-design/approved_media/approved-list.json",
+      "sha256": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e",
+      "bytes": 2809862
+    },
+    {
+      "path": "reports/astra-root-cause/01-reviewed-context-resolution.json",
+      "sha256": "3ad09bba64397b5fac9fed1ec8763d7120b13cc78823b6c1e556eb16797b9d22",
+      "bytes": 2277799
+    },
+    {
+      "path": "reports/astra-matching-review-evidence-20261004.json",
+      "sha256": "b6d2cd12649e7367c3efa1d7c70bd735ff6c94b8d74473bcf5248c0412d19ce5",
+      "bytes": 1189486
+    },
+    {
+      "path": "pipeline/media_candidates.py",
+      "sha256": "853c8fb5a71836bfebbf7e1142dc3e15c4cdf50297af137e40d5d9743648f1b2",
+      "bytes": 53239
+    }
+  ],
+  "nextJob": "06-candidate-pipeline.md",
+  "blockerOwner": "none",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "implementationChanged": false,
+  "planReconciliation": "General reusable Matching objective retained; Job 5 audit authorization stops before implementation and Job 6. No general task status was changed."
+}

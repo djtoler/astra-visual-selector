@@ -1,0 +1,59 @@
+{
+  "auditStatus": "PASS",
+  "checks": {
+    "effectiveRecords": 442,
+    "conceptsMapped": 12,
+    "findings": 11,
+    "expectedAlternativeGroups": 7,
+    "existingTestsPassed": 25,
+    "sourceHashesVerified": true,
+    "predicateReplayExact": true,
+    "reviewEvidenceIdsVerified": true,
+    "runtimeGrammarCatalogUnchangedFromBaseline": true,
+    "stageOrderValidated": true,
+    "reorderedStagesRejected": true,
+    "workflowReviewValidated": true
+  },
+  "omissionTests": [
+    {
+      "omittedStage": "inventory",
+      "rejected": true
+    },
+    {
+      "omittedStage": "concept_map",
+      "rejected": true
+    },
+    {
+      "omittedStage": "metadata_probes",
+      "rejected": true
+    },
+    {
+      "omittedStage": "family_and_drift",
+      "rejected": true
+    },
+    {
+      "omittedStage": "publish_validate",
+      "rejected": true
+    }
+  ],
+  "workflowReview": {
+    "id": "10149d3c-26d7-4c8b-98cb-3149ad414122",
+    "checkpoint": "astra-job05-grammar-capability-20261004-complete",
+    "validated": true
+  },
+  "scope": "Audit acceptance only; native fit unresolved, no production publish gate claimed.",
+  "outputs": [
+    {
+      "path": "reports/astra-root-cause/05-catalog-evidence.json",
+      "sha256": "4e4671defa18b61d6d986d7ce749fb1781c907955c36edfe3a8788669461c494"
+    },
+    {
+      "path": "reports/astra-root-cause/05-grammar-capability-audit.json",
+      "sha256": "45239e699adf2b71baec7f15c29f2d7ec7e81b8a215f8e63c5bc4e99e7b43038"
+    },
+    {
+      "path": "reports/astra-root-cause/05-grammar-capability-audit.md",
+      "sha256": "7579189937d20a1893734c545126de553ac46cccb69427d9dfc2fbcb1ca9b1f8"
+    }
+  ]
+}
