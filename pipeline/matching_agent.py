@@ -171,6 +171,7 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
              runner: Runner | None = None) -> dict[str, Any]:
     """Execute the immutable task contract and return its final structured receipt."""
     contract_receipt = enforce_contracts("matching_agent.run")
+    matching_runtime = _matching_runtime()
     started_at = _now()
     monotonic_start = time.monotonic()
     task = read_json(task_path)
@@ -302,7 +303,7 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
             "wallTimeSeconds": round(time.monotonic() - monotonic_start, 6),
             "currentBlocker": {"party": "none", "reason": "agent_review_complete", "missingInputOrAction": None},
             "configuration": configuration,
-            "inputs": {**preflight_receipt["inputs"], "matchingRuntime": _matching_runtime()},
+            "inputs": {**preflight_receipt["inputs"], "matchingRuntime": matching_runtime},
             "outputs": outputs, "checks": checks,
             "commands": [
                 "matching_agent.run", "storypackage_adapter.build", "storypackage_splitter.build",
