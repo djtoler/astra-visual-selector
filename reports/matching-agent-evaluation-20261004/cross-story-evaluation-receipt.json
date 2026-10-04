@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "matching-agent-evaluation-receipt@1",
+  "evaluationProfile": "matching-cross-story@1",
+  "matchingRuntimeCommit": "c8d08e029828d40c35cd3bcf26e3a90af819afce",
+  "configuredTupleSha256": "432c662641e5e57ed2cb4f4f0fb0f039b2bab8d045cf23de6f42def6614d07b5",
+  "provider": "openai",
+  "configuredModel": "gpt-6-astra",
+  "servedModel": "unavailable",
+  "transport": "cli",
+  "reasoningEffort": "high",
+  "promptVersion": "matching-agent-prompt@1",
+  "toolPolicy": "matching-tools@1",
+  "permissionPolicy": "matching-review-only@1",
+  "packages": [
+    {
+      "role": "regression",
+      "packageId": "future-volksgeist@5",
+      "taskId": "matching-agent-future-regression-20261004",
+      "receipt": "reports/matching-agent-evaluation-20261004/future-regression/matching-agent-receipt.json",
+      "receiptSha256": "3c3f916dd2d1b9e4c1521b52f4d45747f78b87952d4b12a33ab249cd03417f3a",
+      "runnerReceiptSha256": "d5f94c0d567b3cf9477b85afcbcb54e876379d2c153ad0acdaefff5360a089db",
+      "claims": 502,
+      "taskProposals": 310,
+      "uncoveredClaims": 0,
+      "candidateCards": 4509,
+      "status": "passed"
+    },
+    {
+      "role": "regression",
+      "packageId": "year-seventeen@9",
+      "taskId": "matching-agent-year-seventeen-regression-20261004",
+      "receipt": "reports/matching-agent-evaluation-20261004/year-seventeen-regression/matching-agent-receipt.json",
+      "receiptSha256": "3701e4fd451574add1f3bd98a034944fbc8ef152f260d9d7a53363b8ab404f53",
+      "runnerReceiptSha256": "b76b9a9745efc83f987e15d77e898c9e8abca872f1a58d9f54d9eb91987380df",
+      "claims": 150,
+      "taskProposals": 115,
+      "uncoveredClaims": 0,
+      "candidateCards": 1750,
+      "status": "passed"
+    },
+    {
+      "role": "user_supplied_held_out",
+      "packageId": "jayz-drake-settle-it@4",
+      "taskId": "matching-agent-jayz-drake-heldout-20261004",
+      "receipt": "reports/matching-agent-evaluation-20261004/jayz-drake-heldout/matching-agent-receipt.json",
+      "receiptSha256": "dd0c9745aa9791f5ae28adb3757678c2b6c4530d8c5867199d5dc4c923b2a4a6",
+      "runnerReceiptSha256": "78788a1aa14f0533e399a06aea2224670900ed078070a9e5f03712e06fb9e545",
+      "claims": 222,
+      "taskProposals": 186,
+      "uncoveredClaims": 0,
+      "candidateCards": 2784,
+      "status": "passed"
+    }
+  ],
+  "samePublicCommand": "python3 -m pipeline.matching_agent run --task <exact-task-contract>",
+  "providerWorkspaceIsolation": "nested standalone workspace containing only a compact path-redacted manifest",
+  "checks": {
+    "minimumRegressionPackages": true,
+    "untouchedUserSuppliedHeldOutPackage": true,
+    "sameRuntimePath": true,
+    "completeNarrationRouting": true,
+    "structuredCapabilityAdmission": true,
+    "brollFallbackPreserved": true,
+    "schemaBoundProviderReview": true,
+    "selectionAuthorizedFalse": true,
+    "renderingAuthorizedFalse": true
+  },
+  "status": "passed",
+  "currentBlocker": "none",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

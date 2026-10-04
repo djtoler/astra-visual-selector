@@ -1,0 +1,599 @@
+{
+  "continuation": {
+    "continuationRequired": false,
+    "currentBlocker": {
+      "party": "none",
+      "reason": "objective_complete",
+      "taskId": null,
+      "taskName": null,
+      "userActionRequired": false
+    },
+    "nextTaskId": null,
+    "nextTaskName": null,
+    "nextTaskOwner": null,
+    "objective": "Accept any validated supported StoryPackage through one reusable Story, Data, Media and Matching path; keep story-specific evidence scoped; and fail closed when cross-story proof or a required stage receipt is missing.",
+    "objectiveComplete": true,
+    "objectiveReconciled": true,
+    "stopAllowed": true,
+    "stopReason": "objective_complete",
+    "taskListPath": "plans/general-matching-layer-tasks.json",
+    "taskListReconciled": true,
+    "userInputRequired": false
+  },
+  "contractEnforcementReceipt": {
+    "contracts": {
+      "entrypoints": {
+        "id": "mandatory-matching-entrypoints-v1",
+        "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+      },
+      "generalMatching": {
+        "id": "general-storypackage-matching-layer-v1",
+        "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+      },
+      "stageOrder": {
+        "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+      }
+    },
+    "enforced": true,
+    "entrypoint": "matching_harness.build",
+    "mode": "review_only",
+    "productionRequiresCompleteHarness": true,
+    "renderingAuthorized": false,
+    "schemaVersion": 1,
+    "selectionAuthorized": false
+  },
+  "counts": {
+    "comparisonCandidates": 257,
+    "technicalRequirementTasks": 41,
+    "timingPlans": 149,
+    "visualTasks": 41
+  },
+  "dataHandoff": {
+    "assignments": 28,
+    "awaitingDataLayer": 0,
+    "blocked": 0,
+    "complete": true,
+    "packageId": "year-seventeen@7",
+    "partial": 0,
+    "resolved": 28,
+    "typedFields": 79,
+    "typedGaps": 0
+  },
+  "executionPlan": {
+    "completed": 17,
+    "continuationRequired": false,
+    "currentBlocker": {
+      "party": "none",
+      "reason": "objective_complete",
+      "taskId": null,
+      "taskName": null,
+      "userActionRequired": false
+    },
+    "nextTaskId": null,
+    "nextTaskName": null,
+    "nextTaskOwner": null,
+    "objective": "Accept any validated supported StoryPackage through one reusable Story, Data, Media and Matching path; keep story-specific evidence scoped; and fail closed when cross-story proof or a required stage receipt is missing.",
+    "objectiveComplete": true,
+    "planId": "general-storypackage-matching-layer",
+    "readyNonUserTaskIds": [],
+    "readyTaskIds": [],
+    "stopAllowed": true,
+    "stopReason": "objective_complete",
+    "total": 17,
+    "userInputRequired": false,
+    "userInputTaskIds": []
+  },
+  "firstBlockingStage": "render_release_handoff",
+  "generalMatchingLayer": {
+    "complete": true,
+    "contractId": "general-storypackage-matching-layer-v1",
+    "distinctPackages": 4,
+    "legacyJobBindingCanAdmit": false,
+    "packages": [
+      {
+        "claims": 8,
+        "gaps": [],
+        "packageId": "apollo-collins-sample@1",
+        "role": "regression",
+        "status": "passed",
+        "taskProposals": 6,
+        "uncoveredClaims": 0
+      },
+      {
+        "claims": 150,
+        "gaps": [],
+        "packageId": "year-seventeen@9",
+        "role": "regression",
+        "status": "passed",
+        "taskProposals": 115,
+        "uncoveredClaims": 0
+      },
+      {
+        "claims": 502,
+        "gaps": [],
+        "packageId": "future-volksgeist@5",
+        "role": "user_supplied_calibration",
+        "status": "passed",
+        "taskProposals": 310,
+        "uncoveredClaims": 0
+      },
+      {
+        "claims": 222,
+        "gaps": [],
+        "packageId": "jayz-drake-settle-it@4",
+        "role": "user_supplied_held_out",
+        "status": "passed",
+        "taskProposals": 187,
+        "uncoveredClaims": 0
+      }
+    ],
+    "productBoundary": "any_validated_supported_storypackage",
+    "regressionPackages": 3,
+    "renderingAuthorized": false,
+    "reviewRulePrinciples": {
+      "contractSha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568",
+      "principleCount": 6,
+      "principles": {
+        "admissionFollowsPrimaryCommunicationRequirement": true,
+        "examplesRequireStoryNeutralReconciliation": true,
+        "humanCommentsAreEvidenceNotApproval": true,
+        "nonTemplateRouteMayBeBetterThanWeakTemplate": true,
+        "templateCapabilityEvidenceOverridesHistoricalPopularity": true,
+        "visualJobIsNotEveryNarrationDetail": true
+      },
+      "renderingAuthorized": false,
+      "ruleCount": 10,
+      "rules": {
+        "brollFallbackDoesNotAuthorizeMedia": true,
+        "commentsNeverAuthorizeSelectionOrRendering": true,
+        "editorStatusAndCommentAuthoritySeparated": true,
+        "identityRoutesRejectUnrelatedQuantitativeSemantics": true,
+        "incidentalNumbersDoNotCreateDataJobs": true,
+        "primaryPresentationOperationControlsAdmission": true,
+        "pureRhetoricalQuestionMayUseNoTemplate": true,
+        "scopedFamiliesRequireMatchingOperation": true,
+        "secondaryOperationsCannotUnionAdmission": true,
+        "templateCapacityMustMatchSemanticAndMediaDemand": true
+      },
+      "selectionAuthorized": false
+    },
+    "runtimeSourceViolations": [],
+    "runtimeSourcesChecked": 4,
+    "selectionAuthorized": false,
+    "structuredCapabilityAdmissionRequired": true,
+    "taskFeedbackScope": "story_and_task_until_reconciled",
+    "userSuppliedHeldOutPackages": 1
+  },
+  "humanReview": {
+    "carriedPriorChoices": 32,
+    "complete": true,
+    "decisions": 32,
+    "renderingAuthorized": false,
+    "templateReviewTasks": 32,
+    "unresolved": 0
+  },
+  "mode": "evaluation_fixture",
+  "productionAllowed": false,
+  "purpose": "Enforce master-plan stage order and cross-layer requirement timing",
+  "renderRelease": {
+    "blocked": 41,
+    "blockersByKind": {
+      "asset_use_rights_receipt_missing": 11,
+      "candidate_specific_media_slot_mapping": 6,
+      "editorial_pacing_review": 1,
+      "exact_broll_asset_binding_pending": 9,
+      "exact_child_validation_deferred_until_use": 23,
+      "exact_post_beat_broll_asset_binding_pending": 1,
+      "full_export_human_qc_pending": 41,
+      "native_text_editability_and_layout": 22,
+      "native_typed_data_encoding": 27,
+      "split_task_candidate_specific_validation": 1,
+      "text_readability_with_required_limits": 3
+    },
+    "packetId": "year-seventeen-render-release-preparation",
+    "releaseReady": 0,
+    "renderingAuthorized": false,
+    "requiredReceipts": {
+      "assetUseRights": false,
+      "fullExportHumanQc": false,
+      "lockedScript": true,
+      "lockedVisualPlan": true,
+      "renderGate": false
+    },
+    "scenes": 41
+  },
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sequencePlanning": {
+    "brollRoutes": 9,
+    "complete": true,
+    "deferredRoutes": 0,
+    "planId": "year-seventeen-ordered-visual-routes-20261001",
+    "postBeatBrollSegments": 1,
+    "renderingAuthorized": false,
+    "scenes": 41,
+    "selectionAuthorized": false,
+    "sequenceConflicts": 0,
+    "templateReviewRoutes": 32,
+    "transitionsRequired": 41
+  },
+  "sources": {
+    "contract": {
+      "path": "grammar/matching-harness-stage-contract.json",
+      "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+    },
+    "dataAssignments": {
+      "path": "reports/storypackage-02-data-assignments.json",
+      "sha256": "470ff52539035a50178574bdf2aed1168c78653010867b47c2c91f2845420d93"
+    },
+    "dataHandoffQueue": {
+      "path": "reports/storypackage-02-data-handoff-queue.json",
+      "sha256": "35fcab42e9382ff74e9ec7535fb7e7175795be5e3ee33efdc7b93c40e19fcacd"
+    },
+    "executionPlan": {
+      "path": "plans/general-matching-layer-tasks.json",
+      "sha256": "775340a46f7acdabbac72ff2459c2444c84df1fc8a810facef994c3459a671fe"
+    },
+    "fullVisualTaskBatchMatching": {
+      "path": "reports/full-visualtask-batch-matching-current.json",
+      "sha256": "e6b3fb10149ec7d22a594fa861fc18fb8dd628cd225e1b83eb784c0f99d4bfd2"
+    },
+    "generalMatchingContract": {
+      "path": "grammar/general-matching-layer-contract.json",
+      "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+    },
+    "generalPackageAdapter1": {
+      "path": "reports/storypackage-02-apollo-adapter.json",
+      "sha256": "f5c8d09f1adb4622be5b978b5f1eef63d8818f91d72a03d52f4096587037f23e"
+    },
+    "generalPackageAdapter2": {
+      "path": "reports/storypackage-02-year-seventeen-v12-adapter.json",
+      "sha256": "4b716762fa368109d06396d0feb22f7423f960a7013ef6b5812d555ba590727e"
+    },
+    "generalPackageAdapter3": {
+      "path": "reports/storypackage-02-future-volksgeist-v12-adapter.json",
+      "sha256": "62634bd5306bbcd634269b8233ef752a6be8b79158f02e9e3641991a1009b49f"
+    },
+    "generalPackageAdapter4": {
+      "path": "reports/storypackage-02-jayz-drake-settle-it-v12-adapter.json",
+      "sha256": "39a2cb64d8799198a6a36c0da034144dfc8b2d458e411621c487b573324ee9c0"
+    },
+    "generalPackageTasks1": {
+      "path": "reports/storypackage-02-apollo-task-proposals.json",
+      "sha256": "bbcba2b964bac9b7e95c3804ad712d74cb6f6e0d2c529756968ad56b76065e0f"
+    },
+    "generalPackageTasks2": {
+      "path": "reports/storypackage-02-year-seventeen-v12-task-proposals.json",
+      "sha256": "82741057b1ec7a6b193f1bb8d4dc4176764593f46bace3c6cf07419de0c79503"
+    },
+    "generalPackageTasks3": {
+      "path": "reports/storypackage-02-future-volksgeist-v12-task-proposals.json",
+      "sha256": "2fa870400d171e5289fa2d6f1e61eeab7654e8bc9873327c8be7ca619b30b46f"
+    },
+    "generalPackageTasks4": {
+      "path": "reports/storypackage-02-jayz-drake-settle-it-v12-task-proposals.json",
+      "sha256": "6a49c16eddb3c44e9fa03d8250703353035b5b4b56b3a09bf5da7c6a6839325e"
+    },
+    "generalRuntimeSource1": {
+      "path": "pipeline/storypackage_adapter.py",
+      "sha256": "b94b883e34133024c44d1387745683cf5b3436b01f634250638df0355c782720"
+    },
+    "generalRuntimeSource2": {
+      "path": "pipeline/storypackage_splitter.py",
+      "sha256": "40a9c0540b33eca1c0037f758d784b2e89f6703780c485054769a3e6f8ec77a7"
+    },
+    "generalRuntimeSource3": {
+      "path": "pipeline/visualtask_matching.py",
+      "sha256": "1de7914be513b54aa8d3bea3b696e7e80ce271fc4ba9f76ddf4d0c45c610a15a"
+    },
+    "generalRuntimeSource4": {
+      "path": "pipeline/storypackage_candidate_gallery.py",
+      "sha256": "a9593ce75c618eb43d6e9699ba170b94b8c00e7527e53190d8c4c528c87d8e80"
+    },
+    "matchingEntrypointContract": {
+      "path": "grammar/matching-entrypoint-contract.json",
+      "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+    },
+    "orderedVisualRouteDecisions": {
+      "path": "reports/ordered-visual-route-decisions.json",
+      "sha256": "ed59149d064470c5b3751c1c39c932f1f696bb4a9ab61b06e358a6504c8b671f"
+    },
+    "orderedVisualRoutePlan": {
+      "path": "reports/ordered-visual-route-plan.json",
+      "sha256": "5fccc6b1c0a103d0ddb76a37acf82e91cec906bfcd0807a93626077e8756b78e"
+    },
+    "priorReviewReconciliation": {
+      "path": "reports/prior-editor-review-reconciliation.json",
+      "sha256": "a1f074aa3a64ea2ab5b53356088259e4b5f50469eed2f8a7b7ad7de498776049"
+    },
+    "renderReleasePreparation": {
+      "path": "reports/render-release-preparation.json",
+      "sha256": "11182e8f62445ee1e3f258b4655a5ddf56f5289ed88cc1f33c6fc755b547d4cb"
+    },
+    "storyHandoffExceptions": {
+      "path": "grammar/story-handoff-exceptions.json",
+      "sha256": "e2f11b24a81bdea7759aeb329900f2d08ceec53bbd093c5b090950381c76e827"
+    },
+    "storyMatchingHandoff": {
+      "path": "reports/storypackage-02-year-seventeen-matching-handoff.json",
+      "sha256": "7146ee8128064e23e8d047f3f4fbd24d727b04e19f1d2841bf1272cdc96acbde"
+    },
+    "storyPackageAdapter": {
+      "path": "reports/storypackage-02-year-seventeen-full-adapter.json",
+      "sha256": "ff2be05f968b91d360753cac9f9c42c8e21f84821f180fee07bf17c81f506914"
+    },
+    "storyTaskProposals": {
+      "path": "reports/storypackage-02-year-seventeen-full-task-proposals.json",
+      "sha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1"
+    },
+    "structuredCandidateGallery": {
+      "path": "reports/storypackage-02-jayz-drake-settle-it-v12-candidate-gallery.json",
+      "sha256": "385b54faa469420e9a7bccc18de895487dd1107b2156447679275a7ef5ed721e"
+    },
+    "technicalComparison": {
+      "path": "reports/visualtask-ae-spec-comparison.json",
+      "sha256": "6acfcd30887eb635f2f378e7de714f06ce00e69817390a9e6d8dac67068660a4"
+    },
+    "technicalRequirements": {
+      "path": "grammar/visual-task-technical-requirements.json",
+      "sha256": "673d7b495b05d724f295af4c60b1c9f5aad686084d5d3c5c96ffa5e3ded58110"
+    },
+    "timingPlans": {
+      "path": "reports/post-render-timing-feasibility.json",
+      "sha256": "6dae7c291a99d395fb821791002702f69fcfe4253fc60419ede9af0a3ebe9922"
+    },
+    "visualTasks": {
+      "path": "grammar/visual-tasks.json",
+      "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"
+    }
+  },
+  "stageResults": [
+    {
+      "gaps": [],
+      "id": "general_matching_contract",
+      "status": "passed"
+    },
+    {
+      "gaps": [],
+      "id": "baseline_reconciliation",
+      "status": "passed"
+    },
+    {
+      "gaps": [
+        {
+          "blocking": false,
+          "claimIds": [
+            "c2-reconcile-1.3"
+          ],
+          "deferredTo": "sequence_planning",
+          "itemId": "u-13-13b-second-clause",
+          "kind": "untasked_span",
+          "reason": "The clause 'which means the billion-stream songs on their own outweigh eighty-one entire careers' has no VisualTask; the 13-13b review note pairs it with its own treatment.",
+          "taskId": null
+        },
+        {
+          "blocking": false,
+          "claimIds": [
+            "c6-reconcile-3.1",
+            "c6-reconcile-3.2"
+          ],
+          "deferredTo": "template_media_feasibility",
+          "itemId": "u-30-30a.main-focal",
+          "kind": "focal_unknown",
+          "reason": "the narration does not say how many pre-streaming rappers",
+          "taskId": "30-30a.main"
+        },
+        {
+          "blocking": false,
+          "claimIds": [
+            "c1-provoke-4.1",
+            "c1-provoke-4.2",
+            "c1-predict-1.1",
+            "c1-predict-1.2",
+            "c1-reveal-1.1",
+            "c1-reconcile-2.2",
+            "c1-reconcile-4.1",
+            "c1-reconcile-5.1",
+            "c1-reconcile-6.1",
+            "c2-provoke-1.1",
+            "c2-provoke-1.2",
+            "c2-provoke-1.5",
+            "c2-provoke-2.1",
+            "c2-reveal-2.3",
+            "c2-reveal-3.1",
+            "c2-reconcile-3.1",
+            "c3-provoke-2.4",
+            "c3-predict-1.1",
+            "c3-predict-1.2",
+            "c3-predict-2.1",
+            "c3-predict-2.2",
+            "c3-reveal-4.1",
+            "c3-reveal-5.1",
+            "c3-reveal-5.2",
+            "c3-reconcile-1.1",
+            "c3-reconcile-1.2",
+            "c3-reconcile-2.4",
+            "c3-reconcile-2.5",
+            "c3-reconcile-4.1",
+            "c3-reconcile-4.2",
+            "c3-reconcile-4.3",
+            "c4-provoke-2.1",
+            "c4-reveal-2.1",
+            "c4-reveal-4.1",
+            "c4-reveal-4.2",
+            "c4-reconcile-1.1",
+            "c4-reconcile-1.2",
+            "c4-reconcile-2.1",
+            "c5-provoke-1.1",
+            "c5-provoke-2.1",
+            "c5-provoke-2.2",
+            "c5-predict-2.1",
+            "c5-reveal-3.1",
+            "c5-reveal-3.2",
+            "c5-reveal-3.3",
+            "c5-reveal-3.4",
+            "c5-reconcile-1.1",
+            "c5-reconcile-2.1",
+            "c5-reconcile-2.2",
+            "c5-reconcile-3.1",
+            "c5-reconcile-3.2",
+            "c6-provoke-1.3",
+            "c6-predict-1.1",
+            "c6-predict-2.1",
+            "c6-predict-2.2",
+            "c6-reveal-1.1",
+            "c6-reveal-1.2",
+            "c6-reveal-2.1",
+            "c6-reconcile-1.1",
+            "c6-reconcile-1.2",
+            "c6-reconcile-1.3",
+            "c6-reconcile-2.1",
+            "c6-reconcile-2.2",
+            "c6-reconcile-4.1",
+            "c6-reconcile-4.2",
+            "c6-reconcile-5.1"
+          ],
+          "deferredTo": "sequence_planning",
+          "itemId": "u-untasked-claims",
+          "kind": "untasked_span",
+          "reason": "66 claims have no VisualTask: the current 41 tasks cover only the 40 reviewed beats.",
+          "taskId": null
+        }
+      ],
+      "id": "story_handoff",
+      "status": "passed"
+    },
+    {
+      "gaps": [],
+      "id": "data_handoff",
+      "status": "passed"
+    },
+    {
+      "gaps": [
+        {
+          "count": 66,
+          "kind": "system_resolution_queue"
+        },
+        {
+          "kind": "template_fit_not_final",
+          "verdicts": {
+            "conditional": 40,
+            "incompatible": 1
+          }
+        },
+        {
+          "kind": "media_availability_not_final",
+          "verdicts": {
+            "available": 7,
+            "conditional": 1,
+            "not_required": 30,
+            "unavailable": 3
+          }
+        },
+        {
+          "blocking": false,
+          "kind": "preferred_media_unresolved_broll_fallback_available",
+          "taskIds": [
+            "03-03.opening_chart",
+            "07-07.main",
+            "15-15.main",
+            "30-30b.main"
+          ]
+        },
+        {
+          "kind": "story_focal_unknown",
+          "taskIds": [
+            "30-30a.main"
+          ]
+        }
+      ],
+      "id": "template_media_feasibility",
+      "status": "passed"
+    },
+    {
+      "gaps": [],
+      "id": "sequence_planning",
+      "status": "passed"
+    },
+    {
+      "gaps": [],
+      "id": "human_review",
+      "status": "passed"
+    },
+    {
+      "gaps": [
+        {
+          "blockedScenes": 41,
+          "blockersByKind": {
+            "asset_use_rights_receipt_missing": 11,
+            "candidate_specific_media_slot_mapping": 6,
+            "editorial_pacing_review": 1,
+            "exact_broll_asset_binding_pending": 9,
+            "exact_child_validation_deferred_until_use": 23,
+            "exact_post_beat_broll_asset_binding_pending": 1,
+            "full_export_human_qc_pending": 41,
+            "native_text_editability_and_layout": 22,
+            "native_typed_data_encoding": 27,
+            "split_task_candidate_specific_validation": 1,
+            "text_readability_with_required_limits": 3
+          },
+          "kind": "render_release_receipts_incomplete",
+          "requiredReceipts": {
+            "assetUseRights": false,
+            "fullExportHumanQc": false,
+            "lockedScript": true,
+            "lockedVisualPlan": true,
+            "renderGate": false
+          }
+        }
+      ],
+      "id": "render_release_handoff",
+      "status": "blocked"
+    }
+  ],
+  "storyHandoff": {
+    "authorityCommit": "66992e7bf61483838cfb3609c56076059ee8d4e8",
+    "coveredReviewKeys": 40,
+    "matchingHandoffTasks": 41,
+    "matchingHandoffUnresolved": 3,
+    "packageId": "year-seventeen@7",
+    "packageSha256": "af2e711cfccda94b84166cfa9a35d107da14df77c76d10b7ca6f310130182fe6",
+    "requiredReviewKeys": 40,
+    "taskProposals": 116,
+    "typedGaps": 3,
+    "uncoveredClaims": 0
+  },
+  "templateMediaFeasibility": {
+    "beatTemplateRequired": false,
+    "brollFallbackAlwaysAllowed": true,
+    "candidateVerdicts": {
+      "conditional": 542,
+      "incompatible": 70,
+      "unresolved": 13
+    },
+    "emptyTemplateChoiceSetsBlocking": false,
+    "mediaTaskIdsNeedingResolution": [
+      "03-03.opening_chart",
+      "07-07.main",
+      "15-15.main",
+      "30-30b.main"
+    ],
+    "mediaTasksNeedingResolution": 4,
+    "mediaVerdicts": {
+      "available": 7,
+      "conditional": 1,
+      "not_required": 30,
+      "unavailable": 3
+    },
+    "minimumTemplateChoiceCount": 0,
+    "preferredMediaGapsBlocking": 0,
+    "renderingAuthorized": false,
+    "selectionAuthorized": false,
+    "templateVerdicts": {
+      "conditional": 40,
+      "incompatible": 1
+    },
+    "visualTasks": 41
+  }
+}

@@ -1,0 +1,2476 @@
+{
+  "checks": [
+    {
+      "id": "matching_contract_gate",
+      "receipt": {
+        "contracts": {
+          "entrypoints": {
+            "id": "mandatory-matching-entrypoints-v1",
+            "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+          },
+          "generalMatching": {
+            "id": "general-storypackage-matching-layer-v1",
+            "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+          },
+          "stageOrder": {
+            "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+          }
+        },
+        "enforced": true,
+        "entrypoint": "matching_agent.run",
+        "mode": "review_only",
+        "productionRequiresCompleteHarness": true,
+        "renderingAuthorized": false,
+        "schemaVersion": 1,
+        "selectionAuthorized": false
+      },
+      "status": "passed"
+    },
+    {
+      "id": "immutable_authority_preflight",
+      "status": "passed"
+    },
+    {
+      "id": "authoritative_storypackage_adapter",
+      "status": "passed"
+    },
+    {
+      "id": "complete_claim_routing",
+      "status": "passed"
+    },
+    {
+      "id": "structured_capability_admission",
+      "status": "passed"
+    },
+    {
+      "id": "matching_harness",
+      "status": "passed"
+    },
+    {
+      "id": "provider_attempt_1",
+      "status": "passed"
+    },
+    {
+      "id": "schema_bound_provider_review",
+      "status": "passed"
+    }
+  ],
+  "commands": [
+    "matching_agent.run",
+    "storypackage_adapter.build",
+    "storypackage_splitter.build",
+    "storypackage_candidate_gallery.build",
+    "matching_harness.build",
+    "matching_harness.validate",
+    "CodexCliRunner.run",
+    "CodexCliRunner.collect"
+  ],
+  "configuration": {
+    "configuredTuple": {
+      "evaluationVersion": "matching-cross-story@1",
+      "model": "gpt-6-astra",
+      "permissionPolicy": "matching-review-only@1",
+      "profileId": "openai_gpt",
+      "promptVersion": "matching-agent-prompt@1",
+      "provider": "openai",
+      "reasoningEffort": "high",
+      "runner": "CodexCliRunner",
+      "servedModel": "unavailable_until_runner_reports",
+      "toolPolicy": "matching-tools@1",
+      "transport": "cli"
+    },
+    "configuredTupleSha256": "432c662641e5e57ed2cb4f4f0fb0f039b2bab8d045cf23de6f42def6614d07b5",
+    "redacted": true,
+    "renderingAuthorized": false,
+    "schemaVersion": "matching-agent-configuration-receipt@1",
+    "selectionAuthorized": false,
+    "source": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/config/matching-agent-profiles.yaml",
+      "sha256": "0930101e94f464828392f4b4f53246518878cb74734bf2537097932c49284c01"
+    }
+  },
+  "currentBlocker": {
+    "missingInputOrAction": null,
+    "party": "none",
+    "reason": "agent_review_complete"
+  },
+  "endedAt": "2026-10-04T13:12:02.614814+00:00",
+  "inputs": {
+    "dependencyReceipts": [],
+    "entityRoster": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json",
+      "repositoryCommit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+      "repositoryId": "djtoler/entity_roster",
+      "repositoryRoot": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster",
+      "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd",
+      "version": "12"
+    },
+    "matchingRuntime": {
+      "commit": "c8d08e029828d40c35cd3bcf26e3a90af819afce",
+      "dirty": false,
+      "repository": "djtoler/astra-visual-selector"
+    },
+    "repositoryMappings": [
+      {
+        "repositoryCommit": "0af272f9ffafd32fd3f9413054429cd6f731a866",
+        "repositoryId": "djtoler/automation-data",
+        "repositoryRoot": "/Users/dwaynetoler/yt001data"
+      }
+    ],
+    "storyPackage": {
+      "authorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "authorityRoot": "/private/tmp/patterns-agent-authority-d511-20261004",
+      "checkerPython": "/Users/dwaynetoler/Documents/ChatGPT/Polish/person-cutout-system/image-tools/.venv-rembg/bin/python",
+      "path": "/private/tmp/patterns-agent-authority-d511-20261004/architecture/storypackage/future-volksgeist@5.storypackage-0.2.json",
+      "repositoryCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "repositoryId": "djtoler/patterns",
+      "repositoryRoot": "/private/tmp/patterns-agent-authority-d511-20261004",
+      "sha256": "9c16482d73d24e78308a0f6854eb1d5cc653f69eccccdad452b5d5aeb253275d"
+    },
+    "templateCatalog": {
+      "identity": "approved-template-catalog@2026-10-04",
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/approved-list.json",
+      "repositoryCommit": "a818acd6e3cf3865961ee9cfdf9dc96efbbda6a7",
+      "repositoryId": "djtoler/ae-template-automation",
+      "repositoryRoot": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation",
+      "sha256": "c278d5ec7715b3bfbc8a9589edb3358a74048bb508019a23bc24ed885d6d69d8"
+    }
+  },
+  "invalidatedDownstreamReceipts": [],
+  "objectiveId": "provider-neutral-matching-agent",
+  "outputs": [
+    {
+      "bytes": 2289,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/00-preflight.json",
+      "sha256": "c3b6da94505a68806bc5b71139eee9ff789c5a74a153cad5d2cf1845e2014fb4"
+    },
+    {
+      "bytes": 464268,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/10-storypackage-adapter.json",
+      "sha256": "1c3af826496a9d1f2e362813f945b8dea189f503f47c3e687d9641f3c64f2956"
+    },
+    {
+      "bytes": 790216,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/20-visualtask-proposals.json",
+      "sha256": "60c3a9d40e632358c816f1eb65e865aaadc7fd312cdbc37ea484cf9b96d15da3"
+    },
+    {
+      "bytes": 172990,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/30-data-media-requirements.json",
+      "sha256": "f13850f1fc51d61753b7b480e0b471c7c16b13c100e99ae07a620eb95dcea84e"
+    },
+    {
+      "bytes": 10049903,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/40-candidate-admissions.json",
+      "sha256": "efa00df51137dacff45acc515da8abeb5394335633300803ebf9fe931774fbee"
+    },
+    {
+      "bytes": 397810,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/50-ordered-review-route.json",
+      "sha256": "af51b56aa18fd798335ec7b418bfa227484bc8048e42e51a068067dfcf094791"
+    },
+    {
+      "bytes": 20289,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/60-matching-harness-audit.json",
+      "sha256": "6406a9aba2ed02eb04855a6ff512ea3de403d96db12acb9d27f32f103e3a9e12"
+    },
+    {
+      "bytes": 1599,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/provider-workspace/agent-review-input.json",
+      "sha256": "b8d842a85928715b26f044f5d70bbf079ef0d474060155f9da816690674bb280"
+    },
+    {
+      "bytes": 363,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/70-runner-capabilities.json",
+      "sha256": "d8c6d499f62de19b8109e2709602105a2a1685e8735413514ead590eb92b9ed6"
+    },
+    {
+      "bytes": 2513,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/80-runner-receipt.json",
+      "sha256": "d5f94c0d567b3cf9477b85afcbcb54e876379d2c153ad0acdaefff5360a089db"
+    },
+    {
+      "bytes": 1207,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/90-candidate-review.json",
+      "sha256": "2c73187851738b52712d4bf6f0f3cdecdd7479a3ceb437e725330fbba2a7efb1"
+    }
+  ],
+  "receiptPath": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression/matching-agent-receipt.json",
+  "renderingAuthorized": false,
+  "schemaVersion": "matching-agent-receipt@1",
+  "selectionAuthorized": false,
+  "startedAt": "2026-10-04T13:11:41.084864+00:00",
+  "status": "passed",
+  "taskId": "matching-agent-future-regression-20261004",
+  "telemetry": {
+    "cost": "unsupported",
+    "mcpServers": "unavailable",
+    "permissions": {
+      "orchestratorMutationScope": [
+        "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/future-regression"
+      ],
+      "runner": [
+        "read_only_workspace"
+      ]
+    },
+    "providerSessionId": "01a1070a-bd1d-7293-9861-9a8ca493091d",
+    "servedModel": "unavailable",
+    "skills": "unavailable",
+    "tools": [
+      "read_matching_artifacts"
+    ],
+    "usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 14208,
+      "input_tokens": 29386,
+      "output_tokens": 244,
+      "reasoning_output_tokens": 0
+    }
+  },
+  "typedGaps": [
+    {
+      "claimIds": [
+        "p02-13.1",
+        "p02-13.2",
+        "p02-13.3",
+        "p02-13.4",
+        "p02-13.5",
+        "p02-13.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-1.1",
+        "p01-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-1.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-1.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-4.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-4.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-4.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-4.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-4.5"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-4.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-4.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-4.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-1.1",
+        "p02-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-3.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-7.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-7.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-12.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-12.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-12.3",
+        "p02-12.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-12.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-12.8",
+        "p02-12.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-12.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-12.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p02-14.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-2.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-2.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-4.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-4.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-4.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-4.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-4.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-4.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-4.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-4.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-6.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-6.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-6.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-6.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-6.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-6.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-9.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-11.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-13.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-13.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-13.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-3.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-3.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-5.1",
+        "p04-5.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-5.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-5.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-7.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.1",
+        "p04-9.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.4",
+        "p04-9.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.12"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.13"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-9.14"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-1.2",
+        "p05-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-1.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-5.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-7.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-7.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-7.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-7.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-9.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-1.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.6",
+        "p06-2.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.10"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.7",
+        "p06-4.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.9",
+        "p06-4.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.4"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-6.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-1.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-1.3",
+        "p07-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-1.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-1.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-1.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-3.2",
+        "p07-3.3",
+        "p07-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-3.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-3.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-3.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-4.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-4.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-4.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-4.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-6.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-6.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-6.4",
+        "p07-6.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-6.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-6.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-6.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-8.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-8.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-8.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-8.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-8.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-8.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-8.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-1.3",
+        "p08-1.4",
+        "p08-1.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-1.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-1.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-1.14",
+        "p08-1.15"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-1.16"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-4.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-4.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-6.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-2.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-2.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-2.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-3.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-3.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-3.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-3.8",
+        "p09-3.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-1.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-3.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-5.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-6.1",
+        "p10-6.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-6.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-6.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-6.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-6.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-1.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-2.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-3.2",
+        "p11-3.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-3.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-5.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-5.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-5.5",
+        "p11-5.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-5.7",
+        "p11-5.8",
+        "p11-5.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-5.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-5.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-6.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-6.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-6.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-6.6",
+        "p11-6.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.4",
+        "p12-1.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.8"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.9"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-2.1",
+        "p12-2.2",
+        "p12-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-2.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-2.9",
+        "p12-2.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-2.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-2.12"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-1.2",
+        "p13-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-1.4",
+        "p13-1.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-1.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-1.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-1.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-1.10",
+        "p13-1.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-1.12"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-1.12"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-2.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-2.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-2.9"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-2.10"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-2.11"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-3.2",
+        "p13-3.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-3.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p13-3.6",
+        "p13-3.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    }
+  ],
+  "wallTimeSeconds": 21.529585,
+  "warnings": [
+    "The first blocking stage is render_release_handoff.",
+    "Selection and rendering are not authorized."
+  ]
+}

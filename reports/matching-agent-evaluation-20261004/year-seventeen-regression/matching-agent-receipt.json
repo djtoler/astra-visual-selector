@@ -1,0 +1,1315 @@
+{
+  "checks": [
+    {
+      "id": "matching_contract_gate",
+      "receipt": {
+        "contracts": {
+          "entrypoints": {
+            "id": "mandatory-matching-entrypoints-v1",
+            "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+          },
+          "generalMatching": {
+            "id": "general-storypackage-matching-layer-v1",
+            "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+          },
+          "stageOrder": {
+            "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+          }
+        },
+        "enforced": true,
+        "entrypoint": "matching_agent.run",
+        "mode": "review_only",
+        "productionRequiresCompleteHarness": true,
+        "renderingAuthorized": false,
+        "schemaVersion": 1,
+        "selectionAuthorized": false
+      },
+      "status": "passed"
+    },
+    {
+      "id": "immutable_authority_preflight",
+      "status": "passed"
+    },
+    {
+      "id": "authoritative_storypackage_adapter",
+      "status": "passed"
+    },
+    {
+      "id": "complete_claim_routing",
+      "status": "passed"
+    },
+    {
+      "id": "structured_capability_admission",
+      "status": "passed"
+    },
+    {
+      "id": "matching_harness",
+      "status": "passed"
+    },
+    {
+      "id": "provider_attempt_1",
+      "status": "passed"
+    },
+    {
+      "id": "schema_bound_provider_review",
+      "status": "passed"
+    }
+  ],
+  "commands": [
+    "matching_agent.run",
+    "storypackage_adapter.build",
+    "storypackage_splitter.build",
+    "storypackage_candidate_gallery.build",
+    "matching_harness.build",
+    "matching_harness.validate",
+    "CodexCliRunner.run",
+    "CodexCliRunner.collect"
+  ],
+  "configuration": {
+    "configuredTuple": {
+      "evaluationVersion": "matching-cross-story@1",
+      "model": "gpt-6-astra",
+      "permissionPolicy": "matching-review-only@1",
+      "profileId": "openai_gpt",
+      "promptVersion": "matching-agent-prompt@1",
+      "provider": "openai",
+      "reasoningEffort": "high",
+      "runner": "CodexCliRunner",
+      "servedModel": "unavailable_until_runner_reports",
+      "toolPolicy": "matching-tools@1",
+      "transport": "cli"
+    },
+    "configuredTupleSha256": "432c662641e5e57ed2cb4f4f0fb0f039b2bab8d045cf23de6f42def6614d07b5",
+    "redacted": true,
+    "renderingAuthorized": false,
+    "schemaVersion": "matching-agent-configuration-receipt@1",
+    "selectionAuthorized": false,
+    "source": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/config/matching-agent-profiles.yaml",
+      "sha256": "0930101e94f464828392f4b4f53246518878cb74734bf2537097932c49284c01"
+    }
+  },
+  "currentBlocker": {
+    "missingInputOrAction": null,
+    "party": "none",
+    "reason": "agent_review_complete"
+  },
+  "endedAt": "2026-10-04T13:12:33.099368+00:00",
+  "inputs": {
+    "dependencyReceipts": [],
+    "entityRoster": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json",
+      "repositoryCommit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+      "repositoryId": "djtoler/entity_roster",
+      "repositoryRoot": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster",
+      "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd",
+      "version": "12"
+    },
+    "matchingRuntime": {
+      "commit": "c8d08e029828d40c35cd3bcf26e3a90af819afce",
+      "dirty": true,
+      "repository": "djtoler/astra-visual-selector"
+    },
+    "repositoryMappings": [
+      {
+        "repositoryCommit": "0af272f9ffafd32fd3f9413054429cd6f731a866",
+        "repositoryId": "djtoler/automation-data",
+        "repositoryRoot": "/Users/dwaynetoler/yt001data"
+      }
+    ],
+    "storyPackage": {
+      "authorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "authorityRoot": "/private/tmp/patterns-agent-authority-d511-20261004",
+      "checkerPython": "/Users/dwaynetoler/Documents/ChatGPT/Polish/person-cutout-system/image-tools/.venv-rembg/bin/python",
+      "path": "/private/tmp/patterns-agent-authority-d511-20261004/architecture/storypackage/year-seventeen@9.storypackage-0.2.json",
+      "repositoryCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "repositoryId": "djtoler/patterns",
+      "repositoryRoot": "/private/tmp/patterns-agent-authority-d511-20261004",
+      "sha256": "3e260634e01e0157072bf5d65553c502be3f380e1a3188185db98dd28a258fb6"
+    },
+    "templateCatalog": {
+      "identity": "approved-template-catalog@2026-10-04",
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/approved-list.json",
+      "repositoryCommit": "a818acd6e3cf3865961ee9cfdf9dc96efbbda6a7",
+      "repositoryId": "djtoler/ae-template-automation",
+      "repositoryRoot": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation",
+      "sha256": "c278d5ec7715b3bfbc8a9589edb3358a74048bb508019a23bc24ed885d6d69d8"
+    }
+  },
+  "invalidatedDownstreamReceipts": [],
+  "objectiveId": "provider-neutral-matching-agent",
+  "outputs": [
+    {
+      "bytes": 2302,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/00-preflight.json",
+      "sha256": "4674ba17b95756bb5e3f779136047d107cb1509d6cb15226f9e3cdb81d85ddb3"
+    },
+    {
+      "bytes": 228415,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/10-storypackage-adapter.json",
+      "sha256": "72c3eb3f5ba8eaad2d3db298cc4f796ffa8e0844adbf4edce86974b60a60f262"
+    },
+    {
+      "bytes": 338988,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/20-visualtask-proposals.json",
+      "sha256": "59085bcf39330c73b6e5272e43f80c1051da1590186aac2bb5b3c6ced3976ef8"
+    },
+    {
+      "bytes": 69361,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/30-data-media-requirements.json",
+      "sha256": "951e0cee1152aa6c346e9a596ec948157edd7612267507484fb1a645747e0cbe"
+    },
+    {
+      "bytes": 3762823,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/40-candidate-admissions.json",
+      "sha256": "94cb11672b9bfa2215c39797c4b9af23724ea4c5a4c5fea7e8fcbdb7e54aaf61"
+    },
+    {
+      "bytes": 137259,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/50-ordered-review-route.json",
+      "sha256": "038cdfc50f9e741fee3bf05b80b0f32243876820de6f976f707be1f7a1545550"
+    },
+    {
+      "bytes": 20289,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/60-matching-harness-audit.json",
+      "sha256": "6406a9aba2ed02eb04855a6ff512ea3de403d96db12acb9d27f32f103e3a9e12"
+    },
+    {
+      "bytes": 1576,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/provider-workspace/agent-review-input.json",
+      "sha256": "39921567405ece3f8ecc28a4f3763e298c74c554dd5a78de12a0a49a50e584a5"
+    },
+    {
+      "bytes": 363,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/70-runner-capabilities.json",
+      "sha256": "d8c6d499f62de19b8109e2709602105a2a1685e8735413514ead590eb92b9ed6"
+    },
+    {
+      "bytes": 2472,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/80-runner-receipt.json",
+      "sha256": "b76b9a9745efc83f987e15d77e898c9e8abca872f1a58d9f54d9eb91987380df"
+    },
+    {
+      "bytes": 1162,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/90-candidate-review.json",
+      "sha256": "9cc2e519ee11fd009804078e12ed110db0878ccf9b2169fd4d638472e93841ca"
+    }
+  ],
+  "receiptPath": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression/matching-agent-receipt.json",
+  "renderingAuthorized": false,
+  "schemaVersion": "matching-agent-receipt@1",
+  "selectionAuthorized": false,
+  "startedAt": "2026-10-04T13:12:14.337913+00:00",
+  "status": "passed",
+  "taskId": "matching-agent-year-seventeen-regression-20261004",
+  "telemetry": {
+    "cost": "unsupported",
+    "mcpServers": "unavailable",
+    "permissions": {
+      "orchestratorMutationScope": [
+        "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/matching-agent-evaluation-20261004/year-seventeen-regression"
+      ],
+      "runner": [
+        "read_only_workspace"
+      ]
+    },
+    "providerSessionId": "01a1070b-35a5-75d0-93ae-1dd71c88c99b",
+    "servedModel": "unavailable",
+    "skills": "unavailable",
+    "tools": [
+      "read_matching_artifacts"
+    ],
+    "usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 25984,
+      "input_tokens": 29378,
+      "output_tokens": 238,
+      "reasoning_output_tokens": 0
+    }
+  },
+  "typedGaps": [
+    {
+      "claimIds": [
+        "c1-provoke-1.1",
+        "c1-provoke-2.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-1.1",
+        "c1-provoke-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-3.1",
+        "c1-provoke-3.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-4.3",
+        "c1-provoke-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-predict-1.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-predict-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-predict-1.4",
+        "c1-predict-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-1.1",
+        "c1-reconcile-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-3.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-provoke-1.3",
+        "c2-provoke-1.4"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-provoke-1.3",
+        "c2-provoke-1.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-predict-1.1",
+        "c2-predict-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-1.1",
+        "c2-reveal-2.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-1.1",
+        "c2-reveal-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-4.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-4.2",
+        "c2-reveal-5.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-4.2",
+        "c2-reveal-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-1.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-1.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-1.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-2.1",
+        "c2-reconcile-2.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reconcile-2.1",
+        "c2-reconcile-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-provoke-1.1",
+        "c3-provoke-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-provoke-2.1",
+        "c3-provoke-2.2",
+        "c3-provoke-2.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-provoke-2.1",
+        "c3-provoke-2.2",
+        "c3-provoke-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-provoke-3.3",
+        "c3-provoke-4.1",
+        "c3-provoke-4.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-provoke-3.3",
+        "c3-provoke-4.1",
+        "c3-provoke-4.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-1.1",
+        "c3-reveal-1.2",
+        "c3-reveal-1.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-1.1",
+        "c3-reveal-1.2",
+        "c3-reveal-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-1.3",
+        "c3-reveal-2.1",
+        "c3-reveal-2.2",
+        "c3-reveal-2.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-1.3",
+        "c3-reveal-2.1",
+        "c3-reveal-2.2",
+        "c3-reveal-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-1.2",
+        "c3-reconcile-2.1",
+        "c3-reconcile-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-2.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-3.1",
+        "c3-reconcile-3.2",
+        "c3-reconcile-3.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-3.1",
+        "c3-reconcile-3.2",
+        "c3-reconcile-3.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-predict-1.1",
+        "c4-predict-1.2",
+        "c4-predict-2.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-predict-1.1",
+        "c4-predict-1.2",
+        "c4-predict-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-1.1",
+        "c4-reveal-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-3.1",
+        "c4-reveal-3.2",
+        "c4-reveal-3.3",
+        "c4-reveal-3.4"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-3.1",
+        "c4-reveal-3.2",
+        "c4-reveal-3.3",
+        "c4-reveal-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-provoke-1.2",
+        "c5-provoke-1.3",
+        "c5-provoke-1.4",
+        "c5-provoke-1.5",
+        "c5-provoke-1.6"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-provoke-1.2",
+        "c5-provoke-1.3",
+        "c5-provoke-1.4",
+        "c5-provoke-1.5",
+        "c5-provoke-1.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-predict-1.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-provoke-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-provoke-1.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-provoke-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-3.1",
+        "c6-reconcile-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-2.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-predict-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-predict-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-reveal-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-6.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-4.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-provoke-4.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-provoke-1.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-provoke-2.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-provoke-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-2.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c2-reveal-3.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-provoke-5.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-predict-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-5.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-5.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reveal-5.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-1.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-4.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-2.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-4.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-4.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-4.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reconcile-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reveal-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reveal-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reveal-3.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reveal-3.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reveal-3.4"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reveal-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reconcile-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reconcile-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reconcile-3.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reconcile-3.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reconcile-3.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c5-reconcile-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-predict-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-predict-2.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-predict-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reveal-1.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reveal-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reveal-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reveal-2.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reveal-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-1.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-2.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c1-reconcile-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-reconcile-2.4"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-provoke-1.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-provoke-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-4.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-4.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-4.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-5.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-3.5",
+        "c4-reveal-3.6"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reveal-3.5",
+        "c4-reveal-3.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c3-predict-2.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-provoke-1.1"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-provoke-1.3"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-provoke-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reconcile-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reconcile-1.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c4-reconcile-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "c6-reconcile-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    }
+  ],
+  "wallTimeSeconds": 18.761224,
+  "warnings": [
+    "5 tasks have no candidates.",
+    "The first blocking stage is render_release_handoff."
+  ]
+}
