@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "matching-agent-capability-manifest@1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "runner", "operations", "servedModelTelemetry", "costTelemetry", "selectionAuthorized", "renderingAuthorized"],
+  "properties": {
+    "schemaVersion": {"const": "matching-agent-capability-manifest@1"},
+    "runner": {"type": "string", "minLength": 1},
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run", "status", "steer", "cancel", "collect"],
+      "properties": {
+        "run": {"type": "boolean"}, "status": {"type": "boolean"},
+        "steer": {"type": "boolean"}, "cancel": {"type": "boolean"},
+        "collect": {"type": "boolean"}
+      }
+    },
+    "servedModelTelemetry": {"enum": ["reported_when_available", "unsupported"]},
+    "costTelemetry": {"enum": ["reported_when_available", "unsupported"]},
+    "selectionAuthorized": {"const": false},
+    "renderingAuthorized": {"const": false}
+  }
+}

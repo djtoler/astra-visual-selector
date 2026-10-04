@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "matching-agent-receipt@1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "taskId", "objectiveId", "status", "currentBlocker", "configuration", "inputs", "outputs", "checks", "telemetry", "selectionAuthorized", "renderingAuthorized"],
+  "properties": {
+    "schemaVersion": {"const": "matching-agent-receipt@1"},
+    "taskId": {"type": "string", "minLength": 1},
+    "objectiveId": {"type": "string", "minLength": 1},
+    "status": {"enum": ["passed", "failed", "blocked", "needs_review"]},
+    "currentBlocker": {
+      "type": "object", "additionalProperties": false,
+      "required": ["party", "reason", "missingInputOrAction"],
+      "properties": {
+        "party": {"enum": ["you", "data", "story", "matching", "media", "coordinator", "none"]},
+        "reason": {"type": "string"}, "missingInputOrAction": {"type": ["string", "null"]}
+      }
+    },
+    "configuration": {"type": "object"}, "inputs": {"type": "object"}, "outputs": {"type": "array"},
+    "checks": {"type": "array"}, "telemetry": {"type": "object"},
+    "selectionAuthorized": {"const": false}, "renderingAuthorized": {"const": false}
+  }
+}

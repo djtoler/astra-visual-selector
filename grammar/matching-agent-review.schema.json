@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "matching-agent-review@1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "taskId", "packageId", "reviewSummary", "warnings", "typedGaps", "selectionAuthorized", "renderingAuthorized"],
+  "properties": {
+    "schemaVersion": {"const": "matching-agent-review@1"},
+    "taskId": {"type": "string", "minLength": 1},
+    "packageId": {"type": "string", "minLength": 1},
+    "reviewSummary": {"type": "string", "minLength": 1},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "typedGaps": {"type": "array", "items": {"type": "object"}},
+    "selectionAuthorized": {"const": false},
+    "renderingAuthorized": {"const": false}
+  }
+}

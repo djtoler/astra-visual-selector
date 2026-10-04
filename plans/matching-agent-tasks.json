@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "planId": "provider-neutral-matching-agent",
+  "objective": "Wrap the completed general Matching layer in one provider-neutral, immutable-input, review-only agent command with validated receipts and cross-story activation evidence.",
+  "currentBlocker": "matching",
+  "tasks": [
+    {"id": "MAG-01", "name": "Audit coordinator contracts and save the stage-mapped implementation plan", "status": "passed", "receipt": "plans/MATCHING_AGENT_IMPLEMENTATION_PLAN_20261004.md"},
+    {"id": "MAG-02", "name": "Freeze profile, task, capability, run-state, review and receipt schemas", "status": "passed", "receipt": "grammar/matching-agent-task.schema.json"},
+    {"id": "MAG-03", "name": "Resolve strict YAML profiles with redacted tuple receipts", "status": "passed", "receipt": "tests/test_matching_agent_config.py"},
+    {"id": "MAG-04", "name": "Implement the provider-neutral lifecycle and Codex CLI runner", "status": "passed", "receipt": "tests/test_matching_agent_runner.py"},
+    {"id": "MAG-05", "name": "Implement the single contract-enforced end-to-end command", "status": "passed", "receipt": "tests/test_matching_agent.py"},
+    {"id": "MAG-06", "name": "Remove executable hard-coded /Users paths", "status": "passed", "receipt": "plans/MATCHING_AGENT_IMPLEMENTATION_PLAN_20261004.md"},
+    {"id": "MAG-07", "name": "Pass deterministic failure-path and immutable-input tests", "status": "passed", "receipt": "tests/test_matching_agent_contracts.py"},
+    {"id": "MAG-08", "name": "Pass the existing isolated suite and Matching harness", "status": "passed", "receipt": "reports/matching-harness-audit.json"},
+    {"id": "MAG-09", "name": "Run two regression packages and the untouched held-out package through the identical agent path", "status": "pending", "receipt": null},
+    {"id": "MAG-10", "name": "Pass from a clean checkout with declared authorities", "status": "pending", "receipt": null},
+    {"id": "MAG-11", "name": "Save the exact GPT evaluation and activation receipt", "status": "pending", "receipt": null},
+    {"id": "MAG-12", "name": "Close the objective only after every acceptance check is current", "status": "pending", "receipt": null}
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

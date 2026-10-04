@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "matching-agent-profile@1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "agent_id", "contract_version", "active_profile", "profiles"],
+  "properties": {
+    "schema_version": {"const": "matching-agent-profile@1"},
+    "agent_id": {"const": "matching"},
+    "contract_version": {"const": "general-matching-agent@1"},
+    "active_profile": {"type": "string", "minLength": 1},
+    "profiles": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/profile"}
+    }
+  },
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "model", "transport", "reasoning_effort", "prompt_version", "tool_policy", "permission_policy", "evaluation_profile"],
+      "properties": {
+        "provider": {"enum": ["openai", "anthropic"]},
+        "model": {"type": "string", "minLength": 1},
+        "transport": {"const": "cli"},
+        "reasoning_effort": {"enum": ["low", "medium", "high", "xhigh", "max", "ultra"]},
+        "prompt_version": {"const": "matching-agent-prompt@1"},
+        "tool_policy": {"const": "matching-tools@1"},
+        "permission_policy": {"const": "matching-review-only@1"},
+        "evaluation_profile": {"const": "matching-cross-story@1"}
+      }
+    }
+  }
+}

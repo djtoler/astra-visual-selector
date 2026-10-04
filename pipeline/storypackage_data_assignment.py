@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 from pathlib import Path
 from typing import Any
 
@@ -17,7 +18,11 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE = ROOT.parent
-DATA_ROOT = Path("/Users/dwaynetoler/yt001data/hiphop_content_system/data")
+# The public Matching-agent path binds data handoffs in its task contract. This
+# legacy assignment command retains a home-relative compatibility fallback for
+# its historical fixture suite; callers can and should pin ASTRA_DATA_ROOT.
+DATA_ROOT = Path(os.environ.get(
+    "ASTRA_DATA_ROOT", Path.home() / "yt001data" / "hiphop_content_system" / "data"))
 DEFAULT_QUEUE = ROOT / "reports" / "storypackage-02-data-handoff-queue.json"
 DEFAULT_PACKAGE = WORKSPACE / "patterns-storypackage-review" / "architecture" / "storypackage" / "year-seventeen.storypackage-0.2.json"
 DEFAULT_OUTPUT = ROOT / "reports" / "storypackage-02-data-assignments.json"

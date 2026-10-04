@@ -1,0 +1,28 @@
+{
+  "schema_version": "matching-agent-profile@1",
+  "agent_id": "matching",
+  "contract_version": "general-matching-agent@1",
+  "active_profile": "${MATCHING_PROFILE:-openai_gpt}",
+  "profiles": {
+    "openai_gpt": {
+      "provider": "openai",
+      "model": "${MATCHING_OPENAI_MODEL:-gpt-6-astra}",
+      "transport": "${MATCHING_OPENAI_TRANSPORT:-cli}",
+      "reasoning_effort": "${MATCHING_OPENAI_EFFORT:-high}",
+      "prompt_version": "matching-agent-prompt@1",
+      "tool_policy": "matching-tools@1",
+      "permission_policy": "matching-review-only@1",
+      "evaluation_profile": "matching-cross-story@1"
+    },
+    "anthropic_challenger": {
+      "provider": "anthropic",
+      "model": "${MATCHING_ANTHROPIC_MODEL}",
+      "transport": "${MATCHING_ANTHROPIC_TRANSPORT:-cli}",
+      "reasoning_effort": "${MATCHING_ANTHROPIC_EFFORT:-high}",
+      "prompt_version": "matching-agent-prompt@1",
+      "tool_policy": "matching-tools@1",
+      "permission_policy": "matching-review-only@1",
+      "evaluation_profile": "matching-cross-story@1"
+    }
+  }
+}

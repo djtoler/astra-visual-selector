@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "matching-agent-run-state@1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "runId", "state", "startedAt", "selectionAuthorized", "renderingAuthorized"],
+  "properties": {
+    "schemaVersion": {"const": "matching-agent-run-state@1"},
+    "runId": {"type": "string", "minLength": 1},
+    "state": {"enum": ["running", "passed", "failed", "cancelled"]},
+    "startedAt": {"type": "string", "minLength": 1},
+    "endedAt": {"type": ["string", "null"]},
+    "selectionAuthorized": {"const": false},
+    "renderingAuthorized": {"const": false}
+  }
+}

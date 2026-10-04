@@ -6,6 +6,7 @@
   "reviewOnlyRenderingAuthorized": false,
   "productionRequiresCompleteHarness": true,
   "entrypoints": [
+    {"id": "matching_agent.run", "module": "pipeline/matching_agent.py", "callable": "run_task", "modes": ["review_only"]},
     {"id": "storypackage_adapter.build", "module": "pipeline/storypackage_adapter.py", "callable": "build", "modes": ["review_only"]},
     {"id": "storypackage_splitter.build", "module": "pipeline/storypackage_splitter.py", "callable": "build", "modes": ["review_only"]},
     {"id": "storypackage_candidate_gallery.build", "module": "pipeline/storypackage_candidate_gallery.py", "callable": "build", "modes": ["review_only"]},

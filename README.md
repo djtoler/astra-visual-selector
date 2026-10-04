@@ -53,6 +53,20 @@ The exact StoryPackage authority test also accepts `STORYPACKAGE_AUTHORITY_ROOT`
 
 The authorized provider-neutral Matching-agent handoff is [docs/MATCHING_AGENT_BUILD.md](docs/MATCHING_AGENT_BUILD.md). GPT is the default profile; provider-specific runners must preserve the same Matching contracts, deterministic gates and cross-story acceptance path.
 
+The implementation uses the JSON-compatible YAML profile at
+`config/matching-agent-profiles.yaml` and one public command:
+
+```text
+python3 -m pipeline.matching_agent run --task /absolute/path/to/matching-agent-task.json
+```
+
+The task must bind the StoryPackage, shared entity registry, approved template
+catalog, dependency receipts and output scope to exact commits and SHA-256
+digests. The command writes partial diagnostic artifacts as stages complete and
+finishes with `matching-agent-receipt.json`. Its Codex runner is read-only; only
+the orchestrator writes inside the task's declared output scope. A Matching-agent
+receipt never authorizes template selection or rendering.
+
 ## Authorization boundary
 
 Matching output is review evidence. It never silently authorizes a template selection, custom visual, render, or media publication.
