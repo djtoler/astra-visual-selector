@@ -144,12 +144,12 @@ def _failed_receipt(task: dict[str, Any], configuration: dict[str, Any] | None,
                     started_at: str, exc: Exception, checks: list[dict[str, Any]],
                     outputs: list[dict[str, Any]]) -> dict[str, Any]:
     text = str(exc)
-    if "StoryPackage" in text or "story" in text.lower():
+    if isinstance(exc, AgentRunnerError):
+        party = "matching"
+    elif "StoryPackage" in text or "story" in text.lower():
         party = "story"
     elif "entity" in text.lower() or "data" in text.lower():
         party = "data"
-    elif isinstance(exc, AgentRunnerError):
-        party = "matching"
     else:
         party = "coordinator" if isinstance(exc, AgentContractError) else "matching"
     return {
