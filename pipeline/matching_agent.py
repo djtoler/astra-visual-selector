@@ -261,7 +261,9 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
                 "typedGaps": requirements["counts"]["typedGaps"],
                 "routes": route_plan["counts"],
             },
-            "typedGaps": [gap for row in requirements["tasks"] for gap in row["gaps"]],
+            "typedGapSummary": dict(sorted(Counter(
+                gap["kind"] for row in requirements["tasks"] for gap in row["gaps"]
+            ).items())),
             "harness": {
                 "generalMatchingComplete": harness["generalMatchingLayer"]["complete"],
                 "firstBlockingStage": harness["firstBlockingStage"],
@@ -299,6 +301,7 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
         receipt = {
             "schemaVersion": "matching-agent-receipt@1", "taskId": task["taskId"],
             "objectiveId": task["objectiveId"], "status": "passed",
+            "receiptPath": (output_directory / "matching-agent-receipt.json").as_posix(),
             "startedAt": started_at, "endedAt": _now(),
             "wallTimeSeconds": round(time.monotonic() - monotonic_start, 6),
             "currentBlocker": {"party": "none", "reason": "agent_review_complete", "missingInputOrAction": None},
@@ -318,7 +321,8 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
                 "permissions": {"runner": ["read_only_workspace"], "orchestratorMutationScope": task["mutationScope"]},
             },
             "warnings": runner_receipt["review"]["warnings"],
-            "typedGaps": review_input["typedGaps"], "invalidatedDownstreamReceipts": [],
+            "typedGaps": [gap for row in requirements["tasks"] for gap in row["gaps"]],
+            "invalidatedDownstreamReceipts": [],
             "selectionAuthorized": False, "renderingAuthorized": False,
         }
         _write(output_directory / "matching-agent-receipt.json", receipt)
@@ -340,7 +344,11 @@ def main() -> int:
     args = parser.parse_args()
     receipt = run_task(
         args.task, profile_path=args.profiles, profile_id=args.profile, executable=args.codex)
-    print(_dump(receipt), end="")
+    print(json.dumps({
+        "taskId": receipt["taskId"], "status": receipt["status"],
+        "currentBlocker": receipt["currentBlocker"]["party"],
+        "receipt": receipt["receiptPath"],
+    }, sort_keys=True))
     return 0
 
 

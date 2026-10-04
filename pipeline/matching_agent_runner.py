@@ -69,6 +69,8 @@ def validate_review(value: Any, *, task_id: str, package_id: str) -> dict[str, A
         raise AgentRunnerError("runner review warnings are invalid")
     if not isinstance(value["typedGaps"], list) or any(not isinstance(row, dict) for row in value["typedGaps"]):
         raise AgentRunnerError("runner review typed gaps are invalid")
+    if value["typedGaps"]:
+        raise AgentRunnerError("runner review duplicated deterministic typed gaps")
     if value["selectionAuthorized"] is not False or value["renderingAuthorized"] is not False:
         raise AgentRunnerError("runner review attempted to authorize selection or rendering")
     return value
@@ -107,7 +109,9 @@ class CodexCliRunner:
             "manifest. Do not select a candidate, do not authorize rendering, do not edit files, and "
             "do not invent Story, Data, Media, or template facts. Return exactly the requested JSON "
             f"schema for taskId {task_contract['taskId']} and packageId "
-            f"{task_contract['_packageIdForRunner']}. Preserve each typed gap without promotion."
+            f"{task_contract['_packageIdForRunner']}. The canonical typed gaps remain in the "
+            "deterministic requirements artifact; return typedGaps as an empty array and summarize "
+            "only the supplied gap counts in reviewSummary or warnings."
         )
         command = [
             self.executable, "exec", "--ephemeral", "--json", "--color", "never",
