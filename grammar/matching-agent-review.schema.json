@@ -5,13 +5,26 @@
   "additionalProperties": false,
   "required": ["schemaVersion", "taskId", "packageId", "reviewSummary", "warnings", "typedGaps", "selectionAuthorized", "renderingAuthorized"],
   "properties": {
-    "schemaVersion": {"const": "matching-agent-review@1"},
+    "schemaVersion": {"type": "string", "const": "matching-agent-review@1"},
     "taskId": {"type": "string", "minLength": 1},
     "packageId": {"type": "string", "minLength": 1},
     "reviewSummary": {"type": "string", "minLength": 1},
     "warnings": {"type": "array", "items": {"type": "string"}},
-    "typedGaps": {"type": "array", "items": {"type": "object"}},
-    "selectionAuthorized": {"const": false},
-    "renderingAuthorized": {"const": false}
+    "typedGaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "owner", "status", "claimIds"],
+        "properties": {
+          "kind": {"type": "string"},
+          "owner": {"enum": ["data", "media", "story", "matching", "you"]},
+          "status": {"type": "string"},
+          "claimIds": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "selectionAuthorized": {"type": "boolean", "const": false},
+    "renderingAuthorized": {"type": "boolean", "const": false}
   }
 }
