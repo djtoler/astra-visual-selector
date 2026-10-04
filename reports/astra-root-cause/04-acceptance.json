@@ -1,0 +1,66 @@
+{
+  "auditStatus": "PASS",
+  "checks": {
+    "taskTraces": 31,
+    "sourcePackages": 3,
+    "exactTaskOutputMatches": 611,
+    "preservedFieldsPerPackage": 11,
+    "storedFunctionInputsReplayedExactly": true,
+    "firstDivergencePerTrace": true,
+    "successesAndFailuresIncluded": true,
+    "storyProposalsSeparateFromOperations": true,
+    "primaryOnlyAdmissionTestedWithoutUnion": true,
+    "evidenceIdsExist": true,
+    "existingTestsPassed": 38,
+    "runtimeSchemaGrammarUnchanged": true,
+    "requiredStageOrderValidated": true,
+    "reorderedStagesRejected": true,
+    "workflowReviewValidated": true
+  },
+  "omissionTests": [
+    {
+      "omittedStage": "inspect_actual_transformations",
+      "rejected": true
+    },
+    {
+      "omittedStage": "replay_pinned_packages",
+      "rejected": true
+    },
+    {
+      "omittedStage": "trace_tasks_and_first_divergence",
+      "rejected": true
+    },
+    {
+      "omittedStage": "test_primary_and_keyword_behavior",
+      "rejected": true
+    },
+    {
+      "omittedStage": "publish_and_validate",
+      "rejected": true
+    }
+  ],
+  "workflowReview": {
+    "id": "c156a414-aee4-4c69-9cc4-7ee4ceff0ae3",
+    "checkpoint": "astra-job04-transformation-audit-20261004-complete",
+    "validated": true
+  },
+  "validationScope": "Audit acceptance, not a production gate; catalog predicate support is not native fit.",
+  "outputs": [
+    {
+      "path": "reports/astra-root-cause/04-matching-transformations.json",
+      "sha256": "38173955cfc9c64efeaad6fb17929851b7f47b1e995a3ca9733c6a22d92b253e"
+    },
+    {
+      "path": "reports/astra-root-cause/04-matching-transformations.md",
+      "sha256": "be3bf7997c6f70875cb615704e6210658adb136a3bf277709c1dec789e831d1e"
+    },
+    {
+      "path": "reports/astra-root-cause/04-task-traces.json",
+      "sha256": "056308cdd00bd0ef71790db6951972f7684109e8d2728a0ae196b010d8e0081f"
+    },
+    {
+      "path": "reports/astra-root-cause/04-diagnostic-probes.json",
+      "sha256": "14b91c6c67b67e068e4dc86c7980049f704b93d8f4f1dee8c6012a241f0ca350"
+    }
+  ]
+}

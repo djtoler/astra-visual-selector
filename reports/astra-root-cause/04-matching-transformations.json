@@ -1,0 +1,944 @@
+{
+  "schemaVersion": 1,
+  "job": "04-matching-transformations",
+  "createdAt": "2026-10-04T21:16:08.303976+00:00",
+  "auditStatus": "PASS",
+  "productTransformations": "proven_semantic_losses_with_scoped_successes",
+  "blockerOwner": "none",
+  "nextJob": "05-grammar-tags-capabilities.md",
+  "nextJobStarted": false,
+  "baselines": {
+    "matching": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "story": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+  },
+  "plan": "plans/ASTRA_ROOT_CAUSE_JOB_04_PLAN_20261004.md",
+  "replayArtifact": "04-task-traces.json",
+  "diagnosticArtifact": "04-diagnostic-probes.json",
+  "traceCount": 31,
+  "replayReceipts": {
+    "year-seventeen": {
+      "packagePath": "architecture/storypackage/year-seventeen@9.storypackage-0.2.json",
+      "packageSha256": "3e260634e01e0157072bf5d65553c502be3f380e1a3188185db98dd28a258fb6",
+      "adapterPreservation": {
+        "story": true,
+        "script": true,
+        "entityRegistry": true,
+        "entities": true,
+        "cohorts": true,
+        "beats": true,
+        "claims": true,
+        "jobProposals": true,
+        "obligations": true,
+        "continuity": true,
+        "timing": true
+      },
+      "checkerReceipt": {
+        "accepted": true,
+        "packageSha256": "3e260634e01e0157072bf5d65553c502be3f380e1a3188185db98dd28a258fb6",
+        "authorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+        "checkerPath": "architecture/storypackage/tools/check.py",
+        "checkerSha256": "33f3015301c080d627562160f17da9f043c4faaa990a907183f4d50d25be3f2f",
+        "checkerOutput": "year-seventeen@9.storypackage-0.2.json PASS"
+      },
+      "contractGate": {
+        "schemaVersion": 1,
+        "enforced": true,
+        "entrypoint": "storypackage_adapter.build",
+        "mode": "review_only",
+        "contracts": {
+          "generalMatching": {
+            "id": "general-storypackage-matching-layer-v1",
+            "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+          },
+          "stageOrder": {
+            "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+          },
+          "entrypoints": {
+            "id": "mandatory-matching-entrypoints-v1",
+            "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+          }
+        },
+        "selectionAuthorized": false,
+        "renderingAuthorized": false,
+        "productionRequiresCompleteHarness": true
+      },
+      "counts": {
+        "claims": 150,
+        "jobProposals": 116,
+        "taskProposals": 115,
+        "speakerDerivedTaskProposals": 0,
+        "semanticDerivedTaskProposals": 11,
+        "sourceClipRoutes": 0,
+        "quoteRoutes": 0,
+        "uncoveredClaims": 0,
+        "typedGaps": 0
+      },
+      "recordedArtifact": "reports/matching-agent-evaluation-20261004/year-seventeen-regression/20-visualtask-proposals.json",
+      "recordedSha256": "59085bcf39330c73b6e5272e43f80c1051da1590186aac2bb5b3c6ced3976ef8",
+      "allTaskOutputsEqualRecorded": true,
+      "requirementsCounts": {
+        "tasks": 115,
+        "typedGaps": 127,
+        "dataRequired": 51,
+        "mediaRequired": 76
+      }
+    },
+    "future-volksgeist": {
+      "packagePath": "architecture/storypackage/future-volksgeist@5.storypackage-0.2.json",
+      "packageSha256": "9c16482d73d24e78308a0f6854eb1d5cc653f69eccccdad452b5d5aeb253275d",
+      "adapterPreservation": {
+        "story": true,
+        "script": true,
+        "entityRegistry": true,
+        "entities": true,
+        "cohorts": true,
+        "beats": true,
+        "claims": true,
+        "jobProposals": true,
+        "obligations": true,
+        "continuity": true,
+        "timing": true
+      },
+      "checkerReceipt": {
+        "accepted": true,
+        "packageSha256": "9c16482d73d24e78308a0f6854eb1d5cc653f69eccccdad452b5d5aeb253275d",
+        "authorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+        "checkerPath": "architecture/storypackage/tools/check.py",
+        "checkerSha256": "33f3015301c080d627562160f17da9f043c4faaa990a907183f4d50d25be3f2f",
+        "checkerOutput": "future-volksgeist@5.storypackage-0.2.json PASS\n  gap: {\"gap\": \"speaker_unidentified\", \"beat\": \"p01-3\", \"role\": \"clip\", \"label\": \"unknown\", \"sourceTimestamp\": \"00:00:24\"}\n  gap: {\"gap\": \"speaker_unidentified\", \"beat\": \"p02-10\", \"role\": \"clip\", \"label\": \"interviewer\", \"sourceTimestamp\": \"00:03:48\"}\n  gap: {\"gap\": \"speaker_unidentified\", \"beat\": \"p03-7\", \"role\": \"clip\", \"label\": \"unknown\", \"sourceTimestamp\": \"00:07:44\"}\n  gap: {\"gap\": \"speaker_unidentified\", \"beat\": \"p04-4\", \"role\": \"clip\", \"label\": \"unknown\", \"sourceTimestamp\": \"00:11:13\"}\n  gap: {\"gap\": \"speaker_unidentified\", \"beat\": \"p06-3\", \"role\": \"clip\", \"label\": \"unknown\", \"sourceTimestamp\": \"00:19:41\"}\n  gap: {\"gap\": \"speaker_unidentified\", \"beat\": \"p07-7\", \"role\": \"clip\", \"label\": \"unknown\", \"sourceTimestamp\": \"00:26:14\"}"
+      },
+      "contractGate": {
+        "schemaVersion": 1,
+        "enforced": true,
+        "entrypoint": "storypackage_adapter.build",
+        "mode": "review_only",
+        "contracts": {
+          "generalMatching": {
+            "id": "general-storypackage-matching-layer-v1",
+            "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+          },
+          "stageOrder": {
+            "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+          },
+          "entrypoints": {
+            "id": "mandatory-matching-entrypoints-v1",
+            "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+          }
+        },
+        "selectionAuthorized": false,
+        "renderingAuthorized": false,
+        "productionRequiresCompleteHarness": true
+      },
+      "counts": {
+        "claims": 502,
+        "jobProposals": 20,
+        "taskProposals": 310,
+        "speakerDerivedTaskProposals": 3,
+        "semanticDerivedTaskProposals": 307,
+        "sourceClipRoutes": 36,
+        "quoteRoutes": 3,
+        "uncoveredClaims": 0,
+        "typedGaps": 43
+      },
+      "recordedArtifact": "reports/matching-agent-evaluation-20261004/future-regression/20-visualtask-proposals.json",
+      "recordedSha256": "60c3a9d40e632358c816f1eb65e865aaadc7fd312cdbc37ea484cf9b96d15da3",
+      "allTaskOutputsEqualRecorded": true,
+      "requirementsCounts": {
+        "tasks": 310,
+        "typedGaps": 275,
+        "dataRequired": 17,
+        "mediaRequired": 258
+      }
+    },
+    "jayz-drake-settle-it": {
+      "packagePath": "architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json",
+      "packageSha256": "21f02e6aa12b133583d7ccfb9683b5879c529a53f41bb692bac0a6d9fe4119d3",
+      "adapterPreservation": {
+        "story": true,
+        "script": true,
+        "entityRegistry": true,
+        "entities": true,
+        "cohorts": true,
+        "beats": true,
+        "claims": true,
+        "jobProposals": true,
+        "obligations": true,
+        "continuity": true,
+        "timing": true
+      },
+      "checkerReceipt": {
+        "accepted": true,
+        "packageSha256": "21f02e6aa12b133583d7ccfb9683b5879c529a53f41bb692bac0a6d9fe4119d3",
+        "authorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+        "checkerPath": "architecture/storypackage/tools/check.py",
+        "checkerSha256": "33f3015301c080d627562160f17da9f043c4faaa990a907183f4d50d25be3f2f",
+        "checkerOutput": "jayz-drake-settle-it@4.storypackage-0.2.json PASS"
+      },
+      "contractGate": {
+        "schemaVersion": 1,
+        "enforced": true,
+        "entrypoint": "storypackage_adapter.build",
+        "mode": "review_only",
+        "contracts": {
+          "generalMatching": {
+            "id": "general-storypackage-matching-layer-v1",
+            "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+          },
+          "stageOrder": {
+            "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+          },
+          "entrypoints": {
+            "id": "mandatory-matching-entrypoints-v1",
+            "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+          }
+        },
+        "selectionAuthorized": false,
+        "renderingAuthorized": false,
+        "productionRequiresCompleteHarness": true
+      },
+      "counts": {
+        "claims": 222,
+        "jobProposals": 14,
+        "taskProposals": 186,
+        "speakerDerivedTaskProposals": 0,
+        "semanticDerivedTaskProposals": 185,
+        "sourceClipRoutes": 0,
+        "quoteRoutes": 0,
+        "uncoveredClaims": 0,
+        "typedGaps": 0
+      },
+      "recordedArtifact": "reports/matching-agent-evaluation-20261004/jayz-drake-heldout/20-visualtask-proposals.json",
+      "recordedSha256": "c1cb9df0982406770d5a8f1c57623845573629c3ba6432c67c7cb83e301c000a",
+      "allTaskOutputsEqualRecorded": true,
+      "requirementsCounts": {
+        "tasks": 186,
+        "typedGaps": 177,
+        "dataRequired": 73,
+        "mediaRequired": 104
+      }
+    }
+  },
+  "findings": [
+    {
+      "findingId": "F01",
+      "type": "observed_fact",
+      "title": "Gate and adapter preserve inputs, not semantic correctness",
+      "detail": "All 11 inspected preserved fields compare equal on three fresh adapters. Gates validate contracts and stored harness policy, not a new per-task demonstration of meaning.611 task outputs exactly reproduce recorded public artifacts.",
+      "traceIds": [
+        "T01",
+        "T24",
+        "T29"
+      ],
+      "evidenceIds": [
+        "ev_394f04a8fb042538",
+        "ev_c0014381cd5b341b",
+        "ev_0183c99a16600ab0"
+      ]
+    },
+    {
+      "findingId": "F02",
+      "type": "observed_fact",
+      "title": "Boundary logic loses distinct visual moments",
+      "detail": "The splitter recognizes a single not-just/but-also subclaim pivot and merges using character limit, shared refs and equal primary operation. Units, role transitions and multi-clause visual changes are not merge criteria. Explicit authored subspan text is also expanded.",
+      "traceIds": [
+        "T04",
+        "T05",
+        "T13",
+        "T16",
+        "T17",
+        "T23"
+      ],
+      "evidenceIds": [
+        "ev_c062fcf214353ca3",
+        "ev_032190ddc33477c4",
+        "ev_755a18328ee44670",
+        "ev_197e8df3cdb679e1",
+        "ev_0c2a0aba000bca29",
+        "ev_76144b97f6b04467"
+      ]
+    },
+    {
+      "findingId": "F03",
+      "type": "observed_fact",
+      "title": "Keyword rules create false operations",
+      "detail": "fans→data, headline inside headliner→evidence, left floor→event, grew up→chronology. Controlled in-memory substitutions change operations without changing any runtime. These diagnose lexical dependence, not proposed script edits.",
+      "traceIds": [
+        "T20",
+        "T21",
+        "T22",
+        "T25",
+        "T27"
+      ],
+      "evidenceIds": [
+        "ev_8d097d68699e413f",
+        "ev_60553fc81c4e442a",
+        "ev_d9088e29e1e0ae41",
+        "ev_4bad981eb189dc6f",
+        "ev_5b0549ebba618177"
+      ]
+    },
+    {
+      "findingId": "F04",
+      "type": "observed_fact",
+      "title": "Reference occurrences are confused with participant count",
+      "detail": "Two Drake refs across two claims trigger comparison/parallel_instances; three Jay-Z refs trigger item_sequence. Diagnostic deduplication removes those operations/jobs.",
+      "traceIds": [
+        "T16",
+        "T17"
+      ],
+      "evidenceIds": [
+        "ev_197e8df3cdb679e1",
+        "ev_0c2a0aba000bca29"
+      ]
+    },
+    {
+      "findingId": "F05",
+      "type": "observed_fact",
+      "title": "Story job advice and inferred operations can disagree materially",
+      "detail": "Materialized define_terms/intersection_of_sets/attributed_quote labels survive, but the independent operation layer chooses data/event/question routes. Conversely enumerate with lyric_presentation can be a correct structured route. Labels alone are neither authority nor proof of loss.",
+      "traceIds": [
+        "T09",
+        "T26",
+        "T27",
+        "T28"
+      ],
+      "evidenceIds": [
+        "ev_6c440a7b5cb840d4",
+        "ev_5b0549ebba618177"
+      ]
+    },
+    {
+      "findingId": "F06",
+      "type": "observed_fact",
+      "title": "Primary-only admission does not establish required secondary meaning",
+      "detail": "Six real-catalog predicate probes confirm admission only checks primary operation. Necessary multi-part requirements need splitting or a compatible combined treatment; adding every secondary family would admit unrelated meanings. Incidental secondary operations should remain incidental.",
+      "traceIds": [
+        "T06",
+        "T09",
+        "T13",
+        "T16",
+        "T17",
+        "T24"
+      ],
+      "evidenceIds": [
+        "ev_5b014d59e8746769",
+        "ev_6c440a7b5cb840d4",
+        "ev_755a18328ee44670",
+        "ev_197e8df3cdb679e1",
+        "ev_0c2a0aba000bca29",
+        "ev_c0014381cd5b341b"
+      ]
+    },
+    {
+      "findingId": "F07",
+      "type": "observed_fact",
+      "title": "Propagation is often exact but requirements discard or over-broaden context",
+      "detail": "Entity/value/cohort/obligation/continuity copies equal their source intersections in every trace. Intersection copying can attach whole multi-claim obligations to a short task. Gallery projection omits continuity, and requirement flags ignore explicit mediaNeeds/cohort media demand.",
+      "traceIds": [
+        "T15",
+        "T18",
+        "T24",
+        "T25",
+        "T30",
+        "T31"
+      ],
+      "evidenceIds": [
+        "ev_ae89ed37733a21e4",
+        "ev_81a8bfc05956e7b1",
+        "ev_c0014381cd5b341b",
+        "ev_4bad981eb189dc6f",
+        "ev_197902cdbab5c967",
+        "ev_457bec72518e17bd"
+      ]
+    },
+    {
+      "findingId": "F08",
+      "type": "observed_fact",
+      "title": "No uncovered claims does not mean no semantic failures",
+      "detail": "All three replays report zero uncovered claims; Future retains43 typed gaps, while Year/Jay-Z report0 splitter gaps despite traced semantic failures. The quote’s contradictory eligibility states are not emitted as a typed conflict.",
+      "traceIds": [
+        "T23",
+        "T24",
+        "T27",
+        "T28"
+      ],
+      "evidenceIds": [
+        "ev_76144b97f6b04467",
+        "ev_c0014381cd5b341b",
+        "ev_5b0549ebba618177"
+      ]
+    }
+  ],
+  "failureClassCoverage": [
+    {
+      "class": "intra_claim_under_split",
+      "traceIds": [
+        "T04",
+        "T05",
+        "T13"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "cross_claim_over_merge",
+      "traceIds": [
+        "T16",
+        "T17"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "authored_subspan_loss",
+      "traceIds": [
+        "T23"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "identity_cohort_withholding",
+      "traceIds": [
+        "T03",
+        "T15",
+        "T24",
+        "T29"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "relationship_or_human_event",
+      "traceIds": [
+        "T06",
+        "T07",
+        "T14"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "evidence_document_request",
+      "traceIds": [
+        "T08",
+        "T20",
+        "T25"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "lyrics_vs_incidental_evidence",
+      "traceIds": [
+        "T09"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "plural_artifact_and_staging",
+      "traceIds": [
+        "T10",
+        "T13",
+        "T18",
+        "T22"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "comparison_and_quantitative_relation",
+      "traceIds": [
+        "T02",
+        "T15",
+        "T16",
+        "T19",
+        "T26",
+        "T27"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "rhetorical_or_attributed_question",
+      "traceIds": [
+        "T01",
+        "T11",
+        "T21",
+        "T28"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "temporal_transformation",
+      "traceIds": [
+        "T12",
+        "T17",
+        "T18",
+        "T22"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "media_supply_vs_compatibility",
+      "traceIds": [
+        "T24",
+        "T25",
+        "T29"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    },
+    {
+      "class": "continuity_and_required_return",
+      "traceIds": [
+        "T30",
+        "T31"
+      ],
+      "scope": "Reviewed semantic class coverage, not exhaustive per-candidate or native-fit attribution"
+    }
+  ],
+  "traceIndex": [
+    {
+      "traceId": "T01",
+      "taskId": "future-volksgeist.proposal.matching-derived-p01-1-01",
+      "outcome": "success",
+      "firstDivergentStage": "none_observed",
+      "evidenceIds": [
+        "ev_394f04a8fb042538"
+      ],
+      "assessment": "Question/setup merge preserves both claims; subject_profile takes precedence while Story pose_a_question advice remains a separate label."
+    },
+    {
+      "traceId": "T02",
+      "taskId": "future-volksgeist.proposal.matching-derived-p01-1-02",
+      "outcome": "partial",
+      "firstDivergentStage": "upstream_requirement_incomplete",
+      "evidenceIds": [
+        "ev_8d8f5e31713d758d"
+      ],
+      "assessment": "Current operation is data_explanation, improving on historical milestone context. No typed rank value exists upstream. This replay alone does not establish which later capacity rule excluded rank-capable candidates."
+    },
+    {
+      "traceId": "T03",
+      "taskId": "future-volksgeist.proposal.matching-derived-p01-1-03",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_945fc64c57b6bbfb"
+      ],
+      "assessment": "Stage2 splits not-just/but-also exactly, but biggest implies milestone_reveal and only Future is counted. Upstream also lacks an explicit group requirement; the source text still carries the collective meaning."
+    },
+    {
+      "traceId": "T04",
+      "taskId": "future-volksgeist.proposal.matching-derived-p01-4-05",
+      "outcome": "failure",
+      "firstDivergentStage": "stage2_semantic_units",
+      "evidenceIds": [
+        "ev_c062fcf214353ca3"
+      ],
+      "assessment": "One190-character sentence remains one task; only not-just/but-also is recognized as an intra-claim pivot. Its science metaphor and growth are reduced to generic data_explanation."
+    },
+    {
+      "traceId": "T05",
+      "taskId": "future-volksgeist.proposal.matching-derived-p02-3-03",
+      "outcome": "failure",
+      "firstDivergentStage": "stage2_semantic_units",
+      "evidenceIds": [
+        "ev_032190ddc33477c4"
+      ],
+      "assessment": "The248-character sentence remains one task despite the editor’s two visual components. Both identities survive; evidence_presentation itself is appropriate but does not define the staged treatment."
+    },
+    {
+      "traceId": "T06",
+      "taskId": "future-volksgeist.proposal.matching-derived-p03-2-01",
+      "outcome": "success",
+      "firstDivergentStage": "none_observed",
+      "evidenceIds": [
+        "ev_5b014d59e8746769"
+      ],
+      "assessment": "Both identities and relationship_intro survive; selecting relationship as primary is consistent with the scoped editor intent. Incidental you-just-heard evidence must not trigger a broad family union."
+    },
+    {
+      "traceId": "T07",
+      "taskId": "future-volksgeist.proposal.matching-derived-p06-2-01",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_0125568cf745b6da"
+      ],
+      "assessment": "Before long yields archival_progression; feature on is not a relationship trigger. Identities survive but the collaboration object/roles are not inferred."
+    },
+    {
+      "traceId": "T08",
+      "taskId": "future-volksgeist.proposal.matching-derived-p11-3-01",
+      "outcome": "success_with_historical_failure",
+      "firstDivergentStage": "none_observed",
+      "evidenceIds": [
+        "ev_063fd655708a1b49"
+      ],
+      "assessment": "Current primary evidence_presentation and evidenceKind=document_screen correct the historical item_sequence primary. Missing explicit readability obligations remains upstream; native fit is not tested."
+    },
+    {
+      "traceId": "T09",
+      "taskId": "future-volksgeist.proposal.matching-derived-p06-1-10",
+      "outcome": "success",
+      "firstDivergentStage": "none_observed",
+      "evidenceIds": [
+        "ev_6c440a7b5cb840d4"
+      ],
+      "assessment": "lyric_presentation wins over incidental Wikipedia/evidence/year-like operations. Legacy enumerate does not control this structured operation. The accepted scoped lyrics route is not a reason to union every secondary family."
+    },
+    {
+      "traceId": "T10",
+      "taskId": "future-volksgeist.proposal.matching-derived-p06-1-11",
+      "outcome": "success",
+      "firstDivergentStage": "none_observed",
+      "evidenceIds": [
+        "ev_2794546a910cc39b"
+      ],
+      "assessment": "These mixtapes triggers item_sequence; the scoped editorial need is retained. Full asset/title resolution is not proven."
+    },
+    {
+      "traceId": "T11",
+      "taskId": "future-volksgeist.proposal.matching-derived-p02-12-01",
+      "outcome": "success",
+      "firstDivergentStage": "none_observed",
+      "evidenceIds": [
+        "ev_1474531742be97a8"
+      ],
+      "assessment": "Pure rhetorical question gets an explicit overlay/non-template route; this aligns with the review. brollFallbackAvailable does not certify actual footage."
+    },
+    {
+      "traceId": "T12",
+      "taskId": "future-volksgeist.proposal.matching-derived-p02-14-01",
+      "outcome": "success",
+      "firstDivergentStage": "none_observed",
+      "evidenceIds": [
+        "ev_54ae21917a62a9ee"
+      ],
+      "assessment": "Transformation is correctly primary despite legacy narrate_an_event and the secondary temporal/profile cues."
+    },
+    {
+      "traceId": "T13",
+      "taskId": "future-volksgeist.proposal.matching-derived-p13-1-07",
+      "outcome": "failure",
+      "firstDivergentStage": "stage2_semantic_units",
+      "evidenceIds": [
+        "ev_755a18328ee44670"
+      ],
+      "assessment": "One long claim remains one task; relationship_intro can describe one part but does not represent all distinct moments requested by the editor."
+    },
+    {
+      "traceId": "T14",
+      "taskId": "future-volksgeist.proposal.matching-derived-p03-13-01",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_2ab63ad9958fa8b2"
+      ],
+      "assessment": "Three display refs automatically trigger item_sequence; it outranks event_narration although the refs are context, not a requested enumeration."
+    },
+    {
+      "traceId": "T15",
+      "taskId": "jayz-drake-settle-it.proposal.matching-derived-p02-2-03",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_ae89ed37733a21e4"
+      ],
+      "assessment": "Value records contain both artists, but comparison requires at least two display refs and a limited lexical cue. Later gallery projection counts one. Upstream omission of the implied entityRef is not absence of the underlying data."
+    },
+    {
+      "traceId": "T16",
+      "taskId": "jayz-drake-settle-it.proposal.matching-derived-p04-4-03",
+      "outcome": "failure",
+      "firstDivergentStage": "stage2_semantic_units",
+      "evidenceIds": [
+        "ev_197e8df3cdb679e1"
+      ],
+      "assessment": "Same primary plus shared entity merges different measurement units. The merged repeated Drake refs then falsely satisfy two-participant comparison and parallel_instances conditions."
+    },
+    {
+      "traceId": "T17",
+      "taskId": "jayz-drake-settle-it.proposal.matching-derived-p05-2-03",
+      "outcome": "failure",
+      "firstDivergentStage": "stage2_semantic_units",
+      "evidenceIds": [
+        "ev_0c2a0aba000bca29"
+      ],
+      "assessment": "Same-primary merging crosses Then and combines three claims. Three Jay-Z refs then imply item_sequence; different temporal/measurement phases are not reconciled."
+    },
+    {
+      "traceId": "T18",
+      "taskId": "jayz-drake-settle-it.proposal.matching-derived-p05-2-05",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_81a8bfc05956e7b1"
+      ],
+      "assessment": "Typed count/time values survive, as does o-streak, but the temporal sequence is reduced to data_explanation. No rule recognizes in-a-row duration semantics from the existing obligation."
+    },
+    {
+      "traceId": "T19",
+      "taskId": "jayz-drake-settle-it.proposal.matching-derived-p04-2-01",
+      "outcome": "success",
+      "firstDivergentStage": "none_observed",
+      "evidenceIds": [
+        "ev_9968d9e53524c9b1"
+      ],
+      "assessment": "Identity, typed rank and cohort survive; one task remains. Generic data_explanation does not itself prove the reviewed candidate failures, which require later capability/admission audit."
+    },
+    {
+      "traceId": "T20",
+      "taskId": "jayz-drake-settle-it.proposal.matching-derived-p01-3-05",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_8d097d68699e413f"
+      ],
+      "assessment": "The substring fans triggers data_explanation with no values/cohort. Upstream evidence obligation is missing, but calling this a quantitative requirement is a downstream error."
+    },
+    {
+      "traceId": "T21",
+      "taskId": "jayz-drake-settle-it.proposal.matching-derived-p02-3-02",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_60553fc81c4e442a"
+      ],
+      "assessment": "Number one triggers milestone/data operations despite an editorial evaluation rather than a measurement. No question mark means rhetorical_question is not inferred."
+    },
+    {
+      "traceId": "T22",
+      "taskId": "jayz-drake-settle-it.proposal.matching-derived-p02-4-03",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_d9088e29e1e0ae41"
+      ],
+      "assessment": "Grew up triggers archival_progression. The limited plural list does not recognize this contextual artifact relationship."
+    },
+    {
+      "traceId": "T23",
+      "taskId": "year-seventeen.proposal.p-21-21b-rate",
+      "outcome": "failure",
+      "firstDivergentStage": "stage2_authored_span_materialization",
+      "evidenceIds": [
+        "ev_76144b97f6b04467"
+      ],
+      "assessment": "The valid43-codepoint proposalSpan is retained but taskText is the full169-codepoint claim. task_from_claims does not slice proposal_span when no task_text is supplied."
+    },
+    {
+      "traceId": "T24",
+      "taskId": "year-seventeen.proposal.p-03-03",
+      "outcome": "failure",
+      "firstDivergentStage": "stage6_requirement_derivation",
+      "evidenceIds": [
+        "ev_c0014381cd5b341b"
+      ],
+      "assessment": "The two claims and cohort/obligation are preserved and correctly kept together. _requirements ignores cohortRefs/mediaNeeds when deciding media required, so the explicit93-person demand disappears from that status."
+    },
+    {
+      "traceId": "T25",
+      "taskId": "year-seventeen.proposal.p-07-07",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_4bad981eb189dc6f"
+      ],
+      "assessment": "Headline is matched inside headliner, producing evidence_presentation. At stage6 the explicit artwork/footage obligation is also ignored by the media-needed classifier."
+    },
+    {
+      "traceId": "T26",
+      "taskId": "year-seventeen.proposal.p-28-28-1",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_5b0549ebba618177"
+      ],
+      "assessment": "Story define_terms proposal and needsOnScreenText survive, but streams/billion produce data_explanation independently of that intent. Primary admission does not enforce the surviving text requirement."
+    },
+    {
+      "traceId": "T27",
+      "taskId": "year-seventeen.proposal.p-28-28-2",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_operation_inference",
+      "evidenceIds": [
+        "ev_5b0549ebba618177"
+      ],
+      "assessment": "Story intersection_of_sets survives as a label; left in left floor is interpreted as an event verb. No typed values/cohort accompany the claim, but the authored job explicitly states the relation and is not reconciled."
+    },
+    {
+      "traceId": "T28",
+      "taskId": "future-volksgeist.proposal.speaker-quote-p02-13",
+      "outcome": "failure",
+      "firstDivergentStage": "stage3_primary_and_route",
+      "evidenceIds": [],
+      "assessment": "Grouping and attributed_quote label succeed. The internal question selects rhetorical_question and templateEligible:false; speakerRoutes simultaneously says attributed_quote_template and eligible:true. The template consumer obeys the false task route."
+    },
+    {
+      "traceId": "T29",
+      "taskId": "year-seventeen.proposal.p-02-02b",
+      "outcome": "success_with_other_limitations",
+      "firstDivergentStage": "none_observed_for_reviewed_identity_constraint",
+      "evidenceIds": [
+        "ev_0183c99a16600ab0"
+      ],
+      "assessment": "Required Curren$y and display:none Drake survive; gallery display identities correctly exclude Drake. This does not validate the equivalence job, which independently reduces to event_narration, or live media selection."
+    },
+    {
+      "traceId": "T30",
+      "taskId": "year-seventeen.proposal.p-05-05a",
+      "outcome": "failure",
+      "firstDivergentStage": "stage6_gallery_projection",
+      "evidenceIds": [
+        "ev_197902cdbab5c967"
+      ],
+      "assessment": "Continuity survives in the splitter task but is absent from the gallery input/output contract; the reviewed gallery path cannot enforce that invariant from this projection alone. Separate downstream sequence handling remains untested."
+    },
+    {
+      "traceId": "T31",
+      "taskId": "year-seventeen.proposal.p-29-29c",
+      "outcome": "failure",
+      "firstDivergentStage": "stage6_gallery_projection",
+      "evidenceIds": [
+        "ev_457bec72518e17bd"
+      ],
+      "assessment": "Required continuity is preserved in the task but not forwarded by the gallery projection. The generic concept_statement operation cannot express the required chart identity. No claim that another consumer could not use the preserved task continuity."
+    }
+  ],
+  "sourceInventory": [
+    {
+      "path": "pipeline/matching_contract_gate.py",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "93e1f6a544408c2c338b63e61c58cb62928368b820d10c2de7ac4ef20fd34b7d"
+    },
+    {
+      "path": "pipeline/storypackage_adapter.py",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "b94b883e34133024c44d1387745683cf5b3436b01f634250638df0355c782720"
+    },
+    {
+      "path": "pipeline/storypackage_splitter.py",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "40a9c0540b33eca1c0037f758d784b2e89f6703780c485054769a3e6f8ec77a7"
+    },
+    {
+      "path": "pipeline/visualtask_matching.py",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "1de7914be513b54aa8d3bea3b696e7e80ce271fc4ba9f76ddf4d0c45c610a15a"
+    },
+    {
+      "path": "pipeline/storypackage_candidate_gallery.py",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "a9593ce75c618eb43d6e9699ba170b94b8c00e7527e53190d8c4c528c87d8e80"
+    },
+    {
+      "path": "pipeline/matching_agent.py",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "81b1475c4304e8e74a2d9b386b99932e612b9e4ef1bb61d4d9cac4b809a77b27"
+    },
+    {
+      "path": "pipeline/visualtask_requirements.py",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "8d7d440658f8cc9fbd845d826b5411c8fdf150f58ebdc10ef4f52079733701ce"
+    },
+    {
+      "path": "grammar/general-matching-layer-contract.json",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+    },
+    {
+      "path": "grammar/matching-harness-stage-contract.json",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+    },
+    {
+      "path": "grammar/matching-entrypoint-contract.json",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+    },
+    {
+      "path": "plans/general-matching-layer-tasks.json",
+      "commit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+      "sha256": "775340a46f7acdabbac72ff2459c2444c84df1fc8a810facef994c3459a671fe"
+    }
+  ],
+  "measuredResults": {
+    "freshPackages": 3,
+    "preservedFieldsPerPackage": 11,
+    "exactRecordedTaskMatches": 611,
+    "taskTraces": 31,
+    "existingTestsPassed": 38,
+    "wordSubstitutionProbes": 4,
+    "referenceDeduplicationProbes": 2,
+    "quoteRouteProbe": 1,
+    "primaryAdmissionPredicateProbes": 6,
+    "allTracePropagationChecksEqual": true
+  },
+  "hypotheses": [
+    {
+      "statement": "A semantic task contract that reconciles relation, measure, sequence and evidence intent before choosing primary operation would reduce these losses.",
+      "status": "integration proposal, not architecture approval"
+    },
+    {
+      "statement": "The primary-only admission policy can remain useful when task boundaries and primary selection are correct.",
+      "status": "supported by successful relationship/lyrics traces; not proof of full candidate quality"
+    }
+  ],
+  "recommendations": [
+    "Retain source-exact claim/task separation and fix earliest divergent transformations before tuning candidates.",
+    "Reconcile explicit Story jobs and obligations with inferred operations; surface disagreement instead of silently relying on a lexical priority.",
+    "Count distinct participants; distinguish their roles from repeated references and incidental mentions.",
+    "Split incompatible visual moments or verify one treatment communicates the combined requirement; do not union unrelated template families.",
+    "Carry continuity and explicit demand into the consumers that need them; preserve unknown supply/timing as gaps."
+  ],
+  "limitations": [
+    "Purposive31-task sample; not a corpus error rate.",
+    "Current replay is distinguished from earlier reviewed Futurev12 contexts; some historical failures are already improved.",
+    "Full gallery embedding/order and native-fit/render stages were not rerun; stage6 projection uses inspected mapping and real presentation_contract function.",
+    "Real-catalog support-predicate probes measure retrieval semantics, not final fit or family coverage.",
+    "Future43 gaps are speaker/source-timing/attribution gaps; semantic correctness is not certified by zero uncovered claims.",
+    "No runtime/schema/grammar code changed; only audit documentation and JSON outputs."
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "productionChanges": false,
+  "executionReceipt": {
+    "configuredModel": "gpt-6-astra",
+    "reasoningEffort": "medium",
+    "source": "/Users/dwaynetoler/.codex/sessions/2026/10/04/rollout-2026-10-04T15-28-34-01a10863-b544-7851-b0a5-a3b658c6952c.jsonl",
+    "line": 721,
+    "timestamp": "2026-10-04T21:10:52.453Z",
+    "escalations": []
+  },
+  "stageReceipts": [
+    {
+      "order": 1,
+      "stage": "inspect_actual_transformations",
+      "status": "completed",
+      "evidence": "Pinned source reads and sourceInventory hash checks"
+    },
+    {
+      "order": 2,
+      "stage": "replay_pinned_packages",
+      "status": "completed",
+      "evidence": "Fresh gated adapter/splitter replays;611 exact task matches"
+    },
+    {
+      "order": 3,
+      "stage": "trace_tasks_and_first_divergence",
+      "status": "completed",
+      "evidence": "04-task-traces.json:31 six-stage traces"
+    },
+    {
+      "order": 4,
+      "stage": "test_primary_and_keyword_behavior",
+      "status": "completed",
+      "evidence": "04-diagnostic-probes.json:7 diagnostic contrasts,6 primary predicate probes;38 existing tests"
+    },
+    {
+      "order": 5,
+      "stage": "publish_and_validate",
+      "status": "completed",
+      "evidence": "Markdown/JSON and audit acceptance with omission/reordering checks"
+    }
+  ],
+  "workflowReview": {
+    "id": "c156a414-aee4-4c69-9cc4-7ee4ceff0ae3",
+    "checkpoint": "astra-job04-transformation-audit-20261004-complete",
+    "validated": true
+  }
+}
