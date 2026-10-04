@@ -1,0 +1,67 @@
+{
+  "auditStatus": "PASS",
+  "checks": {
+    "recordsAccounted": 439,
+    "canonicalSourcesVerified": 24,
+    "schemaValidation": "PASS",
+    "existingEvidenceValidator": "PASS",
+    "allSourcePointersRead": true,
+    "allRecordsCategorized": true,
+    "specificMechanismOrPositiveRecords": 198,
+    "statusDerivedOrUnresolvedRecords": 241,
+    "goldDigestsVerified": true,
+    "goldNarrationExactAlignment": true,
+    "contextualAntecedentsNotGuessed": true,
+    "noReviewPromotedToRuntimeRule": true,
+    "productionUnchanged": true,
+    "requiredStageOrderValidated": true,
+    "reorderedStagesRejected": true,
+    "workflowReviewValidated": true
+  },
+  "limitations": [
+    "Exact original-video frame/shot-to-visual-job map not found; precise source-location request recorded.",
+    "Latest saved reviews are not complete interaction histories.",
+    "Historical numbered options without pinned display hashes remain provisional."
+  ],
+  "omissionTests": [
+    {
+      "omittedStage": "inventory439",
+      "rejected": true
+    },
+    {
+      "omittedStage": "context_and_contrasts",
+      "rejected": true
+    },
+    {
+      "omittedStage": "gold_and_reference_compare",
+      "rejected": true
+    },
+    {
+      "omittedStage": "mechanism_taxonomy",
+      "rejected": true
+    },
+    {
+      "omittedStage": "publish_validate",
+      "rejected": true
+    }
+  ],
+  "workflowReview": {
+    "id": "db563d23-8bf2-4084-b7a9-ecc2d11fa6aa",
+    "checkpoint": "astra-job07-human-evidence-20261004-complete",
+    "validated": true
+  },
+  "outputs": [
+    {
+      "path": "reports/astra-root-cause/07-human-evidence-analysis.md",
+      "sha256": "fe73411e97074a28a87c952665a0f26312ab48b59924fbe1fa53e190249fdc40"
+    },
+    {
+      "path": "reports/astra-root-cause/07-human-evidence-analysis.json",
+      "sha256": "46bd8f33da7b48a7eb8dcc2b8b092e383c560461e1f89ab8d6755015a32eb94e"
+    },
+    {
+      "path": "reports/astra-root-cause/07-evidence-and-reference-details.json",
+      "sha256": "df6230ce15b51ef525ed4f94432b525565c4fcc2c46404f7e4a88cccb80dce15"
+    }
+  ]
+}
