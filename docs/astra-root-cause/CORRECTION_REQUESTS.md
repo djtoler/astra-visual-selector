@@ -9,6 +9,130 @@ An `ACTIVE` correction blocks the next numbered job. Claude Desktop must correct
 only the named job, validate and publish the corrected artifacts, update that
 entry to `RESOLVED` with the correction commit, return direct links, and stop.
 
+## Job 6 — candidate pipeline
+
+Status: **ACTIVE**
+
+Opened after commit: `a898f8f6237402f4de80df25939e34556b92b515`
+
+Target artifacts:
+
+- `reports/astra-root-cause/06-candidate-pipeline.md`
+- `reports/astra-root-cause/06-candidate-pipeline.json`
+
+Correct Job 6 only. Do not start Job 7 and do not modify production code,
+catalog records, grammar, evidence, gold references or earlier job outputs.
+
+### 1. Separate ordering loss from the display cap
+
+The current report concludes that ordering caused no loss because display uses a
+fixed count rather than a score cut. That is not sufficient: the fixed 16-family
+cut is applied **after an explicit ordering strategy**, and that ordering decides
+which admitted families survive.
+
+Trace the ordering of each editor-requested family used as a loss example,
+including the pie-chart case, through:
+
+- the gallery's family order;
+- the first eight primary candidates;
+- the exploration ordering based on prior exposure and admitted-family order;
+- the final 16-family cut.
+
+For each lost family, identify its pre-cut position, the ordering signals that
+put it there, and the first stage at which it became unavailable to the editor.
+Classify `ordering_loss` and `display_loss` as distinct, non-overlapping first
+divergences. Do not claim zero ordering loss merely because the order is an
+explicit strategy rather than a scalar score.
+
+### 2. Correct the variant-selection mechanism
+
+The report calls the displayed family representative arbitrary and says there is
+no mechanism to choose the right variant. The existing `C.diversify()` path does
+rank variants inside a family using encoding fit, capacity fit, task/global
+selection signals where enabled, relevance, motion availability and only then a
+stable ID tiebreak. It also computes `_siblings`, but
+`visualtask_matching.template_candidates()` omits `_siblings` from the returned
+candidate row, so downstream review cannot inspect them.
+
+For every editor-named wrong-variant case:
+
+1. replay `_within_family` ordering with the exact task and candidate records;
+2. record every ordering key for the displayed and requested variants;
+3. identify whether the earliest failure is missing task requirements,
+   inaccurate capability metadata, variant ranking, sibling propagation, or
+   review-surface display;
+4. verify whether `_siblings` survives each downstream artifact and reaches the
+   UI data;
+5. revise `variant_collapse` so it describes the proven mechanism rather than
+   treating every one-variant-per-family slate as a failure.
+
+One representative per family may be an intentional review-budget policy. The
+failure is proven only where a materially better variant existed and the system
+could not rank or expose it for the task.
+
+### 3. Complete or strictly scope the candidate lineages
+
+The required output calls for a complete lineage for every reviewed task used.
+The report uses 59 reviewed tasks but states that 21 lack admitted/hidden family
+sets. Only one finding is counted as `lineage_incomplete`, which obscures the
+task-level coverage gap.
+
+Use the existing read-only pipeline against the pinned inputs to reconstruct the
+missing exhaustive lineages where reproducible. Label reconstructed lineage
+separately from committed historical lineage and verify its input digests. If an
+exact lineage cannot be reproduced, mark that task incomplete and exclude it
+from conclusions requiring admission, hidden-family or first-divergence evidence.
+
+Report both:
+
+- the number of incomplete **tasks**; and
+- the number of `lineage_incomplete` **findings**.
+
+Do not use one count as if it represented the other.
+
+### 4. Test B-roll/no-template routing per reviewed task
+
+`brollFallbackAvailable: true` and the existence of 18 B-roll routes prove that
+the route exists globally. They do not prove that the 16 reviewed tasks where
+the editor requested B-roll or no template were actually routed correctly.
+
+Join each of those reviewed tasks to its route decision and report:
+
+- actual route;
+- whether template candidates were still displayed;
+- whether B-roll was merely available or actually selected as the route;
+- the first divergence for every mismatch.
+
+Only conclude `forced_template` is unsupported if all relevant reviewed tasks
+were correctly routed, or explicitly scope the conclusion to the subset with
+complete route evidence. A fallback flag cannot substitute for an observed
+route outcome.
+
+### Required validation
+
+1. Parse the corrected JSON successfully.
+2. Keep retrieval, admission, feasibility, routing, family ordering, variant
+   ordering and display as separate lineage stages.
+3. Assert every classified loss has one earliest divergent stage and does not
+   double-count ordering and display.
+4. Assert every wrong-variant claim includes the displayed and requested
+   variants' actual within-family ordering keys and sibling propagation trace.
+5. Report complete and incomplete lineage task counts separately from finding
+   counts; exclude incomplete tasks from unsupported downstream conclusions.
+6. Verify the actual route for every reviewed B-roll/no-template task used in a
+   routing conclusion.
+7. Make Markdown and JSON agree on measurements, scopes, classifications and
+   acceptance verdicts.
+8. Confirm the correction diff modifies only the two Job 6 artifacts and this
+   canonical correction file.
+
+Commit and push the corrected Job 6 artifacts to `fable_analysis`. Update this
+entry to `RESOLVED` with the correction commit and links, then provide direct
+GitHub links to the corrected Markdown, JSON, this correction file and the
+commit. State the next job and blocker owner, and stop before Job 7.
+
+---
+
 ## Job 4 — matching transformations
 
 Status: **RESOLVED**  
