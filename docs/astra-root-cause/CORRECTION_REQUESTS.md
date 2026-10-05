@@ -13,7 +13,7 @@ entry to `RESOLVED` with the correction commit, return direct links, and stop.
 
 Status: **RESOLVED**  
 Opened after commit: `032981c5ac12aa705d3fe11366f9acb7f8f93a73`  
-Resolved by commit: `1d060b37e9693dbc9808990b2cb5a2c4f9e71155`
+Resolved by commit: `f2399468bdd9f255f9153a670c693a4929fb8227`
 
 The correction:
 
