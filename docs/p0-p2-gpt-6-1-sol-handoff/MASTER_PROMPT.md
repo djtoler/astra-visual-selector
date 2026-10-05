@@ -21,6 +21,8 @@ FIRST ACTIONS — before editing:
 
 1. Read the repository's AGENTS.md and media_workflows.md completely.
 2. Read every file in docs/p0-p2-gpt-6-1-sol-handoff/ completely.
+   `P0_FIXTURE_MIGRATION_AUTHORIZATION.md` contains the editor's scoped answer
+   to the pending `28-28` replay blocker and is authoritative for that issue.
 3. Verify the branch, working tree and every pinned hash in
    HANDOFF_MANIFEST.json. Do not silently continue from a different baseline.
    The default `../patterns-storypackage-review` checkout is dirty and is not at
@@ -92,6 +94,14 @@ authority and not permission to import its unverified totals.
 P0 passes only when the new fixtures demonstrably fail against the frozen
 baseline for the intended reason, mutation controls fail closed, original
 artifacts remain byte-identical, and the P0 receipt is reproducible.
+
+For the historical `28-28` artifact specifically, follow
+`docs/p0-p2-gpt-6-1-sol-handoff/P0_FIXTURE_MIGRATION_AUTHORIZATION.md`. The
+editor authorizes a separately versioned deterministic fixture migration after
+the original effective live inventory was found unrecoverable. Preserve the
+legacy report byte-for-byte, bind the complete new fixture inputs, retain all
+11 intended target failures and four integrity controls, and make no production
+matching change during P0.
 
 P1 — CONTENT- AND COVERAGE-VALIDATED BINDINGS
 
