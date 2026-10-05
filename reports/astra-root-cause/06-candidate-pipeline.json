@@ -54,72 +54,72 @@
   "stagesEvaluatedSeparately": [
     {
       "stage": 1,
-      "name": "Eligibility and scope filtering",
-      "implementation": "pipeline/media_candidates.py ok()/eligible pool; grammar/eligibility-overrides.json; binding record scope field",
-      "finding": "Eligibility is a pool filter applied before any capability reasoning. grammar/eligibility-overrides.json carries dated, attributed user admissions that override generated gates (selectorEligible false and catalogStatus reference_only_*), which is the correct place for such a decision. The binding scope field is observed only as 'lyrics' and _supports_operation rejects any record whose scope is set and is not the lyrics case, so scope is a narrow but real hard filter.",
-      "observedLoss": "none measurable at this stage from the committed artifacts",
+      "name": "Retrieval and eligibility",
+      "implementation": "media_candidates.py eligible pool; eligibility-overrides.json; binding scope field",
+      "finding": "Pool filter before capability reasoning; dated attributed overrides are the right mechanism.",
+      "observedLoss": "none measurable",
       "failureTypes": []
     },
     {
       "stage": 2,
       "name": "Structured capability admission",
-      "implementation": "pipeline/visualtask_matching.py _supports_operation and _presentation_candidates",
-      "finding": "Admission is driven by the single primary presentation operation against the structured capability record, never by prose or tags. It is generous in practice: the gallery holds 4896 candidate cards across 310 future-volksgeist tasks and 310 of 310 tasks have at least one candidate, with zero tasks left empty. Median admitted family count on focused tasks is 61 for future-volksgeist and 41 for jayz-drake.",
-      "observedLoss": "notAdmittedCatalogFamilies has a median of 38 of 97 catalog families for future-volksgeist and 61 of 97 for jayz-drake. Across the 38 fully-traced reviewed tasks, however, NOT ONE editor-requested family class fell in the not-admitted set, so no admission_error was evidenced.",
+      "implementation": "visualtask_matching._supports_operation / _presentation_candidates",
+      "finding": "Generous. 4896 candidate cards over 310 future-volksgeist tasks, 310 of 310 with at least one candidate. Median admitted families 61 (future-volksgeist) and 41 (jayz-drake).",
+      "observedLoss": "Across the 38 tasks with COMPLETE lineage, not one editor-requested family class fell in notAdmittedCatalogFamilies.",
       "failureTypes": [
-        "admission_error (0 evidenced)"
+        "admission_error (0 evidenced, scoped to the 38 complete tasks)"
       ]
     },
     {
       "stage": 3,
-      "name": "Feasibility and unresolved native fit",
-      "implementation": "pipeline/visualtask_batch_matching.py _candidate_fit and _template_result",
-      "finding": "Feasibility is a separate later pass and is deliberately conservative. Job 3 measured the 41-task run as templateVerdicts conditional 40 and incompatible 1, with zero native_fit, and Job 5 established why: any required media, text or typed data forces conditional because layer counts are explicitly not accepted as proof. The diversity artifact restates the boundary: 'An admitted family is eligible for editor review only; this report does not establish native fit.'",
-      "observedLoss": "feasibility_unknown is the normal state rather than an exception. This is honest, and it also means feasibility cannot rank or filter the slate, so the editor receives candidates whose fit is undetermined.",
+      "name": "Feasibility and native fit",
+      "implementation": "visualtask_batch_matching._candidate_fit / _template_result",
+      "finding": "conditional 40, incompatible 1, zero native_fit on the 41-task Year Seventeen run.",
+      "observedLoss": "feasibility_unknown is the normal state by design.",
       "failureTypes": [
         "feasibility_unknown (systemic, by design)"
       ],
-      "resolvesUE16": "Job 3 UE-16 asked whether 40 of 41 conditional reflects honest uncertainty or a matcher that cannot conclude. Answer: honest uncertainty, structurally. The conditional verdict is forced by a stated evidentiary rule, not by an inability to compute; and Job 5 showed native editability is unknown for all 442 capability records, so a native_fit claim would be unsupported."
+      "scope": "measured on the Year Seventeen corpus only"
     },
     {
       "stage": 4,
       "name": "B-roll and no-template routing",
-      "implementation": "pipeline/matching_agent.py _route_plan; routeDisposition.brollFallbackAvailable",
-      "finding": "The produced route vocabulary is template_review 64 and broll 18, and brollFallbackAvailable is true on every task. media_candidates.py:7 states that a beat with no candidates is a FINDING rather than a failure, which is the right posture.",
-      "observedLoss": "none. In 16 of the 59 reviewed tasks the editor explicitly names b-roll or no-template as the correct route, and the route exists. These are typed valid_no_template_outcome and are NOT counted as pipeline failures.",
+      "implementation": "matching_agent._route_plan; routeDisposition.brollFallbackAvailable",
+      "finding": "NO ROUTE EVIDENCE EXISTS FOR THE REVIEWED TASKS. ordered-visual-route-plan.json holds 41 scenes, all of them grammar/visual-tasks.json ids (Year Seventeen), with 32 template_review and 9 broll. It covers 0 of 59 reviewed tasks.",
+      "observedLoss": "Undetermined for the reviewed set. 16 reviewed tasks carry an editor b-roll request and none has an observed route. Template candidates WERE still displayed on all 16, each with a gallery slate.",
       "failureTypes": [
-        "valid_no_template_outcome (16, not failures)"
-      ]
+        "forced_template (UNDETERMINED for the reviewed set; not evidenced either way)"
+      ],
+      "recordedAs": "UE-36"
     },
     {
       "stage": 5,
-      "name": "Family and variant deduplication and diversity",
-      "implementation": "pipeline/focused_candidate_diversity.py",
-      "finding": "The diversity pass measurably improves family variety: unique families across focused slates rise from 58 to 94 for future-volksgeist and 59 to 94 for jayz-drake. It achieves this by deduplicating to the FAMILY level.",
-      "observedLoss": "This is where the audit's primary finding sits. Deduplication is total: across all 484 slates in both packages, every family appears EXACTLY ONCE, with max variants-per-family of 1 on every task. 36 of 97 catalog families have more than one variant, and 32 of those 36 have variants that differ in slots_at_once, readable or structure. Variant is therefore where slot count and readability live, and variant choice never reaches the editor.",
+      "name": "Family ordering",
+      "implementation": "C.diversify family selection; focused_candidate_diversity strategy eight_primary_plus_eight_least_exposed_admitted_families",
+      "finding": "Two ordering halves with different signals. Displayed exposures on jayz-drake p04-4-03 span 3 to 136, so the first eight are diversify-ranked and the second eight are low-exposure exploration.",
+      "observedLoss": "ordering_loss. The pie family ranked outside both halves: exposure 24 slates, 27th of 41 by ascending exposure, against twelve admitted families at zero exposure.",
       "failureTypes": [
-        "variant_collapse (systemic)",
-        "family_duplication (4 editor-flagged)"
+        "ordering_loss"
       ]
     },
     {
       "stage": 6,
-      "name": "Relevance ordering",
-      "implementation": "pipeline/visualtask_matching.py _rel and relevanceOrdering; storypackage_candidate_gallery.py",
-      "finding": "Ordering is explicitly and repeatedly fenced off from admission and fit. Candidate rows carry relevanceOrdering with scope 'ordering_only_not_admission_or_fit' (visualtask_matching.py:271) and the gallery declares 'ordering_only_not_admission_fit_selection_or_rendering' (storypackage_candidate_gallery.py:90). The ordering source is named as local-macos-natural-language.",
-      "observedLoss": "No ordering_loss was evidenced: because display takes a fixed 16 families by an explicit strategy rather than by a score cut, ordering does not silently drop a candidate.",
+      "name": "Variant ordering within a family",
+      "implementation": "match-trial/candidates.py _within_family (line 682), reached via visualtask_matching.py:304 C.diversify",
+      "finding": "A real eight-key ranking: (picked, enc, fit, clear, declared, rel, still, id). Only id is arbitrary and the docstring says so. FAM_MAX=1 is an intentional review-budget policy.",
+      "observedLoss": "variant_collapse, but only where a materially better variant existed. Proven on future-volksgeist p03-2-01.",
       "failureTypes": [
-        "ordering_loss (0 evidenced)"
+        "variant_collapse (proven on the named cases, not on every one-variant slate)"
       ]
     },
     {
       "stage": 7,
-      "name": "Candidate display limits and focused-review sampling",
-      "implementation": "pipeline/focused_candidate_diversity.py displayLimit and slideshowLimit; focused_review_queue.py",
-      "finding": "displayLimit is 16 on every focused task in both packages and slideshowLimit is 6 on every one. The sampling strategy is the same everywhere: eight_primary_plus_eight_least_exposed_admitted_families. The focused queue is editor-approved and records fullQueuePreserved.",
-      "observedLoss": "The largest numeric loss in the pipeline. Hidden admitted family appearances total 1186 for future-volksgeist across 26 focused tasks and 1024 for jayz-drake across 33, i.e. 2210 in all, and EVERY focused task in both packages has hidden admitted families. Display retention is 25 percent of admitted families for future-volksgeist and 31 percent for jayz-drake: the editor sees about 16 of a median 61.",
+      "name": "Display cap and focused-review sampling",
+      "implementation": "displayLimit 16 and slideshowLimit 6; focused_review_queue",
+      "finding": "Uniform: 16 and 6 on every focused task in both packages, with no stated derivation.",
+      "observedLoss": "2210 hidden admitted family appearances across 59 focused tasks. The cap ENFORCES what ordering already decided; it is the first divergence only where ordering placed a family inside a surviving half and the cap still cut it, which was not observed.",
       "failureTypes": [
-        "display_loss (3 evidenced against an editor request; systemic in magnitude)"
+        "display_loss (0 evidenced as a FIRST divergence; systemic in magnitude)"
       ]
     }
   ],
@@ -129,51 +129,34 @@
     "contract_gap": "the task never carried the information needed to request the right family",
     "admission_error": "a catalog family that could serve the request was not admitted",
     "feasibility_unknown": "fit could not be established, so the candidate reaches the editor undetermined",
-    "ordering_loss": "a candidate was admitted and displaced below the display cut by ordering",
-    "display_loss": "a family was admitted and then withheld by the display limit",
+    "ordering_loss": "a family was admitted and the ordering strategy placed it outside every surviving slot; the first divergence is ordering even though a cap enforced it",
+    "display_loss": "ordering placed a family inside a surviving slot and the cap removed it anyway; non-overlapping with ordering_loss",
     "family_duplication": "one family recurs across slates so that the slate reads as repetitive",
     "forced_template": "a template route was proposed where no template was the right answer",
-    "variant_collapse": "NEWLY DEFINED BY THIS JOB. The right family reached the editor, but display deduplicates to one variant per family, so the specific variant whose slot count or readability the beat needs is unreachable. Distinct from display_loss, which withholds a whole family, and from metadata_gap, because the capability record is adequate and simply never consulted at variant granularity.",
+    "variant_collapse": "the right family reached the editor and a materially better variant existed that the system could not expose. Proven only where both hold; a one-variant-per-family slate alone is an intentional review-budget policy, not a failure",
     "displayed_but_rejected": "DEFINED BY THIS JOB for honesty. The requested family class WAS displayed and the editor still judged the slate inadequate. This is not a retrieval, admission, ordering or display failure and must not be counted as one.",
     "valid_no_template_outcome": "the editor names b-roll or no template as correct; a right answer, not a failure",
-    "lineage_incomplete": "the task has no focused-diversity record, so admitted and hidden sets are unknown"
+    "lineage_incomplete": "the task has no focused-diversity record, so admitted and hidden sets are unknown",
+    "sibling_propagation_loss": "_siblings is computed by the variant ranker and dropped by template_candidates() before publication, so the ranked alternatives reach no artifact or review surface"
   },
   "failureClassificationCounts": {
     "displayed_but_rejected": 38,
     "family_duplication": 4,
     "lineage_incomplete": 1,
     "valid_no_template_outcome": 16,
-    "display_loss": 3
+    "ordering_loss": 4
   },
   "primaryFinding": {
     "id": "PF-1",
-    "type": "variant_collapse",
-    "statement": "Good candidates mostly do not disappear at retrieval, admission or ordering. They disappear at display, in two distinct ways: whole families are withheld by a fixed 16-family cap, and within every family that does appear only one arbitrary variant is shown.",
+    "type": "sibling_propagation_loss",
+    "statement": "The variant ranker works and the review-budget cap is deliberate. The defect is that the sibling list built to make that cap recoverable is dropped one function before publication.",
     "proof": [
-      "Across all 484 slates in both packages every family appears exactly once; max variants-per-family is 1 on every task.",
-      "36 of 97 catalog families have more than one variant, and 32 of those 36 differ in slots_at_once, readable or structure.",
-      "Hidden admitted family appearances total 2210 across 59 focused tasks, and every focused task has some.",
-      "Display retention is 25 percent for future-volksgeist and 31 percent for jayz-drake."
+      "_within_family ranks on eight keys; only the last is arbitrary and the docstring names it.",
+      "match-trial/candidates.py:800 computes r[\"_siblings\"] as the rest of the ranked family.",
+      "visualtask_matching.template_candidates() returns a dict without _siblings.",
+      "_siblings appears in no file under reports/.",
+      "The code comment at match-trial/candidates.py:795-799 already records 429 hidden siblings across 40 beats and that the editor raised \"right family, wrong scene\" twice."
     ],
-    "editorEvidenceThatNamesIt": [
-      {
-        "taskId": "future-volksgeist.proposal.matching-derived-p03-2-01",
-        "quote": "intro-slideshow-full-720p--scene-012 is a good selection as well but shouldve shown the version with 2-3 cards, not 6 ... 2 slots would be prefered",
-        "reading": "the family was displayed and the editor names the wrong slot count on the displayed variant"
-      },
-      {
-        "taskId": "future-volksgeist.proposal.matching-derived-p03-6-04 and -p03-6-05",
-        "quote": "06-the-history--scene-001 wouldve been perfect",
-        "verifiedLineage": "The family 06-the-history WAS displayed on both tasks, so this is not a display_loss of the family. What was displayed was --scene-005 on p03-6-04 and --scene-006 on p03-6-05. The editor asked for --scene-001, whose readable set is label and exact_value; neither displayed variant carries label. The family has 11 variants spanning slots_at_once 1 and 2 and structures single, pair and sequence.",
-        "reading": "the clearest single proof of variant_collapse in the corpus"
-      },
-      {
-        "taskId": "jayz-drake-settle-it.proposal.matching-derived-p02-2-03",
-        "quote": "base-single-billboard has double and triple hero ver[sions]",
-        "reading": "the editor reasons natively in variants; the slate does not expose them"
-      }
-    ],
-    "relationToJob5": "This confirms Job 5's missing concept MC-4, item_range, and upgrades it from a proposal to an evidenced need. Job 5 observed that a cohort of 14 and a cohort of 3 are indistinguishable in capability terms because growable is a bare boolean, null on 90 records. Job 6 now has the editor naming slot count as the deciding factor on four separate tasks.",
     "attribution": "matching"
   },
   "provenDisplayLoss": {
@@ -187,24 +170,34 @@
   },
   "whatIsNotTheProblem": [
     {
-      "claim": "good candidates are filtered out by admission",
-      "verdict": "NOT SUPPORTED",
-      "basis": "Across the 38 fully-traced reviewed tasks, not one editor-requested family class fell in notAdmittedCatalogFamilies. All six family classes the editor names, screen or document, comparison, portrait or intro, slideshow, timeline and evidence, exist in the 97-family catalog, so not_in_catalog is also unsupported for those requests."
+      "claim": "the displayed variant is chosen arbitrarily",
+      "verdict": "WITHDRAWN",
+      "basis": "_within_family ranks on eight keys; only the final id tiebreak is arbitrary and the code says so."
     },
     {
-      "claim": "ordering drops good candidates",
-      "verdict": "NOT SUPPORTED",
-      "basis": "Display takes a fixed 16 families by an explicit stated strategy rather than by a score cut, and ordering carries an explicit scope that excludes admission and fit. No ordering_loss was evidenced."
+      "claim": "one variant per family is itself a failure",
+      "verdict": "WITHDRAWN",
+      "basis": "FAM_MAX=1 is an intentional review-budget policy with a stated reason in the code."
+    },
+    {
+      "claim": "ordering causes no loss",
+      "verdict": "WITHDRAWN",
+      "basis": "the pie-chart case is ordering_loss; the cap only enforced what ordering decided."
+    },
+    {
+      "claim": "forced_template is unsupported",
+      "verdict": "WITHDRAWN FOR THE REVIEWED SET",
+      "basis": "no reviewed task has an observed route; the route artifact covers Year Seventeen only."
+    },
+    {
+      "claim": "good candidates are filtered out by admission",
+      "verdict": "STILL NOT SUPPORTED, NOW SCOPED",
+      "basis": "holds across the 38 tasks with complete lineage; the 21 incomplete tasks are excluded."
     },
     {
       "claim": "the slate is dominated by repeated families",
-      "verdict": "PARTIALLY SUPPORTED, AND NARROWER THAN EXPECTED",
-      "basis": "The editor flags recurrence on 4 of 59 reviewed tasks, most sharply 'the selected carousel that keeps coming up and is usually irelevant finnaly is acceptable'. Against that, family deduplication is total within a slate and the diversity pass raises unique families from 58 to 94. The repetition the editor perceives is ACROSS slates, not within one, and the least-exposed-family half of the sampling strategy is the mechanism intended to address it."
-    },
-    {
-      "claim": "the system forces a template where none belongs",
-      "verdict": "NOT SUPPORTED",
-      "basis": "brollFallbackAvailable is true on every task, the broll route is produced 18 times, and media_candidates.py states that a beat with no candidates is a finding rather than a failure. In the 16 reviewed tasks where the editor names b-roll the route exists. No forced_template instance was evidenced."
+      "verdict": "PARTIALLY SUPPORTED",
+      "basis": "4 of 59 tasks flag recurrence; dedup is total within a slate and variety rises 58 to 94."
     }
   ],
   "acceptanceVerification": {
@@ -220,22 +213,19 @@
       "auditDiscipline": "This job reports each of the seven stages separately with its own measured loss and never aggregates them into a single score or rate."
     },
     "historicalEditorChoiceDoesNotAdmit": {
-      "verdict": "SATISFIED",
-      "evidence": [
-        "pipeline/visualtask_matching.py contains no reference to prior, historical or carried choices; admission reads only the capability record.",
-        "pipeline/carry_prior_route_choices.py operates only on rows already at route template_review (line 41) and converts the route to template with a candidateId the editor already chose; it adds no candidate to any slate.",
-        "pipeline/visualtask_batch_matching.py treats prior-review reconciliation through _review_only (line 182) and as a named source, never as an admission input."
+      "verdict": "SATISFIED FOR ADMISSION, WITH AN ORDERING INFLUENCE NOW STATED",
+      "admissionEvidence": [
+        "visualtask_matching admits only from the structured capability record and has no prior-choice reference.",
+        "carry_prior_route_choices acts only on rows already at template_review and adds no candidate.",
+        "visualtask_batch_matching treats prior-review reconciliation as _review_only."
       ],
-      "note": "Job 1 AF-05 separately flagged that the harness gates baseline_reconciliation on a hardcoded total of 107, which is a generality risk but not an admission path."
+      "orderingInfluenceFound": "_within_family's first and strongest sort key is \"picked = honor_global_picks and r[id] not in _picked_ids()\", so a previously selected record sorts FIRST within its family, and visualtask_matching.py:311 passes honor_global_picks=not task.get(\"ignorePriorSelections\", False), on by default.",
+      "reading": "Prior editor choice does not ADMIT a candidate, which is what the acceptance check asks, but it does ORDER one. The published basis implied no influence anywhere; that is corrected here (C6-5). The task-level override ignorePriorSelections exists and is surfaced as ignoredPriorStorySelections in the candidate provenance."
     },
     "noTemplateRemainsValid": {
-      "verdict": "SATISFIED",
-      "evidence": [
-        "brollFallbackAvailable true on every task; broll route produced 18 times against template_review 64",
-        "media_candidates.py:7 states that a beat with no candidates is a FINDING rather than a failure",
-        "16 of 59 reviewed tasks carry an editor request for b-roll or no template and are typed valid_no_template_outcome, explicitly NOT counted as failures"
-      ],
-      "auditDiscipline": "No finding in this job treats the absence of a template as a defect."
+      "verdict": "SATISFIED AS AN AUDIT DISCIPLINE; NOT VERIFIED AS A ROUTE OUTCOME",
+      "auditDiscipline": "16 reviewed tasks carry an editor b-roll request, typed valid_no_template_outcome and excluded from failure counts by definition. No finding in this job treats the absence of a template as a defect.",
+      "routeOutcomeNotVerified": "Whether those 16 were actually routed to b-roll is undetermined: no reviewed task appears in the route plan (UE-36). The published claim rested on a global fallback flag and a miscounted route total."
     },
     "noCodeChanges": {
       "verdict": "SATISFIED",
@@ -244,36 +234,53 @@
   },
   "unresolvedEvidence": [
     {
-      "id": "UE-32",
-      "item": "displayLimit 16 and slideshowLimit 6 are uniform across every focused task in both packages and no artifact states their derivation. Whether 16 is an editor preference, a UI constraint or an arbitrary default is not determinable here, and it is the single highest-leverage number in the pipeline.",
-      "owner": "matching",
-      "handTo": "07-human-evidence-and-reference-evaluation"
-    },
-    {
-      "id": "UE-33",
-      "item": "The focused-review queue covers 26 of 310 future-volksgeist tasks and 33 of 186 jayz-drake tasks. coverageBasis has 5 entries but the sampling rationale for which tasks enter focused review is not reconstructable from the artifact alone.",
-      "owner": "matching",
-      "handTo": "07-human-evidence-and-reference-evaluation"
-    },
-    {
-      "id": "UE-34",
-      "item": "21 of 47 reviewed future-volksgeist tasks have no focused-diversity record, so their admitted and hidden family sets are unknown and their findings are typed lineage_incomplete.",
+      "id": "UE-36",
+      "item": "No reviewed task has an observed route. ordered-visual-route-plan.json covers only the 41 Year Seventeen tasks, so b-roll and no-template routing is unverified for all 59 reviewed tasks and for the 16 where the editor asked for it.",
       "owner": "matching",
       "handTo": "08-integrated-root-cause-and-redesign"
     },
     {
-      "id": "UE-35",
-      "item": "The editor twice named 06-the-history--scene-001 as perfect while the family was displayed under a different scene. Whether the editor could see which variant was offered, i.e. whether the review surface shows the variant id, cannot be established from these artifacts and bears directly on how to read every 'no good candidates' comment.",
+      "id": "UE-37",
+      "item": "_encfit, _capfit and _rel are annotated during a live retrieval run and recorded in no committed artifact, so the ranked order of variants within a family cannot be replayed from the pinned inputs. The displayed variant, the existence of better variants, and the severing of _siblings are all established without them.",
+      "owner": "matching",
+      "handTo": "08-integrated-root-cause-and-redesign"
+    },
+    {
+      "id": "UE-38",
+      "item": "match-trial/candidates.py is load-bearing for diversification and variant ranking yet appears nowhere in REFERENCE_MANIFEST.md's declared transformation path, which is why Job 6 first missed it. The manifest understates the audited surface.",
       "owner": "you",
-      "handTo": "07-human-evidence-and-reference-evaluation"
+      "handTo": "editor; affects Job 8 scope"
+    },
+    {
+      "id": "UE-32",
+      "item": "displayLimit 16 and slideshowLimit 6 are uniform with no stated derivation.",
+      "owner": "matching",
+      "handTo": "Job 8"
+    },
+    {
+      "id": "UE-33",
+      "item": "Focused review covers 26/310 and 33/186 tasks; the sampling rationale is not reconstructable.",
+      "owner": "matching",
+      "handTo": "Job 8"
+    },
+    {
+      "id": "UE-34",
+      "item": "21 of 47 reviewed future-volksgeist tasks have no committed lineage and could not be reconstructed.",
+      "owner": "matching",
+      "handTo": "Job 8"
+    },
+    {
+      "id": "UE-35",
+      "item": "Whether the review surface shows the variant id cannot be established here, and it now matters more: _siblings never reaches the surface either way.",
+      "owner": "you",
+      "handTo": "Job 8"
     },
     {
       "id": "UE-26",
-      "status": "carried from Job 4, still open",
-      "item": "Mixed-payload handling has no effective consumer.",
+      "status": "carried",
+      "item": "Mixed-payload handling has no consumer; no split route is produced in any artifact.",
       "owner": "matching",
-      "handTo": "08-integrated-root-cause-and-redesign",
-      "job6Note": "Job 6 adds that no split route is produced in any artifact: the route vocabulary is template_review and broll only. Three reviewed tasks carry an editor request to split the beat, including 'beat should be split into 2', with no route able to express it."
+      "handTo": "Job 8"
     }
   ],
   "productionFilesModified": [],
@@ -289,27 +296,27 @@
     {
       "check": "Retrieval, admission, ordering and display are never collapsed into one score",
       "verdict": "PASS",
-      "basis": "The report evaluates all seven stages separately, each with its own implementation, finding, measured loss and failure types, and never aggregates them. The separation is also verified in the artifacts themselves: five distinct boundary statements are quoted, including retrieval_only_not_fit, ordering_only_not_admission_or_fit and the diversity boundary that an admitted family is eligible for editor review only and that fit is not established."
+      "basis": "Now seven separate lineage stages, with family ordering (5) and variant ordering (6) split out from the display cap (7), and ordering_loss and display_loss defined as non-overlapping first divergences. Five boundary statements are still quoted from the artifacts. No stage is aggregated into a score."
     },
     {
       "check": "Historical editor choice does not admit a new-story candidate",
       "verdict": "PASS",
-      "basis": "Verified in code at three sites: the matcher has no reference to prior or carried choices and admits only from the capability record; carry_prior_route_choices acts only on rows already routed to template_review and adds no candidate; and the batch matcher treats prior-review reconciliation as review-only input. The audit's own oracle discipline matches: the editor's decisions are used to judge slates they were made against, never to admit a candidate elsewhere."
+      "basis": "Verified at three sites for ADMISSION, and the correction adds the ordering influence the published version implied away: prior picks are the first sort key inside a family, on by default. Admission is unaffected, which is what the check asks; the distinction is now stated rather than elided."
     },
     {
       "check": "No template remains a valid correct outcome",
-      "verdict": "PASS",
-      "basis": "16 of 59 reviewed tasks carry an explicit editor request for b-roll or no template and are typed valid_no_template_outcome, excluded from failure counts by definition. brollFallbackAvailable is true on every task and the broll route is produced 18 times. forced_template is explicitly recorded as NOT SUPPORTED, with the media_candidates statement that a beat with no candidates is a finding rather than a failure."
+      "verdict": "PASS as audit discipline, with the route outcome explicitly unverified",
+      "basis": "16 b-roll requests are typed valid_no_template_outcome and excluded from failure counts; nothing treats a missing template as a defect. The separate claim that routing handled them correctly is WITHDRAWN, because no reviewed task has an observed route (UE-36)."
     },
     {
       "check": "No code changes are made",
       "verdict": "PASS",
-      "basis": "All analysis was read-only over committed artifacts and module inspection. git status shows only the two Job 6 report files; no production, grammar, evidence, gold-reference or earlier job output was modified."
+      "basis": "Read-only throughout, including the newly opened match-trial/candidates.py. The diff touches only the two Job 6 artifacts and the canonical correction file."
     }
   ],
   "result_detail": {
-    "headline": "Good candidates do not disappear at retrieval, admission or ordering. They disappear at display, twice over.",
-    "oneLine": "A fixed 16-family cap hides 2210 admitted family appearances across 59 focused tasks, and within every family that does survive only one arbitrary variant is shown, although 32 of 36 multi-variant families differ in exactly the slot count and readability the editor names as deciding."
+    "headline": "Corrected. The variant ranker works, the display cap is deliberate, and the real defect is a severed sibling list. Ordering, not the cap, is where the pie chart was lost.",
+    "oneLine": "_within_family ranks variants on eight keys and builds _siblings so the editor can reach the rest of the family; template_candidates() drops it before publication, so it reaches no artifact - and the code comment already recorded 429 hidden siblings and the editor saying \"right family, wrong scene\" twice."
   },
   "reviewedTaskLineage": {
     "requirement": "For every reviewed task used, the complete candidate lineage with editor response.",
@@ -4310,8 +4317,8 @@
         "findings": [
           {
             "requestedClass": "portrait_or_intro",
-            "failureType": "display_loss",
-            "detail": "3 portrait_or_intro family/families were ADMITTED but hidden by the display limit: ['02-documentary-promo', 'intro-slideshow-full-720p', '18_cutout_intro']",
+            "failureType": "ordering_loss",
+            "detail": "3 portrait_or_intro family/families were ADMITTED, then placed outside every surviving slot by the ordering strategy; the 16-family cap only enforced it: ['02-documentary-promo', 'intro-slideshow-full-720p', '18_cutout_intro'] | reclassified display_loss -> ordering_loss per correction C6-1",
             "catalogFamiliesInClass": 7
           },
           {
@@ -4925,8 +4932,8 @@
           },
           {
             "requestedClass": "evidence_or_quote",
-            "failureType": "display_loss",
-            "detail": "1 evidence_or_quote family/families were ADMITTED but hidden by the display limit: ['14_quote_score_columns']",
+            "failureType": "ordering_loss",
+            "detail": "1 evidence_or_quote family/families were ADMITTED, then placed outside every surviving slot by the ordering strategy; the 16-family cap only enforced it: ['14_quote_score_columns'] | reclassified display_loss -> ordering_loss per correction C6-1",
             "catalogFamiliesInClass": 1
           },
           {
@@ -5868,8 +5875,8 @@
           },
           {
             "requestedClass": "text_or_question",
-            "failureType": "display_loss",
-            "detail": "3 text_or_question family/families were ADMITTED but hidden by the display limit: ['25_career_value_list', '27_rank_context_panel', '38_matchup_win_list']",
+            "failureType": "ordering_loss",
+            "detail": "3 text_or_question family/families were ADMITTED, then placed outside every surviving slot by the ordering strategy; the 16-family cap only enforced it: ['25_career_value_list', '27_rank_context_panel', '38_matchup_win_list'] | reclassified display_loss -> ordering_loss per correction C6-1",
             "catalogFamiliesInClass": 8
           }
         ]
@@ -6658,6 +6665,12 @@
             "failureType": "valid_no_template_outcome",
             "detail": "the editor names b-roll or no-template as the right route; this is a correct outcome, not a pipeline failure",
             "catalogFamiliesInClass": null
+          },
+          {
+            "requestedClass": "proportion_pie",
+            "failureType": "ordering_loss",
+            "detail": "3d-pie-chart-set was admitted, then placed outside BOTH halves of the eight_primary_plus_eight_least_exposed ordering, and only then met the 16-family cap. First divergence is ordering, not display.",
+            "catalogFamiliesInClass": 1
           }
         ]
       },
@@ -7282,5 +7295,192 @@
         ]
       }
     ]
+  },
+  "resultStatus": "corrected_after_editor_review",
+  "correctionRound": 1,
+  "correctionRequest": {
+    "artifact": "docs/astra-root-cause/CORRECTION_REQUESTS.md",
+    "openedAfterCommit": "a898f8f",
+    "accepted": "in full; all four items were correct, and item 2 pointed at a module this job never opened"
+  },
+  "corrections": [
+    {
+      "id": "C6-1",
+      "request": "Ordering loss was declared zero merely because display cuts by a fixed count rather than a scalar score.",
+      "action": "Accepted and reclassified. The 16-family cut is applied AFTER an explicit ordering strategy, eight_primary_plus_eight_least_exposed_admitted_families, and that ordering decides which admitted families survive. Traced for the pie-chart case on jayz-drake p04-4-03: 41 families admitted, 16 displayed, 25 hidden. 3d-pie-chart-set has an exposure of 24 slates and ranks 27th of 41 by ascending exposure, while twelve admitted families had ZERO exposure, so it was nowhere near the least-exposed half; and it did not rank in the eight primary diversify-ranked slots. The displayed sixteen span exposures 3 to 136, confirming the two halves have different ordering signals. It therefore became unavailable at ORDERING, not at the cap: had either half ranked it, the same 16-family cap would have kept it. The case is reclassified from display_loss to ordering_loss, and the two are now defined as non-overlapping first divergences.",
+      "verdict": "corrected_classification_changed"
+    },
+    {
+      "id": "C6-2",
+      "request": "The variant-selection mechanism was described as arbitrary with no way to choose the right variant; C.diversify ranks variants and computes _siblings, which template_candidates omits.",
+      "action": "Accepted; the published description was wrong and the request named code this job never opened. The ranking lives in match-trial/candidates.py, reached through visualtask_matching.py:18 \"import candidates as C\" after sys.path.insert of ROOT/match-trial, and called at visualtask_matching.py:304 as C.diversify(...). _within_family (match-trial/candidates.py:682) returns an eight-key sort tuple: (picked, enc, fit, clear, declared, rel, still, id) - prior user pick, encoding fit, declared capacity fit, binding verdict clear over conditional, declared subject capacity, negated relevance, clip over still, then id. Only the LAST key is arbitrary and the docstring names it as such, so \"arbitrary representative\" is withdrawn. FAM_MAX=1 showing one representative per family is an intentional review-budget policy with a stated reason, so a one-variant-per-family slate is NOT by itself a failure. The real defect is narrower and is proven below.",
+      "verdict": "corrected_mechanism_rewritten"
+    },
+    {
+      "id": "C6-3",
+      "request": "Lineage coverage: 59 tasks used but 21 lack admitted/hidden sets while only one finding was typed lineage_incomplete, obscuring the task-level gap.",
+      "action": "Accepted. The two counts are now reported separately and never substituted for one another: 59 reviewed tasks, 38 with COMPLETE committed lineage, 21 INCOMPLETE tasks, against 1 lineage_incomplete FINDING. Reconstruction was attempted and is not available from committed artifacts: all 21 have a post-cut gallery slate, but 0 of 21 carry admittedFamilyCount or hiddenAdmittedFamilies, and the pre-cut admitted set requires re-running admission with exhaustive_families=True, which no committed artifact records for these tasks. They are therefore marked incomplete and excluded from every conclusion requiring admission, hidden-family or first-divergence evidence. Verified that this exclusion changes no classification: zero findings on those 21 tasks rested on admitted, hidden or ordering evidence.",
+      "verdict": "corrected_scope_tightened"
+    },
+    {
+      "id": "C6-4",
+      "request": "B-roll routing was concluded from a global fallback flag and a route count, not from the actual route of the 16 reviewed tasks where the editor asked for b-roll.",
+      "action": "Accepted, and this exposed the most serious error in the published job. reports/ordered-visual-route-plan.json holds 41 scenes whose taskIds are all 41 ids of grammar/visual-tasks.json - the Year Seventeen corpus - and it covers 0 of the 59 reviewed future-volksgeist and jayz-drake tasks. So NONE of the 16 b-roll-request tasks has any observed route outcome at this baseline. The published route counts were also wrong: they were collected by globbing reports/*route*.json and double-counted; the plan actually holds 32 template_review and 9 broll, not 64 and 18. The conclusion that forced_template is unsupported is WITHDRAWN for the reviewed set and re-scoped to the Year Seventeen corpus, which is the only corpus with route evidence. Recorded unresolved as UE-36.",
+      "verdict": "corrected_conclusion_withdrawn"
+    },
+    {
+      "id": "C6-5",
+      "request": "Not raised by the request; found while verifying item 2.",
+      "action": "The published acceptance basis for \"historical editor choice does not admit a new-story candidate\" was correct about ADMISSION but overstated. _within_family's first and strongest sort key is \"picked = honor_global_picks and r[id] not in _picked_ids()\", so a previously selected record sorts FIRST within its family, and visualtask_matching.py:311 passes honor_global_picks=not task.get(\"ignorePriorSelections\", False), i.e. ON by default. Prior editor choice does not ADMIT a candidate, which the acceptance check asks, but it does ORDER one. The acceptance basis is rewritten to state that distinction explicitly rather than implying prior choice has no influence anywhere.",
+      "verdict": "corrected_beyond_request"
+    }
+  ],
+  "orderingVersusDisplay": {
+    "rule": "ordering_loss and display_loss are non-overlapping first divergences. ordering_loss is assigned when a family was admitted and the ordering strategy placed it outside every surviving slot. display_loss is assigned only when ordering placed a family inside a surviving slot and the cap removed it anyway.",
+    "pieChartTrace": {
+      "task": "jayz-drake-settle-it.proposal.matching-derived-p04-4-03",
+      "editorRequest": "this first part of this beat calls for a pie chart to show porportion. none are good for that.",
+      "admittedFamilies": 41,
+      "displayed": 16,
+      "hidden": 25,
+      "strategy": "eight_primary_plus_eight_least_exposed_admitted_families",
+      "familyPositionPreCut": "3rd of 25 in the hidden list",
+      "exposureOfPieFamily": 24,
+      "exposureRankAscendingAmongAdmitted": "27th of 41",
+      "familiesAtZeroExposure": 12,
+      "displayedExposureSpread": [
+        3,
+        3,
+        3,
+        8,
+        10,
+        11,
+        20,
+        25,
+        44,
+        58,
+        58,
+        61,
+        70,
+        76,
+        92,
+        136
+      ],
+      "orderingSignalsThatPlacedIt": "Not in the eight diversify-ranked primary slots, and far from the eight least-exposed slots at 24 slates against twelve families at zero.",
+      "firstStageUnavailable": "family ordering (stage 5)",
+      "reclassifiedFrom": "display_loss",
+      "reclassifiedTo": "ordering_loss"
+    },
+    "displayLossNowEvidenced": 0,
+    "note": "The 2210 hidden family appearances remain real and are the magnitude of what the editor never sees, but the cap enforces an ordering decision rather than making it. Calling that display_loss assigned the divergence one stage too late."
+  },
+  "variantCollapseRevised": {
+    "supersedes": "the published variant_collapse, which called the representative arbitrary and claimed no mechanism exists",
+    "mechanismAsActuallyImplemented": {
+      "rankingExists": true,
+      "location": "match-trial/candidates.py:682 _within_family",
+      "reachedFrom": "visualtask_matching.py:18 import candidates as C, after sys.path.insert(0, ROOT/\"match-trial\"); called at visualtask_matching.py:304",
+      "sortTuple": [
+        "picked - prior user selection sorts first",
+        "enc - _encfit encoding fit",
+        "fit - _capfit declared capacity fit",
+        "clear - binding verdict clear before conditional",
+        "declared - declares a subject capacity",
+        "rel - negated relevance score",
+        "still - a clip outranks a still",
+        "id - stable tiebreak, named arbitrary in the docstring"
+      ],
+      "onlyArbitraryKey": "id, the last of eight",
+      "oneRepresentativePerFamily": "FAM_MAX=1, an intentional review-budget policy with a stated reason in the code",
+      "designedEscapeHatch": "match-trial/candidates.py:800 sets r[\"_siblings\"] to the rest of the family, already ranked, specifically so the chosen row carries the alternatives."
+    },
+    "theCodeAlreadyDiagnosedThis": {
+      "quote": "FAM_MAX=1 was set after a slate came back 7 scenes from one pack - the cap is right, but it hides 429 bound siblings across 40 beats and the user has twice said \"right family, wrong scene\" with no way to reach the sibling.",
+      "location": "match-trial/candidates.py:795-799",
+      "reading": "The codebase names the exact defect this job rediscovered, quantifies it at 429 hidden siblings across 40 beats, and records that the editor raised it twice. The audit adds the downstream reason it still bites."
+    },
+    "theProvenDefect": {
+      "type": "sibling_propagation_loss",
+      "statement": "_siblings is computed and then dropped before publication. visualtask_matching.template_candidates() returns a row containing only candidateId, name, condition, bindingProvenance and candidateMatchingProvenance, so _siblings is not in the returned dict.",
+      "verified": "grep for _siblings across every file in reports/ returns nothing: it reaches no gallery, no diversity artifact, no review queue and therefore no review surface.",
+      "consequence": "The escape hatch the code built for exactly this complaint is severed one function before it would be published. The editor cannot reach the sibling because the sibling list never leaves the matcher.",
+      "firstDivergentStage": "variant ordering output, not variant ranking",
+      "attribution": "matching"
+    },
+    "provenCase": {
+      "task": "future-volksgeist.proposal.matching-derived-p03-2-01",
+      "editorRequest": "intro-slideshow-full-720p--scene-012 is a good selection as well but shouldve shown the version with 2-3 cards, not 6 ... 2 slots would be prefered",
+      "displayedVariant": {
+        "id": "intro-slideshow-full-720p--scene-012",
+        "slots_at_once": 6,
+        "slots_total": 6,
+        "structure": "grid"
+      },
+      "variantsInFamily": 38,
+      "materiallyBetterVariantsThatExist": [
+        {
+          "id": "intro-slideshow-full-720p--scene-015",
+          "slots_at_once": 3,
+          "slots_total": 3,
+          "structure": "sequence"
+        },
+        {
+          "id": "intro-slideshow-full-720p--scene-016",
+          "slots_at_once": 3,
+          "slots_total": 3,
+          "structure": "sequence"
+        },
+        {
+          "id": "intro-slideshow-full-720p--scene-002",
+          "slots_at_once": 1,
+          "slots_total": 2,
+          "structure": "sequence"
+        },
+        {
+          "id": "intro-slideshow-full-720p--scene-008",
+          "slots_at_once": 1,
+          "slots_total": 2,
+          "structure": "sequence"
+        }
+      ],
+      "whyThisMeetsTheBar": "A materially better variant demonstrably existed - the editor asked for 2 to 3 slots and the family contains both 3-slot sequences and 1-at-once/2-total sequences - and the system could not EXPOSE it, because _siblings carrying the other 37 is dropped at the return.",
+      "orderingKeysCaveat": "The exact per-variant key values (_encfit, _capfit, _rel) are annotated upstream during a live retrieval run and are not recorded in any committed artifact, so the ranked order of the 38 variants for this task cannot be replayed from the pinned inputs. What IS established from the committed data: the displayed variant, the existence of better-fitting variants, and the severing of _siblings. Recorded as UE-37."
+    },
+    "notAFailure": "A one-variant-per-family slate is not by itself a failure. FAM_MAX=1 is a deliberate review-budget policy. The failure is the dropped sibling list, which is what makes the policy unrecoverable for the editor."
+  },
+  "brollRoutingVerification": {
+    "requirement": "Verify the actual route for every reviewed b-roll/no-template task used in a routing conclusion.",
+    "result": "NO ROUTE EVIDENCE EXISTS FOR ANY REVIEWED TASK",
+    "routeArtifact": "reports/ordered-visual-route-plan.json",
+    "scenes": 41,
+    "routeDistribution": {
+      "template_review": 32,
+      "broll": 9
+    },
+    "taskIdIdentity": "all 41 scene taskIds are ids of grammar/visual-tasks.json, the Year Seventeen corpus",
+    "reviewedTasksCovered": 0,
+    "reviewedTasksTotal": 59,
+    "brollRequestTasks": 16,
+    "brollRequestTasksWithARoute": 0,
+    "templateCandidatesStillDisplayed": "yes on all 16; each has a gallery slate",
+    "publishedCountsWereWrong": "The published job reported template_review 64 and broll 18. Those came from globbing reports/*route*.json and reports/*ordered*.json and double-counting the plan against decision-derived rows. The plan holds 32 and 9.",
+    "conclusionWithdrawn": "forced_template \"not supported\" is withdrawn for the reviewed set. It can only be scoped to the Year Seventeen corpus, which is the sole corpus with observed routes, and the reviewed tasks are not in it.",
+    "firstDivergenceForEachMismatch": "Not determinable: a mismatch requires an observed route to compare against, and none exists for these tasks.",
+    "recordedAs": "UE-36"
+  },
+  "lineageCoverage": {
+    "reviewedTasksUsed": 59,
+    "tasksWithCompleteCommittedLineage": 38,
+    "tasksIncomplete": 21,
+    "incompleteByStory": {
+      "future-volksgeist": 21,
+      "jayz-drake": 0
+    },
+    "lineageIncompleteFindings": 1,
+    "countsAreDistinct": "21 INCOMPLETE TASKS is not the same number as 1 lineage_incomplete FINDING, and neither is used as if it were the other.",
+    "reconstructionAttempted": true,
+    "reconstructionResult": "Not available from committed artifacts. All 21 have a post-cut gallery slate, but 0 of 21 carry admittedFamilyCount or hiddenAdmittedFamilies, and the pre-cut admitted set requires re-running admission with exhaustive_families=True, which no committed artifact records for these tasks. No lineage was reconstructed, so none is labelled as reconstructed and no input digests are claimed.",
+    "exclusionApplied": "The 21 are excluded from every conclusion requiring admission, hidden-family or first-divergence evidence. Stage 2 and stage 5 findings are scoped to the 38 complete tasks.",
+    "exclusionChangesNoClassification": "Verified: zero findings on the 21 incomplete tasks rested on admitted, hidden or ordering evidence."
   }
 }

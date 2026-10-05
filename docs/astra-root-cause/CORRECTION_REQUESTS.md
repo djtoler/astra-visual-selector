@@ -11,9 +11,47 @@ entry to `RESOLVED` with the correction commit, return direct links, and stop.
 
 ## Job 6 — candidate pipeline
 
-Status: **ACTIVE**
+Status: **RESOLVED**
 
 Opened after commit: `a898f8f6237402f4de80df25939e34556b92b515`
+Resolved by commit: `__COMMIT__`
+
+The correction:
+
+- separated ordering from the display cap and reclassified every loss: the
+  pie-chart case failed BOTH halves of the
+  `eight_primary_plus_eight_least_exposed` strategy (exposure 24 slates, 27th of
+  41 by ascending exposure, against twelve admitted families at zero), so its
+  first divergence is ordering, not the cap; all four previously-typed
+  `display_loss` findings became `ordering_loss` and `display_loss` is now 0 as
+  a first divergence;
+- rewrote the variant mechanism after opening `match-trial/candidates.py`, a
+  module the published job never read: `_within_family` ranks on eight keys and
+  only the final id tiebreak is arbitrary, `FAM_MAX=1` is an intentional
+  review-budget policy, and the proven defect is `sibling_propagation_loss` —
+  `_siblings` is computed at line 800 and dropped by `template_candidates()`,
+  reaching no artifact. The code comment at lines 795-799 already recorded 429
+  hidden siblings across 40 beats and the editor saying "right family, wrong
+  scene" twice. Proven on p03-2-01, where a 6-slot grid was shown and 3-slot and
+  2-slot variants exist in the same 38-variant family;
+- reported 21 incomplete lineage TASKS separately from 1 `lineage_incomplete`
+  FINDING, attempted reconstruction and found it unavailable from committed
+  artifacts, and excluded the 21 from conclusions requiring admission, hidden
+  family or first-divergence evidence;
+- withdrew the b-roll routing conclusion: `ordered-visual-route-plan.json`
+  covers only the 41 Year Seventeen tasks and 0 of 59 reviewed tasks, so none of
+  the 16 b-roll-request tasks has an observed route, and the published route
+  counts of 64 and 18 were double-counted against an actual 32 and 9;
+- additionally corrected the acceptance basis for historical editor choice:
+  prior picks do not admit a candidate but are the FIRST sort key inside a
+  family, on by default.
+
+Resolved outputs:
+
+- `reports/astra-root-cause/06-candidate-pipeline.md`
+- `reports/astra-root-cause/06-candidate-pipeline.json`
+
+Original request retained below for history.
 
 Target artifacts:
 
