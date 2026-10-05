@@ -94,3 +94,23 @@ general system must reach. Root-cause analysis must compare current outputs to
 their beat boundaries, coherent visual moments, visual jobs, requirements and
 downstream matchability. Extract reusable principles; never hardcode their
 subjects, package IDs or beat IDs.
+
+### Fable independent root-cause pass — 2026-10-05
+
+The `fable_analysis` branch is rooted at Matching commit
+`1276d0ca1daece81b5b7b38c8b5f5280046e5077`, before Astra Job 1. It reuses the
+same eight job scopes, evidence package, gold-reference bytes and pinned Story
+commit so the resulting analysis is comparable, but it must not inspect or use
+Astra Job 1–8 reports or the repair plan on the later `matching-layer` branch.
+Later production commits are excluded until both analyses are independently
+complete.
+
+Every Fable job uses the user-visible Fable model at `medium` reasoning effort.
+The running session records its exact resolved model identifier; the workflow
+does not invent an undocumented ID. A model or effort mismatch blocks the job.
+Do not change effort without a new explicit editor instruction. Each job saves,
+validates, commits and publishes only its audit outputs to `fable_analysis`,
+provides direct GitHub links and stops until the editor explicitly continues.
+No job authorizes production edits, template selection or rendering. The
+machine-readable authority is
+`docs/astra-root-cause/EXECUTION_POLICY.json` on `fable_analysis`.

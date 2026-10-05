@@ -9,7 +9,8 @@ propose a redesign yet.
 ## Inspect
 
 - `docs/astra-root-cause/EXECUTION_POLICY.json`; run this job with its required
-  `gpt-6-astra` / `medium` configuration.
+  user-visible `Fable` / `medium` configuration and record the exact resolved
+  model identifier exposed by the active session.
 - Every contract, implementation step and evidence artifact in
   `docs/astra-root-cause/REFERENCE_MANIFEST.md`.
 - Both editor-designated perfect reference versions under
@@ -31,10 +32,11 @@ It must separately map Story creation, Story validation, Matching adaptation,
 semantic splitting, requirement derivation, admission, ordering, display and
 human review.
 
-Both outputs must include an execution receipt with the configured model and
-reasoning effort. If Medium leaves a genuinely difficult architectural
-ambiguity, isolate it as one narrow question and record any High/Ultra rerun of
-that question. Do not rerun the complete job at a higher effort.
+Both outputs must include an execution receipt with the resolved model
+identifier, user-visible model name and reasoning effort. If Fable Medium leaves
+a difficult architectural ambiguity, preserve it as unresolved evidence. Do
+not change effort or rerun the question at another effort without a separate
+explicit editor instruction.
 
 ## Acceptance
 
@@ -45,8 +47,9 @@ that question. Do not rerun the complete job at a higher effort.
 - Any missing org reference is precisely named.
 - Both perfect reference files match the manifest hashes and are classified as
   positive target evidence rather than ordinary generated output.
-- The execution receipt reports `gpt-6-astra` at `medium`; any High/Ultra use is
-  limited to one documented narrow architectural question.
+- The execution receipt reports the user-visible `Fable` model at `medium`, plus
+  the exact resolved identifier exposed by the running session; no effort change
+  occurred.
 - No production file is modified.
 
 Stop after Job 1.

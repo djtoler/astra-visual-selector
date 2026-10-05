@@ -1,12 +1,18 @@
-# Astra matching root-cause workflow
+# Fable independent matching root-cause workflow
 
 This directory contains one kickoff prompt and eight focused jobs for auditing
 and redesigning the general StoryPackage-to-template matching system.
 
-Use `MASTER_PROMPT.md` to start the Astra conversation. Astra must execute one
+Use `MASTER_PROMPT.md` to start the Fable conversation. Fable must execute one
 job at a time, save that job's evidence-backed result, and stop at its acceptance
 gate. Later jobs consume earlier outputs; they are not invitations to perform a
 single broad speculative review.
+
+The inherited `astra-root-cause` directory name preserves stable evidence and
+job paths. This branch is an independent Fable audit rooted at Matching commit
+`1276d0ca1daece81b5b7b38c8b5f5280046e5077`; later Astra Job 1–8 outputs on
+the `matching-layer` branch are excluded comparison material until both audits
+are complete.
 
 ## Order
 
@@ -24,11 +30,13 @@ the current failing artifacts until Job 8 is reviewed.
 
 ## Mandatory execution policy
 
-`EXECUTION_POLICY.json` is part of the workflow contract. Job 1 runs on
-`gpt-6-astra` with `medium` reasoning effort. High or Ultra is allowed only for
-a narrowly isolated architectural ambiguity that Medium could not resolve; it
-must not be used to rerun the entire job. The Job 1 report must record the
-configured model and effort and any scoped escalation.
+`EXECUTION_POLICY.json` is part of the workflow contract. Every job runs with
+the user-visible Fable model at `medium` reasoning effort. Each job records the
+exact resolved model identifier exposed by its running session, the display name
+and the effort. Because no public or local registry in this checkout establishes
+Fable's internal model ID, the audit must not invent one. A model or effort
+mismatch blocks work; effort changes require a separate explicit editor
+instruction.
 
 The two files under `references/gold-standard/` are editor-designated perfect
 reference versions. They define the target quality for beat boundaries,

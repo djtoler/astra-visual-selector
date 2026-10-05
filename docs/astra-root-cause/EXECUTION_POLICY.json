@@ -1,20 +1,28 @@
 {
   "schemaVersion": 1,
-  "workflow": "astra-matching-root-cause",
+  "workflow": "fable-independent-matching-root-cause",
+  "auditBranch": "fable_analysis",
+  "matchingBaselineCommit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+  "excludedComparisonBranch": "matching-layer",
+  "defaultJobPolicy": {
+    "requiredModel": "fable",
+    "requiredModelDisplayName": "Fable",
+    "requiredReasoningEffort": "medium",
+    "resolvedModelIdMustBeRecorded": true,
+    "publicModelIdVerified": false,
+    "effortChangeAllowed": false,
+    "receiptRequired": true
+  },
   "jobPolicies": {
     "01-system-map-and-evidence": {
-      "requiredModel": "gpt-6-astra",
+      "requiredModel": "fable",
+      "requiredModelDisplayName": "Fable",
       "requiredReasoningEffort": "medium",
+      "resolvedModelIdMustBeRecorded": true,
+      "publicModelIdVerified": false,
       "escalation": {
-        "allowed": true,
-        "allowedReasoningEfforts": ["high", "ultra"],
-        "scope": "single_narrow_architectural_question_only",
-        "requires": [
-          "medium_attempt_receipt",
-          "unresolved_architectural_ambiguity",
-          "isolated_question",
-          "escalation_reason"
-        ],
+        "allowed": false,
+        "requiresExplicitEditorInstruction": true,
         "wholeJobRerunAllowed": false
       },
       "receiptRequired": true
@@ -47,7 +55,9 @@
     }
   ],
   "prohibitions": [
-    "whole_job_high_or_ultra_rerun",
+    "reasoning_effort_change_without_explicit_editor_instruction",
+    "astra_job_1_8_report_consumption",
+    "post_baseline_matching_commit_consumption",
     "story_specific_hardcoding",
     "gold_reference_regeneration_during_audit"
   ]

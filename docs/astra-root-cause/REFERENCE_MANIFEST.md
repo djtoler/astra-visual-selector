@@ -55,7 +55,13 @@ do not copy source subject matter into Matching rules.
 
 Repository: `https://github.com/djtoler/astra-visual-selector`
 
-Branch: `matching-layer`
+Audit branch: `fable_analysis`
+
+Frozen production baseline:
+`1276d0ca1daece81b5b7b38c8b5f5280046e5077`
+
+The later `matching-layer` branch contains the excluded Astra Job 1–8 analysis.
+Do not inspect or consume those reports during this independent pass.
 
 ### Product and execution contracts
 
@@ -104,7 +110,7 @@ Branch: `matching-layer`
 
 These two byte-preserved files are **perfect reference versions** for the
 beat/script-to-template task-proposal quality the general system is intended to
-reach. Astra must use them as positive target evidence when evaluating beat
+reach. Fable must use them as positive target evidence when evaluating beat
 definition, visual-moment granularity, visual-job derivation, requirements and
 downstream matchability. They are not merely historical machine outputs.
 

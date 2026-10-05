@@ -8,18 +8,23 @@ ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / "docs" / "astra-root-cause"
 
 
-class AstraRootCauseWorkflowTests(unittest.TestCase):
+class FableRootCauseWorkflowTests(unittest.TestCase):
     def test_job_one_model_strategy_is_fail_closed(self):
         policy = json.loads((WORKFLOW / "EXECUTION_POLICY.json").read_text())
         job = policy["jobPolicies"]["01-system-map-and-evidence"]
 
-        self.assertEqual(job["requiredModel"], "gpt-6-astra")
-        self.assertEqual(job["requiredReasoningEffort"], "medium")
-        self.assertEqual(job["escalation"]["allowedReasoningEfforts"], ["high", "ultra"])
+        self.assertEqual(policy["auditBranch"], "fable_analysis")
         self.assertEqual(
-            job["escalation"]["scope"],
-            "single_narrow_architectural_question_only",
+            policy["matchingBaselineCommit"],
+            "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
         )
+        self.assertEqual(job["requiredModel"], "fable")
+        self.assertEqual(job["requiredModelDisplayName"], "Fable")
+        self.assertEqual(job["requiredReasoningEffort"], "medium")
+        self.assertTrue(job["resolvedModelIdMustBeRecorded"])
+        self.assertFalse(job["publicModelIdVerified"])
+        self.assertFalse(job["escalation"]["allowed"])
+        self.assertTrue(job["escalation"]["requiresExplicitEditorInstruction"])
         self.assertFalse(job["escalation"]["wholeJobRerunAllowed"])
         self.assertTrue(job["receiptRequired"])
 
@@ -38,9 +43,9 @@ class AstraRootCauseWorkflowTests(unittest.TestCase):
         job = (WORKFLOW / "jobs" / "01-system-map-and-evidence.md").read_text()
         self.assertIn("EXECUTION_POLICY.json", job)
         self.assertIn("perfect reference", job.lower())
-        self.assertIn("gpt-6-astra", job)
+        self.assertIn("Fable", job)
         self.assertIn("medium", job.lower())
-        self.assertIn("Do not rerun the complete job", job)
+        self.assertIn("not change effort", job.lower())
 
 
 if __name__ == "__main__":
