@@ -1,0 +1,1201 @@
+{
+ "schemaVersion": 1,
+ "job": "02-story-semantics",
+ "title": "Job 2 — Story beat, claim and visual-moment semantics",
+ "result": "PASS",
+ "nextJob": "03-upstream-contract-fitness",
+ "blockerOwner": "none",
+ "generatedAt": "2026-10-05",
+ "executionReceipt": {
+  "operator": "claude_desktop",
+  "executionMode": "claude_cli_invoked_from_desktop",
+  "executor": "claude-fable-5-1",
+  "model": "claude-fable-5-1",
+  "modelDisplayName": "Claude Fable 5.1",
+  "reasoningEffort": "medium",
+  "howDetermined": {
+   "operator": "Stated by the invoking job prompt ('invoked through the Claude CLI by Claude Desktop, which is the operator') and required by docs/astra-root-cause/EXECUTION_POLICY.json jobPolicies['02-story-semantics'].requiredOperator. Not independently observable from inside the session.",
+   "executionMode": "Stated by the invoking job prompt and required by EXECUTION_POLICY.json requiredExecutionMode. Job 1's receipt records a pre-flight `claude -p --model claude-fable-5-1 --effort medium` that returned the expected model and effort. Not independently observable from inside the session.",
+   "model": "Read from the session's own system context, which states the model name Fable 5.1 and the exact model ID claude-fable-5-1.",
+   "modelDisplayName": "Read from the session's own system context ('Claude Fable 5.1').",
+   "reasoningEffort": "The invoking job prompt and Job 1's pre-flight record state that Medium was selected explicitly with the CLI effort flag. Fable 5.1 defaults to High in Claude Code, so Medium is recorded as a flag-selected value, not an assumption. The session context exposes a reduced reasoning-effort setting but not the literal word 'medium'; the label is therefore taken from the invocation record, not read from a runtime API.",
+   "notExposed": [
+    "Claude CLI version (not exposed to this session; Job 1 recorded 2.1.289 for its own environment)",
+    "A runtime API field naming the effort level literally",
+    "Whether the process is a CLI subprocess of Desktop or a Desktop-backed cloud container: the session identifier visible to this run (session_014CbgCFFrmJN4PKxJdBpZ7P) equals the identifier in Job 1's receipt, which Job 1 recorded as a desktop_conversation session. This equality is reported, not interpreted."
+   ]
+  },
+  "environment": "anthropic_cloud container; primary working directory /home/user/astra-visual-selector on branch fable_analysis at b1bdecce556480ad6264b48189c0339d197c1470; Story authority worktree /home/user/story-pinned at d5117a6de0fd0c640a336c6f456946ec8b40f319 (verified with git log), read only",
+  "writesPerformed": [
+   "reports/astra-root-cause/02-story-semantics.md",
+   "reports/astra-root-cause/02-story-semantics.json"
+  ],
+  "noRuntimeOrSchemaChange": true,
+  "noGitWriteCommands": true
+ },
+ "independenceReceipt": {
+  "excludedBranchTouched": false,
+  "localBranches": [
+   "fable_analysis",
+   "main",
+   "origin/main"
+  ],
+  "networkGitCommands": "none",
+  "storyWorktreeWrites": "none",
+  "contaminationRisk": "None detected. Paths prefixed 'matching-layer/' inside reports/astra-matching-review-evidence-20261004.json and the '/Polish/matching-layer/' prefix inside current task-proposal `source.path` fields are filesystem directory names of the live checkout (Job 1 finding), resolved by stripping the prefix. No Astra Job 1–8 report, repair plan, or post-baseline Matching commit was read.",
+  "storyNeutrality": "Subject names, package IDs and beat IDs appear only as evidence locators. Every principle in `principles` is stated without them."
+ },
+ "definitions": {
+  "purpose": "Acceptance check: beat, claim and VisualTask are never conflated. These definitions are taken from the schema, the two builders and the Matching splitter, not from intuition.",
+  "beat": {
+   "schema": "storypackage-0.2.schema.json#/properties/beats/items: required beatId (opaque, unique within storyId), order, span (code points into script.text), narration, claimIds, claimCoverage; optional section, test, story{beatRole,retentionFunction}, speaker{role,entity,label,sourceTimestamp,source,provenance}. No field defines what a beat means semantically.",
+   "taggedBuilder": "tools/build_tagged_script.py lines 82-105: one `@role [slug] [HH:MM:SS]` tag line plus exactly one paragraph (no internal newline) is one beat; ids p<part>-<n>. Used for future-volksgeist and jayz-drake-settle-it.",
+   "yearSeventeenBuilder": "tools/build_year_seventeen.py lines 22-43: every blank-line-separated block under a `###` section heading that is not a heading, test question or `---` is one beat; ids c<cycle>-<section>-<n>; carries `test` (the cycle's test question).",
+   "sourceTranscript": "youtube_doc_analysis/transcripts/full/*.txt: 30-second caption chunks with no punctuation and no speaker turns (cleaning log). No beat concept.",
+   "sourceAnalysis": "youtube_doc_analysis/analyses/analysis_006.json and analysis_002.json `story_beats[]`: act-level narrative beats B1..B18 (60–360 s each) with beat_role, retention_function, devices. 18 for the Future source, 15 for the ranking-debate source.",
+   "legacyReviewBeat": "grammar/beat-review-export-2026-09-27.json `beats[]`: 40 review beats keyed NN-NN[a-z] with a `quote` in older narration wording; joined to Story claims through claims[].reviewKeys.",
+   "editorUsage": "In candidate_acceptability evidence the editor writes 'beat' for the Matching-derived task proposal (for example ev_0c2a0aba000bca29 'beat should be split into 2' on taskId ...matching-derived-p05-2-03).",
+   "consistency": "Not consistent. Five distinct units share the word. The schema permits this (beatId is opaque) but the Matching splitter treats the Story beat as the hard outer boundary of every derived VisualTask (pipeline/storypackage_splitter.py `_semantic_units`, called per beat at lines 456-489), so paragraphing conventions govern downstream granularity."
+  },
+  "claim": {
+   "schema": "storypackage-0.2.schema.json#/properties/claims/items: the semantic/evidentiary unit; required claimId, beatId, span, text (must equal script.text at span), lane (factual|interpretive|editorial), entityRefs[{entity,mentioned,display,representedBy}], provenance; optional branchId, phrasing, status, receipts, editorPriority, cohortRefs, values, reviewKeys, unresolvedMentions. SPEC-0.2 'Boundary': a package never makes one claim equal one VisualTask.",
+   "taggedBuilder": "build_tagged_script.py line 83 SENT regex: split after . ? ! (optionally followed by a closing quote) then whitespace then a non-lowercase character; line 101 never splits inside an open double quotation. One sentence = one claim; ids <beatId>.<n>.",
+   "yearSeventeenBuilder": "build_year_seventeen.py line 39: split after . ? ! then whitespace, except after 'J.'. One sentence = one claim.",
+   "operationalMeaning": "A claim is a sentence of the exact script with a lane and entity roles. It is an evidentiary span, not a visual unit."
+  },
+  "visualTask": {
+   "storySide": "Deliberately absent from storypackage-0.2 (schema description; SPEC-0.2 'StoryPackage never ... makes one claim equal one VisualTask'). jobProposals[] are advice only (claimIds, optional sub-span, job from a 20-value enum, provenance). matching-handoff-0.2 tasks[] (year-seventeen only) carry story-owned presentation requirements per VisualTask id after Matching has named the tasks.",
+   "matchingSide": "pipeline/storypackage_splitter.py `task_from_claims` (lines 270-353): a review-only taskProposal with claimIds, claimSpans, proposalSpan, taskText, lanes, entityRefs, cohortRefs, values, obligations and continuity attached by claim intersection, presentationOperations, primaryPresentationOperation, routeDisposition, activationState 'proposal_requires_editor_review'. Produced (i) by materializing a Story proposal (lines 355-388), (ii) per quote beat (lines 396-412), or (iii) per narrator beat by `_semantic_units` (lines 456-489). Clip beats become speakerRoutes with templateMatchingEligible false, not tasks.",
+   "operationalMeaning": "A VisualTask proposal is the Matching layer's unit of template/media admission: an exact source span plus everything attached to its claims. It is derived from, and may cut across or merge, claims; it never crosses a Story beat unless a Story proposal does."
+  },
+  "jobProposal": "storypackage-0.2 jobProposals[]: {proposalId, claimIds (1+), span (optional sub-span inside one claim), job (enum of 20 legacy matcher jobs), provenance}. Advice; a proposal never becomes a VisualTask without review.",
+  "obligation": "storypackage-0.2 obligations[]: {obligationId, claimIds, intent, mustBeTrue, mustBePerceptible, wouldBeALie, withheld, mediaNeeds[{kind,count,constraints}], recognizableIdentityCount, needsOnScreenText, contentClass, provenance}. Task inputs, not template assignments.",
+  "continuity": "storypackage-0.2 continuity[]: {groupId, claimIds (2+), scope (template|template_family|visual_grammar|palette|sequence|subject_framing|adjacency), invariant, strength (required|preferred), provenance}.",
+  "visualMoment": "Analytical term used in this report only: the smallest span of narration that one continuous on-screen treatment must communicate. Neither schema has it as a first-class object. The handoff's media.focal {simultaneous, sequencePermitted, storyItems} and the splitter's semantic unit are the nearest approximations."
+ },
+ "measuredPackageFacts": {
+  "future-volksgeist@5": {
+   "beats": 94,
+   "narratorBeats": 55,
+   "clipBeats": 36,
+   "quoteBeats": 3,
+   "claims": 502,
+   "lanes": {
+    "factual": 364,
+    "editorial": 107,
+    "interpretive": 31
+   },
+   "jobProposals": 20,
+   "jobProposalJobs": {
+    "pose_a_question": 20
+   },
+   "obligations": 42,
+   "authoredObligations": 3,
+   "continuity": 2,
+   "cohorts": 0,
+   "claimsWithValues": 0,
+   "narratorBeatLengthCodepointsMedian": 662,
+   "narratorBeatLengthMax": 1619,
+   "claimsPerNarratorBeatMedian": 6,
+   "claimsPerNarratorBeatMax": 16,
+   "largestBeats": [
+    [
+     "p04-9",
+     1619,
+     14
+    ],
+    [
+     "p13-1",
+     1397,
+     12
+    ],
+    [
+     "p11-5",
+     1352,
+     11
+    ],
+    [
+     "p12-1",
+     1305,
+     10
+    ],
+    [
+     "p06-1",
+     1301,
+     11
+    ]
+   ],
+   "entityRefs": {
+    "mentionedRequired": 250,
+    "impliedEligible": 135
+   },
+   "claimsWithNoEntityRefs": 197,
+   "timing": "absent",
+   "producer": "story-writer 0.2-tagged"
+  },
+  "jayz-drake-settle-it@4": {
+   "beats": 54,
+   "narratorBeats": 54,
+   "claims": 222,
+   "lanes": {
+    "editorial": 116,
+    "factual": 92,
+    "interpretive": 14
+   },
+   "factualSupportedWithReceipts": 70,
+   "jobProposals": 14,
+   "jobProposalJobs": {
+    "pose_a_question": 14
+   },
+   "obligations": 6,
+   "continuity": 4,
+   "cohorts": 1,
+   "claimsWithValues": 50,
+   "values": 62,
+   "beatLengthMedian": 218.5,
+   "beatLengthMax": 644,
+   "claimsPerBeatMedian": 4,
+   "claimsPerBeatMax": 9,
+   "entityRefs": {
+    "mentionedRequired": 89,
+    "impliedEligible": 50
+   },
+   "claimsWithNoEntityRefs": 110,
+   "timing": "absent",
+   "producer": "story-writer 0.2-tagged"
+  },
+  "year-seventeen@9": {
+   "beats": 72,
+   "narratorBeats": 72,
+   "claims": 150,
+   "lanes": {
+    "factual": 87,
+    "editorial": 43,
+    "interpretive": 20
+   },
+   "jobProposals": 116,
+   "jobProposalProvenance": {
+    "story_writer": 72,
+    "model": 36,
+    "user": 8
+   },
+   "jobProposalJobs": {
+    "assert_without_data": 32,
+    "pose_a_question": 12,
+    "one_vs_aggregate": 10,
+    "define_terms": 9,
+    "locate_in_distribution": 7,
+    "one_vs_many_individually": 6,
+    "derived_quantity": 5,
+    "category_breakdown": 5,
+    "narrate_an_event": 4,
+    "parallel_instances": 4,
+    "proportion_of_cohort": 4,
+    "explain_the_encoding": 3,
+    "enumerate": 3,
+    "members_then_total": 3,
+    "entity_vs_benchmark": 2,
+    "streak_over_time": 2,
+    "intersection_of_sets": 2,
+    "equivalence_restatement": 1,
+    "change_across_set": 1,
+    "inversion": 1
+   },
+   "proposalsSpanningMoreThanOneBeat": [
+    "p-01-01",
+    "p-04-04",
+    "p-05-05b",
+    "p-11-11a",
+    "p-12-12b",
+    "p-18-18",
+    "p-20-20",
+    "p-21-21a",
+    "p-24-24"
+   ],
+   "claimsWithMoreThanOneProposal": [
+    "c1-provoke-2.1",
+    "c3-provoke-3.3",
+    "c3-reveal-1.3",
+    "c3-reconcile-2.3",
+    "c4-reveal-1.2"
+   ],
+   "proposalsWithSubSpan": [
+    "p-21-21b-rate"
+   ],
+   "obligations": 24,
+   "obligationsFromUserNotes": 22,
+   "obligationShellsWithNoSemanticField": [
+    "o-13-13b",
+    "o-14-14",
+    "o-21-21b",
+    "o-23-23",
+    "o-25-25a",
+    "o-29-29a"
+   ],
+   "continuity": 5,
+   "cohorts": 3,
+   "claimsWithValues": 0,
+   "claimsWithReviewKeys": 79,
+   "beatLengthMedian": 143.5,
+   "beatLengthMax": 677,
+   "claimsPerBeatMedian": 2,
+   "claimsPerBeatMax": 6,
+   "entityRefs": {
+    "mentionedRequired": 66,
+    "impliedEligible": 60,
+    "impliedWithheld": 1,
+    "impliedNone": 1
+   },
+   "timing": "absent",
+   "producer": "story-writer 0.2-full",
+   "legacyReviewExport": {
+    "beats": 40,
+    "quoteExactlyMatchesScript": 19,
+    "quoteInexact": 21,
+    "lowestOverlap": [
+     [
+      "08-08",
+      0.632
+     ],
+     [
+      "03-03",
+      0.667
+     ],
+     [
+      "21-21b",
+      0.688
+     ],
+     [
+      "27-27",
+      0.69
+     ],
+     [
+      "28-28",
+      0.697
+     ]
+    ]
+   }
+  },
+  "allPackages": {
+   "obligationsUsingMustBeTrue": 0,
+   "obligationsUsingContentClass": 0,
+   "timing": "absent in all three"
+  }
+ },
+ "measuredMatchingFacts": {
+  "note": "Measured to locate where Story units are transformed; judgment of the transformations belongs to Job 4.",
+  "year-seventeen": {
+   "goldReference": "year-seventeen@7, 116 taskProposals, provenance story_writer 72 / model 36 / user 8, 0 semanticDerived: every Story jobProposal materialized one-to-one; claims-per-task 1:90 2:16 3:7 4:2 5:1",
+   "current": "reports/storypackage-02-year-seventeen-v12-task-proposals.json, year-seventeen@9, 115 taskProposals, 11 semanticDerived; 12 Story proposals demoted to advisory and re-derived (p-23-23-1, p-23-23-2, p-c1-provoke-3.3, p-c3-predict-2.1, p-c3-predict-2.2, p-c4-provoke-1.2, p-c4-reconcile-1.1, p-c4-reconcile-1.2, p-c5-provoke-2.1, p-c5-provoke-2.2, p-c6-reconcile-2.1, p-c6-reconcile-2.2); one re-derived unit merges two Story proposals (c5-provoke-2.1 + c5-provoke-2.2); every job label preserved through advisory lookup",
+   "cause": "storypackage_splitter.py lines 370-379 `materialize` rule: a single-claim proposal that does not cover its whole beat and whose claim has one proposal and whose beat has one job becomes advisory."
+  },
+  "future-volksgeist": {
+   "goldReference": "future-volksgeist@2, 310 taskProposals (307 semanticDerived, 3 quote), jobs assert_without_data 153 / narrate_an_event 109 / enumerate 26 / pose_a_question 18 / attributed_quote 3 / define_terms 1; claims-per-task 1:270 2:32 3:5 6:1 7:1 8:1",
+   "current": "reports/storypackage-02-future-volksgeist-v13-task-proposals.json, future-volksgeist@5, 310 taskProposals, jobs narrate_an_event 134 / assert_without_data 127 / enumerate 27 / pose_a_question 18 / attributed_quote 3 / define_terms 1; 95 tasks flagged mixedPayloadReviewRequired; 18 templateEligible false",
+   "divergence": "Claim ids, spans, text and lanes are identical between the @3 and @5 package files (entity ids changed to stable registry ids: 305 claims differ only in entityRef id spelling). Against identical Story claim structure, 306 of 310 claim groupings match the gold; beats p05-1 and p10-6 are grouped differently (gold: p05-1.2 and p05-1.3 separate, current merged; gold: p10-6.5 and p10-6.6 merged, current separate); 26 tasks with identical grouping carry a different job label (25 assert_without_data→narrate_an_event, 1 narrate_an_event→enumerate). Equal counts (310) hide this.",
+   "gaps": {
+    "source_clip_end_timing_missing": 36,
+    "speaker_unidentified": 6,
+    "quote_attribution_source_missing": 1
+   }
+  },
+  "jayz-drake-settle-it": {
+   "current": "reports/storypackage-02-jayz-drake-settle-it-v13-task-proposals.json, jayz-drake-settle-it@4, 186 taskProposals (185 semanticDerived, 1 story proposal), jobs assert_without_data 93 / derived_quantity 35 / narrate_an_event 30 / pose_a_question 13 / parallel_instances 10 / enumerate 4 / proportion_of_cohort 1; claims-per-task 1:159 2:19 3:7 4:1; no gold reference exists for this story"
+  },
+  "splitterInputsNeverUsedForBoundaries": [
+   "claims[].lane (copied into output only; `lane` appears once in the splitter, in task_from_claims)",
+   "obligations[] (attached after grouping by claimId intersection; `_semantic_units` signature takes beat, claim_ids, claims only)",
+   "continuity[] (same)",
+   "values[].entity (counted as `values` only; participant count uses entityRefs with display required/eligible)",
+   "jobProposals[].span (only materialized Story proposals carry it; `_semantic_units` has one intra-claim split rule: ', but also' preceded by 'not just', lines 162-182)"
+  ]
+ },
+ "missingOrgReference": {
+  "status": "Confirmed absent, as Job 1 found. Not reconstructed.",
+  "consequenceForThisJob": "Beat derivation is observable only at endpoints. For the Future story every sentence and paragraph boundary was created at cleaning time (script/future-volksgeist-cleaning-log.md: 'Punctuation, sentence boundaries, capitalization: added throughout'; source captions have none), so no claim boundary can be traced to the source. For Jay-Z/Drake the script is original and the source transcript is a structural reference only. For Year Seventeen the 40 legacy review beats quote wording that differs from script v2.1 in 21 of 40 cases (overlap as low as 0.632), so editor notes joined through reviewKeys were written against narration that is not the narration now bound to those claims.",
+  "spansWhoseDerivationCannotBeVerified": [
+   "Every Future beat and claim boundary (all 94 beats, 502 claims)",
+   "Year Seventeen reviewKeys joins for the 21 inexact legacy beats, notably 03-03, 08-08, 21-21b, 27-27, 28-28"
+  ]
+ },
+ "spans": [
+  {
+   "spanId": "S01",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md line 7; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claim c1-provoke-1.1 span start 117 len 149",
+   "currentBeatBoundary": "Beat c1-provoke-1 (CYCLE 1 — THE TAP / PROVOKE), one sentence, span 117+149.",
+   "currentClaimBoundary": "Claim c1-provoke-1.1 = the whole beat; lane factual; entityRefs [Drake, mentioned false, display withheld, provenance user approved 2026-10-02]; obligations o-01-01 (mediaNeeds footage 'performance b-roll in which Drake is not recognizable', withheld identity, wouldBeALie 'any shot that lets the viewer identify Drake before the script names him') and o-name-withheld-c1.",
+   "intendedVisualMoments": [
+    "One moment: an unnamed catalog's play rate compounding into a day's total, with the subject's identity hidden."
+   ],
+   "observed": "Success. The Story layer expresses mentioned-but-withheld identity, a media kind, and a prohibition structurally, with user provenance. The legacy pilot VisualTask 01-01.subject (grammar/visual-tasks.json) carried the same withholding as mustBeTrue; the package carries it as entityRefs.display plus obligation.withheld. Matching's task for p-01-01 carries both obligations (gold reference task 1). Defect only in a neighbouring unit: proposal p-01-01 (model, legacy label) spans c1-provoke-1.1 and c1-provoke-2.1 across two beats, so the gold task text runs two sentences the editor reviewed separately.",
+   "observedKind": "success_with_boundary_caveat",
+   "attribution": {
+    "label": "success",
+    "note": "Valid Story input; the cross-beat proposal is a Story-authoring artefact of the legacy join (reviewKeys 01-01 covers both claims)."
+   },
+   "evidence": [
+    "ev_3447807f4da0b6f6 (beat_review 01-01, human_verbatim_recovered: 'drake b-roll performance footage needed')",
+    "build_year_seventeen.py lines 113-115 DRAKE_DISPLAY, 247-249 o-01-01",
+    "gold year-seventeen taskProposals[0]"
+   ]
+  },
+  {
+   "spanId": "S02",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md line 9; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claim c1-provoke-2.1 span start 268 len 230",
+   "currentBeatBoundary": "Beat c1-provoke-2, one sentence.",
+   "currentClaimBoundary": "One claim c1-provoke-2.1 carrying reviewKeys 01-01, 02-02a, 02-02b; entityRefs [Curren$y required; Drake mentioned false display none (user: 'drake has no place in the beat')]; three proposals cover it with no sub-span: p-01-01 derived_quantity (with the previous beat), p-02-02a narrate_an_event, p-02-02b equivalence_restatement; obligation o-02-02b mediaNeeds artwork.",
+   "intendedVisualMoments": [
+    "Moment A: the credential (the 2009 cover).",
+    "Moment B: the whole-catalog-equals-24-days equivalence (artwork of the catalog beside a 24-day slice; handoff focal simultaneous 2)."
+   ],
+   "observed": "Mixed. The entity-role encoding is a success (display none kept the subject out of this sentence, exactly what the editor asked). The boundary is a defect: the schema allows a proposal sub-span and the handoff cuts the claim into two sub-spans (02-02a.main at 'Curren$y was on the 2009 XXL Freshman cover', 02-02b.currensy_catalog at start 313 len 185), but the package's three proposals all point at the whole claim, so the gold reference materializes three overlapping tasks whose taskText is the same sentence (or the sentence plus its predecessor). The two moments exist only in the handoff, not in the package.",
+   "observedKind": "over_proposal_without_sub_spans",
+   "attribution": {
+    "label": "story_authoring_failure",
+    "note": "The builder's SPLIT table (build_year_seventeen.py lines 187-199) can split by claim group but not by sub-span; only p-21-21b-rate (line 207-209) is hand-coded with a span. Matching materialized what it was given."
+   },
+   "evidence": [
+    "ev_0183c99a16600ab0 (beat_review 02-02b)",
+    "ev_ab29a46767509923 (media_eligibility 02-02a)",
+    "ev_8ba7f7963fe32cb7 (matching_output_feedback 02.01, provenance-unverifiable source)",
+    "ev_ffebfa36b44ada64 (matching_output_feedback facts:02.02: 'should be catagrized as a time distance comparision')",
+    "year-seventeen.matching-handoff-0.2.json tasks 02-02a.main, 02-02b.currensy_catalog"
+   ]
+  },
+  {
+   "spanId": "S03",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md line 11; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claims c1-provoke-3.1–3.3 (span 499+)",
+   "currentBeatBoundary": "Beat c1-provoke-3, three sentences.",
+   "currentClaimBoundary": "c1-provoke-3.1 factual with cohortRef chart-93 required representedBy [media,data]; c1-provoke-3.2 editorial, same cohortRef; c1-provoke-3.3 editorial ('Start at the bottom.') with no refs. Proposal p-03-03 explain_the_encoding over 3.1–3.2 (model) and p-c1-provoke-3.3 (story_writer). Obligation o-03-03 mustBePerceptible 'all 93 rappers, one mark each', recognizableIdentityCount 93, mediaNeeds person count 93; continuity g-opening-chart (required) and g-chart-return (required).",
+   "intendedVisualMoments": [
+    "One moment: a complete 93-member distribution with one mark per identity, encoding explained."
+   ],
+   "observed": "Success. The cohort is replayable (3 cohorts in the package, chart-93 complete), the identity count is explicit, and the required continuity anchors the chart's return in cycle 6. This is the structural precondition for the editor's rule that 20 or more identities with comparative intent should surface every spatial family; the Story side supplies the count, not the rule. The current Matching output demotes p-c1-provoke-3.3 to advisory and re-derives the 'Start at the bottom.' unit (job preserved).",
+   "observedKind": "success",
+   "attribution": {
+    "label": "success",
+    "note": "Valid Story input. Whether admission honoured the count is a Job 5/6 question."
+   },
+   "evidence": [
+    "ev_c0014381cd5b341b (beat_review 03-03: 'make 20+ entities and any type of comparative / contrasting intentions be the condition to always show all spatial scenes')",
+    "ev_6fc95a5580186e72 (matching_output_feedback 03.01)",
+    "build_year_seventeen.py lines 145-146, 252-253, 295-298"
+   ]
+  },
+  {
+   "spanId": "S04",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md line 61; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claim c2-reveal-2.2 span start 2822 len 83",
+   "currentBeatBoundary": "Beat c2-reveal-2 (CYCLE 2 / REVEAL), three sentences.",
+   "currentClaimBoundary": "c2-reveal-2.2 factual; entityRefs [Future mentioned required] only; proposal p-11-11b entity_vs_benchmark (model); obligation o-11-11b intent 'Drake vs Future: how much each one's biggest song matters to their catalog numbers', mustBePerceptible 'two entities, one against the other'.",
+   "intendedVisualMoments": [
+    "One moment: a two-entity comparison of catalog flatness, the unnamed subject against the named runner-up."
+   ],
+   "observed": "Lost relationship. The obligation names the second participant, but the claim's entityRefs do not: the implied-subject cue regex (build_year_seventeen.py line 108) found no pronoun in 'The next-flattest catalog ... is Future, at twenty-four.' and the claim is not in FORCE_DRAKE. Matching's comparison operation requires two display-eligible entityRefs (storypackage_splitter.py line 94 `len(refs) >= 2`), so the comparison is invisible to its derivation even though the obligation text says it in prose.",
+   "observedKind": "lost_relationship",
+   "attribution": {
+    "label": "both_separable",
+    "note": "Story: implied-ref table incomplete for a sentence whose comparison partner is implicit. Matching: never reads obligation.mustBePerceptible or intent when counting participants. Either fix alone would surface the comparison."
+   },
+   "evidence": [
+    "ev_fbb42c911ffa7f42 (beat_review 11-11b: 'we need a comparison template option. 2 entities 1 vs the other')",
+    "ev_1d67c675ea305aee, ev_9ed54960c6c899fc (media_eligibility / pairing 11-11b: 'only 1 artist shows up')",
+    "ev_b6c37f992824268e (matching_output_feedback 11.01)"
+   ]
+  },
+  {
+   "spanId": "S05",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md line 71; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claim c2-reconcile-1.3 span start 3518 len 195",
+   "currentBeatBoundary": "Beat c2-reconcile-1, three sentences.",
+   "currentClaimBoundary": "c2-reconcile-1.3 is one sentence with two clauses; cohortRef chart-93 eligible; proposal p-13-13b-1 proportion_of_cohort (user) over the whole claim; obligation o-13-13b carries no semantic field, only provenance.evidence quoting the note.",
+   "intendedVisualMoments": [
+    "Moment A: 81 of 93 fall short of a whole-career threshold (membership/coverage marks).",
+    "Moment B: the billion-stream songs alone outweigh 81 careers (height-encoded comparison)."
+   ],
+   "observed": "Under-split inside a sentence. The editor paired each clause with a different treatment. The package expresses neither clause boundary; the handoff cuts the first clause as a 108-code-point sub-span and logs the second clause as unresolved u-13-13b-second-clause ('has no VisualTask'). The obligation that should carry the editor's instruction is an empty shell; the instruction survives only as a quoted string in provenance.",
+   "observedKind": "under_splitting_within_claim",
+   "attribution": {
+    "label": "story_authoring_failure",
+    "note": "Schema supports proposal sub-spans and obligation fields; the builder used neither here. Matching received a whole-claim proposal and materialized it faithfully."
+   },
+   "evidence": [
+    "ev_de6a6bbf9fb0ee07 (beat_review 13-13b)",
+    "ev_9b40f447c63fc883 (beat_review 13-13a)",
+    "year-seventeen.matching-handoff-0.2.json unresolved u-13-13b-second-clause",
+    "build_matching_handoff.py lines 129-134, 258-261"
+   ]
+  },
+  {
+   "spanId": "S06",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md lines 89–93; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claims c3-provoke-3.3 (span 4549+), c3-provoke-4.1–4.2 (4595+), c3-provoke-5.1 (4736+)",
+   "currentBeatBoundary": "Three beats: c3-provoke-3 (the rule, three sentences), c3-provoke-4 (two sentences), c3-provoke-5 (one sentence).",
+   "currentClaimBoundary": "c3-provoke-3.3 'A feature or a remix verse counts at half.' editorial, reviewKeys [17-17, 18-18]; c3-provoke-4.1 factual with cohortRef xxl-2010-class required shownIds 7; c3-provoke-4.2 editorial with displayCount 7; c3-provoke-5.1 factual with the same cohort. Proposal p-18-18 members_then_total (model) covers c3-provoke-3.3 + 4.1 + 4.2 across two beats and excludes 5.1; p-c3-provoke-5.1 (story_writer) covers 5.1 alone; obligation o-18-18 covers 4.1, 4.2 and 5.1 with recognizableIdentityCount 7 and intent 'The seven careers, stacked, add up to ninety-seven billion'.",
+   "intendedVisualMoments": [
+    "One moment: seven identities shown individually then stacked to a single total (handoff focal 7 simultaneous)."
+   ],
+   "observed": "Boundary drift between three Story artefacts. The legacy review beat 18-18 quoted a paragraph that script v2.1 split into two paragraphs plus the rule sentence; the reviewKeys join therefore attached the half-credit rule (a 17-17 sentence) to 18-18 and the proposal inherited it, while the total sentence that the obligation and the editor's note treat as part of the same moment sits in a separate proposal. The gold reference task for p-18-18 carries the join artefact. The handoff task 18-18.main uses 4.1, 4.2, 5.1 (the obligation's set), not the proposal's set.",
+   "observedKind": "boundary_inconsistency_across_story_artifacts",
+   "attribution": {
+    "label": "story_authoring_failure",
+    "note": "Three Story-owned boundaries (proposal, obligation, handoff task) disagree for the same moment; the script revision between review and package is the root. Matching materialized the proposal as given."
+   },
+   "evidence": [
+    "ev_ffa432faa3017e77 (beat_review 18-18)",
+    "ev_600a5daa0a58bf97 (pairing 18-18: 'Stack all seven end to end has no way to be represented')",
+    "ev_b474786620655b1b, ev_079858951ff1824d (matching_output_feedback 18.01, provenance-unverifiable)",
+    "beat-review-export 18-18 quote vs script v2.1 lines 91-93"
+   ]
+  },
+  {
+   "spanId": "S07",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md lines 176–184; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claims c5-predict-1.1 (9522+166), c5-predict-2.1 (9690+60), c5-reveal-1.1 (9764+63), c5-reveal-1.2 (9828+68), c5-reveal-2.1 (9898+43)",
+   "currentBeatBoundary": "Four beats: c5-predict-1, c5-predict-2, c5-reveal-1, c5-reveal-2.",
+   "currentClaimBoundary": "User-directed split (SPLIT table, ruling 2026-10-02): p-28-28-1 define_terms on c5-predict-1.1; p-28-28-2 intersection_of_sets on c5-reveal-1.1 + 1.2; p-c5-predict-2.1 pose_a_question; p-c5-reveal-2.1 intersection_of_sets. Obligation o-28-28 needsOnScreenText on the four 28-28 claims.",
+   "intendedVisualMoments": [
+    "Moment A: two thresholds fixed as text before any name appears.",
+    "Moment B: all qualifiers co-present, then the overlap isolates two (handoff focal 10 simultaneous).",
+    "Moment C: the two names revealed."
+   ],
+   "observed": "Largely a success: the package records a user-approved split with provenance and a ruling that excluded the instruction sentence from the overlap. Residual inconsistency: the handoff task 28-28.overlap includes c5-reveal-2.1 (three spans) while package proposal p-28-28-2 excludes it, so Story's two artefacts place the moment's end differently. The timing_boundary evidence quotes older wording ('Two floors, fixed before the names go in') and its durations apply to that wording.",
+   "observedKind": "success_with_boundary_caveat",
+   "attribution": {
+    "label": "success",
+    "note": "Valid Story input with one internal inconsistency to reconcile in Job 3; no Matching mishandling observed at this stage."
+   },
+   "evidence": [
+    "ev_5b0549ebba618177 (beat_review 28-28)",
+    "ev_0ef11e34ab9fe948 (timing_boundary 28-28, human, approved)",
+    "ev_021919c932e157f2, ev_a5205201d2a61bbb, ev_5501a963469ec032 (matching_output_feedback facts:28.01–03, provenance-unverifiable)",
+    "build_year_seventeen.py lines 187-193; build_matching_handoff.py lines 230-240"
+   ]
+  },
+  {
+   "spanId": "S08",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md lines 137–139; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claims c4-predict-1.1 (7416+64), c4-predict-1.2 (7481+94), c4-predict-2.1 (7577+38)",
+   "currentBeatBoundary": "Two beats c4-predict-1 (two sentences) and c4-predict-2 (one sentence).",
+   "currentClaimBoundary": "One proposal p-24-24 pose_a_question (model) over all three claims across both beats; obligation o-24-24 mediaNeeds footage 'for the first sentence' and artwork count 8 'from different years/eras'.",
+   "intendedVisualMoments": [
+    "Moment A: footage under the conditional setup.",
+    "Moment B: a seventeen-year span as a timeline of 8 items ending in a question."
+   ],
+   "observed": "Job label and boundary disagree with the obligation. The editor's note identifies two treatments; the obligation encodes two media needs by sentence position in prose ('for the first sentence'); the proposal keeps one job (the question) over everything. A consumer honouring the proposal sees a question; a consumer honouring the obligation sees a timeline.",
+   "observedKind": "job_label_misleading",
+   "attribution": {
+    "label": "story_authoring_failure",
+    "note": "The legacy job label was carried as the proposal job; the moment split lives only in free-text constraints. Matching materialized the single proposal."
+   },
+   "evidence": [
+    "ev_65fa5e81c76d4c01 (beat_review 24-24)",
+    "ev_3fe0c804e39ff085 (matching_output_feedback 24.01)",
+    "ev_a6193779e2244cd8 (media_eligibility 06-06: 'missing the timeline template')"
+   ]
+  },
+  {
+   "spanId": "S09",
+   "story": "year-seventeen",
+   "sourceLocator": "/home/user/story-pinned/script/year-seventeen-script-v2.1.md lines 170–172; architecture/storypackage/year-seventeen@9.storypackage-0.2.json claims c5-provoke-1.1–1.6 (8703+677) and c5-provoke-2.1–2.2",
+   "currentBeatBoundary": "Beat c5-provoke-1: the longest Year Seventeen beat (677 code points, 6 claims); beat c5-provoke-2 (two sentences).",
+   "currentClaimBoundary": "p-27-27 inversion (model) over c5-provoke-1.2–1.6; c5-provoke-1.1 (interpretive, 'two kinds') has its own assert_without_data proposal; the categorization sentences c5-provoke-2.1–2.2 are separate story_writer proposals. No `values` anywhere in this package; twelve numbers live only in narration text. Obligation o-27-27 mediaNeeds footage only.",
+   "intendedVisualMoments": [
+    "One moment: six identities in two groups, each with two opposing numbers (handoff focal 6 items, sequence permitted)."
+   ],
+   "observed": "Under-expressed data. The handoff later anchors 12 values with roles and showTogether pairs, but the package gives Matching none of that: no values, no grouping of the two kinds, no identity count. The editor's wording ('2 sets of artists with opposing data points') is exactly the structure the handoff's data binding encodes and the package omits.",
+   "observedKind": "data_structure_absent_from_package",
+   "attribution": {
+    "label": "story_authoring_failure",
+    "note": "Year Seventeen ships numbers as prose; Jay-Z ships `values` with entity and label. The same contract field is used in one package and not the other."
+   },
+   "evidence": [
+    "ev_84d8227c5595ac1a (beat_review 27-27)",
+    "ev_607fb53976686bf6 (matching_output_feedback 27.01, provenance-unverifiable)",
+    "build_matching_handoff.py lines 212-229"
+   ]
+  },
+  {
+   "spanId": "S10",
+   "story": "jayz-drake-settle-it",
+   "sourceLocator": "/home/user/story-pinned/script/jayz-drake-settle-it-v2.md line 77; architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json claims p05-2.1–2.8 (spans 5381+, p05-2.2 5410+29, p05-2.3–2.5 5439+134, p05-2.6 5573+116, p05-2.7 5689+38)",
+   "currentBeatBoundary": "Beat p05-2 (PART 5 — THE ONE NUMBER THAT HOLDS), eight sentences.",
+   "currentClaimBoundary": "Eight claims, each factual supported with receipts; values on 2.3 (peak 23), 2.4 (peak 3), 2.7 (11 consecutive, 19 years); implied Jay-Z eligible on each. Obligation o-streak over 2.2–2.8: intent 'two misses, then eleven consecutive number one studio albums, 1998 to 2017', mustBePerceptible three items, mediaNeeds artwork count 13. Continuity g-streak (template, preferred) on 2.7 and two later claims.",
+   "intendedVisualMoments": [
+    "Moment A: two early misses as a pair (2.2–2.4).",
+    "Moment B: the unbroken run of eleven across nineteen years (2.5–2.8), 13 covers in sequence."
+   ],
+   "observed": "Valid input fragmented. The obligation defines the moment set precisely; the splitter never reads obligations when grouping and produced six tasks (p05-2-01..06) by sentence heuristics, grouping 2.3+2.4+2.5 (two values plus the start of the run) and isolating 2.2, 2.6, 2.7, 2.8. The editor then asked for a pair of cards on 2.2 alone, a split of the 2.3–2.5 task, and a timeline or long carousel on 2.6 and 2.7, which is the obligation's two-moment structure re-discovered by hand.",
+   "observedKind": "valid_input_fragmented",
+   "attribution": {
+    "label": "valid_story_input_mishandled_by_matching",
+    "note": "storypackage_splitter.py `_semantic_units` (lines 185-248) takes only beat, claim_ids and claims; obligations are attached afterwards by claimId intersection (lines 334-336)."
+   },
+   "evidence": [
+    "ev_b28174f436fb78aa (p05-2-02: 'clearly asking for a pair of cards')",
+    "ev_0c2a0aba000bca29 (p05-2-03: 'beat should be split into 2')",
+    "ev_de698031ae7624db (p05-2-04: 'timeline template and longer carousels')",
+    "ev_81a8bfc05956e7b1 (p05-2-05: '11 in a row ... over 19 years')"
+   ]
+  },
+  {
+   "spanId": "S11",
+   "story": "jayz-drake-settle-it",
+   "sourceLocator": "/home/user/story-pinned/script/jayz-drake-settle-it-v2.md line 66; architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json claims p04-4.2 (Jay-Z 37%), p04-4.3 (Drake <10%), p04-4.4 (Drake 253M avg), p04-4.5 (Jay-Z 55M avg); task p04-4-03 span 4837+107",
+   "currentBeatBoundary": "Beat p04-4, seven sentences.",
+   "currentClaimBoundary": "Four consecutive supported claims, each with one value whose label names the metric: 4.2 and 4.3 share label \"top five songs' share of catalog streams\"; 4.4 and 4.5 share 'average streams per track'. Each claim names one entity.",
+   "intendedVisualMoments": [
+    "Moment A: the share metric, both entities side by side.",
+    "Moment B: the per-track average, both entities side by side."
+   ],
+   "observed": "Wrong merge key. The splitter merged 4.3 with 4.4 (same entity, same primary operation data_explanation, under 260 code points) and left 4.2 and 4.5 alone, so the two head-to-head pairs became a share-plus-average task for one entity flanked by two singletons. The editor read the merged task as two different charts. The Story values carry the metric label that distinguishes the pairs; the splitter does not read it.",
+   "observedKind": "wrong_merge_key",
+   "attribution": {
+    "label": "valid_story_input_mishandled_by_matching",
+    "note": "storypackage_splitter.py lines 210-218 `same_payload`: merge requires shared display entities; metric identity in values[].label is never compared. The Story's g-head-to-head continuity encodes the pairing idea but only for Part 3 claims, so for Part 4 the only pairing signal is the value label."
+   },
+   "evidence": [
+    "ev_197e8df3cdb679e1 (p04-4-03: 'first part ... pie chart ... second part ... a counter')"
+   ]
+  },
+  {
+   "spanId": "S12",
+   "story": "jayz-drake-settle-it",
+   "sourceLocator": "/home/user/story-pinned/script/jayz-drake-settle-it-v2.md line 26; architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json claims p02-2.2 (2000+112), p02-2.3 (2113+52)",
+   "currentBeatBoundary": "Beat p02-2, five sentences.",
+   "currentClaimBoundary": "p02-2.2: entityRefs [Drake required]; values Drake 15 and Jay-Z 14 (same label). p02-2.3: entityRefs [Jay-Z required]; values Jay-Z 11 and Drake 9. Obligation o-formula-flip over both: mustBePerceptible both scores and that the charts are identical; needsOnScreenText true.",
+   "intendedVisualMoments": [
+    "One moment: the same chart history yields two winners under two counting rules, both scores visible together."
+   ],
+   "observed": "Comparison hidden from derivation. Each sentence names one entity but its values name both. The splitter counts participants from entityRefs only, so it derived derived_quantity for each sentence and never a comparison; the editor saw a single-subject counter and asked why the two-person treatment was absent. The obligation again names the moment and again is not used for grouping.",
+   "observedKind": "lost_relationship",
+   "attribution": {
+    "label": "both_separable",
+    "note": "Story: the implied partner of a comparison sentence is not added as an entityRef (impliedRefs table), although values already carry it. Matching: ignores values[].entity when counting participants and ignores the obligation's claim set when grouping. The editor's own diagnosis names the chain ('something off between beats, beat/visual job splitting, visual job understanding and the available grammar/tags')."
+   },
+   "evidence": [
+    "ev_ae89ed37733a21e4 (p02-2-03)"
+   ]
+  },
+  {
+   "spanId": "S13",
+   "story": "jayz-drake-settle-it",
+   "sourceLocator": "/home/user/story-pinned/script/jayz-drake-settle-it-v2.md lines 29 and 12; architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json claims p02-3.2 (2288+85) and p01-3.6 (904+45)",
+   "currentBeatBoundary": "Beats p02-3 (four sentences) and p01-3 (eight sentences).",
+   "currentClaimBoundary": "p02-3.2 editorial, no entityRefs, no values. p01-3.6 editorial, entityRefs [Jay-Z required]. Neither has a proposal or obligation.",
+   "intendedVisualMoments": [
+    "p02-3.2: a stated question of valuation, text over a neutral background.",
+    "p01-3.6: an attributed non-numerical claim that wants evidence (screen/document/b-roll)."
+   ],
+   "observed": "Lane ignored. Both claims are correctly labelled editorial by the Story heuristics. The splitter's operation detector keys on the strings 'number one' and 'numbers' and emitted data_explanation, so numeric templates were admitted for opinion sentences. The editor's reading matches the lane, not the derived operation.",
+   "observedKind": "lane_ignored",
+   "attribution": {
+    "label": "valid_story_input_mishandled_by_matching",
+    "note": "The splitter references `lane` once, to copy it into the task (line 321). Lane never conditions presentationOperations or derived job."
+   },
+   "evidence": [
+    "ev_60553fc81c4e442a (p02-3-02: 'this should be text')",
+    "ev_8d097d68699e413f (p01-3-05: 'a non-numerical claim is being made and it needs evidence')"
+   ]
+  },
+  {
+   "spanId": "S14",
+   "story": "jayz-drake-settle-it",
+   "sourceLocator": "/home/user/story-pinned/script/jayz-drake-settle-it-v2.md line 60; architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json claim p04-2.1 (4286+71)",
+   "currentBeatBoundary": "Beat p04-2, four sentences.",
+   "currentClaimBoundary": "p04-2.1 factual supported; entityRefs [Jay-Z required]; value 13 'career-stream rank among 31 measured artists'; cohortRef scale-31 (complete, 31 members replayed from a pinned CSV).",
+   "intendedVisualMoments": [
+    "One moment: one identity located inside a 31-member ranked field."
+   ],
+   "observed": "Success. Cohort plus value plus named subject gave the splitter enough to keep the sentence whole and derive proportion_of_cohort; the editor confirmed the unit has a single job and should not be split. The remaining complaint (spatial families not offered) is admission, not semantics.",
+   "observedKind": "success",
+   "attribution": {
+    "label": "success",
+    "note": "Valid Story input handled correctly at the boundary stage."
+   },
+   "evidence": [
+    "ev_9968d9e53524c9b1 (p04-2-01: 'this beat doesnt need to be split, it has a single job')",
+    "ev_7f4a926a6afacecf (p04-2-03)"
+   ]
+  },
+  {
+   "spanId": "S15",
+   "story": "jayz-drake-settle-it",
+   "sourceLocator": "/home/user/story-pinned/script/jayz-drake-settle-it-v2.md line 40; architecture/storypackage/jayz-drake-settle-it@4.storypackage-0.2.json claims p03-2.1–2.5 (3245+)",
+   "currentBeatBoundary": "Beat p03-2, five sentences.",
+   "currentClaimBoundary": "Alternating single-entity sentences, each supported with one value and a shared label ('career Spotify streams', 'daily Spotify streams'); continuity g-head-to-head (template_family, preferred) over 14 Part 3 claims and g-scoreboard-recap over three of them.",
+   "intendedVisualMoments": [
+    "Moment A: career streams, two entities side by side.",
+    "Moment B: daily streams, two entities side by side.",
+    "Moment C: the ratio statement."
+   ],
+   "observed": "Pairs split by sentence. Five tasks were emitted, one per sentence, because adjacent sentences name different entities and the merge rule requires a shared entity. The continuity group that says 'one consistent two-column treatment' is attached to each task afterwards but could not join them. The editor accepted a single counter for the first sentence in isolation; that acceptance is scoped to one candidate and does not override the Story's continuity preference.",
+   "observedKind": "valid_input_fragmented",
+   "attribution": {
+    "label": "valid_story_input_mishandled_by_matching",
+    "note": "Same mechanism as S11; continuity is the Story signal here and is not consulted for grouping."
+   },
+   "evidence": [
+    "ev_0aca38d1b1fd04f1 (p03-2-01, acceptable, scoped)",
+    "jayz-drake-settle-it.story.json continuity g-head-to-head"
+   ]
+  },
+  {
+   "spanId": "S16",
+   "story": "future-volksgeist",
+   "sourceLocator": "/home/user/story-pinned/script/future-volksgeist-cleaned.md line 6; architecture/storypackage/future-volksgeist@5.storypackage-0.2.json beat p01-1 (claims p01-1.1–1.5; p01-1.3 span 164+64, p01-1.4 228+)",
+   "currentBeatBoundary": "Beat p01-1 (PART 1 — WHO IS FUTURE?), narrator, five sentences.",
+   "currentClaimBoundary": "p01-1.1 'Who is Future?' editorial; p01-1.2 editorial; p01-1.3 factual implied subject eligible; p01-1.4 editorial (one sentence containing 'not just rap, but also the entire pop music industry'); p01-1.5 editorial. Proposal p-p01-1.1 pose_a_question only. Continuity g-who-is-future (subject_framing, preferred) on 1.1. No cohort, no values.",
+   "intendedVisualMoments": [
+    "Moment A: the question and its answer-setup as one unit.",
+    "Moment B: a rank claim (fifth most streamed of a period).",
+    "Moment C: a scope expansion from one genre to all of pop, with 'an entire generation of music artists' as its subject.",
+    "Moment D: the thesis sentence."
+   ],
+   "observed": "Mixed. Success: the splitter's question-setup rule merged 1.1 and 1.2 into one unit and the editor called the candidates great; the intra-claim 'not just ... but also' split produced two source-exact segments from 1.4. Defects: 'fifth most streamed' is prose only (no value, no rank basis), so a counter was offered and rejected as not showing the rank; 'an entire generation of music artists' is an unenumerated cohort the package cannot express (no cohorts in this package; schema allows members_not_enumerated with expectedCount), so single-person templates were offered.",
+   "observedKind": "mixed",
+   "attribution": {
+    "label": "both_separable",
+    "note": "Story: rank and unenumerated-group semantics not expressed. Matching: quantitative-term keyword derivation (storypackage_splitter.py lines 86-93) treats any number word as data_explanation."
+   },
+   "evidence": [
+    "ev_394f04a8fb042538 (p01-1-01, rejected one, 'the rest are GREAT selections')",
+    "ev_8d8f5e31713d758d (p01-1-02, rejected counter)",
+    "ev_945fc64c57b6bbfb (p01-1-03: 'should focus on showing the entire generation of music artists')"
+   ]
+  },
+  {
+   "spanId": "S17",
+   "story": "future-volksgeist",
+   "sourceLocator": "/home/user/story-pinned/script/future-volksgeist-cleaned.md line 15; architecture/storypackage/future-volksgeist@5.storypackage-0.2.json claim p01-4.5 span 1190+191",
+   "currentBeatBoundary": "Beat p01-4, narrator, seven sentences (1,619 code points is the largest in the package for p04-9; p01-4 is 7 claims).",
+   "currentClaimBoundary": "p01-4.5 factual; entityRefs [Future required]; no values; no proposal; one task p01-4-05 over the whole sentence, job assert_without_data, operations [data_explanation].",
+   "intendedVisualMoments": [
+    "Moment A: a thesis about method ('music is a science').",
+    "Moment B: a transformation across time.",
+    "Moment C: a magnitude change from 300 to 50 million, a scale comparison."
+   ],
+   "observed": "Under-split inside a sentence. The editor enumerated three visual jobs. The Story unit is one sentence (per contract) with no values and no sub-span proposal; the splitter has exactly one intra-claim split rule ('not just ... but also') and its transformation detector requires a verb from a fixed list before 'from ... to', which 'has taken him from ... to' does not satisfy.",
+   "observedKind": "under_splitting_within_claim",
+   "attribution": {
+    "label": "valid_story_input_mishandled_by_matching",
+    "note": "A sentence is a valid claim under SPEC-0.2; sub-moment discovery is Matching's declared responsibility (MATCHING_LAYER_FEEDBACK.md section 1; splitter granularityPolicy). Story could additionally supply values for 300 and 50 million, which would be an enrichment, not a contract failure."
+   },
+   "evidence": [
+    "ev_c062fcf214353ca3 (p01-4-05: 'this beat would need at least 2 visual jobs')"
+   ]
+  },
+  {
+   "spanId": "S18",
+   "story": "future-volksgeist",
+   "sourceLocator": "/home/user/story-pinned/script/future-volksgeist-cleaned.md line 15 (last sentence) and line 309; architecture/storypackage/future-volksgeist@5.storypackage-0.2.json claims p01-4.7 (1503+77) and p13-4.1",
+   "currentBeatBoundary": "Beats p01-4 (last sentence) and p13-4 (one sentence).",
+   "currentClaimBoundary": "Both editorial; unresolvedMentions Philip and Volksgeist with display none; obligation o-source-signoff: intent 'these sign-off lines belong to the source channel; this production replaces them with its own', wouldBeALie 'branding this production as Volksgeist'.",
+   "intendedVisualMoments": [
+    "None: the narration is to be replaced, so no visual moment exists for the source wording."
+   ],
+   "observed": "No way to say 'do not task this'. The Story layer knows the line will be replaced and says so in an obligation's intent, but the schema has no narration disposition (omit, replace, placeholder), so the sentence is a claim like any other and Matching emitted a task and a candidate gallery for it. The editor's instruction was to skip it.",
+   "observedKind": "untaskable_narration_not_expressible",
+   "attribution": {
+    "label": "story_authoring_failure",
+    "note": "Schema gap, not a builder bug. Matching cannot be expected to parse 'this production replaces them' from an intent string; but a Matching consumer could also treat wouldBeALie-only obligations on editorial sign-offs conservatively. Primary owner: Story contract."
+   },
+   "evidence": [
+    "ev_7058ede7e45b1b58 (p01-4-07: 'skip this extra irrelevant narration')",
+    "future-volksgeist.story.json obligations o-source-signoff"
+   ]
+  },
+  {
+   "spanId": "S19",
+   "story": "future-volksgeist",
+   "sourceLocator": "/home/user/story-pinned/script/future-volksgeist-cleaned.md lines 26–29; architecture/storypackage/future-volksgeist@5.storypackage-0.2.json beat p02-3 (claims p02-3.1 1974+145, 3.2, 3.3 2198+249, 3.4 2447+58) and clip beat p02-4 (speaker Future, 00:02:53)",
+   "currentBeatBoundary": "Beat p02-3, narrator, four sentences, followed by beat p02-4, role clip.",
+   "currentClaimBoundary": "p02-3.1 factual implied subject; p02-3.2 interpretive branch persona-as-method; p02-3.3 factual with Elliott Wilson and Future required; p02-3.4 factual ('even Future himself said this.'). p02-4 carries speaker.role clip, entity Future, obligation o-clip-p02-4 (footage of the speaker; wouldBeALie presenting the words as narration).",
+   "intendedVisualMoments": [
+    "3.1: the breadth of 'all of his interviews' (a gallery or screen of many).",
+    "3.3: a new person introduced, then an interview context (two parts).",
+    "3.4: a hand-off from the named person to the subject, resolved by the clip that follows."
+   ],
+   "observed": "Speaker model is a success; sentence-level moments are under-split. The editor's instruction on 3.4 ('b-roll of him sayin this would follow') is precisely what the next Story beat encodes, and Matching routed the clip as source_footage_primary outside template matching with a typed end-timing gap. Within 3.3 the editor again found two parts in one sentence.",
+   "observedKind": "mixed",
+   "attribution": {
+    "label": "both_separable",
+    "note": "Story success on clip/quote roles (SPEC-0.2 2026-10-03 additions). Matching success on routing. Residual under-splitting inside 3.3 is Matching's moment discovery. 'All of his interviews' is an unenumerated multiple of works/events that Story cannot express (see F-08)."
+   },
+   "evidence": [
+    "ev_51312a34468c7c4d (p02-3-01)",
+    "ev_032190ddc33477c4 (p02-3-03: '2 things this beat needs visualized')",
+    "ev_2801e7ff3abddf95 (p02-3-04)",
+    "HANDOVER-future-volksgeist.md 'How to consume each role'"
+   ]
+  },
+  {
+   "spanId": "S20",
+   "story": "future-volksgeist",
+   "sourceLocator": "/home/user/story-pinned/script/future-volksgeist-cleaned.md line 169; architecture/storypackage/future-volksgeist@5.storypackage-0.2.json claims p06-1.10 (20975+216) and p06-1.11 (21191+100)",
+   "currentBeatBoundary": "Beat p06-1 (PART 6 — THE BREAKTHROUGH), narrator, 1,301 code points, 11 claims.",
+   "currentClaimBoundary": "p06-1.10 factual, contains a quoted lyric hook inside the narrator sentence; entityRefs Dungeon Family, Big Rube, Future required; no obligation. p06-1.11 editorial 'These mixtapes aren't exactly amazing ...'; entityRefs [Future]; the mixtapes referred to are works named in earlier claims and are not registry entities.",
+   "intendedVisualMoments": [
+    "1.10: the quoted lyric as on-screen text, attributed.",
+    "1.11: several mixtapes shown as multiple items."
+   ],
+   "observed": "Two expressiveness gaps. Quoted text inside a narrator claim gets no needsOnScreenText obligation (only quote-role beats do, build_tagged_script.py lines 247-251), so the lyric's text requirement is invisible to Story's own contract even though the splitter detected lyric_presentation. 'These mixtapes' refers to multiple works, and works (albums, mixtapes, songs, covers) are outside the registry, so neither entityRefs nor cohorts nor a mediaNeeds count expresses 'things in multiples'.",
+   "observedKind": "expressiveness_gap",
+   "attribution": {
+    "label": "story_authoring_failure",
+    "note": "The first is a builder rule gap (QUOTED regex used only for lane detection, line 126). The second depends on registry scope, which is Data-owned; the Story contract could still carry mediaNeeds artwork count on an obligation and does not."
+   },
+   "evidence": [
+    "ev_6c440a7b5cb840d4 (p06-1-10: 'where are the lyrics templates?')",
+    "ev_2794546a910cc39b (p06-1-11: 'things in multiples should always have a least a few carousel options')"
+   ]
+  },
+  {
+   "spanId": "S21",
+   "story": "future-volksgeist",
+   "sourceLocator": "/home/user/story-pinned/script/future-volksgeist-cleaned.md line 189; architecture/storypackage/future-volksgeist@5.storypackage-0.2.json claim p07-1.5 span 25936+120",
+   "currentBeatBoundary": "Beat p07-1 (PART 7 — PLUTO), narrator, 1,233 code points, 7 claims.",
+   "currentClaimBoundary": "p07-1.5 factual; entityRefs [Future implied eligible, Drake implied eligible representedBy media]; obligation o-drake-unnamed withheld 'Drake's name as a caption or label: the narration calls him only a 25-year-old act from Canada'. p07-1.6 interpretive branch future-drake-parallel with the same refs.",
+   "intendedVisualMoments": [
+    "One moment: a single new subject shown but not named."
+   ],
+   "observed": "Success. The Story expresses an implied, nameable-but-unnamed person with image eligible and caption withheld; the editor accepted three single-subject cards and explicitly did not want a multi-entity treatment, consistent with the obligation.",
+   "observedKind": "success",
+   "attribution": {
+    "label": "success",
+    "note": "Valid Story input carried through."
+   },
+   "evidence": [
+    "ev_bddeca05ada71de3 (p07-1-04, acceptable)",
+    "future-volksgeist.story.json impliedRefs p07-1.5, obligations o-drake-unnamed"
+   ]
+  },
+  {
+   "spanId": "S22",
+   "story": "future-volksgeist",
+   "sourceLocator": "/home/user/story-pinned/script/future-volksgeist-cleaned.md line 300; architecture/storypackage/future-volksgeist@5.storypackage-0.2.json claim p13-1.9 span 47135+320",
+   "currentBeatBoundary": "Beat p13-1 (PART 13 — WHO IS FUTURE?), narrator, 1,397 code points, 12 claims.",
+   "currentClaimBoundary": "p13-1.9 factual, a 320-code-point sentence; entityRefs André 3000 and Rico Wade required, Future implied; task p13-1-07 job enumerate, operations [relationship_intro, item_sequence].",
+   "intendedVisualMoments": [
+    "Moment A: years in a studio with a mentor (relationship).",
+    "Moment B: working with a second named artist as a teenager.",
+    "Moment C: writing for others and years of failure (b-roll)."
+   ],
+   "observed": "Under-split inside a sentence, inside an oversized beat. The editor said the unit 'is more than 1 part' and assigned the third part to b-roll. Beat size itself did not cause the defect (the splitter works per sentence), but oversized paragraphs mean the beat offers no intermediate structure between paragraph and sentence.",
+   "observedKind": "under_splitting_within_claim",
+   "attribution": {
+    "label": "valid_story_input_mishandled_by_matching",
+    "note": "Same as S17. The paragraph length is a Story authoring choice made at transcript cleaning and is unverifiable against the source (no org mapping)."
+   },
+   "evidence": [
+    "ev_755a18328ee44670 (p13-1-07, acceptable with split instruction)"
+   ]
+  },
+  {
+   "spanId": "S23",
+   "story": "future-volksgeist",
+   "sourceLocator": "/home/user/story-pinned/script/future-volksgeist-cleaned.md line 137; architecture/storypackage/future-volksgeist@5.storypackage-0.2.json claims p05-1.2 and p05-1.3; also p10-6.5–6.6 (line 264)",
+   "currentBeatBoundary": "Beats p05-1 (five sentences) and p10-6 (seven sentences).",
+   "currentClaimBoundary": "p05-1.2 'Starting at the age of 20, Future's music career went through seven years of failure.' and p05-1.3 'No matter what he tried, he was stuck.' are separate factual claims; p10-6.5 factual and p10-6.6 interpretive (branch esco-jail-catalyst) are separate claims. Identical claim ids, spans, text and lanes in package files @3 and @5.",
+   "intendedVisualMoments": [
+    "Unverifiable: whether 1.2 and 1.3 are one moment or two is an editorial judgment with no evidence record."
+   ],
+   "observed": "Measured divergence with identical Story input. The gold reference keeps 1.2 and 1.3 separate and merges 10-6.5 with 10-6.6; the current output does the opposite in both beats. Twenty-six further tasks keep the same grouping but change job label. Because the Story side is byte-identical in claim structure, the drift is entirely in Matching's grouping and labelling between the gold run and the baseline. No editor evidence covers these two beats, so which grouping is correct is unresolved.",
+   "observedKind": "matching_granularity_drift",
+   "attribution": {
+    "label": "undetermined",
+    "note": "Not a Story failure (input unchanged). Whether it is a Matching defect depends on which splitter revision produced the gold; Job 4 owns that. What would settle it: the splitter commit that generated the gold reference, or an editor ruling on these two beats."
+   },
+   "evidence": [
+    "docs/astra-root-cause/references/gold-standard/storypackage-02-future-volksgeist-task-proposals.json vs reports/storypackage-02-future-volksgeist-v13-task-proposals.json (measured in this job)",
+    "Job 1 UE-05"
+   ]
+  }
+ ],
+ "findings": [
+  {
+   "findingId": "F-01",
+   "title": "Five incompatible meanings of 'beat', and the Story paragraph is the one Matching treats as a wall",
+   "kind": "observed_fact",
+   "attribution": "both_separable",
+   "statement": "Source caption chunks, source-analysis narrative beats (15–18 per documentary, minutes long), legacy review beats (40, older wording), Story beats (paragraphs: 94 / 54 / 72) and the editor's 'beat' (a Matching task proposal) are five different units. The schema makes beatId opaque, so Story is within contract. But the splitter derives semantic units per Story beat and never crosses one (except through a Story proposal that does), so paragraph conventions set the ceiling of every VisualTask. Narrator paragraphs are 4.6× longer in one story than another (median 662 vs 143 code points).",
+   "storyShare": "Paragraphing is authored at cleaning or writing time with no stated visual rule; the largest beats hold 12–16 sentences.",
+   "matchingShare": "Beat as hard outer boundary; no cross-beat moment unless Story proposes it.",
+   "wouldSettle": "n/a (observed in code: storypackage_splitter.py lines 456-489; build_tagged_script.py lines 85-105; build_year_seventeen.py lines 26-42)",
+   "spans": [
+    "S06",
+    "S10",
+    "S16",
+    "S22"
+   ]
+  },
+  {
+   "findingId": "F-02",
+   "title": "Claim equals sentence; a sentence is neither the visual moment nor a reliable fraction of one",
+   "kind": "observed_fact",
+   "attribution": "both_separable",
+   "statement": "Both builders cut claims at sentence punctuation. The spans show sentences holding two or three moments (S05, S06-adjacent, S16, S17, S19, S22) and moments spanning several sentences (S10, S11, S15). The contract already says a claim is not a VisualTask (SPEC-0.2 'Boundary'; MATCHING_LAYER_FEEDBACK.md §1). What is missing on both sides is a first-class moment boundary: Story's proposals can carry sub-spans and multi-claim groups but the general builder authors neither (0 sub-spans in two packages, 1 in the third); Matching's intra-claim split has one hard-coded pattern and its merge rule keys on shared entity and a 260-code-point cap.",
+   "storyShare": "Sub-span and cross-claim proposals are schema-legal but builder-unsupported in general form.",
+   "matchingShare": "Moment discovery is heuristic keyword matching over text (storypackage_splitter.py lines 34-110, 162-248).",
+   "wouldSettle": "n/a",
+   "spans": [
+    "S02",
+    "S05",
+    "S17",
+    "S22",
+    "S11",
+    "S15"
+   ]
+  },
+  {
+   "findingId": "F-03",
+   "title": "Obligations and continuity are valid boundary evidence that Matching attaches after the fact and never uses to group",
+   "kind": "observed_fact",
+   "attribution": "valid_story_input_mishandled_by_matching",
+   "statement": "Every obligation and continuity group carries a claimIds set that names which sentences belong to one treatment. `_semantic_units` receives only beat, claim ids and claims; obligations and continuity are joined to a finished task by intersection (lines 334-339). In S10 the obligation's set is exactly the two moments the editor asked for; in S12 and S15 the obligation or continuity names the pair the splitter broke.",
+   "storyShare": "none for this mechanism",
+   "matchingShare": "all",
+   "wouldSettle": "n/a",
+   "spans": [
+    "S10",
+    "S12",
+    "S15",
+    "S06"
+   ]
+  },
+  {
+   "findingId": "F-04",
+   "title": "Lanes are never consumed by Matching",
+   "kind": "observed_fact",
+   "attribution": "valid_story_input_mishandled_by_matching",
+   "statement": "The lane heuristics (questions and first person → editorial; hedges → interpretive; clip/quote → factual attribution) produce usable labels: 116 of 222 claims editorial in the debate story, 107 of 502 in the biography. The splitter copies lane into the task and never conditions an operation or job on it, so editorial sentences containing number words are derived as data_explanation and receive counters (S13).",
+   "storyShare": "Lanes are heuristic plus hand correction, all story_writer proposed, none user-reviewed (handover documents). Precision is adequate in the sampled spans.",
+   "matchingShare": "all",
+   "wouldSettle": "n/a",
+   "spans": [
+    "S13"
+   ]
+  },
+  {
+   "findingId": "F-05",
+   "title": "Participants are counted from entityRefs alone; values' entities and the implied comparison partner are invisible",
+   "kind": "observed_fact",
+   "attribution": "both_separable",
+   "statement": "Comparison and parallel derivation require two or more display-eligible entityRefs. In S12 the values already name both entities; in S04 the obligation names the partner; in both the sentence names one. The Story implied-reference tables (DRAKE_CUES/FORCE_DRAKE in build_year_seventeen.py; impliedRefs in the story configs) cover pronoun cues but not comparison partners. The merge key for adjacent claims is shared entity, so head-to-head pairs that alternate entity are split while same-entity different-metric sentences are merged (S11).",
+   "storyShare": "implied-partner refs missing on comparison sentences",
+   "matchingShare": "values[].entity and values[].label unused for participant and metric identity",
+   "wouldSettle": "n/a",
+   "spans": [
+    "S04",
+    "S11",
+    "S12",
+    "S15"
+   ]
+  },
+  {
+   "findingId": "F-06",
+   "title": "jobProposals: advisory, incomplete, and carrying the legacy matcher vocabulary",
+   "kind": "observed_fact",
+   "attribution": "story_authoring_failure",
+   "statement": "Two packages propose only pose_a_question (20 and 14), which the splitter derives anyway from '?', so the proposals add nothing. The third proposes 116: 36 are legacy model labels from the review export, 72 story_writer, 8 user; 32 are assert_without_data (the null job). The job enum is the legacy matcher's 20 jobs (HANDOFF_data_matching_media.md §0 says claim types 'deliberately mirror the matcher's communication jobs'). Proposals carry boundaries that disagree with obligations (S06, S08) and overlap each other (S02). The Year Seventeen gold reference is a one-to-one materialization of these proposals, so its 'visual job derivation' is the Story's labels; the current splitter demotes 12 of them to advisory and re-derives their units (job preserved). Where proposals are user-approved with a ruling (S07) they are precise and valuable.",
+   "storyShare": "all for content; the enum choice is a contract decision shared with Matching",
+   "matchingShare": "over-materialization of every proposal on a multi-proposal claim yields overlapping tasks (S02)",
+   "wouldSettle": "n/a",
+   "spans": [
+    "S02",
+    "S06",
+    "S07",
+    "S08"
+   ]
+  },
+  {
+   "findingId": "F-07",
+   "title": "Obligations are structurally precise where authored and empty where the editor's note was only quoted",
+   "kind": "measured_result",
+   "attribution": "story_authoring_failure",
+   "statement": "mustBeTrue is used by 0 of 72 obligations across the three packages; contentClass by 0. Six Year Seventeen obligations (o-13-13b, o-14-14, o-21-21b, o-23-23, o-25-25a, o-29-29a) carry no field other than claimIds and a provenance.evidence string that quotes the review note. Counts are often prose ('multiple rappers from the pre-streaming era', 'for the first sentence') where the schema offers mediaNeeds.count, recognizableIdentityCount, or a cohort with members_not_enumerated and expectedCount. Quoted text inside narrator sentences gets no needsOnScreenText (S20). There is no narration disposition for lines the production will replace (S18). Where fields are used (S01, S03, S10, S21, the debate story's six) they are exact and user-provenanced.",
+   "storyShare": "all",
+   "matchingShare": "none",
+   "wouldSettle": "n/a",
+   "spans": [
+    "S05",
+    "S08",
+    "S09",
+    "S18",
+    "S20",
+    "S01",
+    "S03",
+    "S10",
+    "S21"
+   ]
+  },
+  {
+   "findingId": "F-08",
+   "title": "The entity model covers people and groups only; works and unenumerated groups cannot be expressed",
+   "kind": "observed_fact",
+   "attribution": "story_authoring_failure",
+   "statement": "'These mixtapes', 'all of his interviews', 'an entire generation of music artists', 'the Jet Life run', '13 album covers' are visual subjects that are not registry entities. The biography package has 0 cohorts and 0 values; its only structural handles are person refs. The editor's recurring instruction that 'things in multiples' need multi-item treatments has no Story signal to key on. The registry is Data-owned (shared roster v12), so widening it is not Story's alone; but the schema's cohort (members_not_enumerated, expectedCount) and mediaNeeds.count fields exist today and were unused for these spans.",
+   "storyShare": "primary (unused schema fields)",
+   "matchingShare": "none at the semantics stage",
+   "wouldSettle": "Owner decision on whether works become registry entities (Data) or stay obligation-level media needs (Story).",
+   "spans": [
+    "S16",
+    "S19",
+    "S20",
+    "S10"
+   ]
+  },
+  {
+   "findingId": "F-09",
+   "title": "Beat and claim derivation is unverifiable against sources, and Year Seventeen review evidence was written against different wording",
+   "kind": "observed_fact",
+   "attribution": "undetermined",
+   "statement": "No transcript-to-beat mapping exists (Job 1). For the biography, every sentence and paragraph boundary was created during caption cleaning. For the debate story the script is original. For Year Seventeen, 21 of the 40 legacy review beats quote narration that differs from script v2.1 (overlap down to 0.632), and the beat-script map the builder used to join them (grammar/beat-script-map.json) is absent from this checkout. Editor notes cited through reviewKeys therefore attach to re-worded sentences. This does not invalidate the notes; it bounds how exactly a note can be re-applied to a span.",
+   "storyShare": "n/a",
+   "matchingShare": "n/a",
+   "wouldSettle": "The org mapping named by Job 1, plus the beat-script map file at astra-visual-selector@da8b175.",
+   "spans": [
+    "S06",
+    "S07",
+    "S22"
+   ]
+  },
+  {
+   "findingId": "F-10",
+   "title": "Matching granularity drifted between the gold runs and the baseline on unchanged Story input",
+   "kind": "measured_result",
+   "attribution": "undetermined",
+   "statement": "Year Seventeen: gold materializes all 116 proposals; baseline materializes 104 and re-derives 11 units (one merge). Biography: claim structure is byte-identical between package files @3 and @5, yet 2 beats are grouped differently and 26 tasks change job label; counts are equal (310). This is not a Story failure. Whether the baseline is better or worse than the gold on these units is a Job 4 judgment; this job records that equal counts conceal the change.",
+   "storyShare": "none",
+   "matchingShare": "to be judged in Job 4",
+   "wouldSettle": "The splitter revision that produced each gold file.",
+   "spans": [
+    "S23",
+    "S03"
+   ]
+  },
+  {
+   "findingId": "F-11",
+   "title": "The three packages are not produced the same way and do not carry the same structure",
+   "kind": "observed_fact",
+   "attribution": "story_authoring_failure",
+   "statement": "Two builders (tagged, Year Seventeen-specific) with different sentence regexes and beat conventions; values in one package only (62), cohorts 0/1/3, reviewKeys in one, receipts in one, a matching handoff for one (hand-authored per task in build_matching_handoff.py, keyed to Matching's pilot task ids, not a general producer). UE-03 is therefore a sequencing dependency: the two newer handovers ask Matching to return VisualTasks first so Story can write the handoff. Fitness of this contract is Job 3's question.",
+   "storyShare": "all",
+   "matchingShare": "none",
+   "wouldSettle": "n/a",
+   "spans": [
+    "S09",
+    "S14"
+   ]
+  },
+  {
+   "findingId": "F-12",
+   "title": "Speaker roles (clip, quote) are a success end to end",
+   "kind": "observed_fact",
+   "attribution": "success",
+   "statement": "The Story expresses who is heard per beat with provenance for uncertain attributions; clip beats carry footage obligations and quote beats carry on-screen-text obligations; Matching routes clips out of template matching and quotes to an attributed-quote task, and emits typed gaps (36 clip end-timing, 6 unidentified speakers, 1 missing quote source). The editor's expectation that narration hand-offs resolve into the following clip is met by the Story structure.",
+   "storyShare": "success",
+   "matchingShare": "success",
+   "wouldSettle": "n/a",
+   "spans": [
+    "S19"
+   ]
+  }
+ ],
+ "principles": [
+  {
+   "id": "P-1",
+   "principle": "A visual moment is the unit of treatment; a claim is the unit of evidence; a beat is the unit of narration. Each layer must carry its own unit and name the mapping between them explicitly.",
+   "derivedFrom": "S02, S05, S10, S17; SPEC-0.2 Boundary; MATCHING_LAYER_FEEDBACK §1",
+   "referenceSupport": "Year Seventeen handoff tasks link claims, sub-spans and focal counts (Story-authored); the Future gold reference's granularityPolicy states 'claimBoundaryIsEvidenceNotTaskBoundary' (Future reference only; the Year Seventeen reference has no such field)."
+  },
+  {
+   "id": "P-2",
+   "principle": "Any Story object that enumerates a claim set for one purpose (obligation, continuity, proposal) is boundary evidence and must be consulted before text heuristics decide a moment's edges.",
+   "derivedFrom": "S10, S12, S15, F-03",
+   "referenceSupport": "Year Seventeen reference: tasks for user split proposals (28-28) follow the claim sets the user named."
+  },
+  {
+   "id": "P-3",
+   "principle": "Participants in a comparison are the union of mentioned entities, implied entities, value entities and cohort members, never the mentioned set alone; the merge key for adjacent sentences is shared metric or shared moment, not shared entity.",
+   "derivedFrom": "S04, S11, S12, S15",
+   "referenceSupport": "Neither reference demonstrates this; it is derived from editor evidence and Story value labels."
+  },
+  {
+   "id": "P-4",
+   "principle": "Every number, rank, count and threshold spoken in narration should exist as a structured value with entity, basis and label, in every package, so that data-aware derivation behaves the same across stories.",
+   "derivedFrom": "S09, S16, S17, F-11",
+   "referenceSupport": "The debate package's values; the Year Seventeen handoff's anchored values (Story-authored)."
+  },
+  {
+   "id": "P-5",
+   "principle": "Groups the narration treats as a visual multiple (people, works, events) need a typed count even when membership is unknown; prose constraints are not machine-usable.",
+   "derivedFrom": "S16, S19, S20, F-08",
+   "referenceSupport": "Year Seventeen handoff focal counts and the typed 'focal_unknown' item for the pre-streaming group."
+  },
+  {
+   "id": "P-6",
+   "principle": "Lane is a routing signal: editorial and interpretive sentences default to text, question or b-roll treatments unless an obligation says otherwise.",
+   "derivedFrom": "S13, F-04",
+   "referenceSupport": "Not shown by either reference; derived from editor evidence."
+  },
+  {
+   "id": "P-7",
+   "principle": "Narration the production will replace or omit must be marked as such in the package, not inferred from an obligation's intent string.",
+   "derivedFrom": "S18",
+   "referenceSupport": "None; a schema gap."
+  },
+  {
+   "id": "P-8",
+   "principle": "Job labels are advisory operations; moment boundaries and requirements are the binding advice. A proposal with a user ruling outranks a legacy label.",
+   "derivedFrom": "S06, S07, S08, F-06",
+   "referenceSupport": "Year Seventeen reference: the 8 user proposals are the most precise units in it; 32 of its 116 jobs are the null job."
+  },
+  {
+   "id": "P-9",
+   "principle": "Evidence written against one wording of a sentence is scoped to that wording; a re-worded sentence needs the note re-affirmed before it binds.",
+   "derivedFrom": "F-09, S06, S07",
+   "referenceSupport": "Timing boundary ev_0ef11e34ab9fe948 quotes older wording."
+  }
+ ],
+ "recommendations": [
+  {
+   "id": "R-1",
+   "owner": "story",
+   "what": "Add a first-class moment boundary: generalize jobProposals (or a new `moments[]`) to carry exact spans across one or more claims, optional job, and provenance; make both builders accept an authored moment table so sub-spans are not hand-coded one at a time.",
+   "templateNeutral": true,
+   "spans": [
+    "S02",
+    "S05",
+    "S06",
+    "S17",
+    "S22"
+   ]
+  },
+  {
+   "id": "R-2",
+   "owner": "matching",
+   "what": "Consume obligations.claimIds, continuity.claimIds, values.label/entity and lane as grouping evidence before keyword heuristics; never split a claim set an obligation names unless a Story proposal does.",
+   "templateNeutral": true,
+   "spans": [
+    "S10",
+    "S11",
+    "S12",
+    "S13",
+    "S15"
+   ]
+  },
+  {
+   "id": "R-3",
+   "owner": "story",
+   "what": "Emit values for every spoken number in every package; emit cohorts with members_not_enumerated and expectedCount for unenumerated groups; emit mediaNeeds.count for works in multiples; emit needsOnScreenText for quoted text inside narrator claims.",
+   "templateNeutral": true,
+   "spans": [
+    "S09",
+    "S16",
+    "S19",
+    "S20"
+   ]
+  },
+  {
+   "id": "R-4",
+   "owner": "story",
+   "what": "Replace obligation shells with fields: move each quoted review note into intent, mustBePerceptible, mediaNeeds or a proposal boundary; keep the quote in provenance.evidence.",
+   "templateNeutral": true,
+   "spans": [
+    "S05",
+    "S08"
+   ]
+  },
+  {
+   "id": "R-5",
+   "owner": "story",
+   "what": "Add a narration disposition (render, replace, omit) at claim or beat level, with provenance.",
+   "templateNeutral": true,
+   "spans": [
+    "S18"
+   ]
+  },
+  {
+   "id": "R-6",
+   "owner": "story",
+   "what": "Record the script wording hash each review note was written against; re-affirm notes on re-worded sentences before they bind through reviewKeys.",
+   "templateNeutral": true,
+   "spans": [
+    "S06",
+    "S07"
+   ]
+  },
+  {
+   "id": "R-7",
+   "owner": "matching",
+   "what": "Report grouping and job-label diffs between runs on identical Story input, not only counts.",
+   "templateNeutral": true,
+   "spans": [
+    "S23"
+   ]
+  }
+ ],
+ "unresolvedEvidence": [
+  {
+   "id": "UE-08",
+   "item": "Which splitter revision produced each gold reference; the biography gold and baseline differ on 2 beats' grouping and 26 job labels with identical Story claims",
+   "owner": "matching",
+   "handTo": "04-matching-transformations"
+  },
+  {
+   "id": "UE-09",
+   "item": "Year Seventeen: package proposal p-28-28-2 excludes c5-reveal-2.1; handoff task 28-28.overlap includes it; proposal p-18-18 includes c3-provoke-3.3 and excludes c3-provoke-5.1 while obligation o-18-18 does the reverse",
+   "owner": "story",
+   "handTo": "03-upstream-contract-fitness"
+  },
+  {
+   "id": "UE-10",
+   "item": "grammar/beat-script-map.json (used by build_year_seventeen.py line 78 to join legacy review beats to script sentences) is absent from this checkout; 21 of 40 legacy beats are inexact against script v2.1",
+   "owner": "story",
+   "handTo": "03-upstream-contract-fitness and 07-human-evidence-and-reference-evaluation"
+  },
+  {
+   "id": "UE-11",
+   "item": "The session identifier visible to this run equals Job 1's; the execution mode is recorded from the invocation statement, not from a runtime field",
+   "owner": "you",
+   "handTo": "editor confirmation if material"
+  },
+  {
+   "id": "UE-03 (carried)",
+   "item": "Only Year Seventeen has a committed matching handoff; the handoff builder is story-specific and keyed to Matching pilot task ids; the two newer handovers request VisualTasks from Matching before a handoff can be written",
+   "owner": "story",
+   "handTo": "03-upstream-contract-fitness"
+  }
+ ],
+ "acceptance": {
+  "beatClaimVisualTaskNeverConflated": {
+   "verdict": "PASS",
+   "how": "Definitions section derives each unit from schema, builders and splitter; every span lists beat boundary, claim boundary and intended moments as separate fields; every finding names which unit it concerns; the editor's own use of 'beat' for a task proposal is called out rather than adopted."
+  },
+  "everyFindingDistinguishesStoryFailureFromMatchingMishandling": {
+   "verdict": "PASS",
+   "how": "Each span and each finding carries an `attribution` label from {story_authoring_failure, valid_story_input_mishandled_by_matching, both_separable, success, undetermined}; `undetermined` entries state what would settle them (S23, F-09, F-10)."
+  },
+  "noRuntimeOrSchemaChange": {
+   "verdict": "PASS",
+   "how": "Only the two report files were written; the Story worktree was never written; no git write command was run; `git status` of the audit repo shows only the two new report files."
+  },
+  "spanCountAndCoverage": {
+   "verdict": "PASS",
+   "count": 23,
+   "byStory": {
+    "year-seventeen": 9,
+    "jayz-drake-settle-it": 6,
+    "future-volksgeist": 8
+   }
+  },
+  "receiptComplete": {
+   "verdict": "PASS",
+   "how": "Operator, mode, executor, model, display name, effort recorded with how each was determined; unexposed values listed rather than invented."
+  }
+ }
+}
