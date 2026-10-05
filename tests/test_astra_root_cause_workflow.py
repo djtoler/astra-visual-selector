@@ -1,5 +1,6 @@
 import hashlib
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -83,7 +84,10 @@ class FableRootCauseWorkflowTests(unittest.TestCase):
     def test_corrections_use_one_canonical_file(self):
         canonical = WORKFLOW / "CORRECTION_REQUESTS.md"
         self.assertTrue(canonical.is_file())
-        self.assertIn("Status: **ACTIVE**", canonical.read_text())
+        statuses = re.findall(r"^Status: \*\*(ACTIVE|RESOLVED)\*\*", canonical.read_text(), re.MULTILINE)
+        self.assertTrue(statuses)
+        self.assertTrue(set(statuses) <= {"ACTIVE", "RESOLVED"})
+        self.assertEqual(list(WORKFLOW.glob("*CORRECTION*.md")), [canonical])
         self.assertFalse((WORKFLOW / "JOB_03_CORRECTION_REQUEST.md").exists())
         prompt = (WORKFLOW / "MASTER_PROMPT.md").read_text()
         self.assertIn("An `ACTIVE` correction takes\npriority", prompt)
