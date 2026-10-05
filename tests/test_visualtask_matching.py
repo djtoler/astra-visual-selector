@@ -44,8 +44,19 @@ class VisualTaskMatching(unittest.TestCase):
             subject.validate(broken, verify_sources=False)
 
     def test_written_artifact_replays(self):
-        written = json.loads((ROOT / "reports" / "visualtask-match-pilot-28-28.json").read_text())
-        subject.validate(written)
+        # Explicit editor-authorized migration; historical report stays immutable.
+        from tests.astra_fixture_replay import replay
+        replay()
+
+    def test_versioned_fixture_rejects_inventory_and_input_mutations(self):
+        from tests.astra_fixture_replay import DIRECTORY, replay
+        manifest = json.loads((DIRECTORY / "manifest.json").read_text())
+        for field in ("inventory", "boundRevisionFiles"):
+            altered = copy.deepcopy(manifest)
+            row = altered[field][0] if isinstance(altered[field], list) else altered[field]
+            row["sha256"] = "0" * 64
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, "digest"):
+                replay(altered)
 
     def test_generic_legacy_binding_cannot_admit_incompatible_data_template(self):
         pool = {row["id"]: row for row in subject.C.load()}

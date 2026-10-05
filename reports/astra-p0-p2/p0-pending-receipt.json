@@ -1,0 +1,167 @@
+{
+  "blockerOwner": "matching",
+  "commit": "none; stage incomplete",
+  "inputs": {
+    "calibrationManifest": {
+      "path": "reports/astra-p0-p2/calibration-manifest.json",
+      "sha256": "f7ec1e2248ec8e25916f32b1477e6d840aa7702322e152703b26496cfda2e8c5"
+    },
+    "handoffManifest": {
+      "path": "docs/p0-p2-gpt-6-1-sol-handoff/HANDOFF_MANIFEST.json",
+      "sha256": "6943763c2abbc495ce5d574b3cf5091f27674ca2447ceab43bbe0734d2538cdb"
+    },
+    "matchingBaseline": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "storyCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+  },
+  "outputs": [
+    {
+      "path": "reports/astra-p0-p2/calibration-manifest.json",
+      "sha256": "f7ec1e2248ec8e25916f32b1477e6d840aa7702322e152703b26496cfda2e8c5"
+    },
+    {
+      "path": "reports/astra-p0-p2/outcome-diff-format.json",
+      "sha256": "d69eb27bce00002ec0eb8da3496d692d9d4fac0810abc4aead03ad726229f929"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-baseline-outcomes.json",
+      "sha256": "c6f17d1693d439e2f145a3bbdd094772bdb3a9d7606968ca9113cb744fbc686b"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-baseline-test.log",
+      "sha256": "2b51a934d7a3e942c616f6d250b06fb505c65098fd40ee98eb1eab57a9eec8ae"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-blocker.json",
+      "sha256": "0190c582236fa7d6f480c7bbc3b0a35105aeb47efc6d433cca540e4ffb4047de"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-controls-test.log",
+      "sha256": "211907ed17a755d8f4897676e3185391398c0bbeb974f715da6f2a11b810ea27"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-existing-suite.log",
+      "sha256": "d14a4ec05e75d8f6a26e7ed1bddbf5c3fe8f5ac9e4ff8b4e26dd2dbfc77384e0"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-outcome-diff.json",
+      "sha256": "a34603bfc64d24c57b5ed6679bce4b8ef4ba4f7ed966045cade1d87c9979e5fe"
+    }
+  ],
+  "productionChanges": false,
+  "push": "none; stage incomplete",
+  "renderingAuthorized": false,
+  "rollback": "Save needed evidence, then remove only the new uncommitted implementation plan, tests/test_astra_p0_p2.py and reports/astra-p0-p2/. Original inputs are untouched.",
+  "schemaVersion": "astra-stage-receipt@1",
+  "selectionAuthorized": false,
+  "sourceAndGoldBytesUnchanged": true,
+  "stage": "P0",
+  "status": "pending",
+  "tests": [
+    {
+      "command": "ASTRA_BASELINE_PROBE=1 ASTRA_TEST_RUNTIME_ROOT=../matching-frozen python3 tests/test_astra_p0_p2.py --record reports/astra-p0-p2/p0-baseline-outcomes.json",
+      "counts": {
+        "errors": 0,
+        "expectedFailures": 0,
+        "failures": 11,
+        "run": 15
+      },
+      "result": "11 intended target assertion failures; zero errors; four integrity controls pass"
+    },
+    {
+      "command": "python3 tests/test_astra_p0_p2.py -v",
+      "expectedFailures": 11,
+      "passedControls": 4,
+      "result": "freeze/control suite passes; repairs pending",
+      "run": 15
+    },
+    {
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=../patterns-authority python3 -m unittest tests.test_matching_agent_contracts tests.test_storypackage_data_assignment tests.test_storypackage_data_handoff tests.test_storypackage_matching_handoff tests.test_storypackage_splitter tests.test_visualtask_matching tests.test_visualtask_batch_matching tests.test_focused_review_queue tests.test_focused_review_reconciliation tests.test_matching_contract_gate tests.test_astra_review_evidence tests.test_astra_root_cause_workflow",
+      "errors": 1,
+      "passed": 80,
+      "result": "FAIL; legacy replay mismatch",
+      "run": 81
+    },
+    {
+      "command": "cd ../matching-frozen && python3 -m unittest tests.test_visualtask_matching.VisualTaskMatching.test_written_artifact_replays",
+      "errors": 1,
+      "result": "same FAIL at pinned baseline",
+      "run": 1
+    },
+    {
+      "command": "ASTRA_MEDIA_LIBRARY=/private/tmp/astra-p0-no-live-library python3 -m unittest tests.test_visualtask_matching.VisualTaskMatching.test_written_artifact_replays",
+      "errors": 1,
+      "result": "same FAIL using established snapshot fallback",
+      "run": 1
+    }
+  ],
+  "unresolved": [
+    {
+      "examinedOptions": [
+        "Live Media Library through existing resolver: replay mismatch",
+        "Existing grammar/library-snapshot.json fallback: replay mismatch",
+        "Matching/Fable/abandoned snapshots: byte-identical",
+        "Media Library backups: September 23; no receipt linking them to the October 4 artifact; suitability unverified, not rejected"
+      ],
+      "frozenArtifact": {
+        "path": "reports/visualtask-match-pilot-28-28.json",
+        "sha256": "f7328a5860113597fc51366eae61b076a405bfa2eb01c05df108f137da1b2e77"
+      },
+      "observedDifference": {
+        "currentCandidateIds": [
+          "13564ff12372da314ad3c6d4",
+          "1767a496111018b7ff131d2c",
+          "22631e3d628163637eb36e7a",
+          "2aa8f83ec1fcd66d49680bfc",
+          "702692cde6c501fcc2fc76c8",
+          "8e4fafbd2a59ad8a51f6c313",
+          "b3617c60d61215a00f732f8d",
+          "cb046c4d15c6c2ed7031183d"
+        ],
+        "historicalCandidateIds": [
+          "37f3e66451ef35d7f72af18b",
+          "40d40b713ea5972a8c129f50",
+          "5f97d3945ec39754f30dd59a",
+          "13564ff12372da314ad3c6d4",
+          "1767a496111018b7ff131d2c",
+          "22631e3d628163637eb36e7a",
+          "2aa8f83ec1fcd66d49680bfc",
+          "702692cde6c501fcc2fc76c8"
+        ],
+        "subject": "Kendrick Lamar"
+      },
+      "owner": "matching",
+      "reason": "Historical media replay differs from the live Media Library; report sources bind VisualTasks and bindings, but omit media inventory identity. Same failure at pinned production baseline. Existing snapshot fallback also fails.",
+      "smallestRequiredInput": "Path to the original media inventory/snapshot for the legacy replay, or explicit approval for a versioned current-media regression migration preserving the old artifact and unresolved historical replay.",
+      "test": "tests.test_visualtask_matching.VisualTaskMatching.test_written_artifact_replays"
+    },
+    {
+      "stages": [
+        "P1",
+        "P2"
+      ],
+      "state": "not_started; upstream P0 pending"
+    },
+    {
+      "stages": [
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7"
+      ],
+      "state": "not_authorized"
+    }
+  ],
+  "upstreamReceipt": null,
+  "versions": {
+    "calibration": "astra-calibration@1",
+    "diff": "astra-outcome-diff@1",
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "medium",
+    "verification": "current session turn_context"
+  },
+  "warnings": [
+    "Existing unclosed-file/database ResourceWarnings."
+  ],
+  "workflowReview": "Existing media_workflows.md covers these decisions; no reusable workflow change."
+}

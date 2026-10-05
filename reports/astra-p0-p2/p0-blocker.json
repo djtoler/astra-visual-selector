@@ -1,0 +1,39 @@
+{
+  "examinedOptions": [
+    "Live Media Library through existing resolver: replay mismatch",
+    "Existing grammar/library-snapshot.json fallback: replay mismatch",
+    "Matching/Fable/abandoned snapshots: byte-identical",
+    "Media Library backups: September 23; no receipt linking them to the October 4 artifact; suitability unverified, not rejected"
+  ],
+  "frozenArtifact": {
+    "path": "reports/visualtask-match-pilot-28-28.json",
+    "sha256": "f7328a5860113597fc51366eae61b076a405bfa2eb01c05df108f137da1b2e77"
+  },
+  "observedDifference": {
+    "currentCandidateIds": [
+      "13564ff12372da314ad3c6d4",
+      "1767a496111018b7ff131d2c",
+      "22631e3d628163637eb36e7a",
+      "2aa8f83ec1fcd66d49680bfc",
+      "702692cde6c501fcc2fc76c8",
+      "8e4fafbd2a59ad8a51f6c313",
+      "b3617c60d61215a00f732f8d",
+      "cb046c4d15c6c2ed7031183d"
+    ],
+    "historicalCandidateIds": [
+      "37f3e66451ef35d7f72af18b",
+      "40d40b713ea5972a8c129f50",
+      "5f97d3945ec39754f30dd59a",
+      "13564ff12372da314ad3c6d4",
+      "1767a496111018b7ff131d2c",
+      "22631e3d628163637eb36e7a",
+      "2aa8f83ec1fcd66d49680bfc",
+      "702692cde6c501fcc2fc76c8"
+    ],
+    "subject": "Kendrick Lamar"
+  },
+  "owner": "matching",
+  "reason": "Historical media replay differs from the live Media Library; report sources bind VisualTasks and bindings, but omit media inventory identity. Same failure at pinned production baseline. Existing snapshot fallback also fails.",
+  "smallestRequiredInput": "Path to the original media inventory/snapshot for the legacy replay, or explicit approval for a versioned current-media regression migration preserving the old artifact and unresolved historical replay.",
+  "test": "tests.test_visualtask_matching.VisualTaskMatching.test_written_artifact_replays"
+}

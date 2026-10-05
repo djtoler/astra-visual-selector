@@ -1,0 +1,130 @@
+{
+  "blockerOwner": "none",
+  "commit": "stage commit contains this receipt; resolve with git log -- reports/astra-p0-p2/p0-receipt.json",
+  "inputs": {
+    "calibrationManifest": {
+      "path": "reports/astra-p0-p2/calibration-manifest.json",
+      "sha256": "f7ec1e2248ec8e25916f32b1477e6d840aa7702322e152703b26496cfda2e8c5"
+    },
+    "fixtureAuthorization": {
+      "path": "docs/p0-p2-gpt-6-1-sol-handoff/P0_FIXTURE_MIGRATION_AUTHORIZATION.md",
+      "sha256": "447a1af731a89097aad952a3271cf0b48ce1f8ec87db0c0c7bcc65b758b18393"
+    },
+    "handoffManifest": {
+      "path": "docs/p0-p2-gpt-6-1-sol-handoff/HANDOFF_MANIFEST.json",
+      "sha256": "c7380ad5273a4738e875314e434f6b99cf1039c0af921fae8998afd2127f5431"
+    },
+    "matchingBaseline": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "storyCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319"
+  },
+  "migrationStatement": "The original 28-28 live media state was not recoverable. The old report remains byte-preserved historical evidence. The new fixture is a versioned deterministic migration, not a claim that the legacy export replayed from fully frozen inputs.",
+  "outputs": [
+    {
+      "path": "reports/astra-p0-p2/28-28-replay-v1/effective-inventory.json",
+      "sha256": "efbcf4585efdf757335cbd8d18afb215f27818dced0d089078e7e0ec6651ac94"
+    },
+    {
+      "path": "reports/astra-p0-p2/28-28-replay-v1/fixture.json",
+      "sha256": "1d577f4e70b48ea85edea6ba18321ee169a87b57e067af7640269508b96e716f"
+    },
+    {
+      "path": "reports/astra-p0-p2/28-28-replay-v1/manifest.json",
+      "sha256": "1eb4288f7a367971f83707d377fd36029e1b285bc013f1b9e32e59e5d56b7b17"
+    },
+    {
+      "path": "reports/astra-p0-p2/calibration-manifest.json",
+      "sha256": "f7ec1e2248ec8e25916f32b1477e6d840aa7702322e152703b26496cfda2e8c5"
+    },
+    {
+      "path": "reports/astra-p0-p2/outcome-diff-format.json",
+      "sha256": "d69eb27bce00002ec0eb8da3496d692d9d4fac0810abc4aead03ad726229f929"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-baseline-outcomes.json",
+      "sha256": "c6f17d1693d439e2f145a3bbdd094772bdb3a9d7606968ca9113cb744fbc686b"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-baseline-test.log",
+      "sha256": "2b51a934d7a3e942c616f6d250b06fb505c65098fd40ee98eb1eab57a9eec8ae"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-controls-test.log",
+      "sha256": "c85169349bffc4da9ab39d855165c07fe2f1a86b6f41a6de3db8befe0e21b682"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-existing-suite.log",
+      "sha256": "13dfb806af30f66ff9c3e85479f16c04f74a220bb9f27bb07d98f7461cf97c02"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-outcome-diff.json",
+      "sha256": "a34603bfc64d24c57b5ed6679bce4b8ef4ba4f7ed966045cade1d87c9979e5fe"
+    }
+  ],
+  "productionChanges": false,
+  "push": "matching-layer stage commit",
+  "renderingAuthorized": false,
+  "rollback": "Revert the P0 stage commit. Legacy evidence is unchanged. Invalidates dependent stage receipts; no production behavior was changed.",
+  "schemaVersion": "astra-stage-receipt@1",
+  "selectionAuthorized": false,
+  "sourceAndGoldBytesUnchanged": true,
+  "stage": "P0",
+  "status": "complete",
+  "tests": [
+    {
+      "command": "ASTRA_BASELINE_PROBE=1 ASTRA_TEST_RUNTIME_ROOT=../matching-frozen python3 tests/test_astra_p0_p2.py --record reports/astra-p0-p2/p0-baseline-outcomes.json",
+      "counts": {
+        "errors": 0,
+        "expectedFailures": 0,
+        "failures": 11,
+        "run": 15
+      },
+      "result": "11 intended target assertion failures; zero errors; four integrity controls pass"
+    },
+    {
+      "command": "python3 tests/test_astra_p0_p2.py -v",
+      "expectedFailures": 11,
+      "passedControls": 4,
+      "result": "freeze/control suite passes; repairs pending",
+      "run": 15
+    },
+    {
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=../patterns-authority python3 -m unittest tests.test_matching_agent_contracts tests.test_storypackage_data_assignment tests.test_storypackage_data_handoff tests.test_storypackage_matching_handoff tests.test_storypackage_splitter tests.test_visualtask_matching tests.test_visualtask_batch_matching tests.test_focused_review_queue tests.test_focused_review_reconciliation tests.test_matching_contract_gate tests.test_astra_review_evidence tests.test_astra_root_cause_workflow",
+      "errors": 0,
+      "passed": 82,
+      "result": "PASS",
+      "run": 82
+    },
+    {
+      "command": "python3 tests/astra_fixture_replay.py",
+      "result": "PASS; archived code/grammar, complete effective inventories/policy inputs, fixture bytes and legacy hash verified"
+    },
+    {
+      "command": "python3 -m unittest tests.test_visualtask_matching.VisualTaskMatching.test_versioned_fixture_rejects_inventory_and_input_mutations",
+      "result": "PASS; inventory digest and bound input mutations rejected"
+    }
+  ],
+  "unresolved": [
+    {
+      "owner": "matching",
+      "stage": "P3-P6",
+      "status": "preserved_frozen_failures"
+    },
+    {
+      "path": "reports/visualtask-match-pilot-28-28.json",
+      "sha256": "f7328a5860113597fc51366eae61b076a405bfa2eb01c05df108f137da1b2e77",
+      "status": "legacy_non_replayable"
+    }
+  ],
+  "upstreamReceipt": null,
+  "versions": {
+    "calibration": "astra-calibration@1",
+    "diff": "astra-outcome-diff@1",
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "medium",
+    "verification": "current session turn_context"
+  },
+  "warnings": [
+    "Existing unclosed-file/database ResourceWarnings."
+  ],
+  "workflowReview": "Existing media_workflows.md covers these decisions; no reusable workflow change."
+}

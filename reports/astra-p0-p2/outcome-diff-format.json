@@ -1,0 +1,26 @@
+{
+  "allowedOutcomes": [
+    "pass",
+    "assertion_failure",
+    "rejected",
+    "unresolved"
+  ],
+  "requiredCaseFields": [
+    "testId",
+    "ownerStage",
+    "baselineOutcome",
+    "newOutcome",
+    "expectedChange",
+    "unresolved"
+  ],
+  "requiredRootFields": [
+    "schemaVersion",
+    "stage",
+    "baselineCommit",
+    "upstreamReceipt",
+    "cases",
+    "sourceHashes"
+  ],
+  "rule": "A baseline failure becomes repaired only through an executed assertion on the new runtime; pending P3+ failures are preserved, not repaired.",
+  "schemaVersion": "astra-outcome-diff-format@1"
+}

@@ -1,0 +1,153 @@
+test_p3_rate_subspan_materializes_exact_text (__main__.LaterStageBaselineFailures.test_p3_rate_subspan_materializes_exact_text) ... FAIL
+test_p4_timeline_scope_matches_chronological_operation (__main__.LaterStageBaselineFailures.test_p4_timeline_scope_matches_chronological_operation) ... FAIL
+test_p5_sibling_variants_remain_available_for_fit (__main__.LaterStageBaselineFailures.test_p5_sibling_variants_remain_available_for_fit) ... FAIL
+test_p6_exploration_is_invariant_to_tied_admitted_position (__main__.LaterStageBaselineFailures.test_p6_exploration_is_invariant_to_tied_admitted_position) ... FAIL
+test_calibration_integrity_and_negative_mutations (__main__.P0CalibrationControls.test_calibration_integrity_and_negative_mutations) ... ok
+test_evidence_omission_fails_existing_validator (__main__.P0CalibrationControls.test_evidence_omission_fails_existing_validator) ... ok
+test_exploration_tie_core_is_independently_reproduced (__main__.P0CalibrationControls.test_exploration_tie_core_is_independently_reproduced) ... ok
+test_handoff_and_gold_hashes (__main__.P0CalibrationControls.test_handoff_and_gold_hashes) ... ok
+test_field_digest_must_match_top_level_source (__main__.P1BaselineFailures.test_field_digest_must_match_top_level_source) ... FAIL
+test_hashed_empty_presence_cannot_erase_73_104_gaps (__main__.P1BaselineFailures.test_hashed_empty_presence_cannot_erase_73_104_gaps) ... FAIL
+test_mutated_adapter_body_fails_closed (__main__.P1BaselineFailures.test_mutated_adapter_body_fails_closed) ... FAIL
+test_stale_adapter_receipt_fails_closed (__main__.P1BaselineFailures.test_stale_adapter_receipt_fails_closed) ... FAIL
+test_typed_absence_cannot_become_zero (__main__.P1BaselineFailures.test_typed_absence_cannot_become_zero) ... FAIL
+test_all_twelve_route_ineligible_tasks_stay_empty_in_focused_review (__main__.P2BaselineFailures.test_all_twelve_route_ineligible_tasks_stay_empty_in_focused_review) ... FAIL
+test_task_contract_fields_survive_gallery (__main__.P2BaselineFailures.test_task_contract_fields_survive_gallery) ... FAIL
+
+======================================================================
+FAIL: test_p3_rate_subspan_materializes_exact_text (__main__.LaterStageBaselineFailures.test_p3_rate_subspan_materializes_exact_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 230, in test_p3_rate_subspan_materializes_exact_text
+    self.assertEqual(row["taskText"], expected, "authored rate subspan expanded to the whole claim")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Drake has fewer guest verses than either [124 chars]rse.' != 'roughly two hundred forty million per verse'
+- Drake has fewer guest verses than either of them but more feature streams than anyone, with forty-three billion in total and roughly two hundred forty million per verse.
++ roughly two hundred forty million per verse
+ : authored rate subspan expanded to the whole claim
+
+======================================================================
+FAIL: test_p4_timeline_scope_matches_chronological_operation (__main__.LaterStageBaselineFailures.test_p4_timeline_scope_matches_chronological_operation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 240, in test_p4_timeline_scope_matches_chronological_operation
+    self.assertTrue(any("search-bar-business-timeline" in row["candidateId"] for row in rows),
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "timeline scope is rejected before ordering")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : timeline scope is rejected before ordering
+
+======================================================================
+FAIL: test_p5_sibling_variants_remain_available_for_fit (__main__.LaterStageBaselineFailures.test_p5_sibling_variants_remain_available_for_fit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 247, in test_p5_sibling_variants_remain_available_for_fit
+    self.assertTrue(any(row.get("siblings") or row.get("_siblings") for row in result),
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "family representatives serialize no sibling alternatives")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : family representatives serialize no sibling alternatives
+
+======================================================================
+FAIL: test_p6_exploration_is_invariant_to_tied_admitted_position (__main__.LaterStageBaselineFailures.test_p6_exploration_is_invariant_to_tied_admitted_position)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 218, in test_p6_exploration_is_invariant_to_tied_admitted_position
+    self.assertEqual(set(first["tasks"][0]["focusedReviewFamilies"]),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     set(second["tasks"][0]["focusedReviewFamilies"]),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     "tied families are chosen by admitted-list position")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'archive3-moving-contact-sheets-2026-09-13-14-49-02-utc'
+'05_measured_height_ruler'
+'archive3-looped-slideshow-background'
+'screen-mockup-rfx'
+'circle-list-infographic'
+'ai-flowchart'
+'archive3-comparison-pack-ae'
+'archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc'
+Items in the second set but not the first:
+'49_similarity_final_results'
+'58_big_three_stat_rows'
+'56_seven_artist_stat_lineup'
+'52_rookie_record_columns'
+'51_debut_leaderboard'
+'54_trade_package_panels'
+'57_three_playoff_run_cards'
+'53_lineup_rotation_columns' : tied families are chosen by admitted-list position
+
+======================================================================
+FAIL: test_field_digest_must_match_top_level_source (__main__.P1BaselineFailures.test_field_digest_must_match_top_level_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 159, in test_field_digest_must_match_top_level_source
+    with self.assertRaisesRegex(ValueError, "source|digest|receipt"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_hashed_empty_presence_cannot_erase_73_104_gaps (__main__.P1BaselineFailures.test_hashed_empty_presence_cannot_erase_73_104_gaps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 139, in test_hashed_empty_presence_cannot_erase_73_104_gaps
+    self.assertEqual(result["counts"]["typedGaps"], 177,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     "file presence is not task-and-field coverage")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 177 : file presence is not task-and-field coverage
+
+======================================================================
+FAIL: test_mutated_adapter_body_fails_closed (__main__.P1BaselineFailures.test_mutated_adapter_body_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 153, in test_mutated_adapter_body_fails_closed
+    with self.assertRaisesRegex(ValueError, "stale|digest|source|receipt"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_stale_adapter_receipt_fails_closed (__main__.P1BaselineFailures.test_stale_adapter_receipt_fails_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 146, in test_stale_adapter_receipt_fails_closed
+    with self.assertRaisesRegex(ValueError, "stale|digest|source|receipt"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_typed_absence_cannot_become_zero (__main__.P1BaselineFailures.test_typed_absence_cannot_become_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 167, in test_typed_absence_cannot_become_zero
+    with self.assertRaisesRegex(ValueError, "value|absence|receipt|source"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_all_twelve_route_ineligible_tasks_stay_empty_in_focused_review (__main__.P2BaselineFailures.test_all_twelve_route_ineligible_tasks_stay_empty_in_focused_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 183, in test_all_twelve_route_ineligible_tasks_stay_empty_in_focused_review
+    self.assertTrue(all(not row["focusedReviewCandidates"] for row in result["tasks"]),
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "focused reconstruction discarded the intentional no-template route")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : focused reconstruction discarded the intentional no-template route
+
+======================================================================
+FAIL: test_task_contract_fields_survive_gallery (__main__.P2BaselineFailures.test_task_contract_fields_survive_gallery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 200, in test_task_contract_fields_survive_gallery
+    self.assertEqual(task.get(field), proposal.get(field, []),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     f"gallery loses source contract field {field}")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [] : gallery loses source contract field obligations
+
+----------------------------------------------------------------------
+Ran 15 tests in 2.049s
+
+FAILED (failures=11)
