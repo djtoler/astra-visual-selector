@@ -1,0 +1,2147 @@
+{
+  "schemaVersion": "astra-root-cause-matching-transformations@1",
+  "job": "04-matching-transformations",
+  "title": "Matching transformations and visual-job derivation",
+  "purpose": "Audit how Matching turns a validated StoryPackage into review tasks and a template-neutral visual job, and name the earliest transformation at which correct meaning is lost.",
+  "generatedAt": "2026-10-05T00:00:00+00:00",
+  "result": "PASS",
+  "nextJob": "05-grammar-tags-capabilities",
+  "blockerOwner": "none",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "executionReceipt": {
+    "operator": "claude_desktop",
+    "requiredOperator": "claude_desktop",
+    "requiredExecutionMode": "desktop_conversation",
+    "executionModeObserved": "desktop_conversation",
+    "executionModeEvidence": "Runtime reports session origin 'desktop_app'. No Claude CLI subprocess was invoked for any part of Job 4; policy assigns this job to Desktop directly.",
+    "resolvedModelIdentifier": "claude-opus-5",
+    "resolvedModelDisplayName": "Opus 5",
+    "lastServedModel": "claude-opus-5",
+    "configuredModel": "claude-opus-5",
+    "effortLevel": "high",
+    "modelMetadataSource": "claude-code-remote get_session, read in Job 1 of this session",
+    "sessionId": "session_014CbgCFFrmJN4PKxJdBpZ7P",
+    "environmentKind": "anthropic_cloud",
+    "policyComplianceVerdict": "compliant",
+    "recordedCaveats": [
+      "EXECUTION_POLICY.json sets recordResolvedModel=true for this job and names no required model, so none was applied or assumed.",
+      "Job 1's caveat stands: the surface is Claude Desktop with origin 'desktop_app', but execution is cloud-backed, and the policy does not state whether that is excluded.",
+      "Fable 5.1 was not used and must not be for this job."
+    ],
+    "noInventedMetadata": true
+  },
+  "independenceReceipt": {
+    "excludedComparisonBranch": "matching-layer",
+    "excludedBranchFetched": false,
+    "excludedBranchRead": false,
+    "astraJob1to8ReportsConsumed": false,
+    "postBaselineMatchingCommitsConsumed": false,
+    "contaminationEvents": [],
+    "note": "No new fetch was performed for Job 4. Work used the audit checkout and the read-only Story worktree at d5117a6d."
+  },
+  "method": {
+    "approach": "A replay harness imported the production module pipeline/storypackage_splitter.py and called its real internals (_split_claim_segments, _semantic_units, _presentation_operations, _primary_operation, _derived_job) over the committed adapter outputs for two packages, capturing every stage's input and output per unit. No production file was modified and the harness lives outside the repository.",
+    "fidelityCheck": "The harness replicates build()'s materialize test (storypackage_splitter.py:362-387) and its covered-claim exclusion, and reproduces production task counts EXACTLY: 307 matching-derived units for future-volksgeist against 307 in reports/storypackage-02-future-volksgeist-v13-task-proposals.json, and 185 for jayz-drake against 185. Total 492 replayed units.",
+    "divergenceOracle": "Story's own evidence, not opinion. A unit is marked divergent when it contradicts a Story artifact that was available at that stage: an obligation or continuity group whose enumerated claims the grouping split apart; a claim lane that contradicts the chosen operation; structured Story values present while the derived job is not value-bearing; three or more operations inferred with one kept; or ambiguous Story advice discarded. This keeps the audit story-neutral and avoids resting on the unattributed editor corpus recorded in Job 3 UE-22.",
+    "harnessCorrectionMade": "A first harness run indexed advisory job proposals by a beatId key that jobProposals do not carry, which made every unit look matching-derived. That was a harness bug, not a finding. It was corrected by replicating build()'s real indexing through claims[claimId]['beatId'], after which the harness matched production counts exactly and 27 units correctly showed a Story advisory job."
+  },
+  "stageTrace": [
+    {
+      "step": 1,
+      "stage": "Contract gate and adapter preservation",
+      "implementation": "pipeline/matching_contract_gate.py enforce_contracts; pipeline/storypackage_adapter.py build",
+      "verdict": "LOSSLESS - no divergence observed",
+      "measurement": "Claim-by-claim comparison of each audited StoryPackage against its adapter output. future-volksgeist@5: 502 claims in, 502 out, 0 missing, 0 extra, and 0 differences on text, span, lane, entityRefs, values or cohortRefs. jayz-drake-settle-it@4: 222 claims in, 222 out, 0 differences on the same six fields, including all 50 claims carrying structured values and both carrying cohortRefs. Obligations 42/42 and 6/6, continuity 2/2 and 4/4, jobProposals 20/20 and 14/14 all preserved.",
+      "conclusion": "The adapter is not the divergent stage for any failure class. Whatever meaning is lost downstream was present and correct in the adapter output. This matters for attribution: Job 3's finding that the handoff schema cannot carry a magnitude is a CONTRACT gap, and it is NOT accompanied by an adapter that drops data it was given.",
+      "correctedEarlierReading": "An intermediate reading of a single claim's key set suggested the adapter dropped values and cohortRefs. That was wrong: the first claim simply had neither. The union of adapter claim keys includes values and cohortRefs, and the per-claim comparison above shows zero loss."
+    },
+    {
+      "step": 2,
+      "stage": "_split_claim_segments and _semantic_units",
+      "implementation": "pipeline/storypackage_splitter.py:162 and :185",
+      "verdict": "PRIMARY DEFECT SITE - 43 of 100 first divergences",
+      "splitFinding": "_split_claim_segments contains exactly ONE split rule: a regex for a comma followed by 'but also' where 'not just' appears earlier in the claim (lines 169-172). Every other claim returns unchanged as a single segment with strongBoundary false. No other scope expansion, contrast, enumeration or clause boundary can ever split a claim.",
+      "groupingFinding": "_semantic_units merges adjacent segments when same_payload holds, whose decisive term is _primary_operation(prior) == _primary_operation(current) (line 215). Grouping is therefore driven by the keyword-derived operation label. The entity term accepts either a shared display entity OR BOTH UNITS HAVING NO display entity (line 218), so entity-less claims merge freely up to the 260-character cap.",
+      "structuralProof": "The signature is _semantic_units(*, beat, claim_ids, claims). Obligations and continuity are never passed in, so grouping provably cannot consider them. They are attached afterwards by set intersection against already-fixed claim_ids (lines 334-338, 438-439). This is the airtight form of Job 2's observation.",
+      "measuredConsequence": "20 units split an obligation's enumerated claims; 26 split a continuity group. Worst observed: continuity group g-head-to-head enumerates 14 claims and the grouping emitted 14 separate single-claim units (trace matching-derived-p03-2-01). Obligation o-formula-flip enumerates the 2 claims that carry the entire editorial point - the same count computed two ways - and they became two unrelated tasks (traces matching-derived-p02-2-02 and -03).",
+      "fieldsNeverRead": [
+        "showTogether",
+        "focal",
+        "continuityGroupIds",
+        "mustBeTrue"
+      ],
+      "fieldsReadButNotForGrouping": [
+        "obligations",
+        "continuity",
+        "lane",
+        "reviewKeys"
+      ]
+    },
+    {
+      "step": 3,
+      "stage": "Presentation-operation inference and primary-operation priority",
+      "implementation": "pipeline/storypackage_splitter.py:34 _presentation_operations, :143 _primary_operation, :22 OPERATION_PRIORITY",
+      "verdict": "PRIMARY DEFECT SITE - 24 of 100 first divergences, plus a measured precision failure",
+      "inferenceFinding": "_presentation_operations is entirely hardcoded substring matching over lowered text, with 13 operation families and roughly 120 literal terms. From the claim rows it reads only entityRefs (display required/eligible), values and cohortRefs. It never reads lane, obligations, continuity, span or provenance, although lane is present on every claim row it receives.",
+      "precisionMeasurement": {
+        "event_narration": {
+          "unitsFired": 160,
+          "firedOnlyOnAGenericTerm": 99,
+          "percent": 61,
+          "topTerms": {
+            "was ": 95,
+            "got ": 19,
+            "came ": 17,
+            "were ": 16,
+            "went ": 10,
+            "made ": 7
+          },
+          "reading": "The single substring 'was ' accounts for 95 firings. This is grammar, not a visual signal."
+        },
+        "archival_progression": {
+          "unitsFired": 82,
+          "firedOnlyOnAGenericTerm": 34,
+          "percent": 41,
+          "topTerms": {
+            "in 20": 21,
+            "after ": 17,
+            "then ": 11,
+            "before ": 9,
+            "later ": 8,
+            "released": 7
+          }
+        },
+        "milestone_reveal": {
+          "unitsFired": 51,
+          "firedOnlyOnAGenericTerm": 15,
+          "percent": 29,
+          "topTerms": {
+            "number one": 19,
+            "biggest": 9,
+            "became": 7,
+            "ready": 7,
+            "the top": 3,
+            "finally": 3
+          }
+        }
+      },
+      "concreteBug": {
+        "kind": "substring match without a word boundary",
+        "detail": "The milestone_reveal term list contains the bare substring 'ready'. Of its 7 firings, 5 match inside the word 'already' and the word 'ready' never occurs.",
+        "affectedTraces": [
+          "matching-derived-p07-1-06",
+          "matching-derived-p02-3-06",
+          "matching-derived-p02-4-05",
+          "matching-derived-p08-3-03",
+          "matching-derived-p12-1-02"
+        ],
+        "example": "Pick the weights, and you've already picked the winner. -> labelled milestone_reveal",
+        "attribution": "matching"
+      },
+      "totalFallbackMeasurement": "177 of 492 units (36 percent) fire NO keyword at all and fall through to concept_statement (line 110). Every one of those 177 then receives the derived job assert_without_data. Over a third of all tasks therefore carry the semantic-null job purely because no hardcoded term matched.",
+      "laneContradiction": "25 units carry a Story lane of editorial while the chosen primary operation is data_explanation or comparison. Clearest pair: 'Jay-Z fans say streaming rigged the numbers.' and 'Drake fans say the numbers are the numbers.' are both lane editorial, both routed data_explanation, both given job assert_without_data. These are attributed opinions and the lane said so."
+    },
+    {
+      "step": 4,
+      "stage": "Derived legacy job labels",
+      "implementation": "pipeline/storypackage_splitter.py:113 _derived_job, with the advisory override at :469-470",
+      "verdict": "DERIVATIVE - inherits the operation defect rather than adding one",
+      "finding": "_derived_job is a short priority ladder over the operation set plus values, cohorts and entity counts. It adds no new keyword surface except a four-term define_terms test. Because its first test is rhetorical_question and its last line is a bare assert_without_data return, its output is almost entirely determined by whether the keyword layer fired.",
+      "measuredDistribution": {
+        "assert_without_data": 220,
+        "narrate_an_event": 164,
+        "derived_quantity": 35,
+        "enumerate": 31,
+        "pose_a_question": 30,
+        "parallel_instances": 10,
+        "define_terms": 1,
+        "proportion_of_cohort": 1
+      },
+      "reading": "384 of 492 units, 78 percent, receive either assert_without_data or narrate_an_event. The two most generic labels in the vocabulary dominate the corpus.",
+      "valueBlindnessTest": "Tested and NOT confirmed as a defect. Every unit carrying structured Story values received a value-bearing job (derived_quantity, parallel_instances or proportion_of_cohort); zero units with values fell through to a non-value job. The value branches work where values exist. They are simply unreachable for future-volksgeist, whose package carries no values at all, which is a Story authoring gap already owned as Job 3 G-05."
+    },
+    {
+      "step": 5,
+      "stage": "Entity, value, cohort, obligation and continuity propagation",
+      "implementation": "pipeline/storypackage_splitter.py task_from_claims; pipeline/visualtask_matching.py:50 presentation_contract",
+      "verdict": "PROPAGATION IS SOUND; CONSUMPTION IS PARTIAL",
+      "finding": "Propagation into the task row is faithful: entityRefs, values, cohortRefs, lanes, obligations, continuity and reviewKeys are all attached. Downstream, presentation_contract DOES consume obligations, deriving needsOnScreenText, wouldBeALie and mustBePerceptible from them (visualtask_matching.py:60-66, 88-91), and it consumes values and cohortRefs for its quantitative test.",
+      "refinementOfJob2": "This refines rather than repeats Job 2. Obligations are not globally ignored by Matching: they shape the presentation contract. What they never shape is the GROUPING that decides what a task is, because _semantic_units is not given them. Lane, by contrast, is present on every claim row handed to _presentation_operations and is read by nothing in either module.",
+      "resolvesUE14": "Job 3 UE-14 asked whether Matching consumes showTogether, continuityGroupIds and focal. Answer: NO for all three. Each has zero occurrences in both storypackage_splitter.py and storypackage_adapter.py. continuity is consumed as a flat claim-id list, never as the handoff's continuityGroupIds; showTogether and focal are never read anywhere in the transformation path."
+    },
+    {
+      "step": 6,
+      "stage": "Requirement derivation and unresolved-gap behavior",
+      "implementation": "pipeline/visualtask_requirements.py (orphaned; Job 1 AF-04); routeDisposition at storypackage_splitter.py:294-302",
+      "verdict": "THE PROMISED MIXED-PAYLOAD ROUTE EXISTS AND FIRES",
+      "finding": "routeDisposition is emitted per task with brollFallbackAvailable, preferredTreatment, templateEligible and mixedPayloadReviewRequired, the last set by len(presentation_operations) > 1 (line 302). Measured over future-volksgeist v13: 95 of 310 tasks carry mixedPayloadReviewRequired true, and ALL 24 tasks with three or more operations carry it, 22 template-eligible and 2 routed to broll or cutout with text overlay.",
+      "unresolvedGapBehavior": "Unresolved spans are reported rather than silently dropped: build() tracks covered claims and emits uncoveredClaims in its counts (lines 491-526), and the Story handoff separately reports untasked spans (Job 3). Nothing observed fabricates a task to fill a gap."
+    }
+  ],
+  "primaryOperationSuppressionTest": {
+    "acceptanceRequirement": "Test whether one primary operation suppresses necessary meaning, without proposing an unrelated-family union.",
+    "whatTheCodeDoes": "pipeline/visualtask_matching.py:207 iterates enumerate([contract['primaryOperation']]) - a single-element list. Only the primary operation admits candidates. The full operations list is carried in the contract and used only for the _rel precedence weight at line 224.",
+    "theCodesOwnRationale": "Lines 203-206 state it: 'Secondary operations explain the task, but unioning every operation turns an incidental year or phrase into permission for unrelated families. One primary communication requirement controls admission; alternatives for mixed payloads are represented as route/split review, not a broad union.'",
+    "testResult": "SUPPRESSION IS NOT SILENT, AND THE RESTRICTION IS EMPIRICALLY JUSTIFIED",
+    "evidence": [
+      "The full presentationOperations list is preserved in the published artifact: 310 of 310 tasks carry it in BOTH the editor-designated gold reference and the current v13 output. Nothing is discarded at the artifact level; primaryPresentationOperation is an addition, consistent with Job 1 AF-08.",
+      "The author's stated reason is confirmed by measurement rather than taken on trust. An incidental phrase really does grant family permission: 61 percent of event_narration firings rest only on a generic term and 95 of them on the substring 'was '. A union over inferred operations would admit unrelated families on exactly that noise.",
+      "The promised alternative is implemented and fires. All 24 three-or-more-operation tasks carry mixedPayloadReviewRequired true, so a mixed payload is flagged for route/split review rather than resolved by a union."
+    ],
+    "whereMeaningIsNeverthelessLost": [
+      "Priority inversion, not suppression. OPERATION_PRIORITY is a fixed global order, so the winner is whichever family sits highest in that tuple, not whichever the sentence is about. Trace matching-derived-p02-14-01: 'So before we can understand Future, we have to meet Nayvadius.' infers transformation, subject_profile and archival_progression; transformation wins on priority while the sentence's actual visual job is meeting a person.",
+      "Review-queue dilution, which is the real cost of low precision. 95 of 310 tasks, 31 percent, are flagged mixedPayloadReviewRequired, and a large share of those flags come from the weak keywords measured above. A review route that fires on a third of all tasks, much of it on the substring 'was ', cannot function as a selective signal."
+    ],
+    "proposalDiscipline": "No unrelated-family union is proposed, and the existing single-primary admission rule is endorsed. The two proposals below change input quality and boundary evidence, not the admission arity.",
+    "proposals": [
+      {
+        "id": "P4-1",
+        "target": "pipeline/storypackage_splitter.py _presentation_operations (NOT EDITED, proposal only)",
+        "change": "Match terms on word boundaries rather than bare substrings, and remove or qualify the generic grammatical terms ('was ', 'were ', 'made ', 'then ', 'after ', 'before ', 'later ', 'ready', 'the top') that carry no visual signal.",
+        "expectedEffect": "Raises operation precision, which in turn makes mixedPayloadReviewRequired a selective signal instead of a 31-percent blanket. It does not widen admission.",
+        "whyMinimal": "A change to term matching and term membership only. No new family, no new field, no change to the admission arity or to OPERATION_PRIORITY."
+      },
+      {
+        "id": "P4-2",
+        "target": "pipeline/storypackage_splitter.py _semantic_units signature and call site (NOT EDITED, proposal only)",
+        "change": "Pass the obligations and continuity rows into _semantic_units and treat a group's enumerated claim set as a boundary constraint: do not emit a unit that holds a strict non-empty subset of an obligation's or continuity group's claims without recording why.",
+        "expectedEffect": "Addresses the 43 first divergences at this stage directly, including the 14-way fragmentation of g-head-to-head and the separation of o-formula-flip's two claims.",
+        "whyMinimal": "The data already exists in the adapter output and is already attached to tasks afterwards. This passes it one stage earlier. It proposes no new contract field, which is why it is not a Job 3 gap.",
+        "relatesTo": "Job 2 principle P-2; Job 3 UE-14"
+      }
+    ]
+  },
+  "storyProposalsVersusMatchingDerivedOperations": {
+    "acceptanceRequirement": "The audit must distinguish Story-provided jobProposals from Matching-derived presentation operations.",
+    "theyAreDifferentObjects": "A Story jobProposal is an authored object in the StoryPackage carrying claimIds, job, proposalId and provenance. A Matching presentation operation is a label inferred inside Matching by keyword matching over claim text. They meet at exactly one place: storypackage_splitter.py:469-470, where a single unambiguous advisory job replaces the keyword-derived job.",
+    "measuredFate": {
+      "future-volksgeist": {
+        "jobProposalsInPackage": 20,
+        "materializedAsOwnTask": 0,
+        "demotedToAdvisory": 20
+      },
+      "jayz-drake": {
+        "jobProposalsInPackage": 14,
+        "materializedAsOwnTask": 1,
+        "demotedToAdvisory": 13
+      },
+      "materializeTest": "storypackage_splitter.py:367-372. A proposal becomes its own task only if it has a span, or covers more than one claim, or shares a claim with another proposal, or its beat carries more than one distinct proposed job, or it covers the whole beat. A single-claim, span-less, unique, beat-unambiguous proposal is demoted.",
+      "productionCorroboration": "future-volksgeist v13: 307 of 310 tasks have provenance source matching_semantic_split and the other 3 are validated_speaker_role, not job proposals. jayz-drake v13: 185 of 186 matching_semantic_split, 1 story_writer."
+    },
+    "theDecisiveMeasurement": "27 units received their job from a Story advisory proposal. In 0 of those 27 did the advisory job differ from the keyword-derived job. The override is therefore a no-op on the current corpus: Story's job advice never changes an output value.",
+    "whyItIsStructuralNotLuck": "Every jobProposal in both packages proposes pose_a_question. _derived_job returns pose_a_question whenever rhetorical_question is in the operation set, and that operation fires on the presence of '?' in the text. Story proposes a question job for question sentences, and the keyword layer independently detects the question mark, so they always agree. Story's advice carries no information the keyword layer does not already have.",
+    "conclusion": "The visual job in the current output is, with one exception in one package, a Matching-derived keyword artefact. Story's jobProposals are not overridden by a competing judgment; they are structurally redundant as authored. This is consistent with Job 2's finding that proposals are advisory and incomplete, and it is now established at the level of code and corpus.",
+    "attribution": "Shared in cause, separable in ownership. That 33 of 34 proposals are demoted is a Matching rule (the materialize test). That the proposals carry only pose_a_question is a Story authoring choice. Neither layer alone produces the outcome."
+  },
+  "failureClassToEarliestDivergentStage": [
+    {
+      "failureClass": "A comparison or head-to-head is fragmented into unrelated single-fact tasks",
+      "earliestDivergentStage": "_semantic_units",
+      "firstDivergenceCount": 26,
+      "proof": "continuity group g-head-to-head enumerates 14 claims; grouping emitted 14 single-claim units (trace matching-derived-p03-2-01).",
+      "attribution": "matching",
+      "reason": "The continuity rows exist in the adapter output and are never passed to the grouping function."
+    },
+    {
+      "failureClass": "An editorial point that depends on two claims together is split apart",
+      "earliestDivergentStage": "_semantic_units",
+      "firstDivergenceCount": 20,
+      "proof": "obligation o-formula-flip enumerates the two claims that state the same count computed two ways; they became two tasks (traces matching-derived-p02-2-02, -03).",
+      "attribution": "matching"
+    },
+    {
+      "failureClass": "An opinion or attributed-belief sentence is treated as a data presentation",
+      "earliestDivergentStage": "_presentation_operations",
+      "firstDivergenceCount": 25,
+      "proof": "25 units with Story lane editorial receive primary operation data_explanation or comparison; e.g. 'Jay-Z fans say streaming rigged the numbers.' (trace matching-derived-p01-3-05).",
+      "attribution": "matching",
+      "reason": "lane is present on the claim row and is read by nothing."
+    },
+    {
+      "failureClass": "A task carries no usable visual job, so candidate retrieval has nothing to work with",
+      "earliestDivergentStage": "_presentation_operations",
+      "firstDivergenceCount": "177 units (counted separately; not all are flagged divergent by the oracle)",
+      "proof": "177 of 492 units fire no keyword, fall through to concept_statement, and all 177 receive assert_without_data.",
+      "attribution": "matching",
+      "relatesTo": "This is the mechanism behind Job 2's observation that assert_without_data is the dominant label."
+    },
+    {
+      "failureClass": "A unit is labelled with a family the sentence does not support",
+      "earliestDivergentStage": "_presentation_operations",
+      "firstDivergenceCount": "measured as precision, not as a divergence count",
+      "proof": "61 percent of event_narration firings rest only on a generic term; the substring 'ready' matches inside 'already' in 5 of 7 cases.",
+      "attribution": "matching"
+    },
+    {
+      "failureClass": "A mixed-payload sentence resolves to the wrong one of several valid families",
+      "earliestDivergentStage": "_primary_operation",
+      "firstDivergenceCount": 33,
+      "proof": "OPERATION_PRIORITY is a fixed global tuple; trace matching-derived-p02-14-01 keeps transformation over subject_profile for a sentence whose job is meeting a person.",
+      "attribution": "matching",
+      "note": "Not silent: all such tasks carry mixedPayloadReviewRequired true."
+    },
+    {
+      "failureClass": "A quantitative claim cannot be matched because no magnitude is available",
+      "earliestDivergentStage": "upstream of Matching (Story authoring and the handoff contract)",
+      "firstDivergenceCount": 0,
+      "proof": "Not a Matching divergence. The adapter preserves values losslessly and _derived_job uses them correctly wherever they exist; zero units with values received a non-value job. future-volksgeist simply carries no values.",
+      "attribution": "story",
+      "relatesTo": "Job 3 G-05",
+      "important": "Matching must not be blamed for this class."
+    }
+  ],
+  "resolvedFromPriorJobs": [
+    {
+      "id": "UE-14",
+      "origin": "Job 3",
+      "status": "RESOLVED",
+      "finding": "showTogether, focal, continuityGroupIds and mustBeTrue have ZERO occurrences in both storypackage_splitter.py and storypackage_adapter.py. None is consumed anywhere in the transformation path. continuity is consumed, but as a flat claim-id list attached after grouping, never as the handoff's grouped continuityGroupIds."
+    },
+    {
+      "id": "UE-18",
+      "origin": "Job 3 (hypothesis held from G-04)",
+      "status": "PARTIALLY ADVANCED, STILL HELD",
+      "finding": "Job 4 confirms Matching cannot derive relation sides from what it receives: _presentation_operations infers comparison from a term list plus a bare count of display entities (len(refs) >= 2) and never models sides or direction. But this remains a single-story-evidenced hypothesis, so the Job 3 demotion stands. Job 4 adds mechanism, not cross-story recurrence.",
+      "handTo": "08-integrated-root-cause-and-redesign"
+    },
+    {
+      "id": "UE-20",
+      "origin": "Job 3 (hypothesis held from G-10)",
+      "status": "REFRAMED",
+      "finding": "The adjacency need shows up here as a GROUPING problem rather than a contract problem. Continuity groups already enumerate the claims that belong together, and the defect is that the grouping function is never given them (proposal P4-2). A new adjacency contract field is not required to fix the 26 observed continuity fragmentations.",
+      "handTo": "08-integrated-root-cause-and-redesign"
+    },
+    {
+      "id": "UE-08",
+      "origin": "Job 2",
+      "status": "ADVANCED",
+      "finding": "Operations inferred per task, gold versus current v13 for future-volksgeist: gold is {1: 269, 2: 32, 3: 7, 4: 2}; current is {1: 215, 2: 71, 3: 17, 4: 6, 5: 1}. The current keyword set fires materially more often than whatever produced the gold, which is consistent with term-list growth between the two revisions. This is evidence about relative trigger behaviour, not an identification of the revision, so UE-08 is advanced rather than closed.",
+      "handTo": "07-human-evidence-and-reference-evaluation"
+    }
+  ],
+  "corpusMeasurements": {
+    "unitsReplayed": 492,
+    "byStory": {
+      "future-volksgeist": 307,
+      "jayz-drake": 185
+    },
+    "outcome": {
+      "success": 392,
+      "failure": 100
+    },
+    "firstDivergentStage": {
+      "_semantic_units": 43,
+      "none": 392,
+      "_primary_operation": 33,
+      "_presentation_operations": 24
+    },
+    "divergenceKindsAllNotJustFirst": {
+      "multi_operation_suppression": 38,
+      "continuity_split_across_units": 26,
+      "editorial_lane_given_data_operation": 25,
+      "obligation_split_across_units": 20
+    },
+    "operationsPerUnit": {
+      "1": 355,
+      "2": 99,
+      "3": 27,
+      "4": 9,
+      "5": 2
+    },
+    "primaryOperationDistribution": {
+      "concept_statement": 177,
+      "data_explanation": 85,
+      "event_narration": 69,
+      "archival_progression": 46,
+      "rhetorical_question": 27,
+      "item_sequence": 25,
+      "milestone_reveal": 18,
+      "relationship_intro": 17,
+      "evidence_presentation": 13,
+      "comparison": 5,
+      "subject_profile": 4,
+      "transformation": 4,
+      "lyric_presentation": 2
+    },
+    "finalJobDistribution": {
+      "assert_without_data": 220,
+      "narrate_an_event": 164,
+      "derived_quantity": 35,
+      "enumerate": 31,
+      "pose_a_question": 30,
+      "parallel_instances": 10,
+      "define_terms": 1,
+      "proportion_of_cohort": 1
+    },
+    "jobSource": {
+      "matching_derived": 465,
+      "story_advisory": 27
+    }
+  },
+  "replayableTraces": {
+    "requirement": "At least 20 tasks, with successful and failed examples, each naming the first divergent stage.",
+    "provided": 31,
+    "successes": 9,
+    "failures": 22,
+    "byStory": {
+      "future-volksgeist": 21,
+      "jayz-drake": 10
+    },
+    "byFirstDivergentStage": {
+      "_semantic_units": 6,
+      "_presentation_operations": 5,
+      "_primary_operation": 7,
+      "none": 13
+    },
+    "howToReplay": "Import pipeline/storypackage_splitter.py, load the adapter output named in method.approach, and call _split_claim_segments, _semantic_units, _presentation_operations, _primary_operation and _derived_job in that order for the beat named in each trace. The stageOutputs block records what each call returned.",
+    "traces": [
+      {
+        "traceId": "matching-derived-p01-1-01",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _semantic_units",
+        "story": "future-volksgeist",
+        "beatId": "p01-1",
+        "input": {
+          "claimIds": [
+            "p01-1.1",
+            "p01-1.2"
+          ],
+          "claimsMergedIntoUnit": 2,
+          "unitText": "Who is Future? Well, you know who Future is.",
+          "unitTextLength": 45,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": [
+            "g-who-is-future"
+          ]
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 6
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-1.1",
+              "p01-1.2"
+            ],
+            "merged": true
+          },
+          "D_presentation_operations": [
+            "subject_profile",
+            "rhetorical_question"
+          ],
+          "E_primary_operation": "subject_profile",
+          "E_suppressedOperations": [
+            "rhetorical_question"
+          ],
+          "F_derived_job": "pose_a_question",
+          "F_storyAdvisoryJobs": [
+            "pose_a_question"
+          ],
+          "F_finalJob": "pose_a_question",
+          "F_jobSource": "story_advisory"
+        },
+        "divergences": [
+          {
+            "stage": "_semantic_units",
+            "kind": "continuity_split_across_units",
+            "detail": "continuity group g-who-is-future spans 4 claims; this unit holds 1"
+          }
+        ],
+        "firstDivergentStage": "_semantic_units"
+      },
+      {
+        "traceId": "matching-derived-p01-4-07",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _semantic_units",
+        "story": "future-volksgeist",
+        "beatId": "p01-4",
+        "input": {
+          "claimIds": [
+            "p01-4.7"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "I'm Philip, this is Volksgeist, and you're watching the true story of Future.",
+          "unitTextLength": 77,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [
+            "o-source-signoff"
+          ],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 7
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-4.7"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "concept_statement"
+          ],
+          "E_primary_operation": "concept_statement",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_semantic_units",
+            "kind": "obligation_split_across_units",
+            "detail": "obligation o-source-signoff enumerates 2 claims; this unit holds only 1"
+          }
+        ],
+        "firstDivergentStage": "_semantic_units"
+      },
+      {
+        "traceId": "matching-derived-p02-12-01",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _semantic_units",
+        "story": "future-volksgeist",
+        "beatId": "p02-12",
+        "input": {
+          "claimIds": [
+            "p02-12.1"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "So why do we really want to know who Future is?",
+          "unitTextLength": 48,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": [
+            "g-who-is-future"
+          ]
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 11
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p02-12.1"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "rhetorical_question"
+          ],
+          "E_primary_operation": "rhetorical_question",
+          "E_suppressedOperations": [],
+          "F_derived_job": "pose_a_question",
+          "F_storyAdvisoryJobs": [
+            "pose_a_question"
+          ],
+          "F_finalJob": "pose_a_question",
+          "F_jobSource": "story_advisory"
+        },
+        "divergences": [
+          {
+            "stage": "_semantic_units",
+            "kind": "continuity_split_across_units",
+            "detail": "continuity group g-who-is-future spans 4 claims; this unit holds 1"
+          }
+        ],
+        "firstDivergentStage": "_semantic_units"
+      },
+      {
+        "traceId": "matching-derived-p02-2-02",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _semantic_units",
+        "story": "jayz-drake",
+        "beatId": "p02-2",
+        "input": {
+          "claimIds": [
+            "p02-2.2"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Count every album that went to number one on the Billboard 200, including collaborations and mixtapes, and Drake leads, 15 to 14.",
+          "unitTextLength": 130,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [
+            {
+              "basis": "",
+              "entity": "person:drake",
+              "label": "Billboard 200 #1 albums, all types",
+              "unit": "albums",
+              "value": 15
+            },
+            {
+              "basis": "",
+              "entity": "person:jay-z",
+              "label": "Billboard 200 #1 albums, all types",
+              "unit": "albums",
+              "value": 14
+            }
+          ],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [
+            "o-formula-flip"
+          ],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 5
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p02-2.2"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "milestone_reveal",
+            "data_explanation",
+            "event_narration"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [
+            "milestone_reveal",
+            "event_narration"
+          ],
+          "F_derived_job": "derived_quantity",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "derived_quantity",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_semantic_units",
+            "kind": "obligation_split_across_units",
+            "detail": "obligation o-formula-flip enumerates 2 claims; this unit holds only 1"
+          },
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "3 operations inferred; data_explanation kept, 2 suppressed: ['milestone_reveal', 'event_narration']"
+          }
+        ],
+        "firstDivergentStage": "_semantic_units"
+      },
+      {
+        "traceId": "matching-derived-p02-2-03",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _semantic_units",
+        "story": "jayz-drake",
+        "beatId": "p02-2",
+        "input": {
+          "claimIds": [
+            "p02-2.3"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Count only studio albums, and Jay-Z leads, 11 to 9.",
+          "unitTextLength": 52,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [
+            {
+              "basis": "",
+              "entity": "person:jay-z",
+              "label": "#1 studio albums",
+              "unit": "albums",
+              "value": 11
+            },
+            {
+              "basis": "",
+              "entity": "person:drake",
+              "label": "#1 studio albums",
+              "unit": "albums",
+              "value": 9
+            }
+          ],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [
+            "o-formula-flip"
+          ],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 5
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p02-2.3"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "data_explanation"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [],
+          "F_derived_job": "derived_quantity",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "derived_quantity",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_semantic_units",
+            "kind": "obligation_split_across_units",
+            "detail": "obligation o-formula-flip enumerates 2 claims; this unit holds only 1"
+          }
+        ],
+        "firstDivergentStage": "_semantic_units"
+      },
+      {
+        "traceId": "matching-derived-p03-2-01",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _semantic_units",
+        "story": "jayz-drake",
+        "beatId": "p03-2",
+        "input": {
+          "claimIds": [
+            "p03-2.1"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "On Spotify, Drake has 140 billion career streams.",
+          "unitTextLength": 50,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [
+            {
+              "basis": "",
+              "entity": "person:drake",
+              "label": "career Spotify streams",
+              "unit": "streams",
+              "value": 139972159392
+            }
+          ],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": [
+            "g-head-to-head",
+            "g-scoreboard-recap"
+          ]
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 5
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p03-2.1"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "data_explanation"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [],
+          "F_derived_job": "derived_quantity",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "derived_quantity",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_semantic_units",
+            "kind": "continuity_split_across_units",
+            "detail": "continuity group g-head-to-head spans 14 claims; this unit holds 1"
+          }
+        ],
+        "firstDivergentStage": "_semantic_units"
+      },
+      {
+        "traceId": "matching-derived-p02-12-02",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _presentation_operations",
+        "story": "future-volksgeist",
+        "beatId": "p02-12",
+        "input": {
+          "claimIds": [
+            "p02-12.2"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Not because it's a witch hunt, but if an artist's music ranks as the fifth most streamed of the entire decade, it means that there's something in the mixture we relate to deep down, even if we don't know it.",
+          "unitTextLength": 208,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 11
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p02-12.2"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "milestone_reveal",
+            "data_explanation"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [
+            "milestone_reveal"
+          ],
+          "F_derived_job": "define_terms",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "define_terms",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_presentation_operations",
+            "kind": "editorial_lane_given_data_operation",
+            "detail": "lanes=['editorial'] but primary operation data_explanation"
+          }
+        ],
+        "firstDivergentStage": "_presentation_operations"
+      },
+      {
+        "traceId": "matching-derived-p06-2-09",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _presentation_operations",
+        "story": "future-volksgeist",
+        "beatId": "p06-2",
+        "input": {
+          "claimIds": [
+            "p06-2.10"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "From having 300 fans in May of 2010 to now trending on national charts, Future's dreams seemed closer than ever.",
+          "unitTextLength": 113,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 11
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p06-2.10"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "data_explanation"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_presentation_operations",
+            "kind": "editorial_lane_given_data_operation",
+            "detail": "lanes=['editorial'] but primary operation data_explanation"
+          }
+        ],
+        "firstDivergentStage": "_presentation_operations"
+      },
+      {
+        "traceId": "matching-derived-p13-1-09",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _presentation_operations",
+        "story": "future-volksgeist",
+        "beatId": "p13-1",
+        "input": {
+          "claimIds": [
+            "p13-1.12"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "He made good mixtapes, he made bad mixtapes, then he made good ones again, to a point where now, 20 years later, he's arguably a top five rapper alive.",
+          "unitTextLength": 151,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 12
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p13-1.12"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "archival_progression",
+            "data_explanation",
+            "event_narration"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [
+            "archival_progression",
+            "event_narration"
+          ],
+          "F_derived_job": "narrate_an_event",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "narrate_an_event",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_presentation_operations",
+            "kind": "editorial_lane_given_data_operation",
+            "detail": "lanes=['editorial'] but primary operation data_explanation"
+          },
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "3 operations inferred; data_explanation kept, 2 suppressed: ['archival_progression', 'event_narration']"
+          }
+        ],
+        "firstDivergentStage": "_presentation_operations"
+      },
+      {
+        "traceId": "matching-derived-p01-3-05",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _presentation_operations",
+        "story": "jayz-drake",
+        "beatId": "p01-3",
+        "input": {
+          "claimIds": [
+            "p01-3.6"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Jay-Z fans say streaming rigged the numbers.",
+          "unitTextLength": 45,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 8
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-3.6"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "data_explanation"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_presentation_operations",
+            "kind": "editorial_lane_given_data_operation",
+            "detail": "lanes=['editorial'] but primary operation data_explanation"
+          }
+        ],
+        "firstDivergentStage": "_presentation_operations"
+      },
+      {
+        "traceId": "matching-derived-p01-3-06",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _presentation_operations",
+        "story": "jayz-drake",
+        "beatId": "p01-3",
+        "input": {
+          "claimIds": [
+            "p01-3.7"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Drake fans say the numbers are the numbers.",
+          "unitTextLength": 44,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 8
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-3.7"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "data_explanation"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_presentation_operations",
+            "kind": "editorial_lane_given_data_operation",
+            "detail": "lanes=['editorial'] but primary operation data_explanation"
+          }
+        ],
+        "firstDivergentStage": "_presentation_operations"
+      },
+      {
+        "traceId": "matching-derived-p01-4-03",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _primary_operation",
+        "story": "future-volksgeist",
+        "beatId": "p01-4",
+        "input": {
+          "claimIds": [
+            "p01-4.3"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Future's been making music since before I was born \u2014 over 20 years spent honing the craft of his songwriting and vocal delivery, a story that most people wouldn't understand if they only listened to his biggest hits.",
+          "unitTextLength": 217,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 7
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-4.3"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "archival_progression",
+            "milestone_reveal",
+            "event_narration"
+          ],
+          "E_primary_operation": "milestone_reveal",
+          "E_suppressedOperations": [
+            "archival_progression",
+            "event_narration"
+          ],
+          "F_derived_job": "narrate_an_event",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "narrate_an_event",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "3 operations inferred; milestone_reveal kept, 2 suppressed: ['archival_progression', 'event_narration']"
+          }
+        ],
+        "firstDivergentStage": "_primary_operation"
+      },
+      {
+        "traceId": "matching-derived-p02-14-01",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _primary_operation",
+        "story": "future-volksgeist",
+        "beatId": "p02-14",
+        "input": {
+          "claimIds": [
+            "p02-14.1"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "So before we can understand Future, we have to meet Nayvadius.",
+          "unitTextLength": 62,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 1
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p02-14.1"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "transformation",
+            "subject_profile",
+            "archival_progression"
+          ],
+          "E_primary_operation": "transformation",
+          "E_suppressedOperations": [
+            "subject_profile",
+            "archival_progression"
+          ],
+          "F_derived_job": "narrate_an_event",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "narrate_an_event",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "3 operations inferred; transformation kept, 2 suppressed: ['subject_profile', 'archival_progression']"
+          }
+        ],
+        "firstDivergentStage": "_primary_operation"
+      },
+      {
+        "traceId": "matching-derived-p03-2-02",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _primary_operation",
+        "story": "future-volksgeist",
+        "beatId": "p03-2",
+        "input": {
+          "claimIds": [
+            "p03-2.2"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "But more than just being Future's cousin, he was also part of the production trio Organized Noize that discovered OutKast and produced their debut album.",
+          "unitTextLength": 154,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 5
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p03-2.2"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "relationship_intro",
+            "item_sequence",
+            "comparison",
+            "event_narration"
+          ],
+          "E_primary_operation": "relationship_intro",
+          "E_suppressedOperations": [
+            "item_sequence",
+            "comparison",
+            "event_narration"
+          ],
+          "F_derived_job": "enumerate",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "enumerate",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "4 operations inferred; relationship_intro kept, 3 suppressed: ['item_sequence', 'comparison', 'event_narration']"
+          }
+        ],
+        "firstDivergentStage": "_primary_operation"
+      },
+      {
+        "traceId": "matching-derived-p03-5-01",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _primary_operation",
+        "story": "jayz-drake",
+        "beatId": "p03-5",
+        "input": {
+          "claimIds": [
+            "p03-5.1"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "In 2018 alone, Drake had four number one songs.",
+          "unitTextLength": 48,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [
+            {
+              "basis": "",
+              "entity": "person:drake",
+              "label": "Hot 100 #1s in 2018",
+              "unit": "songs",
+              "value": 4
+            }
+          ],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 2
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p03-5.1"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "archival_progression",
+            "milestone_reveal",
+            "data_explanation"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [
+            "archival_progression",
+            "milestone_reveal"
+          ],
+          "F_derived_job": "derived_quantity",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "derived_quantity",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "3 operations inferred; data_explanation kept, 2 suppressed: ['archival_progression', 'milestone_reveal']"
+          }
+        ],
+        "firstDivergentStage": "_primary_operation"
+      },
+      {
+        "traceId": "matching-derived-p04-4-03",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _primary_operation",
+        "story": "jayz-drake",
+        "beatId": "p04-4",
+        "input": {
+          "claimIds": [
+            "p04-4.3",
+            "p04-4.4"
+          ],
+          "claimsMergedIntoUnit": 2,
+          "unitText": "Drake's five biggest make up less than 10% of his. Drake's catalog averages 253 million streams per track.",
+          "unitTextLength": 107,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [
+            {
+              "basis": "",
+              "entity": "person:drake",
+              "label": "top five songs' share of catalog streams",
+              "unit": "share",
+              "value": 0.096179
+            },
+            {
+              "basis": "",
+              "entity": "person:drake",
+              "label": "average streams per track",
+              "unit": "streams/track",
+              "value": 253114212
+            }
+          ],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 7
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p04-4.3",
+              "p04-4.4"
+            ],
+            "merged": true
+          },
+          "D_presentation_operations": [
+            "milestone_reveal",
+            "data_explanation",
+            "comparison"
+          ],
+          "E_primary_operation": "comparison",
+          "E_suppressedOperations": [
+            "milestone_reveal",
+            "data_explanation"
+          ],
+          "F_derived_job": "parallel_instances",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "parallel_instances",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "3 operations inferred; comparison kept, 2 suppressed: ['milestone_reveal', 'data_explanation']"
+          }
+        ],
+        "firstDivergentStage": "_primary_operation"
+      },
+      {
+        "traceId": "matching-derived-p05-3-01",
+        "outcome": "failure",
+        "selectionReason": "first divergence at _primary_operation",
+        "story": "jayz-drake",
+        "beatId": "p05-3",
+        "input": {
+          "claimIds": [
+            "p05-3.1"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Nine of Drake's studio albums went to number one.",
+          "unitTextLength": 50,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [
+            {
+              "basis": "",
+              "entity": "person:drake",
+              "label": "#1 studio albums",
+              "unit": "albums",
+              "value": 9
+            }
+          ],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 3
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p05-3.1"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "milestone_reveal",
+            "data_explanation",
+            "event_narration"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [
+            "milestone_reveal",
+            "event_narration"
+          ],
+          "F_derived_job": "derived_quantity",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "derived_quantity",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "3 operations inferred; data_explanation kept, 2 suppressed: ['milestone_reveal', 'event_narration']"
+          }
+        ],
+        "firstDivergentStage": "_primary_operation"
+      },
+      {
+        "traceId": "matching-derived-p07-1-06",
+        "outcome": "failure",
+        "selectionReason": "milestone_reveal from the substring \"ready\" inside \"already\"",
+        "story": "future-volksgeist",
+        "beatId": "p07-1",
+        "input": {
+          "claimIds": [
+            "p07-1.7"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "But like anyone who was destined to change the game, Future was also already facing mockery from critics, especially for the unintelligible lyrics on \"Tony Montana,\" to the extent that he constantly had to explain his artistic and strategic choices in every single interview he did.",
+          "unitTextLength": 282,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 7
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p07-1.7"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "subject_profile",
+            "evidence_presentation",
+            "milestone_reveal",
+            "event_narration"
+          ],
+          "E_primary_operation": "evidence_presentation",
+          "E_suppressedOperations": [
+            "subject_profile",
+            "milestone_reveal",
+            "event_narration"
+          ],
+          "F_derived_job": "narrate_an_event",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "narrate_an_event",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [
+          {
+            "stage": "_primary_operation",
+            "kind": "multi_operation_suppression",
+            "detail": "4 operations inferred; evidence_presentation kept, 3 suppressed: ['subject_profile', 'milestone_reveal', 'event_narration']"
+          }
+        ],
+        "firstDivergentStage": "_primary_operation"
+      },
+      {
+        "traceId": "matching-derived-p02-3-06",
+        "outcome": "failure",
+        "selectionReason": "milestone_reveal from the substring \"ready\" inside \"already\"",
+        "story": "jayz-drake",
+        "beatId": "p02-3",
+        "input": {
+          "claimIds": [
+            "p02-3.6"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Pick the weights, and you've already picked the winner.",
+          "unitTextLength": 55,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 6
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p02-3.6"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "milestone_reveal"
+          ],
+          "E_primary_operation": "milestone_reveal",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p01-1-04",
+        "outcome": "failure",
+        "selectionReason": "no keyword fired; concept_statement fallback -> assert_without_data",
+        "story": "future-volksgeist",
+        "beatId": "p01-1",
+        "input": {
+          "claimIds": [
+            "p01-1.4"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "but also the entire pop music industry started biting Future's sound.",
+          "unitTextLength": 70,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": true,
+            "segmentsProducedForBeatClaims": 6
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-1.4"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "concept_statement"
+          ],
+          "E_primary_operation": "concept_statement",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p01-1-05",
+        "outcome": "failure",
+        "selectionReason": "no keyword fired; concept_statement fallback -> assert_without_data",
+        "story": "future-volksgeist",
+        "beatId": "p01-1",
+        "input": {
+          "claimIds": [
+            "p01-1.5"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "But what a lot of people don't realize is that he's also the most misunderstood artist of our time.",
+          "unitTextLength": 99,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 6
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-1.5"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "concept_statement"
+          ],
+          "E_primary_operation": "concept_statement",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p01-4-02",
+        "outcome": "failure",
+        "selectionReason": "no keyword fired; concept_statement fallback -> assert_without_data",
+        "story": "future-volksgeist",
+        "beatId": "p01-4",
+        "input": {
+          "claimIds": [
+            "p01-4.2"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "More than a meme, he isn't a trend at all.",
+          "unitTextLength": 43,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 7
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-4.2"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "concept_statement"
+          ],
+          "E_primary_operation": "concept_statement",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p01-2-03",
+        "outcome": "success",
+        "selectionReason": "claim carries structured Story values",
+        "story": "jayz-drake",
+        "beatId": "p01-2",
+        "input": {
+          "claimIds": [
+            "p01-2.3"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Drake has two songs with Jay-Z on them, \"Talk Up\" and \"Love All,\" and together they've done more than 359 million streams.",
+          "unitTextLength": 123,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [
+            {
+              "basis": "spotify_songs.csv sum",
+              "entity": "person:drake",
+              "label": "Talk Up + Love All combined Spotify streams",
+              "unit": "streams",
+              "value": 359686333
+            }
+          ],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 4
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-2.3"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "data_explanation",
+            "comparison"
+          ],
+          "E_primary_operation": "comparison",
+          "E_suppressedOperations": [
+            "data_explanation"
+          ],
+          "F_derived_job": "parallel_instances",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "parallel_instances",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p01-4-06",
+        "outcome": "success",
+        "selectionReason": "job came from a Story advisory proposal",
+        "story": "future-volksgeist",
+        "beatId": "p01-4",
+        "input": {
+          "claimIds": [
+            "p01-4.6"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "So what can we learn from Future, and how can we follow in his footsteps to create our own meaningful, impactful stories?",
+          "unitTextLength": 122,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 7
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-4.6"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "rhetorical_question"
+          ],
+          "E_primary_operation": "rhetorical_question",
+          "E_suppressedOperations": [],
+          "F_derived_job": "pose_a_question",
+          "F_storyAdvisoryJobs": [
+            "pose_a_question"
+          ],
+          "F_finalJob": "pose_a_question",
+          "F_jobSource": "story_advisory"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p01-1-03",
+        "outcome": "success",
+        "selectionReason": "single unambiguous operation, no divergence",
+        "story": "future-volksgeist",
+        "beatId": "p01-1",
+        "input": {
+          "claimIds": [
+            "p01-1.4"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "He's the biggest influence for an entire generation of music artists \u2014 not just rap,",
+          "unitTextLength": 85,
+          "storyLanes": [
+            "editorial"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": true,
+            "segmentsProducedForBeatClaims": 6
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-1.4"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "milestone_reveal"
+          ],
+          "E_primary_operation": "milestone_reveal",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p01-4-01",
+        "outcome": "success",
+        "selectionReason": "single unambiguous operation, no divergence",
+        "story": "future-volksgeist",
+        "beatId": "p01-4",
+        "input": {
+          "claimIds": [
+            "p01-4.1"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "There's a reason why Future not only created the pop trap wave, but he also outlived it.",
+          "unitTextLength": 89,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 7
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-4.1"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "event_narration"
+          ],
+          "E_primary_operation": "event_narration",
+          "E_suppressedOperations": [],
+          "F_derived_job": "narrate_an_event",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "narrate_an_event",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p01-4-05",
+        "outcome": "success",
+        "selectionReason": "single unambiguous operation, no divergence",
+        "story": "future-volksgeist",
+        "beatId": "p01-4",
+        "input": {
+          "claimIds": [
+            "p01-4.5"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "For Future, music is a science, and his understanding of people and business, learned over decades, has taken him from a struggling artist with 300 fans to over 50 million monthly listeners.",
+          "unitTextLength": 191,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 7
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p01-4.5"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "data_explanation"
+          ],
+          "E_primary_operation": "data_explanation",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p02-3-01",
+        "outcome": "success",
+        "selectionReason": "single unambiguous operation, no divergence",
+        "story": "future-volksgeist",
+        "beatId": "p02-3",
+        "input": {
+          "claimIds": [
+            "p02-3.1"
+          ],
+          "claimsMergedIntoUnit": 1,
+          "unitText": "Because when you look through almost all of his interviews, there are subtle deflections or just plain contradictions in many of his statements.",
+          "unitTextLength": 145,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 4
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p02-3.1"
+            ],
+            "merged": false
+          },
+          "D_presentation_operations": [
+            "evidence_presentation"
+          ],
+          "E_primary_operation": "evidence_presentation",
+          "E_suppressedOperations": [],
+          "F_derived_job": "assert_without_data",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "assert_without_data",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p07-3-02",
+        "outcome": "success",
+        "selectionReason": "3 claims merged into one unit",
+        "story": "future-volksgeist",
+        "beatId": "p07-3",
+        "input": {
+          "claimIds": [
+            "p07-3.2",
+            "p07-3.3",
+            "p07-3.4"
+          ],
+          "claimsMergedIntoUnit": 3,
+          "unitText": "But resonating with the mainstream was also what he needed. Future's debut album, Pluto, was commercial, but it also wasn't. I wouldn't say he was chasing the radio; I would say he was waving at it.",
+          "unitTextLength": 199,
+          "storyLanes": [
+            "editorial",
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 10
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p07-3.2",
+              "p07-3.3",
+              "p07-3.4"
+            ],
+            "merged": true
+          },
+          "D_presentation_operations": [
+            "item_sequence",
+            "event_narration"
+          ],
+          "E_primary_operation": "item_sequence",
+          "E_suppressedOperations": [
+            "event_narration"
+          ],
+          "F_derived_job": "enumerate",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "enumerate",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p08-1-03",
+        "outcome": "success",
+        "selectionReason": "3 claims merged into one unit",
+        "story": "future-volksgeist",
+        "beatId": "p08-1",
+        "input": {
+          "claimIds": [
+            "p08-1.3",
+            "p08-1.4",
+            "p08-1.5"
+          ],
+          "claimsMergedIntoUnit": 3,
+          "unitText": "In early 2014, his doubters' predictions almost came true. His second album, Honest, was trash. Future kept saying he never chases the radio, but Honest was at the very least jogging towards it.",
+          "unitTextLength": 195,
+          "storyLanes": [
+            "editorial",
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 16
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p08-1.3",
+              "p08-1.4",
+              "p08-1.5"
+            ],
+            "merged": true
+          },
+          "D_presentation_operations": [
+            "item_sequence",
+            "event_narration"
+          ],
+          "E_primary_operation": "item_sequence",
+          "E_suppressedOperations": [
+            "event_narration"
+          ],
+          "F_derived_job": "enumerate",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "enumerate",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      },
+      {
+        "traceId": "matching-derived-p11-5-06",
+        "outcome": "success",
+        "selectionReason": "3 claims merged into one unit",
+        "story": "future-volksgeist",
+        "beatId": "p11-5",
+        "input": {
+          "claimIds": [
+            "p11-5.7",
+            "p11-5.8",
+            "p11-5.9"
+          ],
+          "claimsMergedIntoUnit": 3,
+          "unitText": "He doesn't even try to be subtle. He just starts talking in the middle of the track about the exact troubles he faced on his path to securing a good life through music. He starts off by talking about some of his family members, a lot of whom are dead.",
+          "unitTextLength": 252,
+          "storyLanes": [
+            "factual"
+          ],
+          "storyValues": [],
+          "storyCohortRefs": [],
+          "obligationIdsTouching": [],
+          "continuityIdsTouching": []
+        },
+        "stageOutputs": {
+          "B_split_claim_segments": {
+            "strongBoundary": false,
+            "segmentsProducedForBeatClaims": 11
+          },
+          "C_semantic_units": {
+            "claimIdsInUnit": [
+              "p11-5.7",
+              "p11-5.8",
+              "p11-5.9"
+            ],
+            "merged": true
+          },
+          "D_presentation_operations": [
+            "item_sequence"
+          ],
+          "E_primary_operation": "item_sequence",
+          "E_suppressedOperations": [],
+          "F_derived_job": "enumerate",
+          "F_storyAdvisoryJobs": [],
+          "F_finalJob": "enumerate",
+          "F_jobSource": "matching_derived"
+        },
+        "divergences": [],
+        "firstDivergentStage": null
+      }
+    ]
+  },
+  "unresolvedEvidence": [
+    {
+      "id": "UE-23",
+      "item": "OPERATION_PRIORITY is a fixed global tuple with no stated derivation. Whether its order reflects an editorial ranking or an accident of authoring is not determinable from the code or any artifact in this checkout.",
+      "owner": "matching",
+      "handTo": "05-grammar-tags-capabilities"
+    },
+    {
+      "id": "UE-24",
+      "item": "The roughly 120 literal terms in _presentation_operations have no recorded provenance. Whether any was derived from editor evidence or all were authored ad hoc cannot be established here, which limits how confidently the term list can be pruned.",
+      "owner": "matching",
+      "handTo": "07-human-evidence-and-reference-evaluation"
+    },
+    {
+      "id": "UE-25",
+      "item": "Job 4 replayed two packages. year-seventeen has no committed adapter output in this checkout, so its transformation path could not be replayed and its 115-116 task corpus is absent from these measurements.",
+      "owner": "matching",
+      "handTo": "06-candidate-pipeline"
+    }
+  ],
+  "productionFilesModified": [],
+  "codeChangesMade": [],
+  "evidenceFilesModified": [],
+  "goldReferencesModified": [],
+  "storyRepositoryWrites": "none; the worktree at d5117a6d was verified clean",
+  "filesCreated": [
+    "reports/astra-root-cause/04-matching-transformations.md",
+    "reports/astra-root-cause/04-matching-transformations.json"
+  ],
+  "acceptance": [
+    {
+      "check": "The audit distinguishes Story-provided jobProposals from Matching-derived presentation operations",
+      "verdict": "PASS",
+      "basis": "storyProposalsVersusMatchingDerivedOperations separates them as objects, names the single code line where they meet (storypackage_splitter.py:469-470), and measures the fate of all 34 authored proposals: 0 of 20 materialize for future-volksgeist and 1 of 14 for jayz-drake, corroborated against production jobProvenance (307 of 310 and 185 of 186 matching_semantic_split). The decisive measurement is that in 27 units where a Story advisory job applied, it differed from the keyword guess in 0 cases, with the structural reason given. Every trace records F_derivedJob, F_storyAdvisoryJobs and F_jobSource separately."
+    },
+    {
+      "check": "It tests whether one primary operation suppresses necessary meaning without proposing an unrelated-family union",
+      "verdict": "PASS",
+      "basis": "primaryOperationSuppressionTest performs the test and reports a result that does not flatter the hypothesis: suppression is NOT silent. The full operations list survives in 310 of 310 tasks in both gold and current output; admission is deliberately single-primary with a rationale stated in the code; and the promised route/split alternative is implemented and fires on all 24 three-or-more-operation tasks. The author's reason is independently confirmed by the measured 61 percent weak-keyword rate for event_narration. Two residual losses are named instead: priority inversion and review-queue dilution. NO union is proposed; the single-primary rule is explicitly endorsed, and both proposals change input quality and boundary evidence rather than admission arity."
+    },
+    {
+      "check": "Replayable input/output traces for at least 20 tasks, with successful and failed examples, each naming the first divergent stage",
+      "verdict": "PASS",
+      "basis": "31 traces provided against a minimum of 20: 9 successes and 22 failures, spanning both replayed packages and all three observed divergent stages plus non-divergent cases. Each carries input, per-stage outputs B through F, its divergences and firstDivergentStage, with replay instructions. The harness reproduces production task counts exactly (307 and 185), so the traces are faithful rather than illustrative."
+    },
+    {
+      "check": "No code changes are made",
+      "verdict": "PASS",
+      "basis": "The replay harness lives outside the repository in the session scratchpad and only imports production modules read-only. Every proposal is labelled proposal-only and names its target without touching it. git status shows only the two Job 4 report files; the Story worktree is clean at d5117a6d; no production file, grammar file, evidence file, gold reference or earlier job output was modified."
+    }
+  ],
+  "result_detail": {
+    "headline": "Meaning is lost in two places, and neither is the one the symptom suggests. The grouping function is never given the Story's own boundary evidence, and the operation inference is hardcoded substring matching that fires on grammar.",
+    "oneLine": "The single-primary admission rule is sound and its mixed-payload route works; the damage is done earlier, by a grouping step that cannot see obligations or continuity and a keyword layer where 36 percent of tasks match nothing at all and 61 percent of one family's hits rest on the word 'was'."
+  }
+}
