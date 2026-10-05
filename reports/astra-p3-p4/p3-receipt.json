@@ -1,0 +1,142 @@
+{
+  "baseCodeRevision": "e8be1d69eb90ecc857be0eac24231016c35435d9",
+  "blockerOwner": "none",
+  "externalModelExecution": false,
+  "inputs": {
+    "authorization": {
+      "path": "docs/p3-p4-gpt-6-1-sol-handoff/AUTHORIZATION.json",
+      "sha256": "1f35f446ddcca3ec9c09084c1ed01a553a5e7aa9a78e7d539bf5d3d4c4e0d97f"
+    },
+    "calibrationManifestSha256": "f7ec1e2248ec8e25916f32b1477e6d840aa7702322e152703b26496cfda2e8c5",
+    "implementationFiles": [
+      {
+        "path": "pipeline/storypackage_splitter.py",
+        "sha256": "b60e3fd23b4e72a329c088068b1af370f51e9847801db292fc9a079e321773bd"
+      },
+      {
+        "path": "pipeline/heldout_matching_integration.py",
+        "sha256": "58fd2a2bad888bd178c475bfd1dd8bbd0461f300d2ad6c6e4c94f95ecb79ca19"
+      },
+      {
+        "path": "tests/test_astra_p3.py",
+        "sha256": "48c6acd3392b2d5771cf525fef080ce9efc98c8ad2fad6e7c578bcf7daecd97a"
+      },
+      {
+        "path": "tests/astra_p3_shadow.py",
+        "sha256": "4f61238d81538578a83760cac906019471ee447b734c83a20cb48024ab712d52"
+      },
+      {
+        "path": "tests/test_astra_p0_p2.py",
+        "sha256": "a4bc4a6937299d8f8e1e70d56f59a674a4c620328a538ab34b8ac401203bf2c6"
+      },
+      {
+        "path": "tests/verify_astra_stage.py",
+        "sha256": "34ca55b484b6dac60d931bcea87cb61a8d7457110651247681ffbeb7af92489d"
+      },
+      {
+        "path": "plans/ASTRA_P3_IMPLEMENTATION_PLAN_20261005.md",
+        "sha256": "ac83dc9fc2bf504fd30bff84d0f3ed785ab46e560fcc3871eee138fb5f75ddc4"
+      }
+    ]
+  },
+  "model": "gpt-6.1-sol",
+  "outputs": [
+    {
+      "path": "reports/astra-p3-p4/p3-baseline-test.log",
+      "sha256": "7db2b46631430fa27d96c84845ae4dabcfc3038731442d171bed9f35855916c7"
+    },
+    {
+      "path": "reports/astra-p3-p4/p3-focused-test.log",
+      "sha256": "2b0517b060e153bd0b339c58702cb8141ff15ea57704660c429be290d3bc7726"
+    },
+    {
+      "path": "reports/astra-p3-p4/p3-provider-conversion-baseline.log",
+      "sha256": "e32c8484c6347cd1a8ab6522f01bc65a2efa7f7bb18e662b1b27674af0cecf85"
+    },
+    {
+      "path": "reports/astra-p3-p4/p3-shadow-test.log",
+      "sha256": "401505a68441507cad52cee1e78beb02ff2170795d3567b446a4ab0039bd0484"
+    },
+    {
+      "path": "reports/astra-p3-p4/p3-shadow.json",
+      "sha256": "c4a50f9a6364af0eae00fa0f1195657f8b5d93ffd9c14f7f767268c98f06acd0"
+    },
+    {
+      "path": "reports/astra-p3-p4/p3-independent-test.log",
+      "sha256": "2a0e1980d09894c5eee32e1e11f9e4b2d1ae3f17aef810505fb7d0556fac5c83"
+    }
+  ],
+  "reasoningEffort": "medium",
+  "renderingAuthorized": false,
+  "rollback": "Revert P3 commit only and invalidate semantic descendants; preserve P0-P2 receipts and source/gold evidence. Independently committed P4 remains P0-bound.",
+  "schemaDelta": null,
+  "schemaVersion": "astra-stage-receipt@1",
+  "scope": "Exact span materialization, distinct participant counting, typed split/keep guards, lexical/source-job reconciliation, and supported review-only provider provenance conversion. No new schema or provider execution.",
+  "selectionAuthorized": false,
+  "sourceAndGoldBytesUnchanged": true,
+  "stage": "P3",
+  "status": "complete",
+  "tests": [
+    {
+      "baselineResult": "Intended assertions failed before production edits; see baseline log.",
+      "command": "python3 -m unittest tests.test_astra_p3"
+    },
+    {
+      "command": "python3 -m unittest tests.test_astra_p3 tests.test_storypackage_splitter tests.test_visualtask_split_proposals tests.test_heldout_matching_integration",
+      "errors": 0,
+      "failures": 0,
+      "result": "PASS",
+      "run": 50
+    },
+    {
+      "command": "python3 tests/astra_p3_shadow.py",
+      "packages": [
+        {
+          "baselineTasks": 115,
+          "newTasks": 115,
+          "packageId": "year-seventeen@9",
+          "unverifiedSourceFacts": 87
+        },
+        {
+          "baselineTasks": 310,
+          "newTasks": 309,
+          "packageId": "future-volksgeist@5",
+          "unverifiedSourceFacts": 364
+        },
+        {
+          "baselineTasks": 186,
+          "newTasks": 192,
+          "packageId": "jayz-drake-settle-it@4",
+          "unverifiedSourceFacts": 22
+        }
+      ],
+      "result": "PASS; exact spans and typed values/roles unchanged across three existing packages"
+    },
+    {
+      "command": "python3 tests/verify_astra_stage.py P2",
+      "result": "PASS"
+    },
+    {
+      "checkout": "Separate P3-only pre-publication snapshot with identical implementation hashes; reproduce from the P3 stage commit without P4.",
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" python3 -m unittest tests.test_astra_p3 tests.test_storypackage_splitter tests.test_visualtask_split_proposals tests.test_heldout_matching_integration tests.test_astra_p0_p2",
+      "expectedFailures": 3,
+      "result": "PASS",
+      "run": 65
+    }
+  ],
+  "unresolved": [
+    "Editorial split/keep alternatives remain review-only; task counts are not gold-level semantic quality certification.",
+    "Missing upstream participants, typed values or factual receipts remain Story/Data gaps; source unverified status is explicitly retained.",
+    "Supported semantic proposal v1 is not claimed to ingest raw StoryPackage 0.2 directly; no unsupported bridge/activation was implemented.",
+    "P5 and P6 frozen cases remain unrepaired; no P5 work is authorized."
+  ],
+  "upstreamReceipt": {
+    "path": "reports/astra-p0-p2/p2-receipt.json",
+    "sha256": "e97bfbd9923e75cfbe08335f784f12e55cb90ed167e0bb54f6d5a34efe7f209d",
+    "stage": "P2"
+  },
+  "warnings": [
+    "Existing unclosed file/SQLite ResourceWarnings remain."
+  ],
+  "workflowReview": "Existing exact-source semantic moment and ownership policy covers these repairs. Supported entity/cohort and provenance containers retain provider rationale; no source schema extension."
+}

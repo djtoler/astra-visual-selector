@@ -58,6 +58,7 @@ def _convert(
         source_refs.update({
             "truth": len(truth), "prohibitions": len(prohibitions),
             "data": len(data), "entities": len(beat["entityRefs"]),
+            "cohorts": len(beat["cohortRefs"]),
             "perceptibility": len(beat["perceptibilityConstraints"]),
         })
         allocated = {key: set() for key in source_refs}
@@ -72,6 +73,7 @@ def _convert(
             allocated["prohibitions"].update(proposed["prohibitionRefs"])
             allocated["data"].update(proposed["dataRequirementRefs"])
             allocated["entities"].update(proposed["entityRefs"])
+            allocated["cohorts"].update(proposed["cohortRefs"])
             allocated["perceptibility"].update(proposed["perceptibilityConstraints"])
             kinds = list(proposed["requiredMediaKinds"])
             visual_tasks.append({
@@ -88,12 +90,15 @@ def _convert(
                 "templateAdmissions": [],
                 "timing": {"status": "unresolved_storypackage_has_no_audio_timing", "exactTaskAudioSpan": None},
                 "entities": {
-                    "explicit": entity_names, "implied": [], "cohorts": [],
+                    "explicit": entity_names, "implied": [], "cohorts": list(proposed["cohortRefs"]),
                     "resolved": entity_names, "displayEligible": entity_names,
                     "ambiguous": [], "unknownNames": [], "unresolved": [],
                 },
                 "semanticSplitProvenance": {
                     "requestId": response["requestId"], "taskKey": proposed["taskKey"],
+                    "cohortRefs": list(proposed["cohortRefs"]),
+                    "reason": proposed["reason"], "rationale": proposal["rationale"],
+                    "reviewState": response["reviewState"],
                     "truthConstraintRefs": proposed["truthConstraintRefs"],
                     "prohibitionRefs": proposed["prohibitionRefs"],
                     "dataRequirementRefs": proposed["dataRequirementRefs"],

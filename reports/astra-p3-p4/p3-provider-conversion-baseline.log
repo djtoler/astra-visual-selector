@@ -1,0 +1,21 @@
+F
+======================================================================
+FAIL: test_supported_provider_conversion_preserves_cohort_and_rationale (tests.test_astra_p3.P3SemanticTests.test_supported_provider_conversion_preserves_cohort_and_rationale)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p3.py", line 146, in test_supported_provider_conversion_preserves_cohort_and_rationale
+    self.assertEqual(tasks["tasks"][0]["entities"]["cohorts"], ["group"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != ['group']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'group'
+
+- []
++ ['group']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.012s
+
+FAILED (failures=1)

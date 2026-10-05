@@ -9,7 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def verify(stage):
-    path = ROOT / f"reports/astra-p0-p2/{stage.lower()}-receipt.json"
+    folder = "astra-p0-p2" if stage in {"P0", "P1", "P2"} else "astra-p3-p4"
+    path = ROOT / f"reports/{folder}/{stage.lower()}-receipt.json"
     receipt = json.loads(path.read_text())
     if receipt.get("stage") != stage or receipt.get("status") != "complete":
         raise ValueError("upstream receipt missing or incomplete")

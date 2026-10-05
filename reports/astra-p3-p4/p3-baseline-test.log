@@ -1,0 +1,64 @@
+.FFF.F.F
+======================================================================
+FAIL: test_duplicate_identity_does_not_become_plural_or_comparison (tests.test_astra_p3.P3SemanticTests.test_duplicate_identity_does_not_become_plural_or_comparison)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p3.py", line 43, in test_duplicate_identity_does_not_become_plural_or_comparison
+    self.assertNotIn("comparison", ops)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: 'comparison' unexpectedly found in ['comparison']
+
+======================================================================
+FAIL: test_exact_frozen_rate_span (tests.test_astra_p3.P3SemanticTests.test_exact_frozen_rate_span)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p3.py", line 38, in test_exact_frozen_rate_span
+    self.assertEqual(rate["taskText"], adapter["script"]["text"][span["start"]:span["start"] + span["len"]])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Drake has fewer guest verses than either [124 chars]rse.' != 'roughly two hundred forty million per verse'
+- Drake has fewer guest verses than either of them but more feature streams than anyone, with forty-three billion in total and roughly two hundred forty million per verse.
++ roughly two hundred forty million per verse
+
+
+======================================================================
+FAIL: test_lexical_counterprobes (tests.test_astra_p3.P3SemanticTests.test_lexical_counterprobes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p3.py", line 76, in test_lexical_counterprobes
+    self.assertEqual(subject._presentation_operations(**before), subject._presentation_operations(**after), probe["traceId"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['archival_progression', 'evidence_presentation'] != ['archival_progression']
+
+First list contains 1 additional elements.
+First extra element 1:
+'evidence_presentation'
+
+- ['archival_progression', 'evidence_presentation']
++ ['archival_progression'] : T25
+
+======================================================================
+FAIL: test_source_span_mutations_and_unicode (tests.test_astra_p3.P3SemanticTests.test_source_span_mutations_and_unicode)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p3.py", line 89, in test_source_span_mutations_and_unicode
+    self.assertEqual(subject.build(adapter, source_path=path)["taskProposals"][0]["taskText"], text[2:-2])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'α A measured rate is 10 per unit. β' != 'A measured rate is 10 per unit.'
+- α A measured rate is 10 per unit. β
+? --                               --
++ A measured rate is 10 per unit.
+
+
+======================================================================
+FAIL: test_units_and_measure_roles_split_with_exact_coverage (tests.test_astra_p3.P3SemanticTests.test_units_and_measure_roles_split_with_exact_coverage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p3.py", line 59, in test_units_and_measure_roles_split_with_exact_coverage
+    self.assertEqual(len(result), 2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: 1 != 2
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.024s
+
+FAILED (failures=5)
