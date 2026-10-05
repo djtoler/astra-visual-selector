@@ -1,0 +1,85 @@
+.FFFFEEEEE
+======================================================================
+ERROR: test_file_presence_never_covers_other_tasks_or_fields (tests.test_astra_p1.P1BindingTests.test_file_presence_never_covers_other_tasks_or_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 61, in test_file_presence_never_covers_other_tasks_or_fields
+    result = matching_agent._requirements(proposals, data_handoff=artifact)
+TypeError: _requirements() got an unexpected keyword argument 'data_handoff'
+
+======================================================================
+ERROR: test_measured_zero_replays_from_source (tests.test_astra_p1.P1BindingTests.test_measured_zero_replays_from_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 30, in test_measured_zero_replays_from_source
+    self.assertEqual(result["verifiedFields"], {"t": ["count"]})
+                     ~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'verifiedFields'
+
+======================================================================
+ERROR: test_receipt_omission_is_not_verified (tests.test_astra_p1.P1BindingTests.test_receipt_omission_is_not_verified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 84, in test_receipt_omission_is_not_verified
+    self.assertEqual(adapter.validate(artifact, source_path=ROOT / "reports/storypackage-02-apollo-adapter.json")["status"], "legacy_unresolved")
+                     ^^^^^^^^^^^^^^^^
+AttributeError: module 'pipeline.storypackage_adapter' has no attribute 'validate'
+
+======================================================================
+ERROR: test_stale_new_adapter_source_and_body_fail (tests.test_astra_p1.P1BindingTests.test_stale_new_adapter_source_and_body_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 75, in test_stale_new_adapter_source_and_body_fail
+    self.assertEqual(adapter.validate(artifact)["status"], "verified")
+                     ^^^^^^^^^^^^^^^^
+AttributeError: module 'pipeline.storypackage_adapter' has no attribute 'validate'
+
+======================================================================
+ERROR: test_unsupported_transform_is_readable_but_unresolved (tests.test_astra_p1.P1BindingTests.test_unsupported_transform_is_readable_but_unresolved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 52, in test_unsupported_transform_is_readable_but_unresolved
+    self.assertEqual(result["verifiedFields"], {})
+                     ~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'verifiedFields'
+
+======================================================================
+FAIL: test_changed_value_and_selector_fail (tests.test_astra_p1.P1BindingTests.test_changed_value_and_selector_fail) (mutation='value')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 40, in test_changed_value_and_selector_fail
+    with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_changed_value_and_selector_fail (tests.test_astra_p1.P1BindingTests.test_changed_value_and_selector_fail) (mutation='selector')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 40, in test_changed_value_and_selector_fail
+    with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_changed_value_and_selector_fail (tests.test_astra_p1.P1BindingTests.test_changed_value_and_selector_fail) (mutation='path')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 40, in test_changed_value_and_selector_fail
+    with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_changed_value_and_selector_fail (tests.test_astra_p1.P1BindingTests.test_changed_value_and_selector_fail) (mutation='source')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p1.py", line 40, in test_changed_value_and_selector_fail
+    with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.123s
+
+FAILED (failures=4, errors=5)

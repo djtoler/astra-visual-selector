@@ -259,6 +259,11 @@ def build(adapter: dict[str, Any], *, source_path: Path) -> dict[str, Any]:
         raise ValueError("splitter requires an accepted StoryPackage adapter receipt")
     if adapter.get("selectionAuthorized") is not False or adapter.get("renderingAuthorized") is not False:
         raise ValueError("StoryPackage adapter cannot authorize selection or rendering")
+    try:
+        from .storypackage_adapter import validate as validate_adapter
+    except ImportError:
+        from storypackage_adapter import validate as validate_adapter
+    adapter_validation = validate_adapter(adapter, source_path=source_path)
 
     claims = {row["claimId"]: row for row in adapter.get("claims") or []}
     beats = {row["beatId"]: row for row in adapter.get("beats") or []}
@@ -502,6 +507,7 @@ def build(adapter: dict[str, Any], *, source_path: Path) -> dict[str, Any]:
         "story": adapter["story"],
         "packageId": adapter["packageId"],
         "source": {"path": str(source_path), "sha256": _sha(source_path)},
+        "adapterValidation": adapter_validation,
         "taskProposals": tasks,
         "speakerRoutes": speaker_routes,
         "gaps": gaps,

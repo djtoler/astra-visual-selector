@@ -28,6 +28,45 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def _body_digest(artifact: dict[str, Any]) -> str:
+    body = {key: value for key, value in artifact.items() if key != "sourceBinding"}
+    return hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False,
+                                    separators=(",", ":")).encode()).hexdigest()
+
+
+def validate(artifact: dict[str, Any], *, source_path: Path | None = None) -> dict[str, Any]:
+    receipt = artifact.get("storyHandoffReceipt") or {}
+    if receipt.get("accepted") is not True:
+        raise ValueError("requires an accepted StoryPackage adapter receipt")
+    if artifact.get("selectionAuthorized") is not False or artifact.get("renderingAuthorized") is not False:
+        raise ValueError("adapter receipt cannot authorize selection or rendering")
+    binding = artifact.get("sourceBinding")
+    if binding is None:
+        # Legacy adapters have no package locator/body binding. Keep them readable,
+        # but never promote the old checker flag to current verified coverage.
+        if receipt.get("packageSha256") and source_path is not None:
+            if _read(source_path) != artifact:
+                raise ValueError("legacy adapter body or receipt differs from source")
+        return {"status": "legacy_unresolved", "reason": "package locator/body binding absent"}
+    if binding.get("version") != "storypackage-adapter-binding@1" or binding.get("bodySha256") != _body_digest(artifact):
+        raise ValueError("adapter body/receipt digest mismatch")
+    package_path = Path(binding["packagePath"])
+    authority_root = Path(binding["authorityRoot"])
+    checker = authority_root / receipt["checkerPath"]
+    if not package_path.is_file() or _sha(package_path) != receipt.get("packageSha256"):
+        raise ValueError("adapter source package is stale")
+    if _git_head(authority_root) != receipt.get("authorityCommit") or not checker.is_file() or _sha(checker) != receipt.get("checkerSha256"):
+        raise ValueError("adapter authority/checker receipt is stale")
+    package = _read(package_path)
+    for key in ("story", "script", "entityRegistry", "entities", "cohorts", "beats", "claims", "jobProposals", "obligations", "continuity", "timing"):
+        default = [] if key in {"cohorts", "jobProposals", "obligations", "continuity"} else None
+        if artifact.get(key) != package.get(key, default):
+            raise ValueError("adapter source field mutation: " + key)
+    if artifact.get("packageId") != package.get("packageId") or artifact.get("sourceSchema") != package.get("schema"):
+        raise ValueError("adapter source identity mutation")
+    return {"status": "verified", "packageSha256": receipt["packageSha256"]}
+
+
 def _git_head(repo: Path) -> str:
     result = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True,
@@ -83,7 +122,7 @@ def build(package_path: Path, *, upstream_root: Path, checker_python: Path,
             "jobProposals", "obligations", "continuity", "timing",
         )
     }
-    return {
+    artifact = {
         "contractEnforcementReceipt": contract_receipt,
         "schemaVersion": 1,
         "sourceSchema": package["schema"],
@@ -101,6 +140,12 @@ def build(package_path: Path, *, upstream_root: Path, checker_python: Path,
         "selectionAuthorized": False,
         "renderingAuthorized": False,
     }
+    artifact["sourceBinding"] = {
+        "version": "storypackage-adapter-binding@1", "packagePath": str(package_path),
+        "authorityRoot": str(upstream_root), "bodySha256": _body_digest(artifact),
+    }
+    validate(artifact)
+    return artifact
 
 
 def main() -> int:

@@ -210,6 +210,7 @@ def preflight(task: dict[str, Any]) -> dict[str, Any]:
     for optional in ("dataHandoff", "mediaHandoff"):
         if optional in task:
             inputs[optional] = {**task[optional], "path": _resolved_file(task[optional], optional).as_posix()}
+            inputs[optional]["coverageStatus"] = "unresolved_requires_task_field_validation"
     inputs["repositoryMappings"] = []
     for mapping in task["repositoryMappings"]:
         root = Path(mapping["repositoryRoot"]).expanduser().resolve()

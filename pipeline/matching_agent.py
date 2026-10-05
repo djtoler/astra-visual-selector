@@ -69,29 +69,53 @@ def _validate_registry_binding(adapter: dict[str, Any], roster: dict[str, Any]) 
         raise AgentContractError("StoryPackage entity-registry repository does not match the task authority")
 
 
-def _requirements(proposals: dict[str, Any], *, data_bound: bool, media_bound: bool) -> dict[str, Any]:
+def _requirements(proposals: dict[str, Any], *, data_bound: bool = False, media_bound: bool = False,
+                  data_handoff: dict[str, Any] | None = None,
+                  media_handoff: dict[str, Any] | None = None) -> dict[str, Any]:
+    # Deprecated presence flags are deliberately insufficient. Existing typed
+    # assignments can bind exact task fields after replay, never an entire file.
+    verified = {}
+    assignments = {}
+    if data_handoff and data_handoff.get("assignments") and data_handoff.get("packageId") == proposals.get("packageId"):
+        from .storypackage_data_assignment import validate as validate_data
+        checked = validate_data(data_handoff)
+        verified = checked["verifiedFields"]
+        assignments = {r["taskId"]: r for r in data_handoff["assignments"]}
     tasks = []
     for row in proposals.get("taskProposals") or []:
+        task_id = row["taskProposalId"]
         data_needed = bool(row.get("values") or row.get("cohortRefs") or
                            row.get("primaryPresentationOperation") == "data_explanation")
         media_needed = bool(row.get("entityRefs") or row.get("primaryPresentationOperation") in {
             "subject_profile", "relationship_intro", "item_sequence", "archival_progression",
         })
+        requested = row.get("values") or []
+        required_fields = [value.get("fieldId") or value.get("label") for value in requested]
+        fields = {field["fieldId"]: field for field in assignments.get(task_id, {}).get("typedFields") or []}
+        task_data_bound = bool(required_fields) and all(required_fields) and not row.get("cohortRefs") and all(
+            field_id in verified.get(task_id, []) and
+            fields[field_id].get("value") == value.get("value") and
+            fields[field_id].get("unit") == value.get("unit")
+            for field_id, value in zip(required_fields, requested))
+        # Legacy delivery/catalog files express availability, not task demand
+        # coverage. No supported task-bound Media receipt is silently invented.
+        task_media_bound = False
         gaps = []
-        if data_needed and not data_bound:
+        if data_needed and not task_data_bound:
             gaps.append({
                 "kind": "typed_data_handoff_missing", "owner": "data", "status": "missing",
                 "claimIds": row.get("claimIds") or [],
+                "requiredFields": requested,
             })
-        if media_needed and not media_bound:
+        if media_needed and not task_media_bound:
             gaps.append({
                 "kind": "production_ready_media_handoff_missing", "owner": "media", "status": "missing",
                 "claimIds": row.get("claimIds") or [],
             })
         tasks.append({
             "taskId": row["taskProposalId"],
-            "data": {"required": data_needed, "status": "bound" if data_needed and data_bound else ("gap" if data_needed else "not_required")},
-            "media": {"required": media_needed, "status": "bound" if media_needed and media_bound else ("gap" if media_needed else "not_required")},
+            "data": {"required": data_needed, "status": "bound" if data_needed and task_data_bound else ("gap" if data_needed else "not_required")},
+            "media": {"required": media_needed, "status": "bound" if media_needed and task_media_bound else ("gap" if media_needed else "not_required")},
             "gaps": gaps,
             "brollFallbackAvailable": True,
             "selectionAuthorized": False,
@@ -231,8 +255,9 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
             outputs.append(_write(proposal_path, proposals))
 
             requirements = _requirements(
-                proposals, data_bound="dataHandoff" in preflight_receipt["inputs"],
-                media_bound="mediaHandoff" in preflight_receipt["inputs"],
+                proposals,
+                data_handoff=read_json(Path(preflight_receipt["inputs"]["dataHandoff"]["path"])) if "dataHandoff" in preflight_receipt["inputs"] else None,
+                media_handoff=read_json(Path(preflight_receipt["inputs"]["mediaHandoff"]["path"])) if "mediaHandoff" in preflight_receipt["inputs"] else None,
             )
             outputs.append(_write(output_directory / "30-data-media-requirements.json", requirements))
 

@@ -108,6 +108,13 @@ def build(*, proposals_path: Path, adapter_path: Path,
         raise ValueError("task proposals cannot authorize selection or rendering")
     if adapter.get("packageId") != proposals.get("packageId"):
         raise ValueError("adapter and proposal package IDs differ")
+    try:
+        from .storypackage_adapter import validate as validate_adapter
+    except ImportError:
+        from storypackage_adapter import validate as validate_adapter
+    adapter_validation = validate_adapter(adapter, source_path=adapter_path)
+    if (proposals.get("source") or {}).get("sha256") != _sha(adapter_path):
+        raise ValueError("proposal adapter source digest is stale")
 
     claims = {row["claimId"]: row for row in adapter.get("claims") or []}
     beats = {row["beatId"]: row for row in adapter.get("beats") or []}
@@ -205,6 +212,7 @@ def build(*, proposals_path: Path, adapter_path: Path,
         "contractEnforcementReceipt": contract_receipt,
         "schemaVersion": 1,
         "packageId": proposals["packageId"],
+        "adapterValidation": adapter_validation,
         "purpose": "Review-only beat-to-template candidate retrieval for the established gallery UI",
         "activationState": "review_only_not_connected",
         "selectionAuthorized": False,

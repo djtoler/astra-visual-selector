@@ -58,6 +58,53 @@ def _number(value: str) -> int | float:
     return int(parsed) if parsed.is_integer() else parsed
 
 
+def _field_digest(field: dict[str, Any]) -> str:
+    body = {key: value for key, value in field.items() if key != "fieldSha256"}
+    return hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False,
+                                    separators=(",", ":")).encode()).hexdigest()
+
+
+def _validate_field(field: dict[str, Any], sources: dict[str, Any], *, verify_sources: bool) -> bool:
+    receipt = field.get("receipt") or {}
+    source = sources.get(receipt.get("source")) or {}
+    if not source or receipt.get("sourcePath") != source.get("path") or receipt.get("sourceSha256") != source.get("sha256"):
+        raise ValueError("source receipt is stale: field digest/path mismatch")
+    if field.get("fieldSha256") is not None and field["fieldSha256"] != _field_digest(field):
+        raise ValueError("field value/receipt mutation")
+    transform = receipt.get("transform")
+    if transform and "never coerce absence to zero" in transform:
+        value = field.get("value")
+        if not isinstance(value, dict) or value.get("availability") != "unavailable" or value.get("value") is not None:
+            raise ValueError("typed absence value cannot become zero")
+        return False
+    if not verify_sources:
+        return False
+    path = Path(source["path"])
+    if not path.is_file() or _sha(path) != source["sha256"]:
+        raise ValueError("source receipt is stale")
+    # Only established source operations may prove a fact. Unsupported legacy
+    # transforms remain readable but unverified; a body hash alone proves no value.
+    if transform not in {"exact CSV numeric value", "count matching rows"}:
+        return False
+    selector = receipt.get("selector")
+    columns = receipt.get("columns") or []
+    if not isinstance(selector, dict) or not selector or not columns:
+        raise ValueError("field receipt lacks selector/columns")
+    rows = _csv(path)
+    if not rows or any(column not in rows[0] for column in [*selector, *columns]):
+        raise ValueError("field source columns/selector mismatch")
+    selected = [row for row in rows if all(row[key] == str(value) for key, value in selector.items())]
+    if transform == "exact CSV numeric value":
+        if len(selected) != 1 or len(columns) != 1 or selected[0][columns[0]] == "":
+            raise ValueError("field source selector does not identify a measured value")
+        expected = _number(selected[0][columns[0]])
+    else:
+        expected = len(selected)
+    if isinstance(field.get("value"), bool) or field.get("value") != expected:
+        raise ValueError("field value does not replay from source receipt")
+    return True
+
+
 class AssignmentContext:
     def __init__(self, source_paths: dict[str, Path]):
         missing = [str(path) for path in source_paths.values() if not path.is_file()]
@@ -108,6 +155,7 @@ class AssignmentContext:
             row["population"] = population
         if basis is not None:
             row["basis"] = basis
+        row["fieldSha256"] = _field_digest(row)
         return row
 
     def stream(self, artist: str, column: str) -> int | float:
@@ -471,7 +519,15 @@ def validate(artifact: dict[str, Any], *, verify_sources: bool = True) -> dict[s
         raise ValueError("assignment has neither typed fields nor typed gaps")
     if any(not field.get("receipt", {}).get("sourceSha256") for row in rows for field in row.get("typedFields") or []):
         raise ValueError("resolved field lacks source receipt")
+    verified_fields = {}
+    unresolved_fields = []
     for row in rows:
+        for field in row.get("typedFields") or []:
+            if _validate_field(field, artifact.get("sources") or {}, verify_sources=verify_sources):
+                verified_fields.setdefault(row["taskId"], []).append(field["fieldId"])
+            else:
+                unresolved_fields.append({"taskId": row["taskId"], "fieldId": field["fieldId"],
+                                          "status": "unresolved", "owner": "data"})
         covered = {encoding for field in row.get("typedFields") or [] for encoding in field.get("encodings") or []}
         covered.update(encoding for gap in row.get("gaps") or [] for encoding in gap.get("encodings") or [])
         if not set(row.get("requiredEncodings") or []).issubset(covered):
@@ -486,7 +542,9 @@ def validate(artifact: dict[str, Any], *, verify_sources: bool = True) -> dict[s
             path = Path(source["path"])
             if not path.is_file() or _sha(path) != source["sha256"]:
                 raise ValueError("source receipt is stale")
-    return {"dataHandoffComplete": artifact["dataHandoffComplete"], **artifact["counts"]}
+    return {"dataHandoffComplete": artifact["dataHandoffComplete"], **artifact["counts"],
+            "verifiedFields": verified_fields, "unresolvedFields": unresolved_fields,
+            "coverageVerified": bool(rows) and not unresolved_fields and not unresolved}
 
 
 def main() -> int:

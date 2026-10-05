@@ -252,7 +252,14 @@ class LaterStageBaselineFailures(unittest.TestCase):
 # Promote the P1/P2 classes only after the corresponding repair is verified.
 # ASTRA_BASELINE_PROBE=1 executes raw assertions to reproduce the failing baseline.
 if os.environ.get("ASTRA_BASELINE_PROBE") != "1":
+    repaired = set(os.environ.get("ASTRA_REPAIRED_STAGES", "").split(","))
+    for stage in ("P1", "P2"):
+        receipt_path = RUNTIME_ROOT / f"reports/astra-p0-p2/{stage.lower()}-receipt.json"
+        if receipt_path.is_file() and json.loads(receipt_path.read_text()).get("status") == "complete":
+            repaired.add(stage)
     for cls in (P1BaselineFailures, P2BaselineFailures, LaterStageBaselineFailures):
+        if (cls is P1BaselineFailures and "P1" in repaired) or (cls is P2BaselineFailures and "P2" in repaired):
+            continue
         for name in unittest.defaultTestLoader.getTestCaseNames(cls):
             setattr(cls, name, unittest.expectedFailure(getattr(cls, name)))
     del cls, name

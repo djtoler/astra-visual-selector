@@ -1,0 +1,112 @@
+{
+  "acceptance": {
+    "auditedRequirements": {
+      "dataRequired": 73,
+      "mediaRequired": 104,
+      "tasks": 186,
+      "typedGaps": 177
+    },
+    "legacy": "readable with explicit unresolved verification status",
+    "measuredZero": "source-replayed exact CSV value accepted",
+    "mutationControls": "value/selector/path/source bytes and adapter source/body rejected",
+    "p1FrozenFailuresRepaired": 5
+  },
+  "blockerOwner": "none",
+  "inputs": {
+    "auditedProposals": {
+      "path": "reports/matching-agent-evaluation-20261004/jayz-drake-heldout/20-visualtask-proposals.json",
+      "sha256": "c1cb9df0982406770d5a8f1c57623845573629c3ba6432c67c7cb83e301c000a"
+    },
+    "frozenBaseline": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "implementationFiles": [
+      {
+        "path": "pipeline/matching_agent.py",
+        "sha256": "604d2be1784a1952e8d15dd8c45fcf18eb65372478cb03892d132268e5bad2d3"
+      },
+      {
+        "path": "pipeline/matching_agent_contracts.py",
+        "sha256": "a608c697be095ff08f01cdb13e0958a3bc847dbc85006de451a256e6f84747a7"
+      },
+      {
+        "path": "pipeline/storypackage_adapter.py",
+        "sha256": "dfa961f4b3cf56bf52f98a258dd34967ae8f691df7c08a9509235cc80c456bf8"
+      },
+      {
+        "path": "pipeline/storypackage_splitter.py",
+        "sha256": "075318e6b4cd3b30a0e717f849ea14508937bc042e7927ceb65acf0755a856e4"
+      },
+      {
+        "path": "pipeline/storypackage_candidate_gallery.py",
+        "sha256": "f9c19cc665c2fbf4c001f3327dca7f8202e4ad898d96921a64c2fdce60601ea8"
+      },
+      {
+        "path": "pipeline/storypackage_data_assignment.py",
+        "sha256": "d5cffe389c18da846a1aa77089dff222f3d9d64fa36539f132a2b61864f0f43c"
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "path": "reports/astra-p0-p2/p1-audited-requirements.json",
+      "sha256": "a6f4572861d6fe2026a2b5cdba4fe4b577c1c938f5388b02d7c576c79fdbb97b"
+    },
+    {
+      "path": "reports/astra-p0-p2/p1-baseline-test.log",
+      "sha256": "0b48b006e35e69e81ad09156a420f75454274ce5fa5f1555cccf4cf842e111d8"
+    },
+    {
+      "path": "reports/astra-p0-p2/p1-existing-suite.log",
+      "sha256": "b65c45531dfe87e66b111aacf22c0f1e2885644b95648912e332ac22d8ba4bab"
+    },
+    {
+      "path": "reports/astra-p0-p2/p1-focused-test.log",
+      "sha256": "bcc71a585c8bde8bc285cf45b41c8957b1f6ee17ff89f242d563a4e6c68ae516"
+    },
+    {
+      "path": "reports/astra-p0-p2/p1-outcomes.json",
+      "sha256": "43bec160d64201d15113423a69c85abfe78afe21995ed042dd7455f1a840872c"
+    }
+  ],
+  "renderingAuthorized": false,
+  "rollback": "Revert P1 commit; invalidates P2 receipt. P0 and historical evidence remain intact.",
+  "schemaVersion": "astra-stage-receipt@1",
+  "selectionAuthorized": false,
+  "sourceAndGoldBytesUnchanged": true,
+  "stage": "P1",
+  "status": "complete",
+  "tests": [
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P1 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" python3 -m unittest tests.test_astra_p1 tests.test_astra_p0_p2 tests.test_storypackage_adapter tests.test_matching_agent tests.test_matching_agent_config tests.test_matching_agent_runner tests.test_matching_agent_contracts tests.test_storypackage_data_assignment tests.test_storypackage_data_handoff tests.test_storypackage_matching_handoff tests.test_storypackage_splitter tests.test_visualtask_matching tests.test_visualtask_batch_matching tests.test_focused_review_queue tests.test_focused_review_reconciliation tests.test_matching_contract_gate tests.test_astra_review_evidence tests.test_astra_root_cause_workflow",
+      "expectedFailures": 6,
+      "result": "PASS",
+      "run": 115
+    },
+    {
+      "command": "python3 tests/verify_astra_stage.py P0",
+      "result": "PASS"
+    }
+  ],
+  "unresolved": [
+    {
+      "owner": "data",
+      "state": "unsupported legacy transforms remain unverified; no values invented"
+    },
+    {
+      "owner": "media",
+      "state": "existing delivery/inventory formats do not bind task-level requirements; remain typed gaps rather than bound coverage"
+    },
+    {
+      "owner": "matching",
+      "state": "P2 and P3-P6 frozen failures remain pending"
+    }
+  ],
+  "upstreamReceipt": {
+    "path": "reports/astra-p0-p2/p0-receipt.json",
+    "sha256": "be910a9fd7392cc1e04151f4ced0a6643f39bd5670c3e1fab3bb7e02d77f9edf",
+    "stage": "P0"
+  },
+  "warnings": [
+    "Existing unclosed file/SQLite ResourceWarnings remain; no other model or provider executed."
+  ],
+  "workflowReview": "Covered by existing media_workflows.md authorization; no unsupported upstream schema or new Media availability assertion introduced."
+}
