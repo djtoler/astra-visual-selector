@@ -11,8 +11,42 @@ entry to `RESOLVED` with the correction commit, return direct links, and stop.
 
 ## Job 4 — matching transformations
 
-Status: **ACTIVE**  
+Status: **RESOLVED**  
 Opened after commit: `032981c5ac12aa705d3fe11366f9acb7f8f93a73`  
+Resolved by commit: `1d060b37e9693dbc9808990b2cb5a2c4f9e71155`
+
+The correction:
+
+- re-diagnosed every replayed unit against a named oracle, so no trace is
+  labeled `failure` without a supported divergence and a named first divergent
+  stage; the four disputed traces resolved as two reclassified `success` (the
+  gold reference makes the same call) and two kept `failure` with a gold and a
+  lexical oracle;
+- withdrew the characterization of the `concept_statement` /
+  `assert_without_data` fallback as a defect, after measuring that the gold
+  reference assigns the same operation set in 103 of 107 cases and the same job
+  in 107 of 107;
+- traced `mixedPayloadReviewRequired` to 1 write-site and 0 read-sites, found no
+  `split` route in the produced vocabulary and the split module unwired, and
+  therefore withdrew the conclusion that route/split handling works and the
+  endorsement of the single-primary rule, recording handling unresolved as
+  UE-26;
+- revised P4-2 to separate same-task evidence from linked-task evidence using
+  the `scope`, `strength` and `mustBePerceptible` fields, and reported both
+  required counterexamples: all 6 continuity groups classify as
+  `link_separate_tasks` with task counts preserved, and of 42 multi-claim
+  obligations only 4 carry same-task evidence, one of which is capped rather
+  than joined;
+- additionally withdrew the 26 continuity-split divergences and fixed
+  non-unique trace identifiers, `taskId` not being unique across packages.
+
+Resolved outputs:
+
+- `reports/astra-root-cause/04-matching-transformations.md`
+- `reports/astra-root-cause/04-matching-transformations.json`
+
+Original request retained below for history.
+
 Target artifacts:
 
 - `reports/astra-root-cause/04-matching-transformations.md`

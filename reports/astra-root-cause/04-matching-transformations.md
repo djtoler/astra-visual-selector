@@ -1,227 +1,218 @@
 # Job 4 — Matching transformations and visual-job derivation
 
-**Result: PASS** · Next job: `05-grammar-tags-capabilities` (Claude Desktop direct) · Blocker owner: `none`
+**Result: PASS** (corrected after editor review, round 1) · Next job: `05-grammar-tags-capabilities` · Blocker owner: `none`
 
-> Meaning is lost in two places, and **neither is the one the symptom suggests.**
+> **Corrected.** The primary defect site is the hardcoded operation inference, **not** the grouping step, and the promised mixed-payload route **does not exist**.
 >
-> The single-primary admission rule is sound and its mixed-payload route works. The damage is done earlier — by a grouping step that is never given the Story's own boundary evidence, and a keyword layer where **36% of tasks match nothing at all** and **61% of one family's hits rest on the word "was"**.
+> Measured against the editor's own perfect reference, the operation layer agrees on **71%** of operation sets and **90%** of jobs — so the fallback it was accused of overusing is mostly right. What is wrong: **87** operation-set disagreements, **6** operations fired on substrings that are not words, **7** co-perceptibility requirements split apart, and a mixed-payload flag that **nothing reads**.
+
+## Corrections applied
+
+`docs/astra-root-cause/CORRECTION_REQUESTS.md` (opened after `032981c`) is **accepted in full. All three findings were correct** — and applying them exposed two further defects of my own.
+
+| | Request | Action | Verdict |
+| --- | --- | --- | --- |
+| **C4-1** | Four traces labeled `failure` with empty `divergences` and null `firstDivergentStage` | Every trace re-diagnosed against a **named oracle**; no trace can be `failure` without a supported divergence. Resolutions below. All aggregates recomputed. | corrected |
+| **C4-2** | Don't treat a keyword fallback as failure without an oracle; `concept_statement`/`assert_without_data` is not automatically unusable | **Withdrawn, and the measurement reversed.** The gold reference assigns `concept_statement` alone to **103 of 107** such tasks (96%) and the **same job to 107/107**. | conclusion withdrawn |
+| **C4-3** | The suppression test proved the flag is *emitted*, not that any consumer acts on it | **Traced and withdrawn.** `mixedPayloadReviewRequired` has **1 write-site and 0 read-sites**. No split route exists. Endorsement withdrawn; recorded unresolved as **UE-26**. | conclusion withdrawn |
+| **C4-4** | P4-2 must not make obligation and continuity groups automatically atomic | **Accepted — the original P4-2 was wrong exactly as described.** Revised to separate same-task from linked-task evidence; both counterexamples run and reported. | corrected |
+| **C4-5** | *Not raised — found while applying the above* | The **26 continuity-split divergences are withdrawn in full**; the 20 obligation splits reduce to **7**. | beyond request |
+| **C4-6** | *Not raised — found while applying the above* | **`taskId` is not unique across packages.** Both packages emit `matching-derived-p01-4-02`. Trace identifiers were ambiguous and a lookup silently collapsed two units. Now keyed `story::taskId` with uniqueness asserted over all 492. | beyond request |
+
+### The four disputed traces
+
+| Trace | Resolution | Oracle |
+| --- | --- | --- |
+| `jayz-drake::matching-derived-p02-3-06` | **stays failure** → `_presentation_operations` | the text itself — `milestone_reveal` fired on the bare substring `"ready"`, which occurs only inside *"already"* |
+| `future-volksgeist::matching-derived-p01-1-04` | **reclassified success** | gold reference assigns the identical operation set and job |
+| `future-volksgeist::matching-derived-p01-1-05` | **reclassified success** | gold reference assigns the identical operation set and job |
+| `future-volksgeist::matching-derived-p01-4-02` | **stays failure** → `_presentation_operations` | gold `['data_explanation']` vs current `['concept_statement']` |
+
+The fifth row of the trace set is `jayz-drake::matching-derived-p01-4-02` — *a different unit with the same `taskId`*, and a success. It is included deliberately to make the C4-6 defect visible.
 
 ## Execution receipt
 
 | Field | Value |
 | --- | --- |
 | Operator | Claude Desktop (`claude_desktop`) |
-| Required / observed mode | `desktop_conversation` / `desktop_conversation` — origin `desktop_app`; no CLI subprocess |
-| Resolved model | `claude-opus-5` (Opus 5) |
-| Effort (observed) | `high` |
-| Session | `session_014CbgCFFrmJN4PKxJdBpZ7P` |
+| Required / observed mode | `desktop_conversation` / `desktop_conversation` — origin `desktop_app`, no CLI subprocess |
+| Resolved model | `claude-opus-5` (Opus 5) · effort `high` |
+| Session | `session_014CbgCFFrmJN4PKxJdBpZ7P` · correction round 1 |
 
-Policy sets `recordResolvedModel: true` and names no required model, so none was assumed. Fable was not used — Job 4 is a direct Desktop job. **Independence:** no new fetch; no `matching-layer` ref read.
+Fable was not used — Job 4 is a direct Desktop job. **Independence:** no `matching-layer` ref fetched or read.
 
-## Method — a real replay, not a reading
+## Method — oracles, corrected
 
-A harness imported the production module `pipeline/storypackage_splitter.py` and called its **real internals** over the committed adapter outputs for two packages, capturing every stage's input and output per unit.
+A harness imported `pipeline/storypackage_splitter.py` and called its **real internals** over the committed adapter outputs, reproducing production counts **exactly** (307 and 185; **492 units**).
 
-**Fidelity check.** The harness replicates `build()`'s `materialize` test (lines 362–387) and its covered-claim exclusion, and reproduces production task counts **exactly**: 307 matching-derived units for `future-volksgeist` against 307 in the v13 artifact, and 185 for `jayz-drake` against 185. **492 units replayed.**
+**Four oracles, each named per divergence.** No trace is `failure` without a supported divergence:
 
-**Divergence oracle — Story's own evidence, not opinion.** A unit is divergent when it contradicts a Story artifact that was available at that stage: an obligation or continuity group whose enumerated claims the grouping split apart; a lane that contradicts the chosen operation; structured values present while the derived job is not value-bearing; three-plus operations with one kept; or ambiguous Story advice discarded. This keeps the audit story-neutral and avoids resting on the unattributed editor corpus (Job 3 UE-22).
+1. **The editor-designated gold reference** — available for **306 of 492** units; a differing operation set or job is a divergence.
+2. **Story same-task evidence** — an obligation listing ≥2 `mustBePerceptible` facts across >1 claim, whose claims grouping split.
+3. **The text itself** — an operation fired on a bare substring that never occurs as a word.
+4. Nothing else.
 
-**One harness bug, corrected.** A first run indexed advisory proposals by a `beatId` key that `jobProposals` do not carry, making every unit look matching-derived. That was a harness artefact, not a finding. Corrected by replicating `build()`'s real indexing via `claims[claimId]['beatId']`, after which counts matched production exactly and 27 units correctly showed a Story advisory job.
+**Deliberately not oracles.** A keyword fallback is not failure. The unattributed editor corpus (Job 3 UE-22) is used nowhere. Continuity groups, shared-resource obligations, multi-operation primary selection and editorial-lane tension are recorded as **informational, explicitly not failures**, because no oracle establishes the chosen behaviour is wrong.
 
 ## Corpus measurements
 
 | | |
 | --- | --- |
-| Units replayed | **492** (`future-volksgeist` 307, `jayz-drake` 185) |
-| Outcome | 392 success / **100 failure** |
-| First divergent stage | `_semantic_units` **43** · `_primary_operation` **33** · `_presentation_operations` **24** |
-| Operations per unit | 1 → 355 · 2 → 99 · 3 → 27 · 4 → 9 · 5 → 2 |
-| Final job | `assert_without_data` **220** · `narrate_an_event` **164** · `derived_quantity` 35 · `enumerate` 31 · `pose_a_question` 30 · `parallel_instances` 10 · `define_terms` 1 · `proportion_of_cohort` 1 |
+| Units replayed | **492** (unique trace keys: 492) |
+| Gold oracle available for | 306 |
+| Outcome | 393 success / **99 failure** |
+| **First divergent stage** | `_presentation_operations` **92** · `_semantic_units` **7** |
+| Divergence kinds | operation-set vs gold **87** · job vs gold **28** · same-task obligation split **7** · lexical false positive **6** |
+| Informational (not failures) | multi-operation primary selection 38 · linked-task continuity group 29 · editorial lane with data operation 25 · shared-resource obligation 13 |
 
-**384 of 492 units (78%) receive either `assert_without_data` or `narrate_an_event`** — the two most generic labels in the vocabulary dominate the corpus.
+**Change from the published version:** first divergent stage was reported as `_semantic_units` 43 / `_primary_operation` 33 / `_presentation_operations` 24. **The primary defect site moves from grouping to operation inference**, because the continuity oracle was withdrawn and the gold-reference oracle was added.
 
-## Stage-by-stage trace
+## Agreement with the editor's perfect reference
 
-### 1. Contract gate and adapter preservation — **LOSSLESS**
+Across 309 shared task ids (`future-volksgeist`):
 
-Claim-by-claim comparison of each package against its adapter output:
+| Measure | Agreement |
+| --- | --- |
+| Operation sets | **221 / 309 (71%)** |
+| Jobs | **281 / 309 (90%)** |
+| `concept_statement`-only class — operation sets | **103 / 107 (96%)** |
+| `concept_statement`-only class — jobs | **107 / 107 (100%)** |
 
-| Package | Claims in → out | Differences on text, span, lane, entityRefs, values, cohortRefs |
-| --- | --- | --- |
-| `future-volksgeist@5` | 502 → 502 | **0** |
-| `jayz-drake-settle-it@4` | 222 → 222 | **0** (including all 50 value-bearing claims) |
+The 4 disagreements in the fallback class all assign `data_explanation` instead.
 
-Obligations 42/42 and 6/6, continuity 2/2 and 4/4, jobProposals 20/20 and 14/14 — all preserved.
+**This is the measurement that withdrew my published characterisation of the fallback as a defect.** I had framed 177 units as carrying a semantic-null job "purely because no keyword matched", which implied harm the evidence does not support. The perfect reference makes the same call almost always. Only the 4 gold-disagreeing cases are now counted, and **no harmful downstream behaviour is claimed for this class anywhere**.
 
-**The adapter is not the divergent stage for any failure class.** This matters for attribution: Job 3's finding that the handoff schema cannot carry a magnitude is a *contract* gap, and it is **not** accompanied by an adapter that drops data it was given.
+## Stage-by-stage
 
-*Corrected intermediate reading:* one claim's key set suggested the adapter dropped `values` and `cohortRefs`. Wrong — that claim simply had neither. The per-claim comparison above shows zero loss.
+**1. Contract gate and adapter — LOSSLESS** (unchanged). 502 → 502 and 222 → 222 claims, **zero** differences on text, span, lane, entityRefs, values or cohortRefs. Obligations, continuity and jobProposals all preserved. Whatever is lost later was present and correct here.
 
-### 2. `_split_claim_segments` and `_semantic_units` — **PRIMARY DEFECT SITE** (43 of 100 first divergences)
+**2. `_split_claim_segments` and `_semantic_units` — CONTRIBUTING, 7 of 99** (revised down from 43). One split rule exists: `", but also"` preceded by `"not just"`. Grouping is keyed on the derived operation label, and the structural proof stands — the signature `(*, beat, claim_ids, claims)` means obligations and continuity are **never passed in**, so grouping cannot consider them.
 
-**One split rule exists.** `_split_claim_segments` (line 162) splits only on a comma followed by `but also` where `not just` appears earlier. Every other claim returns unchanged. No other scope expansion, contrast, enumeration or clause boundary can ever split a claim.
+The surviving measured consequence is narrower and better founded: **7 units split a same-task obligation**. The clearest remains `o-formula-flip`, whose two claims state the same chart history producing two different winners under two counting rules, with 3 `mustBePerceptible` facts — they must be co-perceptible for the point to land, and grouping emitted them as two tasks.
 
-**Grouping is driven by the keyword label.** `_semantic_units` merges adjacent segments when `same_payload` holds, whose decisive term is `_primary_operation(prior) == _primary_operation(current)` (line 215). The entity term accepts a shared display entity **or both units having none** (line 218), so entity-less claims merge freely to the 260-character cap.
+**The 26 continuity splits are withdrawn in full.** No continuity group in either package asserts same-task membership.
 
-**The structural proof.** The signature is:
+**3. Operation inference — PRIMARY DEFECT SITE, 92 of 99.** Entirely hardcoded substring matching; reads only `entityRefs`, `values`, `cohortRefs`. Never reads `lane`, though `lane` is on every claim row it receives.
 
-```python
-def _semantic_units(*, beat, claim_ids, claims)
-```
-
-Obligations and continuity are **never passed in**, so grouping provably cannot consider them. They are attached *afterwards* by set intersection against already-fixed `claim_ids` (lines 334–338, 438–439). This is the airtight form of Job 2's observation.
-
-**Measured consequence — 20 obligation splits, 26 continuity splits.** The worst case is stark: continuity group `g-head-to-head` enumerates **14 claims**, and the grouping emitted **14 separate single-claim units**. The Story said these belong together; Matching produced fourteen unrelated tasks.
-
-Equally telling, obligation `o-formula-flip` enumerates the two claims that carry the *entire* editorial point — the same count computed two ways:
-
-> "Count every album that went to number one on the Billboard 200, including collaborations and mixtapes…"
-> "Count only studio albums, and Jay-Z leads, 11 to 9."
-
-They became two unconnected tasks. The point *is* the flip, and the flip is what was lost.
-
-**Fields never read anywhere in the transformation path:** `showTogether`, `focal`, `continuityGroupIds`, `mustBeTrue`.
-
-### 3. Operation inference and primary priority — **PRIMARY DEFECT SITE** (24 first divergences)
-
-`_presentation_operations` is **entirely hardcoded substring matching** over lowered text: 13 families, ~120 literal terms. From the claim rows it reads only `entityRefs`, `values` and `cohortRefs`. It never reads `lane` — **although `lane` is present on every claim row it receives**.
-
-**Precision, measured:**
-
-| Operation | Units fired | Fired *only* on a generic term | Top triggers |
+| Operation | Fired | Only on a generic term | Top triggers |
 | --- | --- | --- | --- |
-| `event_narration` | 160 | **99 (61%)** | `"was "` **95**, `"got "` 19, `"came "` 17 |
-| `archival_progression` | 82 | 34 (41%) | `"in 20"` 21, `"after "` 17, `"then "` 11 |
-| `milestone_reveal` | 51 | 15 (29%) | `"number one"` 19, `"biggest"` 9, `"ready"` 7 |
+| `event_narration` | 160 | **99 (61%)** | `"was "` **95** |
+| `archival_progression` | 82 | 34 (41%) | `"in 20"` 21, `"after "` 17 |
+| `milestone_reveal` | 51 | 15 (29%) | `"number one"` 19, `"ready"` 7 |
 
-The single substring `"was "` accounts for 95 firings. That is grammar, not a visual signal.
-
-**A concrete bug — substring matching without word boundaries.** The `milestone_reveal` term list contains the bare substring `"ready"`. Of its 7 firings, **5 match inside the word "already"** and the word "ready" never occurs:
+**6 lexical false positives proven from the text itself** — the bare term `"ready"` matches inside *"already"* in 5 of its 7 firings:
 
 > "Pick the weights, and you've **already** picked the winner." → labelled `milestone_reveal`
 
-Affected: `matching-derived-p07-1-06`, `-p02-3-06`, `-p02-4-05`, `-p08-3-03`, `-p12-1-02`.
+**4. Derived job labels — DERIVATIVE.** 28 jobs disagree with the gold. Value blindness remains **tested and not confirmed**: zero units carrying structured values received a non-value job, so that failure class is upstream (Job 3 G-05) and **Matching is not at fault**.
 
-**The total-fallback measurement.** **177 of 492 units (36%) fire no keyword at all**, fall through to `concept_statement` (line 110), and *every one* then receives `assert_without_data`. Over a third of all tasks carry the semantic-null job purely because no hardcoded term matched. This is the mechanism behind Job 2's observation about that label's dominance — and the direct reason candidate retrieval has nothing to work with for those tasks.
+**5. Propagation sound, consumption partial.** `presentation_contract` *does* consume obligations (`needsOnScreenText`, `wouldBeALie`, `mustBePerceptible`). What obligations never shape is the **grouping**. **Resolves Job 3 UE-14:** `showTogether`, `focal`, `continuityGroupIds`, `mustBeTrue` — zero occurrences, consumed nowhere.
 
-**Lane contradiction — 25 units.** Story lane `editorial`, primary operation `data_explanation` or `comparison`. The clearest pair:
+## The suppression test, completed through the consumers
 
-> "Jay-Z fans say streaming rigged the numbers."
-> "Drake fans say the numbers are the numbers."
+My published report stopped at flag emission. Traced properly:
 
-Both lane `editorial`, both routed `data_explanation`, both given `assert_without_data`. These are attributed opinions, and the lane said so.
+| Field | Write-sites | **Read-sites in code** | Observable outcome |
+| --- | --- | --- | --- |
+| `mixedPayloadReviewRequired` | 1 (`splitter.py:302`) | **0** | **none** — appears only in output artifacts |
+| `preferredTreatment` | 1 | **0** | **none** |
+| `templateEligible` | 1 | 3 | consumed — suppresses candidacy, routes to b-roll |
+| `brollFallbackAvailable` | 1 | 9 | consumed |
 
-### 4. Derived legacy job labels — **DERIVATIVE**
+**Route vocabulary actually produced:** `template_review` 64, `broll` 18, **`split` 0**.
 
-`_derived_job` is a short priority ladder over the operation set plus values, cohorts and entity counts. It adds no new keyword surface beyond a four-term `define_terms` test, so its output is almost entirely determined by whether the keyword layer fired.
+`matching_agent._route_plan` sets the route from `templateEligible` and candidate presence alone, so **a mixed-payload task receives exactly the same route as any other task**. A split module exists (`visualtask_split_proposals.py`) but reads neither the flag nor `presentationOperations`, is ungated and undeclared (Job 1 AF-03), is imported only by the held-out evaluation path, and has produced **no committed artifact**.
 
-**Value-blindness: tested and NOT confirmed.** Every unit carrying structured Story values received a value-bearing job; **zero** units with values fell through to a non-value job. The value branches work where values exist — they are simply unreachable for `future-volksgeist`, whose package carries no values at all. That is a Story authoring gap already owned as **Job 3 G-05**, and Matching must not be blamed for it.
+**Conclusion withdrawn.** The flag is written and never read. The promised route/split alternative does not exist at this baseline, so single-primary admission suppresses secondary operations **with no effective mitigation**. My statements that the route "works" and that the rule is "fully endorsed" are withdrawn. Whether necessary meaning is thereby lost **cannot be demonstrated** here — there is no consumer whose behaviour could be observed. Recorded unresolved as **UE-26**.
 
-### 5. Entity, value, cohort, obligation and continuity propagation — **PROPAGATION SOUND, CONSUMPTION PARTIAL**
+**What is still true:** the full `presentationOperations` list is preserved in 310/310 tasks in both gold and current output, so nothing is discarded at the artifact level. And the risk the code comment names is real and measured — a union over inferred operations would admit unrelated families on generic-term noise.
 
-Propagation into the task row is faithful. Downstream, `presentation_contract` **does** consume obligations, deriving `needsOnScreenText`, `wouldBeALie` and `mustBePerceptible` from them (`visualtask_matching.py:60-66, 88-91`), and consumes `values`/`cohortRefs` for its quantitative test.
+**Alternatives evaluated** (no union proposed, per the request):
 
-**This refines Job 2 rather than repeating it.** Obligations are *not* globally ignored by Matching — they shape the presentation contract. What they never shape is the **grouping that decides what a task is**, because `_semantic_units` is not given them. `lane`, by contrast, is handed to the inference function and read by nothing.
+| Option | Verdict |
+| --- | --- |
+| Union every inferred operation | **rejected** — candidate explosion on measured noise, no precision gain |
+| **Corrected primary selection** | **most promising**, dependent on P4-1. `OPERATION_PRIORITY` is a fixed global tuple (UE-23); raise precision first, then evaluate order against the gold's operation sets, which already disagree on 88 of 309 |
+| An existing route | **not available** — no split route exists to route into |
+| Implement the promised split route | **out of scope for Jobs 1–7** — a repair, not a finding; recorded for Job 8 |
 
-**Resolves Job 3 UE-14:** `showTogether`, `continuityGroupIds` and `focal` are consumed **nowhere** — zero occurrences in both the splitter and the adapter. `continuity` is consumed, but as a flat claim-id list attached after grouping, never as grouped `continuityGroupIds`.
+## P4-2, revised
 
-### 6. Requirement derivation and unresolved-gap behavior — **THE PROMISED ROUTE EXISTS AND FIRES**
+**Supersedes** the published P4-2, which treated any obligation or continuity group as proof of single-task membership. The discriminating data was already in the adapter rows and my original proposal ignored it.
 
-`routeDisposition` is emitted per task, with `mixedPayloadReviewRequired` set by `len(presentation_operations) > 1` (line 302). Measured over `future-volksgeist` v13: **95 of 310** tasks carry it true, and **all 24** tasks with three-plus operations carry it (22 template-eligible, 2 routed to b-roll/cutout with text overlay).
+Continuity rows carry **`scope`** and **`strength`**. The six groups across both packages use `template_family`, `template`, `visual_grammar` and `subject_framing`, all at `strength: preferred`, and **not one asserts single-task membership**. `g-head-to-head`'s invariant reads *"one consistent two-column head-to-head treatment **for every raw count**"* — explicitly many tasks sharing one family.
 
-Unresolved spans are reported rather than silently dropped: `build()` tracks covered claims and emits `uncoveredClaims`. Nothing observed fabricates a task to fill a gap.
+The revised rule classifies rather than collapses:
 
-## The primary-operation suppression test
+- **(a) same-task evidence** — an obligation listing ≥2 `mustBePerceptible` facts across >1 claim → candidates for one task
+- **(b) linked-tasks evidence** — a continuity group, identified by `scope`/`strength`, asserting treatment consistency across separate moments → emit `linkedTaskGroup`, **do not join**
+- **(c) shared-resource evidence** — an obligation spanning moments with <2 `mustBePerceptible` facts, e.g. one source clip → annotate, do not join
+- **(d)** record the reason for every join *and* every split
+- **(e)** a join stays subject to the existing coherent-moment payload cap; where it would be exceeded, emit a **linked task set carrying the co-perceptibility note**, not one oversized task
 
-The acceptance criterion requires testing whether one primary operation suppresses necessary meaning — **without** proposing an unrelated-family union.
+### Counterexample 1 — multi-task continuity groups
 
-**What the code does.** `visualtask_matching.py:207` iterates `enumerate([contract["primaryOperation"]])` — a single-element list. Only the primary admits candidates; the full list is used only for a `_rel` precedence weight.
+| Group | Claims | Current units | Scope | Original P4-2 | Revised P4-2 | Tasks preserved |
+| --- | --- | --- | --- | --- | --- | --- |
+| `g-head-to-head` | 14 | 14 | `template_family` | join into **one** task — **wrong, oversized** | `link_separate_tasks` | **14** |
+| `g-scoreboard-recap` | 6 | 4 | `template` | join 6 across two script parts | `link_separate_tasks` | 4 |
+| `g-who-is-future` | 4 | 4 | `subject_framing` | join opening and close | `link_separate_tasks` | 4 |
+| `g-streak` | 3 | 3 | `template` | join | `link_separate_tasks` | 3 |
 
-**The code's own stated rationale** (lines 203–206):
+All **6** groups classify as `link_separate_tasks`, **0** as join. Task counts preserved exactly; no group collapsed.
 
-> *"Secondary operations explain the task, but unioning every operation turns an incidental year or phrase into permission for unrelated families. One primary communication requirement controls admission; alternatives for mixed payloads are represented as route/split review, not a broad union."*
+### Counterexample 2 — obligations spanning multiple moments
 
-**Test result: suppression is NOT silent, and the restriction is empirically justified.**
+| Obligation | Claims | `mustBePerceptible` | Revised P4-2 |
+| --- | --- | --- | --- |
+| `o-formula-flip` | 2 | 3 | `join_same_task` — the flip must read |
+| `o-umbrella` | 2 | 0 | `link_shared_resource` |
+| `o-clip-p02-6` | 4 | 0 | `link_shared_resource` — one clip heard across moments |
+| `o-streak` | 7 | 3 | `join_same_task`, **but capped** by clause (e) |
 
-1. The full `presentationOperations` list is preserved in the published artifact — **310 of 310 tasks carry it in both the editor-designated gold reference and current v13 output**. Nothing is discarded at the artifact level; `primaryPresentationOperation` is an *addition*, consistent with Job 1 AF-08.
-2. The author's reason is **confirmed by measurement**, not taken on trust. An incidental phrase really does grant family permission: 61% of `event_narration` firings rest only on a generic term, 95 of them on `"was "`. A union over inferred operations would admit unrelated families on exactly that noise.
-3. The promised alternative **is implemented and fires** — all 24 three-plus-operation tasks carry `mixedPayloadReviewRequired: true`.
+Of 42 multi-claim obligations, only **4** carry same-task evidence; **38** are shared-resource links.
 
-**Where meaning is nevertheless lost:**
+`o-streak` is the honest limit of the rule and I state it rather than hide it: a 7-claim join across 5 units would itself risk the oversized task the request warns against, so clause (e) applies and the correct output is a linked set, not one task.
 
-- **Priority inversion, not suppression.** `OPERATION_PRIORITY` is a fixed global tuple, so the winner is whichever family sits highest in it, not whichever the sentence is about. Trace `matching-derived-p02-14-01`: *"So before we can understand Future, we have to meet Nayvadius."* infers `transformation`, `subject_profile`, `archival_progression`; `transformation` wins on priority while the sentence's actual visual job is **meeting a person**.
-- **Review-queue dilution** — the real cost of low precision. 95 of 310 tasks (31%) are flagged for mixed-payload review, and a large share of those flags come from the weak keywords above. A review route that fires on a third of all tasks, much of it on the substring `"was "`, cannot function as a selective signal.
-
-**Proposals — no union, and the single-primary rule is endorsed.** Both change input quality and boundary evidence, not admission arity:
-
-| ID | Target | Change |
-| --- | --- | --- |
-| **P4-1** | `_presentation_operations` | Match on word boundaries rather than bare substrings; remove or qualify generic grammatical terms (`"was "`, `"then "`, `"ready"`, `"the top"`…). Raises precision, making `mixedPayloadReviewRequired` selective instead of a 31% blanket. **Does not widen admission.** |
-| **P4-2** | `_semantic_units` signature and call site | Pass obligations and continuity in, and treat a group's enumerated claim set as a boundary constraint. Addresses the 43 first divergences directly, including the 14-way fragmentation of `g-head-to-head`. **The data already exists** and is already attached afterwards — this passes it one stage earlier, so it needs no new contract field. |
+**Verdict:** both counterexamples pass. The revised rule preserves every coherent visual-moment boundary, forces no group into an oversized task, records a reason for every decision, and bounds its one aggressive case.
 
 ## Story `jobProposals` vs Matching-derived operations
 
-They are different objects. A Story `jobProposal` is **authored** (`claimIds`, `job`, `proposalId`, `provenance`). A presentation operation is **inferred** inside Matching by keyword matching. They meet at exactly one line — `storypackage_splitter.py:469-470`, where a single unambiguous advisory job replaces the keyword-derived job.
+Unchanged by this correction, and still measured rather than asserted. Of **34** authored proposals, **0 of 20** materialize for `future-volksgeist` and **1 of 14** for `jayz-drake` — corroborated by production provenance (307/310 and 185/186 `matching_semantic_split`). In the **27** units where a Story advisory job applied, it differed from the keyword guess in **0** cases, because every proposal proposes `pose_a_question` and the keyword layer independently detects the `?`. Story's advice is **structurally redundant as authored**, not overridden.
 
-**Measured fate of all 34 authored proposals:**
+## Failure class → earliest divergent stage
 
-| Package | In package | Materialized as own task | Demoted to advisory |
+| Failure class | Stage | Count | Oracle |
 | --- | --- | --- | --- |
-| `future-volksgeist` | 20 | **0** | 20 |
-| `jayz-drake` | 14 | **1** | 13 |
-
-Corroborated in production: `future-volksgeist` v13 has 307 of 310 tasks with provenance `matching_semantic_split` (the other 3 are `validated_speaker_role`, not job proposals); `jayz-drake` v13 has 185 of 186, with 1 `story_writer`.
-
-**The decisive measurement.** 27 units received their job from a Story advisory proposal. In **0 of those 27** did the advisory job differ from the keyword-derived job. The override is a **no-op** on the current corpus.
-
-**And it is structural, not luck.** Every `jobProposal` in both packages proposes `pose_a_question`. `_derived_job` returns `pose_a_question` whenever `rhetorical_question` is in the operation set, which fires on the presence of `?`. Story proposes a question job for question sentences; the keyword layer independently detects the question mark; they always agree. **Story's advice carries no information the keyword layer does not already have.**
-
-So the visual job in current output is, with one exception in one package, a Matching-derived keyword artefact. Story's proposals are not *overridden by a competing judgment* — they are **structurally redundant as authored**.
-
-*Attribution:* shared in cause, separable in ownership. That 33 of 34 are demoted is a **Matching** rule (the `materialize` test). That they carry only `pose_a_question` is a **Story** authoring choice. Neither layer alone produces the outcome.
-
-## Failure class → earliest divergent transformation
-
-| Failure class | Earliest divergent stage | Count | Attribution |
-| --- | --- | --- | --- |
-| A comparison or head-to-head fragmented into unrelated single-fact tasks | `_semantic_units` | 26 | matching |
-| An editorial point depending on two claims split apart | `_semantic_units` | 20 | matching |
-| An opinion sentence treated as a data presentation | `_presentation_operations` | 25 | matching |
-| A task carries no usable visual job at all | `_presentation_operations` | 177 units | matching |
-| A unit labelled with a family the sentence doesn't support | `_presentation_operations` | measured as precision | matching |
-| A mixed-payload sentence resolves to the wrong valid family | `_primary_operation` | 33 | matching |
-| **A quantitative claim unmatchable for want of a magnitude** | **upstream of Matching** | **0** | **story** (Job 3 G-05) |
-
-That last row matters. The adapter preserves values losslessly and `_derived_job` uses them correctly wherever they exist. **Matching must not be blamed for this class.**
+| Operation set the perfect reference does not assign | `_presentation_operations` | **87** | gold reference |
+| Job the perfect reference does not assign | `_derived_job` | 28 | gold reference |
+| Operation fired on a term that never occurs as a word | `_presentation_operations` | 6 | the text itself |
+| Co-perceptible claims emitted as separate tasks | `_semantic_units` | 7 | Story obligation (≥2 `mustBePerceptible`) |
+| Quantitative claim unmatchable for want of a magnitude | **upstream** | 0 | — (Job 3 G-05, **story**) |
+| ~~Continuity group fragmented across tasks~~ | **withdrawn** | 0 | none — wrongly treated continuity as same-task evidence |
+| ~~Keyword fallback leaves no usable visual job~~ | **withdrawn** | 0 | none — gold makes the same call in 96–100% of the class |
 
 ## Replayable traces
 
-**31 traces provided** against a minimum of 20 — 9 successes, 22 failures, spanning both replayed packages and all three observed divergent stages plus non-divergent cases. Each carries its input, per-stage outputs B through F, its divergences, and its `firstDivergentStage`, with replay instructions. Because the harness reproduces production counts exactly, the traces are **faithful rather than illustrative**. Full detail in the JSON under `replayableTraces.traces`.
+**37 traces** against a minimum of 20 — 14 successes, 23 failures. Every failure carries a non-empty divergence with a **named oracle** and a non-null `firstDivergentStage`. The four disputed traces are included with their resolutions, plus the same `taskId` from the other package to make the composite-key defect visible. Keyed `story::taskId`. Full detail in the JSON.
 
-## Resolved from prior jobs
-
-| ID | Status | Finding |
-| --- | --- | --- |
-| **UE-14** | **RESOLVED** | `showTogether`, `focal`, `continuityGroupIds`, `mustBeTrue` — zero occurrences in splitter and adapter; consumed nowhere |
-| UE-18 | partially advanced, **still held** | Matching provably cannot derive relation sides (`comparison` rests on a term list plus `len(refs) >= 2`), but this adds *mechanism*, not cross-story recurrence — Job 3's demotion stands |
-| UE-20 | **reframed** | The adjacency need is a *grouping* problem, not a contract problem. Continuity groups already enumerate what belongs together; the defect is that grouping never receives them (P4-2). No new contract field required |
-| UE-08 | **advanced** | Operations per task, gold vs current: gold `{1:269, 2:32, 3:7, 4:2}`; current `{1:215, 2:71, 3:17, 4:6, 5:1}`. The current keyword set fires materially more often — evidence about trigger behaviour, not revision identity |
-
-## Unresolved evidence carried forward
+## Unresolved evidence
 
 | ID | Item | Owner | Hand to |
 | --- | --- | --- | --- |
+| **UE-26** | Mixed-payload handling unresolved — flag has zero read-sites, no split route, split module unwired; suppression's cost cannot be demonstrated at this baseline | matching | Jobs 6 & 8 |
 | UE-23 | `OPERATION_PRIORITY` is a fixed global tuple with no stated derivation | matching | Job 5 |
-| UE-24 | The ~120 literal terms have no recorded provenance, limiting how confidently the list can be pruned | matching | Job 7 |
-| UE-25 | `year-seventeen` has no committed adapter output here, so its path could not be replayed | matching | Job 6 |
+| UE-24 | The ~120 literal terms have no recorded provenance; the gold now gives a partial oracle (88 of 309 disagree) | matching | Job 7 |
+| UE-25 | `year-seventeen` has no committed adapter output, so a second gold oracle is unavailable | matching | Job 6 |
+| UE-27 | The gold covers only `future-volksgeist`, so 186 `jayz-drake` units rest on Story and lexical oracles alone | data | Job 7 |
 
 ## Acceptance
 
 | Check | Verdict |
 | --- | --- |
-| Distinguishes Story `jobProposals` from Matching-derived operations | **PASS** — separated as objects, meeting point named at one line, fate of all 34 proposals measured and corroborated against production provenance; decisive 0-of-27 override measurement with its structural reason |
-| Tests whether one primary operation suppresses necessary meaning, without proposing an unrelated-family union | **PASS** — test performed and reported against the hypothesis: suppression is **not** silent. Full list survives 310/310 in gold *and* current; the code's rationale independently confirmed by the 61% weak-keyword measurement; route/split alternative verified firing on all 24 cases. Two residual losses named. **No union proposed**; single-primary rule explicitly endorsed |
-| Replayable traces for ≥20 tasks, successes and failures, each naming the first divergent stage | **PASS** — 31 traces, harness reproduces production counts exactly (307 / 185) |
-| No code changes | **PASS** — harness lives outside the repo and imports read-only; all proposals labelled proposal-only; only the two Job 4 reports created; Story worktree clean at `d5117a6d` |
+| Distinguishes Story `jobProposals` from Matching-derived operations | **PASS** — measured; 0/20 and 1/14 materialize; 0-of-27 override with its structural reason |
+| Tests primary-operation suppression without proposing an unrelated-family union | **PASS** — test completed **through the consumers**; earlier conclusion **withdrawn** (0 read-sites, no split route, unwired split module); recorded unresolved UE-26; no union proposed; all three named alternatives evaluated |
+| ≥20 replayable traces, successes and failures, each naming the first divergent stage | **PASS** — 37 traces; **every** failure has a supported divergence and named stage |
+| No code changes | **PASS** — harness outside the repo, read-only imports; all proposals proposal-only; diff touches only the two Job 4 artifacts and the shared correction file's Job 4 entry |
 
-Stopping after Job 4.
+Stopping after the Job 4 correction. **Job 5 not started.**
