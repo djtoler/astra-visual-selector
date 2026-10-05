@@ -42,11 +42,13 @@ history; do not create per-job correction-request files.
 ## Mandatory execution policy
 
 `EXECUTION_POLICY.json` is part of the workflow contract. Claude Desktop
-directly performs Jobs 1 and 3–6. For Jobs 2, 7 and 8, Claude Desktop invokes
-Claude Fable 5.1 (`claude-fable-5-1`) through the Claude CLI at explicit
-`medium` effort. Each job records its operator, execution mode and exposed model
-metadata. An execution-mode/model/effort mismatch blocks work; reassignment
-requires a separate explicit editor instruction.
+directly performs Jobs 1 and 3–6. For Job 2, Claude Desktop invokes Claude Fable
+5.1 (`claude-fable-5-1`) through the Claude CLI at explicit `medium` effort.
+For Job 7 and separately for Job 8, the editor chooses either direct Claude
+Desktop or Desktop-managed Fable CLI at Medium. Neither job has a default and
+must stop until its explicit choice exists. Each job records the selection,
+operator, execution mode and exposed model metadata. A selection or runtime
+mismatch blocks work; reassignment requires a separate explicit editor instruction.
 
 The two files under `references/gold-standard/` are editor-designated perfect
 reference versions. They define the target quality for beat boundaries,

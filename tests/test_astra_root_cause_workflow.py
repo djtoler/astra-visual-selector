@@ -27,8 +27,8 @@ class FableRootCauseWorkflowTests(unittest.TestCase):
             "05-grammar-tags-capabilities",
             "06-candidate-pipeline",
         }
-        fable = {
-            "02-story-semantics",
+        fable = {"02-story-semantics"}
+        selectable = {
             "07-human-evidence-and-reference-evaluation",
             "08-integrated-root-cause-and-redesign",
         }
@@ -43,6 +43,24 @@ class FableRootCauseWorkflowTests(unittest.TestCase):
             )
             self.assertEqual(jobs[name]["requiredModel"], "claude-fable-5-1")
             self.assertEqual(jobs[name]["requiredReasoningEffort"], "medium")
+        for name in selectable:
+            job = jobs[name]
+            self.assertEqual(job["selectionAuthority"], "editor")
+            self.assertTrue(job["executionSelectionRequiredBeforeJob"])
+            self.assertIsNone(job["defaultExecution"])
+            choices = {choice["id"]: choice for choice in job["allowedExecutions"]}
+            self.assertEqual(
+                set(choices),
+                {"claude_desktop_direct", "claude_desktop_fable_cli_medium"},
+            )
+            self.assertEqual(
+                choices["claude_desktop_direct"]["requiredExecutionMode"],
+                "desktop_conversation",
+            )
+            cli = choices["claude_desktop_fable_cli_medium"]
+            self.assertEqual(cli["requiredExecutionMode"], "claude_cli_invoked_from_desktop")
+            self.assertEqual(cli["requiredModel"], "claude-fable-5-1")
+            self.assertEqual(cli["requiredReasoningEffort"], "medium")
         self.assertTrue(policy["defaultJobPolicy"]["pushRequired"])
         self.assertTrue(policy["defaultJobPolicy"]["directOutputLinksRequired"])
         self.assertTrue(policy["defaultJobPolicy"]["oneJobPerTurn"])
@@ -76,7 +94,9 @@ class FableRootCauseWorkflowTests(unittest.TestCase):
     def test_master_prompt_requires_publication_and_executor_switches(self):
         prompt = (WORKFLOW / "MASTER_PROMPT.md").read_text()
         self.assertIn("Claude Desktop is the operator", prompt)
-        self.assertIn("For Jobs 2, 7 and 8, Claude Desktop must invoke the Claude CLI", prompt)
+        self.assertIn("For Job 2, Claude Desktop must invoke the Claude CLI", prompt)
+        self.assertIn("Before Job 7 and again before Job 8", prompt)
+        self.assertIn("There is no default", prompt)
         self.assertIn("claude-fable-5-1", prompt)
         self.assertIn("direct clickable GitHub links", prompt)
         self.assertIn("Commit and push", prompt)

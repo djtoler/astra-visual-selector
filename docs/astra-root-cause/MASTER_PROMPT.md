@@ -68,18 +68,22 @@ Read and obey `EXECUTION_POLICY.json` before starting:
 
 1. Claude Desktop is the operator and continuity surface for all eight jobs.
 2. Jobs 1, 3, 4, 5 and 6 run directly in the Claude Desktop conversation.
-3. For Jobs 2, 7 and 8, Claude Desktop must invoke the Claude CLI and run that
-   job with Claude Fable 5.1 (`claude-fable-5-1`) at `medium` effort. These are
-   not separate handoffs to another operator. Fable 5.1 defaults to High in
-   Claude Code, so Medium must be selected explicitly rather than assumed.
-4. Every job records the operator, execution mode and exact model identifier or
+3. For Job 2, Claude Desktop must invoke the Claude CLI and run the job with
+   Claude Fable 5.1 (`claude-fable-5-1`) at explicit `medium` effort.
+4. Before Job 7 and again before Job 8, the editor must explicitly select one
+   of two permitted executions for that job: direct Claude Desktop conversation,
+   or Claude Desktop invoking Claude Fable 5.1 through the CLI at explicit
+   `medium` effort. There is no default. Do not infer the choice from Job 2, the
+   preceding job, model availability or remaining usage credits. Stop before
+   analysis when the editor's selection for that numbered job is absent.
+5. Every job records the operator, execution mode and exact model identifier or
    user-visible model name exposed by that environment. Never invent missing
    runtime metadata.
-5. Before doing any analysis, find the earliest numbered job whose required
+6. Before doing any analysis, find the earliest numbered job whose required
    outputs are not present in a committed and published branch state. Verify the
    execution mode matches that job's policy. If it does not, stop and state
    whether Claude Desktop must work directly or invoke Fable through the CLI.
-6. Do not change a job's assigned execution mode, model or effort without a new
+7. Do not change a job's assigned or editor-selected execution mode, model or effort without a new
    explicit editor instruction.
 
 ## Execution contract

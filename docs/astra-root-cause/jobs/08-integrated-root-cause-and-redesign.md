@@ -1,12 +1,14 @@
 # Job 8 — Integrated root cause, redesign and validation plan
 
-## Required execution mode
+## Editor-selected execution mode
 
-Claude Desktop invokes the Claude CLI for this job and explicitly selects
-Claude Fable 5.1 (`claude-fable-5-1`) at `medium` effort. Record Desktop as the
-operator, the CLI invocation as the execution mode, and the resolved model and
-effort in the receipt. Stop without analysis if that configuration is not
-active.
+Before this job starts, the editor must explicitly choose either direct Claude
+Desktop conversation or Claude Desktop invoking Claude Fable 5.1
+(`claude-fable-5-1`) through the CLI at `medium` effort. There is no default;
+do not infer the choice from Job 7, another job or model availability. Record
+the explicit selection, operator, execution mode, resolved model and any
+applicable effort in the receipt. Stop without analysis if no Job 8 selection
+exists or the active execution does not match it.
 
 ## One job
 

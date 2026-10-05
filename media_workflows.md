@@ -105,11 +105,12 @@ Astra Job 1–8 reports or the repair plan on the later `matching-layer` branch.
 Later production commits are excluded until both analyses are independently
 complete.
 
-Claude Desktop directly executes Jobs 1 and 3–6. For Jobs 2, 7 and 8, Claude
-Desktop invokes Claude Fable 5.1 (`claude-fable-5-1`) through the Claude CLI at
-explicit `medium` effort. The active mode records its operator, execution mode
-and exposed model metadata; a mismatch blocks the job. Do not reassign a job or change Fable's
-effort without a new explicit editor instruction. Both surfaces save, validate,
+Claude Desktop directly executes Jobs 1 and 3–6. For Job 2, Claude Desktop
+invokes Claude Fable 5.1 (`claude-fable-5-1`) through the Claude CLI at explicit
+`medium` effort. For Job 7 and separately for Job 8, the editor explicitly
+chooses direct Desktop or Desktop-managed Fable CLI at Medium. There is no
+default; a missing selection or runtime mismatch blocks the job. Do not infer a
+choice or reassign a job without a new explicit editor instruction. Both surfaces save, validate,
 commit and publish each completed job to `fable_analysis`, provide direct GitHub
 links to the primary outputs and stop until the editor explicitly continues.
 No job authorizes production edits, template selection or rendering. The

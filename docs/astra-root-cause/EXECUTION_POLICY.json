@@ -59,21 +59,49 @@
       "receiptRequired": true
     },
     "07-human-evidence-and-reference-evaluation": {
-      "requiredOperator": "claude_desktop",
-      "requiredExecutionMode": "claude_cli_invoked_from_desktop",
-      "requiredExecutor": "claude-fable-5-1",
-      "requiredModel": "claude-fable-5-1",
-      "requiredModelDisplayName": "Claude Fable 5.1",
-      "requiredReasoningEffort": "medium",
+      "selectionAuthority": "editor",
+      "executionSelectionRequiredBeforeJob": true,
+      "defaultExecution": null,
+      "allowedExecutions": [
+        {
+          "id": "claude_desktop_direct",
+          "requiredOperator": "claude_desktop",
+          "requiredExecutionMode": "desktop_conversation",
+          "recordResolvedModel": true
+        },
+        {
+          "id": "claude_desktop_fable_cli_medium",
+          "requiredOperator": "claude_desktop",
+          "requiredExecutionMode": "claude_cli_invoked_from_desktop",
+          "requiredExecutor": "claude-fable-5-1",
+          "requiredModel": "claude-fable-5-1",
+          "requiredModelDisplayName": "Claude Fable 5.1",
+          "requiredReasoningEffort": "medium"
+        }
+      ],
       "receiptRequired": true
     },
     "08-integrated-root-cause-and-redesign": {
-      "requiredOperator": "claude_desktop",
-      "requiredExecutionMode": "claude_cli_invoked_from_desktop",
-      "requiredExecutor": "claude-fable-5-1",
-      "requiredModel": "claude-fable-5-1",
-      "requiredModelDisplayName": "Claude Fable 5.1",
-      "requiredReasoningEffort": "medium",
+      "selectionAuthority": "editor",
+      "executionSelectionRequiredBeforeJob": true,
+      "defaultExecution": null,
+      "allowedExecutions": [
+        {
+          "id": "claude_desktop_direct",
+          "requiredOperator": "claude_desktop",
+          "requiredExecutionMode": "desktop_conversation",
+          "recordResolvedModel": true
+        },
+        {
+          "id": "claude_desktop_fable_cli_medium",
+          "requiredOperator": "claude_desktop",
+          "requiredExecutionMode": "claude_cli_invoked_from_desktop",
+          "requiredExecutor": "claude-fable-5-1",
+          "requiredModel": "claude-fable-5-1",
+          "requiredModelDisplayName": "Claude Fable 5.1",
+          "requiredReasoningEffort": "medium"
+        }
+      ],
       "receiptRequired": true
     }
   },
@@ -105,6 +133,7 @@
   ],
   "prohibitions": [
     "executor_or_effort_change_without_explicit_editor_instruction",
+    "job_7_or_8_execution_without_explicit_editor_selection",
     "fable_job_run_outside_claude_desktop_managed_cli",
     "wrong_executor_for_numbered_job",
     "astra_job_1_8_report_consumption",

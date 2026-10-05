@@ -48,9 +48,11 @@ This `fable_analysis` branch is an independent audit rooted at Matching commit
 merge or use Astra Job 1–8 outputs from the later `matching-layer` branch until
 the independent Fable audit is complete. Preserve production code and evidence;
 each numbered job publishes audit outputs only and stops for the editor. Claude
-Desktop directly runs Jobs 1 and 3–6. For Jobs 2, 7 and 8, Claude Desktop
-invokes Claude Fable 5.1 through the Claude CLI at Medium. A wrong execution
-mode must stop rather than taking another mode's job. Both modes commit and push each completed job to
+Desktop directly runs Jobs 1 and 3–6. For Job 2, Claude Desktop invokes Claude
+Fable 5.1 through the Claude CLI at Medium. For Job 7 and separately for Job 8,
+the editor must explicitly choose direct Desktop or Desktop-managed Fable CLI
+at Medium; there is no default. A missing selection or wrong execution mode
+must stop rather than taking another mode's job. Both modes commit and push each completed job to
 `fable_analysis` and return direct GitHub links to their outputs.
 
 Use `docs/astra-root-cause/CORRECTION_REQUESTS.md` as the only correction-request
