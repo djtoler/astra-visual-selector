@@ -1,0 +1,200 @@
+{
+  "acceptance": {
+    "consumers": [
+      "general StoryPackage requirements",
+      "candidate gallery",
+      "focused candidate diversity"
+    ],
+    "emptyRoutes": 12,
+    "legacy": "Legacy galleries are explicitly centrally projected for review from pinned sources; legacy adapters remain unresolved where original package locators are absent.",
+    "mutationChecks": [
+      "omitted field",
+      "mutated value",
+      "missing/stale receipt",
+      "changed source bytes",
+      "consumer reconstruction with recalculated digest",
+      "foreign-story admission",
+      "prior-selection input",
+      "failed upstream stage receipt",
+      "removed projection version cannot bypass retrieval validation"
+    ],
+    "quoteConflict": "Explicit attribution/text obligations control the canonical primary operation; source prose/spans remain unchanged.",
+    "sourceBoundTaskFields": [
+      "routeDisposition",
+      "primaryMeaning",
+      "requiredMeanings",
+      "obligations",
+      "continuity",
+      "values",
+      "cohortRefs",
+      "entityRefs",
+      "mediaNeeds",
+      "cohortMediaNeeds",
+      "dataNeeds",
+      "quoteRequirements",
+      "templateAdmissions"
+    ]
+  },
+  "blockerOwner": "none",
+  "inputs": {
+    "calibrationManifestSha256": "f7ec1e2248ec8e25916f32b1477e6d840aa7702322e152703b26496cfda2e8c5",
+    "frozenBaseline": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "implementationFiles": [
+      {
+        "path": "pipeline/focused_candidate_diversity.py",
+        "sha256": "3726bba0dc3e84167559a5c607a75963bb3fbe96dd385c8ffde4dc68454e70a5"
+      },
+      {
+        "path": "pipeline/matching_agent.py",
+        "sha256": "da37188d008d9b71d61381216208bdbde4cdebe8ca36da43bf4714a90a6c5600"
+      },
+      {
+        "path": "pipeline/storypackage_candidate_gallery.py",
+        "sha256": "f449fa240341c1ee062605581b45b103443542b0b6f68d97a43fd3d96b32bcea"
+      },
+      {
+        "path": "pipeline/storypackage_matching_handoff.py",
+        "sha256": "d0364e4e0826e8da7ee6cd91f0aee6bde5931ae3d3d26ae999d1da8ce6a6b1b1"
+      },
+      {
+        "path": "pipeline/visualtask_matching.py",
+        "sha256": "d17864f0630552f06de877fb90022fc522b9d129552e4eb8c073967632313c80"
+      },
+      {
+        "path": "tests/astra_shadow_projection.py",
+        "sha256": "b7ca376f3ab3484367ff57c7d2094ccf93b692a759bb766d2d25cc7b1839b6f8"
+      },
+      {
+        "path": "tests/test_astra_p2.py",
+        "sha256": "1ed2849bb367383dee105f3a717f273a86246441ef1bf6d0616b0a01065d9dba"
+      },
+      {
+        "path": "tests/test_matching_agent.py",
+        "sha256": "99257d6b68071d85b27b5e208c7d4425748d5d38009149763b0efe7f0fa34c72"
+      },
+      {
+        "path": "tests/verify_astra_stage.py",
+        "sha256": "265679a77afb08e4bac0174818b045e48bf129a51221574bffce2c10d0230c21"
+      }
+    ],
+    "projectionVersion": "matching-task-projection@1"
+  },
+  "next": "Stop for editor P2 review; P3-P7 remain unauthorized.",
+  "outputs": [
+    {
+      "path": "reports/astra-p0-p2/p2-baseline-test.log",
+      "sha256": "908603420a50a3b134fa12bb5a7191ff7a51cb477ba1828036f6273ea47bd3ed"
+    },
+    {
+      "path": "reports/astra-p0-p2/p2-existing-suite.log",
+      "sha256": "e177e6d8686eef5b5191e60fa4735e5d331cade9d5d45f28a823a71072071f94"
+    },
+    {
+      "path": "reports/astra-p0-p2/p2-focused-test.log",
+      "sha256": "bb722ad5956b1572753dd762da3468b2f348e71f373a7db11cb14980b8a8bc12"
+    },
+    {
+      "path": "reports/astra-p0-p2/p2-outcomes.json",
+      "sha256": "0811c2cf484d1dda74b471cf319c0040e9ff1e819340be3c115e0ea2b60f1909"
+    },
+    {
+      "path": "reports/astra-p0-p2/p2-shadow-consumers.json",
+      "sha256": "e4f8d3ef692028277bb46e2db1dff132cf5f148bf69d98ab932a4207316e4120"
+    },
+    {
+      "path": "reports/astra-p0-p2/p2-shadow-test.log",
+      "sha256": "90e7ca51522f03feab9e093f93ccc765a989171d154ff6bdd836183c82fb08e9"
+    },
+    {
+      "path": "reports/astra-p0-p2/p0-p2-outcome-diff.json",
+      "sha256": "61874b4ca4eb82b88db0e3535a2b3e1084e5abbd52271686e70f0416731efdf2"
+    }
+  ],
+  "renderingAuthorized": false,
+  "rollback": "Revert P2 stage commit first, then P1, then P0 only if needed. Reverting any stage invalidates dependent receipts. Legacy/gold/source artifacts remain untouched.",
+  "schemaVersion": "astra-stage-receipt@1",
+  "selectionAuthorized": false,
+  "sourceAndGoldBytesUnchanged": true,
+  "stage": "P2",
+  "status": "complete",
+  "tests": [
+    {
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" python3 -m unittest tests.test_astra_p2 tests.test_astra_p1 tests.test_astra_p0_p2 tests.test_storypackage_adapter tests.test_matching_agent tests.test_matching_agent_config tests.test_matching_agent_runner tests.test_matching_agent_contracts tests.test_storypackage_data_assignment tests.test_storypackage_data_handoff tests.test_storypackage_matching_handoff tests.test_storypackage_splitter tests.test_visualtask_matching tests.test_visualtask_batch_matching tests.test_focused_review_queue tests.test_focused_review_reconciliation tests.test_matching_contract_gate tests.test_astra_review_evidence tests.test_astra_root_cause_workflow tests.test_visualtask_technical_requirements tests.test_heldout_matching_integration",
+      "expectedFailures": 4,
+      "result": "PASS",
+      "run": 146
+    },
+    {
+      "command": "python3 tests/test_astra_p0_p2.py --record reports/astra-p0-p2/p2-outcomes.json",
+      "expectedFailures": 4,
+      "result": "PASS; all seven P1/P2 frozen assertions and four controls pass; four later assertions remain expected failures",
+      "run": 15
+    },
+    {
+      "command": "python3 tests/astra_shadow_projection.py",
+      "packages": [
+        {
+          "intentionalEmptyRoutes": 0,
+          "packageId": "future-volksgeist@5",
+          "tasks": 310
+        },
+        {
+          "intentionalEmptyRoutes": 12,
+          "packageId": "jayz-drake-settle-it@4",
+          "tasks": 186
+        },
+        {
+          "intentionalEmptyRoutes": 0,
+          "packageId": "apollo-collins-sample@1",
+          "tasks": 6
+        }
+      ],
+      "result": "PASS; 502 tasks across three existing packages"
+    },
+    {
+      "command": "python3 tests/verify_astra_stage.py P1",
+      "result": "PASS"
+    },
+    {
+      "command": "python3 tests/astra_fixture_replay.py",
+      "result": "PASS; legacy historical hash and versioned archived-code replay preserved"
+    }
+  ],
+  "unresolved": [
+    {
+      "stage": "P3",
+      "status": "frozen subspan failure preserved"
+    },
+    {
+      "stage": "P4",
+      "status": "frozen scope failure preserved"
+    },
+    {
+      "stage": "P5",
+      "status": "frozen sibling-variant failure preserved"
+    },
+    {
+      "stage": "P6",
+      "status": "frozen exploration tie/order failure preserved"
+    },
+    {
+      "owner": "data",
+      "status": "unsupported legacy value transforms remain unverified"
+    },
+    {
+      "owner": "media",
+      "status": "task-bound availability remains unresolved where supported inventory/delivery evidence lacks task coverage"
+    }
+  ],
+  "upstreamReceipt": {
+    "path": "reports/astra-p0-p2/p1-receipt.json",
+    "sha256": "acc71729779f2caf4c1afcd9c89363e920d3b375d33af69e17c8241f6b5ecddb",
+    "stage": "P1"
+  },
+  "warnings": [
+    "Existing unclosed-file/SQLite ResourceWarnings remain.",
+    "Semantic shadow uses empty relevance controls; no other model, live embedding, external provider or paid action was executed.",
+    "Candidate admission remains review-only. Native fit is unknown; this does not establish gold-level matching quality or new held-out human acceptance."
+  ],
+  "workflowReview": "Existing media_workflows.md covers source-bound general contracts, prior-story exclusion and explicit non-template routes. The projection is an internal supported-field normalization in the existing handoff module; no upstream schema or rendering workflow was replaced."
+}

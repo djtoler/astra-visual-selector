@@ -1,0 +1,64 @@
+EEEEEE
+======================================================================
+ERROR: test_all_consumers_bind_same_projection_and_routes (tests.test_astra_p2.P2ProjectionTests.test_all_consumers_bind_same_projection_and_routes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p2.py", line 42, in test_all_consumers_bind_same_projection_and_routes
+    requirements = matching_agent._requirements(source, projection=result["taskProjection"])
+                                                                   ~~~~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'taskProjection'
+
+======================================================================
+ERROR: test_changed_source_bytes_fail (tests.test_astra_p2.P2ProjectionTests.test_changed_source_bytes_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p2.py", line 71, in test_changed_source_bytes_fail
+    projected = contract.build_projection(local, ap)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'pipeline.storypackage_matching_handoff' has no attribute 'build_projection'
+
+======================================================================
+ERROR: test_foreign_admissions_fail (tests.test_astra_p2.P2ProjectionTests.test_foreign_admissions_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p2.py", line 63, in test_foreign_admissions_fail
+    p.write_text(json.dumps({"packageId": "foreign@1", "admissions": [{"taskId": self.projection()["tasks"][0]["id"], "candidateId": "x"}]}))
+                                                                                 ~~~~~~~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p2.py", line 23, in projection
+    return contract.build_projection(*self.source_paths())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'pipeline.storypackage_matching_handoff' has no attribute 'build_projection'
+
+======================================================================
+ERROR: test_no_template_reasons_are_distinct (tests.test_astra_p2.P2ProjectionTests.test_no_template_reasons_are_distinct)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p2.py", line 97, in test_no_template_reasons_are_distinct
+    reasons = [r["noTemplateReason"] for r in matching_agent._route_plan(source)["scenes"]]
+               ~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'noTemplateReason'
+
+======================================================================
+ERROR: test_projection_omission_mutation_and_receipt_fail_closed (tests.test_astra_p2.P2ProjectionTests.test_projection_omission_mutation_and_receipt_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p2.py", line 26, in test_projection_omission_mutation_and_receipt_fail_closed
+    original = self.projection()
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p2.py", line 23, in projection
+    return contract.build_projection(*self.source_paths())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'pipeline.storypackage_matching_handoff' has no attribute 'build_projection'
+
+======================================================================
+ERROR: test_quote_obligations_override_question_and_keep_attribution (tests.test_astra_p2.P2ProjectionTests.test_quote_obligations_override_question_and_keep_attribution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p2.py", line 85, in test_quote_obligations_override_question_and_keep_attribution
+    projected = contract.project_task(row, package_id="new@1", source_digest="1" * 64, admissions=[])
+                ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'pipeline.storypackage_matching_handoff' has no attribute 'project_task'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.495s
+
+FAILED (errors=6)

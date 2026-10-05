@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import os
@@ -20,7 +21,7 @@ from .matching_agent_contracts import (
 )
 from .matching_agent_runner import AgentRunnerError, Runner, runner_for
 from .matching_contract_gate import enforce_contracts
-from . import matching_harness, storypackage_adapter, storypackage_candidate_gallery, storypackage_splitter
+from . import matching_harness, storypackage_adapter, storypackage_candidate_gallery, storypackage_splitter, storypackage_matching_handoff
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,7 +72,8 @@ def _validate_registry_binding(adapter: dict[str, Any], roster: dict[str, Any]) 
 
 def _requirements(proposals: dict[str, Any], *, data_bound: bool = False, media_bound: bool = False,
                   data_handoff: dict[str, Any] | None = None,
-                  media_handoff: dict[str, Any] | None = None) -> dict[str, Any]:
+                  media_handoff: dict[str, Any] | None = None,
+                  projection: dict[str, Any] | None = None) -> dict[str, Any]:
     # Deprecated presence flags are deliberately insufficient. Existing typed
     # assignments can bind exact task fields after replay, never an entire file.
     verified = {}
@@ -82,11 +84,17 @@ def _requirements(proposals: dict[str, Any], *, data_bound: bool = False, media_
         verified = checked["verifiedFields"]
         assignments = {r["taskId"]: r for r in data_handoff["assignments"]}
     tasks = []
-    for row in proposals.get("taskProposals") or []:
+    if projection is not None:
+        from .storypackage_matching_handoff import validate_projection
+        validate_projection(projection)
+        source = read_json(Path(projection["sources"]["taskProposals"]["path"]))
+        if source != proposals:
+            raise ValueError("requirements task projection source differs from proposals")
+    for row in projection["tasks"] if projection is not None else proposals.get("taskProposals") or []:
         task_id = row["taskProposalId"]
         data_needed = bool(row.get("values") or row.get("cohortRefs") or
                            row.get("primaryPresentationOperation") == "data_explanation")
-        media_needed = bool(row.get("entityRefs") or row.get("primaryPresentationOperation") in {
+        media_needed = bool(row.get("entityRefs") or row.get("mediaNeeds") or row.get("cohortMediaNeeds") or row.get("primaryPresentationOperation") in {
             "subject_profile", "relationship_intro", "item_sequence", "archival_progression",
         })
         requested = row.get("values") or []
@@ -113,6 +121,7 @@ def _requirements(proposals: dict[str, Any], *, data_bound: bool = False, media_
                 "claimIds": row.get("claimIds") or [],
             })
         tasks.append({
+            **(row if projection is not None else {}),
             "taskId": row["taskProposalId"],
             "data": {"required": data_needed, "status": "bound" if data_needed and task_data_bound else ("gap" if data_needed else "not_required")},
             "media": {"required": media_needed, "status": "bound" if media_needed and task_media_bound else ("gap" if media_needed else "not_required")},
@@ -123,6 +132,7 @@ def _requirements(proposals: dict[str, Any], *, data_bound: bool = False, media_
         })
     return {
         "schemaVersion": "matching-agent-requirements@1", "packageId": proposals["packageId"],
+        **({"taskProjection": copy.deepcopy(projection), "taskProjectionStatus": "source_bound_versioned"} if projection is not None else {"taskProjectionStatus": "legacy_unresolved"}),
         "tasks": tasks,
         "counts": {
             "tasks": len(tasks), "typedGaps": sum(len(row["gaps"]) for row in tasks),
@@ -147,6 +157,7 @@ def _route_plan(gallery: dict[str, Any]) -> dict[str, Any]:
                 else ("non_template_disposition" if disposition.get("templateEligible") is False
                       else "no_structurally_admitted_template_candidate")
             ),
+            "noTemplateReason": storypackage_matching_handoff.no_template_reason(row, candidates, fit_validated=bool(row.get("fitValidated"))),
             "candidateIds": [candidate["candidateId"] for candidate in candidates] if template_route else [],
             "brollFallbackAvailable": True,
             "transition": {"status": "review_required", "owner": "matching"},
@@ -258,6 +269,7 @@ def run_task(task_path: Path, *, profile_path: Path = DEFAULT_PROFILE,
                 proposals,
                 data_handoff=read_json(Path(preflight_receipt["inputs"]["dataHandoff"]["path"])) if "dataHandoff" in preflight_receipt["inputs"] else None,
                 media_handoff=read_json(Path(preflight_receipt["inputs"]["mediaHandoff"]["path"])) if "mediaHandoff" in preflight_receipt["inputs"] else None,
+                projection=storypackage_matching_handoff.build_projection(proposal_path, adapter_path),
             )
             outputs.append(_write(output_directory / "30-data-media-requirements.json", requirements))
 

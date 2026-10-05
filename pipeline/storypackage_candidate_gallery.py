@@ -98,10 +98,6 @@ def build(*, proposals_path: Path, adapter_path: Path,
     proposals = _read(proposals_path)
     adapter = _read(adapter_path)
     bindings = _read(bindings_path)
-    admissions = _read(admissions_path) if admissions_path else {"admissions": []}
-    admissions_by_task: dict[str, list[dict[str, Any]]] = {}
-    for admission in admissions.get("admissions") or []:
-        admissions_by_task.setdefault(admission["taskId"], []).append(admission)
     if proposals.get("activationState") != "review_only_not_connected":
         raise ValueError("candidate gallery requires review-only task proposals")
     if proposals.get("selectionAuthorized") is not False or proposals.get("renderingAuthorized") is not False:
@@ -115,17 +111,23 @@ def build(*, proposals_path: Path, adapter_path: Path,
     adapter_validation = validate_adapter(adapter, source_path=adapter_path)
     if (proposals.get("source") or {}).get("sha256") != _sha(adapter_path):
         raise ValueError("proposal adapter source digest is stale")
+    try:
+        from .storypackage_matching_handoff import build_projection, validate_projection, no_template_reason
+    except ImportError:
+        from storypackage_matching_handoff import build_projection, validate_projection, no_template_reason
+    projection = build_projection(proposals_path, adapter_path, admissions_path=admissions_path)
+    validate_projection(projection)
+    projected_by_id = {row["id"]: row for row in projection["tasks"]}
 
-    claims = {row["claimId"]: row for row in adapter.get("claims") or []}
     beats = {row["beatId"]: row for row in adapter.get("beats") or []}
     template_pool = {row["id"]: row for row in matching.C.load(content_class="*")}
     proposal_rows = list(proposals.get("taskProposals") or [])
     queries = [
         " ".join(filter(None, [
-            proposal.get("taskText") or " ".join(claims[claim_id]["text"] for claim_id in proposal["claimIds"]),
-            " ".join(proposal.get("presentationOperations") or []),
+            projected_by_id[proposal["taskProposalId"]]["quote"],
+            " ".join(projected_by_id[proposal["taskProposalId"]]["presentationOperations"]),
             " ".join(
-                text for obligation in proposal.get("obligations") or []
+                text for obligation in projected_by_id[proposal["taskProposalId"]]["obligations"]
                 for text in obligation.get("mustBePerceptible") or []
             ),
         ]))
@@ -134,52 +136,16 @@ def build(*, proposals_path: Path, adapter_path: Path,
     relevance_rows, relevance_receipt = _local_relevance(queries, list(template_pool.values()))
     tasks = []
     for proposal, candidate_relevance in zip(proposal_rows, relevance_rows):
-        claim_rows = [claims[claim_id] for claim_id in proposal["claimIds"]]
-        display_entities = _unique([
-            ref.get("entity") for row in claim_rows for ref in row.get("entityRefs") or []
-            if ref.get("display") in {"required", "eligible"}
-        ])
-        quote = (proposal.get("taskText") or " ".join(row["text"] for row in claim_rows)).strip()
-        task = {
-            "id": proposal["taskProposalId"],
-            "job": proposal["job"],
-            "taskRole": "attributed_quote" if proposal.get("speakerDerived") else "main",
-            "quote": quote,
-            "mustBePerceptible": _unique([
-                text for obligation in proposal.get("obligations") or []
-                for text in obligation.get("mustBePerceptible") or []
-            ]),
-            "entityCount": len(display_entities),
-            "entities": {"displayEligible": display_entities},
-            "templateAdmissions": [
-                {
-                    "id": row["candidateId"],
-                    "source": "task-scoped-editor-feedback",
-                    "comment": row.get("comment"),
-                    "reviewState": "unvalidated",
-                    "selectionAuthorized": False,
-                    "renderingAuthorized": False,
-                }
-                for row in admissions_by_task.get(proposal["taskProposalId"], [])
-            ],
-            "presentationOperations": proposal.get("presentationOperations") or [],
-            "primaryPresentationOperation": proposal.get("primaryPresentationOperation"),
-            "routeDisposition": proposal.get("routeDisposition") or {},
-            "values": proposal.get("values") or [],
-            "cohortRefs": proposal.get("cohortRefs") or [],
-            "obligations": proposal.get("obligations") or [],
-            "ignorePriorSelections": True,
-            "candidateDisplayLimit": 16,
-            "slideshowDisplayLimit": 6,
-            "candidateRelevance": candidate_relevance,
-        }
+        task = {**projected_by_id[proposal["taskProposalId"]], "candidateRelevance": candidate_relevance}
+        quote = task["quote"]
         candidates = matching.template_candidates(task, bindings, template_pool)
         tasks.append({
+            **projected_by_id[task["id"]],
             "taskId": task["id"],
-            "sourceBeatIds": _unique([row["beatId"] for row in claim_rows]),
             "job": task["job"],
             "quote": quote,
             "candidateStatus": "retrieved_unvalidated" if candidates else "no_bound_template_candidates",
+            "noTemplateReason": no_template_reason(task, candidates),
             "candidateCount": len(candidates),
             "candidates": candidates,
             "speakerDerived": bool(proposal.get("speakerDerived")),
@@ -213,6 +179,8 @@ def build(*, proposals_path: Path, adapter_path: Path,
         "schemaVersion": 1,
         "packageId": proposals["packageId"],
         "adapterValidation": adapter_validation,
+        "taskProjection": projection,
+        "taskProjectionStatus": "source_bound_versioned",
         "purpose": "Review-only beat-to-template candidate retrieval for the established gallery UI",
         "activationState": "review_only_not_connected",
         "selectionAuthorized": False,

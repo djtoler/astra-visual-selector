@@ -252,6 +252,12 @@ def template_candidates(
     selection, treatment, or render eligibility.
     """
     enforce_contracts("visualtask_matching.template_candidates")
+    if any(key in task for key in ("projectionVersion", "taskContractReceipt", "sourceBindings")):
+        try:
+            from .storypackage_matching_handoff import validate_task_projection
+        except ImportError:
+            from storypackage_matching_handoff import validate_task_projection
+        validate_task_projection(task)
     if (task.get("routeDisposition") or {}).get("templateEligible") is False:
         return []
     job = task["job"]
@@ -341,6 +347,7 @@ def template_candidates(
             "candidateDisplayLimit": display_limit,
             "relevanceOrderingApplied": bool(relevance),
             "retrievalMode": "structured_presentation_contract" if structured_mode else "legacy_visualtask_replay",
+            **({"taskContractReceipt": task["taskContractReceipt"]} if task.get("projectionVersion") else {}),
         },
     } for row in ranked]
 

@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -12,6 +13,11 @@ def verify(stage):
     receipt = json.loads(path.read_text())
     if receipt.get("stage") != stage or receipt.get("status") != "complete":
         raise ValueError("upstream receipt missing or incomplete")
+    revision = subprocess.check_output(["git", "log", "-1", "--format=%H", "--", str(path.relative_to(ROOT))], cwd=ROOT, text=True).strip()
+    for row in receipt.get("inputs", {}).get("implementationFiles", []):
+        data = subprocess.check_output(["git", "show", f"{revision}:{row['path']}"], cwd=ROOT) if revision else (ROOT / row["path"]).read_bytes()
+        if hashlib.sha256(data).hexdigest() != row["sha256"]:
+            raise ValueError("stage implementation digest mismatch")
     for row in receipt["outputs"]:
         if hashlib.sha256((ROOT / row["path"]).read_bytes()).hexdigest() != row["sha256"]:
             raise ValueError("stage output missing or stale: " + row["path"])

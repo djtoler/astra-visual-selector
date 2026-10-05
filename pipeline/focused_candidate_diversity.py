@@ -42,12 +42,33 @@ def build(gallery_path: Path, queue_path: Path) -> dict[str, Any]:
         raise ValueError("gallery and focused queue package IDs differ")
     if queue.get("selectionAuthorized") is not False or queue.get("renderingAuthorized") is not False:
         raise ValueError("focused queue authorization boundary is invalid")
+    for source in gallery.get("sources", {}).values():
+        path = Path(source["path"])
+        if not path.is_file() or _sha(path) != source["sha256"]:
+            raise ValueError("focused gallery source receipt missing or stale")
+    try:
+        from .storypackage_matching_handoff import build_projection, validate_projection, no_template_reason
+    except ImportError:
+        from storypackage_matching_handoff import build_projection, validate_projection, no_template_reason
+    projection = gallery.get("taskProjection")
+    if projection is None:
+        if gallery.get("taskProjectionStatus") or any(r.get("projectionVersion") for r in gallery.get("tasks") or []):
+            raise ValueError("versioned gallery projection omitted")
+        projection = build_projection(
+            Path(gallery["sources"]["taskProposals"]["path"]), Path(gallery["sources"]["adapter"]["path"]),
+            admissions_path=Path(gallery["sources"]["taskScopedAdmissions"]["path"]) if "taskScopedAdmissions" in gallery["sources"] else None)
+        projection_status = "legacy_gallery_centrally_projected_review_only"
+    else:
+        projection_status = "source_bound_versioned"
+    validate_projection(projection)
+    projected_by_id = {row["id"]: row for row in projection["tasks"]}
+    if projection["packageId"] != gallery["packageId"]:
+        raise ValueError("projection/gallery package identity mismatch")
+    for label, source in projection["sources"].items():
+        if gallery["sources"].get(label, {}).get("sha256") != source["sha256"]:
+            raise ValueError("projection/gallery source digest mismatch")
 
-    proposals = _read(Path(gallery["sources"]["taskProposals"]["path"]))
-    adapter = _read(Path(gallery["sources"]["adapter"]["path"]))
     bindings = _read(Path(gallery["sources"]["bindings"]["path"]))
-    proposal_by_id = {row["taskProposalId"]: row for row in proposals.get("taskProposals") or []}
-    claims = {row["claimId"]: row for row in adapter.get("claims") or []}
     shown_by_id = {row["taskId"]: row for row in gallery.get("tasks") or []}
     pool = {row["id"]: row for row in matching.C.load(content_class="*")}
     catalog_families = sorted({matching.C._family(row) for row in pool.values()})
@@ -55,38 +76,19 @@ def build(gallery_path: Path, queue_path: Path) -> dict[str, Any]:
     tasks = []
     exploration_frequency: dict[str, int] = {}
     for task_id in queue.get("taskIds") or []:
-        proposal = proposal_by_id[task_id]
         shown = shown_by_id[task_id]
-        claim_rows = [claims[claim_id] for claim_id in proposal["claimIds"]]
-        display_entities = _unique([
-            ref.get("entity") for row in claim_rows for ref in row.get("entityRefs") or []
-            if ref.get("display") in {"required", "eligible"}
-        ])
-        task = {
-            "id": task_id,
-            "job": proposal["job"],
-            "taskRole": "attributed_quote" if proposal.get("speakerDerived") else "main",
-            "quote": (proposal.get("taskText") or " ".join(row["text"] for row in claim_rows)).strip(),
-            "mustBePerceptible": _unique([
-                text for obligation in proposal.get("obligations") or []
-                for text in obligation.get("mustBePerceptible") or []
-            ]),
-            "entityCount": len(display_entities),
-            "entities": {"displayEligible": display_entities},
-            "presentationOperations": proposal.get("presentationOperations") or [],
-            "primaryPresentationOperation": proposal.get("primaryPresentationOperation"),
-            "values": proposal.get("values") or [],
-            "cohortRefs": proposal.get("cohortRefs") or [],
-            "obligations": proposal.get("obligations") or [],
-            "ignorePriorSelections": True,
-            "candidateDisplayLimit": 16,
-            "slideshowDisplayLimit": 6,
-        }
+        task = projected_by_id[task_id]
+        if gallery.get("taskProjection") is not None and any(shown.get(key) != value for key, value in task.items()):
+            raise ValueError("gallery task contract omitted or locally reconstructed")
         exhaustive = matching.template_candidates(task, bindings, pool, exhaustive_families=True)
         admitted_families = [matching.C._family(row["candidateId"]) for row in exhaustive]
         displayed_families = [matching.C._family(row["candidateId"]) for row in shown.get("candidates") or []]
         hidden = [family for family in admitted_families if family not in set(displayed_families)]
         displayed_candidates = shown.get("candidates") or []
+        if task["routeDisposition"].get("templateEligible") is False:
+            if displayed_candidates:
+                raise ValueError("intentional non-template route contains displayed candidates")
+            displayed_candidates = []
         primary = displayed_candidates[:8]
         primary_families = {matching.C._family(row["candidateId"]) for row in primary}
         exploration_pool = [row for row in exhaustive
@@ -104,6 +106,7 @@ def build(gallery_path: Path, queue_path: Path) -> dict[str, Any]:
         if len(review_families) != len(set(review_families)):
             raise ValueError(f"focused review slate repeats a template family: {task_id}")
         tasks.append({
+            **task,
             "taskId": task_id,
             "sourceBeatIds": shown.get("sourceBeatIds") or [],
             "presentationOperations": task["presentationOperations"],
@@ -114,6 +117,7 @@ def build(gallery_path: Path, queue_path: Path) -> dict[str, Any]:
             "displayedFamilies": displayed_families,
             "hiddenAdmittedFamilies": hidden,
             "focusedReviewCandidates": review_candidates,
+            "noTemplateReason": no_template_reason(task, review_candidates),
             "focusedReviewFamilies": review_families,
             "focusedReviewStrategy": "eight_primary_plus_eight_least_exposed_admitted_families",
             "notAdmittedCatalogFamilies": [family for family in catalog_families
@@ -129,6 +133,8 @@ def build(gallery_path: Path, queue_path: Path) -> dict[str, Any]:
         "renderingAuthorized": False,
         "fitValidated": False,
         "contractEnforcementReceipt": receipt,
+        "taskProjection": projection,
+        "taskProjectionStatus": projection_status,
         "sourceGallerySha256": _sha(gallery_path),
         "sourceFocusedQueueSha256": _sha(queue_path),
         "tasks": tasks,

@@ -1,4 +1,5 @@
 import json
+import hashlib
 import tempfile
 import unittest
 from pathlib import Path
@@ -94,13 +95,16 @@ class MatchingAgentCommandTests(unittest.TestCase):
                 "repo": "djtoler/entity_roster", "commit": "3" * 40, "sha256": "4" * 64,
             }},
             "storyHandoffReceipt": {"accepted": True}, "selectionAuthorized": False,
-            "renderingAuthorized": False, "claims": [], "beats": [], "story": {"storyId": "story-1"},
+            "renderingAuthorized": False, "claims": [{"claimId": "claim-1", "beatId": "beat-1", "text": "A statement."}],
+            "beats": [{"beatId": "beat-1", "narration": "A statement.", "order": 1}], "story": {"storyId": "story-1"},
         }
         self.proposals = {
             "packageId": "package-1", "activationState": "review_only_not_connected",
             "taskProposals": [{
                 "taskProposalId": "proposal-1", "claimIds": ["claim-1"], "values": [], "cohortRefs": [],
                 "entityRefs": [], "primaryPresentationOperation": "concept_statement",
+                "job": "assert_without_data", "taskText": "A statement.",
+                "sourceBeats": [{"beatId": "beat-1", "speaker": {"role": "narrator"}}],
             }],
             "speakerRoutes": [], "counts": {"claims": 1, "taskProposals": 1, "uncoveredClaims": 0},
             "selectionAuthorized": False, "renderingAuthorized": False,
@@ -122,10 +126,15 @@ class MatchingAgentCommandTests(unittest.TestCase):
         self.temp.cleanup()
 
     def patches(self):
+        def bound_splitter(_adapter, *, source_path):
+            # The mocked producer must supply the same real file binding as the
+            # supported splitter; the new projection is exercised, not mocked.
+            return {**self.proposals, "source": {"path": str(source_path),
+                    "sha256": hashlib.sha256(source_path.read_bytes()).hexdigest()}}
         return (
             mock.patch("pipeline.matching_agent.preflight", return_value=self.preflight),
             mock.patch("pipeline.matching_agent.storypackage_adapter.build", return_value=self.adapter),
-            mock.patch("pipeline.matching_agent.storypackage_splitter.build", return_value=self.proposals),
+            mock.patch("pipeline.matching_agent.storypackage_splitter.build", side_effect=bound_splitter),
             mock.patch("pipeline.matching_agent.storypackage_candidate_gallery.build", return_value=self.gallery),
             mock.patch("pipeline.matching_agent.matching_harness.build", return_value=self.harness),
             mock.patch("pipeline.matching_agent.matching_harness.validate", return_value={}),
