@@ -108,10 +108,12 @@ def _supports_operation(operation: str, record: dict[str, Any],
     """
     capability = record.get("capability") or {}
     scope = record.get("scope")
-    if scope and not (scope == "lyrics" and operation == "lyric_presentation"):
+    if scope and (scope, operation) not in {
+        ("lyrics", "lyric_presentation"), ("timelines", "archival_progression"),
+    }:
         return None
     if operation == "lyric_presentation" and scope == "lyrics":
-        return ["scope:lyrics", "approved_scoped_template"]
+        return ["scope:lyrics", "approved_scoped_template", "capability:unresolved" if not capability else "capability:observed_only"]
     if not capability:
         return None
     structure = capability.get("structure")
@@ -140,14 +142,17 @@ def _supports_operation(operation: str, record: dict[str, Any],
             return ["carries:identity", f"structure:{structure}", f"media_slots:{media_slots}"]
     elif operation == "relationship_intro":
         capacity = max(media_slots, slots_total)
-        quantitative_readables = readable & {"exact_value", "proportion", "difference", "rank"}
+        # Exact numeric text is an observed label, not proof of a quantitative
+        # visual encoding or of supported qualitative controls. Discovery can
+        # retain the identity structure while native use remains unresolved.
+        quantitative_readables = readable & {"proportion", "difference", "rank"}
         quantitative_carries = carries & (DATA_CARRIES - {"parity"})
         misleading_implications = implies - {"equality", "chronology"}
         if ("identity" in carries and capacity >= 2 and
                 structure in {"pair", "list", "grid", "sequence", "grouped_clusters"} and
                 not quantitative_readables and not quantitative_carries and
                 not misleading_implications):
-            return ["carries:identity", f"structure:{structure}", f"subject_capacity:{capacity}"]
+            return ["carries:identity", f"structure:{structure}", f"subject_capacity:{capacity}"] + (["numeric_text_controls:unresolved"] if "exact_value" in readable else [])
     elif operation == "item_sequence":
         if "identity" in carries and structure in {"sequence", "list", "grid", "grouped_clusters"} and max(media_slots, slots_total) >= 2:
             return ["carries:identity", f"structure:{structure}", f"staging:{staging}"]
@@ -219,6 +224,8 @@ def _presentation_candidates(task: dict[str, Any], pool: dict[str, Any]) -> list
                     "operation": operation,
                     "evidence": evidence,
                     "scope": "retrieval_only_not_fit",
+                    "capabilitySources": record.get("sources") or {},
+                    "unresolved": (record.get("capability") or {}).get("unclear") or (["capability"] if not record.get("capability") else []),
                 },
                 # Stable operation precedence only; never a fit or confidence score.
                 "_rel": len(contract["operations"]) - operation_index,

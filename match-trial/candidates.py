@@ -1,5 +1,5 @@
 """Candidate builder. Pool = approved-list.json (authoritative), multi-axis capacity, 33% tolerance."""
-import json, re, math, collections, os
+import json, re, math, collections, os, copy, hashlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -237,7 +237,23 @@ def load(content_class=None):
             and r["id"] not in _removed()]
     # AFTER the removals, so a correction for a record the user later took out
     # raises instead of being silently skipped.
-    return apply_profile_corrections(recs, _profile_corrections())
+    recs = apply_profile_corrections(recs, _profile_corrections())
+    # Provenance uses the existing sources container. A measured demo, a user
+    # declaration and a native-control test are different authorities.
+    observed_source = {"path": "grammar/capability.json", "sha256": hashlib.sha256(Path(CAPABILITY).read_bytes()).hexdigest()} if os.path.exists(CAPABILITY) else None
+    observed_records = _rj(CAPABILITY) if observed_source else {}
+    declaration_source = {"path": "grammar/local-templates.json", "sha256": hashlib.sha256(Path(LOCAL).read_bytes()).hexdigest()} if os.path.exists(LOCAL) else {}
+    corrections = _capability_corrections()
+    for record in recs:
+        sources = record.setdefault("sources", {})
+        sources["observedCapability"] = {**observed_source, "key": record["id"]} if record["id"] in observed_records else None
+        declared = cap_ovr.get(record["id"])
+        corrected = corrections.get(record["id"])
+        sources["declaredCapacity"] = {**copy.deepcopy(declared), **declaration_source} if declared else None
+        sources["capabilityCorrection"] = {**copy.deepcopy(corrected), **declaration_source} if corrected else None
+        sources["verifiedControls"] = "unresolved"
+        sources["scopeRestriction"] = record.get("scope")
+    return recs
 
 def _removed():
     """Records the user has taken OUT of the corpus outright.
@@ -427,6 +443,7 @@ def apply_capability_corrections(cap, corr):
     has stated, and it stays out of capability.json so a re-ingest cannot bury
     it and a re-measure makes it reviewable.
     """
+    cap = copy.deepcopy(cap)
     for rid, c in corr.items():
         rec = cap.get(rid)
         for field, vals in (c.get("add") or {}).items():
@@ -440,6 +457,8 @@ def apply_capability_corrections(cap, corr):
             rec[field] = val
         if rec is not None and c.get("why"):
             rec["userCorrected"] = c["why"]
+        if rec is not None and c.get("notCorrected"):
+            rec["unclear"] = list(dict.fromkeys([*(rec.get("unclear") or []), c["notCorrected"]]))
     return cap
 
 SUBJECT_AXES = frozenset({

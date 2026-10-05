@@ -1,0 +1,71 @@
+test_corrections_do_not_mutate_observations_and_flag_contradiction (tests.test_astra_p4.P4CapabilityRepairs.test_corrections_do_not_mutate_observations_and_flag_contradiction) ... FAIL
+test_missing_spatial_and_lyric_capabilities_stay_unknown (tests.test_astra_p4.P4CapabilityRepairs.test_missing_spatial_and_lyric_capabilities_stay_unknown) ... FAIL
+test_numeric_text_discovery_does_not_prove_qualitative_controls (tests.test_astra_p4.P4CapabilityRepairs.test_numeric_text_discovery_does_not_prove_qualitative_controls) ... FAIL
+test_observed_declared_and_scope_sources_stay_distinct (tests.test_astra_p4.P4CapabilityRepairs.test_observed_declared_and_scope_sources_stay_distinct) ... ERROR
+test_stale_mapping_invalidates_fit_evidence (tests.test_astra_p4.P4CapabilityRepairs.test_stale_mapping_invalidates_fit_evidence) ... FAIL
+test_timeline_scope_is_chronology_only (tests.test_astra_p4.P4CapabilityRepairs.test_timeline_scope_is_chronology_only) ... FAIL
+
+======================================================================
+ERROR: test_observed_declared_and_scope_sources_stay_distinct (tests.test_astra_p4.P4CapabilityRepairs.test_observed_declared_and_scope_sources_stay_distinct)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p4.py", line 40, in test_observed_declared_and_scope_sources_stay_distinct
+    self.assertEqual(record['sources']['observedCapability']['sha256'], hashlib.sha256((ROOT / 'grammar/capability.json').read_bytes()).hexdigest())
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'observedCapability'
+
+======================================================================
+FAIL: test_corrections_do_not_mutate_observations_and_flag_contradiction (tests.test_astra_p4.P4CapabilityRepairs.test_corrections_do_not_mutate_observations_and_flag_contradiction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p4.py", line 33, in test_corrections_do_not_mutate_observations_and_flag_contradiction
+    self.assertEqual(raw, original)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: {'dem[13 chars]': ['absence', 'identity'], 'staging': 'all_at[38 chars]y']}} != {'dem[13 chars]': ['identity'], 'staging': 'all_at_once', 'un[27 chars]y']}}
+- {'demo': {'carries': ['absence', 'identity'],
+?                       -----------
+
++ {'demo': {'carries': ['identity'],
+            'staging': 'all_at_once',
+            'unclear': ['native_editability']}}
+
+======================================================================
+FAIL: test_missing_spatial_and_lyric_capabilities_stay_unknown (tests.test_astra_p4.P4CapabilityRepairs.test_missing_spatial_and_lyric_capabilities_stay_unknown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p4.py", line 56, in test_missing_spatial_and_lyric_capabilities_stay_unknown
+    self.assertIn('capability:unresolved', evidence)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'capability:unresolved' not found in ['scope:lyrics', 'approved_scoped_template']
+
+======================================================================
+FAIL: test_numeric_text_discovery_does_not_prove_qualitative_controls (tests.test_astra_p4.P4CapabilityRepairs.test_numeric_text_discovery_does_not_prove_qualitative_controls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p4.py", line 61, in test_numeric_text_discovery_does_not_prove_qualitative_controls
+    self.assertTrue(evidence)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^
+AssertionError: None is not true
+
+======================================================================
+FAIL: test_stale_mapping_invalidates_fit_evidence (tests.test_astra_p4.P4CapabilityRepairs.test_stale_mapping_invalidates_fit_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p4.py", line 73, in test_stale_mapping_invalidates_fit_evidence
+    with self.assertRaisesRegex(ValueError, 'stale.*sceneMappings'):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_timeline_scope_is_chronology_only (tests.test_astra_p4.P4CapabilityRepairs.test_timeline_scope_is_chronology_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p4.py", line 23, in test_timeline_scope_is_chronology_only
+    self.assertTrue(matching._supports_operation('archival_progression', record, contract))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None is not true
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.165s
+
+FAILED (failures=5, errors=1)

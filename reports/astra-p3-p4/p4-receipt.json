@@ -1,0 +1,279 @@
+{
+  "activationState": "review_only_not_connected",
+  "baseCodeRevision": "e8be1d69eb90ecc857be0eac24231016c35435d9",
+  "blocker": "none",
+  "blockerOwner": "none",
+  "codeBindings": [
+    {
+      "bytes": 46771,
+      "path": "match-trial/candidates.py",
+      "sha256": "25b155e69e5b919fe0f4817f27616f26b3970a0a4a32cbe425f7d836312a6647"
+    },
+    {
+      "bytes": 23866,
+      "path": "pipeline/visualtask_matching.py",
+      "sha256": "5b9b0909b9dabcd9c383f639de90a87fdbb141beb5bce31931171dc51bea21cb"
+    },
+    {
+      "bytes": 43996,
+      "path": "pipeline/visualtask_batch_matching.py",
+      "sha256": "7ca8aaeac81028bd130fa1840f98741f6328cab91e533f9ce29c2cac0dace401"
+    },
+    {
+      "bytes": 6653,
+      "path": "tests/test_astra_p4.py",
+      "sha256": "e9451e5d7e9361fc0e4ddd09f900f2b4d142e52ba4b004788b5a09a88f2724c2"
+    },
+    {
+      "bytes": 12142,
+      "path": "tests/test_visualtask_batch_matching.py",
+      "sha256": "1af3b27b6516775ef6458b818af997c0a3136d1a98c3a19748e4b9c242d85fa7"
+    },
+    {
+      "bytes": 3464,
+      "path": "plans/ASTRA_P4_IMPLEMENTATION_PLAN_20261005.md",
+      "sha256": "94cfd00bf21b3f46a9687766ac0cae3ae68c2f3da7525fc657e511d35eff0d97"
+    }
+  ],
+  "commands": [
+    {
+      "command": "python3 tests/verify_astra_stage.py P0",
+      "result": "pass"
+    },
+    {
+      "baselineResult": {
+        "error": "missing sources provenance key",
+        "errors": 1,
+        "failures": 5,
+        "tests": 6
+      },
+      "command": "python3 -m unittest tests.test_astra_p4 -v"
+    },
+    {
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=../patterns-authority python3 -m unittest tests.test_astra_p4 tests.test_visualtask_matching tests.test_visualtask_technical_requirements tests.test_visualtask_batch_matching -v",
+      "result": {
+        "errors": 0,
+        "failures": 0,
+        "tests": 52
+      }
+    },
+    {
+      "checkout": "P0-P2 authorization revision e8be1d6 plus only P4-owned changes; no P3 semantic changes",
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" python3 -m unittest tests.test_astra_p4 tests.test_visualtask_matching tests.test_visualtask_technical_requirements tests.test_visualtask_batch_matching",
+      "result": {
+        "errors": 0,
+        "failures": 0,
+        "tests": 52
+      }
+    },
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" python3 -m unittest tests.test_astra_p3 tests.test_astra_p4 tests.test_astra_p2 tests.test_astra_p1 tests.test_astra_p0_p2 tests.test_storypackage_adapter tests.test_matching_agent tests.test_matching_agent_config tests.test_matching_agent_runner tests.test_matching_agent_contracts tests.test_storypackage_data_assignment tests.test_storypackage_data_handoff tests.test_storypackage_matching_handoff tests.test_storypackage_splitter tests.test_visualtask_split_proposals tests.test_visualtask_matching tests.test_visualtask_batch_matching tests.test_focused_review_queue tests.test_focused_review_reconciliation tests.test_matching_contract_gate tests.test_astra_review_evidence tests.test_astra_root_cause_workflow tests.test_visualtask_technical_requirements tests.test_heldout_matching_integration",
+      "result": {
+        "errors": 0,
+        "expectedFailures": 2,
+        "failures": 0,
+        "tests": 179
+      }
+    },
+    {
+      "command": "P4 batch probe before evidence-aware assertion migration",
+      "log": "reports/astra-p3-p4/p4-batch-test.log",
+      "result": "3 old native-fit assertions fail as expected; final evidence-aware suite passes. Historical fixtures remain unchanged."
+    }
+  ],
+  "existingRepresentation": [
+    "sources",
+    "unclear",
+    "scope",
+    "capabilityCorrections.notCorrected",
+    "bindingProvenance",
+    "projectEvidenceStatus",
+    "gaps"
+  ],
+  "inputBindings": [
+    {
+      "bytes": 942751,
+      "path": "grammar/capability.json",
+      "sha256": "0608016aec2b47b717b43b33304a6c001b5b669797bd808eea39a651e4b81b34"
+    },
+    {
+      "bytes": 38057,
+      "path": "grammar/local-templates.json",
+      "sha256": "29bec530753cf5011a74bcab964832c1ba93a2954e0f061822aa00eb64fc0e31"
+    },
+    {
+      "bytes": 1633,
+      "path": "grammar/SCOPE.md",
+      "sha256": "a72534f491b3d87d8290be42c29dc65877954d521618918fb1989cc7c3b137d3"
+    },
+    {
+      "bytes": 1960,
+      "path": "grammar/eligibility-overrides.json",
+      "sha256": "38a8ada047888b50c7e80a28ebc88c2582d86c9487d3dbe413578181f1398793"
+    },
+    {
+      "bytes": 199127,
+      "path": "grammar/ae-scene-composition-mappings.json",
+      "sha256": "7fa49560a302ba75b724bb45b8e47eee0a5a656da8d89f16e5fd8cacf3606b4f"
+    },
+    {
+      "bytes": 8555144,
+      "path": "grammar/ae-template-technical-index.json",
+      "sha256": "c47f658b4c8a999721c36a31d562964138fbc06e6999b60849be57d5f4ebfc72"
+    },
+    {
+      "path": "grammar/ae-scene-window-technical-capacities.json",
+      "status": "missing_unresolved"
+    },
+    {
+      "path": "grammar/ae-template-spec-links.json",
+      "status": "missing_unresolved"
+    },
+    {
+      "bytes": 2809862,
+      "path": "astra-selector-design/approved_media/approved-list.json",
+      "sha256": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e"
+    },
+    {
+      "bytes": 2237255,
+      "path": "reports/visualtask-ae-spec-comparison.json",
+      "sha256": "6acfcd30887eb635f2f378e7de714f06ce00e69817390a9e6d8dac67068660a4"
+    },
+    {
+      "bytes": 1800,
+      "path": "tests/fixtures/visualtask_batch_matching/synthetic-technical-comparison.json",
+      "sha256": "28f42647770ff5cc92879fad4688459bc871ef83e38dbea9f14e853ce80bf785"
+    },
+    {
+      "bytes": 752,
+      "path": "tests/fixtures/visualtask_batch_matching/synthetic-treatment-assessments.json",
+      "sha256": "2a529b794e46370671d75e9fa7848d3b61d3c21d75fc50072b0d70f6800235fd"
+    },
+    {
+      "bytes": 882,
+      "path": "docs/p3-p4-gpt-6-1-sol-handoff/AUTHORIZATION.json",
+      "sha256": "1f35f446ddcca3ec9c09084c1ed01a553a5e7aa9a78e7d539bf5d3d4c4e0d97f"
+    }
+  ],
+  "inputs": {
+    "implementationFiles": [
+      {
+        "bytes": 46771,
+        "path": "match-trial/candidates.py",
+        "sha256": "25b155e69e5b919fe0f4817f27616f26b3970a0a4a32cbe425f7d836312a6647"
+      },
+      {
+        "bytes": 23866,
+        "path": "pipeline/visualtask_matching.py",
+        "sha256": "5b9b0909b9dabcd9c383f639de90a87fdbb141beb5bce31931171dc51bea21cb"
+      },
+      {
+        "bytes": 43996,
+        "path": "pipeline/visualtask_batch_matching.py",
+        "sha256": "7ca8aaeac81028bd130fa1840f98741f6328cab91e533f9ce29c2cac0dace401"
+      },
+      {
+        "bytes": 6653,
+        "path": "tests/test_astra_p4.py",
+        "sha256": "e9451e5d7e9361fc0e4ddd09f900f2b4d142e52ba4b004788b5a09a88f2724c2"
+      },
+      {
+        "bytes": 12142,
+        "path": "tests/test_visualtask_batch_matching.py",
+        "sha256": "1af3b27b6516775ef6458b818af997c0a3136d1a98c3a19748e4b9c242d85fa7"
+      },
+      {
+        "bytes": 3464,
+        "path": "plans/ASTRA_P4_IMPLEMENTATION_PLAN_20261005.md",
+        "sha256": "94cfd00bf21b3f46a9687766ac0cae3ae68c2f3da7525fc657e511d35eff0d97"
+      }
+    ]
+  },
+  "migrationLedger": [
+    {
+      "after": "conditional aggregate; unbound exact candidates unresolved with current_native_mapping_evidence gap",
+      "before": "unbound synthetic native_fit/adapted_fit",
+      "test": "test_template_and_media_verdicts_are_separate"
+    },
+    {
+      "after": "both unresolved; unknown source cannot certify positive or negative native fit",
+      "before": "unbound synthetic adapted_fit and incompatible",
+      "test": "test_candidate_fit_uses_exact_evidence_without_selecting"
+    },
+    {
+      "after": "unresolved with current_native_mapping_evidence gap",
+      "before": "missing window-capacity comparison conditional",
+      "test": "test_editor_reviewed_current_treatment_is_conditional_not_selected"
+    }
+  ],
+  "model": "gpt-6.1-sol",
+  "modelExecution": false,
+  "nativeExecution": false,
+  "next": "Stop for editor review after independent passing P3/P4 receipts. P5 remains unauthorized.",
+  "outputBindings": [
+    {
+      "path": "reports/astra-p3-p4/p4-baseline-test.log",
+      "sha256": "cf66e84987ff376792ac731af7b92a08f0bd083fc49c1057767226cff42c9167"
+    },
+    {
+      "path": "reports/astra-p3-p4/p4-batch-test.log",
+      "sha256": "295e97bc002cef9490687380cd1421671c81404984149de54e5be1dfd311dbb1"
+    },
+    {
+      "path": "reports/astra-p3-p4/p4-focused-test.log",
+      "sha256": "9ea730c8a781e4b215009ebc7de49133052247ca088103fcb7df5defdd164e29"
+    },
+    {
+      "path": "reports/astra-p3-p4/p4-independent-test.log",
+      "sha256": "67aa6a83dcd2643ebe5f3d3eab60ee7244ca3e2923cc33f79a2a6ac957f6a943"
+    },
+    {
+      "path": "reports/astra-p3-p4/p3-p4-existing-suite.log",
+      "sha256": "29537b39ca3b4e2ac2b2e1c6e9f881df9d4404118479b6f05ac421ff48fef015"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "reports/astra-p3-p4/p4-baseline-test.log",
+      "sha256": "cf66e84987ff376792ac731af7b92a08f0bd083fc49c1057767226cff42c9167"
+    },
+    {
+      "path": "reports/astra-p3-p4/p4-batch-test.log",
+      "sha256": "295e97bc002cef9490687380cd1421671c81404984149de54e5be1dfd311dbb1"
+    },
+    {
+      "path": "reports/astra-p3-p4/p4-focused-test.log",
+      "sha256": "9ea730c8a781e4b215009ebc7de49133052247ca088103fcb7df5defdd164e29"
+    },
+    {
+      "path": "reports/astra-p3-p4/p4-independent-test.log",
+      "sha256": "67aa6a83dcd2643ebe5f3d3eab60ee7244ca3e2923cc33f79a2a6ac957f6a943"
+    },
+    {
+      "path": "reports/astra-p3-p4/p3-p4-existing-suite.log",
+      "sha256": "29537b39ca3b4e2ac2b2e1c6e9f881df9d4404118479b6f05ac421ff48fef015"
+    }
+  ],
+  "reasoningEffort": "medium",
+  "renderingAuthorized": false,
+  "rollback": "Revert only P4 consumers/tests; preserve observations, corrections, receipts and audit outputs. Never restore false native fit or retired sources.",
+  "schemaDelta": null,
+  "schemaVersion": "astra-stage-receipt@1",
+  "selectionAuthorized": false,
+  "sourceAndGoldBytesUnchanged": true,
+  "stage": "P4",
+  "status": "complete",
+  "unresolvedStates": [
+    "Four approved spatial and seven scoped lyric records have no measured capability",
+    "Qualitative billboard variants and numeric demo text controls have no verified existing-control proof",
+    "Reduction contradictions remain unclear; no elimination vocabulary/schema delta",
+    "Historical comparison window capacity source missing; synthetic source bindings absent; both unresolved",
+    "P5 and P6 remain unauthorized/frozen"
+  ],
+  "upstreamReceipt": {
+    "bytes": 5584,
+    "path": "reports/astra-p0-p2/p0-receipt.json",
+    "sha256": "be910a9fd7392cc1e04151f4ced0a6643f39bd5670c3e1fab3bb7e02d77f9edf",
+    "stage": "P0"
+  }
+}

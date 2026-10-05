@@ -36,8 +36,14 @@ class FullVisualTaskBatchMatching(unittest.TestCase):
         by_id = {row["taskId"]: row for row in self.synthetic["tasks"]}
         text_only = by_id["museum-opening.rule"]
         host = by_id["museum-opening.host"]
-        self.assertEqual(text_only["templateResult"]["fitVerdict"], "native_fit")
-        self.assertEqual(host["templateResult"]["fitVerdict"], "adapted_fit")
+        # The original synthetic comparison declares native capacities but binds
+        # no mapping/index sources. It cannot certify native or adapted fit.
+        self.assertEqual(text_only["templateResult"]["fitVerdict"], "conditional")
+        self.assertEqual(host["templateResult"]["fitVerdict"], "conditional")
+        for task in (text_only, host):
+            self.assertTrue(any(gap["type"] == "current_native_mapping_evidence"
+                                for candidate in task["templateResult"]["candidates"]
+                                for gap in candidate["fitAssessment"]["gaps"]))
         self.assertEqual(text_only["mediaResult"]["availabilityVerdict"], "not_required")
         self.assertIn(host["mediaResult"]["availabilityVerdict"], {"available", "unavailable"})
         self.assertNotIn("mediaResult", text_only["templateResult"])
@@ -47,8 +53,9 @@ class FullVisualTaskBatchMatching(unittest.TestCase):
         by_id = {row["taskId"]: row for row in self.synthetic["tasks"]}
         host = by_id["museum-opening.host"]["templateResult"]
         by_candidate = {row["candidateId"]: row["fitAssessment"] for row in host["candidates"]}
-        self.assertEqual(by_candidate["history-slideshow-envato--scene-001"]["verdict"], "adapted_fit")
-        self.assertEqual(by_candidate["glass-lower-thirds--scene-001"]["verdict"], "incompatible")
+        self.assertEqual(by_candidate["history-slideshow-envato--scene-001"]["verdict"], "unresolved")
+        self.assertEqual(by_candidate["glass-lower-thirds--scene-001"]["verdict"], "unresolved")
+        self.assertEqual(by_candidate["history-slideshow-envato--scene-001"]["gaps"][0]["type"], "current_native_mapping_evidence")
         self.assertEqual(by_candidate["photo-slideshow-memories-envato--scene-010"]["verdict"], "conditional")
         self.assertIn(
             "exact_child_validation_deferred_until_use",
@@ -65,7 +72,8 @@ class FullVisualTaskBatchMatching(unittest.TestCase):
             row for row in result["candidates"]
             if row["candidateId"] == "screen-mockup-rfx--review-002"
         )
-        self.assertEqual(candidate["fitAssessment"]["verdict"], "conditional")
+        self.assertEqual(candidate["fitAssessment"]["verdict"], "unresolved")
+        self.assertEqual(candidate["fitAssessment"]["gaps"][0]["type"], "current_native_mapping_evidence")
         self.assertTrue(candidate["fitAssessment"]["evidence"]["editorReviewedTreatment"])
 
     def test_completed_data_assignments_reach_current_template_checks(self):

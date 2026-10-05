@@ -1,0 +1,95 @@
+test_corrections_do_not_mutate_observations_and_flag_contradiction (tests.test_astra_p4.P4CapabilityRepairs.test_corrections_do_not_mutate_observations_and_flag_contradiction) ... ok
+test_missing_spatial_and_lyric_capabilities_stay_unknown (tests.test_astra_p4.P4CapabilityRepairs.test_missing_spatial_and_lyric_capabilities_stay_unknown) ... ok
+test_numeric_text_discovery_does_not_prove_qualitative_controls (tests.test_astra_p4.P4CapabilityRepairs.test_numeric_text_discovery_does_not_prove_qualitative_controls) ... ok
+test_observed_declared_and_scope_sources_stay_distinct (tests.test_astra_p4.P4CapabilityRepairs.test_observed_declared_and_scope_sources_stay_distinct) ... ok
+test_stale_mapping_invalidates_fit_evidence (tests.test_astra_p4.P4CapabilityRepairs.test_stale_mapping_invalidates_fit_evidence) ... ok
+test_timeline_scope_is_chronology_only (tests.test_astra_p4.P4CapabilityRepairs.test_timeline_scope_is_chronology_only) ... ok
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:219: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Media Library/50_COMPLETED/Production Ready/manifest.json' mode='r' encoding='UTF-8'>
+  raw = json.load(open(DELIVERY))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:260: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/approved-overrides.json' mode='r' encoding='UTF-8'>
+  for a_ in (json.load(open(APPROVED)).get("approved") or []):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:693: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Media Library/METADATA/assets.jsonl' mode='r' encoding='UTF-8'>
+  for line in open(jl):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:616: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-tags.json' mode='r' encoding='UTF-8'>
+  for t in (json.load(open(USER_TAGS)).get("tags") or []):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:592: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-tags.json' mode='r' encoding='UTF-8'>
+  for t in (json.load(open(USER_TAGS)).get("remove") or []):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:568: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-corrections.json' mode='r' encoding='UTF-8'>
+  d = json.load(open(WRONG))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:389: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/class-tags.json' mode='r' encoding='UTF-8'>
+  _CLS = ({norm(t) for t in json.load(open(CLASS_TAGS))["tags"]}
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/visualtask_matching.py:272: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x109529030>
+  dict(row) for row in bindings.get(job) or [] if row.get("id") in pool
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/visualtask_matching.py:272: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x109529210>
+  dict(row) for row in bindings.get(job) or [] if row.get("id") in pool
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+test_batch_reconciles_every_bound_family_before_reporting_a_shortage (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_batch_reconciles_every_bound_family_before_reporting_a_shortage) ... ok
+test_candidate_fit_uses_exact_evidence_without_selecting (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_candidate_fit_uses_exact_evidence_without_selecting) ... FAIL
+test_completed_data_assignments_reach_current_template_checks (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_completed_data_assignments_reach_current_template_checks) ... ok
+test_conditional_media_requires_a_typed_missing_gap (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_conditional_media_requires_a_typed_missing_gap) ... ok
+test_current_fixture_processes_every_visual_task (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_current_fixture_processes_every_visual_task) ... ok
+test_editor_reviewed_current_treatment_is_conditional_not_selected (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_editor_reviewed_current_treatment_is_conditional_not_selected) ... FAIL
+test_every_candidate_and_media_result_has_task_provenance (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_every_candidate_and_media_result_has_task_provenance) ... ok
+test_family_capability_never_claims_native_fit_without_exact_child_evidence (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_family_capability_never_claims_native_fit_without_exact_child_evidence) ... ok
+test_prior_selected_candidate_is_admitted_but_dismissed_candidates_are_not (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_prior_selected_candidate_is_admitted_but_dismissed_candidates_are_not) ... /opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py:361: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x108672110>
+  obj, end = self.scan_once(s, idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_production_runner_contains_no_fixture_identifiers (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_production_runner_contains_no_fixture_identifiers) ... ok
+test_scope_mismatch_fails_closed (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_scope_mismatch_fails_closed) ... ok
+test_source_specific_non_entity_media_returns_a_typed_shortage (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_source_specific_non_entity_media_returns_a_typed_shortage) ... ok
+test_story_cohort_is_expanded_before_media_availability (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_story_cohort_is_expanded_before_media_availability) ... ok
+test_story_identity_does_not_become_a_media_library_requirement_without_a_kind (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_story_identity_does_not_become_a_media_library_requirement_without_a_kind) ... ok
+test_story_matching_handoff_replaces_generic_media_and_text_unknowns (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_story_matching_handoff_replaces_generic_media_and_text_unknowns) ... ok
+test_task_fit_cannot_disagree_with_candidate_evidence (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_task_fit_cannot_disagree_with_candidate_evidence) ... ok
+test_template_and_media_verdicts_are_separate (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_template_and_media_verdicts_are_separate) ... FAIL
+test_unrelated_story_uses_the_same_runner (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_unrelated_story_uses_the_same_runner) ... ok
+
+======================================================================
+FAIL: test_candidate_fit_uses_exact_evidence_without_selecting (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_candidate_fit_uses_exact_evidence_without_selecting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 50, in test_candidate_fit_uses_exact_evidence_without_selecting
+    self.assertEqual(by_candidate["history-slideshow-envato--scene-001"]["verdict"], "adapted_fit")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unresolved' != 'adapted_fit'
+- unresolved
++ adapted_fit
+
+
+======================================================================
+FAIL: test_editor_reviewed_current_treatment_is_conditional_not_selected (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_editor_reviewed_current_treatment_is_conditional_not_selected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 68, in test_editor_reviewed_current_treatment_is_conditional_not_selected
+    self.assertEqual(candidate["fitAssessment"]["verdict"], "conditional")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unresolved' != 'conditional'
+- unresolved
++ conditional
+
+
+======================================================================
+FAIL: test_template_and_media_verdicts_are_separate (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_template_and_media_verdicts_are_separate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 39, in test_template_and_media_verdicts_are_separate
+    self.assertEqual(text_only["templateResult"]["fitVerdict"], "native_fit")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'conditional' != 'native_fit'
+- conditional
++ native_fit
+
+
+----------------------------------------------------------------------
+Ran 24 tests in 2.571s
+
+FAILED (failures=3)

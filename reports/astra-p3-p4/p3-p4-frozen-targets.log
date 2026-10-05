@@ -1,0 +1,30 @@
+test_p3_rate_subspan_materializes_exact_text (__main__.LaterStageBaselineFailures.test_p3_rate_subspan_materializes_exact_text) ... FAIL
+test_p4_timeline_scope_matches_chronological_operation (__main__.LaterStageBaselineFailures.test_p4_timeline_scope_matches_chronological_operation) ... FAIL
+
+======================================================================
+FAIL: test_p3_rate_subspan_materializes_exact_text (__main__.LaterStageBaselineFailures.test_p3_rate_subspan_materializes_exact_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 230, in test_p3_rate_subspan_materializes_exact_text
+    self.assertEqual(row["taskText"], expected, "authored rate subspan expanded to the whole claim")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Drake has fewer guest verses than either [124 chars]rse.' != 'roughly two hundred forty million per verse'
+- Drake has fewer guest verses than either of them but more feature streams than anyone, with forty-three billion in total and roughly two hundred forty million per verse.
++ roughly two hundred forty million per verse
+ : authored rate subspan expanded to the whole claim
+
+======================================================================
+FAIL: test_p4_timeline_scope_matches_chronological_operation (__main__.LaterStageBaselineFailures.test_p4_timeline_scope_matches_chronological_operation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 240, in test_p4_timeline_scope_matches_chronological_operation
+    self.assertTrue(any("search-bar-business-timeline" in row["candidateId"] for row in rows),
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "timeline scope is rejected before ordering")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : timeline scope is rejected before ordering
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.169s
+
+FAILED (failures=2)

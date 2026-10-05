@@ -265,8 +265,25 @@ def _template_gaps(requirements: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def _comparison_index(artifact: dict[str, Any]) -> dict[tuple[str, str], dict[str, Any]]:
+    sources = artifact.get("sources") or {}
+    stale = False
+    # Hashing the comparison envelope cannot keep an obsolete native mapping
+    # current. Validate its existing source bindings before consuming any fit.
+    for name, source in sources.items():
+        if name not in {"sceneMappings", "technicalIndex", "sceneWindowCapacities", "specLinks"}:
+            continue
+        path = Path(source.get("path") or "")
+        if not path.is_absolute():
+            path = ROOT / path
+        if not path.is_file() or _sha(path) != source.get("sha256"):
+            stale = True
     return {
-        (task["taskId"], candidate["candidateId"]): candidate
+        (task["taskId"], candidate["candidateId"]): {
+            **candidate,
+            **({"projectEvidenceStatus": "stale_native_mapping_evidence"} if stale else
+               {"projectEvidenceStatus": "unbound_native_mapping_evidence"}
+               if not {"sceneMappings", "technicalIndex"}.issubset(sources) else {}),
+        }
         for task in artifact.get("tasks") or []
         for candidate in task.get("candidateComparisons") or []
     }
@@ -310,8 +327,15 @@ def _candidate_fit(
         "technicalComparison": "present" if comparison else "missing",
         "timingPlan": "present" if timing_plan else "missing",
         "editorReviewedTreatment": bool(treatment and treatment.get("reviewState") == "editor_reviewed"),
+        "nativeMappingEvidence": comparison.get("projectEvidenceStatus") if comparison else "missing",
     }
     gaps: list[dict[str, Any]] = []
+    if comparison and comparison.get("projectEvidenceStatus") in {"stale_native_mapping_evidence", "unbound_native_mapping_evidence"}:
+        return {
+            "verdict": "unresolved", "candidateId": cid, "evidence": evidence,
+            "gaps": [{"type": "current_native_mapping_evidence", "status": "unresolved",
+                      "reason": "The comparison's native source binding is missing or stale."}],
+        }
     exact = comparison.get("exactComposition") if comparison else None
     if not comparison or comparison.get("compositionMappingStatus") not in {"verified", "verified_window"} or not exact:
         capability = (catalog_record or {}).get("capability") or {}
@@ -393,6 +417,15 @@ def _candidate_fit(
     treatment_verdict = treatment.get("verdict") if reviewed else None
     if treatment_verdict in {"native_fit", "adapted_fit", "conditional", "incompatible"}:
         evidence["treatmentVerdict"] = treatment_verdict
+        if treatment_verdict in {"native_fit", "adapted_fit"}:
+            unclear = ((catalog_record or {}).get("capability") or {}).get("unclear") or []
+            numeric_unknown = "numeric_text_controls:unresolved" in ((candidate.get("bindingProvenance") or {}).get("evidence") or [])
+            if project_status == "unbound_native_mapping_evidence" or numeric_unknown or any("staging" in flag for flag in unclear):
+                return {
+                    "verdict": "unresolved", "candidateId": cid, "evidence": evidence,
+                    "gaps": [{"type": "verified_native_controls_and_mapping", "status": "unresolved",
+                              "reason": "Unbound native mapping, numeric-text controls or contradictory staging cannot certify qualitative fit."}],
+                }
         if unavailable and treatment_verdict in {"native_fit", "adapted_fit"}:
             treatment_verdict = "conditional"
         return {
