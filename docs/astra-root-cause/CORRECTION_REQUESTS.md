@@ -9,6 +9,107 @@ An `ACTIVE` correction blocks the next numbered job. Claude Desktop must correct
 only the named job, validate and publish the corrected artifacts, update that
 entry to `RESOLVED` with the correction commit, return direct links, and stop.
 
+## Job 6 — candidate pipeline, correction round 2
+
+Status: **ACTIVE**
+
+Opened after correction commit: `a25fbc7f0e2d4b266852127dc17f35dd65135246`
+
+Target artifacts:
+
+- `reports/astra-root-cause/06-candidate-pipeline.md`
+- `reports/astra-root-cause/06-candidate-pipeline.json`
+
+Correct Job 6 only. Do not start Job 7 and do not modify production code,
+catalog records, grammar, evidence, gold references or earlier job outputs.
+
+The first correction fixed the broad diagnosis, lineage coverage and route
+scope, but it does not yet satisfy its own required validation.
+
+### 1. Remove the stale contradictory display-loss result
+
+The corrected JSON reports `failureClassificationCounts.display_loss` as absent
+or zero and reclassifies the pie-chart case as `ordering_loss`. However,
+`provenDisplayLoss` still types the same pie-chart case as `display_loss` and
+calls it the cleanest end-to-end display-loss proof. This directly contradicts
+the corrected Markdown, `orderingVersusDisplay`, `whatIsNotTheProblem` and the
+failure counts.
+
+Remove or replace the stale object and audit the entire JSON for superseded
+pre-correction conclusions. Markdown and JSON must agree everywhere, not only
+in newly appended correction fields.
+
+### 2. Trace every ordering-loss case or mark it unresolved
+
+Four findings are classified as `ordering_loss`, but only the pie-chart case
+has the requested pre-cut position and ordering-signal trace. The other three
+findings merely say that the requested families were outside the surviving
+slots and then assert the ordering classification.
+
+For each of all four findings—and each requested family grouped inside it—show:
+
+- its position in the complete ordered family list;
+- whether it failed the primary half, exploration half, or both;
+- the task-specific ordering keys/signals that determined that position; and
+- why the ordering itself was wrong, rather than merely observing that a later
+  display limit omitted the lower-ranked row.
+
+If the committed evidence cannot reconstruct those facts, classify that case
+as unresolved. Do not generalize the pie-chart trace to the other cases.
+
+Also replace the current circular definition of `display_loss`—"inside a
+surviving slot and the cap removed it anyway"—because a row inside a surviving
+slot is not removed by that cap. Define ordering and display divergence so both
+are logically possible and non-overlapping, then re-evaluate the evidence
+rather than defining `display_loss` out of existence.
+
+### 3. Do not pass the wrong-variant validation without its required evidence
+
+The correction request required every editor-named wrong-variant case to include
+the displayed and requested variants' actual `_within_family` ordering keys and
+a sibling-propagation trace. The corrected report analyzes one case and states
+that `_encfit`, `_capfit` and `_rel` cannot be replayed from committed evidence.
+It therefore cannot determine whether the earliest task-specific divergence was
+missing task requirements, capability metadata, variant ranking or only sibling
+propagation.
+
+The dropped `_siblings` field is a proven general review-surface defect. It is
+not, by itself, proof that sibling propagation was the earliest divergence for
+the named task: the six-slot variant may already have outranked the two/three-slot
+variants because the required slot demand was missing or misrepresented.
+
+List every editor-named wrong-variant case found in the evidence. For each case,
+either provide all actual ordering keys requested in round 1 and identify the
+earliest supported divergence, or mark the task-specific cause unresolved. Keep
+the general `_siblings` defect as a separate proven finding. If the keys remain
+unavailable, mark that required validation `BLOCKED` or `UNRESOLVED`; do not
+declare the complete corrected job `PASS` solely from the general defect.
+
+### Required validation
+
+1. Parse the corrected JSON successfully.
+2. Assert no object still calls the pie-chart case `display_loss` while another
+   calls it `ordering_loss`.
+3. Assert every `ordering_loss` finding has its own ordered position, ordering
+   signals and earliest-divergence basis; otherwise type it unresolved.
+4. Assert the definitions of `ordering_loss` and `display_loss` are both
+   logically reachable and non-overlapping.
+5. Assert every editor-named wrong-variant case has actual per-variant ordering
+   keys and a propagation trace, or an explicit unresolved result.
+6. Keep the corrected lineage and B-roll-route scope from round 1 unchanged
+   unless new evidence requires a cited correction.
+7. Make Markdown and JSON agree on result status, measurements,
+   classifications, unresolved evidence and acceptance verdicts.
+8. Confirm the correction diff modifies only the two Job 6 artifacts and this
+   canonical correction file.
+
+Commit and push the corrected Job 6 artifacts to `fable_analysis`. Update this
+entry to `RESOLVED` with the correction commit and links, then provide direct
+GitHub links to the corrected Markdown, JSON, this correction file and the
+commit. State the next job and blocker owner, and stop before Job 7.
+
+---
+
 ## Job 6 — candidate pipeline
 
 Status: **RESOLVED**
