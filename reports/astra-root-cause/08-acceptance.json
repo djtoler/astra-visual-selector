@@ -1,0 +1,69 @@
+{
+  "auditStatus": "PASS",
+  "checks": {
+    "priorJobsVerified": 7,
+    "rankedCauses": 8,
+    "stagedRepairs": 8,
+    "allRepairsMapToProvenCauses": true,
+    "allStagesHaveOwnerInputsOutputsMigrationAcceptanceRollbackDependenciesEvidence": true,
+    "acyclicStageDependencies": true,
+    "sourceHashesVerified": true,
+    "rootEvidenceAnchorsResolved": true,
+    "editorEvidenceIdsExist": true,
+    "existingSystemsEvaluatedFirst": true,
+    "noStorySpecificRuntimeBranchProposed": true,
+    "productionUnchanged": true,
+    "implementationNotAuthorized": true,
+    "requiredStageOrderValidated": true,
+    "reorderedStagesRejected": true,
+    "workflowReviewValidated": true
+  },
+  "omissionTests": [
+    {
+      "omittedStage": "reconcile_evidence",
+      "rejected": true
+    },
+    {
+      "omittedStage": "rank_define_dispose",
+      "rejected": true
+    },
+    {
+      "omittedStage": "stage_and_evaluate",
+      "rejected": true
+    },
+    {
+      "omittedStage": "validate_publish",
+      "rejected": true
+    },
+    {
+      "omittedStage": "request_editor_review",
+      "rejected": true
+    }
+  ],
+  "workflowReview": {
+    "id": "03a3f05c-3319-4490-b403-df1274e776ac",
+    "checkpoint": "astra-job08-integrated-proposal-20261004-complete",
+    "validated": true
+  },
+  "outputs": [
+    {
+      "path": "reports/astra-root-cause/08-root-cause-and-redesign.md",
+      "sha256": "2b4fee401fe224ad2dea100a81f14f406ed0e26531227a0ff36c29dbf7786d7e"
+    },
+    {
+      "path": "reports/astra-root-cause/08-root-cause-and-redesign.json",
+      "sha256": "6c330289691d68411ad7ef5cce81fc0e1ea148219e6412b6dbae80cbe71aa25b"
+    },
+    {
+      "path": "plans/ASTRA_MATCHING_REBUILD_PLAN.md",
+      "sha256": "b75ea96110b76a842b4676bf737ea107bed514c7ecd5f79d923d334229c53912"
+    },
+    {
+      "path": "plans/ASTRA_ROOT_CAUSE_JOB_08_PLAN_20261004.md",
+      "sha256": "3bacd65c1c760e0195ca4aa5d0c338518a0022aea0e3147f23ec6d2a51f3968f"
+    }
+  ],
+  "scope": "Proposal completeness and evidence traceability; no implementation tests or product quality improvements claimed.",
+  "nextAction": "Editor review of plan",
+  "blockerOwner": "you"
+}
