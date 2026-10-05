@@ -250,7 +250,7 @@ def _source(path: Path) -> dict[str, Any]:
 
 def template_candidates(
     task: dict[str, Any], bindings: dict[str, Any], pool: dict[str, Any],
-    *, exhaustive_families: bool = False,
+    *, exhaustive_families: bool = False, exhaustive_variants: bool = False,
 ) -> list[dict[str, Any]]:
     """Retrieve a deterministic, task-scoped template slate.
 
@@ -314,7 +314,7 @@ def template_candidates(
                 seen.add(record["id"])
     display_limit = task.get("candidateDisplayLimit", 10)
     slideshow_limit = task.get("slideshowDisplayLimit", C.SLIDE_MAX)
-    ranked = C.diversify(
+    ranked = rows if exhaustive_variants else C.diversify(
         rows,
         limit=max(len(rows), 1) if exhaustive_families else display_limit,
         corpus_size=len(pool),
@@ -325,7 +325,7 @@ def template_candidates(
     # Explicit task-scoped editor requests must survive the family representative
     # and slideshow display caps. They remain unvalidated and authorize nothing.
     by_id = {row["id"]: row for row in rows}
-    for admission in reversed(task.get("templateAdmissions") or []):
+    for admission in ([] if exhaustive_variants else reversed(task.get("templateAdmissions") or [])):
         template_id = admission["id"]
         if template_id in {row["id"] for row in ranked}:
             continue
@@ -342,6 +342,7 @@ def template_candidates(
         "candidateId": row["id"],
         "name": row.get("name") or pool[row["id"]].get("description"),
         "condition": row.get("condition"),
+        "siblings": list(row.get("_siblings") or []),
         "bindingProvenance": row.get("provenance"),
         "candidateMatchingProvenance": {
             "scope": "visual_task", "taskId": task["id"], "matchingJob": job,

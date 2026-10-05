@@ -1,0 +1,111 @@
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:568: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-corrections.json' mode='r' encoding='UTF-8'>
+  d = json.load(open(WRONG))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+................./Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:219: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Media Library/50_COMPLETED/Production Ready/manifest.json' mode='r' encoding='UTF-8'>
+  raw = json.load(open(DELIVERY))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:260: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/approved-overrides.json' mode='r' encoding='UTF-8'>
+  for a_ in (json.load(open(APPROVED)).get("approved") or []):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:693: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Media Library/METADATA/assets.jsonl' mode='r' encoding='UTF-8'>
+  for line in open(jl):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:616: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-tags.json' mode='r' encoding='UTF-8'>
+  for t in (json.load(open(USER_TAGS)).get("tags") or []):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:592: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-tags.json' mode='r' encoding='UTF-8'>
+  for t in (json.load(open(USER_TAGS)).get("remove") or []):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:389: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/class-tags.json' mode='r' encoding='UTF-8'>
+  _CLS = ({norm(t) for t in json.load(open(CLASS_TAGS))["tags"]}
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py:361: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x109a048b0>
+  obj, end = self.scan_once(s, idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/visualtask_batch_matching.py:600: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x109a04a90>
+  duty_rows.append({**spec, "status": status, "evidence": basis})
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/visualtask_matching.py:54: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x1094cdf30>
+  operations.extend(op for op in supplied_operations if op not in operations)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/visualtask_matching.py:274: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x108f145e0>
+  dict(row) for row in bindings.get(job) or [] if row.get("id") in pool
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FF...F.F.......FF................./opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/copy.py:226: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x108f174c0>
+  memo[id(memo)]=[x]
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+x...........
+======================================================================
+FAIL: test_batch_reconciles_every_bound_family_before_reporting_a_shortage (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_batch_reconciles_every_bound_family_before_reporting_a_shortage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 153, in test_batch_reconciles_every_bound_family_before_reporting_a_shortage
+    self.assertEqual(len(exhaustive), 17)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 37 != 17
+
+======================================================================
+FAIL: test_candidate_fit_uses_exact_evidence_without_selecting (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_candidate_fit_uses_exact_evidence_without_selecting)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 59, in test_candidate_fit_uses_exact_evidence_without_selecting
+    self.assertEqual(by_candidate["photo-slideshow-memories-envato--scene-010"]["verdict"], "conditional")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unresolved' != 'conditional'
+- unresolved
++ conditional
+
+
+======================================================================
+FAIL: test_editor_reviewed_current_treatment_is_conditional_not_selected (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_editor_reviewed_current_treatment_is_conditional_not_selected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 70, in test_editor_reviewed_current_treatment_is_conditional_not_selected
+    self.assertEqual(result["fitVerdict"], "conditional")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unresolved' != 'conditional'
+- unresolved
++ conditional
+
+
+======================================================================
+FAIL: test_family_capability_never_claims_native_fit_without_exact_child_evidence (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_family_capability_never_claims_native_fit_without_exact_child_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 146, in test_family_capability_never_claims_native_fit_without_exact_child_evidence
+    self.assertEqual(assessment["verdict"], "conditional")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unresolved' != 'conditional'
+- unresolved
++ conditional
+
+
+======================================================================
+FAIL: test_task_fit_cannot_disagree_with_candidate_evidence (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_task_fit_cannot_disagree_with_candidate_evidence)
+----------------------------------------------------------------------
+ValueError: batch match counts are stale
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 198, in test_task_fit_cannot_disagree_with_candidate_evidence
+    with self.assertRaisesRegex(ValueError, "template-fit verdict is stale"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "template-fit verdict is stale" does not match "batch match counts are stale"
+
+======================================================================
+FAIL: test_template_and_media_verdicts_are_separate (tests.test_visualtask_batch_matching.FullVisualTaskBatchMatching.test_template_and_media_verdicts_are_separate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_visualtask_batch_matching.py", line 41, in test_template_and_media_verdicts_are_separate
+    self.assertEqual(text_only["templateResult"]["fitVerdict"], "conditional")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'unresolved' != 'conditional'
+- unresolved
++ conditional
+
+
+----------------------------------------------------------------------
+Ran 63 tests in 14.134s
+
+FAILED (failures=6, expected failures=1)

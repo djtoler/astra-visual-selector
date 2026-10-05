@@ -229,6 +229,13 @@ def _validate_scope(values: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[
             if not typed_fields:
                 raise ValueError("resolved data assignment lacks typed fields")
             requirements_by_id[task_id]["dataRequirements"]["requiredTypedFields"] = typed_fields
+            try:
+                from .storypackage_data_assignment import _validate_field
+            except ImportError:
+                from storypackage_data_assignment import _validate_field
+            requirements_by_id[task_id]["dataRequirements"]["fieldVerification"] = {
+                field["fieldId"]: "supported" if _validate_field(field, assignments.get("sources") or {}, verify_sources=True) else "unknown"
+                for field in typed_fields}
             requirements_by_id[task_id]["dataRequirements"]["assignmentReceipt"] = {
                 "packageId": assignments.get("packageId"),
                 "taskId": task_id,
@@ -264,7 +271,7 @@ def _template_gaps(requirements: dict[str, Any]) -> list[dict[str, Any]]:
     return gaps
 
 
-def _comparison_index(artifact: dict[str, Any]) -> dict[tuple[str, str], dict[str, Any]]:
+def _comparison_index(artifact: dict[str, Any], task_sources: dict[str, Any] | None = None) -> dict[tuple[str, str], dict[str, Any]]:
     sources = artifact.get("sources") or {}
     stale = False
     # Hashing the comparison envelope cannot keep an obsolete native mapping
@@ -277,9 +284,34 @@ def _comparison_index(artifact: dict[str, Any]) -> dict[tuple[str, str], dict[st
             path = ROOT / path
         if not path.is_file() or _sha(path) != source.get("sha256"):
             stale = True
+    native_verified = set()
+    bound_tasks = task_sources and all(
+        sources.get(key, {}).get("sha256") == task_sources[name]["sha256"]
+        for key, name in (("visualTasks", "visualTasks"), ("taskRequirements", "technicalRequirements")))
+    if not stale and bound_tasks and {"sceneMappings", "technicalIndex"}.issubset(sources):
+        def source_value(name):
+            path = Path(sources[name]["path"])
+            return _read(path if path.is_absolute() else ROOT / path)
+        mappings = {row["sceneId"]: row for row in source_value("sceneMappings").get("mappings") or []}
+        projects = {row["id"]: row for row in source_value("technicalIndex").get("projects") or [] if row.get("id")}
+        for task in artifact.get("tasks") or []:
+            for candidate in task.get("candidateComparisons") or []:
+                mapping = mappings.get(candidate["candidateId"]) or {}
+                project = projects.get(mapping.get("projectId")) or {}
+                comp = next((row for row in project.get("compositions") or [] if row.get("id") == mapping.get("compositionId")), None)
+                exact = candidate.get("exactComposition") or {}
+                fields = ("id", "path", "durationSeconds", "frameRate", "maxSimultaneouslyEnabledDirectInputs",
+                          "maxSimultaneouslyEnabledRecursiveVisualInputs", "maxSimultaneouslyEnabledRecursiveTextFields")
+                if (mapping.get("status") == "verified" and comp and candidate.get("projectId") == mapping.get("projectId")
+                        and project.get("sourceUnchanged") is True and project.get("resultStatus") == "two_pass_exact_agreement"
+                        and len(project.get("sourceProjectSha256") or "") == 64
+                        and candidate.get("projectEvidenceStatus") == "two_pass_exact_agreement"
+                        and all(key in comp and exact.get(key) == comp[key] for key in fields)):
+                    native_verified.add((task["taskId"], candidate["candidateId"]))
     return {
         (task["taskId"], candidate["candidateId"]): {
             **candidate,
+            "nativeSourceVerified": (task["taskId"], candidate["candidateId"]) in native_verified,
             **({"projectEvidenceStatus": "stale_native_mapping_evidence"} if stale else
                {"projectEvidenceStatus": "unbound_native_mapping_evidence"}
                if not {"sceneMappings", "technicalIndex"}.issubset(sources) else {}),
@@ -312,7 +344,7 @@ def _assessment_index(artifact: dict[str, Any] | None) -> dict[tuple[str, str], 
         key = (row.get("taskId"), row.get("candidateId"))
         if not all(key) or key in index:
             raise ValueError("treatment assessments require distinct task/candidate pairs")
-        index[key] = row
+        index[key] = {**row, "sources": row.get("sources") or artifact.get("sources") or {}}
     return index
 
 
@@ -484,13 +516,192 @@ def _candidate_fit(
     return {"verdict": "native_fit", "candidateId": cid, "evidence": evidence, "gaps": gaps}
 
 
+def _digest(value: Any) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False,
+                                    separators=(",", ":")).encode()).hexdigest()
+
+
+RECONCILIATION_STAGES = ["source_contract_validation", "full_variant_discovery",
+                         "candidate_treatment_reconciliation"]
+
+
+def _requirement_specs(task: dict[str, Any], requirements: dict[str, Any], record: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    """Account for every source duty, without deriving additional Story meaning."""
+    rows = []
+    def visit(path, value):
+        if isinstance(value, dict) and value:
+            for key, item in sorted(value.items()):
+                visit(path + "." + key, item)
+        elif isinstance(value, list) and value:
+            for index, item in enumerate(value):
+                visit(f"{path}[{index}]", item)
+        else:
+            rows.append({"requirementId": path, "value": copy.deepcopy(value)})
+    keys = ("primaryMeaning", "requiredMeanings", "primaryPresentationOperation",
+            "presentationOperations", "routeDisposition", "relationships", "entityRefs",
+            "entities", "quoteRequirements", "obligations", "mustBePerceptible", "values",
+            "cohortRefs", "mediaNeeds", "cohortMediaNeeds", "dataNeeds", "continuity",
+            "quote", "job", "taskRole", "sourceBeatJob", "sourceBeats")
+    for key in keys:
+        if key in task:
+            visit("task." + key, task[key])
+    if not task.get("primaryMeaning") and not task.get("primaryPresentationOperation"):
+        visit("task.primaryMeaning", {"job": task.get("job"), "status": "legacy_unresolved"})
+    for key in ("timingRequirement", "mediaRequirements", "textRequirements", "dataRequirements"):
+        visit(key, requirements.get(key))
+    visit("nativeMapping", "exact_current_candidate_mapping_required")
+    visit("candidate.scopeRestriction", (record or {}).get("scope") or "unscoped")
+    return rows
+
+
+def _bound_treatment(treatment: dict[str, Any] | None, sources: dict[str, Any]) -> bool:
+    if not treatment or treatment.get("reviewState") != "editor_reviewed":
+        return False
+    bindings = treatment.get("sources") or {}
+    required = set(sources) - {"request", "treatmentAssessments", "priorReviewReconciliation"}
+    return bool(required) and all(
+        bindings.get(name, {}).get("sha256") == sources[name]["sha256"]
+        and bindings.get(name, {}).get("path") == sources[name]["path"]
+        for name in required)
+
+
+def _reconcile_candidate(task, requirements, candidate, comparison, timing_plan,
+                         treatment, record, sources):
+    """Extend the existing fit evidence; native/review unknowns never mean exhaustion."""
+    fit = _candidate_fit(task, requirements, candidate, comparison, timing_plan, treatment, record)
+    current_native = bool(comparison and comparison.get("nativeSourceVerified") is True and comparison.get("projectEvidenceStatus") not in {
+        "stale_native_mapping_evidence", "unbound_native_mapping_evidence",
+        "static_source_bound_native_incompatible_with_ae25"}
+        and comparison.get("compositionMappingStatus") == "verified"
+        and comparison.get("exactComposition"))
+    reviewed = _bound_treatment(treatment, sources)
+    specs = _requirement_specs(task, requirements, record)
+    duty_rows = []
+    contract = matching.presentation_contract(task)
+    exact = (comparison or {}).get("exactComposition") or {}
+    for spec in specs:
+        path, value = spec["requirementId"], spec["value"]
+        status, basis = "unknown", "No current candidate-specific proof; source requirement retained."
+        if path == "candidate.scopeRestriction":
+            allowed = {"lyrics": "lyric_presentation", "timelines": "archival_progression"}
+            if value == "unscoped":
+                status, basis = "supported", "No scoped restriction supplied by the bound catalog record."
+            elif value in allowed:
+                required_operations = set(task.get("requiredMeanings") or task.get("presentationOperations") or ([task["primaryPresentationOperation"]] if task.get("primaryPresentationOperation") else []))
+                if required_operations:
+                    status = "supported" if required_operations <= {allowed[value]} else "conflict"
+                    basis = "Existing scoped restriction permits only " + allowed[value]
+        # An observed operation proves discovery compatibility, never complete fit.
+        operation_path = path in {"task.primaryPresentationOperation", "task.primaryMeaning.operation"} or path.startswith(("task.requiredMeanings[", "task.presentationOperations["))
+        if operation_path and isinstance(value, str):
+            supports = matching._supports_operation(value, record or {}, contract)
+            if supports and not any("unresolved" in flag for flag in supports):
+                status, basis = "supported", "Existing structured operation evidence: " + ", ".join(supports)
+            elif (record or {}).get("scope") and value not in {
+                "lyric_presentation" if record["scope"] == "lyrics" else "archival_progression" if record["scope"] == "timelines" else None}:
+                status, basis = "conflict", "Existing scoped restriction excludes this required operation."
+        if current_native and path in {"mediaRequirements.requiredSlotCount", "textRequirements.requiredFieldCount"} and type(value) is int:
+            capacity = (max(exact.get("maxSimultaneouslyEnabledRecursiveVisualInputs") or 0,
+                            exact.get("maxSimultaneouslyEnabledDirectInputs") or 0)
+                        if path.startswith("media") else exact.get("maxSimultaneouslyEnabledRecursiveTextFields", exact.get("recursiveEditableTextFields")))
+            if capacity is not None:
+                status = "supported" if capacity >= value else "conflict"
+                basis = f"Current exact native simultaneous capacity {capacity}; required {value}."
+        if path == "nativeMapping" and current_native:
+            status, basis = "supported", "Current exact whole-composition mapping and technical comparison."
+        # Reuse the established textual treatment assessment. A verdict alone is
+        # not evidence for every duty, nor can it bypass an exact native deficit.
+        data_unverified = path.startswith(("dataRequirements.requiredTypedFields", "dataRequirements.fieldVerification")) and "unknown" in (requirements.get("dataRequirements", {}).get("fieldVerification") or {}).values()
+        source_unresolved = (path.endswith((".status", ".availabilityStatus")) and isinstance(value, str)
+                             and value in {"unknown", "unresolved", "unverified", "legacy_unresolved"}) or ".unknown" in path
+        source_unresolved = source_unresolved or (value is None and path.endswith(("requiredSlotCount", "requiredFieldCount", "exactTaskAudioSpan", "characterAndLineLimits", "requiredTypedFields")))
+        if reviewed and current_native and status != "conflict" and not data_unverified and not source_unresolved:
+            assessment = treatment.get("templateAssessment") or {}
+            supported = [r for r in assessment.get("satisfied") or []
+                         if r.get("requirement") == path and r.get("evidence")]
+            if supported:
+                status, basis = "supported", supported[0]["evidence"]
+        duty_rows.append({**spec, "status": status, "evidence": basis})
+    approved = list((treatment or {}).get("approvedAdjustments") or []) if reviewed and current_native else []
+    method = (timing_plan or {}).get("method")
+    permitted_adjustments = [name for name in approved if name == method and (timing_plan or {}).get("status") in {"approved", "editor_approved"}]
+    permitted = {"approvedAdjustments": permitted_adjustments,
+                 "unresolvedAdjustments": [name for name in approved if name not in permitted_adjustments],
+                 "evaluation": "native_as_is" if not permitted_adjustments else "source_bound_reviewed_timing_plan",
+                 "status": "supported" if reviewed and current_native and len(approved) == len(permitted_adjustments) else "unknown",
+                 "basis": "Current task-bound reviewed existing treatment" if reviewed and current_native else "Evaluate native as-is only; no adjustment permission inferred."}
+    statuses = {r["status"] for r in duty_rows}
+    verdict = "incompatible" if "conflict" in statuses else "unresolved" if "unknown" in statuses else fit["verdict"]
+    if verdict not in {"incompatible", "unresolved", "native_fit", "adapted_fit", "conditional"}:
+        verdict = "unresolved"
+    if verdict in {"native_fit", "adapted_fit"} and permitted["status"] != "supported":
+        verdict = "unresolved"
+    fit["evidence"].update({"discoveryFitVerdict": fit["verdict"],
+                            "requirements": duty_rows, "permittedAdjustmentPlan": permitted,
+                            "taskContract": copy.deepcopy(task),
+                            "technicalRequirements": copy.deepcopy(requirements),
+                            "taskSha256": _digest(task), "requirementsSha256": _digest(requirements),
+                            "catalogRecordSha256": _digest(record),
+                            "catalogRecord": copy.deepcopy(record),
+                            "sourceBindings": copy.deepcopy(sources),
+                            "assessmentComplete": True, "nativeFitUnknown": not current_native,
+                            "customFallbackAuthorized": False, "catalogExhausted": False})
+    fit["verdict"] = verdict
+    fit["gaps"].extend({"type": r["requirementId"], "status": "unresolved" if r["status"] == "unknown" else "failed",
+                        "reason": r["evidence"]} for r in duty_rows if r["status"] != "supported")
+    return fit
+
+
+def _reconciliation_body(artifact):
+    receipt = (artifact.get("contractEnforcementReceipt") or {}).get("candidateReconciliation") or {}
+    return {"sources": artifact.get("sources"), "consumerFingerprints": artifact.get("consumerFingerprints"),
+            "tasks": artifact.get("tasks"), "counts": artifact.get("counts"),
+            "discoveredVariants": receipt.get("discoveredVariants"), "discoveryLineage": receipt.get("discoveryLineage")}
+
+
+def _validate_reconciliation(artifact):
+    if artifact.get("fitValidated") is not False:
+        raise ValueError("reconciliation completeness cannot certify all discovery choices as fit")
+    receipt = (artifact.get("contractEnforcementReceipt") or {}).get("candidateReconciliation") or {}
+    if (receipt.get("version") != "existing-batch-treatment-policy@1"
+            or receipt.get("stages") != RECONCILIATION_STAGES
+            or receipt.get("bodySha256") != _digest(_reconciliation_body(artifact))):
+        raise ValueError("candidate reconciliation receipt missing, stale or stage-ordered incorrectly")
+    for task in artifact["tasks"]:
+        candidates = task["templateResult"]["candidates"]
+        ids = [row["candidateId"] for row in candidates]
+        if len(ids) != len(set(ids)) or receipt.get("discoveredVariants", {}).get(task["taskId"]) != ids:
+            raise ValueError("candidate reconciliation omits discovered variants")
+        for candidate in candidates:
+            evidence = candidate["fitAssessment"]["evidence"]
+            source_task = evidence.get("taskContract") or {}
+            requirements = evidence.get("technicalRequirements") or {}
+            specs = _requirement_specs(source_task, requirements, evidence.get("catalogRecord"))
+            duties = evidence.get("requirements") or []
+            if ([{k: row[k] for k in ("requirementId", "value")} for row in duties] != specs
+                    or any(row.get("status") not in {"supported", "conflict", "unknown"} or not row.get("evidence") for row in duties)
+                    or evidence.get("taskSha256") != _digest(source_task)
+                    or evidence.get("requirementsSha256") != _digest(requirements)
+                    or evidence.get("catalogRecordSha256") != _digest(evidence.get("catalogRecord"))
+                    or evidence.get("sourceBindings") != artifact["sources"]):
+                raise ValueError("candidate reconciliation duty/source coverage missing or stale")
+            if evidence.get("catalogExhausted") is not False or evidence.get("customFallbackAuthorized") is not False:
+                raise ValueError("reconciliation cannot authorize exhaustion or custom work")
+            states = {row["status"] for row in duties}
+            verdict = candidate["fitAssessment"]["verdict"]
+            if (("conflict" in states and verdict != "incompatible") or
+                    ("conflict" not in states and "unknown" in states and verdict != "unresolved")):
+                raise ValueError("candidate reconciliation verdict does not preserve unknown/conflict")
+
+
 def _template_result(
     task: dict[str, Any], requirements: dict[str, Any], bindings: dict[str, Any], pool: dict[str, Any],
     comparisons: dict[tuple[str, str], dict[str, Any]],
     timing_plans: dict[tuple[str, str], dict[str, Any]],
     assessments: dict[tuple[str, str], dict[str, Any]],
+    sources: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    candidates = matching.template_candidates(task, bindings, pool, exhaustive_families=True)
+    candidates = matching.template_candidates(task, bindings, pool, exhaustive_variants=True)
     gaps = _template_gaps(requirements)
     if not candidates:
         gaps.insert(0, {
@@ -503,9 +714,9 @@ def _template_result(
     else:
         for candidate in candidates:
             key = (task["id"], candidate["candidateId"])
-            candidate["fitAssessment"] = _candidate_fit(
+            candidate["fitAssessment"] = _reconcile_candidate(
                 task, requirements, candidate, comparisons.get(key), timing_plans.get(key),
-                assessments.get(key), pool.get(candidate["candidateId"]),
+                assessments.get(key), pool.get(candidate["candidateId"]), sources or {},
             )
         verdicts = {candidate["fitAssessment"]["verdict"] for candidate in candidates}
         if "native_fit" in verdicts:
@@ -673,7 +884,8 @@ def build(request_path: Path) -> dict[str, Any]:
     tasks, requirements_by_id = _validate_scope(values)
     template_pool = {row["id"]: row for row in matching.C.load(content_class="*")}
     media_pool = matching.M.load()
-    comparisons = _comparison_index(values["technicalComparison"])
+    sources = {"request": _source(Path(request_path)), **{name: _source(path) for name, path in paths.items()}}
+    comparisons = _comparison_index(values["technicalComparison"], sources)
     timing_plans = _timing_index(values["timingPlans"])
     assessments = _assessment_index(values.get("treatmentAssessments"))
     prior_admissions: dict[str, list[dict[str, Any]]] = {}
@@ -718,7 +930,7 @@ def build(request_path: Path) -> dict[str, Any]:
             "storyRequirements": story_requirement,
             "templateResult": _template_result(
                 task, requirements, values["bindings"], template_pool,
-                comparisons, timing_plans, assessments,
+                comparisons, timing_plans, assessments, sources,
             ),
             "mediaResult": _media_result(task, requirements, media_pool),
         })
@@ -732,10 +944,10 @@ def build(request_path: Path) -> dict[str, Any]:
         "activationState": REVIEW_ONLY,
         "selectionAuthorized": False,
         "renderingAuthorized": False,
-        "sources": {"request": _source(Path(request_path)), **{name: _source(path) for name, path in paths.items()}},
+        "sources": sources,
         "consumerFingerprints": {
-            "templatePool": hashlib.sha256(json.dumps(sorted(template_pool), separators=(",", ":")).encode()).hexdigest(),
-            "productionReadyMediaPool": hashlib.sha256(json.dumps(sorted(media_pool), separators=(",", ":")).encode()).hexdigest(),
+            "templatePool": _digest(template_pool),
+            "productionReadyMediaPool": _digest(media_pool),
         },
         "counts": {
             "visualTasks": len(rows),
@@ -746,6 +958,17 @@ def build(request_path: Path) -> dict[str, Any]:
         },
         "tasks": rows,
     }
+    artifact["contractEnforcementReceipt"]["candidateReconciliation"] = {
+        "version": "existing-batch-treatment-policy@1", "stages": RECONCILIATION_STAGES,
+        "discoveredVariants": {row["taskId"]: [r["candidateId"] for r in row["templateResult"]["candidates"]] for row in rows},
+        "discoveryLineage": {row["taskId"]: [
+            {"candidateId": cid, "status": "supported" if cid in {r["candidateId"] for r in row["templateResult"]["candidates"]} else "unknown",
+             "reason": "Discovered; candidate-specific duties reconciled below" if cid in {r["candidateId"] for r in row["templateResult"]["candidates"]} else "No primary-operation discovery evidence or binding; not a native-fit rejection or exhaustion",
+             "catalogRecordSha256": _digest(record)} for cid, record in sorted(template_pool.items())]
+            for row in rows},
+    }
+    artifact["contractEnforcementReceipt"]["candidateReconciliation"]["bodySha256"] = _digest(_reconciliation_body(artifact))
+    artifact["fitValidated"] = False
     validate(artifact, verify_sources=False)
     return artifact
 
@@ -811,6 +1034,7 @@ def validate(artifact: dict[str, Any], *, verify_sources: bool = True) -> None:
     }
     if artifact.get("counts") != expected_counts:
         raise ValueError("batch match counts are stale")
+    _validate_reconciliation(artifact)
     if verify_sources:
         for name, source in (artifact.get("sources") or {}).items():
             path = Path(source.get("path", ""))

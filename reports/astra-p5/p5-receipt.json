@@ -1,0 +1,706 @@
+{
+  "P6Started": false,
+  "P7Started": false,
+  "baseCodeRevision": "9136651565204510d259eb1fa11f8939aef0ff26",
+  "blockerOwner": "none",
+  "catalogRevision": "9136651565204510d259eb1fa11f8939aef0ff26",
+  "consumerPolicy": "existing-batch-treatment-policy@1",
+  "externalModelExecution": false,
+  "implementationRevisionResolution": "git log -1 --format=%H -- reports/astra-p5/p5-receipt.json; implementationFiles bind the exact Git contents of that revision",
+  "inputs": {
+    "calibrationManifestSha256": "f7ec1e2248ec8e25916f32b1477e6d840aa7702322e152703b26496cfda2e8c5",
+    "immutableEvidence": [
+      {
+        "path": "reports/astra-p0-p2/p0-receipt.json",
+        "sha256": "be910a9fd7392cc1e04151f4ced0a6643f39bd5670c3e1fab3bb7e02d77f9edf"
+      },
+      {
+        "path": "reports/astra-p0-p2/p1-receipt.json",
+        "sha256": "acc71729779f2caf4c1afcd9c89363e920d3b375d33af69e17c8241f6b5ecddb"
+      },
+      {
+        "path": "reports/astra-p0-p2/p2-receipt.json",
+        "sha256": "e97bfbd9923e75cfbe08335f784f12e55cb90ed167e0bb54f6d5a34efe7f209d"
+      },
+      {
+        "path": "reports/astra-p3-p4/p3-receipt.json",
+        "sha256": "2cc77d0712fcaff37f59e7c3c02309ffec467cc5e15a4ecfc181887d6fe1deb5"
+      },
+      {
+        "path": "reports/astra-p3-p4/p4-receipt.json",
+        "sha256": "986629802bf61ef71fa37c52937cd42dfd045ceca6d9563e0cb9cd7c6c0fc482"
+      },
+      {
+        "path": "reports/visualtask-match-pilot-28-28.json",
+        "sha256": "f7328a5860113597fc51366eae61b076a405bfa2eb01c05df108f137da1b2e77"
+      },
+      {
+        "path": "docs/astra-root-cause/references/gold-standard/storypackage-02-future-volksgeist-task-proposals.json",
+        "sha256": "f48f7ed31e854a7fcf316c4f9366890e1b3a688686d407f747fe46f27918ebde"
+      },
+      {
+        "path": "docs/astra-root-cause/references/gold-standard/storypackage-02-year-seventeen-full-task-proposals.json",
+        "sha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1"
+      },
+      {
+        "path": "reports/astra-matching-review-evidence-20261004.json",
+        "sha256": "b6d2cd12649e7367c3efa1d7c70bd735ff6c94b8d74473bcf5248c0412d19ce5"
+      },
+      {
+        "path": "reports/astra-root-cause/01-acceptance.json",
+        "sha256": "5289fcbe4d5569af6da3af8c9b573b43ccb90af8cb9bacddef8ff48161d02117"
+      },
+      {
+        "path": "reports/astra-root-cause/01-artifact-inventory-details.json",
+        "sha256": "8688dd4fa79c2f9bad576eb9cff53bfff6aa93f5c2a41cc2d2e16e16012e5f2e"
+      },
+      {
+        "path": "reports/astra-root-cause/01-code-symbol-index.json",
+        "sha256": "e026066773a05abfe9a7c88665e305feece45116e500da92d87d00721f14ce35"
+      },
+      {
+        "path": "reports/astra-root-cause/01-evidence-integrity.json",
+        "sha256": "6a700f4f6bed81fdb5fbd767e9c20c58c94a341aa99b1e537cbef8bf010e43a4"
+      },
+      {
+        "path": "reports/astra-root-cause/01-followed-source-inventory.json",
+        "sha256": "b410c7f099d5d62ba49dcf60b384778ecb173da7f7220f87e9f29cba5f587aad"
+      },
+      {
+        "path": "reports/astra-root-cause/01-gold-reference-alignment.json",
+        "sha256": "bca3d3291dd800b22f88534a9a30215ba023bdc0785a816e4c5ae2569714b9af"
+      },
+      {
+        "path": "reports/astra-root-cause/01-harness-source-check.json",
+        "sha256": "3f1bc39a4fd55ae9d20716ba4d75d637916dca047a0126992d771a9914f24494"
+      },
+      {
+        "path": "reports/astra-root-cause/01-review-gallery-binding.json",
+        "sha256": "c5cd56417ec4cb38bd44ab4fba984f625b62f16c4b6272f118ac42f2479d9671"
+      },
+      {
+        "path": "reports/astra-root-cause/01-reviewed-context-resolution.json",
+        "sha256": "3ad09bba64397b5fac9fed1ec8763d7120b13cc78823b6c1e556eb16797b9d22"
+      },
+      {
+        "path": "reports/astra-root-cause/01-source-inventory.json",
+        "sha256": "f6905eceaa6028c057a0099422db1a28482b372c66e666e4b3c62f9d57a86f2c"
+      },
+      {
+        "path": "reports/astra-root-cause/01-system-map.json",
+        "sha256": "04a32a692d70d7e3acb0edf2e8f22d6f8101ca0cb13c1f1ef0dc64eb1047df42"
+      },
+      {
+        "path": "reports/astra-root-cause/02-acceptance.json",
+        "sha256": "e8654c2fb26baab5531644af61d748f060b3811586a5b6e947cdc83f872d84f6"
+      },
+      {
+        "path": "reports/astra-root-cause/02-story-semantics.json",
+        "sha256": "e4e77448e055b61dd2471ff61ba3b28d29efb1ef95701b04832fdae49a969ecd"
+      },
+      {
+        "path": "reports/astra-root-cause/03-acceptance.json",
+        "sha256": "4ac5a2b0eea9fb876addc91cad4d9cce3ac2b529bb28ddfcf467d3d1db8fd312"
+      },
+      {
+        "path": "reports/astra-root-cause/03-upstream-contract-fitness.json",
+        "sha256": "c60de914c7f1a6c1c1d50f8d8f75d38e5867659e966c713dea7b4ee8d1261e67"
+      },
+      {
+        "path": "reports/astra-root-cause/03-validation-probes.json",
+        "sha256": "84caae606a945e0d50eba3a4962721d16bbd26e6905fb1c28545c9d77a830743"
+      },
+      {
+        "path": "reports/astra-root-cause/04-acceptance.json",
+        "sha256": "4e03011a550d860fb3d909dc33b3cce01e5d3247ca9d3a94089954f4f7c82820"
+      },
+      {
+        "path": "reports/astra-root-cause/04-diagnostic-probes.json",
+        "sha256": "14b91c6c67b67e068e4dc86c7980049f704b93d8f4f1dee8c6012a241f0ca350"
+      },
+      {
+        "path": "reports/astra-root-cause/04-matching-transformations.json",
+        "sha256": "38173955cfc9c64efeaad6fb17929851b7f47b1e995a3ca9733c6a22d92b253e"
+      },
+      {
+        "path": "reports/astra-root-cause/04-task-traces.json",
+        "sha256": "056308cdd00bd0ef71790db6951972f7684109e8d2728a0ae196b010d8e0081f"
+      },
+      {
+        "path": "reports/astra-root-cause/05-acceptance.json",
+        "sha256": "00ba1f4ad0fe68d19a6f6bd50096303eac267e00dbda61ec4663cc5a7d6f9876"
+      },
+      {
+        "path": "reports/astra-root-cause/05-catalog-evidence.json",
+        "sha256": "4e4671defa18b61d6d986d7ce749fb1781c907955c36edfe3a8788669461c494"
+      },
+      {
+        "path": "reports/astra-root-cause/05-grammar-capability-audit.json",
+        "sha256": "45239e699adf2b71baec7f15c29f2d7ec7e81b8a215f8e63c5bc4e99e7b43038"
+      },
+      {
+        "path": "reports/astra-root-cause/06-acceptance.json",
+        "sha256": "9b990d96451d8e1e3118c12d3b304f6637ca38fc5f28c86844e5b8eda184802b"
+      },
+      {
+        "path": "reports/astra-root-cause/06-candidate-lineages.json",
+        "sha256": "bffda290440022033a400d165525f7846bd74863967a9b4a01f32d57e1f47f5f"
+      },
+      {
+        "path": "reports/astra-root-cause/06-candidate-pipeline.json",
+        "sha256": "18fe3546468a47fc46d2db059a7fd40085045d19bb08f9713f07af0906eb4203"
+      },
+      {
+        "path": "reports/astra-root-cause/06-pipeline-probes.json",
+        "sha256": "16f31c4be766cae6eea2fbd0b04476d919f23ec93d1dbef030c48966916da981"
+      },
+      {
+        "path": "reports/astra-root-cause/07-acceptance.json",
+        "sha256": "6dad1fd3095b1fe88aec5062e84edb54c23a9165892d78a565076947faacc45e"
+      },
+      {
+        "path": "reports/astra-root-cause/07-evidence-and-reference-details.json",
+        "sha256": "df6230ce15b51ef525ed4f94432b525565c4fcc2c46404f7e4a88cccb80dce15"
+      },
+      {
+        "path": "reports/astra-root-cause/07-human-evidence-analysis.json",
+        "sha256": "46bd8f33da7b48a7eb8dcc2b8b092e383c560461e1f89ab8d6755015a32eb94e"
+      },
+      {
+        "path": "reports/astra-root-cause/08-acceptance.json",
+        "sha256": "6d58706a355eb76413c629ff390b4fff0270d6f1794d99dc9da422702a79e607"
+      },
+      {
+        "path": "reports/astra-root-cause/08-root-cause-and-redesign.json",
+        "sha256": "6c330289691d68411ad7ef5cce81fc0e1ea148219e6412b6dbae80cbe71aa25b"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/future-regression/10-storypackage-adapter.json",
+        "sha256": "1c3af826496a9d1f2e362813f945b8dea189f503f47c3e687d9641f3c64f2956"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/future-regression/20-visualtask-proposals.json",
+        "sha256": "60c3a9d40e632358c816f1eb65e865aaadc7fd312cdbc37ea484cf9b96d15da3"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/future-regression/30-data-media-requirements.json",
+        "sha256": "f13850f1fc51d61753b7b480e0b471c7c16b13c100e99ae07a620eb95dcea84e"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/jayz-drake-heldout/10-storypackage-adapter.json",
+        "sha256": "4189d532c54515d29b33bbf20a4893267b0d215acdc26974ea776a34222b7774"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/jayz-drake-heldout/20-visualtask-proposals.json",
+        "sha256": "c1cb9df0982406770d5a8f1c57623845573629c3ba6432c67c7cb83e301c000a"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/jayz-drake-heldout/30-data-media-requirements.json",
+        "sha256": "406954a366888d6ff6f1198b88f6b613fb8d2e142ae70f6e507acdae09412ac0"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/year-seventeen-regression/10-storypackage-adapter.json",
+        "sha256": "72c3eb3f5ba8eaad2d3db298cc4f796ffa8e0844adbf4edce86974b60a60f262"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/year-seventeen-regression/20-visualtask-proposals.json",
+        "sha256": "59085bcf39330c73b6e5272e43f80c1051da1590186aac2bb5b3c6ced3976ef8"
+      },
+      {
+        "path": "reports/matching-agent-evaluation-20261004/year-seventeen-regression/30-data-media-requirements.json",
+        "sha256": "951e0cee1152aa6c346e9a596ec948157edd7612267507484fb1a645747e0cbe"
+      },
+      {
+        "path": "reports/storypackage-02-apollo-adapter.json",
+        "sha256": "f5c8d09f1adb4622be5b978b5f1eef63d8818f91d72a03d52f4096587037f23e"
+      },
+      {
+        "path": "reports/storypackage-02-apollo-task-proposals.json",
+        "sha256": "bbcba2b964bac9b7e95c3804ad712d74cb6f6e0d2c529756968ad56b76065e0f"
+      },
+      {
+        "path": "reports/storypackage-02-data-assignments.json",
+        "sha256": "470ff52539035a50178574bdf2aed1168c78653010867b47c2c91f2845420d93"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-adapter.json",
+        "sha256": "653a56ed1144547684454bfde4b49bb48d1a5b9d595d8c0f0203aa9790909890"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-candidate-gallery.json",
+        "sha256": "d0d86df7c17961f87904120ab3d1434eba74f1aefe1e3920a6b4dc4f43fd900b"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v11-candidate-gallery.json",
+        "sha256": "a3f74e52b8300b5e97e02529277da22fee59f567ff16a5ab19e1899fc9d9921e"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v12-adapter.json",
+        "sha256": "62634bd5306bbcd634269b8233ef752a6be8b79158f02e9e3641991a1009b49f"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v12-candidate-gallery.json",
+        "sha256": "63e2e9f3055aebfe74781ea17c957314e1adb265ba60dfe69e2069e4ba494b10"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v12-focused-candidate-diversity.json",
+        "sha256": "3c6f863239e157ddf83ed6ae60437b74c29466ae2528f8819be67f3f6eb560e9"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v12-focused-review-queue.json",
+        "sha256": "329d5588f0b525e52e0ee51cde1f81f42519cf81ecd960f08d76825e35a3058c"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v12-focused-review-reconciliation.json",
+        "sha256": "a00ef0692b383fd1cb0b1798e549bf6082b822d2a732611226a4c9eebc26eeb5"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v12-task-proposals.json",
+        "sha256": "2fa870400d171e5289fa2d6f1e61eeab7654e8bc9873327c8be7ca619b30b46f"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v13-candidate-gallery.json",
+        "sha256": "b64b89efcaf1bc6f91485f4cb7189a67117398c0cf322757d639911f9d26e403"
+      },
+      {
+        "path": "reports/storypackage-02-future-volksgeist-v13-task-proposals.json",
+        "sha256": "c19fe756f705cef6550ef489d76410c6460853f5451e7b82bcc34e5950fac90b"
+      },
+      {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v12-adapter.json",
+        "sha256": "39a2cb64d8799198a6a36c0da034144dfc8b2d458e411621c487b573324ee9c0"
+      },
+      {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v12-candidate-gallery.json",
+        "sha256": "385b54faa469420e9a7bccc18de895487dd1107b2156447679275a7ef5ed721e"
+      },
+      {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v12-task-proposals.json",
+        "sha256": "6a49c16eddb3c44e9fa03d8250703353035b5b4b56b3a09bf5da7c6a6839325e"
+      },
+      {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-gallery.json",
+        "sha256": "3339209343220822a2070a5f05259621bbb1b96e00d2a6e1dc9011d5991c218e"
+      },
+      {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v13-focused-candidate-diversity.json",
+        "sha256": "d8520d63e7cac8ce6f25ba64f6044f38bf657edbbd0014bbd6e77a7a2b50850d"
+      },
+      {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v13-focused-review-queue.json",
+        "sha256": "6d6afc28b9571d5ad7e11940cc1e1646e5d94d8ad8e69e108f4ffa6d7eff3126"
+      },
+      {
+        "path": "reports/storypackage-02-jayz-drake-settle-it-v13-task-proposals.json",
+        "sha256": "21d2c79ea8310d85b6f40df0fc77e7990dac42d8cbde364fa4f6d86250178665"
+      },
+      {
+        "path": "reports/storypackage-02-year-seventeen-full-adapter.json",
+        "sha256": "ff2be05f968b91d360753cac9f9c42c8e21f84821f180fee07bf17c81f506914"
+      },
+      {
+        "path": "reports/storypackage-02-year-seventeen-full-task-proposals.json",
+        "sha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1"
+      },
+      {
+        "path": "reports/storypackage-02-year-seventeen-v12-adapter.json",
+        "sha256": "4b716762fa368109d06396d0feb22f7423f960a7013ef6b5812d555ba590727e"
+      },
+      {
+        "path": "reports/storypackage-02-year-seventeen-v12-task-proposals.json",
+        "sha256": "82741057b1ec7a6b193f1bb8d4dc4176764593f46bace3c6cf07419de0c79503"
+      }
+    ],
+    "implementationFiles": [
+      {
+        "path": "pipeline/visualtask_batch_matching.py",
+        "sha256": "b64e8b4f38cd40a076af88693aa540582151b055a2c85a03cdbb857910599b0d"
+      },
+      {
+        "path": "pipeline/visualtask_matching.py",
+        "sha256": "a9b40b8d65007ee2fbd8fceff75f5d25c90b56e3a99e82249c3516c0ca98c53c"
+      },
+      {
+        "path": "tests/test_astra_p5.py",
+        "sha256": "e29073ccebf8dcebb0195128317769f47006dec936ebd4aaaa90a3e927d59b3c"
+      },
+      {
+        "path": "tests/astra_p5_evidence.py",
+        "sha256": "30c6d4315e8329718951c1e2b248dbd3652745bd50d76dd55b9b2be2608719e5"
+      },
+      {
+        "path": "tests/test_visualtask_batch_matching.py",
+        "sha256": "9e92259b2ed424e7c4128be884862c28d1a4e600ba5bf91631872d3febf9bd05"
+      },
+      {
+        "path": "tests/test_astra_p0_p2.py",
+        "sha256": "bd1a65a04ef825e86e6b92d6eb6376b7a3b86e700f1a0c370b2b1f190b33d812"
+      },
+      {
+        "path": "tests/verify_astra_stage.py",
+        "sha256": "984d60bdff1bffa7b82573847f6344ea5caff91de7b6b7c63637521c7f42351f"
+      },
+      {
+        "path": "plans/ASTRA_P5_IMPLEMENTATION_PLAN_20261005.md",
+        "sha256": "aeb800b2c8b32edb9f099e88e0e3e47d35fd5853d8a7bf77a5f2dbeedfd887f6"
+      }
+    ],
+    "sourceAndCatalogFiles": [
+      {
+        "path": "docs/p5-gpt-6-1-sol-handoff/AUTHORIZATION.json",
+        "sha256": "b8a5dd86d70a06d655cb564d4806cbbbe686ecbfc4372e864795cfdeef1e471b"
+      },
+      {
+        "path": "docs/p5-gpt-6-1-sol-handoff/MASTER_PROMPT.md",
+        "sha256": "6a10c7d4aec9fb8fb2a8fa79c3e5cf435a612a653961e5176158c6f8fc72b09b"
+      },
+      {
+        "path": "reports/astra-p0-p2/calibration-manifest.json",
+        "sha256": "f7ec1e2248ec8e25916f32b1477e6d840aa7702322e152703b26496cfda2e8c5"
+      },
+      {
+        "path": "grammar/capability.json",
+        "sha256": "0608016aec2b47b717b43b33304a6c001b5b669797bd808eea39a651e4b81b34"
+      },
+      {
+        "path": "grammar/local-templates.json",
+        "sha256": "29bec530753cf5011a74bcab964832c1ba93a2954e0f061822aa00eb64fc0e31"
+      },
+      {
+        "path": "grammar/entity-roster-source.json",
+        "sha256": "bea0738590218838129fe10283ea433fcf3173891681c8761ffa3353d3f4effe"
+      },
+      {
+        "path": "grammar/ae-scene-composition-mappings.json",
+        "sha256": "7fa49560a302ba75b724bb45b8e47eee0a5a656da8d89f16e5fd8cacf3606b4f"
+      },
+      {
+        "path": "grammar/ae-template-technical-index.json",
+        "sha256": "c47f658b4c8a999721c36a31d562964138fbc06e6999b60849be57d5f4ebfc72"
+      },
+      {
+        "path": "astra-selector-design/approved_media/approved-list.json",
+        "sha256": "96a699ae623ad00e19680e58256734bb6519fa1cc087d310d39f03cf8d4a843e"
+      },
+      {
+        "path": "pipeline/storypackage_matching_handoff.py",
+        "sha256": "d0364e4e0826e8da7ee6cd91f0aee6bde5931ae3d3d26ae999d1da8ce6a6b1b1"
+      },
+      {
+        "path": "pipeline/storypackage_data_assignment.py",
+        "sha256": "d5cffe389c18da846a1aa77089dff222f3d9d64fa36539f132a2b61864f0f43c"
+      },
+      {
+        "path": "pipeline/media_candidates.py",
+        "sha256": "853c8fb5a71836bfebbf7e1142dc3e15c4cdf50297af137e40d5d9743648f1b2"
+      },
+      {
+        "path": "match-trial/candidates.py",
+        "sha256": "25b155e69e5b919fe0f4817f27616f26b3970a0a4a32cbe425f7d836312a6647"
+      },
+      {
+        "path": "grammar/bindings.json",
+        "sha256": "7a07459e56983404bf8c0afb8f4c5c6b106fb604f067690009f3ca7970972fd8"
+      },
+      {
+        "path": "reports/storypackage-02-data-assignments.json",
+        "sha256": "470ff52539035a50178574bdf2aed1168c78653010867b47c2c91f2845420d93"
+      },
+      {
+        "path": "reports/prior-editor-review-reconciliation.json",
+        "sha256": "a1f074aa3a64ea2ab5b53356088259e4b5f50469eed2f8a7b7ad7de498776049"
+      },
+      {
+        "path": "tests/fixtures/visualtask_batch_matching/current-request.json",
+        "sha256": "853ba996a2272f0b924be238f769adaae76623c90958795cd9899b44dffe9314"
+      },
+      {
+        "path": "reports/storypackage-02-year-seventeen-matching-handoff.json",
+        "sha256": "7146ee8128064e23e8d047f3f4fbd24d727b04e19f1d2841bf1272cdc96acbde"
+      },
+      {
+        "path": "tests/fixtures/visualtask_batch_matching/current-story-package.json",
+        "sha256": "2c767f6bef89db51f0cee879559924287992a2c4306392fba3ec851cd197b664"
+      },
+      {
+        "path": "reports/visualtask-ae-spec-comparison.json",
+        "sha256": "6acfcd30887eb635f2f378e7de714f06ce00e69817390a9e6d8dac67068660a4"
+      },
+      {
+        "path": "grammar/visual-task-technical-requirements.json",
+        "sha256": "673d7b495b05d724f295af4c60b1c9f5aad686084d5d3c5c96ffa5e3ded58110"
+      },
+      {
+        "path": "reports/post-render-timing-feasibility.json",
+        "sha256": "6dae7c291a99d395fb821791002702f69fcfe4253fc60419ede9af0a3ebe9922"
+      },
+      {
+        "path": "treatment-requirements/pilot-001/capacity-comparison.json",
+        "sha256": "67a4396ca78d639867307b32eceb9be7b818e51f63d0f284ee13092368b3afe0"
+      },
+      {
+        "path": "grammar/visual-tasks.json",
+        "sha256": "a58c8e40a6db93cb422a9337f1f84534e4cc0ca9ac7d06457020d82c564fbc4f"
+      },
+      {
+        "path": "reports/astra-root-cause/03-upstream-contract-fitness.json",
+        "sha256": "c60de914c7f1a6c1c1d50f8d8f75d38e5867659e966c713dea7b4ee8d1261e67"
+      },
+      {
+        "path": "reports/astra-root-cause/04-matching-transformations.json",
+        "sha256": "38173955cfc9c64efeaad6fb17929851b7f47b1e995a3ca9733c6a22d92b253e"
+      },
+      {
+        "path": "reports/astra-root-cause/05-grammar-capability-audit.json",
+        "sha256": "45239e699adf2b71baec7f15c29f2d7ec7e81b8a215f8e63c5bc4e99e7b43038"
+      },
+      {
+        "path": "reports/astra-root-cause/06-candidate-pipeline.json",
+        "sha256": "18fe3546468a47fc46d2db059a7fd40085045d19bb08f9713f07af0906eb4203"
+      },
+      {
+        "path": "reports/astra-root-cause/07-human-evidence-analysis.json",
+        "sha256": "46bd8f33da7b48a7eb8dcc2b8b092e383c560461e1f89ab8d6755015a32eb94e"
+      }
+    ]
+  },
+  "migrationLedger": [
+    {
+      "after": "1466 current and 74 synthetic variants assessed before reduction; all 661 prior candidates retained",
+      "before": "627 current and 34 synthetic representatives assessed; sibling IDs lost at serialization"
+    },
+    {
+      "after": "Explicit supported/conflict/unknown evidence for every declared duty and candidate scope; incomplete evidence remains unresolved",
+      "before": "conditional family summaries and coarse reviewed verdicts"
+    },
+    {
+      "after": "Full catalog and Media metadata fingerprints and exact source/ledger replay",
+      "before": "ID-only effective pool fingerprints"
+    },
+    {
+      "after": "Missing/stale/incomplete/reordered receipt and task/duty/catalog/source mutations block validated publication",
+      "before": "batch publication lacks pre-reduction receipt"
+    }
+  ],
+  "model": "gpt-6.1-sol",
+  "nativeExecution": false,
+  "next": "Stop for editor review after push; P6 not authorized or started.",
+  "outputs": [
+    {
+      "path": "reports/astra-p5/current-baseline.json",
+      "sha256": "13abe2a64c55cb51fe453399417dfa5d8abc245ca747ca0185df596e8b631b70"
+    },
+    {
+      "path": "reports/astra-p5/current-ledger.json.gz",
+      "sha256": "b8c195f72f3f9ea0df92f87fb142ee564f310bae3f2cef8ccd7700181f20fdd0"
+    },
+    {
+      "path": "reports/astra-p5/effective-media-pool.json",
+      "sha256": "11f11cbbc0cdaf30775d4b92463639b926eac036d533bf4972f1bab3f7c717d9"
+    },
+    {
+      "path": "reports/astra-p5/effective-template-pool.json",
+      "sha256": "b247bb1f2df008cbc39bd8c5a4c0a0020930e1901117456297858da783ce6c19"
+    },
+    {
+      "path": "reports/astra-p5/p5-baseline-outcomes.json",
+      "sha256": "ed85b210dc90232c8081b2fcbd665fe2c902a4283f7afaa33e20dfbdb878ef64"
+    },
+    {
+      "path": "reports/astra-p5/p5-baseline-target.log",
+      "sha256": "142b01d159c80bedfbc2b98c1926fdd14186a7be106b35f004de7f5a8357eb07"
+    },
+    {
+      "path": "reports/astra-p5/p5-baseline-test.log",
+      "sha256": "983b347ee4e0accfc7b7b5619fff970e0f78f39a4591c90a7e4c8ed8bfa0abc1"
+    },
+    {
+      "path": "reports/astra-p5/p5-evidence-build.log",
+      "sha256": "5e362727f12351dfa0b7d1f7721c6612371e7f627e7c251df0e4123d86dad793"
+    },
+    {
+      "path": "reports/astra-p5/p5-evidence-replay.log",
+      "sha256": "5e362727f12351dfa0b7d1f7721c6612371e7f627e7c251df0e4123d86dad793"
+    },
+    {
+      "path": "reports/astra-p5/p5-expanded-test.log",
+      "sha256": "4301e951d980dd7e08349d937432cd4dd8095f66a436f3bd63a1d5eb393e8077"
+    },
+    {
+      "path": "reports/astra-p5/p5-focused-test.log",
+      "sha256": "b17a85b0f24f23fe74880f97c65503bc1c29eb4bdfb218d22f925467b205c8d1"
+    },
+    {
+      "path": "reports/astra-p5/p5-frozen-outcomes.json",
+      "sha256": "4bda8061d0b6b7278665087dcc8d7f84e4bbd02127db7e834e1d525ef34031ee"
+    },
+    {
+      "path": "reports/astra-p5/p5-frozen-test.log",
+      "sha256": "5d939054f6fc476d9e6e2a1ea5e4db2ed90b18487dcacee8c84b2e30f500444c"
+    },
+    {
+      "path": "reports/astra-p5/p5-full-suite.log",
+      "sha256": "89330339d07b2f4e9de60486a6adc28f79d1535d1793adc8ef99a70f976351cf"
+    },
+    {
+      "path": "reports/astra-p5/p5-integration-probe.log",
+      "sha256": "00b3a2dd37ca8fddabac9a49a48d3781cc51911ce307f8cfe3ba8ac0fb817e67"
+    },
+    {
+      "path": "reports/astra-p5/p5-new-outcomes.json",
+      "sha256": "cac8256d393f30b3220b893f048c62bdb76b7347e7bc84d81cef6a7ccd93d815"
+    },
+    {
+      "path": "reports/astra-p5/p5-new-target.log",
+      "sha256": "3d82e3acd90fd0289099e906e0dc1d97d0c184dda2d7e46c4412fc32b7e75df3"
+    },
+    {
+      "path": "reports/astra-p5/p5-outcome-diff.json",
+      "sha256": "e2891c143a894bfa0854267d1c709d4cf6c612ae78d6e74a86950c08ee39d656"
+    },
+    {
+      "path": "reports/astra-p5/p5-receipt-generation-probe.log",
+      "sha256": "dd267fec2b162694f081e4cbdbb6363610510cefec4ea1e177461c942f4b241e"
+    },
+    {
+      "path": "reports/astra-p5/p5-source-binding-mutation.json",
+      "sha256": "bbffe77cf3e3258f424ffb468a847b4eb1f2f53f5c133594791431d9fd933b48"
+    },
+    {
+      "path": "reports/astra-p5/p5-verifier.log",
+      "sha256": "fe976b86921753d521ce13d6acd0f2de1875ffbfed7b5f848d0398d115495c01"
+    },
+    {
+      "path": "reports/astra-p5/synthetic-baseline.json",
+      "sha256": "29024508dd98bc7b41b1f783cc30f6179939a91acc11ea8864e336353273d115"
+    },
+    {
+      "path": "reports/astra-p5/synthetic-ledger.json.gz",
+      "sha256": "fd0e7a8d635f844c5216ddf8e96a5b407735ebecc9dc1c0d68540d77816981c9"
+    },
+    {
+      "path": "reports/astra-p5/upstream-full-suite.log",
+      "sha256": "d5aab739fabf302ce076e5d08f46deb22eddfbba5e0cb74526add90a06509c0a"
+    },
+    {
+      "path": "reports/astra-p5/upstream-verifiers.log",
+      "sha256": "21d8ae0c16f1dbbab073c28919f78b33db8a8b87728c19588edaa58f7d69b3e3"
+    }
+  ],
+  "reasoningEffort": "medium",
+  "renderingAuthorized": false,
+  "rollback": "Revert only P5 consumers/tests and invalidate reconciled publication; preserve full discovery, source/gold, P0-P4 receipts and frozen evidence. Never promote unknown to fit or exhaustion.",
+  "schemaDelta": null,
+  "schemaVersion": "astra-stage-receipt@1",
+  "scope": "Full-variant source-bound candidate treatment ledger in existing batch runner before validated family/display reduction; no P6/P7 implementation.",
+  "selectionAuthorized": false,
+  "sourceAndGoldBytesUnchanged": true,
+  "sourceAuthorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+  "stage": "P5",
+  "status": "complete",
+  "tests": [
+    {
+      "command": "for stage in P0 P1 P2 P3 P4; do python3 tests/verify_astra_stage.py \"$stage\"; done",
+      "result": "PASS",
+      "stages": 5
+    },
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" SHARED_ENTITY_ROSTER_PATH=/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json python3 -m unittest discover -s tests",
+      "expectedFailures": 2,
+      "result": "PASS before production changes",
+      "run": 260
+    },
+    {
+      "command": "python3 -m unittest tests.test_astra_p5 -v",
+      "errors": 0,
+      "failures": 9,
+      "log": "reports/astra-p5/p5-baseline-test.log",
+      "result": "TEST-FIRST FAIL",
+      "run": 9
+    },
+    {
+      "command": "ASTRA_BASELINE_PROBE=1 python3 tests/test_astra_p0_p2.py LaterStageBaselineFailures.test_p5_sibling_variants_remain_available_for_fit --record reports/astra-p5/p5-baseline-outcomes.json",
+      "errors": 0,
+      "failures": 1,
+      "result": "TEST-FIRST FAIL",
+      "run": 1
+    },
+    {
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" python3 -m unittest tests.test_astra_p5 tests.test_visualtask_batch_matching tests.test_astra_p4",
+      "errors": 0,
+      "failures": 0,
+      "result": "PASS",
+      "run": 42
+    },
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4,P5 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" SHARED_ENTITY_ROSTER_PATH=/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json python3 -m unittest discover -s tests",
+      "errors": 0,
+      "expectedFailures": 1,
+      "failures": 0,
+      "pendingStages": [
+        "P6"
+      ],
+      "result": "PASS",
+      "run": 276
+    },
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4,P5 python3 tests/test_astra_p0_p2.py --record reports/astra-p5/p5-frozen-outcomes.json",
+      "expectedFailures": 1,
+      "result": "PASS",
+      "run": 15
+    },
+    {
+      "baselineRepresentativesRetained": 661,
+      "command": "python3 tests/astra_p5_evidence.py --write && python3 tests/astra_p5_evidence.py",
+      "nativeFitClaims": 0,
+      "result": "PASS",
+      "variants": 1540
+    },
+    {
+      "command": "python3 tests/verify_astra_stage.py P5",
+      "result": "PASS; both P3/P4 dependencies, own code/outputs and source/catalog input hashes verified"
+    },
+    {
+      "command": "P5 receipt source/catalog digest mutation probe",
+      "log": "reports/astra-p5/p5-source-binding-mutation.json",
+      "result": "PASS; altered declared input digest rejected; original receipt restored byte-for-byte"
+    }
+  ],
+  "unresolved": [
+    {
+      "owner": "matching",
+      "state": "Real candidates retain unproven duties/native controls; zero real native/adapted-fit claims. Window-only or stale proof remains unresolved."
+    },
+    {
+      "owner": "data",
+      "state": "Unsupported legacy transforms and absent source facts remain unknown; no value or meaning is invented."
+    },
+    {
+      "owner": "media",
+      "state": "Named assets/framing/aspect/cutout/static and dwell demands remain source-bound duties; missing assets remain independent typed sourcing gaps."
+    },
+    {
+      "owner": "you",
+      "state": "Independent editorial/native quality approval pending; no semantic quality or review-time promotion."
+    }
+  ],
+  "upstreamReceiptBytesUnchanged": true,
+  "upstreamReceipts": [
+    {
+      "path": "reports/astra-p3-p4/p3-receipt.json",
+      "sha256": "2cc77d0712fcaff37f59e7c3c02309ffec467cc5e15a4ecfc181887d6fe1deb5",
+      "stage": "P3"
+    },
+    {
+      "path": "reports/astra-p3-p4/p4-receipt.json",
+      "sha256": "986629802bf61ef71fa37c52937cd42dfd045ceca6d9563e0cb9cd7c6c0fc482",
+      "stage": "P4"
+    }
+  ],
+  "warnings": [
+    "Existing unclosed file/SQLite ResourceWarnings remain.",
+    "p5-integration-probe.log preserves six old assertion failures before explicit evidence-aware migration; final tests pass.",
+    "p5-receipt-generation-probe.log records an intermediate packaging failure caused by a nonexistent correction filename; corrections are bound through the existing grammar/local-templates.json."
+  ],
+  "workflowReview": "Existing evidence/gap/treatment/receipt containers support this repair; no replacement framework, native execution or unsupported source schema. Existing compact gallery stays explicitly unvalidated discovery; P6 has not connected ordering/display to the ledger."
+}

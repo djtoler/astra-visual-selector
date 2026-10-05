@@ -1,0 +1,2572 @@
+{
+  "activationState": "review_only_not_connected",
+  "batchId": "unrelated-synthetic-story",
+  "consumerFingerprints": {
+    "productionReadyMediaPool": "7d5a2f6dffc67f1197b090a2a9283a69c5df76db6043bf285a0878e629afff71",
+    "templatePool": "1fd98075ee39c691b3eceb5cb40e4e186a5fcb2b1921c76c2d033e1ba755fcac"
+  },
+  "contractEnforcementReceipt": {
+    "contracts": {
+      "entrypoints": {
+        "id": "mandatory-matching-entrypoints-v1",
+        "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+      },
+      "generalMatching": {
+        "id": "general-storypackage-matching-layer-v1",
+        "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+      },
+      "stageOrder": {
+        "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+      }
+    },
+    "enforced": true,
+    "entrypoint": "visualtask_batch_matching.build",
+    "mode": "review_only",
+    "productionRequiresCompleteHarness": true,
+    "renderingAuthorized": false,
+    "schemaVersion": 1,
+    "selectionAuthorized": false
+  },
+  "counts": {
+    "mediaVerdicts": {
+      "available": 1,
+      "not_required": 1
+    },
+    "sourceBeats": 2,
+    "storyHandoffTasks": 0,
+    "templateVerdicts": {
+      "conditional": 2
+    },
+    "visualTasks": 2
+  },
+  "purpose": "Review-only full-VisualTask template and media matching",
+  "renderingAuthorized": false,
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sources": {
+    "bindings": {
+      "bytes": 465805,
+      "path": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json",
+      "sha256": "7a07459e56983404bf8c0afb8f4c5c6b106fb604f067690009f3ca7970972fd8"
+    },
+    "request": {
+      "bytes": 606,
+      "path": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/fixtures/visualtask_batch_matching/synthetic-request.json",
+      "sha256": "a6c108db391a3130d33121559a9a620e33c8a5bb27a8a8a9f3980d8194293cea"
+    },
+    "storyPackage": {
+      "bytes": 286,
+      "path": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/fixtures/visualtask_batch_matching/synthetic-story-package.json",
+      "sha256": "555ffce7e77d029c4bce09e74e1aa36bca17778b5e2e839e69cfad7bdec8aa9d"
+    },
+    "technicalComparison": {
+      "bytes": 1800,
+      "path": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/fixtures/visualtask_batch_matching/synthetic-technical-comparison.json",
+      "sha256": "28f42647770ff5cc92879fad4688459bc871ef83e38dbea9f14e853ce80bf785"
+    },
+    "technicalRequirements": {
+      "bytes": 1560,
+      "path": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/fixtures/visualtask_batch_matching/synthetic-technical-requirements.json",
+      "sha256": "b0c03ce8fa728154900a839cfdddbb6b5c21f47a531f4925e8a07eebe20473fb"
+    },
+    "timingPlans": {
+      "bytes": 435,
+      "path": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/fixtures/visualtask_batch_matching/synthetic-timing-plans.json",
+      "sha256": "cf4275cacd928a7e74e3752f28e16091e73c2a7506479466825ed9eb3cce1fa5"
+    },
+    "treatmentAssessments": {
+      "bytes": 752,
+      "path": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/fixtures/visualtask_batch_matching/synthetic-treatment-assessments.json",
+      "sha256": "2a529b794e46370671d75e9fa7848d3b61d3c21d75fc50072b0d70f6800235fd"
+    },
+    "visualTasks": {
+      "bytes": 1039,
+      "path": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/fixtures/visualtask_batch_matching/synthetic-visual-tasks.json",
+      "sha256": "2cf459ad5f06550c4fbaacf8a683101cb7f46939a45885b281c9094a1014ff63"
+    }
+  },
+  "storyId": "museum-opening",
+  "storyNamespace": "fixture.museum-opening",
+  "tasks": [
+    {
+      "continuityGroup": "museum-opening",
+      "matchingJob": "define_terms",
+      "mediaResult": {
+        "availabilityVerdict": "not_required",
+        "candidateMatchingProvenance": {
+          "quote": "Admission is free before noon.",
+          "reason": "No task-level media demand; sibling media is not inherited.",
+          "requiredMediaKinds": [],
+          "resolver": "existing Production Ready media_candidates.resolve",
+          "scope": "visual_task",
+          "taskId": "museum-opening.rule"
+        },
+        "entities": [],
+        "gaps": [],
+        "groupCandidateIds": [],
+        "individualCandidateIds": {}
+      },
+      "ordinal": 1,
+      "quote": "Admission is free before noon.",
+      "sourceBeatId": "museum-opening-01",
+      "storyRequirements": null,
+      "taskId": "museum-opening.rule",
+      "taskRole": "setup_text",
+      "templateResult": {
+        "candidateCount": 17,
+        "candidates": [
+          {
+            "bindingProvenance": {
+              "evidence": "a multi-line statement on a translucent overlay card",
+              "mechanism": "overlay states a rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "glass-lower-thirds--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "glass-lower-thirds--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": true,
+                "nativeMappingEvidence": "unbound_native_mapping_evidence",
+                "technicalComparison": "present",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "The comparison's native source binding is missing or stale.",
+                  "status": "unresolved",
+                  "type": "current_native_mapping_evidence"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Displays a multi-line statement on a translucent overlay card across full-frame media without comparison."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Minimalist text opener on black background.",
+              "mechanism": "stated rule text",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "history-slideshow-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "text states a rule, weighting, or period rather than a title",
+            "fitAssessment": {
+              "candidateId": "history-slideshow-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 1,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Minimalist text opener on black background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "ENCODING: title",
+              "mechanism": "title overlay states rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "memories-photo-slideshow-creative-slides-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "when the title text states a rule, weighting, or period",
+            "fitAssessment": {
+              "candidateId": "memories-photo-slideshow-creative-slides-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 1,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Title card opener, centered typography over blurred portrait photo with dark vignette"
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "across 7 media well(s) and 3 text field(s)",
+              "mechanism": "multiple text fields over image",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "photo-slideshow-memories-envato--scene-010",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "the three text fields are used to state a rule or period rather than thanks",
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-memories-envato--scene-010",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 3,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Closing card, central framed landscape photo over scattered cards, slow zoom-out, centered title and thank-you text overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Text presentation, grunge style.",
+              "mechanism": "text states a rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "02-documentary-promo--scene-003",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "the text content defines a rule, weighting, or period",
+            "fitAssessment": {
+              "candidateId": "02-documentary-promo--scene-003",
+              "evidence": {
+                "catalogMediaSlots": 0,
+                "catalogSlotsAtOnce": 0,
+                "catalogTextSlots": 2,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Text presentation, grunge style."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "animated lower-third headline",
+              "mechanism": "headline states a rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "grunge-lower-thirds--scene-002",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "grunge-lower-thirds--scene-002",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 2,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Displays a single media slot with an animated lower-third headline and text block overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "large date",
+              "mechanism": "date frames a period",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "06-the-history--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "the date/label is used to mark a period or rule rather than a single happening",
+            "fitAssessment": {
+              "candidateId": "06-the-history--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 3,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Cutout with background cutout, large date, pullback, centered label overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "revealing article copy, sidebar elements, and embedded media",
+              "mechanism": "revealed article body text",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "screen-mockup-rfx--review-003",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "the article copy states the rule or definition",
+            "fitAssessment": {
+              "candidateId": "screen-mockup-rfx--review-003",
+              "evidence": {
+                "catalogMediaSlots": 5,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 15,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Blog article scroll mockup, high-angle downward pan, article text and imagery."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "title and date",
+              "mechanism": "title states a period",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "story-on-photo-slideshow-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "title text is used to state a rule or period rather than an event",
+            "fitAssessment": {
+              "candidateId": "story-on-photo-slideshow-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 3,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Full-frame portrait reveal with title and date, slow zoom-in, textured vignette, diagonal peel exit, part 1 of 9."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "The six criteria are captions, not six separate numeric inputs.",
+              "mechanism": "criteria captions state method",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "46_similarity_criteria_table",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "when captions describe the rule rather than a score",
+            "fitAssessment": {
+              "candidateId": "46_similarity_criteria_table",
+              "evidence": {
+                "catalogMediaSlots": 11,
+                "catalogSlotsAtOnce": 11,
+                "catalogTextSlots": 39,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "A ranking table beside a prominent reference person explains a supplied assessment."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Side-by-side comparison of two options across four distinct criteria or steps.",
+              "mechanism": "numbered criteria rows",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "archive3-comparison-pack-ae--review-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "when the rows state a rule or weighting rather than a scored comparison",
+            "fitAssessment": {
+              "candidateId": "archive3-comparison-pack-ae--review-001",
+              "evidence": {
+                "catalogMediaSlots": 0,
+                "catalogSlotsAtOnce": 2,
+                "catalogTextSlots": 16,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Two-column comparison overlay, four animated stacked rows, centered numbered badges, top title."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "each with an icon and supporting text",
+              "mechanism": "hub-linked rule captions",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "circle-list-infographic--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "when each row's text states a rule or definition rather than a member name",
+            "fitAssessment": {
+              "candidateId": "circle-list-infographic--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 8,
+                "catalogSlotsAtOnce": 8,
+                "catalogTextSlots": 18,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Builds a vertical list of labelled items sequentially beside a central hub, each with an icon and supporting text."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Introductory headline or topic statement.",
+              "mechanism": "held title typography",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "modern-photo-slideshow-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "the headline text states a rule or period rather than a topic name",
+            "fitAssessment": {
+              "candidateId": "modern-photo-slideshow-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 0,
+                "catalogSlotsAtOnce": 0,
+                "catalogTextSlots": 2,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Centered title reveal, blurred photo stack background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "opening title with paired flanking photo cards",
+              "mechanism": "central title text field",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "photo-slideshow-smooth-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "title text states a rule or period instead of a name",
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-smooth-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 2,
+                "catalogSlotsAtOnce": 2,
+                "catalogTextSlots": 1,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Opening title with paired flanking photo cards, slow push-in, blurred background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Core mantras or slogans",
+              "mechanism": "mantra framed as rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "text-list-carousel--review-003",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "mantra text states a rule rather than a slogan",
+            "fitAssessment": {
+              "candidateId": "text-list-carousel--review-003",
+              "evidence": {
+                "catalogMediaSlots": 0,
+                "catalogSlotsAtOnce": 3,
+                "catalogTextSlots": 10,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Text list carousel, vertical upward scroll, centered typography, black background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Presents an opening title card followed by individual media items revealed sequentially across a stack.",
+              "mechanism": "title card states rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "intro-slideshow-full-720p--scene-040",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": "when the title text states a rule, weighting, or period",
+            "fitAssessment": {
+              "candidateId": "intro-slideshow-full-720p--scene-040",
+              "evidence": {
+                "catalogMediaSlots": 2,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 3,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Individual or related vertical entity reveal, part 1 of 5."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Introducing a single concept, design style, or property.",
+              "mechanism": "titled single concept frame",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "minimalism-slideshow--review-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 0,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the time limit must be legible"
+              ],
+              "presentationContract": {
+                "entityCount": 0,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the time limit must be legible"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Admission is free before noon.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.rule",
+              "taskRole": "setup_text"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "minimalism-slideshow--review-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 1,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "status": "conditional",
+                  "type": "native_text_editability_and_layout"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Single landscape photo reveal, frosted glass border, subtle push-in, title top-left."
+          }
+        ],
+        "evidenceBoundary": "retrieval_is_candidate_discovery; fit_is_exact_evidence_comparison; neither_is_selection",
+        "fitVerdict": "conditional",
+        "gaps": []
+      }
+    },
+    {
+      "continuityGroup": "museum-opening",
+      "matchingJob": "define_terms",
+      "mediaResult": {
+        "availabilityVerdict": "available",
+        "candidateMatchingProvenance": {
+          "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+          "requiredMediaKinds": [
+            "person"
+          ],
+          "resolver": "existing Production Ready media_candidates.resolve",
+          "scope": "visual_task",
+          "taskId": "museum-opening.host"
+        },
+        "entities": [
+          "Snoop Dogg"
+        ],
+        "gaps": [],
+        "groupCandidateIds": [],
+        "individualCandidateIds": {
+          "Snoop Dogg": [
+            "34f0d5880d5954829c686252",
+            "7d5ec8978307eaac3cacfacf"
+          ]
+        },
+        "slotsNeeded": 1
+      },
+      "ordinal": 2,
+      "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+      "sourceBeatId": "museum-opening-02",
+      "storyRequirements": null,
+      "taskId": "museum-opening.host",
+      "taskRole": "host_portrait",
+      "templateResult": {
+        "candidateCount": 17,
+        "candidates": [
+          {
+            "bindingProvenance": {
+              "evidence": "a multi-line statement on a translucent overlay card",
+              "mechanism": "overlay states a rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "glass-lower-thirds--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "glass-lower-thirds--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "unbound_native_mapping_evidence",
+                "technicalComparison": "present",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "The comparison's native source binding is missing or stale.",
+                  "status": "unresolved",
+                  "type": "current_native_mapping_evidence"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Displays a multi-line statement on a translucent overlay card across full-frame media without comparison."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Minimalist text opener on black background.",
+              "mechanism": "stated rule text",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "history-slideshow-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "text states a rule, weighting, or period rather than a title",
+            "fitAssessment": {
+              "candidateId": "history-slideshow-envato--scene-001",
+              "evidence": {
+                "editorReviewedTreatment": true,
+                "nativeMappingEvidence": "unbound_native_mapping_evidence",
+                "technicalComparison": "present",
+                "timingPlan": "present"
+              },
+              "gaps": [
+                {
+                  "reason": "The comparison's native source binding is missing or stale.",
+                  "status": "unresolved",
+                  "type": "current_native_mapping_evidence"
+                }
+              ],
+              "verdict": "unresolved"
+            },
+            "name": "Minimalist text opener on black background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "ENCODING: title",
+              "mechanism": "title overlay states rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "memories-photo-slideshow-creative-slides-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "when the title text states a rule, weighting, or period",
+            "fitAssessment": {
+              "candidateId": "memories-photo-slideshow-creative-slides-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 1,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Title card opener, centered typography over blurred portrait photo with dark vignette"
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "across 7 media well(s) and 3 text field(s)",
+              "mechanism": "multiple text fields over image",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "photo-slideshow-memories-envato--scene-010",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "the three text fields are used to state a rule or period rather than thanks",
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-memories-envato--scene-010",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 3,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Closing card, central framed landscape photo over scattered cards, slow zoom-out, centered title and thank-you text overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Text presentation, grunge style.",
+              "mechanism": "text states a rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "02-documentary-promo--scene-003",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "the text content defines a rule, weighting, or period",
+            "fitAssessment": {
+              "candidateId": "02-documentary-promo--scene-003",
+              "evidence": {
+                "catalogMediaSlots": 0,
+                "catalogSlotsAtOnce": 0,
+                "catalogTextSlots": 2,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Text presentation, grunge style."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "animated lower-third headline",
+              "mechanism": "headline states a rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "grunge-lower-thirds--scene-002",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "grunge-lower-thirds--scene-002",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 2,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Displays a single media slot with an animated lower-third headline and text block overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "large date",
+              "mechanism": "date frames a period",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "06-the-history--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "the date/label is used to mark a period or rule rather than a single happening",
+            "fitAssessment": {
+              "candidateId": "06-the-history--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 3,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Cutout with background cutout, large date, pullback, centered label overlay."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "revealing article copy, sidebar elements, and embedded media",
+              "mechanism": "revealed article body text",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "screen-mockup-rfx--review-003",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "the article copy states the rule or definition",
+            "fitAssessment": {
+              "candidateId": "screen-mockup-rfx--review-003",
+              "evidence": {
+                "catalogMediaSlots": 5,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 15,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Blog article scroll mockup, high-angle downward pan, article text and imagery."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "title and date",
+              "mechanism": "title states a period",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "story-on-photo-slideshow-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "title text is used to state a rule or period rather than an event",
+            "fitAssessment": {
+              "candidateId": "story-on-photo-slideshow-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 3,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Full-frame portrait reveal with title and date, slow zoom-in, textured vignette, diagonal peel exit, part 1 of 9."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "The six criteria are captions, not six separate numeric inputs.",
+              "mechanism": "criteria captions state method",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "46_similarity_criteria_table",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "when captions describe the rule rather than a score",
+            "fitAssessment": {
+              "candidateId": "46_similarity_criteria_table",
+              "evidence": {
+                "catalogMediaSlots": 11,
+                "catalogSlotsAtOnce": 11,
+                "catalogTextSlots": 39,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "A ranking table beside a prominent reference person explains a supplied assessment."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Side-by-side comparison of two options across four distinct criteria or steps.",
+              "mechanism": "numbered criteria rows",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "archive3-comparison-pack-ae--review-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "when the rows state a rule or weighting rather than a scored comparison",
+            "fitAssessment": {
+              "candidateId": "archive3-comparison-pack-ae--review-001",
+              "evidence": {
+                "catalogMediaSlots": 0,
+                "catalogSlotsAtOnce": 2,
+                "catalogTextSlots": 16,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Two-column comparison overlay, four animated stacked rows, centered numbered badges, top title."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "each with an icon and supporting text",
+              "mechanism": "hub-linked rule captions",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260922T0247",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "circle-list-infographic--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "when each row's text states a rule or definition rather than a member name",
+            "fitAssessment": {
+              "candidateId": "circle-list-infographic--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 8,
+                "catalogSlotsAtOnce": 8,
+                "catalogTextSlots": 18,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Builds a vertical list of labelled items sequentially beside a central hub, each with an icon and supporting text."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Introductory headline or topic statement.",
+              "mechanism": "held title typography",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "modern-photo-slideshow-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "the headline text states a rule or period rather than a topic name",
+            "fitAssessment": {
+              "candidateId": "modern-photo-slideshow-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 0,
+                "catalogSlotsAtOnce": 0,
+                "catalogTextSlots": 2,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Centered title reveal, blurred photo stack background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "opening title with paired flanking photo cards",
+              "mechanism": "central title text field",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "photo-slideshow-smooth-envato--scene-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "title text states a rule or period instead of a name",
+            "fitAssessment": {
+              "candidateId": "photo-slideshow-smooth-envato--scene-001",
+              "evidence": {
+                "catalogMediaSlots": 2,
+                "catalogSlotsAtOnce": 2,
+                "catalogTextSlots": 1,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Opening title with paired flanking photo cards, slow push-in, blurred background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Core mantras or slogans",
+              "mechanism": "mantra framed as rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "text-list-carousel--review-003",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "mantra text states a rule rather than a slogan",
+            "fitAssessment": {
+              "candidateId": "text-list-carousel--review-003",
+              "evidence": {
+                "catalogMediaSlots": 0,
+                "catalogSlotsAtOnce": 3,
+                "catalogTextSlots": 10,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Text list carousel, vertical upward scroll, centered typography, black background."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Presents an opening title card followed by individual media items revealed sequentially across a stack.",
+              "mechanism": "title card states rule",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "conditional"
+            },
+            "candidateId": "intro-slideshow-full-720p--scene-040",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": "when the title text states a rule, weighting, or period",
+            "fitAssessment": {
+              "candidateId": "intro-slideshow-full-720p--scene-040",
+              "evidence": {
+                "catalogMediaSlots": 2,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 3,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Individual or related vertical entity reveal, part 1 of 5."
+          },
+          {
+            "bindingProvenance": {
+              "evidence": "Introducing a single concept, design style, or property.",
+              "mechanism": "titled single concept frame",
+              "model": "claude-sonnet-5",
+              "promptSha": "50337c792883",
+              "runId": "bind-20260920T1144",
+              "source": "pipeline",
+              "verdict": "clear"
+            },
+            "candidateId": "minimalism-slideshow--review-001",
+            "candidateMatchingProvenance": {
+              "candidateDisplayLimit": 10,
+              "displayIdentityCount": 1,
+              "ignoredPriorStorySelections": false,
+              "matchingJob": "define_terms",
+              "perceptibilityConstraints": [
+                "the host identity must be clear"
+              ],
+              "presentationContract": {
+                "entityCount": 1,
+                "evidenceKind": null,
+                "hasCohort": false,
+                "hasTypedValues": false,
+                "mustBePerceptible": [
+                  "the host identity must be clear"
+                ],
+                "needsOnScreenText": false,
+                "operations": [
+                  "concept_statement"
+                ],
+                "primaryOperation": "concept_statement",
+                "quantitativeClaim": false,
+                "wouldBeALie": []
+              },
+              "presentationOperations": [],
+              "quote": "Snoop Dogg welcomes visitors to the exhibition.",
+              "relevanceOrderingApplied": false,
+              "retrievalMode": "legacy_visualtask_replay",
+              "scope": "visual_task",
+              "taskId": "museum-opening.host",
+              "taskRole": "host_portrait"
+            },
+            "condition": null,
+            "fitAssessment": {
+              "candidateId": "minimalism-slideshow--review-001",
+              "evidence": {
+                "catalogMediaSlots": 1,
+                "catalogSlotsAtOnce": 1,
+                "catalogTextSlots": 1,
+                "editorReviewedTreatment": false,
+                "nativeMappingEvidence": "missing",
+                "technicalBasis": "catalog_family_capability",
+                "technicalComparison": "missing",
+                "timingPlan": "missing"
+              },
+              "gaps": [
+                {
+                  "reason": "Family capability is recorded, but the exact child mapping, native controls and timing remain use-time checks.",
+                  "status": "conditional",
+                  "type": "exact_child_validation_deferred_until_use"
+                },
+                {
+                  "reason": "Story focal counts are not template slot counts; the chosen child still needs an exact media-slot plan.",
+                  "status": "conditional",
+                  "type": "candidate_specific_media_slot_mapping"
+                }
+              ],
+              "verdict": "conditional"
+            },
+            "name": "Single landscape photo reveal, frosted glass border, subtle push-in, title top-left."
+          }
+        ],
+        "evidenceBoundary": "retrieval_is_candidate_discovery; fit_is_exact_evidence_comparison; neither_is_selection",
+        "fitVerdict": "conditional",
+        "gaps": []
+      }
+    }
+  ]
+}

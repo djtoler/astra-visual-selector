@@ -1,0 +1,134 @@
+test_all_variants_precede_family_reduction (tests.test_astra_p5.P5TreatmentReconciliation.test_all_variants_precede_family_reduction) ... /Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:568: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-corrections.json' mode='r' encoding='UTF-8'>
+  d = json.load(open(WRONG))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+FAIL
+test_every_duty_is_explicit_and_secondary_cannot_admit_fit (tests.test_astra_p5.P5TreatmentReconciliation.test_every_duty_is_explicit_and_secondary_cannot_admit_fit) ... FAIL
+test_missing_assets_do_not_become_template_conflicts (tests.test_astra_p5.P5TreatmentReconciliation.test_missing_assets_do_not_become_template_conflicts) ... FAIL
+test_missing_or_reordered_receipt_blocks_publication (tests.test_astra_p5.P5TreatmentReconciliation.test_missing_or_reordered_receipt_blocks_publication) ... FAIL
+test_named_work_slot_framing_and_dwell_are_bound (tests.test_astra_p5.P5TreatmentReconciliation.test_named_work_slot_framing_and_dwell_are_bound) ... FAIL
+test_native_unknown_never_exhausts_or_authorizes (tests.test_astra_p5.P5TreatmentReconciliation.test_native_unknown_never_exhausts_or_authorizes) ... FAIL
+test_omitted_duty_or_mutated_adjustment_blocks_publication (tests.test_astra_p5.P5TreatmentReconciliation.test_omitted_duty_or_mutated_adjustment_blocks_publication) ... FAIL
+test_stale_native_mapping_remains_unknown (tests.test_astra_p5.P5TreatmentReconciliation.test_stale_native_mapping_remains_unknown) ... FAIL
+test_stale_task_treatment_data_media_and_mapping_block_publication (tests.test_astra_p5.P5TreatmentReconciliation.test_stale_task_treatment_data_media_and_mapping_block_publication) ... FAIL
+
+======================================================================
+FAIL: test_all_variants_precede_family_reduction (tests.test_astra_p5.P5TreatmentReconciliation.test_all_variants_precede_family_reduction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 65, in test_all_variants_precede_family_reduction
+    self.ledger(artifact)
+    ~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+======================================================================
+FAIL: test_every_duty_is_explicit_and_secondary_cannot_admit_fit (tests.test_astra_p5.P5TreatmentReconciliation.test_every_duty_is_explicit_and_secondary_cannot_admit_fit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 69, in test_every_duty_is_explicit_and_secondary_cannot_admit_fit
+    rows, evidence=self.ledger(self.build())
+                   ~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+======================================================================
+FAIL: test_missing_assets_do_not_become_template_conflicts (tests.test_astra_p5.P5TreatmentReconciliation.test_missing_assets_do_not_become_template_conflicts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 83, in test_missing_assets_do_not_become_template_conflicts
+    artifact=self.build(); self.ledger(artifact)
+                           ~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+======================================================================
+FAIL: test_missing_or_reordered_receipt_blocks_publication (tests.test_astra_p5.P5TreatmentReconciliation.test_missing_or_reordered_receipt_blocks_publication)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 107, in test_missing_or_reordered_receipt_blocks_publication
+    original=self.build(); self.ledger(original)
+                           ~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+======================================================================
+FAIL: test_named_work_slot_framing_and_dwell_are_bound (tests.test_astra_p5.P5TreatmentReconciliation.test_named_work_slot_framing_and_dwell_are_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 76, in test_named_work_slot_framing_and_dwell_are_bound
+    _, evidence=self.ledger(self.build())
+                ~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+======================================================================
+FAIL: test_native_unknown_never_exhausts_or_authorizes (tests.test_astra_p5.P5TreatmentReconciliation.test_native_unknown_never_exhausts_or_authorizes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 91, in test_native_unknown_never_exhausts_or_authorizes
+    artifact=self.build(); rows,_=self.ledger(artifact)
+                                  ~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+======================================================================
+FAIL: test_omitted_duty_or_mutated_adjustment_blocks_publication (tests.test_astra_p5.P5TreatmentReconciliation.test_omitted_duty_or_mutated_adjustment_blocks_publication)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 97, in test_omitted_duty_or_mutated_adjustment_blocks_publication
+    original=self.build(); self.ledger(original)
+                           ~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+======================================================================
+FAIL: test_stale_native_mapping_remains_unknown (tests.test_astra_p5.P5TreatmentReconciliation.test_stale_native_mapping_remains_unknown)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 128, in test_stale_native_mapping_remains_unknown
+    original=self.build(); self.ledger(original)
+                           ~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+======================================================================
+FAIL: test_stale_task_treatment_data_media_and_mapping_block_publication (tests.test_astra_p5.P5TreatmentReconciliation.test_stale_task_treatment_data_media_and_mapping_block_publication)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 118, in test_stale_task_treatment_data_media_and_mapping_block_publication
+    original=self.build(); self.ledger(original)
+                           ~~~~~~~~~~~^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p5.py", line 57, in ledger
+    self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the second set but not the first:
+'example-pack--scene-002'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.077s
+
+FAILED (failures=9)

@@ -1,0 +1,17 @@
+test_p5_sibling_variants_remain_available_for_fit (__main__.LaterStageBaselineFailures.test_p5_sibling_variants_remain_available_for_fit) ... FAIL
+
+======================================================================
+FAIL: test_p5_sibling_variants_remain_available_for_fit (__main__.LaterStageBaselineFailures.test_p5_sibling_variants_remain_available_for_fit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 247, in test_p5_sibling_variants_remain_available_for_fit
+    self.assertTrue(any(row.get("siblings") or row.get("_siblings") for row in result),
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "family representatives serialize no sibling alternatives")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : family representatives serialize no sibling alternatives
+
+----------------------------------------------------------------------
+Ran 1 test in 0.302s
+
+FAILED (failures=1)

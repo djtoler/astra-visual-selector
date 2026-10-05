@@ -1,0 +1,20 @@
+{
+  "command": "ASTRA_BASELINE_PROBE=1 ASTRA_TEST_RUNTIME_ROOT=../matching-frozen python3 tests/test_astra_p0_p2.py --record reports/astra-p0-p2/p0-baseline-outcomes.json",
+  "counts": {
+    "errors": 0,
+    "expectedFailures": 0,
+    "failures": 1,
+    "run": 1
+  },
+  "modelExecution": false,
+  "runtimeCommit": "9136651565204510d259eb1fa11f8939aef0ff26",
+  "schemaVersion": "astra-baseline-outcomes@1",
+  "tests": [
+    {
+      "outcome": "assertion_failure",
+      "reason": "False is not true : family representatives serialize no sibling alternatives",
+      "testId": "__main__.LaterStageBaselineFailures.test_p5_sibling_variants_remain_available_for_fit"
+    }
+  ],
+  "testsSha256": "a4bc4a6937299d8f8e1e70d56f59a674a4c620328a538ab34b8ac401203bf2c6"
+}

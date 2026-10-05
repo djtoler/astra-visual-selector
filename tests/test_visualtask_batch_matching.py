@@ -36,10 +36,10 @@ class FullVisualTaskBatchMatching(unittest.TestCase):
         by_id = {row["taskId"]: row for row in self.synthetic["tasks"]}
         text_only = by_id["museum-opening.rule"]
         host = by_id["museum-opening.host"]
-        # The original synthetic comparison declares native capacities but binds
-        # no mapping/index sources. It cannot certify native or adapted fit.
-        self.assertEqual(text_only["templateResult"]["fitVerdict"], "conditional")
-        self.assertEqual(host["templateResult"]["fitVerdict"], "conditional")
+        # Unbound native controls and unproven duties remain unresolved.
+        # The complete ledger preserves all variants and sourcing gaps.
+        self.assertEqual(text_only["templateResult"]["fitVerdict"], "unresolved")
+        self.assertEqual(host["templateResult"]["fitVerdict"], "unresolved")
         for task in (text_only, host):
             self.assertTrue(any(gap["type"] == "current_native_mapping_evidence"
                                 for candidate in task["templateResult"]["candidates"]
@@ -56,7 +56,7 @@ class FullVisualTaskBatchMatching(unittest.TestCase):
         self.assertEqual(by_candidate["history-slideshow-envato--scene-001"]["verdict"], "unresolved")
         self.assertEqual(by_candidate["glass-lower-thirds--scene-001"]["verdict"], "unresolved")
         self.assertEqual(by_candidate["history-slideshow-envato--scene-001"]["gaps"][0]["type"], "current_native_mapping_evidence")
-        self.assertEqual(by_candidate["photo-slideshow-memories-envato--scene-010"]["verdict"], "conditional")
+        self.assertEqual(by_candidate["photo-slideshow-memories-envato--scene-010"]["verdict"], "unresolved")
         self.assertIn(
             "exact_child_validation_deferred_until_use",
             {gap["type"] for gap in by_candidate["photo-slideshow-memories-envato--scene-010"]["gaps"]},
@@ -67,7 +67,7 @@ class FullVisualTaskBatchMatching(unittest.TestCase):
     def test_editor_reviewed_current_treatment_is_conditional_not_selected(self):
         by_id = {row["taskId"]: row for row in self.current["tasks"]}
         result = by_id["02-02a.main"]["templateResult"]
-        self.assertEqual(result["fitVerdict"], "conditional")
+        self.assertEqual(result["fitVerdict"], "unresolved")
         candidate = next(
             row for row in result["candidates"]
             if row["candidateId"] == "screen-mockup-rfx--review-002"
@@ -143,15 +143,21 @@ class FullVisualTaskBatchMatching(unittest.TestCase):
             if row["candidateId"] == "glass-lower-thirds--scene-001"
         )
         assessment = candidate["fitAssessment"]
-        self.assertEqual(assessment["verdict"], "conditional")
+        self.assertEqual(assessment["verdict"], "unresolved")
         self.assertEqual(assessment["evidence"]["technicalBasis"], "catalog_family_capability")
         self.assertNotEqual(assessment["verdict"], "native_fit")
+        self.assertTrue(assessment["evidence"]["nativeFitUnknown"])
+        self.assertTrue(any(row["status"] == "unknown" for row in assessment["evidence"]["requirements"]))
 
     def test_batch_reconciles_every_bound_family_before_reporting_a_shortage(self):
         by_id = {row["taskId"]: row for row in self.current["tasks"]}
         exhaustive = by_id["17-17.main"]["templateResult"]["candidates"]
-        self.assertEqual(len(exhaustive), 17)
-        self.assertEqual(len({row["candidateId"] for row in exhaustive}), 17)
+        self.assertEqual(len(exhaustive), 37)
+        self.assertEqual(len({row["candidateId"] for row in exhaustive}), 37)
+        receipt = self.current["contractEnforcementReceipt"]["candidateReconciliation"]
+        self.assertEqual(receipt["discoveredVariants"]["17-17.main"],
+                         [row["candidateId"] for row in exhaustive])
+        self.assertTrue(all(row["fitAssessment"]["evidence"]["assessmentComplete"] for row in exhaustive))
 
     def test_prior_selected_candidate_is_admitted_but_dismissed_candidates_are_not(self):
         by_id = {row["taskId"]: row for row in self.current["tasks"]}
@@ -193,7 +199,7 @@ class FullVisualTaskBatchMatching(unittest.TestCase):
 
     def test_task_fit_cannot_disagree_with_candidate_evidence(self):
         broken = copy.deepcopy(self.synthetic)
-        broken["tasks"][0]["templateResult"]["fitVerdict"] = "unresolved"
+        broken["tasks"][0]["templateResult"]["fitVerdict"] = "native_fit"
         broken["counts"]["templateVerdicts"] = {"adapted_fit": 1, "unresolved": 1}
         with self.assertRaisesRegex(ValueError, "template-fit verdict is stale"):
             subject.validate(broken, verify_sources=False)
