@@ -19,13 +19,90 @@
     }
   ],
   "combinedVerification": {
+    "errors": 0,
     "expectedFailures": 2,
+    "failures": 0,
+    "fullRepositoryTests": 260,
+    "historicalStageSuiteTests": 179,
     "pendingStages": [
       "P5",
       "P6"
     ],
     "sourceGoldAndHistoricalArtifactsUnchanged": true,
     "tests": 179
+  },
+  "correctionVerification": {
+    "P5Started": false,
+    "contract": "Matching gaps intentionally includes unresolved source-fact verification. Adapter checker gaps remain unchanged. Exactly one source_fact_unverified per accepted adapter claim with status unverified; no factual verification or selection/rendering authority is conferred.",
+    "crossStoryAcceptance": {
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" python3 -m unittest tests.test_storypackage_cross_story",
+      "errors": 0,
+      "failures": 0,
+      "log": "reports/astra-p3-p4/cr-01-cross-story-test.log",
+      "result": "PASS",
+      "run": 3
+    },
+    "focusedSuite": {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" SHARED_ENTITY_ROSTER_PATH=/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json python3 -m unittest tests.test_astra_p3 tests.test_astra_p4 tests.test_astra_p2 tests.test_astra_p1 tests.test_astra_p0_p2 tests.test_storypackage_adapter tests.test_matching_agent tests.test_matching_agent_config tests.test_matching_agent_runner tests.test_matching_agent_contracts tests.test_storypackage_data_assignment tests.test_storypackage_data_handoff tests.test_storypackage_matching_handoff tests.test_storypackage_splitter tests.test_visualtask_split_proposals tests.test_visualtask_matching tests.test_visualtask_batch_matching tests.test_focused_review_queue tests.test_focused_review_reconciliation tests.test_matching_contract_gate tests.test_astra_review_evidence tests.test_astra_root_cause_workflow tests.test_visualtask_technical_requirements tests.test_heldout_matching_integration",
+      "errors": 0,
+      "expectedFailures": 2,
+      "failures": 0,
+      "log": "reports/astra-p3-p4/cr-01-focused-suite.log",
+      "result": "PASS",
+      "run": 179
+    },
+    "fullRepositorySuite": {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" SHARED_ENTITY_ROSTER_PATH=/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json python3 -m unittest discover -s tests",
+      "errors": 0,
+      "expectedFailures": 2,
+      "failures": 0,
+      "log": "reports/astra-p3-p4/cr-01-full-suite.log",
+      "result": "PASS",
+      "run": 260
+    },
+    "id": "CR-01",
+    "immutableReceipts": [
+      {
+        "path": "reports/astra-p0-p2/p0-receipt.json",
+        "sha256": "be910a9fd7392cc1e04151f4ced0a6643f39bd5670c3e1fab3bb7e02d77f9edf"
+      },
+      {
+        "path": "reports/astra-p0-p2/p1-receipt.json",
+        "sha256": "acc71729779f2caf4c1afcd9c89363e920d3b375d33af69e17c8241f6b5ecddb"
+      },
+      {
+        "path": "reports/astra-p0-p2/p2-receipt.json",
+        "sha256": "e97bfbd9923e75cfbe08335f784f12e55cb90ed167e0bb54f6d5a34efe7f209d"
+      },
+      {
+        "path": "reports/astra-p3-p4/p4-receipt.json",
+        "sha256": "986629802bf61ef71fa37c52937cd42dfd045ceca6d9563e0cb9cd7c6c0fc482"
+      }
+    ],
+    "outputs": [
+      {
+        "path": "reports/astra-p3-p4/cr-01-sandbox-probe.log",
+        "sha256": "d1c97214072e1743b36e431e8ea391634d8f2ac2f842f37f428c71b522fb50f4"
+      },
+      {
+        "path": "reports/astra-p3-p4/cr-01-baseline-full-suite.log",
+        "sha256": "23b8716a025a5ea67a3edf558cff6feebe61de6d1c75a0fa89b4229b34c0552b"
+      },
+      {
+        "path": "reports/astra-p3-p4/cr-01-cross-story-test.log",
+        "sha256": "1c5d3aeaac7d2171426c060319bb9054f54212ccfb18afa7e39288b8fdbd6ec5"
+      },
+      {
+        "path": "reports/astra-p3-p4/cr-01-full-suite.log",
+        "sha256": "cb2952d8ff9aa381bc539c2da09baf485462bdff5ecc7c57f20d35c5fdf505f2"
+      },
+      {
+        "path": "reports/astra-p3-p4/cr-01-focused-suite.log",
+        "sha256": "98389f1f6c3b2fa64261806764da8db166655ea817f5a88f9f4891d810315ac8"
+      }
+    ],
+    "productionChanges": false,
+    "status": "complete"
   },
   "currentBlocker": "you",
   "implementationAuthorizationRevision": "e8be1d69eb90ecc857be0eac24231016c35435d9",
@@ -40,7 +117,7 @@
       "tests": 52
     }
   },
-  "next": "Editor review checkpoint; P5 not started",
+  "next": "Editor acceptance of CR-01/P3/P4; P5 not started and not authorized",
   "rollback": "Revert each stage commit independently. P3 descendants require a valid P2 receipt; P4 depends on P0. Any future P5 requires both current P3/P4 receipts and new editor authorization.",
   "schemaVersion": "astra-outcome-diff@1",
   "scopeNotes": [
@@ -330,7 +407,7 @@
   "stageReceipts": {
     "P3": {
       "path": "reports/astra-p3-p4/p3-receipt.json",
-      "sha256": "7874cba128187d9ebd5834d00290716eedffc325b33c6d9e4377de8f0860633a"
+      "sha256": "2cc77d0712fcaff37f59e7c3c02309ffec467cc5e15a4ecfc181887d6fe1deb5"
     },
     "P4": {
       "path": "reports/astra-p3-p4/p4-receipt.json",

@@ -37,3 +37,38 @@ Workflow review: deterministic exact-source materialization and typed merge guar
 implement the existing semantic-moment policy. No new renderer, provider runner,
 source schema, registry, or semantic activation workflow is introduced. Missing
 upstream annotations stay unresolved rather than becoming inferred facts.
+
+## CR-01: source-fact gap contract migration
+
+The pinned upstream SPEC-0.2.md, "Typed gaps" and "Not verified by me",
+distinguishes checker gaps (unsatisfied cohort/entity display requirements) from
+unverified claim facts. Its Year Seventeen "no gaps" statement describes checker
+output, not factual verification. The existing adapter preserves that output in
+`adapter.gaps` and claim statuses verbatim. Matching's splitter already combines
+adapter gaps with `quote_attribution_source_missing`, `source_clip_end_timing_missing` and
+`semantic_route_unresolved`; its top-level `gaps` is a typed unresolved-state
+container, not solely a structural rejection indicator.
+
+P3 intentionally broadens that Matching container with exactly one
+`source_fact_unverified` record per accepted adapter claim whose status is
+`unverified`. No other status, absent status or structurally verified adapter
+receipt implies this fact state. In particular `supported` is the source schema's
+supported-fact status; `verified` describes adapter source binding, not a valid
+claim status. Matching neither verifies nor promotes source facts. Original
+adapter gaps remain unchanged and present in splitter output. Source Story/Data
+ownership, exact claim coverage and task materialization remain unchanged.
+
+CR-01 migrates the existing cross-story acceptance through the identical adapter
+and splitter path: both eight-claim examples retain seven unresolved fact records;
+Apollo retains six tasks, one semantic-derived task and its cohort gap; Year
+Seventeen retains five tasks and zero checker gaps. Both have zero uncovered
+claims. The output remains `review_only_not_connected`, with selection and
+rendering unauthorized. An empty structural gap list cannot certify facts.
+
+Temporary, checker-accepted source copies exercise supported/contested/inferred/
+unverified status counterexamples without touching source evidence. Output
+deletion, duplication and reassignment mutations must fail the exact multiplicity
+and ownership assertion even when typed-gap counts are adjusted. No production
+exception, new pipeline, schema change or P5 implementation is needed. The P3
+receipt records full repository discovery as well as the focused stage suite;
+P0-P2/P4 receipts and prior bound logs remain byte-for-byte preserved.

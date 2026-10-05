@@ -1,4 +1,7 @@
 import unittest
+import copy
+import json
+from collections import Counter
 import subprocess
 import tempfile
 from pathlib import Path
@@ -20,7 +23,26 @@ class StoryPackageCrossStoryAcceptanceTests(unittest.TestCase):
             source, upstream_root=self.upstream, checker_python=self.python,
             repo_mappings=mappings,
         )
-        return storypackage_splitter.build(adapted, source_path=source)
+        return adapted, storypackage_splitter.build(adapted, source_path=source)
+
+    def _assert_source_fact_contract(self, adapted, result):
+        self.assertTrue(adapted["storyHandoffReceipt"]["accepted"])
+        expected = Counter(row["claimId"] for row in adapted["claims"]
+                           if row.get("status") == "unverified")
+        actual = Counter(row["claim"] for row in result["gaps"]
+                         if row["gap"] == "source_fact_unverified")
+        self.assertEqual(actual, expected)
+        self.assertEqual([row for row in result["gaps"]
+                          if row["gap"] != "source_fact_unverified"], adapted["gaps"])
+        self.assertEqual(result["counts"]["typedGaps"], len(result["gaps"]))
+        self.assertEqual(result["counts"]["claims"], len(adapted["claims"]))
+        self.assertEqual(result["counts"]["uncoveredClaims"], 0)
+        covered = {cid for task in result["taskProposals"] for cid in task["claimIds"]}
+        covered.update(cid for route in result["speakerRoutes"] for cid in route["claimIds"])
+        self.assertEqual(covered, {row["claimId"] for row in adapted["claims"]})
+        self.assertFalse(result["selectionAuthorized"])
+        self.assertFalse(result["renderingAuthorized"])
+        self.assertEqual(result["activationState"], "review_only_not_connected")
 
     def _pinned_astra_worktree(self, commit):
         temporary = tempfile.TemporaryDirectory()
@@ -40,8 +62,8 @@ class StoryPackageCrossStoryAcceptanceTests(unittest.TestCase):
         return path
 
     def test_apollo_and_year_seventeen_use_the_identical_path(self):
-        apollo = self._run("apollo-collins-sample.storypackage-0.2.json")
-        year = self._run(
+        apollo_adapter, apollo = self._run("apollo-collins-sample.storypackage-0.2.json")
+        year_adapter, year = self._run(
             "year-seventeen-excerpt.storypackage-0.2.json",
             {
                 "djtoler/astra-visual-selector": self._pinned_astra_worktree("da8b175"),
@@ -54,7 +76,51 @@ class StoryPackageCrossStoryAcceptanceTests(unittest.TestCase):
         self.assertEqual(year["counts"]["uncoveredClaims"], 0)
         self.assertEqual(apollo["counts"]["semanticDerivedTaskProposals"], 1)
         self.assertTrue(any(row["gap"] == "cohort_incomplete" for row in apollo["gaps"]))
-        self.assertEqual(year["gaps"], [])
+        for adapted, result in ((apollo_adapter, apollo), (year_adapter, year)):
+            self._assert_source_fact_contract(adapted, result)
+            self.assertEqual(result["counts"]["claims"], 8)
+            self.assertEqual(sum(row["gap"] == "source_fact_unverified"
+                                 for row in result["gaps"]), 7)
+
+    def test_supported_claim_and_status_counterexamples_use_accepted_sources(self):
+        source = self.examples / "apollo-collins-sample.storypackage-0.2.json"
+        original = json.loads(source.read_text())
+        # a7 already has a source-authored receipt. Alter only its status in a
+        # temporary package; structural acceptance is not factual verification.
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "status-counterexample.json"
+            for status in ("supported", "contested", "inferred", "unverified"):
+                package = copy.deepcopy(original)
+                target = next(row for row in package["claims"] if row["claimId"] == "a7")
+                target["status"] = status
+                path.write_text(json.dumps(package))
+                adapted = storypackage_adapter.build(
+                    path, upstream_root=self.upstream, checker_python=self.python)
+                result = storypackage_splitter.build(adapted, source_path=path)
+                with self.subTest(status=status):
+                    self._assert_source_fact_contract(adapted, result)
+                    unresolved = {row["claim"] for row in result["gaps"]
+                                  if row["gap"] == "source_fact_unverified"}
+                    self.assertEqual("a7" in unresolved, status == "unverified")
+                    self.assertEqual(result["counts"]["taskProposals"], 6)
+                    self.assertEqual(result["counts"]["semanticDerivedTaskProposals"], 1)
+                    self.assertEqual(adapted["claims"], package["claims"])
+
+    def test_unverified_gap_cannot_be_deleted_duplicated_or_reassigned(self):
+        adapted, result = self._run("apollo-collins-sample.storypackage-0.2.json")
+        self._assert_source_fact_contract(adapted, result)
+        for mutation in ("delete", "duplicate", "reassign"):
+            broken = copy.deepcopy(result)
+            row = next(row for row in broken["gaps"] if row["gap"] == "source_fact_unverified")
+            if mutation == "delete":
+                broken["gaps"].remove(row)
+            elif mutation == "duplicate":
+                broken["gaps"].append(copy.deepcopy(row))
+            else:
+                row["claim"] = "a6"  # editorial claim has no unverified status
+            broken["counts"]["typedGaps"] = len(broken["gaps"])
+            with self.subTest(mutation=mutation), self.assertRaises(AssertionError):
+                self._assert_source_fact_contract(adapted, broken)
 
 
 if __name__ == "__main__":

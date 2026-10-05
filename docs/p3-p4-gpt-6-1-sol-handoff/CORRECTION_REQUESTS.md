@@ -2,7 +2,7 @@
 
 ## CR-01 — reconcile P3 unresolved-fact migration with cross-story acceptance
 
-**Status:** required before P5 authorization  
+**Status:** completed; editor acceptance required before P5 authorization
 **Owner:** matching  
 **Scope:** one P3 follow-up correction; P3/P4 do not require a full redo
 
@@ -71,3 +71,20 @@ test.
 
 After CR-01 passes and is independently verified, P3/P4 may be accepted and P5
 may be considered at the next editor checkpoint.
+
+### CR-01 completion receipt
+
+Matching's top-level typed unresolved-state `gaps` intentionally includes source
+fact status; upstream checker gaps remain unchanged. The contract and evidence
+are documented in `plans/ASTRA_P3_IMPLEMENTATION_PLAN_20261005.md` and bound by
+`reports/astra-p3-p4/p3-receipt.json`. The combined outcome is updated in
+`reports/astra-p3-p4/p3-p4-outcome-diff.json`.
+
+Full discovery: **260 tests, zero failures/errors, two expected P5/P6 failures**.
+Focused suite: **179 tests, zero failures/errors, two expected P5/P6 failures**.
+Cross-story acceptance: **3 tests passed**, including accepted source status
+counterexamples and deleted/duplicated/reassigned unresolved-state mutations.
+The original 258-test failure is retained in `cr-01-baseline-full-suite.log`;
+passing logs use separate `cr-01-*` paths so previous receipt-bound logs stay
+unchanged. No production code or P5 work was introduced. Next: editor review;
+current blocker: `you`.

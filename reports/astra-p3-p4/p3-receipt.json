@@ -1,6 +1,51 @@
 {
   "baseCodeRevision": "e8be1d69eb90ecc857be0eac24231016c35435d9",
   "blockerOwner": "none",
+  "corrections": [
+    {
+      "P0P1P2P4ReceiptBytesUnchanged": true,
+      "P5Started": false,
+      "baseRevision": "549e72ecfbf9f54f5f63fe4b6349c0d5cb4f5e1c",
+      "baseline": {
+        "errors": 0,
+        "expectedFailures": 2,
+        "failures": 1,
+        "log": "reports/astra-p3-p4/cr-01-baseline-full-suite.log",
+        "sandboxProbe": "Initial restricted execution had one worktree permission error; this is retained separately, not counted as the baseline finding.",
+        "tests": 258
+      },
+      "contract": "Matching gaps intentionally includes unresolved source-fact verification. Adapter checker gaps remain unchanged. Exactly one source_fact_unverified per accepted adapter claim with status unverified; no factual verification or selection/rendering authority is conferred.",
+      "counterexamples": [
+        "Checker-accepted supported/contested/inferred claims receive no source_fact_unverified record; unverified status restores it.",
+        "Deleted, duplicated and reassigned fact gaps fail cross-story acceptance even with adjusted counts."
+      ],
+      "environment": {
+        "authorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+        "authorityRoot": "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/patterns-authority",
+        "checkerLauncher": "/Users/dwaynetoler/Documents/ChatGPT/Polish/person-cutout-system/image-tools/.venv-rembg/bin/python",
+        "checkerPython": "3.12.7",
+        "rosterPath": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json",
+        "temporaryHistoricalFixtureRevision": "da8b175",
+        "testPython": "3.14.7",
+        "worktreeAccess": "Existing cross-story fixture needs temporary worktree metadata access outside workspace; its cleanup removes the fixture."
+      },
+      "id": "CR-01",
+      "previousReceiptSha256": "7874cba128187d9ebd5834d00290716eedffc325b33c6d9e4377de8f0860633a",
+      "productionChanges": false,
+      "sourceAndGoldBytesUnchanged": true,
+      "sourceExamples": [
+        {
+          "path": "architecture/storypackage/examples/apollo-collins-sample.storypackage-0.2.json",
+          "sha256": "ad28408190781dc6634f5357d3a9b1abab2a3ac052d3c0f633f27d6c6636e6b0"
+        },
+        {
+          "path": "architecture/storypackage/examples/year-seventeen-excerpt.storypackage-0.2.json",
+          "sha256": "fc35fbf38e62784eceecebdf5935bf3034703627ece6761207c00a1c93872c04"
+        }
+      ],
+      "status": "complete"
+    }
+  ],
   "externalModelExecution": false,
   "inputs": {
     "authorization": {
@@ -35,7 +80,15 @@
       },
       {
         "path": "plans/ASTRA_P3_IMPLEMENTATION_PLAN_20261005.md",
-        "sha256": "ac83dc9fc2bf504fd30bff84d0f3ed785ab46e560fcc3871eee138fb5f75ddc4"
+        "sha256": "710447543c88132ce1ddf9f94c10543f5a7564aa2a49188b41bfc57fecb88e28"
+      },
+      {
+        "path": "tests/test_storypackage_cross_story.py",
+        "sha256": "b91155ceda571a922444289bbcac854352059c6044a97ab834708334a53854e5"
+      },
+      {
+        "path": "docs/p3-p4-gpt-6-1-sol-handoff/CORRECTION_REQUESTS.md",
+        "sha256": "dbee981659e8e2eda1bab9ed8912c33dd81cb8031914a5be09bfe4cb28c87a34"
       }
     ]
   },
@@ -64,6 +117,26 @@
     {
       "path": "reports/astra-p3-p4/p3-independent-test.log",
       "sha256": "2a0e1980d09894c5eee32e1e11f9e4b2d1ae3f17aef810505fb7d0556fac5c83"
+    },
+    {
+      "path": "reports/astra-p3-p4/cr-01-sandbox-probe.log",
+      "sha256": "d1c97214072e1743b36e431e8ea391634d8f2ac2f842f37f428c71b522fb50f4"
+    },
+    {
+      "path": "reports/astra-p3-p4/cr-01-baseline-full-suite.log",
+      "sha256": "23b8716a025a5ea67a3edf558cff6feebe61de6d1c75a0fa89b4229b34c0552b"
+    },
+    {
+      "path": "reports/astra-p3-p4/cr-01-cross-story-test.log",
+      "sha256": "1c5d3aeaac7d2171426c060319bb9054f54212ccfb18afa7e39288b8fdbd6ec5"
+    },
+    {
+      "path": "reports/astra-p3-p4/cr-01-full-suite.log",
+      "sha256": "cb2952d8ff9aa381bc539c2da09baf485462bdff5ecc7c57f20d35c5fdf505f2"
+    },
+    {
+      "path": "reports/astra-p3-p4/cr-01-focused-suite.log",
+      "sha256": "98389f1f6c3b2fa64261806764da8db166655ea817f5a88f9f4891d810315ac8"
     }
   ],
   "reasoningEffort": "medium",
@@ -122,6 +195,32 @@
       "expectedFailures": 3,
       "result": "PASS",
       "run": 65
+    },
+    {
+      "command": "STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" python3 -m unittest tests.test_storypackage_cross_story",
+      "errors": 0,
+      "failures": 0,
+      "log": "reports/astra-p3-p4/cr-01-cross-story-test.log",
+      "result": "PASS",
+      "run": 3
+    },
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" SHARED_ENTITY_ROSTER_PATH=/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json python3 -m unittest tests.test_astra_p3 tests.test_astra_p4 tests.test_astra_p2 tests.test_astra_p1 tests.test_astra_p0_p2 tests.test_storypackage_adapter tests.test_matching_agent tests.test_matching_agent_config tests.test_matching_agent_runner tests.test_matching_agent_contracts tests.test_storypackage_data_assignment tests.test_storypackage_data_handoff tests.test_storypackage_matching_handoff tests.test_storypackage_splitter tests.test_visualtask_split_proposals tests.test_visualtask_matching tests.test_visualtask_batch_matching tests.test_focused_review_queue tests.test_focused_review_reconciliation tests.test_matching_contract_gate tests.test_astra_review_evidence tests.test_astra_root_cause_workflow tests.test_visualtask_technical_requirements tests.test_heldout_matching_integration",
+      "errors": 0,
+      "expectedFailures": 2,
+      "failures": 0,
+      "log": "reports/astra-p3-p4/cr-01-focused-suite.log",
+      "result": "PASS",
+      "run": 179
+    },
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" SHARED_ENTITY_ROSTER_PATH=/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json python3 -m unittest discover -s tests",
+      "errors": 0,
+      "expectedFailures": 2,
+      "failures": 0,
+      "log": "reports/astra-p3-p4/cr-01-full-suite.log",
+      "result": "PASS",
+      "run": 260
     }
   ],
   "unresolved": [
