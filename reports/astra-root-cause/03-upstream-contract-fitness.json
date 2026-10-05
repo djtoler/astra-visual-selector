@@ -9,7 +9,6 @@
   "blockerOwner": "none",
   "selectionAuthorized": false,
   "renderingAuthorized": false,
-
   "executionReceipt": {
     "operator": "claude_desktop",
     "requiredOperator": "claude_desktop",
@@ -32,7 +31,6 @@
     ],
     "noInventedMetadata": true
   },
-
   "independenceReceipt": {
     "excludedComparisonBranch": "matching-layer",
     "excludedBranchFetched": false,
@@ -42,13 +40,16 @@
     "note": "History was deepened on `fable_analysis` and `main` only (git fetch --depth=400 origin fable_analysis main) to settle Job 1's UE-01 and to resolve the handoff's pinned receipts. No matching-layer ref was fetched or read at any point. Reading `main` is required by this job: the only committed Story->Matching handoff pins a commit on `main`, and that pin's resolvability is a Job 3 question. `main` is not the excluded branch.",
     "contaminationEvents": []
   },
-
   "priorJobInputs": {
     "job01": "reports/astra-root-cause/01-system-map.md / .json",
     "job02": "reports/astra-root-cause/02-story-semantics.md / .json",
-    "carriedItemsAddressedHere": ["UE-03", "UE-09", "UE-10", "UE-01 (Job 1, resolved here as a by-product)"]
+    "carriedItemsAddressedHere": [
+      "UE-03",
+      "UE-09",
+      "UE-10",
+      "UE-01 (Job 1, resolved here as a by-product)"
+    ]
   },
-
   "resolvedFromPriorJobs": [
     {
       "id": "UE-01",
@@ -86,7 +87,6 @@
       "gapId": "G-03"
     }
   ],
-
   "sufficiencyMatrix": {
     "legend": {
       "contractCanCarry": "the matching-handoff-0.2 schema has a field for it",
@@ -155,10 +155,15 @@
         "storySchemaCanCarry": true,
         "actuallyPopulated": "never, in any handoff task",
         "verdict": "insufficient",
-        "owner": "shared",
+        "owner": "story",
         "gapId": "G-05",
         "severity": "primary",
-        "note": "The storypackage schema's value object (storypackage-0.2.schema.json lines 702-722) requires `value` (number|string) and permits `unit`, `label`, `entity`, `basis`. The matching-handoff schema's value object sets `additionalProperties: false` and permits only {valueId, role, anchor, entity, population, display, absence}. There is no magnitude field. The handoff drops a quantity the Story schema can already carry. In the handoff, the tokens \"value\" and \"unit\" appear only as members of the text-field `role` enum (schema lines 463-464), i.e. as names of display slots, never as data."
+        "note": "The storypackage schema's value object (storypackage-0.2.schema.json lines 702-722) requires `value` (number|string) and permits `unit`, `label`, `entity`, `basis`. The matching-handoff schema's value object sets `additionalProperties: false` and permits only {valueId, role, anchor, entity, population, display, absence}. There is no magnitude field. The handoff drops a quantity the Story schema can already carry. In the handoff, the tokens \"value\" and \"unit\" appear only as members of the text-field `role` enum (schema lines 463-464), i.e. as names of display slots, never as data.",
+        "supportingOwners": [
+          "data",
+          "matching"
+        ],
+        "ownerRationale": "Accountable owner follows artifact ownership: the field lives in the Story-owned matching-handoff-0.2 schema in djtoler/patterns. Supporting owners supply or consume it."
       },
       {
         "field": "unit",
@@ -167,9 +172,14 @@
         "storySchemaCanCarry": true,
         "actuallyPopulated": "never in the handoff",
         "verdict": "insufficient",
-        "owner": "shared",
+        "owner": "story",
         "gapId": "G-05",
-        "note": "`unit` exists in the storypackage value object and has no counterpart in the handoff value object."
+        "note": "`unit` exists in the storypackage value object and has no counterpart in the handoff value object.",
+        "supportingOwners": [
+          "data",
+          "matching"
+        ],
+        "ownerRationale": "Accountable owner follows artifact ownership: the field lives in the Story-owned matching-handoff-0.2 schema in djtoler/patterns. Supporting owners supply or consume it."
       },
       {
         "field": "basis (how a figure was computed)",
@@ -178,9 +188,14 @@
         "storySchemaCanCarry": true,
         "actuallyPopulated": "focal.basis on 19 of 41 tasks; no basis on any of the 89 values",
         "verdict": "partial",
-        "owner": "shared",
+        "owner": "story",
         "gapId": "G-06",
-        "note": "The handoff carries `media.focal.basis` as a free string explaining a focal count, and it is populated on 19 tasks. There is no per-value basis, although the storypackage value object permits one (line 720). So Matching learns why a count is what it is, but never why a figure is what it is."
+        "note": "The handoff carries `media.focal.basis` as a free string explaining a focal count, and it is populated on 19 tasks. There is no per-value basis, although the storypackage value object permits one (line 720). So Matching learns why a count is what it is, but never why a figure is what it is.",
+        "supportingOwners": [
+          "data",
+          "matching"
+        ],
+        "ownerRationale": "Accountable owner follows artifact ownership: the field lives in the Story-owned matching-handoff-0.2 schema in djtoler/patterns. Supporting owners supply or consume it."
       },
       {
         "field": "display instruction",
@@ -201,9 +216,14 @@
         "storySchemaCanCarry": false,
         "actuallyPopulated": "never",
         "verdict": "insufficient",
-        "owner": "shared",
+        "owner": "story",
         "gapId": "G-07",
-        "note": "`display: rounded` is used 31 times with no digits, significant figures or rounding mode anywhere in either schema. Two renderers could satisfy the same instruction differently."
+        "note": "`display: rounded` is used 31 times with no digits, significant figures or rounding mode anywhere in either schema. Two renderers could satisfy the same instruction differently.",
+        "supportingOwners": [
+          "data",
+          "matching"
+        ],
+        "ownerRationale": "Accountable owner follows artifact ownership: the field lives in the Story-owned matching-handoff-0.2 schema in djtoler/patterns. Supporting owners supply or consume it."
       },
       {
         "field": "source-row locator",
@@ -284,8 +304,13 @@
         "storySchemaCanCarry": true,
         "actuallyPopulated": "storyRequiresKind, supportingMediaOptional and sourceSpecific are required fields on every task",
         "verdict": "sufficient",
-        "owner": "shared",
-        "note": "Need is declared by Story; availability is judged by Matching and kept in a separate verdict field. See mediaAbsenceHandling."
+        "owner": "story",
+        "note": "Need is declared by Story; availability is judged by Matching and kept in a separate verdict field. See mediaAbsenceHandling.",
+        "supportingOwners": [
+          "media",
+          "matching"
+        ],
+        "ownerRationale": "Accountable owner follows artifact ownership: the field lives in the Story-owned matching-handoff-0.2 schema in djtoler/patterns. Supporting owners supply or consume it."
       },
       {
         "field": "continuity group membership",
@@ -348,10 +373,14 @@
         "storySchemaCanCarry": true,
         "actuallyPopulated": "handoff: contract 'astra-entity-roster/snapshot' pinning djtoler/astra-visual-selector @ da8b175 grammar/entity-roster.json. Packages @4/@5: contract 'djtoler/entity_roster/entity-context@1.1.0' pinning a different repository djtoler/entity_roster",
         "verdict": "insufficient",
-        "owner": "shared",
+        "owner": "story",
         "gapId": "G-11",
         "severity": "primary",
-        "note": "Two different registry contracts and two different authority repositories coexist. See crossRepositoryPinFinding: the handoff's pins are byte-exact at the commit they name, but that commit shares no ancestry with the audited Matching baseline."
+        "note": "Two different registry contracts and two different authority repositories coexist. See crossRepositoryPinFinding: the handoff's pins are byte-exact at the commit they name, but that commit shares no ancestry with the audited Matching baseline.",
+        "supportingOwners": [
+          "matching"
+        ],
+        "ownerRationale": "Accountable owner follows artifact ownership: the field lives in the Story-owned matching-handoff-0.2 schema in djtoler/patterns. Supporting owners supply or consume it."
       },
       {
         "field": "VisualTask snapshot receipt",
@@ -360,9 +389,13 @@
         "storySchemaCanCarry": true,
         "actuallyPopulated": "handoff pins djtoler/astra-visual-selector @ da8b175 grammar/visual-tasks.json sha 0dcc1de3...",
         "verdict": "insufficient",
-        "owner": "shared",
+        "owner": "story",
         "gapId": "G-11",
-        "note": "Byte-exact at da8b175. The same path at the audited baseline hashes a58c8e40..., a different file. Resolvable only against a history the audited Matching layer does not share."
+        "note": "Byte-exact at da8b175. The same path at the audited baseline hashes a58c8e40..., a different file. Resolvable only against a history the audited Matching layer does not share.",
+        "supportingOwners": [
+          "matching"
+        ],
+        "ownerRationale": "Accountable owner follows artifact ownership: the field lives in the Story-owned matching-handoff-0.2 schema in djtoler/patterns. Supporting owners supply or consume it."
       },
       {
         "field": "claim text receipt",
@@ -397,15 +430,14 @@
       "interpretation": "The upstream contract is strong on semantics, provenance, honesty about unknowns and typographic constraint, and weak on quantity. Matching is told what a number means, which claim it came from, how it should look and what caveats attach to it, but never what the number is, in what unit, computed how, from which row."
     }
   },
-
   "typedGaps": [
     {
       "gapId": "G-05",
       "title": "The handoff contract cannot carry a value's magnitude, unit or basis",
-      "owner": "shared",
+      "owner": "story",
       "ownerRationale": "The matching-handoff schema is a Story-owned artifact in djtoler/patterns, so the missing field is Story's to add. The figures themselves are Data's to supply. Neither is Matching's, and Matching must not be blamed for not knowing a quantity it was never sent.",
       "proof": "matching-handoff-0.2.schema.json tasks[].data.values[] has additionalProperties:false and property set {valueId, role, anchor, entity, population, display, absence}. storypackage-0.2.schema.json lines 702-722 defines a value object requiring `value` and permitting `unit`, `label`, `entity`, `basis`. Observed: 89 values in the one committed handoff use exactly the keys {absence, anchor, display, entity, population, role, valueId} and never a magnitude.",
-      "recurrence": "Structural, so it applies to every task in every package rather than one story. 74 of 89 observed values are affected. Independently corroborated by editor evidence from a different package: ev_03fa59be374e88f2.",
+      "recurrence": "Cross-story evidence verified independently of the single handoff. Job 2's principle P-4 is derived from spans S09 (jayz-drake-settle-it) and S16, S17 (future-volksgeist), two different stories, and its finding F-11 spans S09 and S14. Independently measured here: the storypackage `values` construct appears in jayz-drake-settle-it only (50 occurrences in @3 and @4) and zero times in future-volksgeist and year-seventeen, so structured magnitudes are demonstrably unavailable across packages. The schema defect itself is story-neutral: the handoff schema is one shared contract whose additionalProperties:false property set governs every package.",
       "editorEvidence": [
         {
           "evidenceId": "ev_03fa59be374e88f2",
@@ -413,33 +445,61 @@
           "quote": "1, 4, and 6 are all great options. if the number of songs is actually 8 or close, option 4 would be perfect. otherwise 1 or 6.",
           "reading": "The editor's template choice is conditional on a magnitude that the contract does not transmit. The right answer is 4 if the count is near 8 and 1 or 6 otherwise. This is the magnitude gap observed as an editorial hesitation, not as a complaint about missing data.",
           "authorship": "human",
-          "provenanceCaveat": "This record's source file lies in the sibling repository ae-template-automation and is absent from this checkout, so its declared digest is unverifiable here (Job 1 UE-02). Its human authorship is corroborated by orthography."
+          "provenanceCaveat": "This record's source file lies in the sibling repository ae-template-automation and is absent from this checkout, so its declared digest is unverifiable here (Job 1 UE-02). Its human authorship is corroborated by orthography.",
+          "attributionStatus": "unattributed",
+          "attributionCaveat": "UNATTRIBUTED. This record carries packageId null and its beat-id namespace matches no audited package's claim-id scheme, so it cannot establish cross-story recurrence in either direction (correction C-5, UE-22). It is retained as an illustration of the gap's real-world cost only.",
+          "loadBearingForAcceptedDelta": false
         }
       ],
       "proposedContractDelta": {
         "target": "architecture/storypackage/matching-handoff-0.2.schema.json, tasks[].data.values[] (NOT EDITED, proposal only)",
+        "canonicalName": "value",
+        "namingDecision": "The property is named `value`, the same name the StoryPackage value object already uses (storypackage-0.2.schema.json line 705). This IS a verbatim reuse of the Story field name, so the proposal and its rationale now agree. The earlier draft proposed `quantity` while claiming verbatim reuse of Story names; that was self-contradictory and is withdrawn.",
+        "namingJustification": "Interoperability: the handoff builder can copy value, unit and basis across from the StoryPackage value object without a rename or a projection, so the two schemas share one vocabulary and no mapping table has to be maintained. A new name such as `quantity` would require a documented projection from Story `value` for no benefit.",
+        "compatibilityImplication": "No collision. In matching-handoff-0.2.schema.json the token \"value\" occurs exactly once, at line 463, as a member of the tasks[].text.fields[].role enum. An enum member string and a property name under tasks[].data.values[] occupy different namespaces, so adding a `value` property introduces no ambiguity and invalidates no existing document. Verified by grep: one occurrence, inside the role enum.",
         "addOptionalProperties": {
-          "quantity": "number | string — the figure itself, mirroring storypackage-0.2 value.value",
-          "unit": "string — mirroring storypackage-0.2 value.unit",
-          "basis": "string — how the figure was computed, mirroring storypackage-0.2 value.basis"
+          "value": "number | string - the figure itself; direct copy of storypackage-0.2 value.value",
+          "unit": "string - direct copy of storypackage-0.2 value.unit",
+          "basis": "string - how the figure was computed; direct copy of storypackage-0.2 value.basis"
         },
-        "constraint": "Require quantity whenever display is `exact` or `rounded`; forbid it when role is `absence`, preserving the existing absence bi-conditional. Leave it absent for `qualitative` and `ordering`.",
-        "whyMinimal": "Three optional properties plus one conditional. It introduces no new object, reuses the storypackage field names verbatim so the builder can copy them, and cannot represent zero-for-unknown because the absence and unknown mechanisms already own that case."
-      }
+        "constraint": "Require `value` whenever display is `exact` or `rounded`; forbid it when role is `absence`, preserving the existing absence bi-conditional. Leave it absent for `qualitative` and `ordering`.",
+        "whyMinimal": "Three optional properties plus one conditional. It introduces no new object, reuses the StoryPackage field names exactly, and cannot represent zero-for-unknown because the absence and unknown mechanisms already own that case.",
+        "providerAndStoryNeutral": true
+      },
+      "supportingOwners": [
+        "data",
+        "matching"
+      ],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "accepted",
+      "excludedFromAcceptedDeltas": false,
+      "editorEvidenceRole": "Illustrative only. The accepted/held status of this gap rests on the `recurrence` field, never on these records."
     },
     {
       "gapId": "G-07",
       "title": "Display intent is actionable only for values that carry no figure",
-      "owner": "shared",
+      "owner": "story",
       "dependsOn": "G-05",
-      "proof": "display distribution over 89 values: exact 43, rounded 31, ordering 8, qualitative 6, absent 1. 74 of 89 are exact or rounded. No precision, significant-figure or rounding-mode field exists in either schema (searched: precision, decimals — zero occurrences).",
-      "recurrence": "Structural; 83 percent of observed values.",
-      "proposedContractDelta": {
+      "proof": "display distribution over 89 values: exact 43, rounded 31, ordering 8, qualitative 6, absent 1. 74 of 89 are exact or rounded. No precision, significant-figure or rounding-mode field exists in either schema (searched: precision, decimals \u2014 zero occurrences).",
+      "recurrence": "DEMOTED ON CORRECTION, as the correction request requires. The 74-of-89 measurement is real but every observed value comes from the one committed Year Seventeen handoff. Structural recurrence inside one story is not cross-story recurrence, and no independent package or editor-reviewed case establishes that roundTo and roundMode specifically are required. The absence of a second handoff is not treated as confirmation.",
+      "supportingOwners": [
+        "data",
+        "matching"
+      ],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "unresolved_hypothesis",
+      "proposedContractDelta": null,
+      "heldHypothesis": {
         "target": "same values[] object (proposal only)",
-        "addOptionalProperties": {"roundTo": "integer — decimal places, or significant figures when combined with a mode", "roundMode": "enum [decimals, significant, nearest] "},
+        "addOptionalProperties": {
+          "roundTo": "integer \u2014 decimal places, or significant figures when combined with a mode",
+          "roundMode": "enum [decimals, significant, nearest] "
+        },
         "constraint": "Permitted only when display is `rounded`; required when display is `rounded` and quantity is present.",
         "whyMinimal": "Two optional properties scoped to a single existing enum value, with no effect on any other display mode."
-      }
+      },
+      "heldAs": "UE-17",
+      "excludedFromAcceptedDeltas": true
     },
     {
       "gapId": "G-08",
@@ -447,43 +507,69 @@
       "owner": "data",
       "ownerRationale": "This is Data's to supply and Story's to relay. Matching cannot be asked to validate a figure's currency without a locator.",
       "proof": "Searched both schemas for sourceRow, rowLocator, dataset, query, method, asOf, receipt: zero occurrences in matching-handoff-0.2.schema.json and zero in storypackage-0.2.schema.json. The only anchor on a value is `values[].anchor`, a narration pointer.",
-      "recurrence": "Structural; all 89 values.",
-      "proposedContractDelta": {
+      "recurrence": "DEMOTED ON CORRECTION. The schema absence is verified (zero occurrences of sourceRow, rowLocator, dataset, query, method or asOf in either schema), but no cross-story evidence establishes that a dataRef field is required. Its need follows from G-05 rather than standing on its own evidence, so it is held as a dependent hypothesis.",
+      "supportingOwners": [
+        "story",
+        "matching"
+      ],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "unresolved_hypothesis",
+      "proposedContractDelta": null,
+      "heldHypothesis": {
         "target": "same values[] object (proposal only)",
-        "addOptionalProperty": {"dataRef": "object { dataset: string, locator: string, asOf: string, method: string } — all optional within the object"},
+        "addOptionalProperty": {
+          "dataRef": "object { dataset: string, locator: string, asOf: string, method: string } \u2014 all optional within the object"
+        },
         "constraint": "None. Purely additive and advisory, so an unsourced narration figure stays legal.",
         "whyMinimal": "One optional nested object. It does not gate matching and does not make a missing locator a failure, which keeps Job 3's rule that missing data is not treated as zero."
-      }
+      },
+      "heldAs": "UE-19",
+      "excludedFromAcceptedDeltas": true
     },
     {
       "gapId": "G-04",
       "title": "A comparison's participants and direction must be reconstructed rather than read",
       "owner": "story",
       "proof": "The handoff expresses a relation only as a set of values[] rows carrying role, entity and population. There is no object naming side A, side B and the direction. Observed roles that imply a relation: comparison 14, difference 3, ratio 3, threshold 3, rank_change 5.",
-      "recurrence": "Recurs across packages and is independently asserted from the Story side by Job 2's principle P-3. Editor evidence below comes from a different package than the handoff, so this is not one story.",
+      "recurrence": "DEMOTED ON CORRECTION. Job 3 originally cited Job 2's principle P-3 as cross-package support. Verification shows P-3 is derived from spans S04, S11, S12 and S15, all of which are jayz-drake-settle-it: single-story support. The supporting editor record ev_021919c932e157f2 carries packageId null and cannot be attributed to any package. No cross-story evidence establishes that this exact field is required.",
       "editorEvidence": [
         {
           "evidenceId": "ev_021919c932e157f2",
           "beatId": "facts:28.01",
           "quote": "All options are bad. 24, 38, 45 wouldve been much better because its group vs group and entity vs entity with multiple. both thresholds are the seperate groups.",
           "reading": "The editor diagnoses the failure in exactly the vocabulary the contract lacks: the relation is group-vs-group, and the two thresholds are themselves the groups being compared. The handoff can say `role: threshold` and give a population string, but it cannot say that the two thresholds ARE the two sides. Matching had to infer the relation shape and inferred it wrongly.",
-          "attribution": "Upstream was partially adequate and Matching's reconstruction failed. Both shares are real; see attributionLedger."
+          "attribution": "Upstream was partially adequate and Matching's reconstruction failed. Both shares are real; see attributionLedger.",
+          "attributionStatus": "unattributed",
+          "attributionCaveat": "UNATTRIBUTED. This record carries packageId null and its beat-id namespace matches no audited package's claim-id scheme, so it cannot establish cross-story recurrence in either direction (correction C-5, UE-22). It is retained as an illustration of the gap's real-world cost only.",
+          "loadBearingForAcceptedDelta": false
         }
       ],
-      "proposedContractDelta": {
+      "supportingOwners": [
+        "data",
+        "matching"
+      ],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "unresolved_hypothesis",
+      "proposedContractDelta": null,
+      "heldHypothesis": {
         "target": "matching-handoff-0.2.schema.json tasks[].data (proposal only)",
-        "addOptionalProperty": {"relations": "array of { relationId, kind: enum [entity_vs_entity, entity_vs_group, group_vs_group, entity_vs_benchmark, within_entity_over_time], sides: array of { sideId, valueIds: array, entityIds: array, cohortIds: array }, direction: enum [symmetric, a_exceeds_b, b_exceeds_a, ordered] }"},
+        "addOptionalProperty": {
+          "relations": "array of { relationId, kind: enum [entity_vs_entity, entity_vs_group, group_vs_group, entity_vs_benchmark, within_entity_over_time], sides: array of { sideId, valueIds: array, entityIds: array, cohortIds: array }, direction: enum [symmetric, a_exceeds_b, b_exceeds_a, ordered] }"
+        },
         "constraint": "Optional. When present, every referenced valueId must exist in the same task's values[].",
         "whyMinimal": "It adds no new value semantics; it only groups existing valueIds into sides. The five `kind` values are drawn from the relation shapes already implied by the existing role enum, not invented."
-      }
+      },
+      "heldAs": "UE-18",
+      "excludedFromAcceptedDeltas": true,
+      "editorEvidenceRole": "Illustrative only. The accepted/held status of this gap rests on the `recurrence` field, never on these records."
     },
     {
       "gapId": "G-11",
       "title": "The handoff's cross-repository pins resolve only against a Matching history the audited baseline does not share",
-      "owner": "shared",
+      "owner": "story",
       "severity": "primary",
       "proof": "See crossRepositoryPinFinding for the full measurement chain.",
-      "recurrence": "Affects every cross-repo receipt in the contract: the entity registry snapshot and the VisualTask snapshot, i.e. two of the handoff's three required snapshot receipts.",
+      "recurrence": "Established by measured git topology rather than by story observation: merge-base between da8b175 and the audited baseline is empty, with 10 commits on main and 19 on the baseline. It affects two of the contract's three required snapshot receipts. The proposed delta changes receipt metadata and Story-owned validator behaviour and adds no new semantic field, so it does not rest on cross-story field evidence at all. `matching` is a supporting owner as the owner of the pinned lineage.",
       "proposedContractDelta": {
         "target": "architecture/storypackage/tools/check.py and check_handoff.py behavior, plus the handoff's snapshot blocks (proposal only)",
         "changes": [
@@ -492,80 +578,132 @@
           "Have check_handoff.py assert that the pinned Matching commit is an ancestor of the Matching commit being validated against, and emit a typed `divergent_matching_lineage` error when it is not."
         ],
         "whyMinimal": "One added field on an existing $def and two error paths in an existing validator. No schema semantics change."
-      }
+      },
+      "supportingOwners": [
+        "matching"
+      ],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "accepted",
+      "excludedFromAcceptedDeltas": false
     },
     {
       "gapId": "G-01",
       "title": "The matching-handoff builder is hardcoded to one package",
       "owner": "story",
       "proof": "build_matching_handoff.py lines 15-16 hardcode PKG and OUT to year-seventeen; line 1 docstring scopes it to that file; lines 82 and 253 embed literal story content.",
-      "recurrence": "Two of three audited packages have no handoff as a direct result.",
+      "recurrence": "Measured across all three audited packages: two of three have no handoff artifact at all as a direct consequence of the hardcoded builder. This is a cross-story measurement, not an observation inside one story.",
       "proposedContractDelta": {
         "target": "architecture/storypackage/tools/build_matching_handoff.py (proposal only, not edited)",
-        "changes": ["Take the package path as an argument and derive the output path from the packageId.", "Move the per-task literal presentation requirements into a package-adjacent data file so the builder carries no story content."],
+        "changes": [
+          "Take the package path as an argument and derive the output path from the packageId.",
+          "Move the per-task literal presentation requirements into a package-adjacent data file so the builder carries no story content."
+        ],
         "whyMinimal": "No schema change. It makes an existing single-package script general without altering the contract it emits.",
         "note": "Only the parameterization is proposed here. Whether the literal requirements are correct is Job 7's question, not Job 3's."
-      }
+      },
+      "supportingOwners": [],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "accepted",
+      "excludedFromAcceptedDeltas": false
     },
     {
       "gapId": "G-02",
       "title": "Handoff freshness is measured against the file it points at, not against the current package revision",
       "owner": "story",
       "proof": "check_handoff.py line 43-48 resolves the recorded package path and compares its sha256 and packageId to the handoff's own receipt. Both match, because the handoff points at year-seventeen.storypackage-0.2.json whose internal packageId is @7 and which has not changed. No check compares @7 against the newest revision present (@9).",
-      "recurrence": "Structural property of the validator, independent of story.",
+      "recurrence": "A property of shared Story-owned validator code (check_handoff.py lines 43-48), which governs every package identically, plus the measured @7-vs-@9 skew. Not an observation inside one story. `matching` is named as a supporting owner because it consumes the staleness signal.",
       "proposedContractDelta": {
         "target": "check_handoff.py (proposal only)",
-        "changes": ["Emit a typed `superseded_package_revision` warning when a package file with a higher revision for the same storyId exists beside the one pinned."],
+        "changes": [
+          "Emit a typed `superseded_package_revision` warning when a package file with a higher revision for the same storyId exists beside the one pinned."
+        ],
         "whyMinimal": "One advisory check. It does not fail the handoff, because a deliberately pinned older revision is legitimate; it only stops the skew being invisible."
-      }
+      },
+      "supportingOwners": [
+        "matching"
+      ],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "accepted",
+      "excludedFromAcceptedDeltas": false
     },
     {
       "gapId": "G-09",
       "title": "Evidence kinds do not separate document, quote, lyric and artifact",
       "owner": "story",
       "proof": "media.kinds observed values across the handoff: footage 6, artwork 4, person 3, populated on 13 of 41 tasks. No document, quote, lyric or artifact value appears.",
-      "recurrence": "Corroborated from the Story side by Job 2, which found works and unenumerated groups have no handle. Spans both the biography and the debate packages per Job 2, so not one story.",
+      "recurrence": "Cross-story evidence verified. Job 2's finding F-08, that works and unenumerated groups cannot be expressed, is supported by spans S16, S19 and S20 (future-volksgeist) and S10 (jayz-drake-settle-it): two different stories. `media` is a supporting owner because it supplies the assets the enum classifies, while the enum itself lives in the Story-owned schema.",
       "proposedContractDelta": {
         "target": "matching-handoff-0.2.schema.json tasks[].media.kinds item enum (proposal only)",
-        "changes": ["Extend the enum with document, quote, lyric and artifact.", "Keep artwork for generic imagery so existing values stay valid."],
+        "changes": [
+          "Extend the enum with document, quote, lyric and artifact.",
+          "Keep artwork for generic imagery so existing values stay valid."
+        ],
         "whyMinimal": "Additive enum members only; no existing value changes meaning and no required field is added."
-      }
+      },
+      "supportingOwners": [
+        "media",
+        "matching"
+      ],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "accepted",
+      "excludedFromAcceptedDeltas": false
     },
     {
       "gapId": "G-10",
       "title": "Adjacency has no first-class expression and continuity is sparsely populated",
       "owner": "story",
       "proof": "linkage.continuityGroupIds non-empty on 8 of 41 tasks. No adjacency field exists; the nearest signals are focal.sequencePermitted (true on 13 of 41) and text.fields[].simultaneousWith.",
-      "recurrence": "Structural. Whether a populated continuity group is even consumed is Job 4's question; Job 2 found continuity is attached after grouping.",
-      "proposedContractDelta": {
+      "recurrence": "DEMOTED ON CORRECTION. The absence of any adjacency field is verified and the sparse continuity population (8 of 41) is measured, but both observations come from the one committed handoff and no cross-story evidence establishes that an adjacency field is required.",
+      "supportingOwners": [
+        "matching"
+      ],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "unresolved_hypothesis",
+      "proposedContractDelta": null,
+      "heldHypothesis": {
         "target": "matching-handoff-0.2.schema.json tasks[].linkage (proposal only)",
-        "addOptionalProperty": {"adjacency": "array of { taskId, relation: enum [must_precede, must_follow, must_be_adjacent, must_not_be_adjacent], reason: string }"},
+        "addOptionalProperty": {
+          "adjacency": "array of { taskId, relation: enum [must_precede, must_follow, must_be_adjacent, must_not_be_adjacent], reason: string }"
+        },
         "constraint": "Optional; referenced taskIds must exist in the same handoff.",
         "whyMinimal": "One optional array. It states a constraint the contract currently cannot express at all rather than reinterpreting continuity groups."
-      }
+      },
+      "heldAs": "UE-20",
+      "excludedFromAcceptedDeltas": true
     },
     {
       "gapId": "G-12",
       "title": "Narration that production will replace or omit has no disposition field",
       "owner": "story",
       "proof": "The unresolved[] kind enum covers untasked_span and focal_unknown and is used honestly (3 items, including a statement that 66 claims are untasked). There is no field marking a span as deliberately replaced or omitted.",
-      "recurrence": "Asserted independently from the Story side as Job 2's principle P-7, derived there from more than one package.",
-      "proposedContractDelta": {
+      "recurrence": "DEMOTED ON CORRECTION. Job 3 originally claimed Job 2's principle P-7 was derived from more than one package. Verification shows P-7 is derived from span S18 alone, which is future-volksgeist: single-story support. That original claim was wrong and is withdrawn.",
+      "supportingOwners": [],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "unresolved_hypothesis",
+      "proposedContractDelta": null,
+      "heldHypothesis": {
         "target": "matching-handoff-0.2.schema.json unresolved[].kind enum, or a new tasks[].linkage.disposition (proposal only)",
-        "changes": ["Add a `replaced_or_omitted` disposition carrying a reason, so an untasked span that is intentionally untasked is distinguishable from one that was missed."],
+        "changes": [
+          "Add a `replaced_or_omitted` disposition carrying a reason, so an untasked span that is intentionally untasked is distinguishable from one that was missed."
+        ],
         "whyMinimal": "One enum member plus a reason string. It separates intent from oversight inside a mechanism that already exists."
-      }
+      },
+      "heldAs": "UE-21",
+      "excludedFromAcceptedDeltas": true
     },
     {
       "gapId": "G-03",
       "title": "The legacy beat-to-script join file is absent at the audited commit pair",
       "owner": "story",
       "proof": "grammar/beat-script-map.json, referenced by the Year Seventeen builder, is absent from the Story worktree at d5117a6d and from the Matching repo at the audited baseline.",
-      "recurrence": "Single artifact, so no contract delta is proposed. Recorded under missingReferenceProtocol and carried to Job 7.",
-      "proposedContractDelta": null
+      "recurrence": "A single absent artifact. No contract delta is proposed, deliberately.",
+      "proposedContractDelta": null,
+      "supportingOwners": [],
+      "ownerModel": "`owner` is the single accountable layer, chosen by artifact ownership. `supportingOwners` records the layers that must supply or consume part of the contract; it does not dilute accountability and does not erase cross-layer responsibility.",
+      "deltaStatus": "none",
+      "excludedFromAcceptedDeltas": false
     }
   ],
-
   "crossRepositoryPinFinding": {
     "id": "CRP-01",
     "severity": "primary",
@@ -588,7 +726,6 @@
     "attribution": "shared. The handoff is Story-authored and pins a Matching commit, so neither layer alone owns the drift. Matching is not at fault for the absent path, and Story is not at fault for the baseline being a separate lineage.",
     "openQuestion": "Whether `main` or the frozen baseline is intended as the Matching authority for the Story handoff is a governance question for the editor, not something this job can settle from artifacts. Recorded as UE-13."
   },
-
   "mediaAbsenceHandling": {
     "acceptanceCriterion": "Missing media must not be treated as candidate incompatibility.",
     "verdict": "SATISFIED",
@@ -601,7 +738,6 @@
       "handTo": "06-candidate-pipeline"
     }
   },
-
   "missingDataNotZeroHandling": {
     "acceptanceCriterion": "Missing data must not be treated as zero.",
     "verdict": "SATISFIED, AND ACTIVELY ENFORCED UPSTREAM",
@@ -614,99 +750,149 @@
     ],
     "assessment": "This is the strongest part of the upstream contract and deserves explicit credit. The gap identified in G-05 is the opposite failure mode: not a zero substituted for an unknown, but a display instruction with no quantity attached. The system is rigorous about not inventing facts and silent about not transmitting them."
   },
-
   "attributionLedger": {
-    "rule": "No layer is blamed for data it does not own. Each case states who owed what.",
+    "rule": "No layer is blamed for data it does not own. Each case names one accountable owner from {story, data, media, matching} and records supporting owners separately, so cross-layer responsibility is preserved without using an out-of-vocabulary owner value.",
     "cases": [
       {
         "caseId": "A-01",
         "evidenceId": "ev_03fa59be374e88f2",
         "beatId": "facts:13.01",
         "desiredCandidateAbsentBecause": "upstream_meaning_or_data_missing",
-        "owner": "shared story and data",
         "basis": "The editor's preferred template depends on a count ('if the number of songs is actually 8 or close'). The contract has no field for that count (G-05), so Matching could not have ranked option 4 above 1 and 6 on that basis. Data owed the figure; Story owed a field to carry it.",
-        "matchingAtFault": false
+        "matchingAtFault": false,
+        "accountableOwner": "story",
+        "supportingOwners": [
+          "data"
+        ]
       },
       {
         "caseId": "A-02",
         "evidenceId": "ev_021919c932e157f2",
         "beatId": "facts:28.01",
         "desiredCandidateAbsentBecause": "mixed",
-        "owner": "shared story and matching",
         "basis": "The editor names the relation shape as group-vs-group with the two thresholds as the groups. The contract carries role=threshold and a population string but no relation object naming the sides (G-04), so part of the meaning was genuinely absent. However the role, entity and population triples present were sufficient to tell that both sides were groups rather than individuals, and Matching did not use them. Story owed a clearer relation; Matching owed a correct reading of what it did receive.",
         "matchingAtFault": "partially",
         "storyShare": "no first-class relation participants or direction",
-        "matchingShare": "did not reconstruct relation shape from the role/entity/population evidence it had"
+        "matchingShare": "did not reconstruct relation shape from the role/entity/population evidence it had",
+        "accountableOwner": "story",
+        "supportingOwners": [
+          "matching"
+        ]
       },
       {
         "caseId": "A-03",
         "evidenceId": "ev_1fa1fe5aefd86338",
         "beatId": "facts-v2:13.01",
         "desiredCandidateAbsentBecause": "matching_failed_with_adequate_upstream",
-        "owner": "matching",
         "basis": "'1 4 and 6 did not make it in this round, why? they shouldve.' Candidates that the system had previously offered for the same beat disappeared in a later round. No upstream field changed between rounds in a way that explains this, so the instability is in admission or diversity, not in the contract.",
         "matchingAtFault": true,
-        "handTo": "06-candidate-pipeline"
+        "handTo": "06-candidate-pipeline",
+        "accountableOwner": "matching",
+        "supportingOwners": []
       },
       {
         "caseId": "A-04",
         "evidenceId": "ev_0e82f3649c6cf9b2",
         "beatId": "examples:17.01",
         "desiredCandidateAbsentBecause": "matching_failed_with_adequate_upstream",
-        "owner": "matching",
         "basis": "'text intros for unrelated templates should not count.' The editor reports admission of candidates whose only relevance is a text intro. Nothing upstream asked for them; this is an admission-breadth defect.",
         "matchingAtFault": true,
-        "handTo": "05-grammar-tags-capabilities and 06-candidate-pipeline"
+        "handTo": "05-grammar-tags-capabilities and 06-candidate-pipeline",
+        "accountableOwner": "matching",
+        "supportingOwners": []
       },
       {
         "caseId": "A-05",
         "scope": "two of three packages",
         "desiredCandidateAbsentBecause": "upstream_artifact_never_produced",
-        "owner": "story",
         "basis": "future-volksgeist and jayz-drake-settle-it have no matching-handoff artifact at all because the builder is hardcoded to one package (G-01). For those packages Matching received no Story-owned presentation requirements, so no media, text, focal or data binding reached it through the contract. Matching cannot be faulted for requirements it was never sent.",
-        "matchingAtFault": false
+        "matchingAtFault": false,
+        "accountableOwner": "story",
+        "supportingOwners": []
       }
     ],
     "measuredSplit": {
-      "upstreamOwed": 2,
-      "matchingOwed": 2,
-      "shared": 1,
-      "note": "A deliberately small, evidence-anchored ledger. It is not a population estimate: only 10 of the 49 matching_output_feedback records name a better or unoffered option, and the provenance of that whole block is unverifiable in this checkout (Job 1 UE-02). Jobs 6 and 7 should quantify the split properly."
+      "accountableStory": 3,
+      "accountableMatching": 2,
+      "note": "Not a population estimate. Only 10 of the 49 matching_output_feedback records name a better or unoffered option, and every one of those 49 records carries packageId null, so none can be attributed to a package. Jobs 6 and 7 should quantify the split against attributable evidence."
     }
   },
-
   "recurrenceJustification": {
-    "rule": "Every proposed field must be justified by recurring evidence, not one story.",
-    "rows": [
-      {"gapId": "G-05", "basis": "structural in the schema, so every task in every package; 74 of 89 observed values affected; editor evidence from a package other than the one handoff"},
-      {"gapId": "G-07", "basis": "structural; 83 percent of observed values; depends on G-05"},
-      {"gapId": "G-08", "basis": "structural; zero occurrences of any locator field in either schema"},
-      {"gapId": "G-04", "basis": "structural, plus independent assertion from the Story side as Job 2 P-3 derived across packages, plus editor evidence"},
-      {"gapId": "G-11", "basis": "affects two of the contract's three required snapshot receipts; property of the pinning scheme, not of a story"},
-      {"gapId": "G-01", "basis": "two of three audited packages lack a handoff as a direct consequence"},
-      {"gapId": "G-02", "basis": "property of the validator, independent of story"},
-      {"gapId": "G-09", "basis": "Job 2 found the same absence across more than one package from the Story side"},
-      {"gapId": "G-10", "basis": "structural; no adjacency field exists at all"},
-      {"gapId": "G-12", "basis": "independently derived as Job 2 P-7 from more than one package"},
-      {"gapId": "G-03", "basis": "single artifact; NO contract delta proposed, deliberately"}
+    "rule": "Every ACCEPTED proposed field must be justified by recurring evidence beyond one story. A gap that fails this test is preserved as an unresolved hypothesis and excluded from the accepted deltas rather than carried as a proposal.",
+    "testApplied": "For each gap: does evidence that THIS EXACT FIELD is required come from more than one story, or from a story-neutral shared artifact (the handoff schema, the validator, or git topology) rather than from observations inside a single package?",
+    "accepted": [
+      {
+        "gapId": "G-05",
+        "basis": "Cross-story evidence verified independently of the single handoff. Job 2's principle P-4 is derived from spans S09 (jayz-drake-settle-it) and S16, S17 (future-volksgeist), two different stories, and its finding F-11 spans S09 and S14. Independently measured here: the storypackage `values` construct appears in jayz-drake-settle-it only (50 occurrences in @3 and @4) and zero times in future-volksgeist and year-seventeen, so structured magnitudes are demonstrably unavailable across packages. The schema defect itself is story-neutral: the handoff schema is one shared contract whose additionalProperties:false property set governs every package."
+      },
+      {
+        "gapId": "G-11",
+        "basis": "Established by measured git topology rather than by story observation: merge-base between da8b175 and the audited baseline is empty, with 10 commits on main and 19 on the baseline. It affects two of the contract's three required snapshot receipts. The proposed delta changes receipt metadata and Story-owned validator behaviour and adds no new semantic field, so it does not rest on cross-story field evidence at all. `matching` is a supporting owner as the owner of the pinned lineage."
+      },
+      {
+        "gapId": "G-01",
+        "basis": "Measured across all three audited packages: two of three have no handoff artifact at all as a direct consequence of the hardcoded builder. This is a cross-story measurement, not an observation inside one story."
+      },
+      {
+        "gapId": "G-02",
+        "basis": "A property of shared Story-owned validator code (check_handoff.py lines 43-48), which governs every package identically, plus the measured @7-vs-@9 skew. Not an observation inside one story. `matching` is named as a supporting owner because it consumes the staleness signal."
+      },
+      {
+        "gapId": "G-09",
+        "basis": "Cross-story evidence verified. Job 2's finding F-08, that works and unenumerated groups cannot be expressed, is supported by spans S16, S19 and S20 (future-volksgeist) and S10 (jayz-drake-settle-it): two different stories. `media` is a supporting owner because it supplies the assets the enum classifies, while the enum itself lives in the Story-owned schema."
+      }
+    ],
+    "heldAsUnresolved": [
+      {
+        "gapId": "G-07",
+        "heldAs": "UE-17",
+        "basis": "DEMOTED ON CORRECTION, as the correction request requires. The 74-of-89 measurement is real but every observed value comes from the one committed Year Seventeen handoff. Structural recurrence inside one story is not cross-story recurrence, and no independent package or editor-reviewed case establishes that roundTo and roundMode specifically are required. The absence of a second handoff is not treated as confirmation."
+      },
+      {
+        "gapId": "G-08",
+        "heldAs": "UE-19",
+        "basis": "DEMOTED ON CORRECTION. The schema absence is verified (zero occurrences of sourceRow, rowLocator, dataset, query, method or asOf in either schema), but no cross-story evidence establishes that a dataRef field is required. Its need follows from G-05 rather than standing on its own evidence, so it is held as a dependent hypothesis."
+      },
+      {
+        "gapId": "G-04",
+        "heldAs": "UE-18",
+        "basis": "DEMOTED ON CORRECTION. Job 3 originally cited Job 2's principle P-3 as cross-package support. Verification shows P-3 is derived from spans S04, S11, S12 and S15, all of which are jayz-drake-settle-it: single-story support. The supporting editor record ev_021919c932e157f2 carries packageId null and cannot be attributed to any package. No cross-story evidence establishes that this exact field is required."
+      },
+      {
+        "gapId": "G-10",
+        "heldAs": "UE-20",
+        "basis": "DEMOTED ON CORRECTION. The absence of any adjacency field is verified and the sparse continuity population (8 of 41) is measured, but both observations come from the one committed handoff and no cross-story evidence establishes that an adjacency field is required."
+      },
+      {
+        "gapId": "G-12",
+        "heldAs": "UE-21",
+        "basis": "DEMOTED ON CORRECTION. Job 3 originally claimed Job 2's principle P-7 was derived from more than one package. Verification shows P-7 is derived from span S18 alone, which is future-volksgeist: single-story support. That original claim was wrong and is withdrawn."
+      }
+    ],
+    "noDelta": [
+      {
+        "gapId": "G-03",
+        "basis": "A single absent artifact. No contract delta is proposed, deliberately."
+      }
     ],
     "rejectedForInsufficientRecurrence": [
       {
         "candidateField": "a per-task simultaneous-focal ceiling",
         "observedIn": "one task carries focal.simultaneous = 93",
-        "whyRejected": "A single extreme value in a single task of a single package. It may be correct for a 93-member cohort. Proposing a ceiling from one observation would violate this job's acceptance rule, and it would risk turning a legitimate large cohort into an artificial incompatibility.",
+        "whyRejected": "A single extreme value in a single task of a single package. It may be correct for a 93-member cohort. Proposing a ceiling from one observation would violate this job's acceptance rule and would risk turning a legitimate large cohort into an artificial incompatibility.",
         "handTo": "06-candidate-pipeline"
       }
     ]
   },
-
   "missingReferenceProtocol": [
     {
       "artifact": "grammar/beat-script-map.json",
       "expectedRole": "Join legacy review beats to script sentences for Year Seventeen (used by architecture/storypackage/tools/build_year_seventeen.py).",
       "searchPerformed": "Story worktree at d5117a6d and the Matching repo at the audited baseline; also searched the Matching repo for any beat-script map by name.",
       "status": "ABSENT at the audited commit pair",
-      "decisionsNotVerifiable": ["Which script sentence each legacy review beat was joined to, and therefore whether a given editor note still applies to the narration now bound to that claim."],
+      "decisionsNotVerifiable": [
+        "Which script sentence each legacy review beat was joined to, and therefore whether a given editor note still applies to the narration now bound to that claim."
+      ],
       "smallestSufficientSupply": "The single file, at or near the commit the Year Seventeen builder was last run.",
       "analysisContinuesWithout": true,
       "handTo": "07-human-evidence-and-reference-evaluation"
@@ -716,20 +902,88 @@
       "expectedRole": "The entity registry snapshot the only committed handoff pins.",
       "searchPerformed": "Audited baseline tree, plus git log --all over the fetched histories.",
       "status": "PRESENT at da8b175 on main (25,546 bytes, sha 7b6a38a7...b9905, byte-exact against the handoff receipt); ABSENT at the audited baseline, where only grammar/entity-roster-source.json exists",
-      "decisionsNotVerifiable": ["Whether entity ids used by the audited Matching baseline resolve to the same roster the handoff was built against."],
+      "decisionsNotVerifiable": [
+        "Whether entity ids used by the audited Matching baseline resolve to the same roster the handoff was built against."
+      ],
       "smallestSufficientSupply": "Editor confirmation of which Matching lineage the Story handoff should pin (see UE-13); no new file is needed if the answer is main.",
       "analysisContinuesWithout": true
     }
   ],
-
   "unresolvedEvidence": [
-    {"id": "UE-13", "item": "Whether `main` or the frozen baseline is the intended Matching authority for the Story handoff's cross-repo pins. The two histories are disjoint (CRP-01), so only the editor can settle which is canonical.", "owner": "you", "handTo": "editor decision; affects Jobs 4 and 8"},
-    {"id": "UE-14", "item": "Whether Matching consumes data.showTogether, linkage.continuityGroupIds and media.focal at all, or attaches them after grouping as Job 2 found for obligations and lanes. Job 3 establishes that the contract carries them; consumption is a transformation question.", "owner": "matching", "handTo": "04-matching-transformations"},
-    {"id": "UE-15", "item": "The 49 matching_output_feedback records anchor this job's attribution ledger but their source file is absent from this checkout, so their declared digest stays unverifiable (Job 1 UE-02).", "owner": "data", "handTo": "07-human-evidence-and-reference-evaluation"},
-    {"id": "UE-16", "item": "40 of 41 template verdicts are `conditional`. Whether that reflects honest uncertainty or a matcher that cannot conclude is not determined here.", "owner": "matching", "handTo": "06-candidate-pipeline"},
-    {"id": "UE-02", "status": "carried from Job 1, unchanged", "item": "18 of 24 evidence sources unreachable in this checkout.", "owner": "data", "handTo": "07-human-evidence-and-reference-evaluation"}
+    {
+      "id": "UE-17",
+      "item": "HYPOTHESIS, held from G-07. Whether the handoff needs explicit rounding precision (roundTo, roundMode). 31 of 89 observed values use display `rounded` with no precision, and no precision field exists in either schema, but all observations come from the single Year Seventeen handoff. Validating this requires a second committed handoff, which depends on G-01.",
+      "owner": "story",
+      "handTo": "08-integrated-root-cause-and-redesign",
+      "whatWouldSettleIt": "A handoff for a second package showing the same display-without-precision pattern, or an editor case where two renderings of one `rounded` value differ materially."
+    },
+    {
+      "id": "UE-18",
+      "item": "HYPOTHESIS, held from G-04. Whether the handoff needs a first-class relations object naming a comparison's sides and direction. Support is single-story (Job 2 P-3, all jayz-drake-settle-it) plus unattributed editor evidence.",
+      "owner": "story",
+      "handTo": "04-matching-transformations",
+      "whatWouldSettleIt": "Evidence from a second package that relation sides were reconstructed wrongly, or a Job 4 finding that Matching cannot derive sides from the role/entity/population triples it already receives."
+    },
+    {
+      "id": "UE-19",
+      "item": "HYPOTHESIS, held from G-08. Whether values need a dataRef source locator. The schema absence is verified but the need follows from G-05 rather than from independent cross-story evidence.",
+      "owner": "data",
+      "handTo": "08-integrated-root-cause-and-redesign",
+      "whatWouldSettleIt": "An instance where a transmitted figure was stale or corrected and the drift could not be detected downstream."
+    },
+    {
+      "id": "UE-20",
+      "item": "HYPOTHESIS, held from G-10. Whether the handoff needs a first-class adjacency field. No adjacency field exists and continuity is populated on only 8 of 41 tasks, but both observations come from the single handoff.",
+      "owner": "story",
+      "handTo": "04-matching-transformations",
+      "whatWouldSettleIt": "A Job 4 finding that ordering decisions require an adjacency constraint the contract cannot express, evidenced in more than one package."
+    },
+    {
+      "id": "UE-21",
+      "item": "HYPOTHESIS, held from G-12. Whether narration that production will replace or omit needs an explicit disposition. Support is single-story: Job 2 P-7 derives from span S18 alone, future-volksgeist.",
+      "owner": "story",
+      "handTo": "07-human-evidence-and-reference-evaluation",
+      "whatWouldSettleIt": "A second package where an untasked span that was intentionally untasked is indistinguishable from one that was missed."
+    },
+    {
+      "id": "UE-22",
+      "item": "All 49 matching_output_feedback records carry packageId null and use a beat-id namespace matching no audited package, so the audit's richest editor evidence cannot be attributed to a story. This limits every cross-story argument that would otherwise rest on it, including this job's.",
+      "owner": "data",
+      "handTo": "07-human-evidence-and-reference-evaluation",
+      "whatWouldSettleIt": "A mapping from the facts:/facts-v2:/examples: beat-id namespace to package claim ids, or editor confirmation of which package each evaluation corpus belongs to."
+    },
+    {
+      "id": "UE-13",
+      "item": "Whether `main` or the frozen baseline is the intended Matching authority for the Story handoff's cross-repo pins. The two histories are disjoint (CRP-01), so only the editor can settle which is canonical.",
+      "owner": "you",
+      "handTo": "editor decision; affects Jobs 4 and 8"
+    },
+    {
+      "id": "UE-14",
+      "item": "Whether Matching consumes data.showTogether, linkage.continuityGroupIds and media.focal at all, or attaches them after grouping as Job 2 found for obligations and lanes. Job 3 establishes that the contract carries them; consumption is a transformation question.",
+      "owner": "matching",
+      "handTo": "04-matching-transformations"
+    },
+    {
+      "id": "UE-15",
+      "item": "The 49 matching_output_feedback records anchor this job's attribution ledger but their source file is absent from this checkout, so their declared digest stays unverifiable (Job 1 UE-02).",
+      "owner": "data",
+      "handTo": "07-human-evidence-and-reference-evaluation"
+    },
+    {
+      "id": "UE-16",
+      "item": "40 of 41 template verdicts are `conditional`. Whether that reflects honest uncertainty or a matcher that cannot conclude is not determined here.",
+      "owner": "matching",
+      "handTo": "06-candidate-pipeline"
+    },
+    {
+      "id": "UE-02",
+      "status": "carried from Job 1, unchanged",
+      "item": "18 of 24 evidence sources unreachable in this checkout.",
+      "owner": "data",
+      "handTo": "07-human-evidence-and-reference-evaluation"
+    }
   ],
-
   "productionFilesModified": [],
   "schemasModified": [],
   "evidenceFilesModified": [],
@@ -739,37 +993,111 @@
     "reports/astra-root-cause/03-upstream-contract-fitness.md",
     "reports/astra-root-cause/03-upstream-contract-fitness.json"
   ],
-
   "acceptance": [
     {
-      "check": "No layer is blamed for data it does not own",
+      "check": "No layer is blamed for data it does not own, and every typed gap is assigned to story, data, media or matching",
       "verdict": "PASS",
-      "basis": "Every typed gap carries an explicit `owner` with a rationale, and the attributionLedger states per case who owed what. G-05 and G-11 are assigned `shared` rather than to one layer. G-08 is assigned to data because Matching cannot be asked to validate a figure's currency without a locator. A-05 explicitly declines to fault Matching for requirements never sent to it, and A-02 splits a single case into a story share and a matching share rather than picking one."
+      "basis": "Every typedGaps[].owner is now a single accountable layer drawn from the allowed vocabulary: story 10, data 1. The out-of-vocabulary value `shared` has been removed everywhere, including from the sufficiency matrix and the attribution ledger. Cross-layer responsibility is preserved rather than erased: each gap, each affected matrix row and each ledger case carries supportingOwners naming the layers that must supply or consume the contract, and ownerRationale states that accountability follows artifact ownership. G-05 is owned by `story` because the missing field is in the Story-owned handoff schema, while `data` is named as the supplier of the figure and `matching` as its consumer. G-08 is owned by `data` as the supplier of figures. A-05 still declines to fault Matching for requirements never sent to it, and A-02 still records a matching share alongside its story accountability."
     },
     {
       "check": "Missing data is not treated as zero and missing media is not treated as candidate incompatibility",
       "verdict": "PASS",
-      "basis": "Both verified independently and empirically rather than asserted. For zero: check_handoff.py lines 37-40 reject any numeric zero as an untyped unknown, positiveCount makes zero unrepresentable, and the observed handoff uses a typed {unknown: reason} object. For media: the two verdict vocabularies are disjoint in code, and in the actual 41-task run three tasks carry unavailable media while only one task is template-incompatible."
+      "basis": "Unchanged and independently verified. Zero: check_handoff.py lines 37-40 reject any numeric zero as an untyped unknown, $defs/positiveCount makes zero unrepresentable for a count, and the observed handoff carries a typed {unknown: reason} object. Media: the fit and availability vocabularies are disjoint in code, and in the 41-task run three tasks carry unavailable media while only one task is template-incompatible."
     },
     {
       "check": "Every proposed field is justified by recurring evidence, not one story",
       "verdict": "PASS",
-      "basis": "recurrenceJustification states the basis for each of the 11 gaps; 9 are structural schema or validator properties that cannot be story-specific, and the two evidence-anchored ones (G-04, G-09) cite editor evidence or Job 2 findings from a package other than the single package that has a handoff. One candidate field was explicitly REJECTED for resting on a single observation, and G-03 deliberately carries no proposed delta."
+      "basis": "Enforced by demotion rather than by assertion. Five gaps are accepted and each cites evidence beyond one story: G-05 on Job 2 P-4 across jayz-drake-settle-it and future-volksgeist plus a measured three-package `values` distribution; G-09 on Job 2 F-08 across future-volksgeist and jayz-drake-settle-it; G-01 on a three-package measurement; G-02 on shared validator code; G-11 on measured git topology, and it adds no semantic field at all. Five gaps FAILED the test and were removed from the accepted deltas and preserved as unresolved hypotheses UE-17 through UE-21: G-07 as the request required, plus G-04, G-08, G-10 and G-12 found by applying the same test consistently. Two original recurrence claims were verified wrong and withdrawn (G-04 via P-3, G-12 via P-7). The unattributed editor corpus no longer supports any accepted delta (C-5, UE-22). One candidate field remains rejected outright for single-observation support. The absence of a second handoff is nowhere treated as confirmation."
     },
     {
-      "check": "The JSON contains a field-by-field sufficiency matrix with typed gaps assigned to story, data, media or matching",
+      "check": "The JSON contains a field-by-field sufficiency matrix and typed gaps with a minimal proposed contract delta for each proven gap",
       "verdict": "PASS",
-      "basis": "sufficiencyMatrix.rows holds 27 field rows, each with contractCanCarry, storySchemaCanCarry, actuallyPopulated, verdict and owner. typedGaps holds 11 gaps, each with an owner drawn from {story, data, media, shared} and a minimal proposed contract delta, except G-03 which deliberately proposes none."
+      "basis": "sufficiencyMatrix.rows holds 27 field rows, each with contractCanCarry, storySchemaCanCarry, actuallyPopulated, verdict, owner and, where cross-layer, supportingOwners. typedGaps holds 11 gaps, each with deltaStatus. Only the 5 PROVEN gaps carry a proposedContractDelta; the 5 unproven ones carry proposedContractDelta null with the text preserved under heldHypothesis so nothing is lost, and G-03 proposes none by design."
+    },
+    {
+      "check": "G-05's proposed name and its naming rationale agree",
+      "verdict": "PASS",
+      "basis": "The canonical name is `value`, which is the StoryPackage field name at storypackage-0.2.schema.json line 705, so the verbatim-reuse claim is now true. The compatibility implication is stated and verified: \"value\" occurs once in the handoff schema, at line 463, as a text-field role enum member, a different namespace from a property name, so no collision arises. The `quantity` proposal is withdrawn. The delta is provider- and story-neutral."
     },
     {
       "check": "No schema is edited",
       "verdict": "PASS",
-      "basis": "Every delta is labelled 'proposal only' and names its target without touching it. git status shows only the two Job 3 report files; the Story worktree is clean at d5117a6d; no production file, grammar file, evidence file or gold reference was modified."
+      "basis": "Every delta is labelled proposal-only and names its target without touching it. The correction diff modifies only the two Job 3 report artifacts. The Story worktree is clean at d5117a6d; no production file, schema, grammar file, evidence file, gold reference or earlier job output was modified."
     }
   ],
-
   "result_detail": {
-    "headline": "The upstream contract is semantically rich and epistemically honest, and it transmits no quantities.",
+    "headline": "The upstream contract is semantically rich and epistemically honest, and it transmits no quantities. Five gaps are proven to cross-story standard; five are held as hypotheses pending evidence a single handoff cannot provide.",
     "oneLine": "Matching is told what a number means, which words it came from, how it should be displayed and what caveats attach to it, but never what the number is, in what unit, computed how, from which row."
-  }
+  },
+  "typedGapSummary": {
+    "total": 11,
+    "acceptedDeltas": [
+      "G-05",
+      "G-11",
+      "G-01",
+      "G-02",
+      "G-09"
+    ],
+    "heldAsUnresolvedHypotheses": [
+      "G-07",
+      "G-08",
+      "G-04",
+      "G-10",
+      "G-12"
+    ],
+    "noDeltaProposed": [
+      "G-03"
+    ],
+    "ownerDistribution": {
+      "story": 10,
+      "data": 1
+    },
+    "ownerVocabulary": [
+      "data",
+      "matching",
+      "media",
+      "story"
+    ],
+    "note": "No gap carries `media` or `matching` as its accountable owner. Media-side and Matching-side defects are consumption and transformation questions owned by Jobs 4, 5 and 6; every gap Job 3 can prove sits in a Story-owned artifact, except G-08 whose accountable owner is `data` as the supplier of figures. Both layers still appear throughout as supportingOwners."
+  },
+  "corrections": {
+    "requestArtifact": "docs/astra-root-cause/JOB_03_CORRECTION_REQUEST.md",
+    "requestCommit": "c04dc6f",
+    "accepted": "in full; all three findings were correct",
+    "items": [
+      {
+        "id": "C-1",
+        "request": "Typed-gap owners used `shared`, outside the allowed set {story, data, media, matching}, while the ownership acceptance check was declared passed.",
+        "action": "G-05, G-07 and G-11 reassigned to a single accountable `owner` from the allowed set, chosen by artifact ownership. Cross-layer responsibility preserved in a new `supportingOwners` field on every gap, every sufficiency-matrix row and every attribution-ledger case. No evidence of another layer's obligation was erased. The ownership acceptance basis was rewritten.",
+        "verdict": "corrected"
+      },
+      {
+        "id": "C-2",
+        "request": "G-05 proposed a property named `quantity` while claiming verbatim reuse of StoryPackage field names, which use `value`.",
+        "action": "Canonical name settled as `value`, a true verbatim reuse, with an interoperability justification and a verified compatibility note: \"value\" occurs once in the handoff schema, at line 463, as a text-field role enum member, which is a different namespace from a property name, so there is no collision. The `quantity` proposal is withdrawn.",
+        "verdict": "corrected"
+      },
+      {
+        "id": "C-3",
+        "request": "G-07's roundTo and roundMode rested on many values drawn from the single committed Year Seventeen handoff; structural recurrence inside one story is not cross-story recurrence.",
+        "action": "G-07's delta removed from the accepted set and preserved as unresolved hypothesis UE-17. The absence of a second handoff is explicitly not treated as confirmation.",
+        "verdict": "corrected"
+      },
+      {
+        "id": "C-4",
+        "request": "Not raised by the request; found by applying its test consistently to every gap.",
+        "action": "Four further gaps failed the same cross-story test and were demoted to unresolved hypotheses: G-04 (UE-18), G-08 (UE-19), G-10 (UE-20), G-12 (UE-21). Two original recurrence claims were verified as WRONG and are withdrawn: G-04 cited Job 2's P-3 as cross-package when P-3's spans S04, S11, S12 and S15 are all jayz-drake-settle-it; G-12 cited P-7 as derived from more than one package when it derives from span S18 alone, future-volksgeist.",
+        "verdict": "corrected_beyond_request"
+      },
+      {
+        "id": "C-5",
+        "request": "Not raised by the request; a related provenance error found during correction.",
+        "action": "Job 3 originally described editor records ev_03fa59be374e88f2, ev_021919c932e157f2, ev_1fa1fe5aefd86338 and ev_0e82f3649c6cf9b2 as coming from a package other than the one handoff. Verified: all 49 matching_output_feedback records carry packageId null, and their beat-id namespace (facts:, facts-v2:, examples:) matches no audited package's claim-id scheme. They are therefore UNATTRIBUTED and cannot support a cross-story recurrence argument in either direction. Every citation was reworded, and no accepted delta now rests on them.",
+        "verdict": "corrected_beyond_request"
+      }
+    ],
+    "unchangedFindings": "The measured findings are unaffected: the 27-row sufficiency matrix, the 74-of-89 display measurement, the disjoint-history topology, the byte-exact receipt verification, the zero-as-unknown enforcement, the media/template verdict separation and the resolution of UE-01, UE-03 and UE-09 all stand as published."
+  },
+  "resultStatus": "corrected_after_editor_review",
+  "correctionRound": 1
 }
