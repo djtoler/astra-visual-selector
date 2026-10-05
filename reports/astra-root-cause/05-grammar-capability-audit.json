@@ -1,0 +1,799 @@
+{
+  "schemaVersion": "astra-root-cause-grammar-capability-audit@1",
+  "job": "05-grammar-tags-capabilities",
+  "title": "Grammar, tags and template-capability coverage",
+  "purpose": "Evaluate whether the grammar can express the visual jobs the stories require, and whether template metadata accurately exposes every existing family's reusable communication capability.",
+  "generatedAt": "2026-10-05T00:00:00+00:00",
+  "result": "PASS",
+  "nextJob": "06-candidate-pipeline",
+  "blockerOwner": "none",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "executionReceipt": {
+    "operator": "claude_desktop",
+    "requiredOperator": "claude_desktop",
+    "requiredExecutionMode": "desktop_conversation",
+    "executionModeObserved": "desktop_conversation",
+    "executionModeEvidence": "Runtime reports session origin 'desktop_app'. No Claude CLI subprocess was invoked for any part of Job 5; policy assigns this job to Desktop directly.",
+    "resolvedModelIdentifier": "claude-opus-5",
+    "resolvedModelDisplayName": "Opus 5",
+    "lastServedModel": "claude-opus-5",
+    "configuredModel": "claude-opus-5",
+    "effortLevel": "high",
+    "modelMetadataSource": "claude-code-remote get_session, read in Job 1 of this session",
+    "sessionId": "session_014CbgCFFrmJN4PKxJdBpZ7P",
+    "environmentKind": "anthropic_cloud",
+    "policyComplianceVerdict": "compliant",
+    "recordedCaveats": [
+      "EXECUTION_POLICY.json sets recordResolvedModel=true for this job and names no required model, so none was applied or assumed.",
+      "Job 1's caveat stands: the surface is Claude Desktop with origin 'desktop_app', but execution is cloud-backed, and the policy does not state whether that is excluded.",
+      "Fable 5.1 was not used and must not be for this job."
+    ],
+    "noInventedMetadata": true
+  },
+  "independenceReceipt": {
+    "excludedComparisonBranch": "matching-layer",
+    "excludedBranchFetched": false,
+    "excludedBranchRead": false,
+    "astraJob1to8ReportsConsumed": false,
+    "postBaselineMatchingCommitsConsumed": false,
+    "contaminationEvents": [],
+    "note": "No new fetch for Job 5. Work used the audit checkout and the read-only Story worktree at d5117a6d."
+  },
+  "outputNaming": "The job spec names its outputs 05-grammar-capability-audit.md and .json, which differ from the job file's own slug 05-grammar-tags-capabilities. The spec's filenames are used.",
+  "artifactsAudited": [
+    {
+      "path": "grammar/JOBS.md",
+      "role": "the declared closed job set",
+      "measured": "21 jobs, 15 of them data jobs"
+    },
+    {
+      "path": "grammar/bindings.json",
+      "role": "job -> treatment bindings",
+      "measured": "624 records across 20 job keys, 370 distinct template ids"
+    },
+    {
+      "path": "grammar/capability.json",
+      "role": "the structured record admission actually reads",
+      "measured": "442 template records"
+    },
+    {
+      "path": "grammar/class-tags.json",
+      "role": "lifecycle/content-class tags excluded from identity evidence",
+      "measured": "tag list plus a measured collision note"
+    },
+    {
+      "path": "grammar/local-templates.json",
+      "role": "locally described templates",
+      "measured": "20 ids"
+    },
+    {
+      "path": "grammar/library-snapshot.json",
+      "role": "MEDIA library snapshot, not templates",
+      "measured": "1685 assets, 15271 tags, 31 projects, 49 suppressed claims, generated 2026-09-26"
+    },
+    {
+      "path": "grammar/ae-template-technical-index.json",
+      "role": "source-bound AE technical index",
+      "measured": "57 projects, 5806 compositions, 4089 text fields, renderingPerformed false"
+    },
+    {
+      "path": "grammar/ae-scene-composition-mappings.json",
+      "role": "bridge from clip-level scenes to native compositions",
+      "measured": "398 mappings: 140 verified, 244 verified_window, 14 unreviewed"
+    },
+    {
+      "path": "grammar/eligibility-overrides.json",
+      "role": "dated, attributed user overrides of generated gates",
+      "measured": "an admit block with a cited user decision"
+    },
+    {
+      "path": "grammar/visual-task-overrides.json",
+      "role": "per-beat overrides",
+      "measured": "schemaVersion, purpose, source, beats"
+    },
+    {
+      "path": "grammar/SCOPE.md",
+      "role": "scope statement",
+      "measured": "read"
+    }
+  ],
+  "conceptMap": {
+    "purpose": "Normalized map from Story meaning, through the presentation contract, to template capability.",
+    "layers": [
+      "story",
+      "presentation_contract",
+      "template_capability"
+    ],
+    "rows": [
+      {
+        "concept": "identity of a subject",
+        "story": "claim.entityRefs[].entity with display required/eligible",
+        "presentationContract": "entityCount",
+        "templateCapability": "carries:identity (392/442); slots_at_once",
+        "status": "expressible end to end",
+        "note": "the best-covered concept in the catalog"
+      },
+      {
+        "concept": "how many subjects at once",
+        "story": "count of display entityRefs; handoff media.focal.simultaneous",
+        "presentationContract": "entityCount",
+        "templateCapability": "slots_at_once (1 on 233 records), slots_total, media_slots",
+        "status": "expressible",
+        "note": "handoff focal is never read by Matching (Job 4, resolves Job 3 UE-14), so the count reaching the contract is a recount of display entityRefs"
+      },
+      {
+        "concept": "a named fixed population",
+        "story": "claim.cohortRefs; cohort version",
+        "presentationContract": "hasCohort",
+        "templateCapability": "carries:membership (69/442); structure:list|grid|grouped_clusters",
+        "status": "expressible but thin",
+        "note": "cohort size is not expressible: growable is True on only 30 records and null on 90"
+      },
+      {
+        "concept": "a magnitude",
+        "story": "claim.values[].value plus unit and basis",
+        "presentationContract": "hasTypedValues boolean; quantitativeClaim boolean",
+        "templateCapability": "carries:magnitude (38/442); readable:exact_value (125/442)",
+        "status": "LOSSY",
+        "note": "Job 3 G-05: the handoff cannot carry the magnitude at all, so the contract reduces a figure to two booleans"
+      },
+      {
+        "concept": "comparison against a sum versus against individuals",
+        "story": "JOBS.md separates one_vs_aggregate from one_vs_many_individually",
+        "presentationContract": "operation:comparison only - one label for both",
+        "templateCapability": "carries:aggregate on 1 of 442 records",
+        "status": "MISSING",
+        "note": "the distinction exists in the job vocabulary, is collapsed in the contract, and is effectively absent from the catalog"
+      },
+      {
+        "concept": "evidence kind: document, quote, lyric, artifact",
+        "story": "obligation.mediaNeeds; handoff media.kinds (footage/artwork/person only)",
+        "presentationContract": "evidenceKind, inferred from quote text keywords: document_screen or source_footage_or_document",
+        "templateCapability": "NO FIELD - capability has no evidence-kind concept",
+        "status": "MISSING at the capability layer",
+        "note": "the contract computes an evidence kind that no capability record can answer; Job 3 G-09 covers the Story side"
+      },
+      {
+        "concept": "reading demand: teach the viewer how to read the chart",
+        "story": "JOBS.md job explain_the_encoding",
+        "presentationContract": "no field",
+        "templateCapability": "NO FIELD; 1 of 442 records' asserts text mentions explaining an encoding",
+        "status": "MISSING",
+        "note": "JOBS.md itself says this is the job nobody builds for; see unsupportedClaims UC-1"
+      },
+      {
+        "concept": "sequence and order",
+        "story": "claim order within a beat; continuity",
+        "presentationContract": "operations ordering via OPERATION_PRIORITY",
+        "templateCapability": "staging: all_at_once 201, reveals_in_turn 143, builds_up 45, accumulates_to_total 7, unknown 46",
+        "status": "expressible",
+        "note": "staging is the single best-formed capability axis"
+      },
+      {
+        "concept": "on-screen text and its limits",
+        "story": "obligation.needsOnScreenText; handoff text.fields with truncation, abbreviation, wrap, maxChars",
+        "presentationContract": "needsOnScreenText",
+        "templateCapability": "text_slots (count only); readable:label|statement",
+        "status": "LOSSY",
+        "note": "the Story contract is unusually precise about typographic limits and the capability record carries only a slot count"
+      },
+      {
+        "concept": "what must not be asserted",
+        "story": "obligation.wouldBeALie",
+        "presentationContract": "wouldBeALie list",
+        "templateCapability": "no field",
+        "status": "carried to review, not matched",
+        "note": "correctly surfaced for human review rather than machine-enforced"
+      },
+      {
+        "concept": "what must be perceptible",
+        "story": "obligation.mustBePerceptible",
+        "presentationContract": "mustBePerceptible list",
+        "templateCapability": "no direct field; partially answered by readable and carries",
+        "status": "partially expressible"
+      },
+      {
+        "concept": "treatment consistency across moments",
+        "story": "continuity.scope and strength",
+        "presentationContract": "NOT CARRIED",
+        "templateCapability": "n/a",
+        "status": "MISSING in the contract",
+        "note": "Job 4 proved continuity never reaches grouping; it also never reaches the presentation contract"
+      },
+      {
+        "concept": "editorial versus factual register",
+        "story": "claim.lane",
+        "presentationContract": "NOT CARRIED",
+        "templateCapability": "n/a",
+        "status": "MISSING in the contract",
+        "note": "Job 4: lane is present on every claim row handed to the inference and read by nothing"
+      },
+      {
+        "concept": "native editability",
+        "story": "n/a",
+        "presentationContract": "n/a",
+        "templateCapability": "unclear:native_editability on 442 of 442 records",
+        "status": "UNIVERSALLY UNKNOWN",
+        "note": "see nativeEvidenceReconciliation; the AE index holds source-bound evidence that is never reflected back"
+      },
+      {
+        "concept": "scope restriction",
+        "story": "n/a",
+        "presentationContract": "operation lyric_presentation",
+        "templateCapability": "binding record scope field, observed only as 'lyrics'",
+        "status": "expressible, narrowly used"
+      }
+    ]
+  },
+  "vocabularyDisjointness": {
+    "finding": "The grammar's job vocabulary and the matcher's operation vocabulary share no names.",
+    "jobs": 21,
+    "operations": 13,
+    "sharedNames": 0,
+    "bindingsKeyedBy": "job",
+    "admissionKeyedBy": "primary presentation operation",
+    "isThisAccidental": "NO, it is deliberate and documented",
+    "evidence": "visualtask_matching.py:273-277 states that in the structured path legacy bindings are secondary evidence only, and _supports_operation reads record['capability'], not the binding's prose. Its docstring states 'Generic family words never admit a record.'",
+    "consequence": "Two parallel descriptions of the catalog coexist. bindings.json is the job-keyed, model-generated, prose-bearing layer; capability.json is the operation-facing structured layer that actually admits. A reader of JOBS.md would reasonably believe job bindings drive selection; they do not.",
+    "bindingCoverageOfTheClosedSet": {
+      "jobsInJOBSmd": 21,
+      "jobsWithBindings": 19,
+      "jobsDeclaredButNeverBound": [
+        "attributed_quote",
+        "paired_values_by_group"
+      ],
+      "bindingKeysNotInJOBSmd": [
+        "inversion"
+      ],
+      "note": "inversion carries 12 binding records and appears as a job value in the Year Seventeen gold reference, yet JOBS.md calls itself 'the closed set' and does not list it. The closed set is not closed."
+    }
+  },
+  "supplyVersusDemand": {
+    "method": "Demand is the job distribution Job 4 measured over 492 replayed units. Supply is binding records per job, and the count of those whose capability record carries any quantitative role (magnitude, difference, rank, share_of_whole, change_over_time, aggregate, derivation).",
+    "rows": [
+      {
+        "job": "assert_without_data",
+        "demand": 220,
+        "boundRecords": 47,
+        "families": 27,
+        "quantitativeCapable": 1
+      },
+      {
+        "job": "narrate_an_event",
+        "demand": 164,
+        "boundRecords": 141,
+        "families": 24,
+        "quantitativeCapable": 1
+      },
+      {
+        "job": "derived_quantity",
+        "demand": 35,
+        "boundRecords": 15,
+        "families": 9,
+        "quantitativeCapable": 6
+      },
+      {
+        "job": "enumerate",
+        "demand": 31,
+        "boundRecords": 145,
+        "families": 35,
+        "quantitativeCapable": 2
+      },
+      {
+        "job": "pose_a_question",
+        "demand": 30,
+        "boundRecords": 26,
+        "families": 11,
+        "quantitativeCapable": 0
+      },
+      {
+        "job": "parallel_instances",
+        "demand": 10,
+        "boundRecords": 52,
+        "families": 26,
+        "quantitativeCapable": 11
+      },
+      {
+        "job": "define_terms",
+        "demand": 1,
+        "boundRecords": 37,
+        "families": 17,
+        "quantitativeCapable": 0
+      },
+      {
+        "job": "proportion_of_cohort",
+        "demand": 1,
+        "boundRecords": 12,
+        "families": 7,
+        "quantitativeCapable": 9
+      },
+      {
+        "job": "locate_in_distribution",
+        "demand": 0,
+        "boundRecords": 22,
+        "families": 22,
+        "quantitativeCapable": 13
+      },
+      {
+        "job": "entity_vs_benchmark",
+        "demand": 0,
+        "boundRecords": 18,
+        "families": 15,
+        "quantitativeCapable": 10
+      },
+      {
+        "job": "change_across_set",
+        "demand": 0,
+        "boundRecords": 24,
+        "families": 15,
+        "quantitativeCapable": 11
+      },
+      {
+        "job": "one_vs_many_individually",
+        "demand": 0,
+        "boundRecords": 26,
+        "families": 22,
+        "quantitativeCapable": 5
+      },
+      {
+        "job": "inversion",
+        "demand": 0,
+        "boundRecords": 12,
+        "families": 5,
+        "quantitativeCapable": 2
+      },
+      {
+        "job": "category_breakdown",
+        "demand": 0,
+        "boundRecords": 10,
+        "families": 9,
+        "quantitativeCapable": 4
+      },
+      {
+        "job": "streak_over_time",
+        "demand": 0,
+        "boundRecords": 9,
+        "families": 8,
+        "quantitativeCapable": 3
+      },
+      {
+        "job": "one_vs_aggregate",
+        "demand": 0,
+        "boundRecords": 9,
+        "families": 8,
+        "quantitativeCapable": 6
+      },
+      {
+        "job": "members_then_total",
+        "demand": 0,
+        "boundRecords": 6,
+        "families": 3,
+        "quantitativeCapable": 0
+      },
+      {
+        "job": "intersection_of_sets",
+        "demand": 0,
+        "boundRecords": 5,
+        "families": 5,
+        "quantitativeCapable": 5
+      },
+      {
+        "job": "explain_the_encoding",
+        "demand": 0,
+        "boundRecords": 5,
+        "families": 2,
+        "quantitativeCapable": 1
+      },
+      {
+        "job": "equivalence_restatement",
+        "demand": 0,
+        "boundRecords": 3,
+        "families": 3,
+        "quantitativeCapable": 1
+      }
+    ],
+    "theInversion": {
+      "statement": "JOBS.md asserts that roughly two in three beats want a data treatment and makes 15 of its 21 jobs data jobs. The catalog and the measured demand both point the other way.",
+      "catalogSide": "Only 49 of 442 capability records (11 percent) carry any quantitative role, against 392 of 442 carrying identity. Only 216 of 624 binding records (34 percent) serve data jobs.",
+      "demandSide": "The two jobs with the highest measured demand, assert_without_data at 220 and narrate_an_event at 164, together carry 2 quantitative-capable bound templates between them. 13 of 20 bound jobs have zero measured demand while holding 175 binding records.",
+      "reading": "Supply and demand are mismatched in both directions at once. The data jobs the grammar was designed around are barely exercised by the current operation layer, while the generic jobs it does produce are bound almost entirely to identity-carrying treatments. This is the catalog-level form of the editor's complaint that the offered options are wrong for counting and comparison beats.",
+      "attributionCaution": "This is a mismatch between three layers, not a single layer's fault. Demand is set by the operation inference (Job 4, matching). Job coverage is set by the bindings (matching). Whether a beat should have been a data job at all depends on Story values, which Job 3 G-05 shows are not transmitted. No layer is blamed alone."
+    }
+  },
+  "crowdingOut": {
+    "question": "Whether variants from one family crowd out different families that can serve the same job.",
+    "method": "Family is the template id with a trailing --scene-NNN or --review-NNN variant suffix removed.",
+    "finding": "Crowding is narrow, not systemic. Only 2 of 20 bound jobs have a single family at 50 percent or more.",
+    "crowdedJobs": [
+      {
+        "job": "explain_the_encoding",
+        "records": 5,
+        "families": 2,
+        "topFamily": "intro-slideshow-full-720p",
+        "topFamilyShare": "80 percent",
+        "severity": "high",
+        "why": "the dominating family is a slideshow whose capability records read carries identity or identity+membership and readable none or label+statement. A treatment that reads no value cannot teach a viewer how to read a chart."
+      },
+      {
+        "job": "members_then_total",
+        "records": 6,
+        "families": 3,
+        "topFamily": "intro-slideshow-full-720p",
+        "topFamilyShare": "66 percent",
+        "severity": "high",
+        "why": "the job is show the members then their sum; 0 of its 6 bound records are quantitative-capable, so no bound treatment can show the total"
+      }
+    ],
+    "wellDiversified": [
+      {
+        "job": "locate_in_distribution",
+        "records": 22,
+        "families": 22,
+        "note": "one variant per family, the healthiest binding in the set"
+      },
+      {
+        "job": "one_vs_many_individually",
+        "records": 26,
+        "families": 22
+      },
+      {
+        "job": "enumerate",
+        "records": 145,
+        "families": 35,
+        "topFamilyShare": "22 percent"
+      }
+    ],
+    "thinJobs": [
+      {
+        "job": "equivalence_restatement",
+        "records": 3
+      },
+      {
+        "job": "intersection_of_sets",
+        "records": 5
+      },
+      {
+        "job": "explain_the_encoding",
+        "records": 5
+      },
+      {
+        "job": "members_then_total",
+        "records": 6
+      }
+    ],
+    "conclusion": "The published worry about variant crowding is mostly not borne out: 18 of 20 jobs draw on several families. Where crowding does occur it is severe and it coincides with the jobs that have the fewest records at all, so the problem is thin supply compounded by one family filling the gap rather than a broad crowding effect."
+  },
+  "tagsAndMetadataQuality": {
+    "aTagIsNotNativeFitProof": {
+      "verdict": "SATISFIED BY DESIGN, VERIFIED IN CODE AND EMPIRICALLY",
+      "codeEvidence": "visualtask_batch_matching.py:420-422 states that exact layer counts do not prove that a visual slot accepts a requested media kind, that copy is readable at its limits, or that typed data has a native encoding, and that those claims need reviewed evidence. Any required media, required text or required typed data therefore appends a conditional gap and returns verdict conditional before native_fit can be reached (line 429-430). native_fit additionally requires exact timing within one frame and available media (lines 432-451).",
+      "docstringEvidence": "visualtask_matching._supports_operation states 'Generic family words never admit a record.'",
+      "empiricalEvidence": "Job 3 measured the 41-task production run: templateVerdicts were conditional 40 and incompatible 1, with ZERO native_fit. The gate is not merely stated, it binds."
+    },
+    "unknownCapabilityRemainsUnknown": {
+      "verdict": "SATISFIED IN THE DATA, NOT ENFORCED IN CODE",
+      "dataEvidence": "capability.json records an explicit unclear list on 442 of 442 records. native_editability is unclear on all 442; still_only on 46; and five further one-off unknowns are named individually, including existing_description_mismatch, clip_boundaries and slots_total. staging is the literal value 'unknown' on 46 records and growable is null on 90. Nothing is rounded up to a claim.",
+      "codeGap": "No module reads unclear, native_editability, styleAdaptation or unassessed. Zero occurrences across pipeline/. The unknowns are preserved honestly in the grammar and consulted by nothing.",
+      "whyTheOutcomeIsStillCorrect": "Unknowns do not become permission in practice, but only because the conditional gate above catches every task with a media, text or typed-data requirement first. The protection is incidental rather than designed: if that gate were relaxed, 442 records whose native editability is unknown would become eligible for native_fit with nothing to stop them.",
+      "recordedAs": "UE-28"
+    },
+    "broadTags": {
+      "question": "Whether broad tags admit invalid templates or hide valid ones.",
+      "findingForTemplates": "Template admission does not use free tags at all. It reads the structured capability object, and _supports_operation rejects a record with no capability outright. So a broad tag cannot admit an invalid template on the template side.",
+      "findingForMedia": "The media side has a documented, measured collision, and the grammar says so itself. class-tags.json records: 'Matching a tag TOKEN against an entity token makes cole reach J. Cole, and also makes post, from the content-class tag Article Or Post, reach Post Malone on 48 assets. The generosity is wanted; the collision is not.'",
+      "mitigationIsWired": "media_candidates.py:381-394 loads class-tags.json into CLASS_TAGS and defines is_class_tag(); line 869 excludes project tags and class tags from identity evidence. The mitigation is real and connected, not aspirational.",
+      "residual": "library-snapshot.json carries 49 suppressedClaims as [assetId, tag] pairs, including entity-looking tags such as 'Jay', 'Future Stars' and 'ludacris' on single assets, and one duplicated pair. These are suppressions already applied, so they evidence the collision class rather than an open defect. Media-side tag quality is Job 6's scope."
+    }
+  },
+  "nativeEvidenceReconciliation": {
+    "finding": "Two evidence layers describe the same templates and are never reconciled, so verified native evidence sits beside a capability record that still says the same thing is unknown.",
+    "layerA": {
+      "artifact": "grammar/capability.json",
+      "records": 442,
+      "derivation": "model-asserted",
+      "model": "gemini-3.8-flash",
+      "inputs": "396 records from a clip, 46 from a still only",
+      "unknownMarker": "unclear:native_editability on all 442"
+    },
+    "layerB": {
+      "artifact": "grammar/ae-template-technical-index.json",
+      "projects": 57,
+      "compositions": 5806,
+      "textFields": 4089,
+      "derivation": "source-bound, with sourceProjectSha256 and sourceUnchanged per project",
+      "renderingPerformed": false
+    },
+    "bridge": {
+      "artifact": "grammar/ae-scene-composition-mappings.json",
+      "mappings": 398,
+      "status": {
+        "verified": 140,
+        "verified_window": 244,
+        "unreviewed": 14
+      },
+      "coverage": {
+        "capabilityRecordsWithANativeMapping": 344,
+        "capabilityRecordsWithNone": 98,
+        "ofTotal": 442
+      }
+    },
+    "reading": "384 of 398 mappings are verified in some form and 344 of 442 capability records have a native composition mapping, so native evidence exists and is largely verified. Yet every capability record still declares native editability unclear, and no code reads either the unclear marker or the mapping status when forming the presentation contract. The 98 records with no mapping are genuinely unknown.",
+    "attribution": "matching",
+    "recordedAs": "UE-29"
+  },
+  "missingConcepts": [
+    {
+      "id": "MC-1",
+      "concept": "evidence kind at the capability layer",
+      "expressedUpstream": "the presentation contract computes evidenceKind as document_screen or source_footage_or_document",
+      "capabilityField": null,
+      "consequence": "the contract asks a question about a template that no capability record can answer, so evidence requests cannot be matched structurally",
+      "storyNeutral": true,
+      "observableBehavior": "whether a template renders a readable document, article, caption or lyric surface"
+    },
+    {
+      "id": "MC-2",
+      "concept": "comparison against a sum versus against named individuals",
+      "expressedUpstream": "JOBS.md separates one_vs_aggregate from one_vs_many_individually",
+      "capabilityField": "carries:aggregate, present on 1 of 442 records",
+      "consequence": "the single most common editorial complaint class in this audit, group versus group, has almost no catalog vocabulary",
+      "storyNeutral": true,
+      "observableBehavior": "whether a template shows a summed bar or bucket alongside individual members"
+    },
+    {
+      "id": "MC-3",
+      "concept": "teaches its own encoding",
+      "expressedUpstream": "JOBS.md job explain_the_encoding",
+      "capabilityField": null,
+      "consequence": "JOBS.md states no template is described as doing this; 5 bindings exist anyway (see UC-1)",
+      "storyNeutral": true,
+      "observableBehavior": "whether a template renders an axis label, legend or unit key before the data"
+    },
+    {
+      "id": "MC-4",
+      "concept": "slot range rather than slot count",
+      "expressedUpstream": "cohort size and enumerate jobs vary in N",
+      "capabilityField": "growable boolean, True on 30, False on 322, null on 90; no min or max",
+      "consequence": "a cohort of 14 and a cohort of 3 are indistinguishable in capability terms, so an enumerate job cannot be matched by size",
+      "storyNeutral": true,
+      "observableBehavior": "the smallest and largest item count a template renders without redesign"
+    },
+    {
+      "id": "MC-5",
+      "concept": "editorial versus factual register",
+      "expressedUpstream": "claim.lane, present on every claim",
+      "capabilityField": null,
+      "consequence": "25 units in Job 4 carried lane editorial while routed as a data operation; neither the contract nor the catalog can express the distinction",
+      "storyNeutral": true,
+      "observableBehavior": "whether a template's surface reads as an assertion, a question or a measured chart"
+    }
+  ],
+  "contradictoryTagsAndUnsupportedClaims": [
+    {
+      "id": "UC-1",
+      "kind": "unsupported claim",
+      "statement": "JOBS.md asserts that explain_the_encoding is 'the one nobody builds for' and that 'no template in the current catalog is described as doing it', yet bindings.json binds 5 templates to it.",
+      "evidence": "4 of the 5 are intro-slideshow-full-720p--scene-010 through -013, whose capability records carry identity or identity+membership with readable none or label+statement, and structure sequence or grid. The fifth, truth-population-field, carries magnitude and difference with readable exact_value and structure axis_plot, and is the only plausible one; its binding provenance verdict is null.",
+      "reading": "Four bindings claim a capability the capability records contradict, and the document itself says the capability does not exist.",
+      "attribution": "matching"
+    },
+    {
+      "id": "UC-2",
+      "kind": "stale or overstated provenance",
+      "statement": "JOBS.md describes the design as binding each job to 'a small set of natively verified treatments' with 'native verification happening once per treatment', but 603 of 624 binding records were generated by a model.",
+      "evidence": "bindings.json provenance: source pipeline on 603 and user on 21; model claude-sonnet-5 on 603; verdict conditional on 314, clear on 289, absent on 21. styleAdaptation.status is unassessed on all 624.",
+      "reading": "The records are honest about themselves. The prose that frames them is not: 'natively verified' describes an intent, and the data says model-asserted and half conditional.",
+      "attribution": "matching"
+    },
+    {
+      "id": "UC-3",
+      "kind": "incomplete metadata",
+      "statement": "Binding prose is absent on a large share of records.",
+      "evidence": "enc empty on 389 of 624, condition empty on 310 of 624, cap empty on 26 of 624, name present on all 624.",
+      "reading": "Because bindings are secondary evidence only, this does not admit invalid templates. It does mean the job-keyed layer cannot be read as an explanation of why a treatment fits a job.",
+      "attribution": "matching"
+    },
+    {
+      "id": "UC-4",
+      "kind": "closed set that is not closed",
+      "statement": "JOBS.md calls itself the closed set the grammar binds to, and the job inversion is bound and used without appearing in it.",
+      "evidence": "bindings.json carries an inversion key with 12 records; inversion appears as a job value in the Year Seventeen gold reference.",
+      "attribution": "matching"
+    },
+    {
+      "id": "UC-5",
+      "kind": "declared but unreachable",
+      "statement": "Two declared jobs have no bindings at all.",
+      "evidence": "attributed_quote and paired_values_by_group appear in JOBS.md with passages and have no key in bindings.json. attributed_quote is the job the cross-story acceptance package was said to add.",
+      "attribution": "matching"
+    }
+  ],
+  "hiddenCapabilityFamilies": [
+    {
+      "id": "HC-1",
+      "finding": "72 of 442 capability records are bound to no job at all.",
+      "consequence": "Their capability is described and structured, so the operation path can still admit them, but they are invisible to any reader or process working from the job vocabulary.",
+      "attribution": "matching"
+    },
+    {
+      "id": "HC-2",
+      "finding": "98 of 442 capability records have no native composition mapping.",
+      "consequence": "for these the native editability unknown is irreducible at this baseline, not merely unreconciled",
+      "attribution": "matching"
+    },
+    {
+      "id": "HC-3",
+      "finding": "46 of 442 records were derived from a still image only, and all 46 carry staging unknown.",
+      "consequence": "staging is the best-formed capability axis and the one most useful for sequence and order jobs, so these 46 cannot be matched on it",
+      "attribution": "matching"
+    },
+    {
+      "id": "HC-4",
+      "finding": "The AE technical index describes 5806 compositions while capability describes 442 templates.",
+      "consequence": "the structured capability layer covers a small fraction of the native composition inventory. Whether the remainder are genuinely distinct reusable treatments or scene variants of the same families cannot be determined from these artifacts, so no claim is made about how much capability is hidden.",
+      "attribution": "matching",
+      "recordedAs": "UE-30"
+    }
+  ],
+  "staleRecords": [
+    {
+      "artifact": "grammar/library-snapshot.json",
+      "generatedAt": "2026-09-26T01:29:03",
+      "note": "a generated export of the MEDIA catalog, regenerated with pipeline/export_library.py. Its freshness is not asserted against the current media library anywhere in the pipeline."
+    },
+    {
+      "artifact": "grammar/class-tags.json",
+      "measuredAt": "2026-09-26",
+      "note": "carries its own measurement date and the user quote that motivated it; dated and attributed, which is the pattern eligibility-overrides.json also follows"
+    },
+    {
+      "artifact": "grammar/ae-scene-composition-mappings.json",
+      "note": "its scope block pins comparisonCommit 6b3215c with a sha256. That commit is not reachable in this checkout's fetched history, so the pin cannot be verified here, in the same class as Job 3 G-11."
+    },
+    {
+      "artifact": "grammar/capability.json",
+      "note": "records carry generated_at and prompt_sha256 per record, so provenance is per-record rather than per-file"
+    }
+  ],
+  "proposedVocabulary": {
+    "discipline": "Story-neutral and tied to observable template behaviour. Each proposed field names something a reviewer could confirm by watching the template render, and none names a subject, package or beat. Nothing here is applied: no catalog or grammar record is changed.",
+    "additions": [
+      {
+        "field": "evidence_surface",
+        "layer": "capability",
+        "type": "enum",
+        "values": [
+          "document",
+          "article_or_post",
+          "caption_or_subtitle",
+          "lyric",
+          "quote_card",
+          "none"
+        ],
+        "observableTest": "does the template render a surface on which a document, post, caption, lyric or quotation is legible",
+        "closes": "MC-1",
+        "storyNeutral": true
+      },
+      {
+        "field": "carries: aggregate",
+        "layer": "capability",
+        "type": "existing enum value, currently used once",
+        "observableTest": "does the template show a summed or pooled quantity distinct from its individual members",
+        "closes": "MC-2",
+        "note": "no new vocabulary is needed; the value exists and is almost unused, so the gap may be coverage rather than expressiveness",
+        "storyNeutral": true
+      },
+      {
+        "field": "teaches_encoding",
+        "layer": "capability",
+        "type": "boolean",
+        "observableTest": "does the template render an axis label, legend, unit key or worked example before or alongside the data",
+        "closes": "MC-3",
+        "storyNeutral": true
+      },
+      {
+        "field": "item_range",
+        "layer": "capability",
+        "type": "object with min and max integers",
+        "observableTest": "the smallest and largest item count the template renders without redesign",
+        "closes": "MC-4",
+        "note": "supersedes the growable boolean, which is null on 90 records",
+        "storyNeutral": true
+      },
+      {
+        "field": "register",
+        "layer": "capability",
+        "type": "enum",
+        "values": [
+          "assertive",
+          "interrogative",
+          "measured",
+          "neutral"
+        ],
+        "observableTest": "does the rendered surface read as a claim, a question, or a measurement",
+        "closes": "MC-5",
+        "storyNeutral": true,
+        "caution": "this is the least observable of the five and the most likely to become a style judgment. It is proposed as a hypothesis rather than a settled field."
+      }
+    ],
+    "notProposed": [
+      {
+        "idea": "a native_fit tag on capability records",
+        "whyNot": "it would invite exactly the inference the audit credits the code for refusing. native fit is a per-task comparison, not a template property."
+      },
+      {
+        "idea": "merging the job and operation vocabularies",
+        "whyNot": "out of scope for Job 5 and premature: Job 4 recorded UE-23 on OPERATION_PRIORITY's underivedness, and the right order is to establish the operation vocabulary's provenance before reconciling two vocabularies against each other."
+      }
+    ]
+  },
+  "unresolvedEvidence": [
+    {
+      "id": "UE-28",
+      "item": "The unknown markers in capability.json are read by no code. Unknowns do not become permission today only because the conditional gate intercepts first, so the protection is incidental.",
+      "owner": "matching",
+      "handTo": "08-integrated-root-cause-and-redesign"
+    },
+    {
+      "id": "UE-29",
+      "item": "Verified native composition evidence exists for 344 of 442 templates and is never reflected back into the capability record that admission reads.",
+      "owner": "matching",
+      "handTo": "08-integrated-root-cause-and-redesign"
+    },
+    {
+      "id": "UE-30",
+      "item": "The AE index holds 5806 compositions against 442 structured capability records. Whether the remainder are distinct reusable treatments or scene variants cannot be determined from these artifacts.",
+      "owner": "matching",
+      "handTo": "06-candidate-pipeline"
+    },
+    {
+      "id": "UE-31",
+      "item": "bindings.json provenance names a promptSha and runId per record but no prompt text or verification transcript is present in this checkout, so the basis of the 289 clear verdicts cannot be inspected.",
+      "owner": "matching",
+      "handTo": "07-human-evidence-and-reference-evaluation"
+    },
+    {
+      "id": "UE-23",
+      "status": "carried from Job 4",
+      "item": "OPERATION_PRIORITY is a fixed global tuple with no stated derivation.",
+      "owner": "matching",
+      "handTo": "08-integrated-root-cause-and-redesign",
+      "job5Note": "Job 5 adds that the priority tuple orders the OPERATION vocabulary, which shares no name with the JOB vocabulary the catalog is bound by, so the ordering cannot be checked against JOBS.md's own data-versus-non-data split."
+    }
+  ],
+  "catalogRecordsChanged": [],
+  "grammarRecordsChanged": [],
+  "productionFilesModified": [],
+  "storyRepositoryWrites": "none; the worktree at d5117a6d was verified clean",
+  "filesCreated": [
+    "reports/astra-root-cause/05-grammar-capability-audit.md",
+    "reports/astra-root-cause/05-grammar-capability-audit.json"
+  ],
+  "acceptance": [
+    {
+      "check": "A tag is not treated as native-fit proof",
+      "verdict": "PASS",
+      "basis": "Verified in code and empirically rather than asserted. visualtask_batch_matching.py:420-430 states that exact layer counts prove none of the treatment-specific claims and forces verdict conditional whenever media, text or typed data is required; native_fit further requires frame-exact timing and available media. _supports_operation's docstring states that generic family words never admit a record, and it returns None for any record with no structured capability. Job 3's production measurement found templateVerdicts conditional 40, incompatible 1 and ZERO native_fit. The audit credits this as a designed strength and proposes no native_fit tag, recording in proposedVocabulary.notProposed why such a tag would be wrong."
+    },
+    {
+      "check": "Unknown capability remains unknown",
+      "verdict": "PASS",
+      "basis": "Honoured in the data and reported with its limit. capability.json carries an explicit unclear list on 442 of 442 records, with native_editability unknown on all 442, still_only on 46, five further one-off unknowns named individually, staging literally 'unknown' on 46 and growable null on 90. Nothing is rounded up to a claim anywhere in the audit: HC-2 states that for 98 records the unknown is irreducible, HC-4 explicitly declines to quantify hidden capability, and UE-30 and UE-31 record what cannot be established. The audit also reports that no code reads these markers (UE-28) rather than treating the data's honesty as enforcement."
+    },
+    {
+      "check": "Proposed vocabulary is story-neutral and maps to observable template behavior",
+      "verdict": "PASS",
+      "basis": "Five additions, each with an observableTest phrased as something a reviewer could confirm by watching the template render, and none naming a subject, package, beat or documentary. One of the five, carries: aggregate, proposes no new vocabulary at all and instead notes that the existing enum value is used once, so the gap may be coverage rather than expressiveness. The least observable proposal, register, is flagged as a hypothesis rather than a settled field. Two tempting ideas are explicitly not proposed, with reasons."
+    },
+    {
+      "check": "No catalog or grammar record is changed",
+      "verdict": "PASS",
+      "basis": "Every grammar and catalog artifact was opened read-only. Only the two Job 5 report files were created. git status shows no modification to grammar/, pipeline/, plans/, docs/ or any earlier job output, and the Story worktree is clean at d5117a6d."
+    }
+  ],
+  "result_detail": {
+    "headline": "The grammar can express more than the contract carries, and the catalog is built for identity while the job vocabulary is built for data.",
+    "oneLine": "Admission correctly refuses to treat metadata as proof, and 442 of 442 templates honestly record that their native editability is unknown; but only 49 of 442 carry any quantitative role against a job set that is two-thirds data jobs, the job and operation vocabularies share no names, and verified native evidence for 344 templates is never reflected back into the record admission reads."
+  }
+}
