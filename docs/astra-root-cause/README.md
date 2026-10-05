@@ -31,6 +31,14 @@ are complete.
 No job authorizes template selection, rendering, or implementation. Preserve
 the current failing artifacts until Job 8 is reviewed.
 
+## Corrections
+
+`CORRECTION_REQUESTS.md` is the single correction authority. An `ACTIVE` entry
+blocks the next numbered job. Correct the named job first, publish its corrected
+artifacts, mark the entry `RESOLVED` with the correction commit, return the
+canonical file's direct GitHub link and stop. Preserve resolved entries as audit
+history; do not create per-job correction-request files.
+
 ## Mandatory execution policy
 
 `EXECUTION_POLICY.json` is part of the workflow contract. Claude Desktop

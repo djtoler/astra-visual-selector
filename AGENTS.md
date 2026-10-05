@@ -52,3 +52,8 @@ Desktop directly runs Jobs 1 and 3–6. For Jobs 2, 7 and 8, Claude Desktop
 invokes Claude Fable 5.1 through the Claude CLI at Medium. A wrong execution
 mode must stop rather than taking another mode's job. Both modes commit and push each completed job to
 `fable_analysis` and return direct GitHub links to their outputs.
+
+Use `docs/astra-root-cause/CORRECTION_REQUESTS.md` as the only correction-request
+file. An `ACTIVE` correction blocks the next job. Resolve it first, preserve the
+entry as history, publish the correction and return that canonical file's link.
+Never create a separate per-job correction file.

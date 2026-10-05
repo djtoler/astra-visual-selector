@@ -45,6 +45,14 @@ class FableRootCauseWorkflowTests(unittest.TestCase):
         self.assertTrue(policy["defaultJobPolicy"]["pushRequired"])
         self.assertTrue(policy["defaultJobPolicy"]["directOutputLinksRequired"])
         self.assertTrue(policy["defaultJobPolicy"]["oneJobPerTurn"])
+        corrections = policy["correctionPolicy"]
+        self.assertEqual(
+            corrections["canonicalFile"],
+            "docs/astra-root-cause/CORRECTION_REQUESTS.md",
+        )
+        self.assertTrue(corrections["singleCorrectionFileRequired"])
+        self.assertTrue(corrections["activeCorrectionBlocksNextJob"])
+        self.assertTrue(corrections["directCorrectionFileLinkRequired"])
 
     def test_gold_references_exist_and_match_pinned_hashes(self):
         policy = json.loads((WORKFLOW / "EXECUTION_POLICY.json").read_text())
@@ -71,6 +79,15 @@ class FableRootCauseWorkflowTests(unittest.TestCase):
         self.assertIn("claude-fable-5-1", prompt)
         self.assertIn("direct clickable GitHub links", prompt)
         self.assertIn("Commit and push", prompt)
+
+    def test_corrections_use_one_canonical_file(self):
+        canonical = WORKFLOW / "CORRECTION_REQUESTS.md"
+        self.assertTrue(canonical.is_file())
+        self.assertIn("Status: **ACTIVE**", canonical.read_text())
+        self.assertFalse((WORKFLOW / "JOB_03_CORRECTION_REQUEST.md").exists())
+        prompt = (WORKFLOW / "MASTER_PROMPT.md").read_text()
+        self.assertIn("An `ACTIVE` correction takes\npriority", prompt)
+        self.assertIn("Never create another correction-request file", prompt)
 
 
 if __name__ == "__main__":

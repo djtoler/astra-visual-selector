@@ -89,6 +89,13 @@ Perform exactly one job at a time, in numerical order. On a fresh branch begin
 with `01-system-map-and-evidence.md`; on later turns resume from the earliest
 incomplete job. Never skip a job or silently continue to the next one.
 
+Before selecting a numbered job, read
+`docs/astra-root-cause/CORRECTION_REQUESTS.md`. An `ACTIVE` correction takes
+priority over the next job and blocks it. Correct only the named job, publish
+the correction, mark that entry `RESOLVED` with its commit, return the canonical
+correction-file link, and stop. Never create another correction-request file;
+append future requests to that single file and preserve resolved history.
+
 For every job:
 
 1. Read its listed sources directly.
