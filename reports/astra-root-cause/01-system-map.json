@@ -1,0 +1,594 @@
+{
+  "schemaVersion": "astra-root-cause-system-map@1",
+  "job": "01-system-map-and-evidence",
+  "purpose": "Verified map of the Story-to-Matching system and evidence-integrity confirmation. Structural and provenance facts only; no semantic quality judgment and no redesign.",
+  "generatedAt": "2026-10-05T00:00:00+00:00",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+
+  "executionReceipt": {
+    "operator": "claude_desktop",
+    "requiredOperator": "claude_desktop",
+    "requiredExecutionMode": "desktop_conversation",
+    "executionModeObserved": "desktop_conversation",
+    "executionModeEvidence": "Session origin reported by the runtime is 'desktop_app'; the editor drove this job interactively in the Claude Desktop conversation. No Claude CLI subprocess was invoked for any part of Job 1.",
+    "resolvedModelIdentifier": "claude-opus-5",
+    "resolvedModelDisplayName": "Opus 5",
+    "lastServedModel": "claude-opus-5",
+    "configuredModel": "claude-opus-5",
+    "effortLevel": "high",
+    "modelMetadataSource": "claude-code-remote get_session: session_context.model, external_metadata.last_served_model, configured_model, session_context.effort_level",
+    "sessionId": "session_014CbgCFFrmJN4PKxJdBpZ7P",
+    "environmentKind": "anthropic_cloud",
+    "cliVersion": "2.1.289",
+    "policyComplianceVerdict": "compliant",
+    "recordedCaveats": [
+      "Job 1's policy requires operator claude_desktop in execution mode desktop_conversation. The conversation surface is Claude Desktop and the runtime confirms origin 'desktop_app', but execution is backed by an Anthropic cloud container rather than a process on the editor's local machine. This is recorded verbatim rather than resolved, because EXECUTION_POLICY.json does not state whether 'desktop_conversation' excludes a cloud-backed Desktop session.",
+      "EXECUTION_POLICY.json sets recordResolvedModel=true for this job but names no required model for it. No model requirement was therefore applied or assumed.",
+      "No reasoning effort is specified by policy for Job 1. The session's own effort level ('high') is recorded as observed runtime metadata, not as a policy selection."
+    ],
+    "noInventedMetadata": true
+  },
+
+  "independenceReceipt": {
+    "excludedComparisonBranch": "matching-layer",
+    "excludedBranchFetched": false,
+    "excludedBranchRead": false,
+    "localRefsPresent": ["refs/heads/fable_analysis", "refs/heads/main", "refs/remotes/origin/HEAD", "refs/remotes/origin/main"],
+    "verification": "git for-each-ref lists no matching-layer ref; git rev-parse --verify origin/matching-layer fails with 'Needed a single revision'.",
+    "astraJob1to8ReportsConsumed": false,
+    "postBaselineMatchingCommitsConsumed": false,
+    "contaminationEvents": [
+      {
+        "risk": "naming_collision_not_contamination",
+        "severity": "informational",
+        "finding": "Source paths inside reports/astra-matching-review-evidence-20261004.json carry a 'matching-layer/' path prefix. This prefix is a filesystem DIRECTORY NAME of the live repository checkout at evidence-generation time, not a reference to the excluded 'matching-layer' git branch.",
+        "proof": "pipeline/build_astra_review_evidence.py:17-20 sets ROOT = repo root, POLISH = ROOT.parent, ABANDONED = POLISH / 'astra-visual-selector'. canonicalPath labels are rendered relative to POLISH, so the live repo's own directory name becomes the path prefix.",
+        "consequence": "Resolving a 'matching-layer/'-prefixed evidence path means reading a file in THIS checkout. It does not require and must not be taken to authorize reading the excluded branch.",
+        "actionTaken": "All such paths were resolved against this checkout only."
+      }
+    ]
+  },
+
+  "auditedCommits": {
+    "matchingAuditBranch": "fable_analysis",
+    "matchingAuditHead": "d48a5e27abba68348853840c99b46ac72a9364e6",
+    "matchingFrozenBaselineDeclared": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+    "matchingFrozenBaselineVerified": false,
+    "matchingFrozenBaselineNote": "The baseline commit object is not present in the depth-1 shallow clone, so the claim that fable_analysis descends from 1276d0ca could not be verified in Job 1. Recorded as unresolved; requires a bounded history fetch.",
+    "storyAuthorityRepo": "djtoler/patterns",
+    "storyAuthorityBranch": "claude/friendly-maxwell-i5brux",
+    "storyAuthorityCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+    "storyAuthorityCommitVerified": true,
+    "storyAuthorityCommitVerification": "git ls-remote origin refs/heads/claude/friendly-maxwell-i5brux returns exactly d5117a6de0fd0c640a336c6f456946ec8b40f319; the commit object was fetched read-only and resolves via git cat-file -t.",
+    "storyRepoWriteOperations": "none"
+  },
+
+  "architectureFindings": [
+    {
+      "id": "AF-01",
+      "title": "The matching layer is a file-mediated artifact pipeline, not an in-process call graph",
+      "severity": "structural_fact",
+      "observed": "Across all 31 modules in pipeline/, the only intra-pipeline production import edges among the manifest's declared transformation path are: matching_harness -> matching_contract_gate; storypackage_adapter -> matching_contract_gate; storypackage_splitter -> matching_contract_gate; visualtask_matching -> {matching_contract_gate, media_candidates}; visualtask_batch_matching -> {matching_contract_gate, visualtask_matching}; storypackage_candidate_gallery -> {matching_contract_gate, visualtask_matching}; focused_candidate_diversity -> {matching_contract_gate, visualtask_matching}; focused_review_queue -> matching_contract_gate; focused_review_reconciliation -> matching_contract_gate.",
+      "implication": "No module composes the end-to-end run. Each stage is an independently invoked CLI that writes a JSON artifact under reports/ or grammar/, and the next stage re-reads that artifact from disk. Stage ordering is therefore a human/operational convention, not a code-enforced sequence.",
+      "method": "AST import-graph extraction over every file in pipeline/."
+    },
+    {
+      "id": "AF-02",
+      "title": "matching_harness.build is a verifier over pre-existing artifacts, not an orchestrator",
+      "severity": "structural_fact",
+      "observed": "pipeline/matching_harness.py:325 defines build(); it reads each stage artifact from disk, recomputes sha256 against each recorded source, and emits stageResults (pipeline/matching_harness.py:535-558) with the first blocked stage. It calls no other stage's build().",
+      "implication": "The harness can only report on artifacts that some earlier manual invocation already produced. A stage that was never run, or run from stale inputs, surfaces as a gap row rather than being executed.",
+      "method": "Direct read of pipeline/matching_harness.py:325, 500-575."
+    },
+    {
+      "id": "AF-03",
+      "title": "The contract gate is cooperative, and eight runnable modules bypass it despite unknownEntrypointsAllowed=false",
+      "severity": "bypass_risk_confirmed",
+      "observed": "grammar/matching-entrypoint-contract.json sets unknownEntrypointsAllowed=false and declares 19 entrypoints. pipeline/matching_contract_gate.py:196 enforce_contracts(entrypoint) raises MatchingContractError on an unregistered entrypoint (line 206). Enforcement requires the module to call it voluntarily. 20 modules call enforce_contracts; 8 modules expose a runnable main()/__main__ and never call it: build_astra_review_evidence.py, entities.py, media_candidates.py, paths.py, post_render_timing.py, prior_review_reconciliation.py, visualtask_requirements.py, visualtask_split_proposals.py.",
+      "implication": "The entrypoint contract's closed-world claim is not enforceable against these modules. Three are materially load-bearing: visualtask_requirements.py (produces the technical-requirements grammar), prior_review_reconciliation.py (produces the baseline reconciliation report), and build_astra_review_evidence.py (produces the canonical human-evidence package consumed by this audit).",
+      "method": "grep for enforce_contracts across pipeline/; per-file check for main()/__main__ without a gate call; read of matching_contract_gate.py:159-219."
+    },
+    {
+      "id": "AF-04",
+      "title": "Requirement derivation is an orphaned, manually triggered producer",
+      "severity": "bypass_risk_confirmed",
+      "observed": "pipeline/visualtask_requirements.py imports no pipeline module and is imported by no production module. Its only in-repo references are tests/test_visualtask_technical_requirements.py and REFERENCE_MANIFEST.md:81. It is not among the 19 declared entrypoints. Its main() (subcommands build/validate) writes DEFAULT_OUTPUT, and its product grammar/visual-task-technical-requirements.json (158,786 bytes) is read by pipeline/matching_harness.py, pipeline/storypackage_data_handoff.py and pipeline/ordered_visual_route_plan.py.",
+      "implication": "Derived requirements enter the system as static checked-in grammar data. Nothing in the gated path regenerates them or asserts their freshness against the current StoryPackage or visual tasks, so requirements can silently diverge from the story they were derived from.",
+      "method": "AST import graph; repo-wide grep for visualtask_requirements and for both requirements artifacts; read of visualtask_requirements.py main()."
+    },
+    {
+      "id": "AF-05",
+      "title": "Stage gating contains a non-general hardcoded coverage total",
+      "severity": "generality_risk",
+      "observed": "pipeline/matching_harness.py:537 gates the baseline_reconciliation stage on reconciliation.get('priorSelectionCoverage', {}).get('total') == 107, a literal integer, emitting 'prior_editor_decisions_incomplete' otherwise.",
+      "implication": "A stage in a layer whose mandate is story-neutral passes only when prior-selection coverage equals one specific corpus-dependent count. Any other StoryPackage corpus blocks this stage regardless of actual reconciliation completeness.",
+      "note": "Recorded as observation only. Jobs 1-7 forbid patching production code; no change was made.",
+      "method": "Direct read of pipeline/matching_harness.py:535-540."
+    },
+    {
+      "id": "AF-06",
+      "title": "REFERENCE_MANIFEST.md records one Story-layer path incorrectly; the artifact exists",
+      "severity": "manifest_defect",
+      "observed": "The manifest lists architecture/storypackage/HANDOFF_data_matching_media.md under the Story layer's contract and implementation set. That path does not exist at commit d5117a6d. The file exists one directory higher, at architecture/HANDOFF_data_matching_media.md.",
+      "implication": "A manifest path defect, not a missing artifact. All 21 remaining Story-layer manifest paths and all 6 source/reference transcript paths resolve at the pinned commit.",
+      "resolution": "Use architecture/HANDOFF_data_matching_media.md for every manifest reference to the Story/Data/Media handoff document.",
+      "method": "Per-path git cat-file -s against d5117a6d, then git ls-tree -r name search for handoff/handover candidates."
+    },
+    {
+      "id": "AF-07",
+      "title": "The two editor-designated perfect references are not structurally homogeneous",
+      "severity": "unresolved_evidence",
+      "observed": "The Future gold reference carries top-level granularityPolicy and speakerRoutes and per-proposal presentationOperations, semanticDerivation, semanticDerived, sourceBeats, speakerDerived, taskText and advisoryJobProposalIds. The Year Seventeen gold reference carries none of these.",
+      "implication": "The two files designated as a single quality target were emitted by different generator schema generations. Any later job that derives target principles must say which reference a given principle comes from, and must not assume a field's absence in the Year Seventeen reference is an editorial choice.",
+      "method": "Key-set comparison of both gold files' top-level and per-proposal fields."
+    },
+    {
+      "id": "AF-08",
+      "title": "Current Future output is a strict structural superset of its gold reference",
+      "severity": "scoping_fact",
+      "observed": "Gold future-volksgeist@2 and current reports/storypackage-02-future-volksgeist-v13-task-proposals.json (future-volksgeist@5) both hold exactly 310 task proposals. Proposal fields present in gold but absent from current: none. Fields present in current but not gold: primaryPresentationOperation, routeDisposition. Top-level present in current but not gold: contractEnforcementReceipt.",
+      "implication": "On the Future path the gap between current output and the perfect reference is not a lost field or a lost proposal count. It scopes later jobs toward the CONTENT of beats, visual jobs, requirements and matchability rather than toward schema regression.",
+      "caveat": "Equal proposal counts across different package revisions (@2 vs @5) do not establish that the proposals correspond one-to-one. Correspondence is not asserted here and is left to Job 4/7.",
+      "method": "Field-set and count comparison; no semantic comparison performed, per Job 1 scope."
+    },
+    {
+      "id": "AF-09",
+      "title": "The Year Seventeen gold reference is a byte-identical copy of a live reports artifact; the Future gold reference has no live twin",
+      "severity": "provenance_fact",
+      "observed": "sha256 of reports/storypackage-02-year-seventeen-full-task-proposals.json equals sha256 of the gold copy (b03d2357...5dc3e1). No reports/ file corresponds to the Future gold reference; the live Future task-proposal artifacts are v12 and v13 at future-volksgeist@5, while the gold reference is future-volksgeist@2.",
+      "implication": "The gold set mixes a still-live artifact with a preserved artifact from a superseded package revision. The Future reference cannot be regenerated from the current checkout, which is consistent with the prohibition on regenerating it and makes it irreplaceable evidence.",
+      "method": "sha256sum of both pairs; directory listing of reports/ task-proposal artifacts."
+    }
+  ],
+
+  "goldReferences": [
+    {
+      "path": "docs/astra-root-cause/references/gold-standard/storypackage-02-year-seventeen-full-task-proposals.json",
+      "declaredSha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1",
+      "actualSha256": "b03d2357d0dfdfe8817ccfc7baa84d699bd43db31f2506f105ef331fca5dc3e1",
+      "hashVerdict": "MATCH",
+      "declaredPackage": "year-seventeen@7",
+      "actualPackageId": "year-seventeen@7",
+      "declaredTaskProposals": 116,
+      "actualTaskProposals": 116,
+      "evidenceClass": "positive_target_evidence",
+      "notOrdinaryGeneratedOutput": true,
+      "classificationBasis": "Designated editor_perfect_reference in EXECUTION_POLICY.json goldReferences and in REFERENCE_MANIFEST.md. Its content is additionally byte-identical to a live reports/ artifact (AF-09), so its standing comes from the editor's designation, not from its provenance.",
+      "targetQualities": ["beat_boundaries", "coherent_visual_moments", "visual_job_derivation", "task_requirements", "downstream_matchability"],
+      "roleInLaterJobs": "Positive target for beat definition, visual-moment granularity, visual-job derivation, requirements and downstream matchability. Principles must be extracted story-neutrally; package IDs, subjects and beat IDs must not be hardcoded.",
+      "regenerationProhibited": true
+    },
+    {
+      "path": "docs/astra-root-cause/references/gold-standard/storypackage-02-future-volksgeist-task-proposals.json",
+      "declaredSha256": "f48f7ed31e854a7fcf316c4f9366890e1b3a688686d407f747fe46f27918ebde",
+      "actualSha256": "f48f7ed31e854a7fcf316c4f9366890e1b3a688686d407f747fe46f27918ebde",
+      "hashVerdict": "MATCH",
+      "declaredPackage": "future-volksgeist@2",
+      "actualPackageId": "future-volksgeist@2",
+      "declaredTaskProposals": 310,
+      "actualTaskProposals": 310,
+      "evidenceClass": "positive_target_evidence",
+      "notOrdinaryGeneratedOutput": true,
+      "classificationBasis": "Designated editor_perfect_reference in EXECUTION_POLICY.json goldReferences and in REFERENCE_MANIFEST.md. No live artifact in this checkout reproduces it (AF-09), so it is irreplaceable preserved evidence from a superseded package revision.",
+      "targetQualities": ["beat_boundaries", "coherent_visual_moments", "visual_job_derivation", "task_requirements", "downstream_matchability"],
+      "roleInLaterJobs": "Same positive-target role. Carries the richer semantic-derivation vocabulary noted in AF-07, so it is the better source for visual-job derivation principles, with the asymmetry stated explicitly wherever used.",
+      "regenerationProhibited": true
+    }
+  ],
+
+  "evidenceIntegrity": {
+    "package": "reports/astra-matching-review-evidence-20261004.json",
+    "schema": "grammar/astra-review-evidence.schema.json",
+    "handoff": "docs/ASTRA_MATCHING_ROOT_CAUSE_HANDOFF_20261004.md",
+    "schemaVersion": "astra-matching-review-evidence@1",
+    "generatedAt": "2026-10-04T17:55:00+00:00",
+    "structuralValidation": {
+      "requiredTopLevelKeysPresent": true,
+      "schemaVersionConstSatisfied": true,
+      "selectionAuthorized": false,
+      "renderingAuthorized": false,
+      "recordsWithAllRequiredFields": 439,
+      "totalRecords": 439,
+      "evidenceIdPatternViolations": 0,
+      "authorshipEnumViolations": 0,
+      "scopeEnumViolations": 0,
+      "recordsWithZeroSourceRefs": 0,
+      "verdict": "conformant"
+    },
+    "counts": {
+      "uniqueRecords": 439,
+      "sources": 24,
+      "sourceAliases": 4,
+      "sumOfSourceRecordCounts": 527,
+      "mergeDelta": 88,
+      "mergeDeltaExplained": true,
+      "mergeDeltaProof": "86 records cite exactly 2 sources and 1 record cites 3 sources, contributing 86 + 2 = 88 extra source references. 527 - 439 = 88. The delta is entirely cross-source merging of one logical decision, not record loss."
+    },
+    "sourceHashVerification": {
+      "method": "canonicalPath and aliases are rendered relative to the parent workspace (see independenceReceipt). Each was re-resolved against this checkout by stripping the workspace prefixes astra-visual-selector/, matching-layer/ and ae-template-automation/, then sha256-compared to the declared digest.",
+      "verifiedInCheckout": 6,
+      "mismatched": 0,
+      "notPresentInCheckout": 18,
+      "verdict": "no_mismatch_detected",
+      "verified": [
+        {"sourceId": "src_1ad84546a4db0d13", "path": "grammar/beat-review-export-2026-09-27.json", "recordCount": 31},
+        {"sourceId": "src_a1b2ddc244998ac9", "path": "grammar/visual-task-timing-reviews.json", "recordCount": 1},
+        {"sourceId": "src_ed59149d064470c5", "path": "reports/ordered-visual-route-decisions.json", "recordCount": 32},
+        {"sourceId": "src_851626d6d1cd2f9c", "path": "reports/storypackage-02-future-volksgeist-v12-candidate-review.json", "recordCount": 48},
+        {"sourceId": "src_fb6f2c7cfe51c3ea", "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-review.json", "recordCount": 12},
+        {"sourceId": "src_f0572fc2d68a98c4", "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-review.backup.json", "recordCount": 11}
+      ],
+      "notPresentBreakdown": [
+        {"group": "sibling repository ae-template-automation (outside this audit's repository scope)", "sources": 6, "recordCount": 290, "paths": ["ae-template-automation/scene-library/approved/archive3-review-decisions.json", "ae-template-automation/scene-library/approved/embedding-review-decisions.json", "ae-template-automation/scene-library/approved/evaluation-feedback.json", "ae-template-automation/scene-library/approved/infographic-review-notes.json", "ae-template-automation/scene-library/approved/infographic-review-results-2026-09-30.json", "ae-template-automation/scene-library/approved/template-review-notes.json"]},
+        {"group": "abandoned mirror checkout ../astra-visual-selector, absent from this container", "sources": 12, "recordCount": 102, "paths": ["astra-visual-selector/grammar/astra-media-review-recovered-decisions-2026-09-25.json", "astra-visual-selector/grammar/pairing-notes.json", "astra-visual-selector/reports/carousel-slideshow-editor-alignment-review-20260930.json", "astra-visual-selector/reports/storypackage-02-future-volksgeist-candidate-review.backup.json", "astra-visual-selector/reports/storypackage-02-future-volksgeist-candidate-review.diagnostic-job-proposals-only.json", "astra-visual-selector/reports/storypackage-02-future-volksgeist-candidate-review.json", "astra-visual-selector/reports/storypackage-02-future-volksgeist-candidate-review.pre-structured-retrieval-20261003.json", "astra-visual-selector/reports/storypackage-02-future-volksgeist-v11-candidate-review.json", "astra-visual-selector/reports/storypackage-02-future-volksgeist-v12-candidate-review.backup.json", "astra-visual-selector/treatment-requirements/current-exact-batch/review-decisions.backup.json", "astra-visual-selector/treatment-requirements/current-exact-batch/review-decisions.json", "astra-visual-selector/treatment-requirements/pilot-001/review-001.json"]}
+      ],
+      "consequence": "Every source reachable in this checkout hash-verifies exactly. The 18 unreachable sources cannot be independently re-derived here, so records resting solely on them are flagged below as provenance-unverifiable rather than accepted or rejected."
+    },
+
+    "abandonedMirrorDisambiguation": {
+      "importance": "critical_to_this_job",
+      "finding": "The naive reading of the evidence paths is inverted. In reports/astra-matching-review-evidence-20261004.json, the 'astra-visual-selector/' path prefix denotes the ABANDONED MIRROR, and the 'matching-layer/' prefix denotes the LIVE AUTHORITATIVE repository root.",
+      "proof": "pipeline/build_astra_review_evidence.py:17-20 -- ROOT = repo root (whose directory name was 'matching-layer' when the package was generated); POLISH = ROOT.parent; ABANDONED = POLISH / 'astra-visual-selector'. source_candidates() (lines 82-92) globs the same patterns under both ROOT and ABANDONED.",
+      "canonicalPreference": "build_astra_review_evidence.py:353 sorts aliases with key (0 if ROOT in p.parents else 1, label) and takes the first, so a live-root file always wins the canonicalPath slot over an identical mirror file.",
+      "dedupMechanism": "Two independent layers. (1) Content-identical files across root and mirror collapse into ONE source carrying aliases -- this produces the package's sourceAliases=4. (2) Content-DIFFERENT mirror variants remain separate sources, but their records are keyed into records_by_key, so one logical decision becomes one evidenceId carrying multiple sourceRefs rather than multiple records.",
+      "verdict": "The abandoned mirror is correctly NOT counted as duplicate evidence, and this was verified per-record rather than assumed."
+    },
+
+    "mandatedReviewAccounting": {
+      "requirement": "Account for all 12 current Jay-Z/Drake reviews and all 48 current Future reviews without treating the abandoned mirror as duplicate evidence.",
+      "jayzDrake": {
+        "packageId": "jayz-drake-settle-it@4",
+        "currentReviewsRequired": 12,
+        "currentReviewsFound": 12,
+        "liveSource": {"sourceId": "src_fb6f2c7cfe51c3ea", "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-review.json", "hashVerdict": "MATCH", "recordCount": 12},
+        "mirrorVariantSource": {"sourceId": "src_f0572fc2d68a98c4", "path": "reports/storypackage-02-jayz-drake-settle-it-v13-candidate-review.backup.json", "hashVerdict": "MATCH", "recordCount": 11},
+        "evidenceIdsFromLiveSource": 12,
+        "evidenceIdsFromMirrorVariant": 11,
+        "sharedEvidenceIds": 11,
+        "mirrorOnlyEvidenceIds": 0,
+        "doubleCounted": 0,
+        "verdict": "ACCOUNTED",
+        "interpretation": "All 11 mirror-variant records resolve to evidenceIds already carried by the live source, entering as additional sourceRefs on those same records. The mirror variant adds no record and inflates no count."
+      },
+      "future": {
+        "packageId": "future-volksgeist@5",
+        "currentReviewsRequired": 48,
+        "currentReviewsFound": 48,
+        "liveSource": {"sourceId": "src_851626d6d1cd2f9c", "path": "reports/storypackage-02-future-volksgeist-v12-candidate-review.json", "hashVerdict": "MATCH", "recordCount": 48},
+        "mirrorVariantSource": {"sourceId": "src_960ded6879c1354f", "path": "astra-visual-selector/reports/storypackage-02-future-volksgeist-v12-candidate-review.backup.json", "hashVerdict": "not_present_in_checkout", "recordCount": 47},
+        "evidenceIdsFromLiveSource": 48,
+        "evidenceIdsFromMirrorVariant": 47,
+        "sharedEvidenceIds": 47,
+        "mirrorOnlyEvidenceIds": 0,
+        "doubleCounted": 0,
+        "verdict": "ACCOUNTED",
+        "interpretation": "All 47 mirror-variant records resolve to evidenceIds already carried by the hash-verified live source. The 48 current Future reviews rest on a source that hash-verifies in this checkout; the mirror variant contributes only corroborating sourceRefs."
+      },
+      "supersededPackageRevision": {
+        "packageId": "future-volksgeist@2",
+        "records": 3,
+        "allStatuses": ["unreviewed"],
+        "evidenceIds": ["ev_160840d04b878840", "ev_c727d574f3b200fc", "ev_e3cdfcea23c5057c"],
+        "classification": "superseded_package_revision_not_current_review",
+        "note": "These 3 records belong to the earlier future-volksgeist@2 package revision, are all status=unreviewed, and are excluded from the 48-review current Future total. ev_e3cdfcea23c5057c is the single 3-sourceRef record in the package: the same decision appears in the mirror's .backup.json, .json and .pre-structured-retrieval variants and was merged into ONE record, which is the clearest single demonstration that mirror variants are not duplicated."
+      },
+      "packageAttributionTotals": {"future-volksgeist@5": 48, "jayz-drake-settle-it@4": 12, "future-volksgeist@2": 3, "noPackageIdField": 376},
+      "note": "packageId is present on only 63 of 439 records; the remaining 376 are template-capability, media-eligibility, route and pairing evidence that is not package-scoped. The 12/48 accounting is therefore complete with respect to package-scoped candidate reviews."
+    },
+
+    "machineVersusEditorLabeling": {
+      "requirement": "Machine evaluations must not be labeled as editor feedback.",
+      "declaredExclusions": [
+        {"class": "workflow_review_logs", "reason": "Governance checkpoints are not editor assessment of a beat/template match."},
+        {"class": "model_review_and_evaluation_outputs", "reason": "Machine judgments remain diagnostic inputs and are not labeled as editor evidence."},
+        {"class": "render_and_native_test_reviews", "reason": "Render-fidelity evidence is outside this first matching/root-cause package unless it also appears in a template capability decision."},
+        {"class": "footage_inventory_without_editor_decisions", "reason": "Inventory rows without a saved editor status or note contain no review evidence."}
+      ],
+      "authorshipDistribution": {"human": 333, "human_verbatim_recovered": 74, "derived_from_human": 32, "machine": 0},
+      "authorshipByEvidenceType": {
+        "beat_review": {"human_verbatim_recovered": 31},
+        "candidate_acceptability": {"human": 63},
+        "matching_output_feedback": {"human": 49},
+        "media_eligibility": {"human_verbatim_recovered": 29},
+        "route_decision": {"derived_from_human": 32},
+        "template_capability_review": {"human": 218},
+        "template_media_pairing": {"human_verbatim_recovered": 14},
+        "template_timing_review": {"human": 1},
+        "timing_boundary": {"human": 1},
+        "treatment_review": {"human": 1}
+      },
+      "verdict": "no_machine_evaluation_labeled_as_editor_feedback_detected",
+      "scrutinizedCase": {
+        "evidenceType": "matching_output_feedback",
+        "records": 49,
+        "declaredAuthorship": "human",
+        "sourceFile": "ae-template-automation/scene-library/approved/evaluation-feedback.json",
+        "parser": "evaluation_feedback",
+        "reviewerField": "absent on all 49 records",
+        "concern": "The filename and parser name both contain 'evaluation', and excludedClasses explicitly bars model_review_and_evaluation_outputs from being labeled as editor evidence. A machine evaluation mislabeled as human here would corrupt 49 records, including the only evidence that states which template options the editor judged wrong and which unoffered options would have been better.",
+        "assessment": "The declared human authorship is corroborated. The comment bodies are first-person editorial prose with consistent human orthography and typing errors -- 'wouldve', 'seperate', 'magnatitude', 'communicationg', '3is', 'wotldve' -- and express editorial preference over options not proposed by the system ('scrolling-screen wouldve been a good option for this as well'). Machine evaluation output would not carry this signature.",
+        "residualRisk": "The source file lies in sibling repository ae-template-automation and is absent from this checkout, so its declared sha256 could not be verified. The authorship label is corroborated by content but its provenance is not independently verified here.",
+        "verdict": "corroborated_but_provenance_unverifiable",
+        "citedEvidenceIds": ["ev_021919c932e157f2"]
+      },
+      "derivedNotHumanNote": "route_decision carries authorship=derived_from_human for all 32 records, correctly separating a derived prior choice from a verbatim human observation. Any later job citing route evidence must preserve that distinction rather than presenting it as direct editor instruction."
+    },
+
+    "usageBoundary": {
+      "allowed": "Cite evidence IDs while diagnosing Story, Data, Media and Matching inputs, contracts and outputs.",
+      "forbidden": "Do not promote a scoped comment into a global rule, select a template or authorize rendering without reconciliation."
+    },
+
+    "supportsRootCauseAnalysis": true,
+    "supportVerdict": "The package is schema-conformant across all 439 records, its merge arithmetic fully reconciles, every source reachable in this checkout hash-verifies with zero mismatches, the mandated 12 and 48 review totals are accounted for per-record with zero double-counting, and no machine evaluation is labeled as editor feedback. It can carry root-cause analysis, subject to the 18 provenance-unverifiable sources recorded above."
+  },
+
+  "stages": [
+    {
+      "id": "story_creation",
+      "order": 1,
+      "mappedGroup": "Story creation",
+      "owner": "story",
+      "executionKind": "code_plus_human_authoring",
+      "repository": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "inputContract": "architecture/storypackage/SPEC-0.2.md; narration scripts script/future-volksgeist-cleaned.md, script/jayz-drake-settle-it-v2.md, script/year-seventeen-script-v2.1.md; story inputs architecture/storypackage/stories/*.story.json",
+      "implementationFile": "architecture/storypackage/tools/build_tagged_script.py",
+      "implementationSymbol": "module CLI (build_tagged_script.py)",
+      "outputArtifact": "architecture/storypackage/{future-volksgeist@5,jayz-drake-settle-it@4,year-seventeen@9}.storypackage-0.2.json",
+      "validation": "architecture/storypackage/storypackage-0.2.schema.json",
+      "knownBypassRisk": "Beat and claim authoring is partly human editorial judgment expressed through narration markup; the schema constrains shape, not whether a beat boundary is a coherent visual moment. No code asserts that a beat is visually realizable.",
+      "downstreamConsumer": "story_validation, matching_adaptation",
+      "verifiedPresent": true
+    },
+    {
+      "id": "story_validation",
+      "order": 2,
+      "mappedGroup": "Story validation",
+      "owner": "story",
+      "executionKind": "code",
+      "repository": "djtoler/patterns",
+      "commit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+      "inputContract": "architecture/storypackage/storypackage-0.2.schema.json; architecture/storypackage/matching-handoff-0.2.schema.json",
+      "implementationFile": "architecture/storypackage/tools/check.py; architecture/storypackage/tools/build_matching_handoff.py; architecture/storypackage/tools/check_handoff.py",
+      "implementationSymbol": "check.py CLI; build_matching_handoff.py CLI; check_handoff.py CLI",
+      "outputArtifact": "architecture/storypackage/year-seventeen.matching-handoff-0.2.json; validation receipts",
+      "validation": "matching-handoff-0.2.schema.json via check_handoff.py; tests/test_check_handoff.py",
+      "knownBypassRisk": "Validation is schema and referential-integrity checking. It cannot detect a structurally valid beat that is semantically unmatchable, which is the failure class this audit investigates. Handoff artifacts exist for only one of the three packages in the pinned checkout.",
+      "downstreamConsumer": "matching_adaptation; matching layer story_handoff stage",
+      "verifiedPresent": true,
+      "unresolved": "Only year-seventeen.matching-handoff-0.2.json is present at the pinned commit. No matching-handoff artifact was found for future-volksgeist or jayz-drake-settle-it, yet both have current Matching-side outputs. How those packages reached the matching layer without a committed handoff artifact is unresolved and is carried to Job 3."
+    },
+    {
+      "id": "matching_adaptation",
+      "order": 3,
+      "mappedGroup": "Matching adaptation",
+      "owner": "matching",
+      "executionKind": "code",
+      "repository": "djtoler/astra-visual-selector",
+      "inputContract": "grammar/general-matching-layer-contract.json; grammar/matching-entrypoint-contract.json; StoryPackage 0.2 JSON",
+      "implementationFile": "pipeline/storypackage_adapter.py",
+      "implementationSymbol": "build(); main(); DEFAULT_PLAN = plans/storypackage-02-integration-tasks.json",
+      "outputArtifact": "reports/storypackage-02-future-volksgeist-adapter.json; reports/storypackage-02-future-volksgeist-v12-adapter.json; reports/storypackage-02-jayz-drake-settle-it-v12-adapter.json",
+      "validation": "matching_contract_gate.enforce_contracts('storypackage_adapter.build', mode='review_only'); registered entrypoint",
+      "knownBypassRisk": "Gated and registered, but invoked manually as a CLI with no code-level guarantee that its input StoryPackage is the one later stages assume. Uses subprocess.",
+      "downstreamConsumer": "semantic_splitting; matching_harness verification",
+      "verifiedPresent": true,
+      "gated": true
+    },
+    {
+      "id": "semantic_splitting",
+      "order": 4,
+      "mappedGroup": "Semantic splitting",
+      "owner": "matching",
+      "executionKind": "code",
+      "repository": "djtoler/astra-visual-selector",
+      "inputContract": "grammar/semantic-split-proposal.schema.json; grammar/SCOPE.md; grammar/JOBS.md; adapter output",
+      "implementationFile": "pipeline/storypackage_splitter.py",
+      "implementationSymbol": "build(); main()",
+      "secondaryImplementation": "pipeline/visualtask_split_proposals.py (runnable CLI, NOT gated, NOT a declared entrypoint -- see AF-03)",
+      "outputArtifact": "reports/storypackage-02-*-task-proposals.json (future-volksgeist v12/v13: 310 each; jayz-drake v12: 187, v13: 186; year-seventeen v12: 115, full: 116; apollo sample: 6)",
+      "validation": "matching_contract_gate.enforce_contracts('storypackage_splitter.build'); grammar/semantic-split-proposal.schema.json",
+      "knownBypassRisk": "Two distinct split producers exist and only one is gated. visualtask_split_proposals.py can write split proposals outside the entrypoint contract, so the authority for a given task-proposal artifact cannot be established from the artifact alone.",
+      "downstreamConsumer": "requirement_derivation; admission; display",
+      "verifiedPresent": true,
+      "gated": "partially",
+      "goldComparisonAnchor": "This stage's output is the artifact class that both perfect reference versions belong to (AF-07, AF-08, AF-09)."
+    },
+    {
+      "id": "requirement_derivation",
+      "order": 5,
+      "mappedGroup": "Requirement derivation",
+      "owner": "matching",
+      "executionKind": "code_manually_triggered_outside_gate",
+      "repository": "djtoler/astra-visual-selector",
+      "inputContract": "grammar/visual-task-media-requirements.json; grammar/visual-tasks.json; grammar/visual-task-overrides.json; reviewed timing spans and media requirements",
+      "implementationFile": "pipeline/visualtask_requirements.py",
+      "implementationSymbol": "build_requirements(); validate_requirements(); dumps(); main() with build/validate subcommands; private helpers _reviewed_timing_spans, _reviewed_media_requirements, _slate_index",
+      "outputArtifact": "grammar/visual-task-technical-requirements.json (158,786 bytes, checked in)",
+      "validation": "validate_requirements() when invoked via its own CLI; tests/test_visualtask_technical_requirements.py",
+      "knownBypassRisk": "HIGH -- see AF-04. Not a declared entrypoint, never calls enforce_contracts, imported by no production module and importing none. Its product enters the system as static checked-in grammar data with no freshness assertion against the current StoryPackage or visual tasks. Requirements can silently diverge from the story they were derived from, and nothing in the gated path detects it.",
+      "downstreamConsumer": "pipeline/matching_harness.py; pipeline/storypackage_data_handoff.py; pipeline/ordered_visual_route_plan.py",
+      "verifiedPresent": true,
+      "gated": false
+    },
+    {
+      "id": "admission",
+      "order": 6,
+      "mappedGroup": "Admission",
+      "owner": "matching",
+      "executionKind": "code",
+      "repository": "djtoler/astra-visual-selector",
+      "inputContract": "grammar/bindings.json; grammar/capability.json; grammar/class-tags.json; grammar/local-templates.json; grammar/library-snapshot.json; grammar/ae-template-technical-index.json; grammar/ae-scene-composition-mappings.json; grammar/eligibility-overrides.json; grammar/visual-task-technical-requirements.json",
+      "implementationFile": "pipeline/visualtask_matching.py; pipeline/visualtask_batch_matching.py; pipeline/focused_candidate_diversity.py",
+      "implementationSymbol": "visualtask_matching.template_candidates(); visualtask_matching.presentation_contract(); visualtask_matching.build(); visualtask_matching.validate(); visualtask_batch_matching.build(); focused_candidate_diversity.build()",
+      "outputArtifact": "reports/storypackage-02-future-volksgeist-candidate-admissions.json; reports/storypackage-02-*-focused-candidate-diversity.json; batch matching reports",
+      "validation": "enforce_contracts on all three modules; visualtask_matching.validate(); harness stage template_media_feasibility",
+      "knownBypassRisk": "pipeline/media_candidates.py, which visualtask_matching imports, is itself an ungated runnable CLI (AF-03) and can regenerate media candidate state out of band. The harness marks template_media_feasibility status 'passed' unconditionally while attaching gap rows (pipeline/matching_harness.py:541-547), so admission defects surface as non-blocking annotations rather than a blocked stage.",
+      "downstreamConsumer": "ordering; display; human_review",
+      "verifiedPresent": true,
+      "gated": true,
+      "primarySuspectForReportedDefect": "Repeated, irrelevant or incomplete candidates and missed valid alternatives are admission-and-diversity symptoms. Recorded as the scope of Jobs 5 and 6, not diagnosed here."
+    },
+    {
+      "id": "ordering",
+      "order": 7,
+      "mappedGroup": "Ordering",
+      "owner": "matching",
+      "executionKind": "code",
+      "repository": "djtoler/astra-visual-selector",
+      "inputContract": "per-task treatments; continuity groups; timing plans; transition plans; grammar/visual-task-technical-requirements.json",
+      "implementationFile": "pipeline/ordered_visual_route_plan.py; pipeline/carry_prior_route_choices.py",
+      "implementationSymbol": "ordered_visual_route_plan.build(); carry_prior_route_choices.build()",
+      "outputArtifact": "reports/ordered-visual-route-decisions.json (hash-verified evidence source src_ed59149d064470c5, 32 records)",
+      "validation": "enforce_contracts on both modules; harness sequence_planning stage, which checks sequencePlanningReceipt.accepted, task-scope parity, transition and b-roll disposition, sequence conflicts, and per-source sha256 freshness (pipeline/matching_harness.py:502-522)",
+      "knownBypassRisk": "Sequence freshness is enforced by sha256 over recorded sources, so an out-of-band regeneration of an upstream artifact invalidates the plan and emits sequence_source_missing_or_stale rather than re-planning. carry_prior_route_choices.py propagates prior route choices forward, which risks carrying a stale editorial decision into a changed story; route evidence is authorship=derived_from_human, not verbatim editor instruction.",
+      "downstreamConsumer": "display; human_review; render_release_handoff",
+      "verifiedPresent": true,
+      "gated": true
+    },
+    {
+      "id": "display",
+      "order": 8,
+      "mappedGroup": "Display",
+      "owner": "matching",
+      "executionKind": "code",
+      "repository": "djtoler/astra-visual-selector",
+      "inputContract": "grammar/bindings.json; task proposals; admission and diversity output",
+      "implementationFile": "pipeline/storypackage_candidate_gallery.py; pipeline/focused_review_queue.py",
+      "implementationSymbol": "storypackage_candidate_gallery.build(); focused_review_queue.build()",
+      "outputArtifact": "reports/storypackage-02-future-volksgeist-{,v11-,v12-,v13-}candidate-gallery.json; reports/storypackage-02-jayz-drake-settle-it-{v12-,v13-}candidate-gallery.json; reports/storypackage-02-*-focused-review-queue.json",
+      "validation": "enforce_contracts on both modules",
+      "knownBypassRisk": "The gallery is what the editor actually reacts to, so gallery composition determines the evidence the system receives back. pipeline/build_astra_review_evidence.py:48 indexes gallery context by globbing reports/*candidate-gallery.json, and the evidence package records candidateReviewsWithoutGalleryContext=1 -- one editor review whose gallery context could not be reconstructed. Gallery regeneration can therefore orphan prior review evidence. Uses subprocess.",
+      "downstreamConsumer": "human_review",
+      "verifiedPresent": true,
+      "gated": true
+    },
+    {
+      "id": "human_review",
+      "order": 9,
+      "mappedGroup": "Human review",
+      "owner": "editor",
+      "executionKind": "human_manual_with_code_reconciliation",
+      "repository": "djtoler/astra-visual-selector",
+      "inputContract": "grammar/matching-harness-stage-contract.json human_review stage requires automated_resolution_exhausted, true_editorial_conflicts_only, one_or_more_distinct_valid_existing_choices_when_template_route_is_proposed, editor_status_comment_authority_separation, scoped_feedback_reconciliation",
+      "implementationFile": "HUMAN (editor) for the decisions themselves; pipeline/focused_review_reconciliation.py and pipeline/prior_review_reconciliation.py for reconciliation; pipeline/build_astra_review_evidence.py for normalization",
+      "implementationSymbol": "focused_review_reconciliation.build(); prior_review_reconciliation main() (UNGATED); build_astra_review_evidence main() (UNGATED)",
+      "outputArtifact": "reports/storypackage-02-*-candidate-review.json; reports/storypackage-02-*-focused-review-reconciliation.json; reports/prior-editor-review-reconciliation.json; reports/astra-matching-review-evidence-20261004.json",
+      "validation": "grammar/astra-review-evidence.schema.json; harness human_review stage, which requires every template_review route to carry a decision with route=template, a candidateId within that task's offered templateChoices, and humanSelected=true (pipeline/matching_harness.py:526-534), plus route_decisions staleness against sequence plan sha256",
+      "knownBypassRisk": "The two modules that normalize and reconcile editor evidence are both ungated runnable CLIs (AF-03), so the canonical evidence index for this audit is produced outside the entrypoint contract it is used to audit. The harness validates that a decision names an OFFERED candidate, which structurally cannot capture the reported defect of a valid alternative never being offered -- exactly what evidence ev_021919c932e157f2 records the editor saying.",
+      "downstreamConsumer": "render_release_handoff; and as feedback into admission and display",
+      "verifiedPresent": true,
+      "explicitlyHuman": true,
+      "gated": false
+    }
+  ],
+
+  "harnessStageContractCrosswalk": {
+    "note": "grammar/matching-harness-stage-contract.json declares 8 ordered stages. Every one resolves to code in pipeline/matching_harness.py:535-558 or is explicitly owned by a human role. Mapping to the 9 mandated stage groups above:",
+    "rows": [
+      {"contractStageId": "general_matching_contract", "order": 0, "owner": "matching", "resolvesTo": "matching_harness.py:536 generality_gaps", "mandatedGroups": ["matching_adaptation"], "status": "code"},
+      {"contractStageId": "baseline_reconciliation", "order": 1, "owner": "matching", "resolvesTo": "matching_harness.py:537; produced by pipeline/prior_review_reconciliation.py (UNGATED)", "mandatedGroups": ["human_review"], "status": "code", "defect": "AF-05 hardcoded total == 107"},
+      {"contractStageId": "story_handoff", "order": 2, "owner": "story", "resolvesTo": "matching_harness.py:538 story_gaps; produced in djtoler/patterns by build_matching_handoff.py", "mandatedGroups": ["story_creation", "story_validation"], "status": "code_cross_repository"},
+      {"contractStageId": "data_handoff", "order": 3, "owner": "data", "resolvesTo": "matching_harness.py:539; pipeline/storypackage_data_handoff.py, pipeline/storypackage_data_assignment.py", "mandatedGroups": ["requirement_derivation"], "status": "code"},
+      {"contractStageId": "template_media_feasibility", "order": 4, "owner": "matching", "resolvesTo": "matching_harness.py:541-547", "mandatedGroups": ["admission"], "status": "code", "defect": "status hardcoded 'passed' with gaps attached as non-blocking rows"},
+      {"contractStageId": "sequence_planning", "order": 5, "owner": "matching", "resolvesTo": "matching_harness.py:548; pipeline/ordered_visual_route_plan.py", "mandatedGroups": ["ordering"], "status": "code"},
+      {"contractStageId": "human_review", "order": 6, "owner": "editor", "resolvesTo": "matching_harness.py:549 human_review_gaps; decisions themselves are human", "mandatedGroups": ["display", "human_review"], "status": "explicitly_human_plus_code_validation"},
+      {"contractStageId": "render_release_handoff", "order": 7, "owner": "render_release", "resolvesTo": "matching_harness.py:550-557; pipeline/render_release_preparation.py", "mandatedGroups": [], "status": "code", "note": "Out of this audit's authorization scope; no selection or rendering authorized."}
+    ],
+    "verdict": "every_stage_resolves_to_code_or_is_explicitly_human"
+  },
+
+  "entrypointContractVerification": {
+    "contractId": "mandatory-matching-entrypoints-v1",
+    "unknownEntrypointsAllowed": false,
+    "declaredEntrypoints": 19,
+    "resolvedToRealModuleAndCallable": 19,
+    "unresolved": 0,
+    "method": "Per entrypoint: os.path.isfile(module), then AST top-level FunctionDef/AsyncFunctionDef/ClassDef name lookup for the declared callable.",
+    "manifestPathsNotDeclaredAsEntrypoints": [
+      {"path": "pipeline/matching_contract_gate.py", "reason": "the gate itself, invoked by other entrypoints via enforce_contracts; not independently runnable as a stage", "concern": "none"},
+      {"path": "pipeline/visualtask_requirements.py", "reason": "listed in REFERENCE_MANIFEST.md as part of the actual transformation path but absent from the entrypoint contract while exposing a runnable main()", "concern": "AF-03, AF-04 -- contradicts unknownEntrypointsAllowed=false"}
+    ],
+    "ungatedRunnableModules": ["pipeline/build_astra_review_evidence.py", "pipeline/entities.py", "pipeline/media_candidates.py", "pipeline/paths.py", "pipeline/post_render_timing.py", "pipeline/prior_review_reconciliation.py", "pipeline/visualtask_requirements.py", "pipeline/visualtask_split_proposals.py"],
+    "verdict": "all_declared_entrypoints_real_but_closed_world_claim_unenforceable"
+  },
+
+  "manifestPathVerification": {
+    "matchingLayer": {"checked": 44, "present": 44, "missing": 0},
+    "storyLayer": {"checked": 27, "present": 26, "missing": 1, "missingPaths": ["architecture/storypackage/HANDOFF_data_matching_media.md"], "resolution": "AF-06 -- exists at architecture/HANDOFF_data_matching_media.md"},
+    "canonicalHumanEvidence": {"checked": 3, "present": 3, "missing": 0},
+    "goldStandard": {"checked": 2, "present": 2, "hashMatched": 2}
+  },
+
+  "missingReferenceProtocol": {
+    "orgTranscriptToBeatReference": {
+      "status": "NOT_PRESENT_AS_A_DISTINCT_ARTIFACT",
+      "expectedName": "An explicit transcript-span-to-beat/visual-job mapping for the two source documentaries -- expected under REFERENCE_MANIFEST.md's 'Source/reference transcripts' section alongside youtube_doc_analysis/analyses/analysis_002.json and analysis_006.json, e.g. a transcript-to-beat crosswalk or an org beat-derivation export.",
+      "expectedRole": "To verify, rather than infer, how source documentary structure was converted into this system's beats, claims and visual obligations -- the derivation step the audit must evaluate.",
+      "searchPerformed": "All 27 Story-layer manifest paths probed individually at commit d5117a6d; git ls-tree -r over the full commit filtered for handoff/handover/mapping names; all 6 declared transcript and analysis paths confirmed present; all 44 matching-layer manifest paths probed.",
+      "whatIsPresent": "Both full transcripts (16,126 and 50,808 bytes), both per-documentary analyses (47,504 and 60,289 bytes), youtube_doc_analysis/synthesis/pattern_library.json (37,852 bytes) and playbook.md (7,847 bytes), youtube_doc_analysis/HANDOFF.md, and the finished StoryPackages. These establish source structure at one end and authored beats at the other.",
+      "exactDecisionsNotVerifiable": [
+        "Whether a given current beat boundary was derived from a specific transcript span or authored independently of the source structure.",
+        "Which source structural pattern, if any, authorized a given visual obligation on a beat.",
+        "Whether the perfect reference versions' beat boundaries trace to source structure or to editorial judgment applied afterward -- which determines whether their quality is a reproducible derivation or a human act."
+      ],
+      "whyExistingArtifactsAreInsufficient": "pattern_library.json and playbook.md generalize ACROSS documentaries; analysis_002/006 describe each source's own structure. Neither carries a per-span linkage to a beat ID in any StoryPackage, so the derivation is observable only at its endpoints, never as a traceable step.",
+      "smallestSufficientEditorSupply": "A single export, for one documentary, mapping transcript span (or timecode range) -> beat ID -> visual job, for the package whose task proposals the editor designated perfect. One file for future-volksgeist@2 would be sufficient to anchor the derivation.",
+      "analysisContinuesWithout": true,
+      "analysisBlockedWithout": "Only the provenance questions above. Every other Job 1 question was answered from present artifacts, and later jobs can still evaluate beat quality against the perfect references without this mapping -- they cannot attribute that quality to a derivation step."
+    },
+    "secondMissingReference": {
+      "status": "REFERENCED_BUT_ABSENT",
+      "expectedName": "../content-project-mgr/final_documentary_system_plan.md and ../content-project-mgr/HANDOFF_data_matching_media.md",
+      "expectedRole": "grammar/matching-harness-stage-contract.json names these two as the contract's own 'authority' -- masterPlan and layerHandoff.",
+      "whatIsPresent": "Neither path exists; content-project-mgr is a sibling workspace repository outside this audit's repository scope. A same-named file exists in the Story repository at architecture/HANDOFF_data_matching_media.md (AF-06), but it cannot be assumed identical to the content-project-mgr copy the stage contract cites.",
+      "exactDecisionsNotVerifiable": ["Whether the 8 stages, their owners and their requires/produces sets in matching-harness-stage-contract.json faithfully reflect the master plan they claim as authority."],
+      "smallestSufficientEditorSupply": "The two content-project-mgr files, or confirmation that architecture/HANDOFF_data_matching_media.md in djtoler/patterns at d5117a6d is the authoritative layer handoff.",
+      "analysisContinuesWithout": true
+    }
+  },
+
+  "unresolvedEvidence": [
+    {"id": "UE-01", "item": "fable_analysis descent from frozen baseline 1276d0ca1daece81b5b7b38c8b5f5280046e5077 is unverified -- the object is absent from the depth-1 clone.", "resolution": "Bounded git fetch --depth=1000 on this branch, then git merge-base --is-ancestor.", "blocks": "nothing in Job 1"},
+    {"id": "UE-02", "item": "18 of 24 evidence sources (392 of 527 raw source records) are unreachable in this checkout -- 6 in sibling repo ae-template-automation, 12 in the abandoned mirror. Their declared hashes could not be verified.", "resolution": "Editor supplies the ae-template-automation/scene-library/approved/ files, or confirms they are out of scope and their records stand on declared provenance.", "blocks": "independent provenance verification of 290 template-capability and 102 mirror-derived records; notably the 49 matching_output_feedback records."},
+    {"id": "UE-03", "item": "Only year-seventeen has a committed matching-handoff artifact at the pinned Story commit, yet future-volksgeist and jayz-drake-settle-it both have current Matching-side outputs.", "resolution": "Job 3 (upstream contract fitness).", "blocks": "nothing in Job 1"},
+    {"id": "UE-04", "item": "The two perfect reference versions are structurally heterogeneous (AF-07) and one has no live twin while the other is byte-identical to a live artifact (AF-09).", "resolution": "Jobs 4 and 7 must attribute each derived principle to a specific reference.", "blocks": "nothing in Job 1"},
+    {"id": "UE-05", "item": "The Future gold reference is future-volksgeist@2 while current output is future-volksgeist@5; both hold exactly 310 proposals. Whether the proposals correspond one-to-one is not established.", "resolution": "Job 4 proposal-level correspondence analysis.", "blocks": "any claim that count parity implies content parity"},
+    {"id": "UE-06", "item": "EXECUTION_POLICY.json does not state whether 'desktop_conversation' admits a cloud-backed Claude Desktop session (see executionReceipt.recordedCaveats).", "resolution": "Editor clarification if the distinction is material to the audit record.", "blocks": "nothing; the observed mode is recorded verbatim"},
+    {"id": "UE-07", "item": "candidateReviewsWithoutGalleryContext = 1 in the evidence package -- one editor candidate review whose gallery context could not be reconstructed.", "resolution": "Job 7 human-evidence analysis.", "blocks": "nothing in Job 1"}
+  ],
+
+  "productionFilesModified": [],
+  "evidenceFilesModified": [],
+  "goldReferencesModified": [],
+  "filesCreated": [
+    "reports/astra-root-cause/01-system-map.md",
+    "reports/astra-root-cause/01-system-map.json"
+  ],
+
+  "acceptance": [
+    {"check": "Every stage resolves to actual code or is explicitly human/manual", "verdict": "PASS", "basis": "All 9 mandated stage groups and all 8 harness-contract stages mapped to files and symbols; 19/19 declared entrypoints resolve to a real module and callable; story_creation and human_review are explicitly marked human-involved."},
+    {"check": "All 12 current Jay-Z/Drake reviews and 48 current Future reviews accounted for without treating the abandoned mirror as duplicate evidence", "verdict": "PASS", "basis": "12 and 48 located on hash-verified live sources; mirror variants contribute 11 and 47 records that share evidenceIds with the live sources and 0 mirror-only records; dedup mechanism proven from build_astra_review_evidence.py:17-20, 82-92, 345-360; 'astra-visual-selector/' vs 'matching-layer/' prefix semantics disambiguated."},
+    {"check": "Machine evaluations are not labeled as editor feedback", "verdict": "PASS", "basis": "0 of 439 records carry machine authorship; excludedClasses explicitly bars model_review_and_evaluation_outputs; the one scrutinized risk case (49 matching_output_feedback records from evaluation-feedback.json) is corroborated as genuine human prose, with its unverifiable provenance recorded as residual risk."},
+    {"check": "Any missing org reference is precisely named", "verdict": "PASS", "basis": "missingReferenceProtocol names the absent transcript-span-to-beat/visual-job mapping with expected name, role, search performed, unverifiable decisions, insufficiency of present artifacts and the smallest sufficient editor supply; a second absent reference (content-project-mgr authority files) is named to the same standard. Nothing was reconstructed from memory."},
+    {"check": "Both perfect reference files match the manifest hashes and are classified as positive target evidence rather than ordinary generated output", "verdict": "PASS", "basis": "Both sha256 digests match EXECUTION_POLICY.json and REFERENCE_MANIFEST.md exactly; declared packageIds and proposal counts (116, 310) both confirmed; both classified evidenceClass=positive_target_evidence with notOrdinaryGeneratedOutput=true."},
+    {"check": "The execution receipt reports Claude Desktop plus the exact model identifier or user-visible model name exposed by the running session", "verdict": "PASS", "basis": "executionReceipt records operator claude_desktop, mode desktop_conversation, resolved identifier claude-opus-5, display name Opus 5, with the metadata source named and three caveats recorded rather than invented."},
+    {"check": "No production file is modified", "verdict": "PASS", "basis": "Only the two Job 1 outputs under reports/astra-root-cause/ were created. git status shows no modification to any pipeline, grammar, plans, docs or reports file; the Story repository was read-only."}
+  ],
+
+  "result": "PASS",
+  "nextJob": "02-story-semantics",
+  "nextJobExecutor": {
+    "requiredOperator": "claude_desktop",
+    "requiredExecutionMode": "claude_cli_invoked_from_desktop",
+    "requiredModel": "claude-fable-5-1",
+    "requiredModelDisplayName": "Claude Fable 5.1",
+    "requiredReasoningEffort": "medium",
+    "feasibilityConfirmed": true,
+    "feasibilityEvidence": "Claude CLI 2.1.289 is present and supports --model and --effort. A pre-flight invocation of `claude -p --model claude-fable-5-1 --effort medium` returned 'claude-fable-5-1 (Claude Fable 5.1), effort level: medium.', confirming Medium is selected explicitly rather than defaulting to High."
+  },
+  "blockerOwner": "none",
+  "stopAfterThisJob": true
+}
