@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "packet": "gpt-6.1-sol-astra-p0-p2-implementation",
+  "createdAt": "2026-10-05",
+  "requestedModel": "gpt-6.1-sol",
+  "repository": "https://github.com/djtoler/astra-visual-selector",
+  "branch": "matching-layer",
+  "packetParentCommit": "5083ba40702181c8c8fa7b53b80d4c009a2aa728",
+  "frozenMatchingProductionBaseline": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
+  "frozenStoryCommit": "d5117a6de0fd0c640a336c6f456946ec8b40f319",
+  "knownEnvironmentConditions": [
+    {
+      "path": "../patterns-storypackage-review",
+      "observedCommit": "66992e7bf61483838cfb3609c56076059ee8d4e8",
+      "state": "dirty_unrelated_user_changes",
+      "requiredAction": "do_not_modify_or_reset; use a separate clean worktree at frozenStoryCommit and set STORYPACKAGE_AUTHORITY_ROOT"
+    }
+  ],
+  "authorization": {
+    "source": "editor instruction in the matching-system conversation on 2026-10-05",
+    "authorizedStages": ["P0", "P1", "P2"],
+    "continueSequentially": true,
+    "mandatoryStopAfter": "P2",
+    "notAuthorized": [
+      "P3",
+      "P4",
+      "P5",
+      "P6",
+      "P7",
+      "rendering",
+      "template_or_catalog_changes",
+      "custom_visuals_or_renderers",
+      "replacement_architecture",
+      "external_provider_spend"
+    ]
+  },
+  "authoritativeFiles": [
+    {"path": "AGENTS.md", "sha256": "7d598436afd816dda0d13549fd5bc8ac7bab902076c5d87da570614032cc7de6"},
+    {"path": "media_workflows.md", "sha256": "97a03e450baa7ab57d226f13d145cade9cb9429b47a1e5461e0d25996eb75234"},
+    {"path": "plans/ASTRA_MATCHING_REBUILD_PLAN.md", "sha256": "b75ea96110b76a842b4676bf737ea107bed514c7ecd5f79d923d334229c53912"},
+    {"path": "reports/astra-root-cause/08-root-cause-and-redesign.md", "sha256": "2b4fee401fe224ad2dea100a81f14f406ed0e26531227a0ff36c29dbf7786d7e"},
+    {"path": "reports/astra-root-cause/08-root-cause-and-redesign.json", "sha256": "6c330289691d68411ad7ef5cce81fc0e1ea148219e6412b6dbae80cbe71aa25b"},
+    {"path": "reports/astra-root-cause/03-upstream-contract-fitness.md", "sha256": "46d29937ac4e09c053f87a7e8312862fd32955f050e5424faa67a25165bdfcff"},
+    {"path": "reports/astra-root-cause/03-upstream-contract-fitness.json", "sha256": "c60de914c7f1a6c1c1d50f8d8f75d38e5867659e966c713dea7b4ee8d1261e67"},
+    {"path": "reports/astra-root-cause/06-candidate-pipeline.md", "sha256": "448a9426d7346fab52152ce53ec94f3d7e0e97f05462a2199a8c91baeaf2efb7"},
+    {"path": "reports/astra-root-cause/06-candidate-pipeline.json", "sha256": "18fe3546468a47fc46d2db059a7fd40085045d19bb08f9713f07af0906eb4203"},
+    {"path": "reports/astra-root-cause/07-human-evidence-analysis.md", "sha256": "fe73411e97074a28a87c952665a0f26312ab48b59924fbe1fa53e190249fdc40"},
+    {"path": "docs/astra-root-cause/REFERENCE_MANIFEST.md", "sha256": "5500ddd19f4aaca73e724e178ab05e09ed81eed5b9250a8c3cd45fa0ea6d4b01"},
+    {"path": "grammar/general-matching-layer-contract.json", "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"},
+    {"path": "grammar/matching-harness-stage-contract.json", "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"},
+    {"path": "grammar/matching-entrypoint-contract.json", "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"}
+  ],
+  "supplementaryEvidence": [
+    {
+      "repository": "https://github.com/djtoler/astra-visual-selector",
+      "branch": "fable_analysis",
+      "commit": "ae71e932cc475412ba701635eb671f759791b53c",
+      "path": "docs/astra-root-cause/JOB_06_HANDOFF.md",
+      "authority": "supplementary_only",
+      "acceptedFinding": "58 of 59 audited focused-review tasks land inside an exploration-frequency tie at the cutoff, permitting admitted-list position to decide among tied families",
+      "usage": "freeze a P0 regression fixture for later P6 repair; do not implement P6 in P0-P2"
+    },
+    {
+      "repository": "https://github.com/djtoler/astra-visual-selector",
+      "branch": "fable_analysis",
+      "commit": "ae71e932cc475412ba701635eb671f759791b53c",
+      "path": "docs/astra-root-cause/job06-exploration-replay.json",
+      "authority": "supplementary_only",
+      "restriction": "do not promote exact aggregate totals without a committed generator and independent reproduction"
+    }
+  ],
+  "requiredStageOrder": ["P0", "P1", "P2"],
+  "blockerVocabulary": ["you", "data", "story", "matching", "none"],
+  "finalReviewRequired": true
+}

@@ -94,3 +94,21 @@ general system must reach. Root-cause analysis must compare current outputs to
 their beat boundaries, coherent visual moments, visual jobs, requirements and
 downstream matchability. Extract reusable principles; never hardcode their
 subjects, package IDs or beat IDs.
+
+### Astra P0–P2 implementation authorization — 2026-10-05
+
+The editor authorized a new GPT-6.1 Sol conversation to implement only P0, P1
+and P2 from `plans/ASTRA_MATCHING_REBUILD_PLAN.md` on the `matching-layer`
+branch. The stages run sequentially and stop after P2 for editor review. This
+authorization does not extend to P3–P7, rendering, template/catalog changes,
+external provider spend, custom visuals/renderers or a replacement architecture.
+Each stage must prove its frozen baseline failure first, reuse the existing
+contracts/validators/runners, publish a machine-readable receipt and fail closed
+on missing or stale upstream evidence.
+
+Use `docs/p0-p2-gpt-6-1-sol-handoff/` as the implementation handoff authority.
+Freeze the independently reproduced focused-exploration cutoff tie as a P0
+regression case for later P6 work, but do not implement ordering changes during
+P0–P2. Claude's interrupted `fable_analysis` Job 6 handoff is supplementary
+evidence only; its unreproducible historical exposure figures and unverified
+exact aggregate totals are not production authority.
