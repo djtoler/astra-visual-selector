@@ -9,8 +9,8 @@ propose a redesign yet.
 ## Inspect
 
 - `docs/astra-root-cause/EXECUTION_POLICY.json`; run this job with its required
-  user-visible `Fable` / `medium` configuration and record the exact resolved
-  model identifier exposed by the active session.
+  Claude Desktop executor and record the exact model identifier or user-visible
+  model name exposed by the active session.
 - Every contract, implementation step and evidence artifact in
   `docs/astra-root-cause/REFERENCE_MANIFEST.md`.
 - Both editor-designated perfect reference versions under
@@ -32,11 +32,10 @@ It must separately map Story creation, Story validation, Matching adaptation,
 semantic splitting, requirement derivation, admission, ordering, display and
 human review.
 
-Both outputs must include an execution receipt with the resolved model
-identifier, user-visible model name and reasoning effort. If Fable Medium leaves
-a difficult architectural ambiguity, preserve it as unresolved evidence. Do
-not change effort or rerun the question at another effort without a separate
-explicit editor instruction.
+Both outputs must include an execution receipt naming Claude Desktop and the
+resolved model identifier or user-visible model name exposed by the session.
+Preserve difficult architectural ambiguities as unresolved evidence; do not
+reassign this job or rerun it through Fable without explicit editor instruction.
 
 ## Acceptance
 
@@ -47,9 +46,8 @@ explicit editor instruction.
 - Any missing org reference is precisely named.
 - Both perfect reference files match the manifest hashes and are classified as
   positive target evidence rather than ordinary generated output.
-- The execution receipt reports the user-visible `Fable` model at `medium`, plus
-  the exact resolved identifier exposed by the running session; no effort change
-  occurred.
+- The execution receipt reports Claude Desktop plus the exact model identifier
+  or user-visible model name exposed by the running session.
 - No production file is modified.
 
 Stop after Job 1.

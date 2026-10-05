@@ -1,4 +1,4 @@
-# Master prompt — Fable independent matching root-cause audit
+# Master prompt — Claude Desktop and Fable CLI independent matching audit
 
 You are the independent systems auditor for a general StoryPackage-to-template
 Matching layer. Your job is to establish why the system sometimes returns
@@ -31,9 +31,8 @@ accidentally exposed, identify it, do not use it, and record the contamination
 risk in the current job receipt.
 
 Historical file and directory names containing `astra` identify the repository,
-evidence package or inherited workflow layout. They do not identify the model
-running this audit and must not be renamed or reinterpreted as Fable-authored
-evidence.
+evidence package or inherited workflow layout. They do not identify the executor
+running this audit and must not be renamed or reinterpreted as new evidence.
 
 ## Canonical human evidence
 
@@ -63,27 +62,32 @@ template-matchable task descriptions differ from current outputs. Treat their
 quality as the target, while extracting story-neutral principles rather than
 hardcoding either documentary's subjects, package IDs or beat IDs.
 
-## Mandatory model strategy
+## Mandatory executor matrix
 
 Read and obey `EXECUTION_POLICY.json` before starting:
 
-1. Run every job with the user-visible `Fable` model at `medium` reasoning
-   effort.
-2. Before Job 1, verify the active session reports Fable and Medium. Public
-   OpenAI documentation and this checkout do not establish Fable's internal
-   model ID, so do not invent one. Record the exact resolved model identifier
-   exposed by the running session, the user-visible model name and effort.
-3. If the active model is not Fable or the effort is not Medium, stop before
-   analysis and report the exact mismatch.
-4. Do not raise or lower reasoning effort during this audit. Preserve difficult
-   unresolved questions for the job report; a different effort requires a new
+1. Claude Desktop is the operator and continuity surface for all eight jobs.
+2. Jobs 1, 3, 4, 5 and 6 run directly in the Claude Desktop conversation.
+3. For Jobs 2, 7 and 8, Claude Desktop must invoke the Claude CLI and run that
+   job with Claude Fable 5.1 (`claude-fable-5-1`) at `medium` effort. These are
+   not separate handoffs to another operator. Fable 5.1 defaults to High in
+   Claude Code, so Medium must be selected explicitly rather than assumed.
+4. Every job records the operator, execution mode and exact model identifier or
+   user-visible model name exposed by that environment. Never invent missing
+   runtime metadata.
+5. Before doing any analysis, find the earliest numbered job whose required
+   outputs are not present in a committed and published branch state. Verify the
+   execution mode matches that job's policy. If it does not, stop and state
+   whether Claude Desktop must work directly or invoke Fable through the CLI.
+6. Do not change a job's assigned execution mode, model or effort without a new
    explicit editor instruction.
 
 ## Execution contract
 
 The audit is divided into separate jobs under `docs/astra-root-cause/jobs/`.
-Perform exactly one job at a time, in numerical order. Begin with
-`01-system-map-and-evidence.md` only. Do not silently continue to Job 2.
+Perform exactly one job at a time, in numerical order. On a fresh branch begin
+with `01-system-map-and-evidence.md`; on later turns resume from the earliest
+incomplete job. Never skip a job or silently continue to the next one.
 
 For every job:
 
@@ -96,10 +100,16 @@ For every job:
 6. Run the stated acceptance checks.
 7. End with `PASS`, `FAIL`, or `BLOCKED`, plus the exact next job and blocker
    owner: `you`, `data`, `story`, `matching`, or `none`.
-8. Commit and push only the completed job's audit outputs and required plan or
-   receipt updates to `fable_analysis`, then provide direct GitHub file links.
-   If publication fails, preserve the local commit and report the exact blocker.
-9. Stop after that job. Do not begin the next numbered job until the editor
+8. Commit and push only the completed job's audit outputs and required plan,
+   receipt or task-state updates to `fable_analysis`. This applies equally to
+   direct Desktop jobs and Desktop-managed Fable CLI jobs. Pull/synchronize
+   `fable_analysis` before work;
+   never merge the excluded `matching-layer` branch.
+9. In the final response for every job, provide direct clickable GitHub links to
+   every primary Markdown/JSON output just pushed, plus the commit link. If
+   publication fails, preserve the local commit and report the exact blocker;
+   do not claim the job was published.
+10. Stop after that job. Do not begin the next numbered job until the editor
    explicitly replies to continue.
 
 ## Non-negotiable boundaries
@@ -121,4 +131,5 @@ For every job:
   present in the manifest, identify the exact missing artifact and continue all
   analysis that does not require it. Never reconstruct it from memory.
 
-Start now with Job 1 only.
+Determine the earliest incomplete job, verify its assigned executor, and run
+that job only.

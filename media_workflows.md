@@ -95,7 +95,7 @@ their beat boundaries, coherent visual moments, visual jobs, requirements and
 downstream matchability. Extract reusable principles; never hardcode their
 subjects, package IDs or beat IDs.
 
-### Fable independent root-cause pass — 2026-10-05
+### Claude Desktop and Fable CLI independent root-cause pass — 2026-10-05
 
 The `fable_analysis` branch is rooted at Matching commit
 `1276d0ca1daece81b5b7b38c8b5f5280046e5077`, before Astra Job 1. It reuses the
@@ -105,12 +105,12 @@ Astra Job 1–8 reports or the repair plan on the later `matching-layer` branch.
 Later production commits are excluded until both analyses are independently
 complete.
 
-Every Fable job uses the user-visible Fable model at `medium` reasoning effort.
-The running session records its exact resolved model identifier; the workflow
-does not invent an undocumented ID. A model or effort mismatch blocks the job.
-Do not change effort without a new explicit editor instruction. Each job saves,
-validates, commits and publishes only its audit outputs to `fable_analysis`,
-provides direct GitHub links and stops until the editor explicitly continues.
+Claude Desktop directly executes Jobs 1 and 3–6. For Jobs 2, 7 and 8, Claude
+Desktop invokes Claude Fable 5.1 (`claude-fable-5-1`) through the Claude CLI at
+explicit `medium` effort. The active mode records its operator, execution mode
+and exposed model metadata; a mismatch blocks the job. Do not reassign a job or change Fable's
+effort without a new explicit editor instruction. Both surfaces save, validate,
+commit and publish each completed job to `fable_analysis`, provide direct GitHub
+links to the primary outputs and stop until the editor explicitly continues.
 No job authorizes production edits, template selection or rendering. The
-machine-readable authority is
-`docs/astra-root-cause/EXECUTION_POLICY.json` on `fable_analysis`.
+machine-readable authority is `docs/astra-root-cause/EXECUTION_POLICY.json`.

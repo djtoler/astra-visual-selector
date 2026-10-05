@@ -40,11 +40,15 @@ Claude-authored Matching implementation not demonstrably required by this branch
 
 This branch does not authorize rendering. Preserve existing template provenance and controls. Custom work requires complete evidence-backed exhaustion of existing options and explicit user approval.
 
-## Fable independent-audit branch
+## Claude Desktop and Fable CLI independent-audit branch
 
 This `fable_analysis` branch is an independent audit rooted at Matching commit
 `1276d0ca1daece81b5b7b38c8b5f5280046e5077`. Follow
 `docs/astra-root-cause/MASTER_PROMPT.md` and its execution policy. Do not inspect,
 merge or use Astra Job 1–8 outputs from the later `matching-layer` branch until
 the independent Fable audit is complete. Preserve production code and evidence;
-each numbered job publishes audit outputs only and stops for the editor.
+each numbered job publishes audit outputs only and stops for the editor. Claude
+Desktop directly runs Jobs 1 and 3–6. For Jobs 2, 7 and 8, Claude Desktop
+invokes Claude Fable 5.1 through the Claude CLI at Medium. A wrong execution
+mode must stop rather than taking another mode's job. Both modes commit and push each completed job to
+`fable_analysis` and return direct GitHub links to their outputs.

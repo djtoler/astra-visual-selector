@@ -9,24 +9,42 @@ WORKFLOW = ROOT / "docs" / "astra-root-cause"
 
 
 class FableRootCauseWorkflowTests(unittest.TestCase):
-    def test_job_one_model_strategy_is_fail_closed(self):
+    def test_executor_matrix_is_fail_closed(self):
         policy = json.loads((WORKFLOW / "EXECUTION_POLICY.json").read_text())
-        job = policy["jobPolicies"]["01-system-map-and-evidence"]
+        jobs = policy["jobPolicies"]
 
         self.assertEqual(policy["auditBranch"], "fable_analysis")
         self.assertEqual(
             policy["matchingBaselineCommit"],
             "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
         )
-        self.assertEqual(job["requiredModel"], "fable")
-        self.assertEqual(job["requiredModelDisplayName"], "Fable")
-        self.assertEqual(job["requiredReasoningEffort"], "medium")
-        self.assertTrue(job["resolvedModelIdMustBeRecorded"])
-        self.assertFalse(job["publicModelIdVerified"])
-        self.assertFalse(job["escalation"]["allowed"])
-        self.assertTrue(job["escalation"]["requiresExplicitEditorInstruction"])
-        self.assertFalse(job["escalation"]["wholeJobRerunAllowed"])
-        self.assertTrue(job["receiptRequired"])
+        self.assertEqual(len(jobs), 8)
+        desktop = {
+            "01-system-map-and-evidence",
+            "03-upstream-contract-fitness",
+            "04-matching-transformations",
+            "05-grammar-tags-capabilities",
+            "06-candidate-pipeline",
+        }
+        fable = {
+            "02-story-semantics",
+            "07-human-evidence-and-reference-evaluation",
+            "08-integrated-root-cause-and-redesign",
+        }
+        for name in desktop:
+            self.assertEqual(jobs[name]["requiredOperator"], "claude_desktop")
+            self.assertEqual(jobs[name]["requiredExecutionMode"], "desktop_conversation")
+        for name in fable:
+            self.assertEqual(jobs[name]["requiredOperator"], "claude_desktop")
+            self.assertEqual(
+                jobs[name]["requiredExecutionMode"],
+                "claude_cli_invoked_from_desktop",
+            )
+            self.assertEqual(jobs[name]["requiredModel"], "claude-fable-5-1")
+            self.assertEqual(jobs[name]["requiredReasoningEffort"], "medium")
+        self.assertTrue(policy["defaultJobPolicy"]["pushRequired"])
+        self.assertTrue(policy["defaultJobPolicy"]["directOutputLinksRequired"])
+        self.assertTrue(policy["defaultJobPolicy"]["oneJobPerTurn"])
 
     def test_gold_references_exist_and_match_pinned_hashes(self):
         policy = json.loads((WORKFLOW / "EXECUTION_POLICY.json").read_text())
@@ -43,9 +61,16 @@ class FableRootCauseWorkflowTests(unittest.TestCase):
         job = (WORKFLOW / "jobs" / "01-system-map-and-evidence.md").read_text()
         self.assertIn("EXECUTION_POLICY.json", job)
         self.assertIn("perfect reference", job.lower())
-        self.assertIn("Fable", job)
-        self.assertIn("medium", job.lower())
-        self.assertIn("not change effort", job.lower())
+        self.assertIn("Claude Desktop", job)
+        self.assertIn("do not", job.lower())
+
+    def test_master_prompt_requires_publication_and_executor_switches(self):
+        prompt = (WORKFLOW / "MASTER_PROMPT.md").read_text()
+        self.assertIn("Claude Desktop is the operator", prompt)
+        self.assertIn("For Jobs 2, 7 and 8, Claude Desktop must invoke the Claude CLI", prompt)
+        self.assertIn("claude-fable-5-1", prompt)
+        self.assertIn("direct clickable GitHub links", prompt)
+        self.assertIn("Commit and push", prompt)
 
 
 if __name__ == "__main__":

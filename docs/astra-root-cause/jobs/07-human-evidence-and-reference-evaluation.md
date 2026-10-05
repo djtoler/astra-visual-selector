@@ -1,5 +1,13 @@
 # Job 7 — Human evidence and reference-match evaluation
 
+## Required execution mode
+
+Claude Desktop invokes the Claude CLI for this job and explicitly selects
+Claude Fable 5.1 (`claude-fable-5-1`) at `medium` effort. Record Desktop as the
+operator, the CLI invocation as the execution mode, and the resolved model and
+effort in the receipt. Stop without analysis if that configuration is not
+active.
+
 ## One job
 
 Use the editor reviews, manually evaluated matches and original reference

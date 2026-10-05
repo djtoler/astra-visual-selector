@@ -1,5 +1,13 @@
 # Job 2 — Story beat, claim and visual-moment semantics
 
+## Required execution mode
+
+Claude Desktop invokes the Claude CLI for this job and explicitly selects
+Claude Fable 5.1 (`claude-fable-5-1`) at `medium` effort. Record Desktop as the
+operator, the CLI invocation as the execution mode, and the resolved model and
+effort in the receipt. Stop without analysis if that configuration is not
+active.
+
 ## One job
 
 Evaluate how the Story layer defines and produces beats, claims, obligations,

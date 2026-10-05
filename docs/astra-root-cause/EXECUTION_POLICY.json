@@ -1,30 +1,72 @@
 {
   "schemaVersion": 1,
-  "workflow": "fable-independent-matching-root-cause",
+  "workflow": "claude-desktop-fable-cli-independent-matching-root-cause",
   "auditBranch": "fable_analysis",
   "matchingBaselineCommit": "1276d0ca1daece81b5b7b38c8b5f5280046e5077",
   "excludedComparisonBranch": "matching-layer",
   "defaultJobPolicy": {
-    "requiredModel": "fable",
-    "requiredModelDisplayName": "Fable",
-    "requiredReasoningEffort": "medium",
-    "resolvedModelIdMustBeRecorded": true,
-    "publicModelIdVerified": false,
-    "effortChangeAllowed": false,
-    "receiptRequired": true
+    "receiptRequired": true,
+    "commitRequired": true,
+    "pushRequired": true,
+    "directOutputLinksRequired": true,
+    "oneJobPerTurn": true
   },
   "jobPolicies": {
     "01-system-map-and-evidence": {
-      "requiredModel": "fable",
-      "requiredModelDisplayName": "Fable",
+      "requiredOperator": "claude_desktop",
+      "requiredExecutionMode": "desktop_conversation",
+      "recordResolvedModel": true,
+      "receiptRequired": true
+    },
+    "02-story-semantics": {
+      "requiredOperator": "claude_desktop",
+      "requiredExecutionMode": "claude_cli_invoked_from_desktop",
+      "requiredExecutor": "claude-fable-5-1",
+      "requiredModel": "claude-fable-5-1",
+      "requiredModelDisplayName": "Claude Fable 5.1",
       "requiredReasoningEffort": "medium",
-      "resolvedModelIdMustBeRecorded": true,
-      "publicModelIdVerified": false,
-      "escalation": {
-        "allowed": false,
-        "requiresExplicitEditorInstruction": true,
-        "wholeJobRerunAllowed": false
-      },
+      "receiptRequired": true
+    },
+    "03-upstream-contract-fitness": {
+      "requiredOperator": "claude_desktop",
+      "requiredExecutionMode": "desktop_conversation",
+      "recordResolvedModel": true,
+      "receiptRequired": true
+    },
+    "04-matching-transformations": {
+      "requiredOperator": "claude_desktop",
+      "requiredExecutionMode": "desktop_conversation",
+      "recordResolvedModel": true,
+      "receiptRequired": true
+    },
+    "05-grammar-tags-capabilities": {
+      "requiredOperator": "claude_desktop",
+      "requiredExecutionMode": "desktop_conversation",
+      "recordResolvedModel": true,
+      "receiptRequired": true
+    },
+    "06-candidate-pipeline": {
+      "requiredOperator": "claude_desktop",
+      "requiredExecutionMode": "desktop_conversation",
+      "recordResolvedModel": true,
+      "receiptRequired": true
+    },
+    "07-human-evidence-and-reference-evaluation": {
+      "requiredOperator": "claude_desktop",
+      "requiredExecutionMode": "claude_cli_invoked_from_desktop",
+      "requiredExecutor": "claude-fable-5-1",
+      "requiredModel": "claude-fable-5-1",
+      "requiredModelDisplayName": "Claude Fable 5.1",
+      "requiredReasoningEffort": "medium",
+      "receiptRequired": true
+    },
+    "08-integrated-root-cause-and-redesign": {
+      "requiredOperator": "claude_desktop",
+      "requiredExecutionMode": "claude_cli_invoked_from_desktop",
+      "requiredExecutor": "claude-fable-5-1",
+      "requiredModel": "claude-fable-5-1",
+      "requiredModelDisplayName": "Claude Fable 5.1",
+      "requiredReasoningEffort": "medium",
       "receiptRequired": true
     }
   },
@@ -55,7 +97,9 @@
     }
   ],
   "prohibitions": [
-    "reasoning_effort_change_without_explicit_editor_instruction",
+    "executor_or_effort_change_without_explicit_editor_instruction",
+    "fable_job_run_outside_claude_desktop_managed_cli",
+    "wrong_executor_for_numbered_job",
     "astra_job_1_8_report_consumption",
     "post_baseline_matching_commit_consumption",
     "story_specific_hardcoding",

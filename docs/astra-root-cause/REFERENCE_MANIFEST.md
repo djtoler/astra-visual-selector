@@ -110,7 +110,7 @@ Do not inspect or consume those reports during this independent pass.
 
 These two byte-preserved files are **perfect reference versions** for the
 beat/script-to-template task-proposal quality the general system is intended to
-reach. Fable must use them as positive target evidence when evaluating beat
+reach. Every assigned executor must use them as positive target evidence when evaluating beat
 definition, visual-moment granularity, visual-job derivation, requirements and
 downstream matchability. They are not merely historical machine outputs.
 
