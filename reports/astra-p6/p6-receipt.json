@@ -11,7 +11,24 @@
   "externalModelExecution": false,
   "implementationRevisionResolution": "git log -1 --format=%H -- reports/astra-p6/p6-receipt.json; exact implementationFiles bind that revision",
   "independentReplay": {
-    "result": "Pending final clean-worktree replay before push"
+    "canonicalArtifactBytesIdentical": true,
+    "checkoutRoot": "/private/tmp/astra-p6-independent-replay",
+    "cleanBeforeAndAfter": true,
+    "command": "python3 tests/astra_p6_evidence.py",
+    "focusedTests": 74,
+    "implementationIdenticalToFinalReceiptBindings": true,
+    "log": "reports/astra-p6/independent-evidence.log",
+    "result": "PASS",
+    "stageVerifiers": [
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5",
+      "P6"
+    ],
+    "testedRevision": "c6b4cdca9e70fbfddad0d5d86b8d85449586d9e7"
   },
   "inputs": {
     "immutableEvidence": [
@@ -517,6 +534,18 @@
       "sha256": "9ccb8a3d46e64744ac4dc38466be063f169c3b1a06336c3f9b6d9f8b44751807"
     },
     {
+      "path": "reports/astra-p6/independent-evidence.log",
+      "sha256": "212fc270b9dbb64777db61ecda182f8b15c2075f723ac5a8a8203d7b440a599a"
+    },
+    {
+      "path": "reports/astra-p6/independent-focused.log",
+      "sha256": "c27d7d3775bd13eac0cff2fb63ecd4b6d390b0faf9fcf4bc1794d6c120fa8616"
+    },
+    {
+      "path": "reports/astra-p6/independent-verifiers.log",
+      "sha256": "eea86091312d736812b2955f32124d195ad123919846201ca2deb6520789d627"
+    },
+    {
       "path": "reports/astra-p6/p6-complete-versus-bounded.json",
       "sha256": "e18fc59210d11aab94a1b2385fe89f4f53f9044171401fa8758457b2701283a4"
     },
@@ -568,6 +597,10 @@
   "reasoningEffort": "medium",
   "renderingAuthorized": false,
   "rollback": "Revert P6 consumers/tests and invalidate display-bound feedback publication. Retain P5 complete ledger, overflow, unknown states and original review receipts.",
+  "runtime": {
+    "compressedTransport": "gzip mtime=0; canonical sorted UTF-8 JSON is bound separately",
+    "python": "3.14.7"
+  },
   "schemaDelta": null,
   "schemaVersion": "astra-stage-receipt@1",
   "selectionAuthorized": false,
@@ -656,6 +689,23 @@
       "result": "PASS strict canonical byte replay",
       "unresolved": 1540,
       "variants": 1540
+    },
+    {
+      "checkoutRoot": "/private/tmp/astra-p6-independent-replay",
+      "command": "python3 tests/astra_p6_evidence.py",
+      "log": "independent-evidence.log",
+      "result": "PASS from clean independent worktree"
+    },
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4,P5,P6 focused P6/P5/batch/P4/queue/feedback/frozen suite",
+      "log": "independent-focused.log",
+      "result": "PASS from clean independent worktree",
+      "run": 74
+    },
+    {
+      "command": "P0-P6 stage verifiers",
+      "log": "independent-verifiers.log",
+      "result": "PASS from clean independent worktree"
     }
   ],
   "unresolved": [
