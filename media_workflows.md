@@ -18,6 +18,10 @@ Story owns semantic extraction; Data owns factual values and receipts; Media own
 
 The canonical Data-layer repository is `djtoler/data_layer`; the `Polish/hiphop-research-engine` directory is a stale historical copy and is not a publication target. For a reference-driven story, Data's production brief runs after Story has a finished target script and before final StoryPackage release. The core mode aligns the finished script to the reference transcript and produces evidence needs, B-roll briefs, animation briefs and transition notes without external provider credentials. Live reference-video analysis, evidence sourcing and YouTube B-roll sourcing are optional provider-backed capabilities. The `contradiction` executable name does not make contradiction, hypothesis, prediction or investigation analysis part of this workflow. Story and the editor reconcile the brief; release fails when an applicable brief is missing, stale or unapproved. Matching receives only the frozen final StoryPackage, not raw production-brief prose.
 
+### Story and Data model profiles — 2026-10-06
+
+Story passes explicit model and effort flags on every Claude CLI judgment call. Deep Story judgments (`outline`, `write`, `author`, and legacy `clean`) use Claude Opus 5.5 at medium effort. Structured judgments (`brief-review`, optional Story-side `data`, and legacy `handoff`) use Claude Sonnet 5.5 at high effort. Data makes no Claude CLI calls; deterministic core production brief uses no LLM. Data's local Qwen/Ollama profile remains disabled for the current run until each proposed extraction, topic, merge/deduplication, conflict, or prediction stage independently passes its existing gold-set evaluation. Model and provider values flow through environment variables and receipts, never StoryPackage content or committed credentials.
+
 Claude-authored Matching implementation that this branch does not demonstrably depend upon is a stale baseline. Leave it unchanged and import nothing from it without a recorded dependency and current-branch validation.
 
 ### Mandatory contract enforcement at every entry point
