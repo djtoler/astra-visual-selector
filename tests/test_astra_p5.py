@@ -53,6 +53,33 @@ class P5TreatmentReconciliation(unittest.TestCase):
     def build(self):
         return batch.build(self.request)
 
+    def test_ledger_is_identical_under_distinct_checkout_roots(self):
+        # Exercise production serialization, receipt hashing and publication replay,
+        # not a post-hoc normalizer in the evidence script.
+        with tempfile.TemporaryDirectory() as second:
+            roots = [self.root, Path(second)]
+            ledgers = []
+            for root in roots:
+                (root/'request.json').write_bytes(self.request.read_bytes())
+                for key in self.values:
+                    (root/(key+'.json')).write_bytes((self.root/(key+'.json')).read_bytes())
+                with patch.object(batch, 'ROOT', root):
+                    artifact = batch.build(root/'request.json')
+                    batch.validate(artifact)
+                    self.assertTrue(all(not Path(s['path']).is_absolute() for s in artifact['sources'].values()))
+                    ledgers.append(batch.dumps(artifact))
+            self.assertEqual(ledgers[0], ledgers[1])
+            with patch.object(batch, 'ROOT', roots[1]):
+                artifact = json.loads(ledgers[0])
+                (roots[1]/'technicalRequirements.json').write_text('{}')
+                with self.assertRaisesRegex(ValueError, 'source is missing or stale'):
+                    batch.validate(artifact)
+
+    def test_external_source_keeps_explicit_locator_and_content_hash(self):
+        source = batch._source(self.request)
+        self.assertEqual(source['path'], self.request.resolve().as_posix())
+        self.assertEqual(source['sha256'], hashlib.sha256(self.request.read_bytes()).hexdigest())
+
     def ledger(self, artifact):
         rows = artifact['tasks'][0]['templateResult']['candidates']
         self.assertEqual({r['candidateId'] for r in rows},{r['id'] for r in self.pool})

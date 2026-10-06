@@ -39,7 +39,22 @@ def _sha(path: Path) -> str:
 
 def _source(path: Path) -> dict[str, Any]:
     path = Path(path).resolve()
-    return {"path": path.as_posix(), "sha256": _sha(path), "bytes": path.stat().st_size}
+    return {"path": _source_identity(path), "sha256": _sha(path), "bytes": path.stat().st_size}
+
+
+def _source_path(value: str) -> Path:
+    """Resolve ledger identities against this checkout, never the working directory."""
+    path = Path(value)
+    return path if path.is_absolute() else ROOT / path
+
+
+def _source_identity(path: Path) -> str:
+    """Repository sources have stable identities; external locators stay explicit."""
+    path = path.resolve()
+    try:
+        return path.relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 def _resolve_source(request_path: Path, value: str) -> Path:
@@ -561,7 +576,7 @@ def _bound_treatment(treatment: dict[str, Any] | None, sources: dict[str, Any]) 
     required = set(sources) - {"request", "treatmentAssessments", "priorReviewReconciliation"}
     return bool(required) and all(
         bindings.get(name, {}).get("sha256") == sources[name]["sha256"]
-        and bindings.get(name, {}).get("path") == sources[name]["path"]
+        and _source_identity(_source_path(bindings.get(name, {}).get("path") or "")) == sources[name]["path"]
         for name in required)
 
 
@@ -1037,10 +1052,10 @@ def validate(artifact: dict[str, Any], *, verify_sources: bool = True) -> None:
     _validate_reconciliation(artifact)
     if verify_sources:
         for name, source in (artifact.get("sources") or {}).items():
-            path = Path(source.get("path", ""))
+            path = _source_path(source.get("path", ""))
             if not path.is_file() or _sha(path) != source.get("sha256"):
                 raise ValueError(f"batch match source is missing or stale: {name}")
-        replay = build(Path(artifact["sources"]["request"]["path"]))
+        replay = build(_source_path(artifact["sources"]["request"]["path"]))
         if dumps(replay) != dumps(artifact):
             raise ValueError("batch match does not replay from bound inputs")
 

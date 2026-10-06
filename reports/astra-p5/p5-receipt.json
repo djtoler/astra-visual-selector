@@ -5,6 +5,31 @@
   "blockerOwner": "none",
   "catalogRevision": "9136651565204510d259eb1fa11f8939aef0ff26",
   "consumerPolicy": "existing-batch-treatment-policy@1",
+  "correction": {
+    "P6Started": false,
+    "baseRevision": "650438ff0014b6adc90b33e9edc52344797d0ee5",
+    "evidenceComparison": "Exact ledger comparison against 83c4c6e after source identity substitution and recomputing its dependent receipt body hash; all other content identical",
+    "independentReplay": {
+      "checkoutRoot": "/private/tmp/astra-p5-cr01-replay",
+      "cleanBeforeAndAfter": true,
+      "command": "python3 tests/astra_p5_evidence.py",
+      "focusedTests": 44,
+      "implementationIdenticalToFinalReceiptBindings": true,
+      "log": "reports/astra-p5/cr-01-independent-replay.log",
+      "result": "PASS",
+      "stageVerifiers": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "testedRevision": "a5cb3b3902a13b43c2ae5c97d3aed5d63813c805"
+    },
+    "request": "CR-01",
+    "sourceIdentity": "Repository-relative paths resolved against runtime ROOT; external paths remain explicit absolute identities with content hashes"
+  },
   "externalModelExecution": false,
   "implementationRevisionResolution": "git log -1 --format=%H -- reports/astra-p5/p5-receipt.json; implementationFiles bind the exact Git contents of that revision",
   "inputs": {
@@ -314,7 +339,7 @@
     "implementationFiles": [
       {
         "path": "pipeline/visualtask_batch_matching.py",
-        "sha256": "b64e8b4f38cd40a076af88693aa540582151b055a2c85a03cdbb857910599b0d"
+        "sha256": "fbea9f2c28c93fe3960ce46e8161ed49c18f7266ccb3bf2fa5e93137c3be32b6"
       },
       {
         "path": "pipeline/visualtask_matching.py",
@@ -322,7 +347,7 @@
       },
       {
         "path": "tests/test_astra_p5.py",
-        "sha256": "e29073ccebf8dcebb0195128317769f47006dec936ebd4aaaa90a3e927d59b3c"
+        "sha256": "0059ed9e915aff23623efeeffe2ae2d4772301e98b6c506cbd0a1c90a9ac047e"
       },
       {
         "path": "tests/astra_p5_evidence.py",
@@ -342,7 +367,7 @@
       },
       {
         "path": "plans/ASTRA_P5_IMPLEMENTATION_PLAN_20261005.md",
-        "sha256": "aeb800b2c8b32edb9f099e88e0e3e47d35fd5853d8a7bf77a5f2dbeedfd887f6"
+        "sha256": "17485eeeed313d38e2b1eb7b30b4d969c68c708bb4af3b8a254a2b4d8051272d"
       }
     ],
     "sourceAndCatalogFiles": [
@@ -461,6 +486,10 @@
       {
         "path": "reports/astra-root-cause/07-human-evidence-analysis.json",
         "sha256": "46bd8f33da7b48a7eb8dcc2b8b092e383c560461e1f89ab8d6755015a32eb94e"
+      },
+      {
+        "path": "docs/p5-gpt-6-1-sol-handoff/CORRECTION_REQUESTS.md",
+        "sha256": "ce5d25cca9e4785638990420a300bedd846e09a672ec2a8dad36639f47d6126e"
       }
     ]
   },
@@ -487,12 +516,44 @@
   "next": "Stop for editor review after push; P6 not authorized or started.",
   "outputs": [
     {
+      "path": "reports/astra-p5/cr-01-evidence-build.log",
+      "sha256": "5e362727f12351dfa0b7d1f7721c6612371e7f627e7c251df0e4123d86dad793"
+    },
+    {
+      "path": "reports/astra-p5/cr-01-evidence-replay.log",
+      "sha256": "5e362727f12351dfa0b7d1f7721c6612371e7f627e7c251df0e4123d86dad793"
+    },
+    {
+      "path": "reports/astra-p5/cr-01-focused-test.log",
+      "sha256": "c6c204b966a8cf3463d1b32a370981210aed53868271c167f6b03afd8e2e1d97"
+    },
+    {
+      "path": "reports/astra-p5/cr-01-full-suite.log",
+      "sha256": "327d25d1e9a9469c17519629d6d33e1fa399ed5010998ab77d72872902b26f8d"
+    },
+    {
+      "path": "reports/astra-p5/cr-01-independent-focused.log",
+      "sha256": "568d69f2761cb9453b44c86b3321df2a3e33e4410e2509a996d06fbe5885f656"
+    },
+    {
+      "path": "reports/astra-p5/cr-01-independent-replay.log",
+      "sha256": "5e362727f12351dfa0b7d1f7721c6612371e7f627e7c251df0e4123d86dad793"
+    },
+    {
+      "path": "reports/astra-p5/cr-01-independent-verifiers.log",
+      "sha256": "b9a74822e8b6bfb56c35658ae62407b841f5bb16a3bdae0d1b34bd500be366f4"
+    },
+    {
+      "path": "reports/astra-p5/cr-01-semantics-comparison.json",
+      "sha256": "8f72f4ced67ad20fb205245ecba7880bf91b3baaa1546dc265b728252eb61305"
+    },
+    {
       "path": "reports/astra-p5/current-baseline.json",
       "sha256": "13abe2a64c55cb51fe453399417dfa5d8abc245ca747ca0185df596e8b631b70"
     },
     {
       "path": "reports/astra-p5/current-ledger.json.gz",
-      "sha256": "b8c195f72f3f9ea0df92f87fb142ee564f310bae3f2cef8ccd7700181f20fdd0"
+      "sha256": "7b034726b7ecd334d22223c3d78544a1d1f90ef01095f853c0ac8133ba82094d"
     },
     {
       "path": "reports/astra-p5/effective-media-pool.json",
@@ -556,7 +617,7 @@
     },
     {
       "path": "reports/astra-p5/p5-outcome-diff.json",
-      "sha256": "e2891c143a894bfa0854267d1c709d4cf6c612ae78d6e74a86950c08ee39d656"
+      "sha256": "4a48967c327b53c3b7241f7bcf8d564e0c13eb9e94d93de7380662e4b7f07f71"
     },
     {
       "path": "reports/astra-p5/p5-receipt-generation-probe.log",
@@ -576,7 +637,7 @@
     },
     {
       "path": "reports/astra-p5/synthetic-ledger.json.gz",
-      "sha256": "fd0e7a8d635f844c5216ddf8e96a5b407735ebecc9dc1c0d68540d77816981c9"
+      "sha256": "1f3b9bd676b250123f261a24f8d7d93e1946c0f4344734ef7d35e3804a4fde2a"
     },
     {
       "path": "reports/astra-p5/upstream-full-suite.log",
@@ -664,6 +725,52 @@
       "command": "P5 receipt source/catalog digest mutation probe",
       "log": "reports/astra-p5/p5-source-binding-mutation.json",
       "result": "PASS; altered declared input digest rejected; original receipt restored byte-for-byte"
+    },
+    {
+      "command": "python3 -m unittest tests.test_astra_p5 tests.test_visualtask_batch_matching tests.test_astra_p4",
+      "log": "reports/astra-p5/cr-01-focused-test.log",
+      "result": "PASS",
+      "run": 44
+    },
+    {
+      "command": "ASTRA_REPAIRED_STAGES=P3,P4,P5 STORYPACKAGE_AUTHORITY_ROOT=\"$PWD/../patterns-authority\" SHARED_ENTITY_ROSTER_PATH=/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json python3 -m unittest discover -s tests",
+      "errors": 0,
+      "expectedFailures": 1,
+      "failures": 0,
+      "log": "reports/astra-p5/cr-01-full-suite.log",
+      "pendingStages": [
+        "P6"
+      ],
+      "result": "PASS",
+      "run": 278
+    },
+    {
+      "command": "python3 tests/astra_p5_evidence.py --write; python3 tests/astra_p5_evidence.py",
+      "log": "reports/astra-p5/cr-01-evidence-replay.log",
+      "nativeFitClaims": 0,
+      "result": "PASS",
+      "variants": 1540
+    },
+    {
+      "checkoutRoot": "/private/tmp/astra-p5-cr01-replay",
+      "command": "python3 tests/astra_p5_evidence.py",
+      "log": "reports/astra-p5/cr-01-independent-replay.log",
+      "nativeFitClaims": 0,
+      "result": "PASS strict canonical byte replay from clean independent worktree",
+      "variants": 1540
+    },
+    {
+      "checkoutRoot": "/private/tmp/astra-p5-cr01-replay",
+      "command": "python3 -m unittest tests.test_astra_p5 tests.test_visualtask_batch_matching tests.test_astra_p4",
+      "log": "reports/astra-p5/cr-01-independent-focused.log",
+      "result": "PASS",
+      "run": 44
+    },
+    {
+      "checkoutRoot": "/private/tmp/astra-p5-cr01-replay",
+      "command": "tests.verify_astra_stage.verify for P0 through P5",
+      "log": "reports/astra-p5/cr-01-independent-verifiers.log",
+      "result": "PASS"
     }
   ],
   "unresolved": [

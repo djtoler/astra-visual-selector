@@ -88,3 +88,24 @@ Workflow review: existing ownership, source binding, review-only and unresolved
 native-fit rules already cover this repair; no workflow-memory or source-schema
 change is required. Publication integrity is tested; semantic/native quality and
 editorial approval remain separate. Next: editor review. P6 is not started.
+
+## P5 CR-01 — checkout-independent replay
+
+The independent audit at `650438f` accepted P5's direction but found that absolute
+repository paths changed ledger bytes and the dependent receipt body digest in
+another checkout. The correction uses the existing source `path` field as a
+repo-relative identity, resolved against the runtime repository root for freshness
+and publication replay. External sources retain their explicit absolute identity
+and content hash. Reviewed treatment bindings are compared using the same identity
+resolution. No evidence-script normalization bypass is used; its byte comparison
+remains strict, and no candidate assessment or P6 ordering behavior changes.
+
+Two added regressions exercise identical production ledger bytes (including receipt
+hashes) under distinct roots, source mutation rejection after relocation, and
+external locator/hash preservation. Current and synthetic ledgers and outcome hashes
+are regenerated. Historical P5 logs remain labelled as the original run; separately
+named CR-01 logs record the correction. A full normalized comparison against the
+original P5 commit permits only source path representation and its dependent receipt
+hash to differ. The final receipt binds a clean independent-worktree byte replay,
+focused tests, full discovery and all P0-P5 stage verifiers. P0-P4 receipts and gold
+artifacts remain untouched. Stop before P6 for re-audit.
