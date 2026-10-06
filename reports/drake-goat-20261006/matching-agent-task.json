@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "matching-agent-task@1",
+  "taskId": "matching-agent-drake-goat-20261006",
+  "objectiveId": "general-storypackage-template-matching",
+  "owner": "matching",
+  "requestedBy": "dwaynetoler",
+  "storyPackage": {
+    "repositoryId": "djtoler/patterns",
+    "repositoryRoot": "/private/tmp/patterns-story-ready",
+    "repositoryCommit": "727513e94d672302f1215c6659e7d614ac83fc41",
+    "path": "/private/tmp/patterns-story-ready/architecture/storypackage/drake-goat@1.storypackage-0.2.json",
+    "sha256": "6f67e533200f5867a4da28c03b4b636682d9bc5a02dea4415b5ce8a1e7eac057",
+    "authorityRoot": "/private/tmp/patterns-story-ready",
+    "authorityCommit": "727513e94d672302f1215c6659e7d614ac83fc41",
+    "checkerPython": "/Users/dwaynetoler/Documents/ChatGPT/Polish/person-cutout-system/image-tools/.venv-rembg/bin/python"
+  },
+  "entityRoster": {
+    "repositoryId": "djtoler/entity_roster",
+    "repositoryRoot": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster",
+    "repositoryCommit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+    "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json",
+    "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd",
+    "version": "12"
+  },
+  "templateCatalog": {
+    "repositoryId": "djtoler/ae-template-automation",
+    "repositoryRoot": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation",
+    "repositoryCommit": "a818acd6e3cf3865961ee9cfdf9dc96efbbda6a7",
+    "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/approved-list.json",
+    "sha256": "c278d5ec7715b3bfbc8a9589edb3358a74048bb508019a23bc24ed885d6d69d8",
+    "identity": "approved-template-catalog@2026-10-06"
+  },
+  "repositoryMappings": [],
+  "output": {
+    "schema": "matching-agent-receipt@1",
+    "directory": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run"
+  },
+  "dependencyReceiptIds": [
+    "storypackage-release:drake-goat@1"
+  ],
+  "dependencyReceipts": [
+    {
+      "id": "storypackage-release:drake-goat@1",
+      "path": "/private/tmp/patterns-story-ready/architecture/storypackage/drake-goat@1.release.json",
+      "sha256": "dbae84f396073f5df7524b6b2aa393a1c855a985b3e68b9232da2c3ef209d06d"
+    }
+  ],
+  "profile": {
+    "profileId": "openai_gpt",
+    "promptVersion": "matching-agent-prompt@1",
+    "toolPolicy": "matching-tools@1",
+    "permissionPolicy": "matching-review-only@1",
+    "evaluationProfile": "matching-cross-story@1"
+  },
+  "toolAllowList": [
+    "read_matching_artifacts"
+  ],
+  "mutationScope": [
+    "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006"
+  ],
+  "acceptanceChecks": [
+    "authoritative-storypackage",
+    "complete-claim-routing",
+    "structured-capability-admission",
+    "ordered-route-with-broll-fallback",
+    "matching-harness",
+    "schema-bound-review-receipt"
+  ],
+  "timeoutClass": "long",
+  "retryClass": "transient_once",
+  "userInput": {
+    "allowed": false,
+    "required": false
+  },
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

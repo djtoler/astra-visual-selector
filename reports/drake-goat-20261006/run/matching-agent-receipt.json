@@ -1,0 +1,470 @@
+{
+  "checks": [
+    {
+      "id": "matching_contract_gate",
+      "receipt": {
+        "contracts": {
+          "entrypoints": {
+            "id": "mandatory-matching-entrypoints-v1",
+            "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+          },
+          "generalMatching": {
+            "id": "general-storypackage-matching-layer-v1",
+            "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+          },
+          "stageOrder": {
+            "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+          }
+        },
+        "enforced": true,
+        "entrypoint": "matching_agent.run",
+        "mode": "review_only",
+        "productionRequiresCompleteHarness": true,
+        "renderingAuthorized": false,
+        "schemaVersion": 1,
+        "selectionAuthorized": false
+      },
+      "status": "passed"
+    },
+    {
+      "id": "immutable_authority_preflight",
+      "status": "passed"
+    },
+    {
+      "id": "authoritative_storypackage_adapter",
+      "status": "passed"
+    },
+    {
+      "id": "complete_claim_routing",
+      "status": "passed"
+    },
+    {
+      "id": "structured_capability_admission",
+      "status": "passed"
+    },
+    {
+      "id": "matching_harness",
+      "status": "passed"
+    },
+    {
+      "id": "provider_attempt_1",
+      "status": "passed"
+    },
+    {
+      "id": "schema_bound_provider_review",
+      "status": "passed"
+    }
+  ],
+  "commands": [
+    "matching_agent.run",
+    "storypackage_adapter.build",
+    "storypackage_splitter.build",
+    "storypackage_candidate_gallery.build",
+    "matching_harness.build",
+    "matching_harness.validate",
+    "CodexCliRunner.run",
+    "CodexCliRunner.collect"
+  ],
+  "configuration": {
+    "configuredTuple": {
+      "evaluationVersion": "matching-cross-story@1",
+      "model": "gpt-6-astra",
+      "permissionPolicy": "matching-review-only@1",
+      "profileId": "openai_gpt",
+      "promptVersion": "matching-agent-prompt@1",
+      "provider": "openai",
+      "reasoningEffort": "high",
+      "runner": "CodexCliRunner",
+      "servedModel": "unavailable_until_runner_reports",
+      "toolPolicy": "matching-tools@1",
+      "transport": "cli"
+    },
+    "configuredTupleSha256": "432c662641e5e57ed2cb4f4f0fb0f039b2bab8d045cf23de6f42def6614d07b5",
+    "redacted": true,
+    "renderingAuthorized": false,
+    "schemaVersion": "matching-agent-configuration-receipt@1",
+    "selectionAuthorized": false,
+    "source": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/config/matching-agent-profiles.yaml",
+      "sha256": "0930101e94f464828392f4b4f53246518878cb74734bf2537097932c49284c01"
+    }
+  },
+  "currentBlocker": {
+    "missingInputOrAction": null,
+    "party": "none",
+    "reason": "agent_review_complete"
+  },
+  "endedAt": "2026-10-06T16:46:22.035517+00:00",
+  "inputs": {
+    "dependencyReceipts": [
+      {
+        "id": "storypackage-release:drake-goat@1",
+        "path": "/private/tmp/patterns-story-ready/architecture/storypackage/drake-goat@1.release.json",
+        "sha256": "dbae84f396073f5df7524b6b2aa393a1c855a985b3e68b9232da2c3ef209d06d"
+      }
+    ],
+    "entityRoster": {
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster/entity-roster.json",
+      "repositoryCommit": "eacb739a4d24acf6ce25d2f4789569d9828e652e",
+      "repositoryId": "djtoler/entity_roster",
+      "repositoryRoot": "/Users/dwaynetoler/Documents/ChatGPT/Polish/entity_roster",
+      "sha256": "a27893359b6795ea0b9ef37617f0b83e700ef055319871ee220ca878c3563edd",
+      "version": "12"
+    },
+    "matchingRuntime": {
+      "commit": "835301701f4da985d0af161252ebb4c72e1c6e1d",
+      "dirty": true,
+      "repository": "djtoler/astra-visual-selector"
+    },
+    "repositoryMappings": [],
+    "storyPackage": {
+      "authorityCommit": "727513e94d672302f1215c6659e7d614ac83fc41",
+      "authorityRoot": "/private/tmp/patterns-story-ready",
+      "checkerPython": "/Users/dwaynetoler/Documents/ChatGPT/Polish/person-cutout-system/image-tools/.venv-rembg/bin/python",
+      "path": "/private/tmp/patterns-story-ready/architecture/storypackage/drake-goat@1.storypackage-0.2.json",
+      "repositoryCommit": "727513e94d672302f1215c6659e7d614ac83fc41",
+      "repositoryId": "djtoler/patterns",
+      "repositoryRoot": "/private/tmp/patterns-story-ready",
+      "sha256": "6f67e533200f5867a4da28c03b4b636682d9bc5a02dea4415b5ce8a1e7eac057"
+    },
+    "templateCatalog": {
+      "identity": "approved-template-catalog@2026-10-06",
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation/scene-library/approved/approved-list.json",
+      "repositoryCommit": "a818acd6e3cf3865961ee9cfdf9dc96efbbda6a7",
+      "repositoryId": "djtoler/ae-template-automation",
+      "repositoryRoot": "/Users/dwaynetoler/Documents/ChatGPT/Polish/ae-template-automation",
+      "sha256": "c278d5ec7715b3bfbc8a9589edb3358a74048bb508019a23bc24ed885d6d69d8"
+    }
+  },
+  "invalidatedDownstreamReceipts": [],
+  "objectiveId": "general-storypackage-template-matching",
+  "outputs": [
+    {
+      "bytes": 2296,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/00-preflight.json",
+      "sha256": "a033b1177892be4707b6f6ac906757a6812b8524c34352f2e50f6fc499d3f60e"
+    },
+    {
+      "bytes": 116386,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/10-storypackage-adapter.json",
+      "sha256": "f6326d7a21a9c2b9b68c41fbcf63b8080af46c8fc34cd928942a3556884f0f71"
+    },
+    {
+      "bytes": 287495,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/20-visualtask-proposals.json",
+      "sha256": "559bc574c3ff8770e0abbae723446edea5cf26459e532e4346bc68830056d779"
+    },
+    {
+      "bytes": 851730,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/30-data-media-requirements.json",
+      "sha256": "1b94a8bbc53900e3a7b66bbb41599f2070fe85ac5912f18dd13fdbb6052878d3"
+    },
+    {
+      "bytes": 5721736,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/40-candidate-admissions.json",
+      "sha256": "ebcb91fd55cb6863c7977c04f5d4d1251936dbf262db3595ffd069652db3bc7a"
+    },
+    {
+      "bytes": 121666,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/50-ordered-review-route.json",
+      "sha256": "4d05ba59f288353cedbc043efecfce242121a155be59bde0413ba42eace8051f"
+    },
+    {
+      "bytes": 20289,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/60-matching-harness-audit.json",
+      "sha256": "6e3c81e3eb8c03d6a1c7bc854a637e82c51504e35712a8cc506dc267b76fb248"
+    },
+    {
+      "bytes": 1556,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/provider-workspace/agent-review-input.json",
+      "sha256": "b03234a1d28af0140fab5611eda2fb9953101e270a7a25367a44175dfda3faec"
+    },
+    {
+      "bytes": 363,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/70-runner-capabilities.json",
+      "sha256": "d8c6d499f62de19b8109e2709602105a2a1685e8735413514ead590eb92b9ed6"
+    },
+    {
+      "bytes": 2787,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/80-runner-receipt.json",
+      "sha256": "e8e5ceeaaf305e0fa87fa186558f0685164adc12fb62f1d7e395175d34364f4a"
+    },
+    {
+      "bytes": 1068,
+      "path": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/90-candidate-review.json",
+      "sha256": "084240124e6a1960865a78b9ea984563043ca21f994743843b1da57cd6d17d0d"
+    }
+  ],
+  "receiptPath": "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006/run/matching-agent-receipt.json",
+  "renderingAuthorized": false,
+  "schemaVersion": "matching-agent-receipt@1",
+  "selectionAuthorized": false,
+  "startedAt": "2026-10-06T16:46:01.676263+00:00",
+  "status": "passed",
+  "taskId": "matching-agent-drake-goat-20261006",
+  "telemetry": {
+    "cost": "unsupported",
+    "mcpServers": "unavailable",
+    "permissions": {
+      "orchestratorMutationScope": [
+        "/Users/dwaynetoler/Documents/ChatGPT/Polish/matching-layer/reports/drake-goat-20261006"
+      ],
+      "runner": [
+        "read_only_workspace"
+      ]
+    },
+    "providerSessionId": "01a1121b-b286-72e3-8c45-e61366e48a9b",
+    "servedModel": "unavailable",
+    "skills": "unavailable",
+    "tools": [
+      "read_matching_artifacts"
+    ],
+    "usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 14720,
+      "input_tokens": 30537,
+      "output_tokens": 202,
+      "reasoning_output_tokens": 0
+    }
+  },
+  "typedGaps": [
+    {
+      "claimIds": [
+        "p01-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p01-1.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-1.2",
+        "p03-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p03-3.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p04-2.7"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p05-2.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-2.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p06-4.6"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p07-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-2.2"
+      ],
+      "kind": "typed_data_handoff_missing",
+      "owner": "data",
+      "requiredFields": [],
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p08-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p09-2.5"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-2.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p10-4.4"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-1.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-2.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p11-3.2"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.1"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    },
+    {
+      "claimIds": [
+        "p12-1.3"
+      ],
+      "kind": "production_ready_media_handoff_missing",
+      "owner": "media",
+      "status": "missing"
+    }
+  ],
+  "wallTimeSeconds": 20.359008,
+  "warnings": [
+    "The first blocking stage is render_release_handoff."
+  ]
+}
