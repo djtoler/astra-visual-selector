@@ -14,6 +14,10 @@ Story, Data and Matching consume one digest-pinned registry from `djtoler/entity
 
 Story owns semantic extraction; Data owns factual values and receipts; Media owns asset truth; Matching owns capability-based template retrieval and feasibility. Provider implementations may vary behind the same contracts and fixtures.
 
+### Conditional Data production brief boundary — 2026-10-06
+
+For a reference-driven story, Data's production brief runs after Story has a finished target script and before final StoryPackage release. The core mode aligns the finished script to the reference transcript and produces evidence needs, B-roll briefs, animation briefs and transition notes without external provider credentials. Live reference-video analysis, evidence sourcing and YouTube B-roll sourcing are optional provider-backed capabilities. The `contradiction` executable name does not make contradiction, hypothesis, prediction or investigation analysis part of this workflow. Story and the editor reconcile the brief; release fails when an applicable brief is missing, stale or unapproved. Matching receives only the frozen final StoryPackage, not raw production-brief prose.
+
 Claude-authored Matching implementation that this branch does not demonstrably depend upon is a stale baseline. Leave it unchanged and import nothing from it without a recorded dependency and current-branch validation.
 
 ### Mandatory contract enforcement at every entry point
