@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "astra-p7-quality-thresholds@1",
+  "frozenAt": "2026-10-06",
+  "baseCommit": "c4b5ce0e49952c2fdbb36f30af01f73ace62fc12",
+  "heldOutPackageId": "drake-goat@1",
+  "labelsMustPrecedeTuning": true,
+  "gates": {
+    "criticalPositiveCandidateRecall": 1.0,
+    "overallPositiveCandidateRecallMinimum": 0.9,
+    "hardConstraintNegativeRejection": 1.0,
+    "noTemplateAndBrollRouteCorrectness": 1.0,
+    "semanticFidelity": 1.0,
+    "maximumUnsupportedNativeFitClaims": 0,
+    "maximumHiddenValidatedAlternatives": 0,
+    "maximumUnknownToExhaustedTransitions": 0
+  },
+  "reviewEffort": {
+    "mode": "measure_baseline_only",
+    "improvementClaimAllowed": false,
+    "metrics": [
+      "minutes",
+      "cardsInspected",
+      "unresolvedDecisions",
+      "reopenedCases"
+    ]
+  },
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}
