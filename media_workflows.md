@@ -10,6 +10,8 @@ The harness reconciles the canonical objective and task list before every run, c
 
 Story, Data and Matching consume one digest-pinned registry from `djtoler/entity_roster`. `grammar/entity-roster-source.json` records its identity. Matching resolves aliases but never silently promotes unresolved names or creates a competing local roster.
 
+Story research requests enter canonical Data through `story-research-prepare`, which validates the complete request envelope and creates one hash-bound trigger per request for Data's existing `research-run`. `story-research-ledger` rejects missing, duplicated, foreign or tampered packets and reconciles complete results into the request-keyed ClaimLedger. Retrieved receipts remain unreviewed source leads; Data or an editor must explicitly record the evidence level, reviewer and packet-known source URLs before a result is exported to Story. Retrieval success, coverage status or source count must never promote evidence automatically.
+
 ### Multi-agent ownership and provider variants
 
 Story owns semantic extraction; Data owns factual values and receipts; Media owns asset truth; Matching owns capability-based template retrieval and feasibility. Provider implementations may vary behind the same contracts and fixtures.
