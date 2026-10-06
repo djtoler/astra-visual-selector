@@ -212,6 +212,25 @@ class StoryPackageSplitterTests(unittest.TestCase):
         self.assertEqual(task["routeDisposition"]["reason"],
                          "unreviewed_question_route_preserves_template_and_broll_options")
 
+    def test_semantic_question_route_veto_fails_closed(self):
+        task = {
+            "primaryPresentationOperation": "rhetorical_question",
+            "routeDisposition": {
+                "templateEligible": False,
+                "reason": "semantic_question_heuristic",
+            },
+        }
+        with self.assertRaisesRegex(
+                ValueError, "semantic question routing cannot suppress templates"):
+            subject._validate_generated_route_disposition(task)
+
+    def test_non_question_intentional_route_is_not_reinterpreted(self):
+        task = {
+            "primaryPresentationOperation": "event_narration",
+            "routeDisposition": {"templateEligible": False},
+        }
+        subject._validate_generated_route_disposition(task)
+
     def test_temporal_word_does_not_override_concrete_human_event(self):
         rows = subject._presentation_operations(
             text="He was later shot in the hand and dropped out of school.", claim_rows=[])

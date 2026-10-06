@@ -27,6 +27,23 @@ OPERATION_PRIORITY = (
 )
 
 
+def _validate_generated_route_disposition(task: dict[str, Any]) -> None:
+    """Keep semantic inference from silently becoming a route veto.
+
+    This splitter has Story semantics, but it does not receive task-scoped,
+    editor-reviewed route evidence.  It may therefore preserve options, but it
+    cannot turn a rhetorical question into an intentional no-template route.
+    Explicit reviewed route decisions belong in the downstream task contract.
+    """
+    route = task.get("routeDisposition") or {}
+    if (task.get("primaryPresentationOperation") == "rhetorical_question" and
+            route.get("templateEligible") is False):
+        raise ValueError(
+            "semantic question routing cannot suppress templates without "
+            "task-scoped editor-reviewed route evidence"
+        )
+
+
 def _unique(values: list[str]) -> list[str]:
     return list(dict.fromkeys(value for value in values if value))
 
@@ -376,7 +393,7 @@ def build(adapter: dict[str, Any], *, source_path: Path) -> dict[str, Any]:
             "selectionAuthorized": False,
             "renderingAuthorized": False,
         }
-        return {
+        task = {
             "taskProposalId": task_id,
             "jobProposalId": proposal_id,
             "job": job,
@@ -424,6 +441,8 @@ def build(adapter: dict[str, Any], *, source_path: Path) -> dict[str, Any]:
             },
             "activationState": "proposal_requires_editor_review",
         }
+        _validate_generated_route_disposition(task)
+        return task
 
     proposals = adapter.get("jobProposals") or []
     proposal_count_by_claim = Counter(
