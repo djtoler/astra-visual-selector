@@ -190,7 +190,7 @@ class StoryPackageSplitterTests(unittest.TestCase):
         self.assertIn("transformation", subject._presentation_operations(
             text="He went from an unknown artist to a star.", claim_rows=rows))
 
-    def test_question_overlay_and_broll_are_explicit_route_options(self):
+    def test_question_templates_and_broll_are_both_route_options_until_review(self):
         adapter = {
             "storyHandoffReceipt": {"accepted": True}, "selectionAuthorized": False,
             "renderingAuthorized": False, "story": {"storyId": "question-route"},
@@ -207,8 +207,10 @@ class StoryPackageSplitterTests(unittest.TestCase):
         self.assertEqual(task["primaryPresentationOperation"], "rhetorical_question")
         self.assertTrue(task["routeDisposition"]["brollFallbackAvailable"])
         self.assertEqual(task["routeDisposition"]["preferredTreatment"],
-                         "broll_or_cutout_with_text_overlay")
-        self.assertFalse(task["routeDisposition"]["templateEligible"])
+                         "template_or_broll_with_text_question")
+        self.assertTrue(task["routeDisposition"]["templateEligible"])
+        self.assertEqual(task["routeDisposition"]["reason"],
+                         "unreviewed_question_route_preserves_template_and_broll_options")
 
     def test_temporal_word_does_not_override_concrete_human_event(self):
         rows = subject._presentation_operations(

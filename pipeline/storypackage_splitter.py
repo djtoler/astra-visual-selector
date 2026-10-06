@@ -357,12 +357,20 @@ def build(adapter: dict[str, Any], *, source_path: Path) -> dict[str, Any]:
             presentation_operations = _unique(presentation_operations + [source_operation])
             primary_operation = source_operation
         route_disposition = {
-            "templateEligible": primary_operation != "rhetorical_question",
+            # A rhetorical question may ultimately use only B-roll/cutout, but
+            # semantics alone cannot suppress existing text-capable templates.
+            # Preserve both routes until exact editor evidence decides otherwise.
+            "templateEligible": True,
             "brollFallbackAvailable": True,
             "preferredTreatment": (
-                "broll_or_cutout_with_text_overlay"
+                "template_or_broll_with_text_question"
                 if primary_operation == "rhetorical_question"
                 else "template_or_broll"
+            ),
+            "reason": (
+                "unreviewed_question_route_preserves_template_and_broll_options"
+                if primary_operation == "rhetorical_question"
+                else "template_and_broll_options_preserved"
             ),
             "mixedPayloadReviewRequired": len(presentation_operations) > 1,
             "selectionAuthorized": False,
