@@ -1,0 +1,20 @@
+{
+  "command": "ASTRA_BASELINE_PROBE=1 ASTRA_TEST_RUNTIME_ROOT=../matching-frozen python3 tests/test_astra_p0_p2.py --record reports/astra-p0-p2/p0-baseline-outcomes.json",
+  "counts": {
+    "errors": 0,
+    "expectedFailures": 0,
+    "failures": 1,
+    "run": 1
+  },
+  "modelExecution": false,
+  "runtimeCommit": "f1852ccc0f28c9b0869f025c5ca5ac602d743465",
+  "schemaVersion": "astra-baseline-outcomes@1",
+  "tests": [
+    {
+      "outcome": "assertion_failure",
+      "reason": "Items in the first set but not the second:\n'circle-list-infographic'\n'archive3-comparison-pack-ae'\n'05_measured_height_ruler'\n'archive3-looped-slideshow-background'\n'screen-mockup-rfx'\n'archive3-moving-contact-sheets-2026-09-13-14-49-02-utc'\n'archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc'\n'ai-flowchart'\nItems in the second set but not the first:\n'49_similarity_final_results'\n'58_big_three_stat_rows'\n'52_rookie_record_columns'\n'54_trade_package_panels'\n'51_debut_leaderboard'\n'57_three_playoff_run_cards'\n'53_lineup_rotation_columns'\n'56_seven_artist_stat_lineup' : tied families are chosen by admitted-list position",
+      "testId": "__main__.LaterStageBaselineFailures.test_p6_exploration_is_invariant_to_tied_admitted_position"
+    }
+  ],
+  "testsSha256": "bd1a65a04ef825e86e6b92d6eb6376b7a3b86e700f1a0c370b2b1f190b33d812"
+}

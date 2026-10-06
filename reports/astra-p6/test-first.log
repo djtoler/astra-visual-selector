@@ -1,0 +1,185 @@
+test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) ... /Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:568: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-corrections.json' mode='r' encoding='UTF-8'>
+  d = json.load(open(WRONG))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+
+  test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='negative') ... FAIL
+  test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='float') ... FAIL
+  test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='bool') ... FAIL
+  test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='nan') ... FAIL
+  test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='sequence') ... FAIL
+test_display_mutations_fail_even_when_rehashed (tests.test_astra_p6.P6SharedLedgerTests.test_display_mutations_fail_even_when_rehashed) ... FAIL
+test_family_quota_does_not_drop_valid_sibling (tests.test_astra_p6.P6SharedLedgerTests.test_family_quota_does_not_drop_valid_sibling) ... FAIL
+test_feedback_exact_identity_and_hash_bound (tests.test_astra_p6.P6SharedLedgerTests.test_feedback_exact_identity_and_hash_bound) ... FAIL
+test_filters_before_score_and_keeps_overflow (tests.test_astra_p6.P6SharedLedgerTests.test_filters_before_score_and_keeps_overflow) ... FAIL
+test_persisted_order_input_and_ledger_freshness (tests.test_astra_p6.P6SharedLedgerTests.test_persisted_order_input_and_ledger_freshness) ... FAIL
+test_sampling_mutation_does_not_create_review_truth (tests.test_astra_p6.P6SharedLedgerTests.test_sampling_mutation_does_not_create_review_truth) ... FAIL
+test_ties_independent_of_input_candidate_order (tests.test_astra_p6.P6SharedLedgerTests.test_ties_independent_of_input_candidate_order) ... FAIL
+test_unresolved_flags_and_provenance_round_trip (tests.test_astra_p6.P6SharedLedgerTests.test_unresolved_flags_and_provenance_round_trip) ... FAIL
+test_zero_limit_and_explicit_no_template_route (tests.test_astra_p6.P6SharedLedgerTests.test_zero_limit_and_explicit_no_template_route) ... FAIL
+
+======================================================================
+FAIL: test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='negative')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 148, in test_bad_limits_scores_or_sequence_rejected
+    with self.assertRaises(ValueError):self.view()
+                                       ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='float')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 148, in test_bad_limits_scores_or_sequence_rejected
+    with self.assertRaises(ValueError):self.view()
+                                       ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='bool')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 148, in test_bad_limits_scores_or_sequence_rejected
+    with self.assertRaises(ValueError):self.view()
+                                       ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='nan')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 148, in test_bad_limits_scores_or_sequence_rejected
+    with self.assertRaises(ValueError):self.view()
+                                       ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) (mutation='sequence')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 148, in test_bad_limits_scores_or_sequence_rejected
+    with self.assertRaises(ValueError):self.view()
+                                       ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_display_mutations_fail_even_when_rehashed (tests.test_astra_p6.P6SharedLedgerTests.test_display_mutations_fail_even_when_rehashed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 99, in test_display_mutations_fail_even_when_rehashed
+    v=self.view()
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_family_quota_does_not_drop_valid_sibling (tests.test_astra_p6.P6SharedLedgerTests.test_family_quota_does_not_drop_valid_sibling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 65, in test_family_quota_does_not_drop_valid_sibling
+    row=self.view()['tasks'][0]
+        ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_feedback_exact_identity_and_hash_bound (tests.test_astra_p6.P6SharedLedgerTests.test_feedback_exact_identity_and_hash_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 80, in test_feedback_exact_identity_and_hash_bound
+    v=self.view(); q=queue.build(self.gallery_path);qpath=self.root/'queue.json';qpath.write_text(batch.dumps(q))
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_filters_before_score_and_keeps_overflow (tests.test_astra_p6.P6SharedLedgerTests.test_filters_before_score_and_keeps_overflow)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 56, in test_filters_before_score_and_keeps_overflow
+    v=self.view(); row=v['tasks'][0]
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_persisted_order_input_and_ledger_freshness (tests.test_astra_p6.P6SharedLedgerTests.test_persisted_order_input_and_ledger_freshness)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 115, in test_persisted_order_input_and_ledger_freshness
+    v=self.view();self.ordering['displayLimit']=4;self.order_path.write_text(batch.dumps(self.ordering))
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_sampling_mutation_does_not_create_review_truth (tests.test_astra_p6.P6SharedLedgerTests.test_sampling_mutation_does_not_create_review_truth)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 152, in test_sampling_mutation_does_not_create_review_truth
+    self.view();q=queue.build(self.gallery_path)
+    ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_ties_independent_of_input_candidate_order (tests.test_astra_p6.P6SharedLedgerTests.test_ties_independent_of_input_candidate_order)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 122, in test_ties_independent_of_input_candidate_order
+    first=self.view()
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_unresolved_flags_and_provenance_round_trip (tests.test_astra_p6.P6SharedLedgerTests.test_unresolved_flags_and_provenance_round_trip)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 70, in test_unresolved_flags_and_provenance_round_trip
+    v=self.view(); row=v['tasks'][0]
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+======================================================================
+FAIL: test_zero_limit_and_explicit_no_template_route (tests.test_astra_p6.P6SharedLedgerTests.test_zero_limit_and_explicit_no_template_route)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 132, in test_zero_limit_and_explicit_no_template_route
+    self.ordering['displayLimit']=0;v=self.view();self.assertFalse(v['tasks'][0]['candidates'])
+                                      ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 49, in view
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters,'P6 gallery must consume the shared ledger')
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">})) : P6 gallery must consume the shared ledger
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.201s
+
+FAILED (failures=14)

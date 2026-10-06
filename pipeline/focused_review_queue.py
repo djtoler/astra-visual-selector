@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import gzip
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -18,12 +19,16 @@ from typing import Any
 
 try:
     from .matching_contract_gate import enforce_contracts
+    from . import storypackage_candidate_gallery as shared_gallery
+    from . import visualtask_batch_matching as batch
 except ImportError:
     from matching_contract_gate import enforce_contracts
+    import storypackage_candidate_gallery as shared_gallery
+    import visualtask_batch_matching as batch
 
 
 def _read(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(gzip.decompress(path.read_bytes()) if path.suffix == ".gz" else path.read_bytes())
 
 
 def _sha(path: Path) -> str:
@@ -71,10 +76,21 @@ def build(gallery_path: Path) -> dict[str, Any]:
             or gallery.get("fitValidated") is not False):
         raise ValueError("candidate gallery review boundary is invalid")
 
+    display = gallery.get('contractEnforcementReceipt', {}).get('candidateDisplay')
+    ledger_mode = display is not None or 'ledger' in gallery.get('sources', {})
+    if ledger_mode:
+        shared_gallery.validate(gallery)
+
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
     signatures: dict[str, dict[str, Any]] = {}
     for task in gallery.get("tasks") or []:
         signature = _signature(task)
+        if ledger_mode:
+            # Sampling observes existing ledger evidence; no candidate retrieval.
+            members = task['templateResult']['candidates']
+            signature['matchingJob'] = task['matchingJob']
+            signature['fitStates'] = sorted({r['fitAssessment']['verdict'] for r in members})
+            signature['declaredDuties'] = [{'requirementId': d['requirementId'], 'value': d['value']} for d in members[0]['fitAssessment']['evidence']['requirements']] if members else []
         key = _signature_key(signature)
         signatures[key] = signature
         grouped[key].append(task)
@@ -101,7 +117,7 @@ def build(gallery_path: Path) -> dict[str, Any]:
     if sorted(represented) != sorted(all_task_ids) or len(represented) != len(set(represented)):
         raise ValueError("focused review signatures do not cover every gallery task exactly once")
 
-    return {
+    artifact = {
         "schemaVersion": 1,
         "packageId": gallery.get("packageId"),
         "purpose": "package_neutral_semantic_capability_calibration_queue",
@@ -129,6 +145,21 @@ def build(gallery_path: Path) -> dict[str, Any]:
             "available, and no fit, selection or rendering authority is implied."
         ),
     }
+
+    if ledger_mode:
+        artifact['humanReviewed'] = False
+        artifact['ledgerTaskReferences'] = dict(display['ledgerTaskReferences'])
+        artifact['contractEnforcementReceipt']['focusedQueue'] = {
+            'galleryDisplaySha256': display['bodySha256'],
+            'reviewerSequence': list(gallery['reviewerSequence']),
+            'fullQueuePreserved': True}
+        artifact['contractEnforcementReceipt']['focusedQueue']['bodySha256'] = batch._digest(artifact)
+    return artifact
+
+
+def validate(queue: dict[str, Any], gallery_path: Path) -> None:
+    if queue != build(gallery_path):
+        raise ValueError('focused queue does not replay from exact shared gallery')
 
 
 def main() -> int:

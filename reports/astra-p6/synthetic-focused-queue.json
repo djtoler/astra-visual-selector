@@ -1,0 +1,347 @@
+{
+  "activationState": "review_only_not_connected",
+  "boundary": "Focused review reduces repetitive calibration only. The complete gallery remains available, and no fit, selection or rendering authority is implied.",
+  "contractEnforcementReceipt": {
+    "contracts": {
+      "entrypoints": {
+        "id": "mandatory-matching-entrypoints-v1",
+        "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"
+      },
+      "generalMatching": {
+        "id": "general-storypackage-matching-layer-v1",
+        "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"
+      },
+      "stageOrder": {
+        "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"
+      }
+    },
+    "enforced": true,
+    "entrypoint": "focused_review_queue.build",
+    "focusedQueue": {
+      "bodySha256": "a3128ab5d38381b57d219130080787aca186637e7367d994b86ed1eda06be05a",
+      "fullQueuePreserved": true,
+      "galleryDisplaySha256": "7cfb4a36de8a89d61275ca573004d730e4023e40658993a270c1497754d80d32",
+      "reviewerSequence": [
+        "museum-opening.rule",
+        "museum-opening.host"
+      ]
+    },
+    "mode": "review_only",
+    "productionRequiresCompleteHarness": true,
+    "renderingAuthorized": false,
+    "schemaVersion": 1,
+    "selectionAuthorized": false
+  },
+  "counts": {
+    "focusedReviewTasks": 2,
+    "fullGalleryTasks": 2,
+    "representedSignatures": 2,
+    "tasksDeferredAsSameSignature": 0
+  },
+  "coverageBasis": "One deterministic task per distinct primary-operation, job, entity-count, typed-value, cohort, perceptibility, text and candidate-state signature.",
+  "fitValidated": false,
+  "fullQueuePreserved": true,
+  "humanReviewed": false,
+  "ledgerTaskReferences": {
+    "museum-opening.host": "86e1e4bf72b4fd2bb45b395d008cf3f4246392e5ae821d28e97783a12f04a497",
+    "museum-opening.rule": "623b259683b152e96d639c58d25f80e883a993dc7ed266ee13fa0fe62f73d599"
+  },
+  "packageId": "museum-opening",
+  "purpose": "package_neutral_semantic_capability_calibration_queue",
+  "renderingAuthorized": false,
+  "representatives": [
+    {
+      "representedTaskCount": 1,
+      "representedTaskIds": [
+        "museum-opening.host"
+      ],
+      "signature": {
+        "candidateState": "no_candidates",
+        "declaredDuties": [
+          {
+            "requirementId": "task.entities.displayEligible[0]",
+            "value": "Snoop Dogg"
+          },
+          {
+            "requirementId": "task.mustBePerceptible[0]",
+            "value": "the host identity must be clear"
+          },
+          {
+            "requirementId": "task.quote",
+            "value": "Snoop Dogg welcomes visitors to the exhibition."
+          },
+          {
+            "requirementId": "task.job",
+            "value": "define_terms"
+          },
+          {
+            "requirementId": "task.taskRole",
+            "value": "host_portrait"
+          },
+          {
+            "requirementId": "task.primaryMeaning.job",
+            "value": "define_terms"
+          },
+          {
+            "requirementId": "task.primaryMeaning.status",
+            "value": "legacy_unresolved"
+          },
+          {
+            "requirementId": "timingRequirement.exactTaskAudioSpan.durationSeconds",
+            "value": 3.0
+          },
+          {
+            "requirementId": "timingRequirement.exactTaskAudioSpan.endSeconds",
+            "value": 5.0
+          },
+          {
+            "requirementId": "timingRequirement.exactTaskAudioSpan.startSeconds",
+            "value": 2.0
+          },
+          {
+            "requirementId": "timingRequirement.reason",
+            "value": null
+          },
+          {
+            "requirementId": "timingRequirement.status",
+            "value": "exact"
+          },
+          {
+            "requirementId": "mediaRequirements.availabilityStatus",
+            "value": "unknown"
+          },
+          {
+            "requirementId": "mediaRequirements.missingMediaBrief",
+            "value": null
+          },
+          {
+            "requirementId": "mediaRequirements.reason",
+            "value": null
+          },
+          {
+            "requirementId": "mediaRequirements.requiredEntities[0]",
+            "value": "Snoop Dogg"
+          },
+          {
+            "requirementId": "mediaRequirements.requiredMediaKinds[0]",
+            "value": "person"
+          },
+          {
+            "requirementId": "mediaRequirements.requiredSlotCount",
+            "value": 1
+          },
+          {
+            "requirementId": "mediaRequirements.status",
+            "value": "required"
+          },
+          {
+            "requirementId": "textRequirements.characterAndLineLimits",
+            "value": []
+          },
+          {
+            "requirementId": "textRequirements.reason",
+            "value": null
+          },
+          {
+            "requirementId": "textRequirements.requiredExactStrings",
+            "value": []
+          },
+          {
+            "requirementId": "textRequirements.requiredFieldCount",
+            "value": 0
+          },
+          {
+            "requirementId": "textRequirements.status",
+            "value": "not_required"
+          },
+          {
+            "requirementId": "dataRequirements.reason",
+            "value": null
+          },
+          {
+            "requirementId": "dataRequirements.requiredTypedFields",
+            "value": []
+          },
+          {
+            "requirementId": "dataRequirements.status",
+            "value": "not_required"
+          },
+          {
+            "requirementId": "nativeMapping",
+            "value": "exact_current_candidate_mapping_required"
+          },
+          {
+            "requirementId": "candidate.scopeRestriction",
+            "value": "unscoped"
+          }
+        ],
+        "entityCount": "none",
+        "fitStates": [
+          "unresolved"
+        ],
+        "hasCohort": false,
+        "hasPerceptibilityConstraint": false,
+        "hasTypedValues": false,
+        "job": "unspecified",
+        "matchingJob": "define_terms",
+        "needsOnScreenText": false,
+        "primaryPresentationOperation": "unspecified"
+      },
+      "taskId": "museum-opening.host"
+    },
+    {
+      "representedTaskCount": 1,
+      "representedTaskIds": [
+        "museum-opening.rule"
+      ],
+      "signature": {
+        "candidateState": "no_candidates",
+        "declaredDuties": [
+          {
+            "requirementId": "task.entities.displayEligible",
+            "value": []
+          },
+          {
+            "requirementId": "task.mustBePerceptible[0]",
+            "value": "the time limit must be legible"
+          },
+          {
+            "requirementId": "task.quote",
+            "value": "Admission is free before noon."
+          },
+          {
+            "requirementId": "task.job",
+            "value": "define_terms"
+          },
+          {
+            "requirementId": "task.taskRole",
+            "value": "setup_text"
+          },
+          {
+            "requirementId": "task.primaryMeaning.job",
+            "value": "define_terms"
+          },
+          {
+            "requirementId": "task.primaryMeaning.status",
+            "value": "legacy_unresolved"
+          },
+          {
+            "requirementId": "timingRequirement.exactTaskAudioSpan.durationSeconds",
+            "value": 2.0
+          },
+          {
+            "requirementId": "timingRequirement.exactTaskAudioSpan.endSeconds",
+            "value": 2.0
+          },
+          {
+            "requirementId": "timingRequirement.exactTaskAudioSpan.startSeconds",
+            "value": 0.0
+          },
+          {
+            "requirementId": "timingRequirement.reason",
+            "value": null
+          },
+          {
+            "requirementId": "timingRequirement.status",
+            "value": "exact"
+          },
+          {
+            "requirementId": "mediaRequirements.availabilityStatus",
+            "value": "not_required"
+          },
+          {
+            "requirementId": "mediaRequirements.missingMediaBrief",
+            "value": null
+          },
+          {
+            "requirementId": "mediaRequirements.reason",
+            "value": null
+          },
+          {
+            "requirementId": "mediaRequirements.requiredEntities",
+            "value": []
+          },
+          {
+            "requirementId": "mediaRequirements.requiredMediaKinds",
+            "value": []
+          },
+          {
+            "requirementId": "mediaRequirements.requiredSlotCount",
+            "value": 0
+          },
+          {
+            "requirementId": "mediaRequirements.status",
+            "value": "not_required"
+          },
+          {
+            "requirementId": "textRequirements.characterAndLineLimits[0].fieldIndex",
+            "value": 0
+          },
+          {
+            "requirementId": "textRequirements.characterAndLineLimits[0].maxCharacters",
+            "value": 20
+          },
+          {
+            "requirementId": "textRequirements.characterAndLineLimits[0].maxLines",
+            "value": 2
+          },
+          {
+            "requirementId": "textRequirements.reason",
+            "value": null
+          },
+          {
+            "requirementId": "textRequirements.requiredExactStrings[0]",
+            "value": "FREE BEFORE NOON"
+          },
+          {
+            "requirementId": "textRequirements.requiredFieldCount",
+            "value": 1
+          },
+          {
+            "requirementId": "textRequirements.status",
+            "value": "required"
+          },
+          {
+            "requirementId": "dataRequirements.reason",
+            "value": null
+          },
+          {
+            "requirementId": "dataRequirements.requiredTypedFields",
+            "value": []
+          },
+          {
+            "requirementId": "dataRequirements.status",
+            "value": "not_required"
+          },
+          {
+            "requirementId": "nativeMapping",
+            "value": "exact_current_candidate_mapping_required"
+          },
+          {
+            "requirementId": "candidate.scopeRestriction",
+            "value": "unscoped"
+          }
+        ],
+        "entityCount": "none",
+        "fitStates": [
+          "unresolved"
+        ],
+        "hasCohort": false,
+        "hasPerceptibilityConstraint": false,
+        "hasTypedValues": false,
+        "job": "unspecified",
+        "matchingJob": "define_terms",
+        "needsOnScreenText": false,
+        "primaryPresentationOperation": "unspecified"
+      },
+      "taskId": "museum-opening.rule"
+    }
+  ],
+  "schemaVersion": 1,
+  "selectionAuthorized": false,
+  "sourceGallerySha256": "a96920f769a447c48c8f9de54771a8a79f0881054a2afd76105f8abf6527bb90",
+  "taskIds": [
+    "museum-opening.host",
+    "museum-opening.rule"
+  ]
+}

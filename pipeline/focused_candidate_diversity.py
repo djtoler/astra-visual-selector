@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import gzip
 import json
 from pathlib import Path
 from typing import Any
@@ -17,13 +18,19 @@ from typing import Any
 try:
     from . import visualtask_matching as matching
     from .matching_contract_gate import enforce_contracts
+    from . import storypackage_candidate_gallery as shared_gallery
+    from . import focused_review_queue as shared_queue
+    from . import visualtask_batch_matching as batch
 except ImportError:
     import visualtask_matching as matching
     from matching_contract_gate import enforce_contracts
+    import storypackage_candidate_gallery as shared_gallery
+    import focused_review_queue as shared_queue
+    import visualtask_batch_matching as batch
 
 
 def _read(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(gzip.decompress(path.read_bytes()) if path.suffix == ".gz" else path.read_bytes())
 
 
 def _sha(path: Path) -> str:
@@ -38,6 +45,18 @@ def build(gallery_path: Path, queue_path: Path) -> dict[str, Any]:
     receipt = enforce_contracts("focused_candidate_diversity.build")
     gallery = _read(gallery_path)
     queue = _read(queue_path)
+    if 'ledger' in gallery.get('sources', {}) or gallery.get('purpose') == 'reconciled_ledger_review_gallery':
+        shared_gallery.validate(gallery)
+        shared_queue.validate(queue, gallery_path)
+        chosen = set(queue['taskIds'])
+        result = {**gallery, 'tasks': [r for r in gallery['tasks'] if r['taskId'] in chosen],
+                  'purpose': 'focused_shared_ledger_review', 'sourceGallerySha256': _sha(gallery_path),
+                  'sourceFocusedQueueSha256': _sha(queue_path), 'humanReviewed': False,
+                  'contractEnforcementReceipt': {**receipt, 'focusedSampling': {
+                      'galleryDisplaySha256': gallery['contractEnforcementReceipt']['candidateDisplay']['bodySha256'],
+                      'ledgerTaskReferences': queue['ledgerTaskReferences'], 'fullQueuePreserved': True}}}
+        result['contractEnforcementReceipt']['focusedSampling']['bodySha256'] = batch._digest(result)
+        return result
     if gallery.get("packageId") != queue.get("packageId"):
         raise ValueError("gallery and focused queue package IDs differ")
     if queue.get("selectionAuthorized") is not False or queue.get("renderingAuthorized") is not False:
@@ -95,7 +114,7 @@ def build(gallery_path: Path, queue_path: Path) -> dict[str, Any]:
                             if matching.C._family(row["candidateId"]) not in primary_families]
         exploration_pool.sort(key=lambda row: (
             exploration_frequency.get(matching.C._family(row["candidateId"]), 0),
-            admitted_families.index(matching.C._family(row["candidateId"])),
+            matching.C._family(row["candidateId"]), row["candidateId"],
         ))
         exploration = exploration_pool[:8]
         for row in exploration:

@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import copy
+import gzip
 import hashlib
 import json
 import math
@@ -14,9 +16,11 @@ from typing import Any
 
 try:
     from . import visualtask_matching as matching
+    from . import visualtask_batch_matching as batch
     from .matching_contract_gate import enforce_contracts
 except ImportError:
     import visualtask_matching as matching
+    import visualtask_batch_matching as batch
     from matching_contract_gate import enforce_contracts
 
 
@@ -91,10 +95,17 @@ def _local_relevance(queries: list[str], records: list[dict[str, Any]]) -> tuple
     }
 
 
-def build(*, proposals_path: Path, adapter_path: Path,
+def build(*, proposals_path: Path | None = None, adapter_path: Path | None = None,
           bindings_path: Path = DEFAULT_BINDINGS,
-          admissions_path: Path | None = None) -> dict[str, Any]:
+          admissions_path: Path | None = None,
+          ledger_path: Path | None = None, ordering_path: Path | None = None) -> dict[str, Any]:
     contract_receipt = enforce_contracts("storypackage_candidate_gallery.build")
+    if ledger_path is not None or ordering_path is not None:
+        if ledger_path is None or ordering_path is None or proposals_path is not None or adapter_path is not None or admissions_path is not None:
+            raise ValueError("reconciled gallery requires only ledger and persisted ordering inputs")
+        return _ledger_gallery(ledger_path, ordering_path, contract_receipt)
+    if proposals_path is None or adapter_path is None:
+        raise ValueError("discovery gallery requires proposals and adapter")
     proposals = _read(proposals_path)
     adapter = _read(adapter_path)
     bindings = _read(bindings_path)
@@ -217,10 +228,123 @@ def build(*, proposals_path: Path, adapter_path: Path,
     }
 
 
+def _ledger_read(path: Path) -> dict[str, Any]:
+    data = path.read_bytes()
+    return json.loads(gzip.decompress(data) if path.suffix == '.gz' else data)
+
+
+def _review_order(candidates: list[dict[str, Any]], scores: dict[str, float]) -> list[dict[str, Any]]:
+    # Membership is decided by P5 before any score is read. No family quota or
+    # popularity signal can add/remove an option. Unknown remains reviewable.
+    rows = [r for r in candidates if r['fitAssessment']['verdict'] != 'incompatible']
+    for row in rows:
+        score = scores.get(row['candidateId'], 0)
+        if isinstance(score, bool) or not isinstance(score, (int, float)) or not math.isfinite(score):
+            raise ValueError('review score must be finite numeric evidence')
+    return sorted(rows, key=lambda r: (
+        r['fitAssessment']['verdict'] not in {'native_fit', 'adapted_fit'},
+        -scores.get(r['candidateId'], 0), r['candidateId']))
+
+
+def _display_digest(gallery: dict[str, Any]) -> str:
+    body = {**gallery, 'contractEnforcementReceipt': {**gallery['contractEnforcementReceipt'],
+            'candidateDisplay': dict(gallery['contractEnforcementReceipt']['candidateDisplay'])}}
+    body['contractEnforcementReceipt']['candidateDisplay'].pop('bodySha256', None)
+    return batch._digest(body)
+
+
+def _ledger_gallery(ledger_path: Path, ordering_path: Path, contract_receipt: dict[str, Any]) -> dict[str, Any]:
+    ledger = _ledger_read(Path(ledger_path))
+    batch.validate(ledger)  # Mandatory current catalog/source replay; not structural-only.
+    ordering = _read(ordering_path)
+    limit = ordering.get('displayLimit')
+    if isinstance(limit, bool) or not isinstance(limit, int) or limit < 0:
+        raise ValueError('explicit nonnegative integer displayLimit required')
+    sequence = ordering.get('taskIds')
+    by_id = {r['taskId']: r for r in ledger['tasks']}
+    if not isinstance(sequence, list) or len(sequence) != len(set(sequence)) or set(sequence) != set(by_id):
+        raise ValueError('reviewer sequence must contain every ledger task exactly once')
+    scores = ordering.get('candidateRelevance') or {}
+    if set(scores) - set(by_id):
+        raise ValueError('scores reference an unknown ledger task')
+    tasks = []
+    for task_id in sequence:
+        original = by_id[task_id]
+        candidates = original['templateResult']['candidates']
+        task_scores = scores.get(task_id) or {}
+        if not isinstance(task_scores, dict) or set(task_scores) - {r['candidateId'] for r in candidates}:
+            raise ValueError('scores reference an unknown ledger candidate')
+        ordered = _review_order(candidates, task_scores)
+        eligible = [r for r in ordered if r['fitAssessment']['verdict'] in {'native_fit', 'adapted_fit'}]
+        unresolved = [r for r in ordered if r['fitAssessment']['verdict'] not in {'native_fit', 'adapted_fit'}]
+        rejected = [r for r in candidates if r['fitAssessment']['verdict'] == 'incompatible']
+        groups: dict[str, list[dict[str, Any]]] = {}
+        for member in sorted(candidates, key=lambda r: r['candidateId']):
+            groups.setdefault(matching.C._family(member['candidateId']), []).append({
+                'candidateId': member['candidateId'], 'ledgerCandidateSha256': batch._digest(member),
+                'verdict': member['fitAssessment']['verdict'],
+                'nativeFitUnknown': member['fitAssessment']['evidence']['nativeFitUnknown'],
+                'provenance': copy.deepcopy(member.get('candidateMatchingProvenance'))})
+        displayed = eligible[:limit]
+        tasks.append({**copy.deepcopy(original),
+            'ledgerTaskSha256': batch._digest(original),
+            'candidateRelevance': copy.deepcopy(task_scores), 'displayLimit': limit,
+            'candidates': copy.deepcopy(displayed), 'candidateCount': len(displayed),
+            'candidateStatus': 'reconciled_review_only',
+            'unresolvedCandidates': copy.deepcopy(unresolved),
+            'omittedCandidateIds': [r['candidateId'] for r in eligible[limit:]],
+            'orderedCandidateIds': [r['candidateId'] for r in ordered],
+            'familyOrder': list(dict.fromkeys(matching.C._family(r['candidateId']) for r in ordered)),
+            'variantGroups': [{'family': key, 'members': members} for key, members in sorted(groups.items())],
+            'rejectionReasons': [{'candidateId': r['candidateId'], 'fitAssessment': copy.deepcopy(r['fitAssessment'])} for r in rejected],
+            'counts': {'pool': len(candidates), 'eligible': len(eligible), 'incompatible': len(rejected),
+                       'unresolved': len(unresolved), 'displayed': len(displayed), 'omitted': len(eligible)-len(displayed)},
+            'humanReviewed': False,
+            'noTemplateReason': None if displayed else 'no_verified_display_option; complete_ledger_and_non_template_routes_preserved'})
+    display = {'policy': 'existing-gallery-ledger-display@1',
+               'stages': ledger['contractEnforcementReceipt']['candidateReconciliation']['stages'] + ['deterministic_review_order', 'bounded_eligible_display'],
+               'ledgerReconciliationSha256': ledger['contractEnforcementReceipt']['candidateReconciliation']['bodySha256'],
+               'ledgerTaskReferences': {r['taskId']: batch._digest(r) for r in ledger['tasks']},
+               'ignoredFamilyQuota': ordering.get('familyQuota'),
+               'orderingPolicy': 'verified_first_then_descending_persisted_score_then_candidate_id; no_threshold_or_family_quota',
+               'fullLedgerPreserved': True}
+    artifact = {'schemaVersion': 1, 'packageId': ledger['storyId'],
+                'purpose': 'reconciled_ledger_review_gallery', 'activationState': 'review_only_not_connected',
+                'selectionAuthorized': False, 'renderingAuthorized': False, 'fitValidated': False,
+                'contractEnforcementReceipt': {**contract_receipt, 'candidateDisplay': display},
+                'sources': {'ledger': batch._source(Path(ledger_path)), 'ordering': batch._source(Path(ordering_path))},
+                'consumerFingerprints': copy.deepcopy(ledger['consumerFingerprints']),
+                'reviewerSequence': list(sequence), 'tasks': tasks,
+                'counts': {key: sum(r['counts'][key] for r in tasks) for key in ('pool','eligible','incompatible','unresolved','displayed','omitted')},
+                'humanReviewed': False, 'boundary': 'Ordering and sampling are review evidence; unknown/native flags, complete ledger and overflow remain accessible; no selection or rendering authority.'}
+    display['bodySha256'] = _display_digest(artifact)
+    return artifact
+
+
+def validate(gallery: dict[str, Any]) -> None:
+    """A rehashed edit cannot replace the immutable persisted inputs."""
+    display = gallery.get('contractEnforcementReceipt', {}).get('candidateDisplay') or {}
+    if display.get('policy') != 'existing-gallery-ledger-display@1' or display.get('bodySha256') != _display_digest(gallery):
+        raise ValueError('gallery display receipt missing or stale')
+    for source in gallery.get('sources', {}).values():
+        path = batch._source_path(source.get('path', ''))
+        if not path.is_file() or batch._sha(path) != source.get('sha256'):
+            raise ValueError('gallery input missing or stale')
+    try:
+        replay = build(ledger_path=batch._source_path(gallery['sources']['ledger']['path']),
+                       ordering_path=batch._source_path(gallery['sources']['ordering']['path']))
+    except (KeyError, TypeError) as exc:
+        raise ValueError('gallery input bindings incomplete') from exc
+    if gallery != replay:
+        raise ValueError('gallery does not replay from shared ledger and persisted ordering')
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--proposals", type=Path, required=True)
-    parser.add_argument("--adapter", type=Path, required=True)
+    parser.add_argument("--proposals", type=Path)
+    parser.add_argument("--adapter", type=Path)
+    parser.add_argument("--ledger", type=Path)
+    parser.add_argument("--ordering", type=Path)
     parser.add_argument("--bindings", type=Path, default=DEFAULT_BINDINGS)
     parser.add_argument("--admissions", type=Path)
     parser.add_argument("--output", type=Path, required=True)
@@ -230,6 +354,7 @@ def main() -> int:
         adapter_path=args.adapter,
         bindings_path=args.bindings,
         admissions_path=args.admissions,
+        ledger_path=args.ledger, ordering_path=args.ordering,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(artifact, indent=2, ensure_ascii=False, sort_keys=True) + "\n")

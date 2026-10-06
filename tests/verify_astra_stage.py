@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def verify(stage):
-    folder = "astra-p0-p2" if stage in {"P0", "P1", "P2"} else "astra-p5" if stage == "P5" else "astra-p3-p4"
+    folder = "astra-p0-p2" if stage in {"P0", "P1", "P2"} else "astra-p5" if stage == "P5" else "astra-p6" if stage == "P6" else "astra-p3-p4"
     path = ROOT / f"reports/{folder}/{stage.lower()}-receipt.json"
     receipt = json.loads(path.read_text())
     if receipt.get("stage") != stage or receipt.get("status") != "complete":

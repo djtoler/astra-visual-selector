@@ -1,0 +1,69 @@
+test_bad_limits_scores_or_sequence_rejected (tests.test_astra_p6.P6SharedLedgerTests.test_bad_limits_scores_or_sequence_rejected) ... /Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/media_candidates.py:568: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/grammar/media-corrections.json' mode='r' encoding='UTF-8'>
+  d = json.load(open(WRONG))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_display_mutations_fail_even_when_rehashed (tests.test_astra_p6.P6SharedLedgerTests.test_display_mutations_fail_even_when_rehashed) ... ok
+test_family_quota_does_not_drop_valid_sibling (tests.test_astra_p6.P6SharedLedgerTests.test_family_quota_does_not_drop_valid_sibling) ... ok
+test_feedback_exact_identity_and_hash_bound (tests.test_astra_p6.P6SharedLedgerTests.test_feedback_exact_identity_and_hash_bound) ... ERROR
+test_filters_before_score_and_keeps_overflow (tests.test_astra_p6.P6SharedLedgerTests.test_filters_before_score_and_keeps_overflow) ... ok
+test_persisted_order_input_and_ledger_freshness (tests.test_astra_p6.P6SharedLedgerTests.test_persisted_order_input_and_ledger_freshness) ... ok
+test_sampling_mutation_does_not_create_review_truth (tests.test_astra_p6.P6SharedLedgerTests.test_sampling_mutation_does_not_create_review_truth) ... ERROR
+test_ties_independent_of_input_candidate_order (tests.test_astra_p6.P6SharedLedgerTests.test_ties_independent_of_input_candidate_order) ... ok
+test_unresolved_flags_and_provenance_round_trip (tests.test_astra_p6.P6SharedLedgerTests.test_unresolved_flags_and_provenance_round_trip) ... ERROR
+test_zero_limit_and_explicit_no_template_route (tests.test_astra_p6.P6SharedLedgerTests.test_zero_limit_and_explicit_no_template_route) ... ERROR
+
+======================================================================
+ERROR: test_feedback_exact_identity_and_hash_bound (tests.test_astra_p6.P6SharedLedgerTests.test_feedback_exact_identity_and_hash_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 80, in test_feedback_exact_identity_and_hash_bound
+    v=self.view(); q=queue.build(self.gallery_path);qpath=self.root/'queue.json';qpath.write_text(batch.dumps(q))
+                     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/focused_review_queue.py", line 89, in build
+    signature['declaredDuties'] = [d['requiredValue'] for d in members[0]['fitAssessment']['evidence']['requirements']] if members else []
+                                   ~^^^^^^^^^^^^^^^^^
+KeyError: 'requiredValue'
+
+======================================================================
+ERROR: test_sampling_mutation_does_not_create_review_truth (tests.test_astra_p6.P6SharedLedgerTests.test_sampling_mutation_does_not_create_review_truth)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 152, in test_sampling_mutation_does_not_create_review_truth
+    self.view();q=queue.build(self.gallery_path)
+                  ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/focused_review_queue.py", line 89, in build
+    signature['declaredDuties'] = [d['requiredValue'] for d in members[0]['fitAssessment']['evidence']['requirements']] if members else []
+                                   ~^^^^^^^^^^^^^^^^^
+KeyError: 'requiredValue'
+
+======================================================================
+ERROR: test_unresolved_flags_and_provenance_round_trip (tests.test_astra_p6.P6SharedLedgerTests.test_unresolved_flags_and_provenance_round_trip)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 73, in test_unresolved_flags_and_provenance_round_trip
+    qpath=self.root/'queue.json';q=queue.build(self.gallery_path);qpath.write_text(batch.dumps(q))
+                                   ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/focused_review_queue.py", line 89, in build
+    signature['declaredDuties'] = [d['requiredValue'] for d in members[0]['fitAssessment']['evidence']['requirements']] if members else []
+                                   ~^^^^^^^^^^^^^^^^^
+KeyError: 'requiredValue'
+
+======================================================================
+ERROR: test_zero_limit_and_explicit_no_template_route (tests.test_astra_p6.P6SharedLedgerTests.test_zero_limit_and_explicit_no_template_route)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 136, in test_zero_limit_and_explicit_no_template_route
+    row=self.view()['tasks'][0];self.assertEqual(row['counts']['pool'],0);self.assertFalse(row['candidates'])
+        ~~~~~~~~~^^
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p6.py", line 51, in view
+    result=gallery.build(ledger_path=self.ledger_path,ordering_path=self.order_path)
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/storypackage_candidate_gallery.py", line 104, in build
+    return _ledger_gallery(ledger_path, ordering_path, contract_receipt)
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/pipeline/storypackage_candidate_gallery.py", line 275, in _ledger_gallery
+    raise ValueError('scores reference an unknown ledger candidate')
+ValueError: scores reference an unknown ledger candidate
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.698s
+
+FAILED (errors=4)

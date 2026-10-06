@@ -253,8 +253,8 @@ class LaterStageBaselineFailures(unittest.TestCase):
 # ASTRA_BASELINE_PROBE=1 executes raw assertions to reproduce the failing baseline.
 if os.environ.get("ASTRA_BASELINE_PROBE") != "1":
     repaired = set(os.environ.get("ASTRA_REPAIRED_STAGES", "").split(","))
-    for stage in ("P1", "P2", "P3", "P4", "P5"):
-        folder = "astra-p0-p2" if stage in {"P1", "P2"} else "astra-p5" if stage == "P5" else "astra-p3-p4"
+    for stage in ("P1", "P2", "P3", "P4", "P5", "P6"):
+        folder = "astra-p0-p2" if stage in {"P1", "P2"} else "astra-p5" if stage == "P5" else "astra-p6" if stage == "P6" else "astra-p3-p4"
         receipt_path = RUNTIME_ROOT / f"reports/{folder}/{stage.lower()}-receipt.json"
         if receipt_path.is_file() and json.loads(receipt_path.read_text()).get("status") == "complete":
             repaired.add(stage)
@@ -265,6 +265,8 @@ if os.environ.get("ASTRA_BASELINE_PROBE") != "1":
             if cls is LaterStageBaselineFailures and ((name.startswith("test_p3_") and "P3" in repaired) or (name.startswith("test_p4_") and "P4" in repaired)):
                 continue
             if cls is LaterStageBaselineFailures and name.startswith("test_p5_") and "P5" in repaired:
+                continue
+            if cls is LaterStageBaselineFailures and name.startswith("test_p6_") and "P6" in repaired:
                 continue
             setattr(cls, name, unittest.expectedFailure(getattr(cls, name)))
     del cls, name

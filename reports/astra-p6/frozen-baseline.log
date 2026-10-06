@@ -1,0 +1,36 @@
+test_p6_exploration_is_invariant_to_tied_admitted_position (__main__.LaterStageBaselineFailures.test_p6_exploration_is_invariant_to_tied_admitted_position) ... FAIL
+
+======================================================================
+FAIL: test_p6_exploration_is_invariant_to_tied_admitted_position (__main__.LaterStageBaselineFailures.test_p6_exploration_is_invariant_to_tied_admitted_position)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/dwaynetoler/Documents/Codex/2026-10-05/https-github-com-djtoler-astra-visual/work/matching-layer/tests/test_astra_p0_p2.py", line 218, in test_p6_exploration_is_invariant_to_tied_admitted_position
+    self.assertEqual(set(first["tasks"][0]["focusedReviewFamilies"]),
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     set(second["tasks"][0]["focusedReviewFamilies"]),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     "tied families are chosen by admitted-list position")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'circle-list-infographic'
+'archive3-comparison-pack-ae'
+'05_measured_height_ruler'
+'archive3-looped-slideshow-background'
+'screen-mockup-rfx'
+'archive3-moving-contact-sheets-2026-09-13-14-49-02-utc'
+'archive3-carousel-photo-logo-reveal-2026-09-13-12-24-28-utc'
+'ai-flowchart'
+Items in the second set but not the first:
+'49_similarity_final_results'
+'58_big_three_stat_rows'
+'52_rookie_record_columns'
+'54_trade_package_panels'
+'51_debut_leaderboard'
+'57_three_playoff_run_cards'
+'53_lineup_rotation_columns'
+'56_seven_artist_stat_lineup' : tied families are chosen by admitted-list position
+
+----------------------------------------------------------------------
+Ran 1 test in 0.690s
+
+FAILED (failures=1)

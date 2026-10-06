@@ -1,0 +1,15 @@
+test_identical_canonical_display_and_queue_across_roots_and_processes (tests.test_astra_p6.P6ProcessReplayTests.test_identical_canonical_display_and_queue_across_roots_and_processes) ... FAIL
+
+======================================================================
+FAIL: test_identical_canonical_display_and_queue_across_roots_and_processes (tests.test_astra_p6.P6ProcessReplayTests.test_identical_canonical_display_and_queue_across_roots_and_processes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/astra-p6-test-first/tests/test_astra_p6.py", line 166, in test_identical_canonical_display_and_queue_across_roots_and_processes
+    self.assertIn('ledger_path',inspect.signature(gallery.build).parameters)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'ledger_path' not found in mappingproxy(OrderedDict({'proposals_path': <Parameter "proposals_path: 'Path'">, 'adapter_path': <Parameter "adapter_path: 'Path'">, 'bindings_path': <Parameter "bindings_path: 'Path' = PosixPath('/private/tmp/astra-p6-test-first/grammar/bindings.json')">, 'admissions_path': <Parameter "admissions_path: 'Path | None' = None">}))
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)
