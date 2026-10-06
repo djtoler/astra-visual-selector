@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "packageId": "drake-goat@1",
+  "activationState": "review_only_not_connected",
+  "selectionAuthorized": false,
+  "renderingAuthorized": false,
+  "baseCommit": "31ec7970b4eaacd9601c0a6500bd7d465b350ad3",
+  "sources": {
+    "storyPackage": {
+      "path": "/private/tmp/patterns-story-ready/architecture/storypackage/drake-goat@1.storypackage-0.2.json",
+      "sha256": "6f67e533200f5867a4da28c03b4b636682d9bc5a02dea4415b5ce8a1e7eac057"
+    },
+    "adapter": {
+      "path": "/private/tmp/p7-adapter.json",
+      "sha256": "0b2fde0b8287be43fbe86ee5b50d1b7b612a5150fe6b50c92185a4130c70d268"
+    },
+    "taskProposals": {
+      "path": "/private/tmp/p7-proposals.json",
+      "sha256": "0e5e449e172e4bc03def92f2fb6925739d9c7091ecf39e3024befe1db1c9b50d"
+    }
+  },
+  "run": {
+    "projectedTasks": 104,
+    "sourceBeats": 32,
+    "p5CandidateVariants": 9612,
+    "p5TemplateVerdicts": {
+      "no_candidate": 17,
+      "unresolved": 87
+    },
+    "p6EligibleCandidates": 0,
+    "p6DisplayedCandidates": 0,
+    "p6UnresolvedCandidates": 9612,
+    "focusedTaskSignatures": 88,
+    "tasksDeferredAsSameSignature": 16
+  },
+  "checks": {
+    "allProjectedTasksReachedP5": true,
+    "everyDiscoveredVariantPreservedBeforeDisplayReduction": true,
+    "unknownFitRemainedUnknown": true,
+    "unsupportedFitPromotionCount": 0,
+    "directDiscoveryGalleryUsedAsAcceptanceEvidence": false,
+    "existingFocusedQueueReceiptValidated": true,
+    "existingFocusedCandidateDiversityProducedUsableBlindPacket": false
+  },
+  "excludedLargeRunArtifacts": {
+    "reason": "The deterministic artifacts are reproducible but unsuitable for Git: the P5 ledger was 504 MB and each expanded P6/focused view was about 975 MB. Their hashes are retained here; the generated local copies are not acceptance fixtures.",
+    "p5LedgerSha256": "d5dacd1fb26c5c1ef466c1a225d9d86a4b9e43b728dec64837af4a805fa83ee2",
+    "p6GallerySha256": "c280ef840124ed9d012e3ac50c52515f7d3831811cf448a00c6d6e2c05f3702b",
+    "focusedQueueSha256": "68fe687f630be3149644422cad796ba2bc3dae8dc381e027677964adaeb3c27e",
+    "focusedCandidateOutputSha256": "0a497357dbc8c4465865a23b42d45d109f58c65148478f0d26bb9c899f0da522"
+  },
+  "status": "stage_3_complete_stage_4_packet_not_yet_usable",
+  "blockingFinding": "The repaired path correctly refuses to display unverified candidates, but the current ledger-mode focused-candidate stage copies all 9,612 unresolved variants instead of producing a compact, family-diverse blind adjudication slate. P7 must add a source-neutral, hash-bound unresolved-candidate review packet before requesting editor input.",
+  "boundary": "No held-out labels were used, no candidate was selected, and no migration or rendering was authorized."
+}

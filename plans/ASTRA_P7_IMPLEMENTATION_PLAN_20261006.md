@@ -28,3 +28,9 @@ The preliminary Drake GOAT run on `matching-layer` commit `e9cd802` is diagnosti
 - Do not tune from Drake GOAT before labels are frozen. After its labels are used, Drake GOAT becomes regression material and another untouched package is required for later tuning acceptance.
 - Preserve the preliminary run only as provenance; never merge its outcomes into P7 metrics.
 
+## Current execution status — 2026-10-06
+
+- Stages 1–3 passed on `drake-goat@1`: 104 projected tasks reached the repaired P5 ledger; 9,612 discovered variants were retained; 17 explicit non-template tasks received no candidates; all 9,612 candidate fits remained unresolved and zero were promoted or displayed.
+- The existing ledger-mode focused-candidate artifact was not usable as an editor packet because it copied all 9,612 unresolved variants. That output is excluded from acceptance evidence rather than being relabeled as a focused review.
+- A source-neutral, hash-bound blind packet now shows one exact representative per distinct admitted family, ordered only after P5 admission. Batch 0 contains 20 tasks, 64 candidate cards and four no-template rows; the full ledger and omitted-family identities remain referenced.
+- Stage 4 is pending editor labels. Stages 5–6 have not started. No migration, selection or rendering is authorized.
