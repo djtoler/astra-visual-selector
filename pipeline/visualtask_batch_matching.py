@@ -73,6 +73,14 @@ def _review_only(artifact: dict[str, Any], label: str) -> None:
         raise ValueError(f"{label} cannot authorize rendering")
 
 
+def _primary_source_beat_id(task: dict[str, Any]) -> str | None:
+    """Read both the legacy scalar and canonical multi-beat task contract."""
+    if task.get("sourceBeatId"):
+        return task["sourceBeatId"]
+    source_ids = task.get("sourceBeatIds") or []
+    return source_ids[0] if source_ids else None
+
+
 def _load_inputs(request_path: Path) -> tuple[dict[str, Any], dict[str, Path], dict[str, Any]]:
     request_path = Path(request_path).resolve()
     request = _read(request_path)
@@ -936,7 +944,7 @@ def build(request_path: Path) -> dict[str, Any]:
             }
         rows.append({
             "taskId": task["id"],
-            "sourceBeatId": task.get("sourceBeatId"),
+            "sourceBeatId": _primary_source_beat_id(task),
             "ordinal": task.get("ordinal"),
             "taskRole": task.get("taskRole"),
             "matchingJob": task.get("job"),
