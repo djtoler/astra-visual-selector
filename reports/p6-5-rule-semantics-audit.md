@@ -1,6 +1,6 @@
 # P6.5 matching rule-semantics audit
 
-Status: **P7 restart blocked pending four contract repairs.**
+Status: **repairs completed; see `reports/p6-5-rule-repair-receipt.json`. P7 acceptance still requires a new untouched package.**
 
 This audit examines the 6 review principles and 10 mandatory review rules in
 `grammar/general-matching-layer-contract.json` against their enforcing code and
@@ -80,5 +80,10 @@ but it is not a behavioral proof.
    boundaries across profile, relationship, event, and transformation jobs.
 5. Replay the repaired rules on both golden packages, retain Drake as regression
    evidence, then use a new untouched package for P7 acceptance.
+
+All five repair actions are complete. Future and Year Seventeen were replayed
+as calibration packages, and Drake was replayed as regression evidence. The
+recorded Future boundary variance is not relabeled as exact golden equivalence.
+Final P7 quality acceptance remains blocked only on a new untouched package.
 
 No selection, fit validation, or rendering is authorized by this audit.

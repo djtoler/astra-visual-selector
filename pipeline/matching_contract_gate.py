@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GENERAL_CONTRACT = ROOT / "grammar" / "general-matching-layer-contract.json"
 STAGE_CONTRACT = ROOT / "grammar" / "matching-harness-stage-contract.json"
 ENTRYPOINT_CONTRACT = ROOT / "grammar" / "matching-entrypoint-contract.json"
+BEHAVIOR_CONTRACT = ROOT / "grammar" / "matching-rule-behavior-contract.json"
 HARNESS_AUDIT = ROOT / "reports" / "matching-harness-audit.json"
 
 EXPECTED_STAGES = [
@@ -48,6 +49,15 @@ REVIEW_RULES = [
     "pureRhetoricalQuestionMayUseNoTemplate",
     "commentsNeverAuthorizeSelectionOrRendering",
 ]
+EXCLUSIONARY_RULES = {
+    "nonTemplateRouteMayBeBetterThanWeakTemplate",
+    "primaryPresentationOperationControlsAdmission",
+    "secondaryOperationsCannotUnionAdmission",
+    "mixedPayloadRequiresExactDisposition",
+    "scopedFamiliesRequireMatchingOperation",
+    "identityRoutesRejectUnrelatedQuantitativeSemantics",
+    "pureRhetoricalQuestionMayUseNoTemplate",
+}
 
 
 class MatchingContractError(ValueError):
@@ -176,6 +186,33 @@ def _validate_entrypoints(contract: dict[str, Any]) -> dict[str, dict[str, Any]]
     return by_id
 
 
+def _validate_behavior(contract: dict[str, Any]) -> None:
+    required_kinds = set(contract.get("requiredCaseKinds") or [])
+    expected_kinds = {"positive", "negative", "mixed", "unknown", "scope_mutation", "modal_reversal"}
+    if required_kinds != expected_kinds:
+        raise MatchingContractError("behavior contract has incomplete counterexample kinds")
+    rows = contract.get("rules") or []
+    by_id = {row.get("id"): row for row in rows}
+    if set(by_id) != EXCLUSIONARY_RULES or len(rows) != len(by_id):
+        raise MatchingContractError("behavior contract omits or duplicates an exclusionary rule")
+    for rule_id, row in by_id.items():
+        covered: set[str] = set()
+        tests = row.get("tests") or []
+        if not tests:
+            raise MatchingContractError(f"behavior contract lacks tests for {rule_id}")
+        for case in tests:
+            path = ROOT / str(case.get("module") or "")
+            function = str(case.get("function") or "")
+            kinds = set(case.get("caseKinds") or [])
+            if not path.is_file() or not function or not kinds <= required_kinds:
+                raise MatchingContractError(f"behavior test reference is invalid for {rule_id}")
+            if f"def {function}(" not in path.read_text(encoding="utf-8"):
+                raise MatchingContractError(f"behavior test is missing for {rule_id}: {function}")
+            covered.update(kinds)
+        if covered != required_kinds:
+            raise MatchingContractError(f"behavior counterexample coverage is incomplete for {rule_id}")
+
+
 def _validate_production_harness() -> None:
     audit = _read(HARNESS_AUDIT)
     if audit.get("productionAllowed") is not True:
@@ -198,9 +235,11 @@ def enforce_contracts(entrypoint: str, *, mode: str = "review_only") -> dict[str
     general = _read(GENERAL_CONTRACT)
     stages = _read(STAGE_CONTRACT)
     entrypoints = _read(ENTRYPOINT_CONTRACT)
+    behavior = _read(BEHAVIOR_CONTRACT)
     _validate_general(general)
     _validate_stages(stages)
     registered = _validate_entrypoints(entrypoints)
+    _validate_behavior(behavior)
     row = registered.get(entrypoint)
     if row is None:
         raise MatchingContractError(f"unregistered matching entry point: {entrypoint}")
@@ -217,6 +256,7 @@ def enforce_contracts(entrypoint: str, *, mode: str = "review_only") -> dict[str
             "generalMatching": {"id": general["contractId"], "sha256": _sha(GENERAL_CONTRACT)},
             "stageOrder": {"sha256": _sha(STAGE_CONTRACT)},
             "entrypoints": {"id": entrypoints["contractId"], "sha256": _sha(ENTRYPOINT_CONTRACT)},
+            "ruleBehavior": {"id": behavior["contractId"], "sha256": _sha(BEHAVIOR_CONTRACT)},
         },
         "selectionAuthorized": False,
         "renderingAuthorized": False,

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "contractId": "matching-exclusionary-rule-behavior-v1",
+  "requiredCaseKinds": ["positive", "negative", "mixed", "unknown", "scope_mutation", "modal_reversal"],
+  "rules": [
+    {
+      "id": "nonTemplateRouteMayBeBetterThanWeakTemplate",
+      "tests": [
+        {"module": "tests/test_visualtask_matching.py", "function": "test_explicit_non_template_route_returns_no_template_candidates", "caseKinds": ["positive"]},
+        {"module": "tests/test_visualtask_matching.py", "function": "test_unreviewed_non_template_route_fails_instead_of_hiding_candidates", "caseKinds": ["negative", "unknown", "modal_reversal"]},
+        {"module": "tests/test_visualtask_matching.py", "function": "test_non_template_evidence_cannot_leak_from_another_task", "caseKinds": ["scope_mutation"]},
+        {"module": "tests/test_astra_p2.py", "function": "test_quote_obligations_override_question_and_keep_attribution", "caseKinds": ["mixed"]}
+      ]
+    },
+    {
+      "id": "primaryPresentationOperationControlsAdmission",
+      "tests": [
+        {"module": "tests/test_visualtask_matching.py", "function": "test_primary_operation_prevents_secondary_union_from_admitting_data_templates", "caseKinds": ["positive", "negative", "mixed", "modal_reversal"]},
+        {"module": "tests/test_storypackage_splitter.py", "function": "test_discourse_markers_do_not_invent_archival_or_event_jobs", "caseKinds": ["unknown", "scope_mutation"]}
+      ]
+    },
+    {
+      "id": "secondaryOperationsCannotUnionAdmission",
+      "tests": [
+        {"module": "tests/test_visualtask_matching.py", "function": "test_primary_operation_prevents_secondary_union_from_admitting_data_templates", "caseKinds": ["positive", "negative", "mixed", "modal_reversal"]},
+        {"module": "tests/test_storypackage_splitter.py", "function": "test_narrator_beat_splits_into_review_sized_semantic_moments", "caseKinds": ["unknown", "scope_mutation"]}
+      ]
+    },
+    {
+      "id": "mixedPayloadRequiresExactDisposition",
+      "tests": [
+        {"module": "tests/test_visualtask_matching.py", "function": "test_exact_mixed_payload_review_can_confirm_primary_operation", "caseKinds": ["positive"]},
+        {"module": "tests/test_visualtask_matching.py", "function": "test_unreviewed_mixed_payload_fails_before_primary_only_admission", "caseKinds": ["negative", "mixed", "unknown", "modal_reversal"]},
+        {"module": "tests/test_visualtask_matching.py", "function": "test_mixed_payload_review_cannot_leak_from_another_task", "caseKinds": ["scope_mutation"]}
+      ]
+    },
+    {
+      "id": "scopedFamiliesRequireMatchingOperation",
+      "tests": [
+        {"module": "tests/test_visualtask_matching.py", "function": "test_scoped_lyrics_are_admitted_only_for_lyric_operation", "caseKinds": ["positive", "negative", "mixed"]},
+        {"module": "tests/test_visualtask_matching.py", "function": "test_scoped_timelines_are_admitted_only_for_archival_progression", "caseKinds": ["unknown", "scope_mutation", "modal_reversal"]}
+      ]
+    },
+    {
+      "id": "identityRoutesRejectUnrelatedQuantitativeSemantics",
+      "tests": [
+        {"module": "tests/test_visualtask_matching.py", "function": "test_identity_transformation_rejects_quantitative_change_templates", "caseKinds": ["positive", "negative", "mixed"]},
+        {"module": "tests/test_visualtask_matching.py", "function": "test_identity_profile_relationship_and_event_routes_reject_data_only_templates", "caseKinds": ["unknown", "scope_mutation", "modal_reversal"]}
+      ]
+    },
+    {
+      "id": "pureRhetoricalQuestionMayUseNoTemplate",
+      "tests": [
+        {"module": "tests/test_storypackage_splitter.py", "function": "test_question_templates_and_broll_are_both_route_options_until_review", "caseKinds": ["positive", "mixed", "unknown"]},
+        {"module": "tests/test_storypackage_splitter.py", "function": "test_semantic_question_route_veto_fails_closed", "caseKinds": ["negative", "modal_reversal"]},
+        {"module": "tests/test_visualtask_matching.py", "function": "test_non_template_evidence_cannot_leak_from_another_task", "caseKinds": ["scope_mutation"]}
+      ]
+    }
+  ],
+  "selectionAuthorized": false,
+  "renderingAuthorized": false
+}

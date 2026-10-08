@@ -141,6 +141,29 @@ class VisualTaskMatching(unittest.TestCase):
             statement_task, {}, pool, exhaustive_families=True)}
         self.assertFalse(lyric_ids & {candidate for candidate in statement_ids if "lyric" in candidate})
 
+    def test_scoped_timelines_are_admitted_only_for_archival_progression(self):
+        pool = {row["id"]: row for row in subject.C.load(content_class="*")}
+        timeline_ids = {row["id"] for row in pool.values() if row.get("scope") == "timelines"}
+        self.assertTrue(timeline_ids)
+        base = {
+            "job": "narrate_an_event", "taskRole": "main", "entityCount": 1,
+            "entities": {"displayEligible": ["artist"]}, "mustBePerceptible": [],
+            "templateAdmissions": [], "ignorePriorSelections": True,
+            "candidateDisplayLimit": 500,
+        }
+        archival = {**base, "id": "new-story.archival", "quote": "Across the years.",
+                    "presentationOperations": ["archival_progression"],
+                    "primaryPresentationOperation": "archival_progression"}
+        archival_ids = {row["candidateId"] for row in subject.template_candidates(
+            archival, {}, pool, exhaustive_families=True)}
+        self.assertTrue(archival_ids & timeline_ids)
+        statement = {**base, "id": "new-story.statement", "quote": "A general claim.",
+                     "presentationOperations": ["concept_statement"],
+                     "primaryPresentationOperation": "concept_statement"}
+        statement_ids = {row["candidateId"] for row in subject.template_candidates(
+            statement, {}, pool, exhaustive_families=True)}
+        self.assertFalse(statement_ids & timeline_ids)
+
     def test_explicit_non_template_route_returns_no_template_candidates(self):
         pool = {row["id"]: row for row in subject.C.load(content_class="*")}
         task = {
@@ -149,9 +172,86 @@ class VisualTaskMatching(unittest.TestCase):
             "entities": {"displayEligible": []}, "mustBePerceptible": [],
             "presentationOperations": ["rhetorical_question"],
             "primaryPresentationOperation": "rhetorical_question",
-            "routeDisposition": {"templateEligible": False},
+            "routeDisposition": {
+                "templateEligible": False,
+                "decisionEvidence": {
+                    "authority": "human_editor", "scope": "exact_task",
+                    "taskId": "new-story.question", "decision": "no_template",
+                    "reviewState": "editor_reviewed",
+                },
+            },
         }
         self.assertEqual(subject.template_candidates(task, {}, pool), [])
+
+    def test_unreviewed_non_template_route_fails_instead_of_hiding_candidates(self):
+        pool = {row["id"]: row for row in subject.C.load(content_class="*")}
+        task = {
+            "id": "new-story.unreviewed-veto", "job": "pose_a_question",
+            "taskRole": "main", "quote": "How could this happen?",
+            "entityCount": 0, "entities": {"displayEligible": []},
+            "mustBePerceptible": [], "presentationOperations": ["rhetorical_question"],
+            "primaryPresentationOperation": "rhetorical_question",
+            "routeDisposition": {"templateEligible": False},
+        }
+        with self.assertRaisesRegex(
+                ValueError, "task-scoped editor-reviewed no-template evidence"):
+            subject.template_candidates(task, {}, pool)
+
+    def test_non_template_evidence_cannot_leak_from_another_task(self):
+        task = {
+            "id": "new-story.target",
+            "routeDisposition": {
+                "templateEligible": False,
+                "decisionEvidence": {
+                    "authority": "human_editor", "scope": "exact_task",
+                    "taskId": "old-story.source", "decision": "no_template",
+                    "reviewState": "editor_reviewed",
+                },
+            },
+        }
+        with self.assertRaisesRegex(ValueError, "task-scoped editor-reviewed"):
+            subject._validate_route_disposition(task)
+
+    def test_unreviewed_mixed_payload_fails_before_primary_only_admission(self):
+        task = {
+            "id": "new-story.mixed", "job": "assert_without_data",
+            "presentationOperations": ["subject_profile", "data_explanation"],
+            "primaryPresentationOperation": "subject_profile",
+            "routeDisposition": {"templateEligible": True, "mixedPayloadReviewRequired": True},
+        }
+        with self.assertRaisesRegex(ValueError, "mixed payload requires task-scoped"):
+            subject._validate_mixed_payload_disposition(task)
+
+    def test_exact_mixed_payload_review_can_confirm_primary_operation(self):
+        task = {
+            "id": "new-story.mixed", "job": "assert_without_data",
+            "presentationOperations": ["subject_profile", "data_explanation"],
+            "primaryPresentationOperation": "subject_profile",
+            "routeDisposition": {
+                "templateEligible": True, "mixedPayloadReviewRequired": True,
+                "mixedPayloadDecisionEvidence": {
+                    "authority": "human_editor", "scope": "exact_task",
+                    "taskId": "new-story.mixed", "reviewState": "editor_reviewed",
+                    "decision": "primary_operation_confirmed",
+                },
+            },
+        }
+        subject._validate_mixed_payload_disposition(task)
+
+    def test_mixed_payload_review_cannot_leak_from_another_task(self):
+        task = {
+            "id": "new-story.target",
+            "routeDisposition": {
+                "mixedPayloadReviewRequired": True,
+                "mixedPayloadDecisionEvidence": {
+                    "authority": "human_editor", "scope": "exact_task",
+                    "taskId": "old-story.source", "reviewState": "editor_reviewed",
+                    "decision": "split_complete",
+                },
+            },
+        }
+        with self.assertRaisesRegex(ValueError, "mixed payload requires task-scoped"):
+            subject._validate_mixed_payload_disposition(task)
 
     def test_identity_transformation_rejects_quantitative_change_templates(self):
         pool = {row["id"]: row for row in subject.C.load(content_class="*")}
@@ -166,6 +266,31 @@ class VisualTaskMatching(unittest.TestCase):
             task, {}, pool, exhaustive_families=True)}
         self.assertNotIn("truth-cohort-attrition", ids)
         self.assertNotIn("26_mirrored_stat_compare", ids)
+
+    def test_identity_profile_relationship_and_event_routes_reject_data_only_templates(self):
+        pool = {row["id"]: row for row in subject.C.load(content_class="*")}
+        base = {
+            "job": "assert_without_data", "taskRole": "main",
+            "entities": {"displayEligible": ["artist", "collaborator"]},
+            "mustBePerceptible": [], "ignorePriorSelections": True,
+            "candidateDisplayLimit": 500,
+        }
+        cases = (
+            ("subject_profile", 1, "Meet the artist."),
+            ("relationship_intro", 2, "The artist worked with a collaborator."),
+            ("event_narration", 1, "The artist recorded the album."),
+        )
+        for operation, entity_count, quote in cases:
+            task = {**base, "id": f"new-story.{operation}", "quote": quote,
+                    "entityCount": entity_count,
+                    "presentationOperations": [operation],
+                    "primaryPresentationOperation": operation}
+            ids = {row["candidateId"] for row in subject.template_candidates(
+                task, {}, pool, exhaustive_families=True)}
+            with self.subTest(operation=operation):
+                self.assertTrue(ids)
+                self.assertNotIn("3d-pie-chart-set--scene-003", ids)
+                self.assertNotIn("truth-cohort-attrition", ids)
 
 
 if __name__ == "__main__":

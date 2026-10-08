@@ -169,7 +169,7 @@ class P1BaselineFailures(unittest.TestCase):
 
 
 class P2BaselineFailures(unittest.TestCase):
-    def test_all_twelve_route_ineligible_tasks_stay_empty_in_focused_review(self):
+    def test_legacy_semantic_route_vetoes_are_rejected_not_replayed(self):
         gallery = rebased_gallery("jayz-drake-settle-it-v13")
         ids = [row["taskId"] for row in gallery["tasks"]
                if (row.get("routeDisposition") or {}).get("templateEligible") is False]
@@ -179,20 +179,22 @@ class P2BaselineFailures(unittest.TestCase):
         with tempfile.TemporaryDirectory() as raw:
             g, q = Path(raw) / "gallery.json", Path(raw) / "queue.json"
             g.write_text(json.dumps(gallery)); q.write_text(json.dumps(queue))
-            result = focused_candidate_diversity.build(g, q)
-        self.assertTrue(all(not row["focusedReviewCandidates"] for row in result["tasks"]),
-                        "focused reconstruction discarded the intentional no-template route")
+            with self.assertRaisesRegex(ValueError, "task-scoped editor-reviewed"):
+                focused_candidate_diversity.build(g, q)
 
     def test_task_contract_fields_survive_gallery(self):
         gallery = rebased_gallery("jayz-drake-settle-it-v13")
-        proposals_path = Path(gallery["sources"]["taskProposals"]["path"])
-        proposals = json.loads(proposals_path.read_text())
-        with patch.object(storypackage_candidate_gallery, "_local_relevance",
-                          return_value=([{}] * len(proposals["taskProposals"]),
-                                        {"scope": "audit_test_no_model_execution"})):
-            result = storypackage_candidate_gallery.build(
-                proposals_path=proposals_path,
-                adapter_path=Path(gallery["sources"]["adapter"]["path"]))
+        adapter_path = Path(gallery["sources"]["adapter"]["path"])
+        proposals = storypackage_splitter.build(
+            json.loads(adapter_path.read_text()), source_path=adapter_path)
+        with tempfile.TemporaryDirectory() as raw:
+            proposals_path = Path(raw) / "current-proposals.json"
+            proposals_path.write_text(json.dumps(proposals))
+            with patch.object(storypackage_candidate_gallery, "_local_relevance",
+                              return_value=([{}] * len(proposals["taskProposals"]),
+                                            {"scope": "audit_test_no_model_execution"})):
+                result = storypackage_candidate_gallery.build(
+                    proposals_path=proposals_path, adapter_path=adapter_path)
         rows = {row["taskId"]: row for row in result["tasks"]}
         for proposal in proposals["taskProposals"]:
             task = rows[proposal["taskProposalId"]]

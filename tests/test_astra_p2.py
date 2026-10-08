@@ -15,9 +15,26 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class P2ProjectionTests(unittest.TestCase):
-    def source_paths(self):
+    @classmethod
+    def setUpClass(cls):
         legacy = rebased_gallery("jayz-drake-settle-it-v13")
-        return Path(legacy["sources"]["taskProposals"]["path"]), Path(legacy["sources"]["adapter"]["path"])
+        cls.adapter_path = Path(legacy["sources"]["adapter"]["path"])
+        from pipeline import storypackage_splitter
+        proposals = storypackage_splitter.build(
+            json.loads(cls.adapter_path.read_text()), source_path=cls.adapter_path)
+        cls.tempdir = tempfile.TemporaryDirectory()
+        cls.proposals_path = Path(cls.tempdir.name) / "current-proposals.json"
+        cls.proposals_path.write_text(json.dumps(proposals))
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tempdir.cleanup()
+
+    def source_paths(self):
+        cls = type(self)
+        if not hasattr(cls, "proposals_path"):
+            cls.setUpClass()
+        return cls.proposals_path, cls.adapter_path
 
     def projection(self):
         return contract.build_projection(*self.source_paths())
@@ -41,7 +58,7 @@ class P2ProjectionTests(unittest.TestCase):
             result = gallery.build(proposals_path=pp, adapter_path=ap)
         requirements = matching_agent._requirements(source, projection=result["taskProjection"])
         ids = [r["taskId"] for r in result["tasks"] if not r["routeDisposition"]["templateEligible"]]
-        self.assertEqual(len(ids), 12)
+        self.assertEqual(ids, [])
         self.assertTrue(all(not r["candidates"] for r in result["tasks"] if r["taskId"] in ids))
         with tempfile.TemporaryDirectory() as folder:
             gp, qp = Path(folder) / "gallery.json", Path(folder) / "queue.json"
@@ -50,7 +67,7 @@ class P2ProjectionTests(unittest.TestCase):
                                      "selectionAuthorized": False, "renderingAuthorized": False}))
             audit = focused.build(gp, qp)
             self.assertEqual(audit["taskProjection"]["receipt"], result["taskProjection"]["receipt"])
-            self.assertTrue(all(not r["focusedReviewCandidates"] for r in audit["tasks"]))
+            self.assertEqual(audit["tasks"], [])
             del result["taskProjection"]["receipt"]
             gp.write_text(json.dumps(result))
             with self.assertRaises(ValueError): focused.build(gp, qp)

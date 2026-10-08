@@ -37,6 +37,44 @@ DATA_CARRIES = frozenset({
 })
 
 
+def _validate_route_disposition(task: dict[str, Any]) -> None:
+    """Require exact human authority before a task can suppress all templates."""
+    route = task.get("routeDisposition") or {}
+    if route.get("templateEligible") is not False:
+        return
+    evidence = route.get("decisionEvidence") or {}
+    expected = {
+        "authority": "human_editor",
+        "scope": "exact_task",
+        "taskId": task.get("id"),
+        "decision": "no_template",
+        "reviewState": "editor_reviewed",
+    }
+    if any(evidence.get(key) != value for key, value in expected.items()):
+        raise ValueError(
+            "template suppression requires task-scoped editor-reviewed no-template evidence"
+        )
+
+
+def _validate_mixed_payload_disposition(task: dict[str, Any]) -> None:
+    """Do not let primary-operation ordering hide a second material job."""
+    route = task.get("routeDisposition") or {}
+    if route.get("mixedPayloadReviewRequired") is not True:
+        return
+    evidence = route.get("mixedPayloadDecisionEvidence") or {}
+    expected = {
+        "authority": "human_editor",
+        "scope": "exact_task",
+        "taskId": task.get("id"),
+        "reviewState": "editor_reviewed",
+    }
+    if any(evidence.get(key) != value for key, value in expected.items()) or evidence.get("decision") not in {
+            "primary_operation_confirmed", "split_complete"}:
+        raise ValueError(
+            "mixed payload requires task-scoped editor-reviewed split or primary-operation evidence"
+        )
+
+
 def _operation_text(record: dict[str, Any]) -> str:
     capability = record.get("capability") or {}
     parts = [
@@ -265,6 +303,8 @@ def template_candidates(
         except ImportError:
             from storypackage_matching_handoff import validate_task_projection
         validate_task_projection(task)
+    _validate_route_disposition(task)
+    _validate_mixed_payload_disposition(task)
     if (task.get("routeDisposition") or {}).get("templateEligible") is False:
         return []
     job = task["job"]

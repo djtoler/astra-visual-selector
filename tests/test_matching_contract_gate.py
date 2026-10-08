@@ -23,7 +23,7 @@ class MatchingContractGateTests(unittest.TestCase):
         self.assertEqual(receipt["mode"], "review_only")
         self.assertFalse(receipt["selectionAuthorized"])
         self.assertFalse(receipt["renderingAuthorized"])
-        self.assertEqual(set(receipt["contracts"]), {"generalMatching", "stageOrder", "entrypoints"})
+        self.assertEqual(set(receipt["contracts"]), {"generalMatching", "stageOrder", "entrypoints", "ruleBehavior"})
         self.assertTrue(all(len(row["sha256"]) == 64 for row in receipt["contracts"].values()))
 
     def test_unknown_entrypoint_fails_closed(self):
@@ -43,6 +43,19 @@ class MatchingContractGateTests(unittest.TestCase):
         broken["reviewReconciliation"]["rules"]["incidentalNumbersDoNotCreateDataJobs"] = False
         with self.assertRaisesRegex(subject.MatchingContractError, "editor-review rule"):
             subject._validate_general(broken)
+
+    def test_exclusionary_behavior_contract_fails_on_missing_rule_or_case_kind(self):
+        contract = json.loads(subject.BEHAVIOR_CONTRACT.read_text())
+        missing_rule = copy.deepcopy(contract)
+        missing_rule["rules"].pop()
+        with self.assertRaisesRegex(subject.MatchingContractError, "exclusionary rule"):
+            subject._validate_behavior(missing_rule)
+        missing_case = copy.deepcopy(contract)
+        missing_case["rules"][0]["tests"][0]["caseKinds"] = []
+        for row in missing_case["rules"][0]["tests"][1:]:
+            row["caseKinds"] = [kind for kind in row["caseKinds"] if kind != "positive"]
+        with self.assertRaisesRegex(subject.MatchingContractError, "coverage is incomplete"):
+            subject._validate_behavior(missing_case)
 
     def test_non_harness_entrypoint_cannot_request_production(self):
         with self.assertRaisesRegex(subject.MatchingContractError, "does not allow mode"):

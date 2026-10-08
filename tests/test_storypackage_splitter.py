@@ -245,6 +245,37 @@ class StoryPackageSplitterTests(unittest.TestCase):
         )
         self.assertNotIn("transformation", rows)
 
+    def test_discourse_markers_do_not_invent_archival_or_event_jobs(self):
+        cases = (
+            "Before I give that question an answer, I want to know what the answer rewards.",
+            "Then comes the question behind the résumé: how much belongs to the artist?",
+            "Were releases promoted comparably?",
+            "The career should be judged on what can already be established, with tomorrow left out of the verdict.",
+        )
+        for text in cases:
+            with self.subTest(text=text):
+                operations = subject._presentation_operations(text=text, claim_rows=[])
+                self.assertNotIn("archival_progression", operations)
+                self.assertNotIn("event_narration", operations)
+
+    def test_superlative_question_does_not_invent_milestone(self):
+        operations = subject._presentation_operations(
+            text="The biggest audience? The strongest writing?", claim_rows=[])
+        self.assertEqual(operations, ["rhetorical_question"])
+
+    def test_quantitative_question_keeps_data_as_primary_visual_job(self):
+        text = "What share of the artist's streams comes from the biggest song?"
+        rows = [{"values": [{"unit": "percent", "label": "stream share"}]}]
+        self.assertEqual(subject._primary_operation(text, rows), "data_explanation")
+
+    def test_actual_temporal_event_still_receives_archival_and_event_operations(self):
+        operations = subject._presentation_operations(
+            text="Two years later, he signed with the label and released the album.",
+            claim_rows=[],
+        )
+        self.assertIn("archival_progression", operations)
+        self.assertIn("event_narration", operations)
+
 
 if __name__ == "__main__":
     unittest.main()

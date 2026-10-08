@@ -146,7 +146,10 @@ class P6SharedLedgerTests(unittest.TestCase):
     def test_zero_limit_and_explicit_no_template_route(self):
         self.ordering['displayLimit']=0;v=self.view();self.assertFalse(v['tasks'][0]['candidates'])
         self.assertEqual(len(v['tasks'][0]['omittedCandidateIds']),2)
-        task=self.values['visualTasks']['tasks'][0];task['routeDisposition']={'templateEligible':False,'route':'broll'}
+        task=self.values['visualTasks']['tasks'][0];task['routeDisposition']={
+            'templateEligible':False,'route':'broll','decisionEvidence':{
+                'authority':'human_editor','scope':'exact_task','taskId':task['id'],
+                'decision':'no_template','reviewState':'editor_reviewed'}}
         self.save();self.ledger=batch.build(self.request);self.ledger_path.write_text(batch.dumps(self.ledger))
         self.ordering['candidateRelevance'][self.task_id]={}
         row=self.view()['tasks'][0];self.assertEqual(row['counts']['pool'],0);self.assertFalse(row['candidates'])

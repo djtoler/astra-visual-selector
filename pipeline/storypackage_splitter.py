@@ -82,11 +82,15 @@ def _presentation_operations(*, text: str, claim_rows: list[dict[str, Any]]) -> 
         "these albums", "these releases", "both songs", "both tracks",
     ))):
         operations.append("item_sequence")
-    if any(term in lowered for term in (
-        " years later", "months later", "before long", "over the next", "eventually",
-        "later ", "then ", "after ", "before ", "from 19", "from 20", "in 19", "in 20",
-        "dropped out", "released", "signed",
-    )) or ("grew up" in lowered and not re.search(r"\bif you grew up\b", lowered)):
+    # Discourse words such as "before I answer" or "then comes the question"
+    # do not establish chronology. Require an actual temporal anchor or event.
+    if (any(term in lowered for term in (
+            " years later", "months later", "before long", "over the next", "eventually",
+            "dropped out", "released", "signed",
+        )) or
+            re.search(r"\b(?:in|from)\s+(?:19|20)\d{2}\b", lowered) or
+            re.search(r"\b(?:later|then|after|before)\b.{0,45}\b(?:released|signed|joined|won|lost|died|recorded|created|dropped out)\b", lowered) or
+            ("grew up" in lowered and not re.search(r"\bif you grew up\b", lowered))):
         operations.append("archival_progression")
     if any(term in lowered for term in (
         "according to", "wikipedia", "reddit", "article", "interview", "footage",
@@ -96,7 +100,7 @@ def _presentation_operations(*, text: str, claim_rows: list[dict[str, Any]]) -> 
         operations.append("evidence_presentation")
     if any(term in lowered for term in (
         "finally", "cemented", "breakthrough", "became", "made it", "number one",
-        "ready", "first time", "the top", "iconic", "biggest", "most streamed",
+        "first time", "reached the top", "iconic",
     )):
         operations.append("milestone_reveal")
     quantitative_terms = (
@@ -117,10 +121,10 @@ def _presentation_operations(*, text: str, claim_rows: list[dict[str, Any]]) -> 
     if "?" in text:
         operations.append("rhetorical_question")
     if any(term in lowered for term in (
-        "was ", "were ", "happened", "went ", "came ", "got ", "shot ", "died",
-        "lost ", "won ", "made ", "created ", "recorded ", "joined ",
-        "dropped out",
-    )) or re.search(r"\bleft\s+(?!floor\b|panel\b|side\b|column\b|axis\b|threshold\b|bound\b)", lowered):
+        "happened", "went ", "came ", "got ", "shot ", "died",
+        "lost ", "won ", "created ", "recorded ", "joined ", "released ",
+        "signed ", "dropped out",
+    )) or re.search(r"\bleft\s+(?!floor\b|panel\b|side\b|column\b|axis\b|threshold\b|bound\b|out\b)", lowered):
         operations.append("event_narration")
     if not operations:
         operations.append("concept_statement")
@@ -209,7 +213,8 @@ def _primary_operation(text: str, claim_rows: list[dict[str, Any]]) -> str:
     if ("rhetorical_question" in operations and
             not any(operation in operations for operation in (
                 "subject_profile", "relationship_intro", "evidence_presentation",
-                "lyric_presentation",
+                "lyric_presentation", "comparison", "data_explanation",
+                "item_sequence", "transformation",
             ))):
         return "rhetorical_question"
     lowered = text.lower()
@@ -389,7 +394,11 @@ def build(adapter: dict[str, Any], *, source_path: Path) -> dict[str, Any]:
                 if primary_operation == "rhetorical_question"
                 else "template_and_broll_options_preserved"
             ),
-            "mixedPayloadReviewRequired": len(presentation_operations) > 1,
+            # The splitter has already separated incompatible primary visual
+            # jobs. Remaining operations describe one primary job plus
+            # compatible supporting cues (for example data + item sequence).
+            # Only an upstream/downstream explicit ambiguity may set this true.
+            "mixedPayloadReviewRequired": False,
             "selectionAuthorized": False,
             "renderingAuthorized": False,
         }
