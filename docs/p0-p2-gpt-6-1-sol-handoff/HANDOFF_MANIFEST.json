@@ -36,7 +36,6 @@
   },
   "authoritativeFiles": [
     {"path": "AGENTS.md", "sha256": "7d598436afd816dda0d13549fd5bc8ac7bab902076c5d87da570614032cc7de6"},
-    {"path": "media_workflows.md", "sha256": "97a03e450baa7ab57d226f13d145cade9cb9429b47a1e5461e0d25996eb75234"},
     {"path": "docs/p0-p2-gpt-6-1-sol-handoff/P0_FIXTURE_MIGRATION_AUTHORIZATION.md", "sha256": "447a1af731a89097aad952a3271cf0b48ce1f8ec87db0c0c7bcc65b758b18393"},
     {"path": "plans/ASTRA_MATCHING_REBUILD_PLAN.md", "sha256": "b75ea96110b76a842b4676bf737ea107bed514c7ecd5f79d923d334229c53912"},
     {"path": "reports/astra-root-cause/08-root-cause-and-redesign.md", "sha256": "2b4fee401fe224ad2dea100a81f14f406ed0e26531227a0ff36c29dbf7786d7e"},
@@ -50,6 +49,14 @@
     {"path": "grammar/general-matching-layer-contract.json", "sha256": "0225adb078538058d62f5fe0aeeb696534301ac175c3b4d67cb61d728f849568"},
     {"path": "grammar/matching-harness-stage-contract.json", "sha256": "de8af6c520626fd2ecab29700f13b721df44544517fa1f602a342ce3250bee16"},
     {"path": "grammar/matching-entrypoint-contract.json", "sha256": "0580ab74536cd6f2ab5d3bc011741cbbe2a2f909adb4e3576e53a8a5f8e5d878"}
+  ],
+  "historicalPolicyInputs": [
+    {
+      "path": "media_workflows.md",
+      "sha256": "97a03e450baa7ab57d226f13d145cade9cb9429b47a1e5461e0d25996eb75234",
+      "frozenAtCommit": "5083ba40702181c8c8fa7b53b80d4c009a2aa728",
+      "reason": "The workflow memory is append-only operational policy and may evolve after the handoff; its historical hash remains provenance rather than a current-worktree equality gate."
+    }
   ],
   "supplementaryEvidence": [
     {
